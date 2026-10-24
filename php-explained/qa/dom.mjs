@@ -9,9 +9,18 @@ const file = fileURLToPath(new URL('../index.html', import.meta.url));
 const html = fs.readFileSync(file, 'utf8');
 const {document, window: domWindow} = parseHTML(html);
 let focused = '', scrolled = 0, printed = false, focusCount = 0;
-domWindow.HTMLElement.prototype.focus = function () { focused = this.id; focusCount++; };
+let activeEl = null;
+const focusOptions = [];
+Object.defineProperty(document, 'activeElement', {get: () => activeEl});
+domWindow.HTMLElement.prototype.focus = function (options) {
+  focused = this.id; activeEl = this; focusCount++; focusOptions.push(options);
+};
 domWindow.HTMLElement.prototype.scrollIntoView = function () { scrolled++; };
-const window = {matchMedia: () => ({matches: true}), print() { printed = true; }};
+const window = {
+  matchMedia: () => ({matches: true}),
+  scroll() { scrolled++; }, scrollTo() { scrolled++; }, scrollBy() { scrolled++; },
+  print() { printed = true; }
+};
 const navigator = {clipboard: {async writeText(text) { navigator.copied = text; }}};
 const $ = id => document.getElementById(id);
 function select(id, value) {
@@ -22,6 +31,8 @@ function select(id, value) {
 function click(id) {
   assert(!$(id).disabled, `${id} unexpectedly disabled`);
   assert(!$(id).hidden, `${id} unexpectedly hidden`);
+  activeEl = $(id);
+  focused = id;
   $(id).click();
 }
 function assertVersion(repaired) {
@@ -69,18 +80,24 @@ for (const story of ['oom', 'stale']) {
     if (index < 3) {
       assert($('patch').hidden);
       click('next');
+      assert.equal(focused, index === 2 ? 'patch' : 'next');
       assert.notEqual($('workspace').innerHTML, originalScene);
     }
   }
   assert($('next').hidden);
   assert(!$('patch').hidden);
-  assert.equal(focused, 'stepTitle');
+  assert.equal(focused, 'original');
   assert.match($('outcome').className, /danger/);
   click('back');
   assert(!$('next').hidden);
   assert($('patch').hidden);
-  click('next');
+  click('back');
+  click('back');
+  assert($('back').disabled);
+  assert.equal(focused, 'next');
+  for (let index = 0; index < 3; index++) click('next');
   click('patch');
+  assert.equal(focused, 'next');
   assertVersion(true);
   assert.match($('counter').textContent, /STEP 1 OF 4/);
   for (let index = 0; index < 3; index++) click('next');
@@ -95,7 +112,14 @@ for (const story of ['oom', 'stale']) {
   assert.match($('counter').textContent, /STEP 1 OF 4/);
   assert($('back').disabled);
 }
-assert(scrolled > 0);
+assert.equal(scrolled, 0, 'Story controls must never scroll the page');
+assert(focusOptions.length > 0, 'Final-step focus transfers should be exercised');
+assert(focusOptions.every(options => options?.preventScroll === true), 'Story focus transfers must prevent scrolling');
+assert.equal(document.querySelectorAll('.chapter-number, .story-card-number, .flow-index').length, 0);
+for (const id of ['copySizer', 'workspaceSizer', 'outcomeSizer']) {
+  assert.equal($(id).getAttribute('aria-hidden'), 'true');
+  assert($(id).hasAttribute('inert'));
+}
 
 for (const [value, result] of Object.entries({visitor: 'server operator', owner: 'hosting provider', admin: 'Inventory, update'})) {
   select('role', value);
@@ -153,4 +177,4 @@ for (const anchor of document.querySelectorAll('a[href^="#"]')) {
 const ids = [...document.querySelectorAll('[id]')].map(element => element.id);
 assert.equal(new Set(ids).size, ids.length);
 assert.equal(document.documentElement.lang, 'en-GB');
-console.log('PASS: both stories, version comparison at every step, replay/back/restart, all audience/version choices, all nine quiz answers, scoring/reset, copy success/denial, print dispatch, anchors and initial no-JavaScript state.');
+console.log('PASS: no story scrolling, stable control focus, unnumbered sections, both stories, version comparison at every step, replay/back/restart, all audience/version choices, all nine quiz answers, scoring/reset, copy success/denial, print dispatch, anchors and initial no-JavaScript state.');

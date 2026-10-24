@@ -16,7 +16,7 @@ async function run() {
   const artifacts = await fs.mkdtemp(path.join(os.tmpdir(), 'php-explained-qa-'));
   const browser = await chromium.launch(launchOptions);
   try {
-    for (const width of [390, 1280]) {
+    for (const width of [320, 390, 1280]) {
       const context = await browser.newContext({viewport: {width, height: 900}});
       const page = await context.newPage();
       page.setDefaultTimeout(5000);
@@ -27,15 +27,34 @@ async function run() {
       const assertNoOverflow = async () => assert(await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth
       ), `Horizontal overflow at ${width}px`);
+      async function clickStory(id) {
+        const control = page.locator('#' + id);
+        // Position the control before recording, so Playwright's own scrolling
+        // cannot be mistaken for scrolling caused by the application.
+        await control.evaluate(element => element.scrollIntoView({block: 'center', behavior: 'instant'}));
+        const before = await page.evaluate(() => ({
+          scrollY: window.scrollY,
+          navigationY: document.querySelector('.story-navigation').getBoundingClientRect().top
+        }));
+        await control.click();
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        const after = await page.evaluate(() => ({
+          scrollY: window.scrollY,
+          navigationY: document.querySelector('.story-navigation').getBoundingClientRect().top
+        }));
+        assert(Math.abs(after.scrollY - before.scrollY) <= 1, `${id} scrolled the page at ${width}px`);
+        assert(Math.abs(after.navigationY - before.navigationY) <= 1, `${id} moved the controls at ${width}px`);
+      }
       assert(await page.locator('#interactiveNotice').isHidden());
       assert(await page.locator('#storyLab').isVisible());
       assert(await page.locator('#quizPanel').isVisible());
       assert(await page.locator('#copyActions').isVisible());
       assert.equal(await page.locator('html').getAttribute('lang'), 'en-GB');
+      assert.equal(await page.locator('.chapter-number, .story-card-number, .flow-index').count(), 0);
       await assertNoOverflow();
 
       for (const story of ['oom', 'stale']) {
-        await page.locator('#' + story).click();
+        await clickStory(story);
         assert.equal(await page.locator('#' + story).getAttribute('aria-pressed'), 'true');
         assert.equal(await page.locator('#' + (story === 'oom' ? 'stale' : 'oom')).getAttribute('aria-pressed'), 'false');
         assert(await page.locator('#back').isDisabled());
@@ -43,7 +62,7 @@ async function run() {
         for (let index = 0; index < 4; index++) {
           const originalScene = await page.locator('#workspace').innerHTML();
           const originalTitle = await text('#stepTitle');
-          await page.locator('#repaired').click();
+          await clickStory('repaired');
           assert.equal(await text('#badge'), 'Repaired PHP');
           assert.equal(await page.locator('#storyStage').getAttribute('data-version'), 'repaired');
           assert.equal(await page.locator('#repaired').getAttribute('aria-pressed'), 'true');
@@ -54,7 +73,7 @@ async function run() {
             assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
             assert.notEqual(await text('#stepTitle'), originalTitle);
           }
-          await page.locator('#original').click();
+          await clickStory('original');
           assert.equal(await text('#badge'), 'Original PHP');
           assert.equal(await page.locator('#storyStage').getAttribute('data-version'), 'original');
           assert.equal(await page.locator('#original').getAttribute('aria-pressed'), 'true');
@@ -62,7 +81,7 @@ async function run() {
           assert.equal(await page.locator('#workspace').innerHTML(), originalScene);
           if (index < 3) {
             assert(await page.locator('#patch').isHidden());
-            await page.locator('#next').click();
+            await clickStory('next');
             assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
           }
           await assertNoOverflow();
@@ -70,22 +89,26 @@ async function run() {
         assert(await page.locator('#next').isHidden());
         assert.equal(await page.evaluate(() => document.activeElement.id), 'original');
         assert.match(await page.locator('#outcome').getAttribute('class'), /danger/);
-        await page.locator('#back').click();
+        await clickStory('back');
         assert.match(await text('#counter'), /STEP 3 OF 4/);
         assert(await page.locator('#next').isVisible());
         assert(await page.locator('#patch').isHidden());
-        await page.locator('#next').click();
-        assert.equal(await page.evaluate(() => document.activeElement.id), 'stepTitle');
-        await page.locator('#patch').click();
+        await clickStory('back');
+        await clickStory('back');
+        assert(await page.locator('#back').isDisabled());
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'next');
+        for (let index = 0; index < 3; index++) await clickStory('next');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'patch');
+        await clickStory('patch');
         assert.equal(await text('#badge'), 'Repaired PHP');
-        assert.match(await text('#counter'), /WITH THE REPAIR.*STEP 1 OF 4/);
-        for (let index = 0; index < 3; index++) await page.locator('#next').click();
+        assert.match(await text('#counter'), /STEP 1 OF 4/);
+        for (let index = 0; index < 3; index++) await clickStory('next');
         assert.match(await page.locator('#outcome').getAttribute('class'), /safe/);
         assert.match(await text('#workspace'), story === 'oom' ? /No invalid cleanup/ : /Fresh, valid state/);
-        await page.locator('#patch').click();
+        await clickStory('patch');
         assert.equal(await text('#badge'), 'Original PHP');
-        await page.locator('#next').click();
-        await page.locator('#reset').click();
+        await clickStory('next');
+        await clickStory('reset');
         assert.match(await text('#counter'), /STEP 1 OF 4/);
         assert(await page.locator('#back').isDisabled());
       }
@@ -186,7 +209,7 @@ async function run() {
       assert.deepEqual(errors, []);
       await page.locator('#storyLab').screenshot({path: path.join(artifacts, `story-${width}.png`)});
       await page.screenshot({path: path.join(artifacts, `page-${width}.png`), fullPage: true});
-      console.log(`PASS: all controls, resulting states, keyboard focus and no overflow at ${width}px`);
+      console.log(`PASS: stable story viewport/control positions, all interactions, keyboard focus and no overflow at ${width}px`);
       await context.close();
     }
 
