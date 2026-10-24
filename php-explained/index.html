@@ -1,42 +1,834 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="An interactive, plain-language guide to the October 2026 PHP2Shell vulnerabilities."><title>PHP2Shell, explained simply</title><style>
-:root{--paper:#f6f3eb;--ink:#233a35;--muted:#56675f;--green:#245e48;--lime:#d6e998;--line:#d6dad0;--red:#a33e30}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}a{color:var(--green)}button,select,input{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer;border:1px solid var(--line);border-radius:7px;padding:11px 18px;background:#fff;color:var(--ink)}button:hover{border-color:var(--green)}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #bd6b22;outline-offset:4px}button:disabled{opacity:.4;cursor:default}.primary,button[aria-pressed=true]{background:var(--green);color:white;border-color:var(--green)}header{position:sticky;top:0;background:#f6f3ebf5;border-bottom:1px solid var(--line);z-index:5}nav{max-width:1180px;margin:auto;padding:15px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:800;text-decoration:none;letter-spacing:-.5px}.navlinks{display:flex;gap:24px;font-size:14px}.navlinks a{text-decoration:none}main{max-width:1180px;margin:auto;padding:0 28px}.hero{padding:75px 0 58px;display:grid;grid-template-columns:1.2fr 1fr;gap:55px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:750}h1,h2,h3,p{margin-top:0}h1{font-family:Georgia,serif;font-size:clamp(46px,6vw,77px);font-weight:400;line-height:1.05;letter-spacing:-3px;margin-bottom:25px}h2{font:400 clamp(32px,4vw,46px)/1.15 Georgia,serif;letter-spacing:-1px;margin-bottom:20px}h3{font-size:20px;line-height:1.4}.lead{font-size:20px;line-height:1.6;max-width:620px}.small{font-size:13px;color:var(--muted)}.tag{display:inline-block;border:1px solid var(--line);padding:4px 10px;border-radius:30px;font-size:12px;margin-bottom:20px}.hero-art{background:#e7eadf;border-radius:160px 160px 18px 18px;padding:65px 25px 30px;min-height:360px;text-align:center}.desk{background:#305446;padding:22px;border-radius:10px;box-shadow:0 15px 0 #bcc5ad;transform:rotate(-3deg);color:white}.papers{display:flex;gap:12px;margin:15px 0}.paper{background:#fffdf3;color:var(--ink);padding:20px 10px;border-radius:3px;flex:1;box-shadow:3px 3px 0 #b2bba2}.paper.bad{background:#f2bc9d;transform:rotate(8deg)}.arrow{font-size:26px}.intro-note{border-left:3px solid var(--green);padding:4px 0 4px 20px;max-width:900px;font-size:15px}.section{padding:65px 0;border-top:1px solid var(--line)}.sectionhead{display:grid;grid-template-columns:1fr 1fr;gap:45px;margin-bottom:28px}.sectionhead p{align-self:end}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.flow article{border-top:2px solid var(--green);padding:22px 0}.number{font:italic 23px Georgia;color:var(--green)}.lab{background:#fffdf8;border:1px solid var(--line);border-radius:14px;overflow:hidden}.labbar{padding:20px 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.segments{display:flex;gap:8px;flex-wrap:wrap}.labbody{padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:40px;min-height:340px}.labvisual{border-radius:10px;background:#e9ede3;padding:25px;display:flex;flex-direction:column;justify-content:center}.memory{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:18px 0}.cell{height:55px;border:1px solid #91a38c;background:#fffdf6;border-radius:4px;display:grid;place-items:center;font-size:19px}.cell.full{background:#99bd86}.cell.invalid{background:#edb79d;border:2px dashed #a33e30}.status{font-size:14px;font-weight:700}.labcopy h3{font:400 29px/1.2 Georgia}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.stepdots{display:flex;gap:6px;margin:18px 0}.dot{height:5px;background:#d9dfd3;flex:1;border-radius:2px}.dot.on{background:var(--green)}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:35px}.tint{background:#e7ecdf;padding:30px;border-radius:12px}.warning{background:#f4e6d4;padding:24px;border-radius:10px;border-left:4px solid #b56f30}details{border-bottom:1px solid var(--line);padding:17px 0}summary{cursor:pointer;font-weight:650}details p{margin:15px 0 0}label{display:block;font-size:14px;font-weight:650;margin:14px 0 6px}select{background:white;border:1px solid #aab8a8;padding:12px;width:100%;border-radius:5px;color:var(--ink)}.result{margin-top:20px;padding:20px;border:1px solid var(--line);border-radius:8px;background:white}.quiz{max-width:800px}.answers{display:grid;gap:10px}.answers button{text-align:left}.feedback{min-height:60px;margin-top:18px}blockquote{margin:0;font:400 27px/1.5 Georgia}.actions{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}.sources{display:grid;grid-template-columns:1fr 1fr;gap:15px}.sources a{display:block;border-bottom:1px solid var(--line);padding:12px 0;font-size:15px}footer{max-width:1180px;margin:auto;padding:30px 28px 50px;font-size:13px;color:var(--muted)}progress{accent-color:var(--green);width:100%}code{font-size:14px;overflow-wrap:anywhere} @media(max-width:750px){.hero,.sectionhead,.labbody,.twocol{grid-template-columns:1fr;gap:25px}.hero{padding-top:40px}.hero-art{min-height:290px;padding-top:45px}.flow{grid-template-columns:1fr;gap:0}.sources{grid-template-columns:1fr}.navlinks{gap:12px}.navlinks a:nth-child(3){display:none}.section{padding:40px 0}main{padding:0 20px}.labbody{padding:20px}h1{letter-spacing:-2px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{header,.controls,.actions{display:none}.section{break-inside:avoid}body{font-size:12px}.hero{padding:20px 0}}
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Understand PHP2Shell through two visual stories. Follow the memory mistakes, compare original and repaired PHP, and learn what changed.">
+  <title>PHP2Shell — Under the hood</title>
+  <style>
+    :root {
+      --paper: #f3f0e9;
+      --surface-soft: #f8f6f0;
+      --ink-soft: #223f47;
+      --border-soft: #e6e5de;
+      --highlight: #f4dfac;
+      --panel-shadow: 0 24px 64px #132e3614;
+      --button-shadow: 0 3px 0 #102d2426;
+      --surface: #fffefb;
+      --ink: #163139;
+      --muted: #566970;
+      --line: #d7ddd5;
+      --green: #276858;
+      --green-dark: #174c43;
+      --green-soft: #e4f0e9;
+      --rust: #9b482f;
+      --rust-soft: #f8e6da;
+      --gold: #dfbd79;
+      --desk: #294b53;
+      --desk-line: #486971;
+      --desk-text: #dce9e6;
+      --note: #f0dfa3;
+      --white: #ffffff;
+      --shadow: 0 8px 28px #19343e08;
+      --focus: #ba7628;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.65 system-ui, sans-serif; }
+    h1, h2, h3, p { margin: 0; }
+    a { color: var(--green); text-underline-offset: 4px; }
+    button, select { font: inherit; }
+    button, a, select, summary { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    button { cursor: pointer; }
+    button, select { border-radius: 9px; }
+    button:disabled { cursor: default; opacity: .42; }
+    button:focus-visible, a:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus); outline-offset: 5px;
+    }
+    button { transition: background .18s, border-color .18s, box-shadow .18s; }
+    button:not(:disabled):hover { filter: brightness(.97); }
+    .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; transform: translateY(-150%); padding: 10px 20px; background: var(--surface); }
+    .skip-link:focus { transform: translateY(0); }
+    header { position: sticky; top: 0; z-index: 5; background: var(--paper); border-bottom: 1px solid var(--border-soft); }
+    nav { max-width: 1240px; margin: auto; padding: 19px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font: 29px/1.2 Georgia, serif; text-decoration: none; color: var(--ink); letter-spacing: -.8px; }
+    .brand span { color: var(--rust); }
+    .navlinks { display: flex; gap: 28px; font-size: 13px; font-weight: 650; }
+    .navlinks a { text-decoration: none; color: var(--muted); padding: 7px 0; }
+    .navlinks a:first-child { color: var(--green); border-bottom: 2px solid var(--green); }
+    main { max-width: 1240px; margin: auto; padding: 0 28px; }
+    .hero { padding: 64px 12px 48px; }
+    .eyebrow { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 750; line-height: 1.6; }
+    .hero .eyebrow { color: var(--rust); margin-bottom: 22px; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: end; }
+    h1 { font: 400 clamp(44px, 5.5vw, 72px)/1.06 Georgia, serif; letter-spacing: -2px; max-width: 650px; }
+    h1 em { font-weight: 400; color: var(--green); }
+    .hero-copy { padding-bottom: 5px; }
+    .hero-copy p { max-width: 455px; font-size: 18px; color: var(--muted); line-height: 1.8; }
+    .text-link { display: inline-flex; gap: 24px; align-items: center; font-size: 14px; font-weight: 750; margin-top: 24px; text-decoration: none; border-bottom: 1px solid var(--green); padding-bottom: 5px; }
+    .chapter { margin: 32px 0; padding: 44px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+    .chapter-heading { display: block; margin-bottom: 32px; }
+    .chapter-heading .eyebrow { color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+    .chapter-heading .eyebrow:before { content: ""; width: 24px; height: 2px; background: currentColor; flex: 0 0 auto; }
+    h2 { font: 400 clamp(30px, 3.5vw, 44px)/1.15 Georgia, serif; letter-spacing: -.8px; }
+    .chapter-intro { margin-top: 16px; max-width: 700px; color: var(--muted); line-height: 1.75; }
+    h3 { font-size: 19px; line-height: 1.4; }
+    .chapter-stories { background: var(--ink); padding: 44px 28px 26px; border-color: var(--ink); box-shadow: var(--panel-shadow); }
+    .chapter-stories > .chapter-heading { margin-inline: 12px; color: var(--surface); }
+    .chapter-stories > .chapter-heading .eyebrow { color: var(--gold); }
+    .chapter-stories .chapter-intro { color: var(--desk-text); }
+    .lab { color: var(--ink); }
+    .story-picker { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .story-card { display: grid; grid-template-columns: auto 1fr auto; column-gap: 18px; text-align: left; align-items: center; padding: 24px; border: 1px solid var(--desk-line); color: var(--desk-text); background: var(--ink-soft); border-radius: 12px; min-height: 116px; }
+    .story-card[aria-pressed="true"] { color: var(--ink); background: var(--surface); border-color: var(--highlight); box-shadow: inset 0 -3px 0 var(--gold); }
+    .story-card .eyebrow { display: block; letter-spacing: 1.5px; font-size: 10px; margin-bottom: 4px; }
+    .story-card strong { display: block; font: 400 25px/1.2 Georgia, serif; }
+    .story-card-arrow { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--desk-line); border-radius: 50%; font-size: 18px; }
+    .story-card[aria-pressed="true"] .story-card-arrow { border-color: var(--green); color: var(--green); }
+    .story-icon { width: 44px; height: 44px; padding: 9px; background: var(--desk); border-radius: 10px; color: var(--note); }
+    .story-card[aria-pressed="true"] .story-icon { background: var(--green-soft); color: var(--green); }
+    .story-icon svg, .flow-icon svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .story-panel { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
+    .version-toolbar { padding: 22px 30px; background: var(--surface-soft); border-bottom: 1px solid var(--border-soft); display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+    .version-toolbar > div > strong { display: block; font-size: 14px; }
+    .version-toolbar > div > span { font-size: 12px; color: var(--muted); }
+    .version-buttons { display: flex; gap: 5px; padding: 5px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
+    .version-button { padding: 11px 18px; border: 1px solid transparent; background: transparent; font-weight: 700; font-size: 14px; color: var(--ink); white-space: nowrap; }
+    #original[aria-pressed="true"] { background: var(--rust); color: var(--white); border-color: var(--rust); }
+    #repaired[aria-pressed="true"] { background: var(--green); color: var(--white); border-color: var(--green); }
+    .story-body { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); grid-template-areas: "scene narrative" "navigation navigation"; gap: 32px; padding: 32px; }
+    .story-narrative { grid-area: narrative; padding: 10px 0; }
+    .story-copy, .copy-sizer, .workspace-stage, .workspace-sizer, .outcome-stage, .outcome-sizer { display: grid; }
+    .story-copy > *, .copy-sizer > *, .workspace-stage > *, .workspace-sizer > *, .outcome-stage > *, .outcome-sizer > * { grid-area: 1 / 1; min-width: 0; }
+    .copy-sizer, .workspace-sizer, .outcome-sizer { visibility: hidden; pointer-events: none; user-select: none; }
+    #counter { min-height: 1.6em; }
+    .story-narrative .eyebrow { color: var(--green); }
+    .stepdots { display: flex; gap: 7px; margin: 14px 0 24px; }
+    .dot { height: 4px; background: var(--line); flex: 1; border-radius: 2px; }
+    .dot.on { background: var(--green); }
+    #stepTitle, .step-title { font: 400 clamp(26px, 2.6vw, 34px)/1.18 Georgia, serif; letter-spacing: -.5px; margin-bottom: 18px; }
+    #stepTitle:focus, #question:focus { outline: none; }
+    #stepText, .step-text { line-height: 1.8; color: var(--muted); }
+    .scene { grid-area: scene; align-self: start; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .scene-top { min-height: 110px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); }
+    .scene-top > .eyebrow { color: var(--muted); font-size: 10px; max-width: 95px; }
+    .version-sign { width: 190px; min-height: 70px; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; padding: 12px 14px; background: var(--rust-soft); color: var(--rust); border: 1px solid var(--rust); border-left-width: 4px; border-radius: 7px; }
+    #badge { display: block; font-size: 21px; font-weight: 800; line-height: 1.25; letter-spacing: -.4px; }
+    #badgeDetail { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    [data-version="repaired"] .version-sign { background: var(--green-soft); color: var(--green-dark); border-color: var(--green); }
+    .visitor { min-height: 82px; display: flex; gap: 13px; align-items: center; padding: 18px 22px; font-size: 12px; line-height: 1.5; }
+    .request-icon { width: 32px; height: 38px; border: 1.5px solid var(--ink); border-radius: 3px; padding: 9px 6px; background: var(--surface); flex: 0 0 auto; }
+    .request-icon:before, .request-icon:after { content: ''; display: block; height: 1px; margin: 4px 0; background: var(--ink); }
+    #requestName { display: block; font-weight: 750; font-size: 13px; }
+    #requestState { color: var(--muted); }
+    .request-arrow { margin-left: auto; font-size: 24px; color: var(--green); }
+    .workdesk { margin: 0 20px; padding: 18px 18px 0; background: var(--desk); color: var(--surface); border-radius: 7px 7px 0 0; }
+    .worker { min-height: 19px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 11px; }
+    #workerState { color: var(--note); font-weight: 650; }
+    .workspace { min-height: 172px; display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: nowrap; padding: 28px 5px 20px; }
+    .folder { width: 150px; min-width: 0; min-height: 116px; position: relative; padding: 15px; background: var(--surface); border-radius: 0 4px 4px 4px; color: var(--ink); box-shadow: 3px 4px 0 var(--ink); font-size: 12px; line-height: 1.65; }
+    .folder:before { content: ''; position: absolute; top: -9px; left: 0; height: 10px; width: 60px; border-radius: 4px 4px 0 0; background: inherit; }
+    .folder strong { display: block; font-size: 13px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .folder.bad { background: var(--rust-soft); color: var(--rust); }
+    .sticky { width: 105px; min-width: 0; padding: 14px; background: var(--note); color: var(--ink); transform: rotate(5deg); font-size: 12px; box-shadow: 3px 4px 0 var(--ink); line-height: 1.6; }
+    .sticky strong { display: block; margin-bottom: 7px; font-size: 10px; text-transform: uppercase; letter-spacing: .7px; }
+    .emptydesk { width: 170px; min-width: 0; padding: 20px 10px; border: 1px dashed var(--desk-line); border-radius: 4px; color: var(--desk-text); text-align: center; font-size: 13px; }
+    .desk-edge { padding: 10px 0; text-align: center; font-size: 8px; letter-spacing: 1.8px; color: var(--desk-text); border-top: 1px solid var(--desk-line); }
+    .outcome { min-height: 100px; padding: 16px 20px; background: var(--green-soft); border-top: 3px solid var(--green); font-size: 13px; line-height: 1.65; }
+    .outcome.danger { background: var(--rust-soft); border-color: var(--rust); }
+    .outcome.safe { background: var(--green-soft); border-color: var(--green); }
+    .outcome strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+    .story-navigation { grid-area: navigation; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface-soft); padding: 16px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 13px 20px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font-weight: 700; font-size: 14px; min-height: 50px; }
+    .button:active:not(:disabled) { box-shadow: none; }
+    .button-primary { background: var(--green); color: var(--white); border-color: var(--green); box-shadow: var(--button-shadow); }
+    .primary-slot .button { width: 100%; min-height: 54px; font-size: 16px; }
+    .button-reset { border-color: var(--line); color: var(--muted); background: transparent; }
+    .story-footer { min-height: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 13px 30px; background: var(--surface-soft); border-top: 1px solid var(--border-soft); color: var(--muted); font-size: 11px; }
+    .story-goal { font-weight: 650; }
+    .scene.reveal .workspace { animation: arrive .25s ease-out; }
+    @keyframes arrive { from { opacity: .35; } to { opacity: 1; } }
+    .story-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 14px 10px 0; }
+    .story-notes details { color: var(--desk-text); border: 0; }
+    .story-notes summary { color: var(--surface); }
+    .story-notes a { color: var(--note); }
+    details { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; font-weight: 650; font-size: 15px; list-style: none; display: flex; justify-content: space-between; gap: 18px; align-items: baseline; }
+    summary::-webkit-details-marker { display: none; }
+    summary:after { content: "+"; font-size: 22px; line-height: 1; font-weight: 400; flex: 0 0 auto; }
+    details[open] > summary:after { content: "−"; }
+    details p { margin-top: 14px; font-size: 15px; line-height: 1.75; }
+    .flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 30px; }
+    .flow article { padding: 24px; border: 1px solid var(--border-soft); border-radius: 12px; background: var(--surface-soft); }
+    .flow-icon { display: grid; place-items: center; width: 42px; height: 42px; padding: 10px; color: var(--green); background: var(--green-soft); border-radius: 10px; margin-bottom: 18px; }
+    .flow h3 { margin-bottom: 10px; }
+    .flow p { font-size: 15px; color: var(--muted); }
+    .rule { margin-top: 24px; padding: 22px 25px; border: 1px solid var(--line); border-left: 3px solid var(--green); border-radius: 8px; background: var(--green-soft); font-size: 15px; }
+    .twocol { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
+    .tint { background: var(--surface-soft); padding: 28px; border-radius: 12px; border: 1px solid var(--border-soft); }
+    .tint h3 { margin-bottom: 18px; }
+    .tint p + p { margin-top: 18px; }
+    .tint p { font-size: 15px; }
+    .mechanism { padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+    .mechanism:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+    .mechanism .eyebrow { color: var(--rust); margin-bottom: 8px; }
+    .mechanism strong { font: 23px/1.3 Georgia, serif; display: block; margin-bottom: 10px; }
+    label { display: block; margin: 16px 0 7px; font-size: 13px; font-weight: 750; }
+    label:first-child { margin-top: 0; }
+    select { width: 100%; max-width: 100%; min-width: 0; border: 1px solid var(--muted); background: var(--surface); color: var(--ink); padding: 12px; font-size: 15px; min-height: 48px; }
+    .result { margin-top: 20px; border-left: 3px solid var(--green); padding: 5px 0 5px 18px; font-size: 15px; }
+    .result p { margin-top: 12px; }
+    .version-intro { color: var(--muted); font-size: 14px; margin: 10px 0 18px; }
+    .followup { margin-top: 28px; padding: 26px 28px; background: var(--green-soft); border: 1px solid var(--line); border-radius: 10px; }
+    .followup .eyebrow { color: var(--green); margin-bottom: 10px; }
+    .followup h3 { font: 26px/1.25 Georgia, serif; margin-bottom: 14px; }
+    .followup p { font-size: 15px; }
+    .followup p + p { margin-top: 14px; }
+    code { font-size: .85em; overflow-wrap: anywhere; }
+    #impact { background: var(--green-soft); }
+    .chapter-quiz { background: var(--surface); border-color: var(--green); }
+    .quiz { max-width: 850px; }
+    .quiz-meta { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; }
+    #quizProgress { font-size: 12px; font-weight: 750; white-space: nowrap; text-transform: uppercase; letter-spacing: 1px; }
+    progress { accent-color: var(--green); width: 100%; height: 7px; }
+    #question { font: 29px/1.25 Georgia, serif; margin: 22px 0; scroll-margin-top: 130px; }
+    .answers { display: grid; gap: 10px; }
+    .answer { display: flex; align-items: center; gap: 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-align: left; padding: 14px 18px; min-height: 62px; font-size: 15px; }
+    .answer-letter { display: grid; place-items: center; min-width: 28px; height: 28px; font-size: 12px; font-weight: 750; background: var(--paper); border-radius: 4px; }
+    .answer:disabled { opacity: 1; }
+    .answer.is-correct { border: 2px solid var(--green); background: var(--green-soft); }
+    .answer.is-incorrect { border-color: var(--rust); background: var(--rust-soft); }
+    .answer-result { margin-left: auto; font-size: 11px; font-weight: 750; color: var(--green-dark); }
+    .feedback { margin: 18px 0; font-size: 15px; min-height: 50px; }
+    .chapter-takeaway { background: var(--green-dark); border-color: var(--green-dark); color: var(--surface); }
+    .chapter-takeaway .chapter-heading .eyebrow { color: var(--note); }
+    .chapter-takeaway .chapter-intro { color: var(--desk-text); }
+    blockquote { margin: 0; max-width: 940px; font: 400 clamp(23px, 2.7vw, 32px)/1.55 Georgia, serif; }
+    .actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+    .chapter-takeaway .button { background: var(--surface); color: var(--green-dark); border-color: var(--surface); }
+    .chapter-takeaway .button-secondary { color: var(--surface); background: transparent; border-color: var(--desk-text); }
+    #copyStatus { display: block; font-size: 13px; margin-top: 14px; }
+    .sources { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 32px; }
+    .sources a { display: flex; justify-content: space-between; align-items: baseline; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); font-size: 14px; }
+    .sources a:hover { color: var(--green); }
+    .source-note { font-size: 13px; color: var(--muted); margin: 24px 0 8px; }
+    .interactive-notice { color: var(--surface); padding: 16px; border: 1px solid var(--desk-line); border-radius: 6px; }
+    footer { max-width: 1240px; margin: auto; padding: 12px 40px 40px; font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 20px; }
+    .hero-grid > *, .chapter-heading > *, .twocol > *, .story-body > *, .story-picker > * { min-width: 0; }
+    @media (max-width: 900px) {
+      .hero-grid { gap: 32px; }
+      .story-card { column-gap: 12px; padding: 18px; }
+      .story-card strong { font-size: 21px; }
+      .story-body { gap: 24px; padding: 24px; }
+      .scene-top { flex-wrap: wrap; }
+    }
+    @media (max-width: 750px) {
+      nav { flex-wrap: wrap; gap: 10px; padding: 14px 20px 12px; }
+      .brand { font-size: 24px; }
+      .navlinks { gap: 20px; font-size: 12px; flex-wrap: wrap; }
+      main { padding: 0 16px; }
+      .hero { padding: 34px 6px 22px; }
+      .hero .eyebrow { margin-bottom: 16px; font-size: 10px; letter-spacing: 1.5px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 22px; }
+      h1 { font-size: 43px; letter-spacing: -1.6px; }
+      .hero-copy p { font-size: 16px; }
+      .text-link { margin-top: 15px; }
+      .chapter { margin-block: 24px; padding: 28px 22px; border-radius: 14px; }
+      .chapter-heading { margin-bottom: 26px; }
+      .chapter-heading .eyebrow { font-size: 10px; letter-spacing: 1.3px; margin-bottom: 8px; }
+      .chapter-intro { font-size: 15px; margin-top: 12px; }
+      .chapter-stories { padding: 28px 12px 18px; }
+      .chapter-stories > .chapter-heading { margin-inline: 8px; }
+      .story-picker { gap: 9px; margin-bottom: 16px; }
+      .story-card { display: block; padding: 16px 13px 20px; min-height: 166px; }
+      .story-icon { display: block; width: 36px; height: 36px; padding: 7px; border-radius: 8px; margin-bottom: 14px; }
+      .story-card .eyebrow { font-size: 9px; letter-spacing: 1px; }
+      .story-card strong { font-size: 21px; line-height: 1.25; }
+      .story-card-arrow { display: none; }
+      .version-toolbar { display: block; padding: 18px; }
+      .version-toolbar > div > span { display: none; }
+      .version-buttons { display: grid; grid-template-columns: 1fr 1fr; margin-top: 12px; gap: 4px; }
+      .version-button { font-size: 12px; padding: 12px 6px; white-space: normal; }
+      .story-body { padding: 20px 16px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "narrative" "scene" "navigation"; gap: 22px; }
+      .story-narrative { padding: 0; }
+      .stepdots { margin: 10px 0 18px; }
+      #stepTitle, .step-title { font-size: 28px; margin-bottom: 14px; }
+      #stepText, .step-text { font-size: 15px; line-height: 1.75; }
+      .scene-top { min-height: 96px; padding: 14px; flex-wrap: nowrap; }
+      .scene-top > .eyebrow { font-size: 9px; max-width: 70px; }
+      .version-sign { width: 158px; min-height: 66px; padding: 10px 11px; }
+      #badge { font-size: 19px; }
+      #badgeDetail { font-size: 8px; letter-spacing: .6px; }
+      .visitor { min-height: 70px; padding: 12px 14px; }
+      .workdesk { margin: 0 12px; padding: 13px 12px 0; }
+      .workspace { min-height: 146px; gap: 10px; padding: 24px 0 15px; }
+      .folder { width: 126px; padding: 11px; font-size: 11px; min-height: 100px; }
+      .folder strong { font-size: 12px; margin-bottom: 5px; padding-bottom: 5px; }
+      .sticky { width: 89px; padding: 10px; font-size: 11px; }
+      .emptydesk { width: 130px; padding: 16px 8px; font-size: 12px; }
+      .outcome { min-height: 0; padding: 13px 15px; font-size: 12px; }
+      .story-navigation { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
+      .primary-slot { grid-column: 1 / -1; grid-row: 1; }
+      .story-navigation > .button { font-size: 12px; padding: 11px 10px; min-height: 46px; }
+      .primary-slot .button { font-size: 14px; }
+      .story-footer { min-height: 60px; padding: 14px 18px; font-size: 10px; }
+      .story-goal { display: none; }
+      .story-notes { grid-template-columns: 1fr; gap: 0; margin: 12px 8px 0; }
+      .flow { grid-template-columns: 1fr; gap: 20px; margin-top: 24px; }
+      .flow article { padding: 22px; }
+      .flow-icon { width: 36px; height: 36px; padding: 8px; margin-bottom: 14px; }
+      .flow h3 { font-size: 17px; }
+      .rule { padding: 18px; }
+      .twocol { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .tint { padding: 22px; }
+      .followup { padding: 22px; }
+      .answer { gap: 11px; padding: 13px; font-size: 14px; flex-wrap: wrap; }
+      .answer-text { flex: 1; min-width: 0; }
+      .answer-result { margin-left: 39px; }
+      #question { font-size: 25px; }
+      .sources { grid-template-columns: minmax(0, 1fr); }
+      footer { flex-direction: column; gap: 5px; padding: 8px 24px 30px; }
+    }
+    @media (max-width: 370px) {
+      .scene-top > .eyebrow { display: none; }
+      .scene-top { justify-content: flex-end; }
+      .version-sign { width: 158px; }
+      .primary-slot .button { min-height: 80px; }
+      .visitor { min-height: 100px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .scene.reveal .workspace { animation: none; }
+      button { transition: none; }
+    }
+    @media print {
+      header, .skip-link, .story-picker, .version-buttons, .story-navigation, .actions, .quiz button, .interactive-notice { display: none !important; }
+      body { font-size: 12px; }
+      .hero { padding: 20px 0; }
+      .chapter { break-inside: avoid; box-shadow: none; }
+      .chapter-stories, .chapter-takeaway { background: var(--surface); color: var(--ink); }
+      .chapter-stories > .chapter-heading, .chapter-stories .chapter-intro, .story-notes summary, .story-notes details, .chapter-takeaway .chapter-intro { color: var(--ink); }
+      .story-notes a { color: var(--green); }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#explore">Skip to the stories</a>
+<header>
+  <nav aria-label="Main navigation">
+    <a class="brand" href="#">Under the hood<span>.</span></a>
+    <div class="navlinks">
+      <a href="#explore">The stories</a>
+      <a href="#action">What to do</a>
+      <a href="#sources">Sources ↗</a>
+    </div>
+  </nav>
+</header>
+<main>
+  <section class="hero" aria-labelledby="pageTitle">
+    <div class="eyebrow">An illustrated guide / PHP2Shell / October 2026</div>
+    <div class="hero-grid">
+      <h1 id="pageTitle">A memory mistake.<br><em>A door left open.</em></h1>
+      <div class="hero-copy">
+        <p>PHP works behind the scenes of a website. It handles each visitor’s request using temporary memory, like paperwork on a desk. Two bugs broke the rules for clearing that desk.</p>
+        <a class="text-link" href="#explore">Follow the two stories <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
 
-.story-intro{padding:22px 28px;background:#edf1e5}.story-intro p{font-size:14px;margin:5px 0 0}.newlab{grid-template-columns:1.15fr 1fr;min-height:440px;align-items:start}.scene{background:#e6ece1;border-radius:12px;overflow:hidden}.scene-top{display:flex;justify-content:space-between;padding:16px 20px;font-size:11px;font-weight:750;letter-spacing:1px}.scene-top #badge{background:white;padding:2px 8px;border-radius:12px;letter-spacing:0}.visitor{display:flex;align-items:center;gap:15px;padding:12px 25px;font-size:14px}.person{font-size:42px}.travel{margin-left:auto;font-size:32px}.workdesk{margin:15px 22px 0;background:#365b4a;border-radius:8px 8px 0 0;padding:18px 18px 0;color:white}.worker{display:flex;justify-content:space-between;font-size:13px}.worker span{color:#d6e998}.workspace{min-height:165px;display:flex;align-items:center;justify-content:center;gap:14px;padding:20px 0;flex-wrap:wrap}.folder{width:135px;min-height:110px;background:#fff9df;color:#233a35;padding:14px;border-radius:4px;box-shadow:4px 5px 0 #173b2b;font-size:13px;line-height:1.5}.folder strong{display:block;margin-bottom:10px}.folder.bad{background:#f7bea4;border:2px dashed #853827}.sticky{width:110px;padding:12px;background:#e4ef9e;color:#233a35;transform:rotate(5deg);font-size:13px;box-shadow:2px 3px 0 #173b2b}.emptydesk{color:#d0ddc7;font-size:14px;text-align:center;border:1px dashed #9eb69d;border-radius:6px;padding:30px 15px}.desk-edge{border-top:2px solid #6c8d73;text-align:center;font-size:9px;letter-spacing:2px;padding:10px}.outcome{padding:18px 22px;min-height:95px;font-size:14px;background:#dce6d2;border-top:3px solid #7a9b6b}.outcome.danger{background:#fae1d3;border-color:#b4563b}.outcome.safe{background:#d8ebc7;border-color:#447c36}.story-action{width:100%;font-weight:700;text-align:left;padding:15px 20px}#compare{margin-top:23px;padding-top:18px;border-top:1px solid var(--line)}#compare[hidden]{display:none}.story-footer{padding:14px 25px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;background:#f0f1e9;font-size:11px}.scene.reveal .workspace{animation:arrive .35s ease-out}@keyframes arrive{from{opacity:.3;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(max-width:750px){.newlab{grid-template-columns:1fr}.scene{order:0}.labcopy{order:1}.workspace{min-height:140px}}@media(prefers-reduced-motion:reduce){.scene.reveal .workspace{animation:none}}
-</style></head><body>
-<header><nav aria-label="Main navigation"><a class="brand" href="#">UNDER THE HOOD <span style="font-weight:400">/ 01</span></a><div class="navlinks"><a href="#basics">The basics</a><a href="#explore">Try it</a><a href="#action">What to do</a><a href="#sources">Sources ↗</a></div></nav></header>
-<main><section class="hero"><div><div class="eyebrow">A plain-language, interactive guide</div><h1>A small memory mistake.<br>A big security problem.</h1><p class="lead">How the recent PHP vulnerabilities could turn an ordinary website request into control of the computer behind it.</p><a href="#explore" class="primary" style="display:inline-block;padding:13px 22px;border-radius:7px;text-decoration:none">Explore how it works ↓</a><p class="small" style="margin:17px 0 0">No coding knowledge needed · Learn at your own pace</p></div><div class="hero-art" role="img" aria-label="A server worker’s desk with ordinary paperwork and a misplaced instruction"><div class="eyebrow">Imagine a website’s working desk</div><div class="desk"><div class="papers"><div class="paper">A visitor’s<br>request<br>≡ ≡ ≡</div><div class="paper bad">Leftover<br>paperwork<br>?</div></div><span>PHP’s temporary workspace</span></div><p style="margin:35px 0 0;font:italic 21px Georgia">What happens when cleanup goes wrong?</p></div></section>
-<p class="intro-note"><strong>Which news is this?</strong> This guide covers the October 21, 2026 PHP2Shell disclosures: CVE-2026-109618 and CVE-2026-109619. A separate October 23 issue appears below. Facts checked October 24, 2026; security advice can change. <a href="#sources">Read the original sources.</a></p>
-<section class="section" id="basics"><div class="sectionhead"><div><div class="eyebrow">01 / Before the bug</div><h2>A website has a backstage.</h2></div><p>You see a page. Behind it, a server receives your request, does some work, and sends a response. PHP is software many servers use to do that work.</p></div><div class="flow"><article><span class="number">01</span><h3>You ask for something</h3><p>You open a page or submit a form. Your browser sends a message called a <strong>request</strong>.</p></article><article><span class="number">02</span><h3>PHP uses a working desk</h3><p>A server worker handles the request. Its temporary memory is like a desk holding papers while a task is in progress.</p></article><article><span class="number">03</span><h3>The desk gets cleared</h3><p>The response goes back. Temporary memory is released for reuse. A worker may stay alive to serve another request.</p></article></div><div class="tint"><strong>The rule that matters:</strong> once a piece of memory is released, PHP must stop treating it as if it still contains the old, valid information. And unfinished information must never be treated as finished.</div></section>
-<section class="section" id="explore"><div class="sectionhead"><div><div class="eyebrow">02 / The interactive explanation</div><h2>Two ways to lose track<br>of the paperwork.</h2></div><p>Start with Story 1. You’ll see a request arrive, a job get interrupted, and cleanup go wrong. Then replay it with the fix. Each action changes the desk and explains why it matters.</p></div><div class="lab">
-<div class="labbar"><div class="segments" role="group" aria-label="Choose story"><button id="oom" aria-pressed="true">Story 1 · An interrupted job</button><button id="stale" aria-pressed="false">Story 2 · An old sticky note</button></div></div>
-<div class="story-intro"><strong id="storyGoal"></strong><p>Follow the highlighted action below. Then replay the same story with the repair applied.</p></div>
-<div class="labbody newlab"><div class="scene"><div class="scene-top"><span>WEBSITE’S BACKSTAGE</span><span id="badge">Original PHP</span></div><div class="visitor"><span class="person">♙</span><div><strong id="requestName">A visitor’s request</strong><div id="requestState">Waiting to be handled</div></div><span class="travel" id="travel">→</span></div><div class="workdesk"><div class="worker">PHP worker <span id="workerState">Ready</span></div><div class="workspace" id="workspace"></div><div class="desk-edge">TEMPORARY WORKING SPACE</div></div><div class="outcome" id="outcome" role="status"></div></div><div class="labcopy"><div class="eyebrow" id="counter"></div><div class="stepdots" id="dots" aria-hidden="true"></div><div aria-live="polite" aria-atomic="true"><h3 id="stepTitle"></h3><p id="stepText"></p></div><button class="primary story-action" id="next"></button><div class="controls" style="margin-top:15px"><button id="back">← Previous</button><button id="reset">Start over</button></div><div id="compare" hidden><p><strong>Now change one thing: apply the repair.</strong></p><button class="primary" id="patch">Replay with the fix →</button></div></div></div><div class="story-footer"><span id="cve"></span><span>Illustration only · No real requests or attacks</span></div></div><details><summary>Where does the desk analogy stop being accurate?</summary><p>Computers do not read loose notes like people. PHP’s underlying native code uses addresses and structured data. If it reads an invalid address or treats uninitialized bytes as a valid structure, it may crash or follow unintended execution paths. Turning that into code execution requires carefully controlled conditions. The colored boxes here illustrate bookkeeping errors; they do not show a working exploit.</p></details><details><summary>What do the actual patches change?</summary><p>For the out-of-memory flaw, PHP replaces an abrupt jump out of an operation with a controlled failure at a safe execution point, or an immediate process exit at a higher memory threshold. This avoids running ordinary cleanup on an invalid intermediate state. For the stale-state flaw, the fixes address retained request references and their lifecycle. The key idea is to prevent later work from using memory that is no longer valid. <a href="#sources">See the two technical advisories.</a></p></details></section>
-<section class="section"><div class="sectionhead"><div><div class="eyebrow">03 / Why that becomes dangerous</div><h2>A crash is bad.<br>Control is worse.</h2></div><p>Most software errors do not hand over control. Here, researchers showed that carefully arranged memory could turn invalid bookkeeping into remote code execution.</p></div><div class="twocol"><div><details open><summary>“Remote code execution” in everyday language</summary><p>An outsider sends messages over the network that make the server run instructions they chose. “Unauthenticated” means they may not need an account or password. It does not mean every request succeeds.</p></details><details><summary>What could an attacker actually do?</summary><p>Run code with the permissions of the PHP worker. That could expose data or secrets the worker can access, alter a site, or interrupt service. It does not automatically grant administrator access to the whole machine. The impact depends on the worker’s permissions and isolation.</p></details><details><summary>Why wouldn’t a login screen stop it?</summary><p>Some PHP processing happens before the website’s own code or login checks. The PHP team demonstrated such an attack against Apache’s mod_php setup. Other environments have different conditions; a login screen cannot be treated as a fix.</p></details></div><div class="tint"><h3>Same family of mistake. Different sequence.</h3><p><strong>CVE-2026-109618:</strong> stop halfway through preparing data → cleanup trusts the unfinished data.</p><p><strong>CVE-2026-109619:</strong> release a request’s memory → keep an old reference → a later request on the same worker uses it too soon.</p><p class="small">The two flaws need not be chained together. Memory disclosure is also a possible outcome in affected conditions. Severity describes potential impact, not a guarantee that every installation is exploitable.</p></div></div></section>
-<section class="section" id="action"><div class="sectionhead"><div><div class="eyebrow">04 / Put it in context</div><h2>What does this mean for me?</h2></div><p>PHP is used by many sites and products, including systems built on WordPress, Drupal and Joomla. A product name alone cannot establish whether a particular deployment is vulnerable.</p></div><div class="twocol"><div class="tint"><label for="role">Choose your situation</label><select id="role"><option value="visitor">I just browse websites</option><option value="owner">I own a website, someone else hosts it</option><option value="admin">I manage a server or application</option></select><div class="result" id="roleResult" aria-live="polite"></div></div><div><h3>Check a PHP version</h3><p class="small">Educational check for the original two flaws only. This does not scan a website, verify a patch, or assess the October 23 issue.</p><label for="branch">PHP release branch</label><select id="branch"><option value="8.5">8.5</option><option value="8.4">8.4</option><option value="8.3">8.3</option><option value="8.2">8.2</option><option value="old">8.1 or older</option><option value="unknown">I don’t know</option></select><label for="level">Installed update</label><select id="level"><option value="before">Before the fixed version</option><option value="fixed">Fixed version or newer in that branch</option></select><div class="result" id="versionResult" aria-live="polite"></div></div></div><details><summary>Why updating the website itself may not be enough</summary><p>PHP is the engine underneath the application. Updating a theme, plugin, or CMS does not necessarily update that engine. Ask the hosting provider about the PHP runtime and all deployed instances, including containers and background services. Vendor packages sometimes include backported security fixes without changing to PHP’s upstream version number.</p></details><details><summary>Do temporary workarounds solve it?</summary><p>The PHP team says updating is the complete solution for the original two flaws. Configuration changes can close particular paths, but are not universal fixes. Administrators should follow the official advisory, assess operational tradeoffs, restart affected workers as instructed, and verify the running deployment. A firewall or a hidden error message alone does not establish safety.</p></details><div class="warning" style="margin-top:30px"><h3>October 23 update: a separate, narrower issue</h3><p>CVE-2026-115560 concerns session upload progress under an unusual combination of configuration and application behavior. The application must change its session serialization handler at runtime in the way PHP describes. The October 21 patches do not address this separate issue.</p><p>PHP recommends administrators disable <code>session.upload_progress.enabled</code> until the next regular bugfix release; applications that never change the serialization handler at runtime can keep it enabled. This is an administrator task. Read the <a href="https://www.php.net/archive/2026.php">October 23 PHP advisory</a> for the exact conditions and current guidance.</p></div></section>
-<section class="section"><div class="sectionhead"><div><div class="eyebrow">05 / Check your understanding</div><h2>Could you explain it<br>over coffee?</h2></div><p>Three quick questions. Each answer explains the reasoning, so a wrong guess is useful too.</p></div><div class="quiz"><div class="small" id="quizProgress"></div><progress id="progress" max="3" value="0" aria-label="Questions completed"></progress><h3 id="question" style="margin-top:20px"></h3><div class="answers" id="answers"></div><p class="feedback" id="feedback" role="status"></p><button id="quizNext" class="primary" disabled>Next question →</button><button id="quizReset" hidden>Try again</button></div></section>
-<section class="section"><div class="twocol"><div><div class="eyebrow">06 / Your take-home explanation</div><h2>The 30-second version.</h2><p>Use this when someone asks, “So what actually happened?”</p></div><div class="tint"><blockquote id="explanation">“PHP helps websites handle visitors’ requests. Two bugs meant it could trust unfinished data or keep using a reference to memory it had already released. Researchers showed that an attacker could exploit those mistakes to make a server run their instructions, sometimes without logging in. Website operators need to update PHP and check the latest advice from their provider.”</blockquote><div class="actions"><button id="copy">Copy explanation</button><button id="print">Print this guide</button></div><span id="copyStatus" class="small" role="status"></span></div></div></section>
-<section class="section" id="sources"><div class="eyebrow">Keep exploring</div><h2>Go straight to the source.</h2><p>Primary references checked October 24, 2026. This page focuses on the recent PHP2Shell news; older PHP vulnerabilities have different causes and fixes.</p><div class="sources"><a href="https://www.php.net/archive/2026.php">PHP project · October 21 and 23 announcements ↗</a><a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w">PHP advisory · CVE-2026-109618, out-of-memory corruption ↗</a><a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp">PHP advisory · CVE-2026-109619, stale global state ↗</a><a href="https://cert.europa.eu/publications/security-advisories/2026-018">CERT-EU · affected versions and response guidance ↗</a><a href="https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php">UK NCSC · plain-language security overview ↗</a><a href="https://www.cyber.gc.ca/en/alerts-advisories/al26-026-critical-vulnerabilities-impacting-php-cve-2026-109618-cve-2026-109619">Canadian Cyber Centre · October 23 follow-up ↗</a></div><details><summary>A small glossary</summary><p><strong>Server:</strong> a computer that answers requests. <strong>Runtime:</strong> the software that runs application code. <strong>Worker:</strong> a process doing server tasks. <strong>Memory:</strong> temporary working space, different from saved files. <strong>Reference / pointer:</strong> a way to locate data in memory. <strong>Use-after-free:</strong> using memory after it has been released. <strong>Patch:</strong> a software repair. <strong>CVE:</strong> an identifier for a publicly tracked security flaw. <strong>Backport:</strong> a security repair applied to an older software branch.</p></details></section></main><footer>UNDER THE HOOD / A guide for curious people. All demonstrations run locally in your browser. No server is contacted or tested by the interactive exercises.</footer>
+  <section class="chapter chapter-stories" id="explore" aria-labelledby="storiesTitle">
+    <div class="chapter-heading">
+      <div>
+        <div class="eyebrow">The interactive stories</div>
+        <h2 id="storiesTitle">See the mistake. Then see the repair.</h2>
+        <p class="chapter-intro">Choose a story and follow the action, one step at a time. Switch between Original PHP and Repaired PHP to see what changes.</p>
+      </div>
+    </div>
+    <p class="interactive-notice" id="interactiveNotice">Enable JavaScript to play the stories and take the quiz.</p>
+    <div class="lab" id="storyLab" hidden>
+      <div class="story-picker" role="group" aria-label="Choose a story">
+        <button class="story-card" id="oom" aria-pressed="true" aria-controls="storyStage">
+          <span class="story-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h3"/></svg></span>
+          <span><span class="eyebrow">Story one</span><strong>An interrupted job</strong></span>
+          <span class="story-card-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="story-card" id="stale" aria-pressed="false" aria-controls="storyStage">
+          <span class="story-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v11l-5 5H4zM15 20v-5h5M8 9h8M8 12h5"/></svg></span>
+          <span><span class="eyebrow">Story two</span><strong>An old sticky note</strong></span>
+          <span class="story-card-arrow" aria-hidden="true">↗</span>
+        </button>
+      </div>
+      <div class="story-panel" id="storyStage" data-version="original">
+        <div class="version-toolbar">
+          <div><strong>Compare the outcome</strong><span>Change the PHP version at any step</span></div>
+          <div class="version-buttons" role="group" aria-label="PHP version">
+            <button class="version-button" id="original" aria-pressed="true">Original PHP</button>
+            <button class="version-button" id="repaired" aria-pressed="false">Repaired PHP</button>
+          </div>
+        </div>
+        <div class="story-body">
+          <div class="scene">
+            <div class="scene-top">
+              <span class="eyebrow">Inside the website</span>
+              <div class="version-sign"><span id="badge">Original PHP</span><span id="badgeDetail">Before the security update</span></div>
+            </div>
+            <div class="visitor">
+              <span class="request-icon" aria-hidden="true"></span>
+              <div><strong id="requestName">A visitor’s request</strong><span id="requestState">Waiting to be handled</span></div>
+              <span class="request-arrow" aria-hidden="true">↓</span>
+            </div>
+            <div class="workdesk">
+              <div class="worker"><strong>PHP worker</strong><span id="workerState">Ready</span></div>
+              <div class="workspace-stage"><div class="workspace" id="workspace"></div><div class="workspace-sizer" id="workspaceSizer" aria-hidden="true" inert></div></div>
+              <div class="desk-edge">TEMPORARY WORKING MEMORY</div>
+            </div>
+            <div class="outcome-stage"><div class="outcome" id="outcome" role="status"></div><div class="outcome-sizer" id="outcomeSizer" aria-hidden="true" inert></div></div>
+          </div>
+          <div class="story-narrative">
+            <div class="eyebrow" id="counter"></div>
+            <div class="stepdots" id="dots" aria-hidden="true"></div>
+            <div class="story-copy">
+              <div aria-live="polite" aria-atomic="true">
+                <h3 id="stepTitle" tabindex="-1"></h3>
+                <p id="stepText"></p>
+              </div>
+              <div class="copy-sizer" id="copySizer" aria-hidden="true" inert></div>
+            </div>
+          </div>
+          <div class="story-navigation">
+            <button class="button" id="back">← Previous step</button>
+            <div class="primary-slot">
+              <button class="button button-primary" id="next"></button>
+              <button class="button button-primary" id="patch" hidden>Replay with the repair →</button>
+            </div>
+            <button class="button button-reset" id="reset">↺ Start again</button>
+          </div>
+        </div>
+        <div class="story-footer"><span id="cve"></span><span class="story-goal" id="storyGoal"></span></div>
+      </div>
+    </div>
+    <div class="story-notes">
+      <details>
+        <summary>What does the desk represent?</summary>
+        <p>The desk is temporary memory. Folders are data structures, and the sticky note is a reference to a location in memory. PHP’s underlying code follows these references. Reading unfinished data or following a reference after its target has been released can send it down an unintended path.</p>
+      </details>
+      <details>
+        <summary>What changed inside PHP?</summary>
+        <p>The out-of-memory repair replaces an abrupt escape from an operation with a controlled stop at a safe execution point, or an immediate process exit at a higher memory threshold. The stale-state repairs fix the lifecycle of retained request references. Both changes keep invalid data out of later operations. <a href="#sources">Read the technical advisories.</a></p>
+      </details>
+    </div>
+  </section>
+
+  <section class="chapter" id="basics" aria-labelledby="basicsTitle">
+    <div class="chapter-heading">
+      <div>
+        <div class="eyebrow">The backstage, explained</div>
+        <h2 id="basicsTitle">One request. A little work. A clean desk.</h2>
+        <p class="chapter-intro">A server receives your request, prepares a response and sends it back. PHP is the software many websites use to do that work.</p>
+      </div>
+    </div>
+    <div class="flow">
+      <article><span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h3"/></svg></span><h3>You ask for something</h3><p>You open a page or submit a form. Your browser sends a message called a <strong>request</strong>.</p></article>
+      <article><span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v12H3zM8 21h8M12 17v4M7 9h4M7 12h10"/></svg></span><h3>A worker uses a desk</h3><p>A server worker handles the request. Temporary memory holds the information it needs along the way.</p></article>
+      <article><span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5a8 8 0 1 1-3-6M20 3v4h-4M8 12l3 3 5-6"/></svg></span><h3>The desk gets cleared</h3><p>The response goes back. PHP releases the temporary memory, and the worker can move on to another request.</p></article>
+    </div>
+    <p class="rule"><strong>The rule at the heart of both stories:</strong> use data only when it is ready, and stop using it when its memory has been released.</p>
+  </section>
+
+  <section class="chapter" id="impact" aria-labelledby="impactTitle">
+    <div class="chapter-heading">
+      <div><div class="eyebrow">Why it matters</div><h2 id="impactTitle">From a memory mistake to an attacker’s instructions.</h2><p class="chapter-intro">Researchers showed that carefully arranged memory could turn these bookkeeping errors into remote code execution.</p></div>
+    </div>
+    <div class="twocol">
+      <div>
+        <details open><summary>What is remote code execution?</summary><p>An outsider sends messages over the network that make the server run instructions they chose. “Unauthenticated” means they can do it without an account or password.</p></details>
+        <details><summary>What could the attacker do?</summary><p>The attacker’s code runs with the PHP worker’s permissions. That can allow access to data and secrets, changes to a website, or interruption of its services. The worker’s permissions and isolation determine the attacker’s reach.</p></details>
+        <details><summary>How can it happen before a login?</summary><p>PHP processes some request data before the website’s own code runs. Researchers demonstrated this route in Apache’s mod_php setup: the memory mistake happens before the application reaches its login checks.</p></details>
+      </div>
+      <div class="tint">
+        <div class="mechanism"><div class="eyebrow">Story one / CVE-2026-109618</div><strong>Unfinished data gets trusted.</strong><p>Work stops halfway through preparing data. Cleanup then acts on that unfinished data as though it were valid.</p></div>
+        <div class="mechanism"><div class="eyebrow">Story two / CVE-2026-109619</div><strong>An outdated reference gets used.</strong><p>PHP releases a request’s memory but keeps a reference to it. A later request on the same worker follows the old reference.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="action" aria-labelledby="actionTitle">
+    <div class="chapter-heading">
+      <div><div class="eyebrow">What to do</div><h2 id="actionTitle">Repair the engine behind the website.</h2><p class="chapter-intro">PHP sits underneath applications such as WordPress, Drupal and Joomla. Updating that runtime is the key repair for the two 21 October flaws.</p></div>
+    </div>
+    <div class="twocol">
+      <div class="tint">
+        <label for="role">Choose your situation</label>
+        <select id="role"><option value="visitor">I just browse websites</option><option value="owner">I own a site hosted by someone else</option><option value="admin">I manage a server or application</option></select>
+        <div class="result" id="roleResult" aria-live="polite"></div>
+      </div>
+      <div>
+        <h3>The 21 October repair guide</h3>
+        <p class="version-intro">Find the first repaired release in each PHP branch.</p>
+        <label for="branch">PHP release branch</label>
+        <select id="branch"><option value="8.5">8.5</option><option value="8.4">8.4</option><option value="8.3">8.3</option><option value="8.2">8.2</option><option value="old">8.1 or older</option><option value="unknown">I don’t know</option></select>
+        <label for="level">Installed update</label>
+        <select id="level"><option value="before">Before the repaired release</option><option value="fixed">Repaired release or newer</option></select>
+        <div class="result" id="versionResult" aria-live="polite"></div>
+      </div>
+    </div>
+    <details><summary>Why does the PHP update matter?</summary><p>PHP is the engine beneath the application. The hosting provider updates that engine separately from themes, plugins and the content management system. Ask about the PHP runtime serving your site, including any containers and additional workers.</p></details>
+    <details><summary>How do vendor packages and temporary measures fit in?</summary><p>Some vendors backport security repairs into their existing PHP packages. Your provider can confirm which fixes are installed. Configuration measures can block particular attack paths while administrators arrange the full update; the PHP advisories explain those paths and the settings involved.</p></details>
+    <div class="followup">
+      <div class="eyebrow">The 23 October follow-up</div>
+      <h3>A separate session upload progress issue.</h3>
+      <p>CVE-2026-115560 concerns an unusual combination of session configuration and application behaviour. It involves changing the session serialisation handler at runtime while session upload progress remains enabled.</p>
+      <p>PHP’s 23 October advice is to disable <code>session.upload_progress.enabled</code> until the next regular bugfix release. Applications that keep the same serialisation handler at runtime can keep the feature enabled. <a href="https://www.php.net/archive/2026.php">Read the follow-up advisory.</a></p>
+    </div>
+  </section>
+
+  <section class="chapter chapter-quiz" aria-labelledby="quizTitle">
+    <div class="chapter-heading">
+      <div><div class="eyebrow">Try what you’ve learnt</div><h2 id="quizTitle">Could you explain it over coffee?</h2><p class="chapter-intro">Three questions to help the ideas stick. Every answer comes with an explanation.</p></div>
+    </div>
+    <div class="quiz" id="quizPanel" hidden>
+      <div class="quiz-meta"><span id="quizProgress"></span><progress id="progress" max="3" value="0" aria-label="Questions completed"></progress></div>
+      <h3 id="question" tabindex="-1"></h3>
+      <div class="answers" id="answers"></div>
+      <p class="feedback" id="feedback" role="status"></p>
+      <button class="button button-primary" id="quizNext" disabled>Next question →</button>
+      <button class="button" id="quizReset" hidden>Try again ↺</button>
+    </div>
+  </section>
+
+  <section class="chapter chapter-takeaway" aria-labelledby="takeawayTitle">
+    <div class="chapter-heading">
+      <div><div class="eyebrow">Take the idea with you</div><h2 id="takeawayTitle">The thirty-second explanation.</h2><p class="chapter-intro">For the next time someone asks, “So what actually happened?”</p></div>
+    </div>
+    <blockquote id="explanation">“PHP helps websites handle visitors’ requests. Two bugs meant it could trust unfinished data or follow an old reference to memory it had already released. Researchers showed that attackers could exploit those mistakes to make a server run their instructions, without logging in. Website operators need to update PHP and follow their hosting provider’s advice.”</blockquote>
+    <div class="actions" id="copyActions" hidden><button class="button" id="copy">Copy explanation ↗</button><button class="button button-secondary" id="print">Print this guide</button></div>
+    <span id="copyStatus" role="status"></span>
+  </section>
+
+  <section class="chapter" id="sources" aria-labelledby="sourcesTitle">
+    <div class="chapter-heading">
+      <div><div class="eyebrow">Keep exploring</div><h2 id="sourcesTitle">Straight from the source.</h2><p class="chapter-intro">The original PHP announcements, technical advisories and national cybersecurity guidance.</p></div>
+    </div>
+    <div class="sources">
+      <a href="https://www.php.net/archive/2026.php"><span>PHP project · 21 and 23 October announcements</span><span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w"><span>PHP · Out-of-memory corruption advisory</span><span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"><span>PHP · Stale global state advisory</span><span aria-hidden="true">↗</span></a>
+      <a href="https://cert.europa.eu/publications/security-advisories/2026-018"><span>CERT-EU · Affected versions and response</span><span aria-hidden="true">↗</span></a>
+      <a href="https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php"><span>UK NCSC · Security overview</span><span aria-hidden="true">↗</span></a>
+      <a href="https://www.cyber.gc.ca/en/alerts-advisories/al26-026-critical-vulnerabilities-impacting-php-cve-2026-109618-cve-2026-109619"><span>Canadian Cyber Centre · 23 October follow-up</span><span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="source-note">PHP2Shell: CVE-2026-109618 and CVE-2026-109619 · Disclosed 21 October 2026</p>
+    <details><summary>A small glossary</summary><p><strong>Server:</strong> a computer that answers requests. <strong>Runtime:</strong> the software that runs application code. <strong>Worker:</strong> a process doing server tasks. <strong>Memory:</strong> temporary working space. <strong>Reference or pointer:</strong> a way to locate data in memory. <strong>Use-after-free:</strong> using memory after it has been released. <strong>Patch:</strong> a software repair. <strong>CVE:</strong> an identifier for a publicly tracked security flaw. <strong>Backport:</strong> a repair applied to an older software branch.</p></details>
+  </section>
+</main>
+<footer><span>Under the hood.</span><span>An illustrated guide to PHP2Shell · October 2026</span></footer>
 <script>
-const $=id=>document.getElementById(id);let mode='oom',step=0,patched=false;
-const folder=(title,body,bad=false)=>'<div class="folder '+(bad?'bad':'')+'"><strong>'+title+'</strong>'+body+'</div>';
-const empty='<div class="emptydesk">An empty desk<br>Ready for a request</div>';
-const notes={oom:[
-['Start with a normal request','A visitor sends a message to a website. PHP needs temporary working space to handle it.','Send the request →',empty,'Ready','Waiting','No mistake yet. The worker is ready to start.'],
-['The job is only half prepared','PHP is setting up information for the request. Some fields are ready; others are not.','Interrupt the job →',folder('Request folder','✓ Ready field<br>✓ Ready field<br>… Unfinished field'),'Preparing data','Being processed','The unfinished field must not be treated as valid data.'],
-['The worker runs out of memory','An allocation fails. In vulnerable PHP, error handling can jump out of the job before its internal data is ready.','Let cleanup run →',folder('Unfinished folder','✓ Ready field<br>? Unknown field<br>? Unknown field',true),'Job interrupted','Request failed','The request has failed, but PHP still needs to end it safely.'],
-['Cleanup trusts the unfinished folder','Cleanup may read or act on incomplete data as though it were valid. With carefully arranged memory, an attacker can turn that mistake into running chosen instructions.','',folder('Invalid data','? Treated as valid<br>↳ Unintended action',true),'Unsafe cleanup','Request ended','Possible outcome: a crash or code execution with the PHP worker’s permissions. It is not automatic.']
-],stale:[
-['One worker, two requests','This worker stays alive between requests. It must forget references to each request’s temporary data when that data is released.','Send request A →',empty,'Ready','Request A waiting','Watch the sticky note. It represents a reference to a location in memory.'],
-['Request A leaves a reference','PHP stores a reference to request A’s information in state the worker retains. Imagine a sticky note pointing to its folder.','Finish request A →',folder('Request A','Temporary data')+'<div class="sticky">Note →<br>Use A’s folder</div>','Handling A','Request A in progress','The note is valid while A’s folder exists.'],
-['The folder goes. The note stays.','In affected paths, the data is released but the reference is not safely cleared. The worker holds a note pointing to memory it no longer owns.','Send request B →','<div class="emptydesk">A’s folder<br>has been removed</div><div class="sticky">Old note →<br>Use A’s folder</div>','Stale reference','Request A ended','This leftover reference is the bug. It is not a saved copy of A’s folder.'],
-['Request B follows the outdated note','A later request on the same worker can use the old reference before initialization resets it. Its target may now contain different data. Carefully controlled reuse can lead to memory disclosure or code execution.','',folder('Reused space','Different data now<br>⚠ Old note used',true)+'<div class="sticky">Old note →<br>Wrong target</div>','Invalid access','Request B arrived','This is “use-after-free”: using memory after it has been released.']
-]};
-function render(){let s=notes[mode][step],fixed=patched&&step>=2;$('oom').setAttribute('aria-pressed',mode==='oom');$('stale').setAttribute('aria-pressed',mode==='stale');$('storyGoal').textContent=mode==='oom'?'Story 1: What if a job stops before its paperwork is ready?':'Story 2: What if a worker keeps a note after its folder is gone?';$('badge').textContent=patched?'Repaired PHP':'Original PHP';$('counter').textContent=(patched?'WITH THE FIX · ':'')+'STEP '+(step+1)+' OF 4';$('dots').innerHTML=[0,1,2,3].map(i=>'<span class="dot '+(i<=step?'on':'')+'"></span>').join('');$('stepTitle').textContent=s[0];$('stepText').textContent=s[1];$('workspace').innerHTML=s[3];$('workerState').textContent=s[4];$('requestName').textContent=mode==='oom'?'A visitor’s request':step===3?'Request B · same worker':'Request A';$('requestState').textContent=s[5];$('outcome').textContent=s[6];$('outcome').className='outcome'+(!patched&&step===3?' danger':fixed?' safe':'');
-if(fixed){$('stepTitle').textContent=mode==='oom'?(step===2?'The failure is handled safely':'Cleanup never trusts invalid data'):(step===2?'The old reference is cleared':'The new request uses valid state');$('stepText').textContent=mode==='oom'?'The repair changes how PHP responds to memory exhaustion: it stops at a safe execution point, or exits immediately at a higher threshold. Cleanup does not process the invalid intermediate state. The request can still fail.':'The repaired lifecycle prevents the next request from consuming references to released request memory. In our analogy, the worker removes the old note rather than following it later.';$('workspace').innerHTML=mode==='oom'?'<div class="emptydesk">✓ Safe failure<br>No invalid cleanup</div>':step===2?'<div class="emptydesk">✓ Folder released<br>Old reference cleared</div>':folder('Request B','✓ Fresh, valid state');$('workerState').textContent='Safe handling';$('outcome').textContent='The original vulnerability’s path is closed. This does not claim that PHP has no other bugs.';}
-$('next').textContent=fixed&&step===2?'See the safe outcome →':s[2];$('next').hidden=step===3;$('back').disabled=step===0;$('compare').hidden=step!==3;$('compare').querySelector('p').innerHTML=patched?'<strong>Compare the same sequence without the repair.</strong>':'<strong>Now change one thing: apply the repair.</strong>';$('patch').textContent=patched?'Replay the original →':'Replay with the fix →';$('cve').textContent=mode==='oom'?'CVE-2026-109618 · Out-of-memory corruption':'CVE-2026-109619 · Stale global state';let scene=document.querySelector('.scene');scene.classList.remove('reveal');void scene.offsetWidth;scene.classList.add('reveal');}
-$('oom').onclick=()=>{mode='oom';step=0;patched=false;render()};$('stale').onclick=()=>{mode='stale';step=0;patched=false;render()};$('patch').onclick=()=>{patched=!patched;step=0;render()};$('next').onclick=()=>{step=Math.min(step+1,3);render()};$('back').onclick=()=>{step=Math.max(step-1,0);render()};$('reset').onclick=()=>{step=0;render()};render();
-const roles={visitor:'<strong>The server operator handles the repair.</strong><p>Browsing a PHP site does not mean your own device runs that site’s PHP engine. Use ordinary caution with suspicious pages and messages. This guide cannot tell whether a site you visited was compromised.</p>',owner:'<strong>Ask your hosting provider a specific question.</strong><p>“Have you applied fixes for CVE-2026-109618 and CVE-2026-109619 to the PHP runtime serving my site, restarted the relevant workers, and reviewed the October 23 session upload progress advisory?”</p>',admin:'<strong>Inventory, update, restart and verify.</strong><p>Find all PHP deployments; apply the fixed upstream or vendor packages; roll out updated containers and restart affected workers. Verify the running version and review logs and exposure. Patching prevents these paths but does not undo an earlier compromise.</p>'};$('role').onchange=()=>{$('roleResult').innerHTML=roles[$('role').value]};$('role').onchange();
-const fixes={'8.5':'8.5.12','8.4':'8.4.27','8.3':'8.3.36','8.2':'8.2.35'};function check(){let b=$('branch').value;$('level').disabled=!fixes[b];$('versionResult').textContent=b==='unknown'?'Ask your host which PHP version and vendor security fixes are actually running. The application’s version is a different number.':b==='old'?'PHP 8.1 and older are outside upstream support. Ask your vendor about backported fixes and plan a supported upgrade; limited source backports also exist.':$('level').value==='before'?'The first fixed release in this branch is '+fixes[b]+'. Earlier upstream releases need the repair. A vendor backport may already contain it; confirm with the vendor.':'PHP '+fixes[b]+' is the first fixed release in this branch for the October 21 pair. Verify deployment and review the separate October 23 advisory; this is not an all-clear for every vulnerability.';} $('branch').onchange=check;$('level').onchange=check;check();
-const qs=[{q:'Where is the underlying flaw?',a:['In the visitor’s browser','In PHP’s server-side memory handling','In every website password'],c:1,e:'PHP’s runtime mishandles internal memory state. A password change does not repair that software bug.'},{q:'Why can a login page be insufficient?',a:['Some vulnerable processing happens before the site checks your login','Attackers always know the password','PHP sites cannot have logins'],c:0,e:'The server can process request data before the application’s login logic runs. Exposure still depends on the PHP setup and attack path.'},{q:'What should a website owner ask their host to do?',a:['Hide error messages and declare the site safe','Only update the page design','Apply the PHP fixes, verify the running deployment, and review newer advisories'],c:2,e:'Repair the runtime underneath the website. Verify the deployed fix and check the separate October 23 guidance too.'}];let qi=0,score=0,answered=false;function quiz(){answered=false;$('quizProgress').textContent='Question '+(qi+1)+' of 3';$('question').textContent=qs[qi].q;$('feedback').textContent='';$('quizNext').disabled=true;$('quizNext').hidden=false;$('quizReset').hidden=true;$('quizNext').textContent=qi===2?'See my result →':'Next question →';$('answers').replaceChildren(...qs[qi].a.map((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>{if(answered)return;answered=true;let right=i===qs[qi].c;if(right)score++;$('feedback').textContent=(right?'Exactly. ':'Here’s the key idea: ')+qs[qi].e;[...$('answers').children].forEach((x,j)=>{x.disabled=true;if(j===qs[qi].c)x.style.border='2px solid #245e48'});$('progress').value=qi+1;$('quizNext').disabled=false};return b}))}$('quizNext').onclick=()=>{if(!answered)return;if(qi<2){qi++;quiz()}else{$('question').textContent='You got '+score+' out of 3 on your first guesses.';$('answers').replaceChildren();$('feedback').textContent='The idea to keep: invalid memory bookkeeping can become a security problem. Updating the underlying PHP runtime closes the original flaws.';$('quizNext').hidden=true;$('quizReset').hidden=false;$('quizProgress').textContent='Complete'}};$('quizReset').onclick=()=>{qi=0;score=0;$('progress').value=0;quiz()};quiz();$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('explanation').textContent);$('copyStatus').textContent='Explanation copied.'}catch{$('copyStatus').textContent='Copy unavailable here. Select the explanation text to copy it manually.'}};$('print').onclick=()=>window.print();
-</script></body></html>
+const $ = id => document.getElementById(id);
+let mode = 'oom';
+let step = 0;
+let patched = false;
+
+function folder(title, body, bad = false) {
+  return '<div class="folder' + (bad ? ' bad' : '') + '"><strong>' + title + '</strong>' + body + '</div>';
+}
+function note(body) {
+  return '<div class="sticky"><strong>Reference</strong>' + body + '</div>';
+}
+const empty = '<div class="emptydesk">An empty desk<br>Ready for a request</div>';
+const notes = {
+  oom: [
+    {
+      title: 'A visitor asks the website for something.',
+      text: 'A request arrives at the server. PHP sets aside temporary memory to handle it, just as a worker clears a space for a new folder.',
+      action: 'Send the request →', visual: empty, worker: 'Ready', request: 'Waiting to be handled',
+      outcome: 'The worker is ready to start. The desk is clear.'
+    },
+    {
+      title: 'The paperwork is only half prepared.',
+      text: 'PHP starts building the information it needs. Some fields are ready; others are still unfinished. This is a normal moment in the middle of the job.',
+      action: 'Interrupt the job →', visual: folder('Request folder', '✓ Ready field<br>✓ Ready field<br>… Unfinished field'),
+      worker: 'Preparing data', request: 'Being processed',
+      outcome: 'The unfinished fields need to be completed before anything uses them.'
+    },
+    {
+      title: 'The worker runs out of memory.',
+      text: 'A memory allocation fails. In the original PHP, error handling can jump out of the operation before its internal data is ready. The request fails, leaving an unfinished folder behind.',
+      action: 'Let cleanup run →', visual: folder('Unfinished folder', '✓ Ready field<br>? Unknown field<br>? Unknown field', true),
+      worker: 'Job interrupted', request: 'Request failed',
+      outcome: 'The job has stopped. PHP still has to end the request safely.'
+    },
+    {
+      title: 'Cleanup trusts the unfinished folder.',
+      text: 'Cleanup may read or act on incomplete data as though it were valid. With carefully arranged memory, an attacker can turn that mistake into running instructions of their choosing.',
+      action: '', visual: folder('Invalid data', '? Treated as valid<br>↳ Unintended action', true),
+      worker: 'Unsafe cleanup', request: 'Request ended',
+      outcome: 'A crash or code execution becomes possible, with the PHP worker’s permissions.'
+    }
+  ],
+  stale: [
+    {
+      title: 'One worker handles two requests.',
+      text: 'A worker can stay alive between requests. Each job has its own temporary information. When that information is released, the worker must clear any references pointing to it.',
+      action: 'Send request A →', visual: empty, worker: 'Ready', request: 'Request A waiting',
+      outcome: 'Watch the sticky note. It points to a particular location on the desk.'
+    },
+    {
+      title: 'Request A leaves a sticky note.',
+      text: 'PHP stores a reference to request A’s information in state the worker keeps. Picture a sticky note saying, “Use the information in A’s folder.”',
+      action: 'Finish request A →', visual: folder('Request A', 'Temporary data') + note('Use A’s folder →'),
+      worker: 'Handling request A', request: 'Request A in progress',
+      outcome: 'The note points to A’s folder, which is still on the desk.'
+    },
+    {
+      title: 'The folder goes. The note stays.',
+      text: 'In an affected path, PHP releases the data but fails to clear its reference safely. The worker is left with a note pointing to memory that has already been freed.',
+      action: 'Send request B →', visual: '<div class="emptydesk">A’s folder<br>has been removed</div>' + note('Old note →<br>Use A’s folder'),
+      worker: 'Stale reference', request: 'Request A ended',
+      outcome: 'The reference survives even though its target has been released.'
+    },
+    {
+      title: 'Request B follows the outdated note.',
+      text: 'A later request on the same worker uses the old reference before normal initialisation replaces it. That location may now hold different data. Carefully controlled reuse can lead to memory disclosure or code execution.',
+      action: '', visual: folder('Reused space', 'Different data now<br>⚠ Old note used', true) + note('Old note →<br>Wrong target'),
+      worker: 'Invalid access', request: 'Request B arrived',
+      outcome: 'This is use-after-free: using memory after it has been released.'
+    }
+  ]
+};
+
+const repairs = {
+  oom: [
+    {
+      title: 'The interruption is handled safely.',
+      text: 'The repaired PHP changes how it handles memory exhaustion. It stops at a safe execution point, or exits the process immediately at a higher memory threshold. The unfinished data stays out of ordinary cleanup.',
+      visual: '<div class="emptydesk">✓ Safe failure<br>No invalid cleanup</div>',
+      outcome: 'The request fails safely. Cleanup stays clear of the unfinished data.'
+    },
+    {
+      title: 'Cleanup uses valid information.',
+      text: 'PHP avoids sending the unfinished structure through ordinary cleanup. The request can end without turning an incomplete memory structure into an unintended operation.',
+      visual: '<div class="emptydesk">✓ Safe failure<br>No invalid cleanup</div>',
+      outcome: 'The repair closes the out-of-memory attack path.'
+    }
+  ],
+  stale: [
+    {
+      title: 'The old reference is cleared.',
+      text: 'The repaired lifecycle prevents the worker from retaining a usable reference to released request memory. In our desk story, A’s folder goes away and its sticky note is cleared too.',
+      visual: '<div class="emptydesk">✓ Folder released<br>Old reference cleared</div>',
+      outcome: 'The desk is ready for the next request, with the old reference cleared.'
+    },
+    {
+      title: 'Request B starts with valid state.',
+      text: 'The next request uses valid information for its own work. It can carry on without following an outdated reference into memory that was released by request A.',
+      visual: folder('Request B', '✓ Fresh, valid state'),
+      outcome: 'The repair closes this use-after-free attack path.'
+    }
+  ]
+};
+
+function prepareStorySizing() {
+  const states = [...Object.values(notes).flat(), ...Object.values(repairs).flat()];
+  for (const state of states) {
+    const copyEl = document.createElement('div');
+    const titleEl = document.createElement('h3');
+    titleEl.className = 'step-title';
+    titleEl.textContent = state.title;
+    const textEl = document.createElement('p');
+    textEl.className = 'step-text';
+    textEl.textContent = state.text;
+    copyEl.append(titleEl, textEl);
+    $('copySizer').append(copyEl);
+
+    const workspaceEl = document.createElement('div');
+    workspaceEl.className = 'workspace';
+    workspaceEl.innerHTML = state.visual;
+    $('workspaceSizer').append(workspaceEl);
+
+    const outcomeEl = document.createElement('div');
+    outcomeEl.className = 'outcome';
+    const labelEl = document.createElement('strong');
+    labelEl.textContent = 'What’s happening';
+    outcomeEl.append(labelEl, document.createTextNode(state.outcome));
+    $('outcomeSizer').append(outcomeEl);
+  }
+}
+prepareStorySizing();
+
+function render() {
+  const current = notes[mode][step];
+  const repair = patched && step >= 2 ? repairs[mode][step - 2] : null;
+  $('oom').setAttribute('aria-pressed', mode === 'oom');
+  $('stale').setAttribute('aria-pressed', mode === 'stale');
+  $('original').setAttribute('aria-pressed', !patched);
+  $('repaired').setAttribute('aria-pressed', patched);
+  $('storyStage').dataset.version = patched ? 'repaired' : 'original';
+  $('badge').textContent = patched ? 'Repaired PHP' : 'Original PHP';
+  $('badgeDetail').textContent = patched ? 'After the security update' : 'Before the security update';
+  $('counter').textContent = 'STEP ' + (step + 1) + ' OF 4';
+  $('dots').innerHTML = [0, 1, 2, 3].map(index => '<span class="dot' + (index <= step ? ' on' : '') + '"></span>').join('');
+  $('stepTitle').textContent = repair ? repair.title : current.title;
+  $('stepText').textContent = repair ? repair.text : current.text;
+  $('workspace').innerHTML = repair ? repair.visual : current.visual;
+  $('workerState').textContent = repair ? 'Safe handling' : current.worker;
+  $('requestName').textContent = mode === 'oom' ? 'A visitor’s request' : step === 3 ? 'Request B' : 'Request A';
+  $('requestState').textContent = current.request;
+  $('outcome').replaceChildren();
+  const outcomeLabelEl = document.createElement('strong');
+  outcomeLabelEl.textContent = repair ? 'With the repair' : 'What’s happening';
+  $('outcome').append(outcomeLabelEl, document.createTextNode(repair ? repair.outcome : current.outcome));
+  $('outcome').className = 'outcome' + (!patched && step === 3 ? ' danger' : repair ? ' safe' : '');
+  $('next').textContent = repair && step === 2 ? 'See the safe outcome →' : current.action;
+  $('next').hidden = step === 3;
+  $('patch').hidden = step !== 3;
+  $('patch').textContent = patched ? 'Replay the original story →' : 'Replay with the repair →';
+  $('back').disabled = step === 0;
+  $('cve').textContent = mode === 'oom' ? 'CVE-2026-109618 · Out-of-memory corruption' : 'CVE-2026-109619 · Stale global state';
+  $('storyGoal').textContent = mode === 'oom' ? 'An interrupted job' : 'An old sticky note';
+  const sceneEl = document.querySelector('.scene');
+  sceneEl.classList.remove('reveal');
+  void sceneEl.offsetWidth;
+  sceneEl.classList.add('reveal');
+}
+
+function changeStory(action) {
+  const activeEl = document.activeElement;
+  action();
+  render();
+  // Only transfer focus when its control disappears or becomes disabled.
+  // Keeping the control in the same slot avoids moving the reader's viewport.
+  if (activeEl && ['next', 'patch', 'back'].includes(activeEl.id) &&
+      (activeEl.hidden || activeEl.disabled)) {
+    $(step === 3 ? 'patch' : 'next').focus({preventScroll: true});
+  }
+}
+$('oom').onclick = () => changeStory(() => { mode = 'oom'; step = 0; patched = false; });
+$('stale').onclick = () => changeStory(() => { mode = 'stale'; step = 0; patched = false; });
+$('original').onclick = () => changeStory(() => { patched = false; });
+$('repaired').onclick = () => changeStory(() => { patched = true; });
+$('patch').onclick = () => changeStory(() => { patched = !patched; step = 0; });
+$('next').onclick = () => changeStory(() => { step = Math.min(step + 1, 3); });
+$('back').onclick = () => changeStory(() => { step = Math.max(step - 1, 0); });
+$('reset').onclick = () => changeStory(() => { step = 0; });
+render();
+
+const roles = {
+  visitor: '<strong>The server operator handles the repair.</strong><p>PHP runs on the website’s server. The organisation hosting the site is responsible for updating that software.</p>',
+  owner: '<strong>Ask your hosting provider.</strong><p>“Have you installed the repairs for CVE-2026-109618 and CVE-2026-109619 on the PHP runtime serving my site, restarted its workers and reviewed the 23 October session upload progress advisory?”</p>',
+  admin: '<strong>Inventory, update and verify.</strong><p>Identify your PHP deployments, install repaired upstream or vendor packages, update containers and restart the relevant workers. Check the running versions and review the logs.</p>'
+};
+$('role').onchange = () => { $('roleResult').innerHTML = roles[$('role').value]; };
+$('role').onchange();
+
+const fixes = {'8.5': '8.5.12', '8.4': '8.4.27', '8.3': '8.3.36', '8.2': '8.2.35'};
+function check() {
+  const branch = $('branch').value;
+  $('level').disabled = !fixes[branch];
+  let result;
+  if (branch === 'unknown') {
+    result = 'Ask your host which PHP version and vendor security repairs are running on your website’s server.';
+  } else if (branch === 'old') {
+    result = 'PHP 8.1 and older are outside upstream support. Ask your vendor about backported repairs and arrange an upgrade to a supported branch.';
+  } else if ($('level').value === 'before') {
+    result = 'PHP ' + fixes[branch] + ' introduced the repair in this branch. Earlier upstream releases need the repair. Your host can confirm whether a vendor backport is installed.';
+  } else {
+    result = 'PHP ' + fixes[branch] + ' includes the 21 October repairs. Check that your host has deployed the update and restarted the PHP workers.';
+  }
+  $('versionResult').textContent = result;
+}
+$('branch').onchange = check;
+$('level').onchange = check;
+check();
+
+const qs = [
+  {q: 'Where is the underlying flaw?', a: ['In the visitor’s browser', 'In PHP’s server-side memory handling', 'In every website password'], c: 1, e: 'PHP’s runtime mishandles internal memory state. Updating that runtime repairs the underlying bug.'},
+  {q: 'How can an attack happen before a login?', a: ['PHP processes some request data before the site checks your login', 'Attackers always know the password', 'The visitor has to be logged in already'], c: 0, e: 'The server can process request data before the application’s login logic runs. That early processing is where some attack paths begin.'},
+  {q: 'What should a website owner ask their host to do?', a: ['Hide the error messages', 'Update the page design', 'Install the PHP repairs, verify the running version and review the newer advisory'], c: 2, e: 'Repair the PHP runtime underneath the website, verify the deployed update and review the 23 October session upload progress guidance.'}
+];
+let qi = 0;
+let score = 0;
+let answered = false;
+function quiz() {
+  answered = false;
+  $('quizProgress').textContent = 'Question ' + (qi + 1) + ' of 3';
+  $('question').textContent = qs[qi].q;
+  $('feedback').textContent = '';
+  $('quizNext').disabled = true;
+  $('quizNext').hidden = false;
+  $('quizReset').hidden = true;
+  $('quizNext').textContent = qi === 2 ? 'See my result →' : 'Next question →';
+  $('answers').replaceChildren(...qs[qi].a.map((answer, index) => {
+    const buttonEl = document.createElement('button');
+    buttonEl.className = 'answer';
+    const letterEl = document.createElement('span');
+    letterEl.className = 'answer-letter';
+    letterEl.textContent = ['A', 'B', 'C'][index];
+    letterEl.setAttribute('aria-hidden', 'true');
+    const textEl = document.createElement('span');
+    textEl.className = 'answer-text';
+    textEl.textContent = answer;
+    buttonEl.append(letterEl, textEl);
+    buttonEl.onclick = () => {
+      if (answered) return;
+      answered = true;
+      const correct = index === qs[qi].c;
+      if (correct) score++;
+      $('feedback').textContent = (correct ? 'Exactly. ' : 'Here’s the key idea: ') + qs[qi].e;
+      [...$('answers').children].forEach((element, answerIndex) => {
+        element.disabled = true;
+        if (answerIndex === qs[qi].c) {
+          element.classList.add('is-correct');
+          const resultEl = document.createElement('span');
+          resultEl.className = 'answer-result';
+          resultEl.textContent = '✓ Correct answer';
+          element.append(resultEl);
+        } else if (answerIndex === index) {
+          element.classList.add('is-incorrect');
+        }
+      });
+      $('progress').value = qi + 1;
+      $('quizNext').disabled = false;
+    };
+    return buttonEl;
+  }));
+}
+$('quizNext').onclick = () => {
+  if (!answered) return;
+  if (qi < 2) {
+    qi++;
+    quiz();
+  } else {
+    $('question').textContent = 'You got ' + score + ' out of 3 on your first guesses.';
+    $('answers').replaceChildren();
+    $('feedback').textContent = 'The idea to keep: poor memory bookkeeping can become a security problem. Updating the PHP runtime repairs the two original flaws.';
+    $('quizNext').hidden = true;
+    $('quizReset').hidden = false;
+    $('quizProgress').textContent = 'Complete';
+  }
+  $('question').focus();
+};
+$('quizReset').onclick = () => {
+  qi = 0;
+  score = 0;
+  $('progress').value = 0;
+  quiz();
+  $('question').focus();
+};
+quiz();
+$('copy').onclick = async () => {
+  try {
+    await navigator.clipboard.writeText($('explanation').textContent);
+    $('copyStatus').textContent = 'Explanation copied.';
+  } catch {
+    $('copyStatus').textContent = 'Select the explanation text to copy it manually.';
+  }
+};
+$('print').onclick = () => window.print();
+$('storyLab').hidden = false;
+$('quizPanel').hidden = false;
+$('copyActions').hidden = false;
+$('interactiveNotice').hidden = true;
+</script>
+</body>
+</html>
