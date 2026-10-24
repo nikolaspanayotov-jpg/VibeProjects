@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/anthropics/skills",
+  "commit": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+  "directory": "skills/frontend-design",
+  "imported_on": "2026-10-24",
+  "files": [
+    {
+      "source": "skills/frontend-design/LICENSE.txt",
+      "local": "LICENSE.txt",
+      "git_blob_sha": "f433b1a53f5b830a205fd2df78e2b34974656c7b",
+      "size": 10174
+    },
+    {
+      "source": "skills/frontend-design/SKILL.md",
+      "local": "references/anthropic-design.md",
+      "git_blob_sha": "a5333457c414d20d625f307df945842c0952ecc3",
+      "size": 9390
+    }
+  ],
+  "adaptation": "SKILL.md is a local Codex entry point; the upstream SKILL.md is preserved verbatim in references/anthropic-design.md. LICENSE.txt is unchanged.",
+  "guidance": "https://github.com/openai/skills/tree/main/skills/.system/skill-creator"
+}

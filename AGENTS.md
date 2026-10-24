@@ -9,6 +9,7 @@ This repo holds lots of small, independent web projects ("vibes"). Each top-leve
 ```
 /
 ├── AGENTS.md          this file: rules for every project
+├── .agents/skills/    shared Codex skills for all projects
 ├── CNAME              custom domain for GitHub Pages
 ├── .gitignore
 ├── bird/              one project per folder
@@ -21,11 +22,22 @@ This repo holds lots of small, independent web projects ("vibes"). Each top-leve
 └── …
 ```
 
-- **The root holds only project folders** and a few repo-wide files (`AGENTS.md`, `CNAME`, `.gitignore`). Don't put app code at the root.
+- **The root holds project folders, shared agent tooling (`.agents/`),** and a few repo-wide files (`AGENTS.md`, `CNAME`, `.gitignore`). Don't put app code at the root.
 - **One folder = one project = one URL.** The folder name is the URL path, so keep it short, lowercase, with no spaces (`bird`, `foodgame`, `rivercrossing`).
 - **Projects are fully self-contained.** A project never imports from another folder, and nothing is shared between them. Use relative paths only (`./style.css`, `library.js`). That way any project can later move to its own repo and run unchanged.
 - **Never rename a folder after its URL has been shared.** It would break people's links and home-screen shortcuts. If a rename can't be avoided, leave a redirect in the old folder: an `index.html` with `<meta http-equiv="refresh">` plus `location.replace('../newname/' + location.search + location.hash)`, so query strings and `#hash` links still work. The brand name can change even when the folder name can't.
 - When you work on one project, change only that folder.
+
+## Shared Codex skills
+
+The repository's `.agents/skills/` directory provides skills for every project,
+including future folders. Paths here are relative to the repository root.
+
+- **Frontend Design:** For frontend design and UI implementation tasks, read
+  [`.agents/skills/frontend-design/SKILL.md`](.agents/skills/frontend-design/SKILL.md)
+  and apply it alongside this file and the project's own instructions. It is also
+  available through `$frontend-design` in Codex. Keep the vanilla, build-free
+  default below unless the user requests a different stack.
 
 ## Default stack for a new project
 
