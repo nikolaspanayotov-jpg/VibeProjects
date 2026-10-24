@@ -31,6 +31,7 @@ async function run() {
       assert(await page.locator('#storyLab').isVisible());
       assert(await page.locator('#quizPanel').isVisible());
       assert(await page.locator('#copyActions').isVisible());
+      assert.equal(await page.locator('html').getAttribute('lang'), 'en-GB');
       await assertNoOverflow();
 
       for (const story of ['oom', 'stale']) {
@@ -39,24 +40,45 @@ async function run() {
         assert.equal(await page.locator('#' + (story === 'oom' ? 'stale' : 'oom')).getAttribute('aria-pressed'), 'false');
         assert(await page.locator('#back').isDisabled());
         assert.match(await text('#counter'), /STEP 1 OF 4/);
-        for (let index = 1; index <= 3; index++) {
-          const previousScene = await page.locator('#workspace').innerHTML();
-          await page.locator('#next').click();
+        for (let index = 0; index < 4; index++) {
+          const originalScene = await page.locator('#workspace').innerHTML();
+          const originalTitle = await text('#stepTitle');
+          await page.locator('#repaired').click();
+          assert.equal(await text('#badge'), 'Repaired PHP');
+          assert.equal(await page.locator('#storyStage').getAttribute('data-version'), 'repaired');
+          assert.equal(await page.locator('#repaired').getAttribute('aria-pressed'), 'true');
+          assert.equal(await page.locator('#original').getAttribute('aria-pressed'), 'false');
+          assert.equal(await page.evaluate(() => document.activeElement.id), 'repaired');
           assert.match(await text('#counter'), new RegExp(`STEP ${index + 1} OF 4`));
-          assert.notEqual(await page.locator('#workspace').innerHTML(), previousScene);
+          if (index >= 2) {
+            assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
+            assert.notEqual(await text('#stepTitle'), originalTitle);
+          }
+          await page.locator('#original').click();
+          assert.equal(await text('#badge'), 'Original PHP');
+          assert.equal(await page.locator('#storyStage').getAttribute('data-version'), 'original');
+          assert.equal(await page.locator('#original').getAttribute('aria-pressed'), 'true');
+          assert.equal(await page.locator('#repaired').getAttribute('aria-pressed'), 'false');
+          assert.equal(await page.locator('#workspace').innerHTML(), originalScene);
+          if (index < 3) {
+            assert(await page.locator('#patch').isHidden());
+            await page.locator('#next').click();
+            assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
+          }
           await assertNoOverflow();
         }
         assert(await page.locator('#next').isHidden());
-        assert.equal(await page.evaluate(() => document.activeElement.id), 'stepTitle');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'original');
         assert.match(await page.locator('#outcome').getAttribute('class'), /danger/);
         await page.locator('#back').click();
         assert.match(await text('#counter'), /STEP 3 OF 4/);
         assert(await page.locator('#next').isVisible());
-        assert(await page.locator('#compare').isHidden());
+        assert(await page.locator('#patch').isHidden());
         await page.locator('#next').click();
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'stepTitle');
         await page.locator('#patch').click();
         assert.equal(await text('#badge'), 'Repaired PHP');
-        assert.match(await text('#counter'), /WITH THE FIX.*STEP 1 OF 4/);
+        assert.match(await text('#counter'), /WITH THE REPAIR.*STEP 1 OF 4/);
         for (let index = 0; index < 3; index++) await page.locator('#next').click();
         assert.match(await page.locator('#outcome').getAttribute('class'), /safe/);
         assert.match(await text('#workspace'), story === 'oom' ? /No invalid cleanup/ : /Fresh, valid state/);
@@ -81,7 +103,7 @@ async function run() {
         for (const level of ['before', 'fixed']) {
           await page.selectOption('#level', level);
           assert((await text('#versionResult')).includes(fixed));
-          assert((await text('#versionResult')).includes(level === 'before' ? 'need the repair' : 'Verify deployment'));
+          assert((await text('#versionResult')).includes(level === 'before' ? 'need the repair' : 'has deployed the update'));
         }
       }
       for (const value of ['old', 'unknown']) {
@@ -140,11 +162,14 @@ async function run() {
       await page.locator('#print').click();
       assert(await page.evaluate(() => window.printCalled));
 
-      for (const link of await page.locator('a[href^="#"]').all()) {
+      for (const link of await page.locator('a[href^="#"]:not(.skip-link)').all()) {
         const href = await link.getAttribute('href');
         await link.click();
         if (href !== '#') assert.equal(new URL(page.url()).hash, href);
       }
+      await page.locator('.skip-link').focus();
+      await page.keyboard.press('Enter');
+      assert.equal(new URL(page.url()).hash, '#explore');
       // Exercise the keyboard path and reduced-motion setting too.
       await page.emulateMedia({reducedMotion: 'reduce'});
       await page.locator('#oom').focus();
@@ -152,6 +177,11 @@ async function run() {
       await page.locator('#next').focus();
       await page.keyboard.press('Space');
       assert.match(await text('#counter'), /STEP 2 OF 4/);
+      if (width === 390) {
+        await page.locator('#repaired').focus();
+        await page.keyboard.press('Enter');
+        assert.equal(await text('#badge'), 'Repaired PHP');
+      }
       await assertNoOverflow();
       assert.deepEqual(errors, []);
       await page.locator('#storyLab').screenshot({path: path.join(artifacts, `story-${width}.png`)});

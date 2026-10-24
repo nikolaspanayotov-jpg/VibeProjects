@@ -1,18 +1,28 @@
 # PHP explained
 
-A standalone, interactive guide to the October 2026 PHP2Shell disclosures, written for nontechnical readers. Its repository path is `php-explained/`; keep that folder name stable. Hosting follows the repository's GitHub Pages configuration.
+A standalone, interactive guide to the October 2026 PHP2Shell disclosures, written for non-technical readers. Its repository path is `php-explained/`; keep that folder name stable. Hosting follows the repository's GitHub Pages configuration.
 
 ## Running
 
-Open `index.html` in a full browser, or serve this folder with `python3 -m http.server 8000`. No build, framework or runtime dependencies. GitHub's source viewer and some embedded file previews do not execute page JavaScript. When JavaScript is disabled or initialization fails, the written guide and native expandable sections remain usable, and a notice explains how to access the interactive version. The stories, quiz, copy and print controls are revealed only after their handlers initialize.
+Open `index.html` in a full browser, or serve this folder with `python3 -m http.server 8000`. No build, framework or runtime dependencies. GitHub's source viewer and some embedded file previews do not execute page JavaScript. When JavaScript is disabled or initialisation fails, the written guide and native expandable sections remain usable, and a notice explains how to access the interactive version. The stories, quiz, copy and print controls are revealed only after their handlers initialise.
 
 ## Architecture
 
-All page HTML, CSS and JavaScript are inline in `index.html`. The `notes` data and `render()` drive two four-step stories; `mode`, `step` and `patched` hold their state. `changeStory()` updates the scene and moves focus to the step heading so hiding the final Next button does not strand keyboard users. At phone widths it also brings the changed scene into view. Separate handlers power audience guidance, version guidance, quiz, copy and print. No persistence, network scanning or backend.
+All page HTML, CSS and JavaScript are inline in `index.html`. The `notes` and `repairs` objects hold the original and repaired story steps. `mode`, `step` and `patched` hold the viewer state, rendered by `render()`.
 
-## Design and constraints
+- The story cards (`oom`, `stale`) select a story and restart it in Original PHP.
+- The always-visible `original` and `repaired` buttons change the version while preserving the current step and keeping keyboard focus on the selected button.
+- `next` and `back` move between four steps. The final step replaces Next with `patch`, which replays the other version from step one. `reset` restarts the current version.
+- `changeStory()` updates the scene and normally focuses the step heading, keeping keyboard navigation stable when Next disappears. On phones it scrolls the story body into view, with narration above the illustration and controls below it.
+- Separate handlers power audience guidance, version guidance, quiz, copy and print. Quiz feedback identifies the correct answer with both text and colour. No persistence, network scanning or backend.
 
-Paper and green colors, warm warning colors, serif headings and system body text. Color variables are defined on `:root`. Navigation wraps on phones; grid children and selects may shrink to their container. Reduced-motion support disables scene animation and smooth scrolling. The desk is a teaching analogy, not a working exploit. Preserve citations and distinguish the October 23 follow-up from the October 21 pair. Security facts are dated October 24, 2026 and need review before future updates.
+## Design and copy
+
+Use British English (`en-GB`), British date order, and plain language throughout the visitor-facing copy. Keep technical identifiers, PHP settings and CSS syntax intact. The user requested removal of disclaimer copy from the page; retain factual explanations, source links and functional instructions such as enabling JavaScript.
+
+The stories lead the page after a compact introduction. Their dark ink surround, two large story selectors, strong navigation buttons and prominent rust/green version signs make them the centrepiece. Original PHP uses rust; Repaired PHP uses green. Chapter panels have clear borders, section numbers and serif headings on a warm paper background. The takeaway chapter uses dark green. All palette values are on `:root`; use system sans-serif and Georgia without external font dependencies.
+
+The mobile layout wraps navigation, uses two story cards side by side, places narration above the scene and gives the primary action its own full-width row. Grid and select content may shrink. Reduced-motion support disables scene animation and smooth scrolling. Preserve citations and distinguish the 23 October follow-up from the 21 October pair. Security facts are dated 24 October 2026 and need review before future updates.
 
 ## Checking changes
 
@@ -31,10 +41,10 @@ Do not commit generated `qa/node_modules` or other dependency artifacts. There i
 
 `qa/dom.mjs` provides fast regression checks against parsed HTML using the test-only LinkeDOM package. It can run without a browser; focus and scrolling are instrumented and layout is not checked.
 
-The Playwright check covers both stories and repaired replays, back/restart, every quiz answer, scoring and retry, all audience and version choices, expandable sections, copy success and denial, print dispatch, internal links, keyboard navigation, reduced motion, and JavaScript-disabled fallback. It asserts state changes, focus and no horizontal overflow at 390px and 1280px, fails on page errors, and takes screenshots. Inspect those screenshots as well. Clipboard and print APIs are stubbed: native clipboard permissions and the native print dialog still require a manual check.
+The Playwright check covers both stories, comparison between Original and Repaired PHP at every step, and repaired replays, back/restart, every quiz answer, scoring and retry, all audience and version choices, expandable sections, copy success and denial, print dispatch, internal links, keyboard navigation, reduced motion, and JavaScript-disabled fallback. It asserts state changes, focus and no horizontal overflow at 390px and 1280px, fails on page errors, and takes screenshots. Inspect those screenshots as well. Clipboard and print APIs are stubbed: native clipboard permissions and the native print dialog still require a manual check.
 
 ## Current verification limits
 
-On October 24, 2026, JavaScript syntax checks and interaction checks against HTML parsed with LinkeDOM passed. The DOM checks exercised every button and dropdown, all quiz answer paths, copy success/denial and print dispatch. Browser-specific focus/scroll APIs were instrumented; these checks do not verify layout, native focus behavior or accessibility announcements.
+On 24 October 2026, JavaScript syntax checks and interaction checks against HTML parsed with LinkeDOM passed. The DOM checks exercised every button and dropdown, all quiz answer paths, copy success/denial and print dispatch. Browser-specific focus/scroll APIs were instrumented; these checks do not verify layout, native focus behavior or accessibility announcements.
 
 The real Playwright launch still fails in this environment before loading the page (`setsockopt: Operation not permitted` from Chromium). Browser interaction checks and screenshots have therefore not passed. Do not claim mobile layout or full browser verification is complete. Keep changes off the deployment branch until the required browser checks and screenshot review can run.
