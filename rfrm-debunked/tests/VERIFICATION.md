@@ -50,3 +50,11 @@ Successful runs write results and 320px, 390px and 1440px screenshots to `tests/
 - The May overtime estimate is explicitly distinguished from the October fiscal profile. EUSS and payroll treatment are framed as legal-compatibility questions. EU-importer CBAM obligations and possible commercial effects on UK exporters are distinguished. Higher interest costs are not subtracted twice from Reform's headroom.
 
 The browser verification limitation above continues to apply to this revision. No successful screenshot, layout, interaction or accessibility check is claimed.
+
+## Mobile layout and disclosure audit revision — 27 October 2026
+
+The shared container now owns safe-area-aware horizontal gutters; the headline section sets only block padding. Section headings use restrained rules instead of filled bands. The major costing audit now uses 20 native disclosures with six labelled checks each. Repeated full notes appear once in a linked common-notes glossary; all original statuses, notes, profiles and underlying audit data remain available. The two financial tables retain their semantic table structure.
+
+Static checks verify all 120 check statuses and note content (including linked notes), each compact summary, 20 audit disclosures and exactly two financial tables. Browser coverage now explicitly checks both container and reading gutters at 320px/390px, 44px numbered links, audit keyboard disclosure, phone overflow and print visibility without JavaScript. These browser additions have not been run in this socket-restricted environment; the browser limitation above still applies.
+
+The final scanability refinement keeps collapsed audit rows to policy name, published profile and “View disclosure details”; all six checks remain in each expansion. The number index uses six columns from 350px through 1000px and four below 350px, retaining 44px cells. Static audit and syntax checks passed after regeneration; browser coverage includes the 350px and 950px boundaries but remains unrun.

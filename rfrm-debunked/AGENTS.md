@@ -12,7 +12,7 @@ Open `index.html` directly, or run `python3 -m http.server 8000` from this folde
 - `authoring/template.html`: page structure, styles and interactions.
 - `authoring/{energy,housing,infrastructure,deregulation,tax,support}.json`: reviewed article/source content. Article fields: id, number (null for supporting), category, page, title, proposal, counter, critique, sourceIds, related, evidenceLabel, optional evidencePanels and dependencies. Source fields: id, publisher, title, date, URL, accessed, finding.
 - `authoring/highlights.json`: eight static headline panels; these do not add to the 101 policy result count.
-- `authoring/audit.json`: all 20 policy lines reaching an absolute £1bn in any forecast year, tested against six disclosure dimensions. Keep unknown disclosure separate from falsity.
+- `authoring/audit.json`: all 20 policy lines reaching an absolute £1bn in any forecast year, tested against six disclosure dimensions. Display as 20 native disclosures with six labelled checks; shared full notes may be linked from a common-notes glossary. Keep unknown disclosure separate from falsity.
 - `authoring/updates.json`: verified official provenance and additional source records.
 - `authoring/tables.json`: literal source table strings, including blank cells and parentheses. Never infer zero from blank or silently reconcile rounded totals.
 - `authoring/generate.py`: optional Python3 authoring helper; run `python3 authoring/generate.py` after edits. It validates content lengths/references, writes static `index.html` and the coverage/source audit in `RESEARCH.md`. Readers need no build.

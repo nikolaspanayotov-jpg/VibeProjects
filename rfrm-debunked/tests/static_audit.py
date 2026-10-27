@@ -74,6 +74,26 @@ for row in audit['rows']:
     assert set(row['checks'])=={d['id'] for d in audit['dimensions']}
     assert all(c['status'] in {'Published','Partial','Not provided in the plan','Not applicable'} and c['note'] for c in row['checks'].values())
     assert row['target'] in ids
+# Every original check is preserved either inline or by a resolving common-note link.
+from html import unescape
+items = re.findall(r'<details class="audit-item" id="([^"]+)">(.*?)</details>', page, re.S)
+assert len(items) == 20 and 'table-costing-audit' not in page
+assert len([1 for tag, attrs in doc.elements if tag == 'table']) == 2
+for row, (item_id, markup) in zip(audit['rows'], items):
+    assert item_id == 'audit-' + row['target']
+    assert row['title'] in unescape(markup) and row['profile'] in unescape(markup)
+    assert markup.count('class="audit-check"') == 6
+    for dim in audit['dimensions']:
+        check = row['checks'][dim['id']]
+        block = re.search(r'<div class="audit-check" data-dimension="' + dim['id'] + r'">(.*?)</div>', markup, re.S).group(1)
+        assert check['status'] in unescape(block)
+        if check['note'] not in unescape(block):
+            ref = re.search(r'href="#(audit-note-[^"]+)"', block).group(1)
+            note = re.search(r'<div id="' + ref + r'">(.*?)</div>', page, re.S).group(1)
+            assert check['note'] in unescape(note)
+    summary = re.search(r'<summary>(.*?)</summary>', markup, re.S).group(1)
+    assert 'View disclosure details' in summary
+    assert 'audit-check' not in summary and 'Missing:' not in summary and 'Partly explained:' not in summary
 highlights=json.loads((ROOT/'authoring/highlights.json').read_text())
 assert len(highlights)==8 and all(card['sourceIds'] for card in highlights)
 assert all(source_id in source_ids for card in highlights for source_id in card['sourceIds'])

@@ -34,6 +34,11 @@ try:
     page.goto(url);page.wait_for_selector('html.js')
     check(len(visible_ids(page))==101,'HTTP:101 articles visible')
     check(page.locator('details[open]').count()==0,'Native analyses initially closed')
+    audit_summary=page.locator('.audit-item > summary').first
+    audit_summary.focus();page.keyboard.press('Enter')
+    check(page.locator('.audit-item').first.get_attribute('open') is not None and page.locator('.audit-item .audit-check').first.is_visible(),'Audit opens with keyboard and exposes labelled checks')
+    page.keyboard.press('Space')
+    check(page.locator('.audit-item').first.get_attribute('open') is None,'Audit closes with keyboard')
     page.locator('#query').fill('ROSEBANK')
     check('measure-01' in visible_ids(page) and len(visible_ids(page))<101,'Case-insensitive title search')
     phrase=page.locator('#measure-13 .analysis-text').text_content().split('.')[0][-70:]
@@ -66,7 +71,7 @@ try:
     page.locator('#measure-12 details').evaluate('(el)=>el.open=false')
     before=page.locator('details').evaluate_all('(els)=>els.map(el=>el.open)')
     page.evaluate('window.dispatchEvent(new Event("beforeprint"))')
-    check(len(visible_ids(page))==101 and page.locator('details.analysis[open]').count()==101 and page.locator('.evidence-key').get_attribute('open') is not None,'Print reveals every entry, analysis and evidence key')
+    check(len(visible_ids(page))==101 and page.locator('details.analysis[open]').count()==101 and page.locator('.evidence-key').get_attribute('open') is not None and page.locator('.audit-item[open]').count()==20,'Print reveals every entry, analysis and evidence key')
     page.emulate_media(media='print')
     check('https://' in page.locator('.article-sources a').first.evaluate('(el)=>getComputedStyle(el,"::after").content'),'Print exposes citation URLs')
     page.emulate_media(media='screen');page.evaluate('window.dispatchEvent(new Event("afterprint"))')
@@ -80,9 +85,25 @@ try:
     page.goto(url);page.wait_for_selector('html.js')
     page.screenshot(path=str(ARTIFACTS/'desktop-1440.png'))
     check(no_overflow(page),'1440px no global overflow')
-    for width in [390,320,720]:
+    for width in [390,320,350,720,950]:
         page.set_viewport_size({'width':width,'height':1000})
         check(no_overflow(page),f'{width}px no global overflow')
+        expected_columns=4 if width<350 else 6
+        check(page.locator('.number-grid').evaluate('(el)=>getComputedStyle(el).gridTemplateColumns.split(" ").length')==expected_columns,f'{width}px compact numbered grid columns')
+        check(page.locator('.number-grid a').evaluate_all('(els)=>els.every(el=>el.getBoundingClientRect().width>=44 && el.getBoundingClientRect().height>=44)'),f'{width}px number links meet 44px targets')
+        if width in [320,390]:
+            minimum=20 if width==320 else 24
+            for selector in ['.masthead .wrap','.hero-grid','.headline-section','.layout','footer .wrap']:
+                box=page.locator(selector).bounding_box()
+                padding=page.locator(selector).evaluate('(el)=>({left:parseFloat(getComputedStyle(el).paddingLeft),right:parseFloat(getComputedStyle(el).paddingRight)})')
+                check(box['x']+padding['left']>=minimum-0.5 and width-(box['x']+box['width'])+padding['right']>=minimum-0.5,f'{width}px {selector} keeps both gutters')
+            for selector in ['#headline-heading','.headline-card p','#explorer > h2','.policy-body','#costing-heading','.audit-item > summary']:
+                box=page.locator(selector).first.bounding_box()
+                check(box['x']>=minimum-0.5 and box['x']+box['width']<=width-minimum+0.5,f'{width}px {selector} text stays inside gutters')
+            check(page.locator('.number-grid a').evaluate_all('(els)=>els.every(el=>el.getBoundingClientRect().width>=44 && el.getBoundingClientRect().height>=44)'),f'{width}px number links meet 44px targets')
+            page.locator('.audit-item > summary').first.click()
+            check(page.locator('.audit-check').first.is_visible() and no_overflow(page),f'{width}px audit opens without horizontal overflow')
+            page.locator('.audit-item > summary').first.click()
         if width==390:
             check(page.locator('#topic-select').is_visible(),'Mobile labelled topic select')
             page.locator('#topic-select').select_option('using-brexit-freedoms')
@@ -109,6 +130,12 @@ try:
     check(baseline.locator('.policy').count()==101 and baseline.locator('#filters').is_hidden(),'No JS:all content available, enhanced controls hidden')
     baseline.locator('#measure-01 summary').click()
     check(baseline.locator('#measure-01 .analysis-text').is_visible(),'No JS:native details work')
+    baseline.locator('.audit-item > summary').first.click()
+    check(baseline.locator('.audit-check').first.is_visible(),'No JS:audit disclosures work')
+    baseline.locator('.audit-item > summary').first.click()
+    baseline.emulate_media(media='print')
+    check(baseline.locator('.audit-check').first.is_visible(),'No JS:print exposes closed audit details')
+    baseline.emulate_media(media='screen')
     check(no_overflow(baseline),'No JS:mobile has no global overflow')
     check(not errors,'No browser page errors')
     browser.close()
