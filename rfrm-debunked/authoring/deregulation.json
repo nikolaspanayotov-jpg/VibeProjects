@@ -1,0 +1,620 @@
+{
+  "articles": [
+    {
+      "id": "measure-42",
+      "number": 42,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "Airport access: cheaper parking is not guaranteed",
+      "proposal": "Remove airport surface-access strategies aimed at reducing car traffic.",
+      "counter": "Removing access targets does not oblige airports to cut parking or drop-off charges.",
+      "critique": "Removing restrictions might make driving to an airport easier for passengers poorly served by public transport. But an airport access strategy also coordinates road capacity, buses, rail and local planning. The Department for Transport says operators develop these plans with local stakeholders and within planning conditions; expansion approvals can contain specific access targets. Removing that framework would not itself control the prices an airport chooses to charge. Parking land, commercial pricing and congestion at terminal forecourts would still matter. More vehicle trips can impose delay and pollution on nearby residents and businesses, while weakening public transport can disadvantage airport workers and passengers without cars. Some targets may be poorly designed and deserve revision, but Reform needs to identify which conditions it would remove and how road capacity would cope. Without that work, lower charges are a hoped-for commercial response rather than a demonstrated consequence.",
+      "sourceIds": [
+        "dg-airport"
+      ],
+      "related": [
+        "measure-21",
+        "measure-22",
+        "measure-59"
+      ]
+    },
+    {
+      "id": "measure-43",
+      "number": 43,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "Vehicle mandates: certainty also has value",
+      "proposal": "Abolish electric and hybrid vehicle mandates and the proposed new-car phase-out rules.",
+      "counter": "Scrapping the rules could ease near-term compliance while undermining the investment certainty they create.",
+      "critique": "Relaxing sales requirements could help manufacturers struggling with electric vehicle demand and preserve choice for buyers without reliable charging. The UK mechanism, however, is a manufacturer sales and emissions framework: it does not require owners to scrap existing petrol cars. The Vehicle Certification Agency describes rising zero-emission sales requirements alongside emissions limits for remaining new combustion vehicles. Abolition would therefore remove an investment signal for factories, charging networks and supply chains as well as a compliance burden. Buyers might gain short-term flexibility, but uncertainty could slow charging provision and leave future motorists exposed to fuel costs. Communities would also lose potential air-quality and climate benefits. The pace of transition should reflect charging access, affordability and manufacturing capacity, and particular vehicle categories may warrant flexibility. Those are arguments for evaluating the design and timetable; they do not establish that wholesale repeal produces a larger economic gain once investment and environmental effects are counted.",
+      "sourceIds": [
+        "dg-zev"
+      ],
+      "related": [
+        "measure-33",
+        "measure-48",
+        "measure-59"
+      ]
+    },
+    {
+      "id": "measure-44",
+      "number": 44,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "HGV hours: flexibility comes with fatigue risks",
+      "proposal": "Apply domestic GB drivers’ hours rules to all journeys within the UK.",
+      "counter": "Simpler scheduling would remove detailed rest safeguards for many heavy lorry journeys.",
+      "critique": "A single domestic regime could simplify administration and give hauliers more scheduling flexibility on journeys wholly within Britain. But GB domestic goods rules are not simply the same safety rules with less paperwork. DVSA guidance allows ten hours of driving a day and says this regime contains no specific rest-period or break provisions, although working-time duties still require adequate rest. Extending it to heavy goods traffic would place more weight on employer judgement and enforcement of that general duty. Drivers could face pressure to work schedules that increase fatigue, with potential costs for other road users and responsible operators. Northern Ireland has separate domestic rules, so a GB standard cannot casually be described as an existing UK-wide system. International and mixed journeys would also need careful treatment. Reform should demonstrate the productivity benefit, specify enforceable rest protections and assess safety before promising that domestic-rule coverage alone improves the freight economy.",
+      "sourceIds": [
+        "dg-hours"
+      ],
+      "related": [
+        "measure-38",
+        "measure-47"
+      ]
+    },
+    {
+      "id": "measure-45",
+      "number": 45,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "Traffic neighbourhoods need local evidence",
+      "proposal": "Prohibit Low-Traffic Neighbourhoods.",
+      "counter": "A national ban discards useful local schemes alongside poorly designed ones.",
+      "critique": "Removing a badly designed traffic filter could shorten some car journeys and improve access for deliveries, disabled residents or emergency services. Those concerns deserve proper measurement and consultation. But LTNs aim to reduce through traffic on residential streets, so banning all of them also removes a tool for making walking, cycling and local streets safer or more pleasant. The Department for Transport’s England review examines community views, introduction processes and emerging impacts rather than establishing that every scheme has the same result. A diversion that harms one boundary road is a reason to investigate that network, not proof that every residential filter fails. Residents without cars, children and people living beside busy roads are affected too. Access exemptions, traffic monitoring and changes after consultation can address genuine problems. Because traffic management and devolved responsibilities differ across the UK, Reform also needs to explain the legal reach of its prohibition. Local appraisal is more credible than assuming one national answer fits every neighbourhood.",
+      "sourceIds": [
+        "dg-ltn"
+      ],
+      "related": [
+        "measure-42",
+        "measure-46"
+      ]
+    },
+    {
+      "id": "measure-46",
+      "number": 46,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "The M4 requires a Welsh decision and a fresh appraisal",
+      "proposal": "Offer UK Treasury or sovereign wealth fund support for an M4 Relief Road.",
+      "counter": "Funding support does not remove Welsh consent, environmental constraints or the need to reassess alternatives.",
+      "critique": "A bypass around Newport could improve journey reliability for freight and commuters if it successfully relieves a persistent bottleneck. UK funding could also ease pressure on the Welsh budget. However, the Welsh Government records that the proposed scheme was withdrawn after the First Minister declined to make the necessary orders, and that a transport commission followed. A new funding offer does not automatically reverse that decision or supply the consents and updated business case needed to build. A revived project would have to assess construction costs, disruption, effects on sensitive land and whether additional capacity attracts more traffic over time. Taxpayers elsewhere would help finance it, while residents near the route would bear local impacts. Rail, bus and other network improvements should be compared on the same basis. The original rejection does not prove a road can never offer value; it means Reform must secure Welsh agreement and demonstrate that this version beats credible alternatives.",
+      "sourceIds": [
+        "dg-m4"
+      ],
+      "related": [
+        "measure-21",
+        "measure-45"
+      ]
+    },
+    {
+      "id": "measure-47",
+      "number": 47,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "First MOT: one saved test has a safety trade-off",
+      "proposal": "Delay a new car’s first MOT from its third to its fourth year in Great Britain.",
+      "counter": "The saving is real, but postponing inspection also delays discovery of dangerous defects.",
+      "critique": "Owners would save the fee and inconvenience of one early MOT, and modern vehicles may justify revisiting how testing works. However, a newer car can still develop worn tyres, brake problems or other defects before its fourth birthday. The Department for Transport considered this exact change and announced in January 2024 that the first test would remain at three years, with annual tests thereafter, while longer-term modernisation continued. That decision is relevant evidence that the trade-off has already been examined, although it does not settle the question permanently. The economic gain must be weighed against defects remaining undetected, collision risk and costs imposed on other road users. High-mileage owners and garages would be affected differently from drivers covering few miles. A convincing proposal would use current failure and mileage evidence and explain whether some vehicles need earlier inspection. Counting the avoided test charge alone would leave out the purpose of the test and the potential cost of delayed repairs.",
+      "sourceIds": [
+        "dg-mot"
+      ],
+      "related": [
+        "measure-44"
+      ]
+    },
+    {
+      "id": "measure-48",
+      "number": 48,
+      "category": "Getting motorists moving",
+      "page": 28,
+      "title": "Renewable fuel costs cannot be assessed at the pump alone",
+      "proposal": "Abolish the Renewable Transport Fuel Obligation.",
+      "counter": "Repeal could reduce compliance costs but would remove demand for verified lower-carbon transport fuels.",
+      "critique": "The RTFO creates compliance costs for fuel suppliers, some of which can reach motorists and freight operators. Removing it could therefore reduce one source of pressure on fuel prices. The Department for Transport describes a certificate-trading system requiring annual supplies of sustainable low-carbon fuel, rather than a simple Treasury tax. Repeal would remove that demand signal and affect producers that invested around it, while leaving transport emissions to be reduced through other measures or accepted as an additional cost to society. Biofuels also raise legitimate questions about feedstocks, land use and the reliability of lifecycle savings; those issues justify strong sustainability standards and scrutiny of eligible fuels. They do not show that every supported fuel has no benefit. Motorists, hauliers, domestic fuel businesses and people exposed to climate impacts all have a stake. Reform needs a net assessment of consumer savings, lost investment and emissions consequences. Aviation now has a separate mandate, so the two schemes should not be counted as the same saving.",
+      "sourceIds": [
+        "dg-rtfo"
+      ],
+      "related": [
+        "measure-43",
+        "measure-59"
+      ]
+    },
+    {
+      "id": "measure-49",
+      "number": 49,
+      "category": "Using Brexit freedoms",
+      "page": 28,
+      "title": "Data adequacy cannot be guaranteed by copying a label",
+      "proposal": "Replace UK GDPR with a New Zealand-style Privacy Act while seeking to retain adequacy.",
+      "counter": "A simpler privacy law could help firms, but EU adequacy depends on the whole UK protection system.",
+      "critique": "Simpler privacy requirements could reduce legal costs for small businesses and make routine data use easier. New Zealand shows that a country does not need an identical GDPR text to receive EU adequacy. But adequacy is an external assessment of whether protection is essentially equivalent, not a status the UK can preserve by naming a preferred model. The ICO explains that adequacy currently lets EEA information flow into the UK without additional safeguards and that the European Commission monitors UK developments. Replacing the framework would therefore need detailed analysis of rights, enforcement and public-authority access. Losing adequacy could require affected firms to arrange additional transfer safeguards, offsetting domestic compliance savings; EU-facing businesses may still face European obligations anyway. Individuals would also be affected if enforceable privacy rights weakened. Reform can reasonably seek proportionate rules, but should publish the proposed protections, transition costs and adequacy assessment before treating deregulation and unchanged international data flows as jointly assured benefits.",
+      "sourceIds": [
+        "dg-data",
+        "dg-adequacy"
+      ],
+      "related": [
+        "measure-32",
+        "measure-51"
+      ]
+    },
+    {
+      "id": "measure-50",
+      "number": 50,
+      "category": "Using Brexit freedoms",
+      "page": 28,
+      "title": "Imperial units are already lawful in many uses",
+      "proposal": "Fully re-legalise Imperial units.",
+      "counter": "This is a proposal to expand existing freedoms, not lift a blanket ban on imperial measurement.",
+      "critique": "Allowing more prominent imperial pricing could suit some customers and specialist traders. But the starting point matters: the government’s consultation response explains that imperial units remain part of everyday use and can already appear alongside a more prominent metric equivalent. The government considered expansion and decided against legislative change in December 2023. Reform therefore needs to say precisely which transaction or labelling restriction it would alter. Removing a common measurement basis could make price comparisons harder if neighbouring shops advertise different units, and businesses might need to change labels, software or staff training. Exporters would still have to meet destination-market rules. Older customers who prefer familiar measures may benefit, while others could face additional conversion work or confusion. Optional dual labelling may meet much of the stated aim without those costs. The case for any further freedom should be tested against consumer understanding and actual business demand, rather than presented as a large productivity gain from ending a general prohibition that does not exist.",
+      "sourceIds": [
+        "dg-units"
+      ],
+      "related": [
+        "measure-51",
+        "measure-57"
+      ]
+    },
+    {
+      "id": "measure-51",
+      "number": 51,
+      "category": "Using Brexit freedoms",
+      "page": 28,
+      "title": "Review laws by their effects and existing status",
+      "proposal": "Review all unchanged EU law and repeal or modify rules unsuitable for the UK.",
+      "counter": "A useful review needs to identify actual burdens rather than assume a law’s origin establishes its value.",
+      "critique": "Reviewing inherited rules can remove obsolete requirements, simplify compliance and adapt policy to British circumstances. However, this is already a domestic legal programme rather than a new freedom unlocked by this proposal. The government’s assimilated-law dashboard records legislation and actions to reform, revoke or retain it; it also notes that most special reform powers under the 2023 Act expired in June 2026, while ordinary legislation remains available. A fresh exercise should therefore build on that work and explain what remains unchanged. Consumer protection, environmental safeguards and common product standards can benefit firms as well as impose costs, especially where exporters need compatible rules. Divergence may mean running separate processes for UK and overseas markets. Devolved competence also matters: the dashboard does not include laws made by devolved legislatures themselves. Reform should prioritise evidenced problems, consult affected businesses and identify replacement protections. A review is sensible in principle, but its economic return depends on the particular changes, not the number of EU-derived provisions examined.",
+      "sourceIds": [
+        "dg-reul"
+      ],
+      "related": [
+        "measure-49",
+        "measure-50",
+        "measure-52"
+      ]
+    },
+    {
+      "id": "measure-52",
+      "number": 52,
+      "category": "Using Brexit freedoms",
+      "page": 28,
+      "title": "Automatic repeal creates a legal cliff edge",
+      "proposal": "Automatically repeal unchanged EU law after five years unless affirmatively retained.",
+      "counter": "Expiry by default can remove useful protections simply because parliamentary time or review capacity runs out.",
+      "critique": "A deadline could force departments to examine neglected rules and explain why they should remain. That is a legitimate way to challenge inertia. But automatic repeal changes the consequence of an unfinished review from delay to a gap in the law. Businesses need reliable product, employment and environmental requirements when investing, while consumers rely on protections continuing between political reviews. The government’s dashboard shows that assimilated law is already being catalogued and changed through domestic processes, and that devolved legislation requires separate attention. Reform would have to define what counts as unchanged, which connected provisions survive and how Parliament handles every proposed retention. Replacing those rules at speed also consumes legal and administrative resources, so a sunset is not a cost-free reduction in bureaucracy. Some provisions may deserve immediate repeal; others may be working well. A prioritised review with explicit repeal decisions can secure the benefit without making legal continuity depend on whether every useful rule wins a procedural race.",
+      "sourceIds": [
+        "dg-reul"
+      ],
+      "related": [
+        "measure-51",
+        "measure-63",
+        "measure-64"
+      ]
+    },
+    {
+      "id": "measure-53",
+      "number": 53,
+      "category": "General deregulatory measures",
+      "page": 28,
+      "title": "Quarterly tax updates: weigh burden against record quality",
+      "proposal": "Make quarterly reporting voluntary under Making Tax Digital.",
+      "counter": "Voluntary updates could ease administration, but the policy needs a clear plan for accurate records and tax collection.",
+      "critique": "Sole traders and landlords can face software costs and repeated deadlines under Making Tax Digital, so optional quarterly reporting could provide practical relief. However, HMRC’s guidance makes clear that these updates are summaries of digital income and expense records, not four full tax returns; accounting and tax adjustments are not required before each update. That distinction matters when estimating the burden removed. Digital records and regular submissions are intended to improve the timeliness and quality of information, so removing mandatory updates may also change the programme’s effectiveness. Firms already invested in compatible systems would face another change, while accountants and software providers would need clear transition rules. Some businesses may gain more from exemptions, simpler software or better support than from abandoning the update requirement altogether. Reform should separate the cost of record keeping from the cost of submitting totals, assess who struggles, and state how any effect on compliance and revenue would be managed.",
+      "sourceIds": [
+        "dg-mtd"
+      ],
+      "related": [
+        "measure-51",
+        "measure-64"
+      ]
+    },
+    {
+      "id": "measure-54",
+      "number": 54,
+      "category": "General deregulatory measures",
+      "page": 28,
+      "title": "SME directors need proportionate duties and clear accountability",
+      "proposal": "Reduce legal obligations on non-executive directors of SMEs.",
+      "counter": "Lower liability might attract advisers, but weaker oversight could shift losses to creditors and minority owners.",
+      "critique": "Small firms may struggle to recruit experienced independent directors if the role brings uncertain responsibilities and personal exposure. Clearer, proportionate guidance could help SMEs obtain useful advice and challenge. But Companies House explains that general director duties apply even to inactive directors, and that the care expected reflects knowledge and experience. These are safeguards around conflicts, judgement and stewardship of other people’s money, not merely executive paperwork. A special exemption could encourage companies to allocate sensitive decisions to people carrying less responsibility, weakening protection for shareholders, employees and suppliers if things go wrong. Lenders might respond by seeking stronger contractual protections, which can reduce the intended saving. Reform does not identify which duties it would remove, or how SME eligibility and changes in company size would work. The proposal needs that detail before its effect can be assessed. Clarifying the distinction between a paid director and an external adviser may be more useful than broadly reducing accountability for anyone with a non-executive title.",
+      "sourceIds": [
+        "dg-directors"
+      ],
+      "related": [
+        "measure-38",
+        "measure-58"
+      ]
+    },
+    {
+      "id": "measure-55",
+      "number": 55,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Temporary land use still has neighbours",
+      "proposal": "Double the annual temporary land-use allowance from 28 to 56 days.",
+      "counter": "More event days could help rural businesses, but traffic, noise and site-specific impacts still need control.",
+      "critique": "More days without a planning application could help farms diversify, let markets test demand and make temporary events easier to organise. Yet the familiar 28-day allowance comes from a specific permitted-development framework in England, with exclusions and narrower treatment of some activities. It is not an unrestricted UK entitlement for every temporary use. Reform needs to identify which classes and limits it would change and how devolved planning systems are treated. Doubling activity on a site can also increase traffic, noise, waste and pressure on local access; residents may experience those effects even when the structures are removable. Competing permanent venues may face different compliance costs. Existing planning permission can accommodate suitable activities beyond a general allowance, although obtaining it creates cost and delay. A stronger proposal would distinguish low-impact uses from intensive events, preserve safety and licensing requirements, and provide a route to address repeated local problems. Flexibility can be beneficial without assuming that temporary use is harmless simply because it lasts fewer days than a permanent business.",
+      "sourceIds": [
+        "dg-land"
+      ],
+      "related": [
+        "measure-12",
+        "measure-56"
+      ]
+    },
+    {
+      "id": "measure-56",
+      "number": 56,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Pavement licences must preserve a usable pavement",
+      "proposal": "Make pavement dining licences automatic and permanent unless revoked.",
+      "counter": "Reducing renewals could help cafes, but automatic occupation transfers monitoring costs to pedestrians and councils.",
+      "critique": "A longer licence could reduce repeated applications and give hospitality businesses confidence to invest in outdoor seating. But England already has a permanent streamlined licensing regime, including deemed approval when a council misses the determination deadline. The guidance distinguishes permanence of the regime from individual licences, which can last up to two years, and requires clear access for disabled people. Reform’s additional change would therefore remove periodic reconsideration and expand automatic permission, rather than invent an approval process from scratch. Pavements are shared public space: blind people, wheelchair users, parents with pushchairs and neighbouring businesses can bear the cost of obstructions. Relying entirely on revocation means problems may persist until someone complains and a council has resources to act. Renewal need not be onerous for a compliant venue, and longer terms may be justified where access is secure. The proposal should specify minimum clear widths, consultation, enforceable conditions and funded monitoring, while recognising that the cited English regime is not a single UK-wide system.",
+      "sourceIds": [
+        "dg-pavement"
+      ],
+      "related": [
+        "measure-55",
+        "measure-62"
+      ]
+    },
+    {
+      "id": "measure-57",
+      "number": 57,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Most shops already choose their weekday hours",
+      "proposal": "Generally permit shops to remain open until 10pm, excluding Sundays.",
+      "counter": "There is no general Monday-to-Saturday shop-closing rule for this proposal to remove.",
+      "critique": "Longer opening can help shift workers and increase sales where there is demand, but Reform’s description obscures the existing baseline. The House of Commons Library states that shops across the UK are already free to remain open as long as they wish on Mondays to Saturdays. Sunday trading is the main general restriction, and the proposal explicitly excludes it. Particular premises may still face planning conditions or alcohol-licensing controls, so a local restriction can be real even though a nationwide closing rule is absent. If Reform means to override those conditions, it should say which ones and how noise, deliveries and residents’ interests would be handled. Shop workers would also be affected by later shifts and transport home. Removing a specific unnecessary condition could help an individual retailer; a general permission until 10pm adds little to freedoms many already have. Any growth estimate therefore needs to identify actual constrained shops, rather than assume every retailer gains additional legal trading hours.",
+      "sourceIds": [
+        "dg-shops"
+      ],
+      "related": [
+        "measure-50",
+        "measure-56"
+      ]
+    },
+    {
+      "id": "measure-58",
+      "number": 58,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Board diversity: identify the rules being repealed",
+      "proposal": "Repeal board diversity and inclusion rules.",
+      "counter": "Reporting duties for some listed firms are different from universal quotas, and some wider proposals were already dropped.",
+      "critique": "Removing a reporting requirement can reduce administrative costs, particularly where firms collect overlapping information for different purposes. But there is no single board diversity rule applying identically to every British business. The FCA handbook requires specified listed companies to publish standardised board and executive diversity data; that is different from a universal legal quota governing who an SME can appoint. The FCA and PRA also announced in March 2025 that they would not progress their wider diversity and inclusion proposals. Reform should therefore identify existing provisions and avoid claiming savings from rules that never took effect. Investors may find consistent information useful when assessing governance, recruitment and succession, while firms may face less comparable requests if standard reporting disappears. The economic effect depends on which duties go and whether shareholders still demand equivalent information. Proportionate simplification is a defensible objective, but wholesale repeal needs to weigh compliance savings against transparency, board effectiveness and the interests of employees and investors.",
+      "sourceIds": [
+        "dg-board",
+        "dg-diversity"
+      ],
+      "related": [
+        "measure-54",
+        "measure-62"
+      ]
+    },
+    {
+      "id": "measure-59",
+      "number": 59,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Aviation fuel: lower compliance costs have a climate price",
+      "proposal": "Remove the Sustainable Aviation Fuel mandate.",
+      "counter": "Repeal could ease fuel costs while weakening demand for lower-emission fuels and domestic production.",
+      "critique": "Sustainable aviation fuel can cost more than conventional jet fuel, so removing mandated demand could reduce suppliers’ compliance costs and relieve some pressure on fares. The benefit reaching passengers would depend on airline competition and other operating costs. The Department for Transport describes SAF as reducing lifecycle greenhouse-gas emissions compared with standard jet fuel and explains that the separate aviation scheme places the obligation on the jet fuel supply chain. Abolition would remove an investment signal for new production and leave aviation’s climate impact to be addressed elsewhere. Fuel plants, their workers and investors could be affected alongside travellers. There are valid concerns about feedstock availability, genuine lifecycle savings and the pace at which supply can expand; the label sustainable does not settle those questions. They support scrutiny and adjustment of eligibility and targets. Reform needs to compare the consumer saving with lost emissions reductions and investment, and explain what replaces the mandate in a sector with limited near-term alternatives for long-distance flight.",
+      "sourceIds": [
+        "dg-saf"
+      ],
+      "related": [
+        "measure-21",
+        "measure-42",
+        "measure-48"
+      ]
+    },
+    {
+      "id": "measure-60",
+      "number": 60,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Packaging costs do not disappear when producer fees end",
+      "proposal": "Abolish Extended Producer Responsibility for packaging.",
+      "counter": "Ending producer payments leaves the waste bill to be met by taxpayers, councils or another funding mechanism.",
+      "critique": "Packaging producers and retailers may face significant new data and fee requirements, and some costs can be passed to shoppers. Abolition could reduce those direct burdens. However, collecting and disposing of household packaging still costs money. Defra’s guidance explains that the scheme combines material-specific recycling obligations with waste disposal fees for specified packaging, with disposal payments beginning in October 2025. Ending the scheme would not remove the rubbish or the collection service households need; it would require another way to finance them, potentially through local taxation or reduced services. It could also weaken incentives to reduce unnecessary packaging or choose materials that are easier to manage. Councils, households, waste operators and compliant producers all have interests here. Questions about fee accuracy, reporting complexity and recycling performance deserve examination, and poorly designed charges can be improved. Reform should identify the replacement funding and environmental incentives before presenting the full producer payment as a net economic saving.",
+      "sourceIds": [
+        "dg-packaging"
+      ],
+      "related": [
+        "measure-48",
+        "measure-64"
+      ]
+    },
+    {
+      "id": "measure-61",
+      "number": 61,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Streaming prominence: YouTube is a different legal question",
+      "proposal": "Remove preference for BBC and Channel 4 on streaming platforms, including YouTube.",
+      "counter": "The proposal conflates smart-TV prominence rules with a YouTube regime that Ofcom says does not currently exist.",
+      "critique": "Removing mandated prominence could give television platforms more freedom over screen layout and commercial deals, and other producers may welcome fair access to audiences. But the actual legal scope matters. In October 2026 Ofcom told Parliament that the Media Act prominence regime concerns smart televisions and that YouTube is not part of that regime; extending prominence to YouTube remained a policy question. It is therefore misleading to treat every streaming platform as already carrying the same BBC and Channel 4 preference. Public-service prominence also supports discoverability of news, regional programmes and other content that commercial recommendation systems may not prioritise. Losing visibility could affect audiences and the broadcasters’ ability to fund those obligations, while platforms gain bargaining power. Any review should assess the costs imposed on platforms, benefits to viewers and treatment of other public-service broadcasters. Reform needs to separate existing television-selection duties from proposed or voluntary online arrangements before claiming a concrete deregulatory saving.",
+      "sourceIds": [
+        "dg-media"
+      ],
+      "related": [
+        "measure-58",
+        "measure-64"
+      ]
+    },
+    {
+      "id": "measure-62",
+      "number": 62,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Equality duty: process can improve public decisions",
+      "proposal": "Remove the Public Sector Equality Duty.",
+      "counter": "Abolition could reduce some process costs but also remove a requirement to consider avoidable unequal harm.",
+      "critique": "Officials can spend too much time on formulaic assessments, so reducing unnecessary equality paperwork could free resources for public services. But the government’s own guidance says the duty requires proportionate due regard, does not prescribe a particular outcome and does not mandate a particular form. The core requirement is to consider discrimination, opportunity and relations between groups when exercising public functions. Removing it would therefore go further than abolishing an overcomplicated template. It could weaken early scrutiny of decisions affecting disabled passengers, older service users or other people whose needs are easily overlooked. Later redesign, complaints and unlawful discrimination can create costs too. The general duty applies in Great Britain, with different devolved specific duties; Northern Ireland has a distinct equality framework. Ordinary discrimination law would not simply vanish with this repeal, but that does not replace all preventive consideration. Reform should distinguish bureaucratic practice from the statutory safeguard and show why proportionate compliance guidance cannot achieve the claimed efficiency gain.",
+      "sourceIds": [
+        "dg-equality"
+      ],
+      "related": [
+        "measure-56",
+        "measure-58"
+      ]
+    },
+    {
+      "id": "measure-63",
+      "number": 63,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Public bodies need review without accidental shutdown",
+      "proposal": "Give all existing QUANGOs a five-year sunset unless their continuation is justified.",
+      "counter": "Automatic abolition risks disrupting necessary functions rather than simply removing unnecessary administration.",
+      "critique": "Requiring public bodies to justify their purpose can expose duplication, improve accountability and identify services better delivered elsewhere. But a deadline for automatic abolition is a blunt way to do that. Cabinet Office guidance already asks reviews to test whether a body’s function remains necessary and whether merger, closure or transfer would improve delivery. It prioritises risk and recognises that restructuring can require legislation. Closing an organisation also involves staff, contracts, assets, data and continuing legal duties; abolishing its name does not necessarily abolish the service or its cost. Regulators need enough independence to take unpopular decisions, so repeated survival votes could also affect behaviour. Service users, employees and businesses relying on decisions would bear disruption if a renewal were late. Some bodies should undoubtedly close or change, but each case needs transition planning and a net assessment of savings. Reform should specify scope, parliamentary capacity and continuity arrangements instead of assuming a universal sunset itself establishes value for money.",
+      "sourceIds": [
+        "dg-bodies"
+      ],
+      "related": [
+        "measure-52",
+        "measure-64"
+      ]
+    },
+    {
+      "id": "measure-64",
+      "number": 64,
+      "category": "General deregulatory measures",
+      "page": "29",
+      "title": "Review regulations without making protection expire by accident",
+      "proposal": "Require new regulations to expire within five years unless reviewed and actively renewed.",
+      "counter": "Regular evaluation is useful, but universal expiry can create uncertainty and consume resources without improving the rule.",
+      "critique": "A statutory review can test whether a regulation works, remains necessary and could impose lower costs. HSE already describes post-implementation reviews in those terms, with statutory reports setting out responses. Reform’s distinctive addition is automatic expiry unless ministers renew the rule. That may focus attention, but it also creates uncertainty for firms investing in compliance and for people relying on safety, consumer or environmental safeguards. A missed review deadline would become a potential protection gap rather than merely an administrative failure. Departments and Parliament would need resources to assess and renew sound regulations as well as amend poor ones, so the process could generate substantial recurring work. Some temporary interventions genuinely suit a sunset; stable technical protections may not. A proportionate system should select review dates according to risk, evidence and market conditions and require clear reasons for retention or repeal. Reform needs to show that universal expiry improves outcomes beyond enforcing reviews that already ask whether rules remain justified.",
+      "sourceIds": [
+        "dg-review"
+      ],
+      "related": [
+        "measure-51",
+        "measure-52",
+        "measure-63"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "dg-airport",
+      "publisher": "Department for Transport",
+      "title": "Airports: Cars — written answer",
+      "date": "2026-05-20",
+      "url": "https://questions-statements.parliament.uk/written-questions/detail/2026-05-14/1259",
+      "accessed": "2026-10-27",
+      "finding": "Airport operators develop strategies with local stakeholders, planning conditions and infrastructure constraints; expansion approvals include surface-access targets."
+    },
+    {
+      "id": "dg-zev",
+      "publisher": "Vehicle Certification Agency",
+      "title": "Fuel consumption guide: Annex",
+      "date": "2025-12-11",
+      "url": "https://www.vehicle-certification-agency.gov.uk/fuel-consumption-co2/fuel-consumption-guide/annex/",
+      "accessed": "2026-10-27",
+      "finding": "The ZEV mandate sets increasing new vehicle sales requirements and emissions targets for non-ZEV vehicles."
+    },
+    {
+      "id": "dg-hours",
+      "publisher": "Driver and Vehicle Standards Agency",
+      "title": "Great Britain domestic rules on drivers’ hours",
+      "date": "2026-07-01",
+      "url": "https://www.gov.uk/guidance/drivers-hours-goods-vehicles/2-great-britain-domestic-rules-on-drivers-hours",
+      "accessed": "2026-10-27",
+      "finding": "Domestic goods rules allow ten hours driving and eleven hours duty; they contain no specific break or rest periods, although adequate-rest duties remain. Northern Ireland has separate rules."
+    },
+    {
+      "id": "dg-ltn",
+      "publisher": "Department for Transport",
+      "title": "Low traffic neighbourhood review",
+      "date": "2024-03-17",
+      "url": "https://www.gov.uk/government/publications/low-traffic-neighbourhood-review",
+      "accessed": "2026-10-27",
+      "finding": "The England review covers consultation, community views and emerging impacts; LTNs aim to reduce through motor traffic."
+    },
+    {
+      "id": "dg-m4",
+      "publisher": "Welsh Government",
+      "title": "M4 corridor around Newport",
+      "date": "2019-06-04",
+      "url": "https://www.gov.wales/m4-corridor-around-newport",
+      "accessed": "2026-10-27",
+      "finding": "The project was withdrawn after the First Minister declined to make the necessary schemes and orders; a transport commission followed."
+    },
+    {
+      "id": "dg-mot",
+      "publisher": "Department for Transport and DVSA",
+      "title": "Government committed to MOT modernisation as consultation concludes",
+      "date": "2024-01-25",
+      "url": "https://www.gov.uk/government/news/government-committed-to-mot-modernisation-as-consultation-concludes",
+      "accessed": "2026-10-27",
+      "finding": "Following consultation the government retained the first MOT at three years and annual testing thereafter."
+    },
+    {
+      "id": "dg-rtfo",
+      "publisher": "Department for Transport",
+      "title": "Renewable Transport Fuel Obligation scheme",
+      "date": null,
+      "url": "https://www.gov.uk/government/collections/renewable-transport-fuel-obligation-rtfo-scheme",
+      "accessed": "2026-10-27",
+      "finding": "Fuel suppliers meet annual sustainable low-carbon fuel obligations through tradable certificates; aviation moved to a separate mandate in 2025."
+    },
+    {
+      "id": "dg-data",
+      "publisher": "Information Commissioner’s Office",
+      "title": "Receiving personal information from the EEA",
+      "date": null,
+      "url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/international-transfers/receiving-personal-information-from-the-eea/",
+      "accessed": "2026-10-27",
+      "finding": "Adequacy allows EEA data to enter the UK without additional safeguards; EU assessment requires essentially equivalent protection and ongoing monitoring."
+    },
+    {
+      "id": "dg-units",
+      "publisher": "Department for Business and Trade",
+      "title": "Choice on units of measurement: consultation response",
+      "date": "2023-12-27",
+      "url": "https://www.gov.uk/government/consultations/choice-on-units-of-measurement-markings-and-sales/outcome/choice-on-units-of-measurement-consultation-response",
+      "accessed": "2026-10-27",
+      "finding": "Government declined wider imperial changes; imperial indications already may accompany more prominent metric equivalents."
+    },
+    {
+      "id": "dg-reul",
+      "publisher": "Department for Business and Trade",
+      "title": "Retained EU law and assimilated law dashboard",
+      "date": "2026-07-14",
+      "url": "https://www.gov.uk/government/publications/retained-eu-law-dashboard",
+      "accessed": "2026-10-27",
+      "finding": "Domestic assimilated law is already catalogued and reformable; most special Act powers expired in June 2026. The dataset excludes devolved legislatures’ own laws."
+    },
+    {
+      "id": "dg-mtd",
+      "publisher": "HM Revenue & Customs",
+      "title": "Send quarterly updates",
+      "date": "2026-10-16",
+      "url": "https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/send-quarterly-updates",
+      "accessed": "2026-10-27",
+      "finding": "Quarterly updates summarise digital income and expense records rather than being tax returns, and need no accounting or tax adjustments first."
+    },
+    {
+      "id": "dg-directors",
+      "publisher": "Companies House",
+      "title": "Being a company director",
+      "date": null,
+      "url": "https://www.gov.uk/guidance/being-a-company-director",
+      "accessed": "2026-10-27",
+      "finding": "Seven general duties apply even to inactive directors; care and diligence reflect the director’s knowledge and experience."
+    },
+    {
+      "id": "dg-land",
+      "publisher": "UK Parliament",
+      "title": "General Permitted Development (England) Order 2015: Schedule 2 Part 4",
+      "date": "2015-03-18",
+      "url": "https://www.legislation.gov.uk/uksi/2015/596/pdfs/uksi_20150596_en.pdf",
+      "accessed": "2026-10-27",
+      "finding": "Class B temporary land use has a general 28-day limit, narrower limits for markets and motorsport and exclusions; rules are England-specific."
+    },
+    {
+      "id": "dg-pavement",
+      "publisher": "Ministry of Housing, Communities and Local Government",
+      "title": "Pavement licences: guidance",
+      "date": "2024-04-02",
+      "url": "https://www.gov.uk/government/publications/pavement-licences-guidance/pavement-licences-guidance",
+      "accessed": "2026-10-27",
+      "finding": "England has a permanent streamlined regime, licences up to two years and deemed approval after missed deadlines, alongside access conditions and revocation powers."
+    },
+    {
+      "id": "dg-shops",
+      "publisher": "House of Commons Library",
+      "title": "Shop opening hours and Sunday trading",
+      "date": "2025-11-11",
+      "url": "https://commonslibrary.parliament.uk/research-briefings/sn05522/",
+      "accessed": "2026-10-27",
+      "finding": "Shops across the UK are free to open as long as they wish Monday to Saturday, subject to other applicable controls; Sunday regimes differ."
+    },
+    {
+      "id": "dg-board",
+      "publisher": "Financial Conduct Authority",
+      "title": "UKLR 6 Annex 1R: Board and executive diversity data",
+      "date": "2024-07-29",
+      "url": "https://handbook.fca.org.uk/handbook/uklr6/uklr6s7",
+      "accessed": "2026-10-27",
+      "finding": "Specified listed companies must include standardised board and executive diversity tables in annual reports."
+    },
+    {
+      "id": "dg-diversity",
+      "publisher": "Financial Conduct Authority",
+      "title": "Update on enforcement transparency proposals",
+      "date": "2025-03-12",
+      "url": "https://www.fca.org.uk/news/statements/update-fca-enforcement-transparency-proposals",
+      "accessed": "2026-10-27",
+      "finding": "FCA and PRA decided not to progress their 2023 diversity and inclusion proposals, citing feedback, expected legislation and additional burdens."
+    },
+    {
+      "id": "dg-saf",
+      "publisher": "Department for Transport",
+      "title": "The SAF Mandate: an essential guide",
+      "date": "2024-12-19",
+      "url": "https://www.gov.uk/government/publications/about-the-saf-mandate/the-saf-mandate-an-essential-guide",
+      "accessed": "2026-10-27",
+      "finding": "SAF reduces lifecycle emissions against conventional jet fuel; the separate aviation obligation replaces RTFO support and puts the obligation on jet fuel supply chains."
+    },
+    {
+      "id": "dg-packaging",
+      "publisher": "Department for Environment, Food & Rural Affairs",
+      "title": "EPR: recycling obligations and waste disposal fees",
+      "date": null,
+      "url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-recycling-obligations-and-waste-disposal-fees",
+      "accessed": "2026-10-27",
+      "finding": "Large packaging organisations face disposal fees for specified household packaging alongside material-specific recycling obligations; disposal payments started in October 2025."
+    },
+    {
+      "id": "dg-media",
+      "publisher": "House of Commons Culture, Media and Sport Committee",
+      "title": "The work of Ofcom: oral evidence",
+      "date": "2026-10-20",
+      "url": "https://committees.parliament.uk/oralevidence/18155/html/",
+      "accessed": "2026-10-27",
+      "finding": "Ofcom described smart-TV prominence implementation and stated that YouTube is outside the Media Act prominence regime; extension remained a policy question."
+    },
+    {
+      "id": "dg-equality",
+      "publisher": "Government Equalities Office",
+      "title": "Public Sector Equality Duty: guidance for public authorities",
+      "date": "2023-12-18",
+      "url": "https://www.gov.uk/government/publications/public-sector-equality-duty-guidance-for-public-authorities/public-sector-equality-duty-guidance-for-public-authorities",
+      "accessed": "2026-10-27",
+      "finding": "The GB duty requires proportionate due regard rather than particular outcomes or prescribed forms; devolved specific duties differ."
+    },
+    {
+      "id": "dg-bodies",
+      "publisher": "Cabinet Office",
+      "title": "Guidance on the undertaking of Reviews of Public Bodies",
+      "date": null,
+      "url": "https://www.gov.uk/government/publications/public-bodies-review-programme/guidance-on-the-undertaking-of-reviews-of-public-bodies",
+      "accessed": "2026-10-27",
+      "finding": "Existing review guidance tests necessity and alternative delivery, prioritises risk and recognises that abolition or restructuring may need legislation."
+    },
+    {
+      "id": "dg-review",
+      "publisher": "Health and Safety Executive",
+      "title": "Post Implementation Reviews",
+      "date": null,
+      "url": "https://www.hse.gov.uk/legislation/pir.htm",
+      "accessed": "2026-10-27",
+      "finding": "PIRs assess whether rules achieve still-valid objectives, remain necessary or can reduce business burdens; statutory review reports follow."
+    },
+    {
+      "id": "dg-adequacy",
+      "publisher": "European Commission",
+      "title": "Adequacy decisions",
+      "date": null,
+      "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en",
+      "accessed": "2026-10-27",
+      "finding": "The Commission assesses third countries and lists New Zealand and the United Kingdom among those recognised as adequate."
+    }
+  ]
+}

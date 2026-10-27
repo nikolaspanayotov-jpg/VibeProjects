@@ -1,0 +1,307 @@
+{
+  "articles": [
+    {
+      "id": "claim-personal-allowance",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "13–14",
+      "title": "Raise the personal allowance to £15,000",
+      "proposal": "Raise the personal allowance from £12,570 to £15,000, retain the £50,270 higher-rate threshold and the taper above £100,000. Claim £486 a year for most taxpayers and 2.9 million people removed from income tax. Aim for £20,000 in the longer term if affordable.",
+      "counter": "The £486 calculation works for a qualifying basic-rate taxpayer, but the lowest earners get less or nothing and the funding remains a separate question.",
+      "critique": "Raising the allowance would give many taxpayers a real cash gain: £2,430 of additional untaxed income at 20% produces £486. That arithmetic does not make it an equally valuable anti-poverty policy. Someone whose income is already below £12,570 receives no income-tax reduction, while someone only just above it cannot use the full increase. HMRC also confirms that allowances taper above £100,000; the detailed interaction with the retained higher-rate threshold needs legislation.\n\nFor working households receiving Universal Credit, higher take-home earnings can reduce their benefit award, so the tax reduction need not equal the improvement in disposable income. Scotland has different rates on earned income, making a single UK gain misleading. These qualifications do not negate the benefit to eligible taxpayers. They show why the plan needs a distributional assessment, a reproducible estimate of the 2.9 million figure, and credible recurring savings to finance the substantial revenue loss.",
+      "sourceIds": [
+        "tax-hmrc-rates",
+        "tax-uc",
+        "tax-scotland"
+      ],
+      "related": [
+        "claim-household-relief",
+        "claim-fiscal-revenue"
+      ]
+    },
+    {
+      "id": "claim-household-relief",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "4, 13–15",
+      "title": "The £1,300 household tax-relief promise",
+      "proposal": "The foreword promises £1,300 of household tax relief, alongside the £15,000 personal allowance and a claimed £250 annual reduction in household energy bills.",
+      "counter": "A household illustration is not a universal entitlement: the result depends on its earners, benefits and energy use.",
+      "critique": "Two people each receiving the full £486 allowance gain, plus £250 off one household energy bill, would receive £1,222. This illustration is close to, but does not establish, the £1,300 headline. Other tax changes might benefit particular households; the supplied summary does not provide a single reproducible calculation that makes the headline universal. A one-earner household, a pensioner with little taxable income and a household with two full-time taxpayers have different outcomes.\n\nHMRC's existing allowance explains why people below the tax threshold cannot receive the full tax cut. DWP's earnings rules show why some working benefit recipients retain less of a tax reduction. Ofgem also makes clear that actual bills depend on consumption: a typical saving cannot describe every home. The package could help many families, but a fair assessment must compare its gains with any lost benefits or services. Reform should publish household examples and distributional modelling rather than invite readers to budget on £1,300 each.",
+      "sourceIds": [
+        "tax-hmrc-rates",
+        "tax-uc",
+        "tax-ofgem"
+      ],
+      "related": [
+        "claim-personal-allowance",
+        "claim-energy-bills"
+      ]
+    },
+    {
+      "id": "claim-energy-bills",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "14–15",
+      "title": "Cut household energy bills by £250",
+      "proposal": "Claim £250 a year by abolishing the UK ETS and Carbon Price Support, removing policy costs and domestic energy VAT. The text gives approximate component savings of £90, £80 and £90. Initially move policy costs to the Treasury while repealing statutory funding obligations.",
+      "counter": "Moving charges to taxation changes who pays, and the £250 saving needs a fresh, consistent baseline rather than adding overlapping estimates.",
+      "critique": "Taking a levy or VAT off a bill can reduce the amount a household pays its supplier. Moving an existing funding obligation to the Treasury, however, does not make its cost disappear: taxpayers or borrowing must cover it until obligations genuinely end. The three approximate component figures total £260, illustrating that the advertised £250 is an estimate rather than a fixed entitlement. Carbon-price effects also depend on the generator setting the electricity price and how suppliers pass changes through.\n\nOfgem separates wholesale, network, policy and tax costs, and explains that its cap limits rates rather than total bills. Moreover, HMRC records a temporary zero VAT rate for qualifying domestic electricity in Great Britain from October 2026 to March 2027; Northern Ireland and domestic gas require different treatment. Reform's saving therefore needs a dated counterfactual and jurisdictional breakdown. Lower bills are desirable, but deleting climate support also changes future generation and efficiency investment, so a first-year bill reduction is not a complete assessment.",
+      "sourceIds": [
+        "tax-ofgem",
+        "tax-electricity-vat"
+      ],
+      "related": [
+        "measure-06",
+        "measure-08",
+        "claim-net-zero-spending"
+      ]
+    },
+    {
+      "id": "claim-vat-threshold",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "15",
+      "title": "Raise the VAT threshold to £150,000",
+      "proposal": "Raise the VAT registration threshold from £90,000 to £150,000 and then index it to inflation. Claim about 320,000 sole traders and small businesses would benefit immediately.",
+      "counter": "A higher threshold reduces administration for some firms but relocates the growth barrier and favours exempt competitors over registered businesses.",
+      "critique": "There is a genuine problem here. The OBR's historical analysis found businesses bunching below the registration threshold, consistent with owners restricting sales to avoid VAT's pricing and administrative consequences. Raising the threshold could let some expand and save compliance time; indexation would prevent inflation alone pulling more firms into registration. HMRC currently distinguishes registration from separate thresholds for simplified accounting schemes.\n\nBut a £150,000 threshold would create another cliff edge. Consumer-facing businesses just below it could charge less or retain more margin than otherwise similar registered competitors above it. Firms selling mainly to VAT-registered customers may have less reason to deregister, because customers can normally recover VAT and registration permits input-tax recovery. The policy's benefit is therefore uneven, not a uniform cash gain for 320,000 firms. That headcount and the revenue cost need transparent modelling. Raising the threshold may ease one distortion while widening the part of the economy outside the VAT base; it does not resolve the underlying cliff.",
+      "sourceIds": [
+        "tax-obr-vat",
+        "tax-vat-threshold"
+      ],
+      "related": [
+        "measure-53",
+        "claim-fiscal-revenue"
+      ]
+    },
+    {
+      "id": "claim-fuel-duty",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "15",
+      "title": "Make the 5p fuel-duty cut permanent",
+      "proposal": "Permanently retain the 5p-per-litre fuel-duty reduction rather than allowing it to expire.",
+      "counter": "This can help motorists, especially where driving is essential, but it is an ongoing revenue loss whose gains follow fuel use.",
+      "critique": "Keeping the duty cut would benefit households and businesses buying petrol or diesel, particularly people in rural areas with limited transport alternatives. It is nevertheless a tax reduction relative to a specified future duty schedule, not a guarantee that pump prices fall by 5p on announcement day. HMRC's May 2026 note extended the existing cut until December 2026 and described subsequent legislative defaults, subject to the next Budget. The costing must use that dated baseline.\n\nThe CMA's review of the original 2022 cut explains why volatile wholesale prices and fuel stocks complicate measuring pass-through. That evidence does not prove retailers would retain a new cut, but it does rule out treating the headline as a certain observed price change. Larger fuel users receive larger cash gains; households without cars receive no direct benefit. Permanence also lowers receipts every year and weakens the price signal to economise on fuel. Those costs need to be compared with more targeted transport or household support.",
+      "sourceIds": [
+        "tax-fuel-duty",
+        "tax-cma-fuel"
+      ],
+      "related": [
+        "measure-43",
+        "measure-48",
+        "claim-fiscal-revenue"
+      ]
+    },
+    {
+      "id": "claim-overtime",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "16",
+      "title": "No income tax on qualifying overtime",
+      "proposal": "A Hard Work Bonus for employees earning under £75,000, exempting overtime above a 40-hour week from income tax. Claim a 25–67% increase in qualifying net hourly pay; budget implementation for the second tax year.",
+      "counter": "An overtime exemption rewards particular working patterns and creates scope to relabel pay without proving that overall output rises.",
+      "critique": "Removing income tax from genuine additional hours can make those hours more rewarding. But the advertised percentage is a comparison of qualifying hourly pay under particular tax rates, not a forecast increase in annual income or national productivity. National Insurance, benefit treatment and the precise definition of earnings all matter. DWP's Universal Credit rules mean a pay gain does not automatically become an equal gain in household resources; the treatment of this new exemption would need explicit design.\n\nA sharp 40-hour boundary advantages employees offered recorded overtime over part-time workers, carers, salaried staff doing unpaid extra hours and people with no capacity to work longer. Employers and employees would have an incentive to restructure contracts so ordinary remuneration appears as exempt overtime. Payroll verification therefore brings administrative costs. Existing working-time limits and rest protections also still matter. This could help some staff and employers cover busy periods, but the plan needs anti-avoidance rules, health safeguards and evidence of additional work before presenting the exemption as a broad growth dividend.",
+      "sourceIds": [
+        "tax-hours",
+        "tax-uc",
+        "tax-hmrc-rates"
+      ],
+      "related": [
+        "measure-34",
+        "claim-fiscal-revenue"
+      ]
+    },
+    {
+      "id": "claim-reservist-pay",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "16",
+      "title": "Remove tax on reservist pay",
+      "proposal": "Immediately remove income tax from reservist pay; claim the average reservist would have saved over £860 in 2024/25.",
+      "counter": "A tax exemption may support recruitment and retention, but its value varies by taxable income and it does not provide training capacity or employer release.",
+      "critique": "Reserve service supplies military capability, and making it more rewarding could help retain trained personnel. The proposal should nevertheless distinguish ordinary reserve pay from the annual training bounty: the Army already describes the qualifying bounty as tax-free. Exempting pay adds a different benefit, whose size depends on days served, rank and the reservist's other taxable earnings. The supplied material does not expose a calculation that independently verifies the £860 historical average.\n\nSomeone with little other income may already owe little or no income tax; a higher-rate taxpayer can gain more from the same amount of exempt pay. That makes the measure a relatively uneven incentive. It also cannot by itself secure employers' agreement to release staff, suitable training days, equipment or a sustainable defence budget. A targeted exemption might be justified by recruitment evidence, but its success should be measured in additional usable reserve capability and retention, not simply the number of tax beneficiaries. Its recurring revenue cost must remain visible within the wider defence package.",
+      "sourceIds": [
+        "tax-reserve",
+        "tax-hmrc-rates"
+      ],
+      "related": [
+        "claim-overtime",
+        "claim-defence"
+      ]
+    },
+    {
+      "id": "claim-pubs",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "16",
+      "title": "The pub VAT, beer-duty and rates package",
+      "proposal": "Reduce VAT for pubs to 10%, cut beer duty in pubs by 10%, and abolish pub business rates in stages.",
+      "counter": "Relief could support struggling pubs, but lower taxes do not guarantee lower prices and the boundaries create new distortions and funding gaps.",
+      "critique": "Pubs can provide community space as well as jobs, and reducing their tax costs could help viable businesses facing financial pressure. The incidence is uncertain: relief might sustain wages, increase margins, reduce prices or eventually raise rents. None of those outcomes follows automatically from the headline tax rates. HMRC's former hospitality VAT guidance also shows why precise boundaries matter: that temporary reduction treated qualifying food and non-alcoholic drinks differently from alcohol. A new pub-wide rate needs its own clear rules.\n\nBusinesses would need to know what counts as a pub rather than a restaurant, bar, shop or entertainment venue, and how beer sold through different channels is treated. England's current pub rates-relief guidance already uses eligibility tests; rates are devolved, so a UK pledge cannot simply change every nation's system through one English scheme. Abolishing rates also requires replacing affected public revenue. The package could preserve valued premises, but a credible evaluation must compare its cost and distribution with targeted relief, rather than assume every pound becomes cheaper beer or another job.",
+      "sourceIds": [
+        "tax-pub-rates",
+        "tax-hospitality"
+      ],
+      "related": [
+        "measure-56",
+        "claim-fiscal-revenue"
+      ]
+    },
+    {
+      "id": "claim-inheritance-reliefs",
+      "number": null,
+      "category": "Tax cuts and household bills",
+      "page": "16–17",
+      "title": "Restore uncapped farm and business inheritance relief",
+      "proposal": "Immediately restore uncapped Agricultural Property Relief and Business Property Relief. The document claims the existing changes affect about 1,100 families a year with an average additional bill of £273,000 by 2029/30.",
+      "counter": "Liquidity concerns for genuine businesses deserve attention, but uncapped relief also subsidises large inherited estates and the plan's figures need updating against the current allowance.",
+      "critique": "A farm or trading business can be valuable on paper while generating limited cash. Inheritance-tax bills can therefore create real succession and financing concerns, and relief can protect continuity. That does not establish that relief should be unlimited. HMRC's March 2026 impact note describes a £2.5 million combined allowance for 100% agricultural and business relief, transferable between spouses and civil partners, with 50% relief above it and interest-free instalments available for qualifying property.\n\nThose provisions materially change the comparison from the original £1 million proposal. The plan's claim about 1,100 families and a £273,000 average cannot safely be treated as the effect of the current rules without reproducing its baseline and year. Restoring unlimited relief benefits larger qualifying inheritances too, while reducing revenue available for other taxpayers and services. A more persuasive case would distinguish operating businesses facing genuine liquidity constraints from wealth held partly for tax advantages, and test targeted financing or succession protections against the cost of blanket restoration.",
+      "sourceIds": [
+        "tax-inheritance",
+        "tax-agricultural-guide"
+      ],
+      "related": [
+        "claim-fiscal-revenue"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "tax-hmrc-rates",
+      "publisher": "HMRC / GOV.UK",
+      "title": "Income Tax rates and Personal Allowances: current rates and allowances",
+      "date": "Undated live guidance; 2026/27 rates checked",
+      "url": "https://www.gov.uk/income-tax-rates",
+      "accessed": "2026-10-27",
+      "finding": "£12,570 standard allowance, taper above £100,000, £50,270 higher-rate threshold outside Scotland; supports own arithmetic, not Reform costing."
+    },
+    {
+      "id": "tax-scotland",
+      "publisher": "Scottish Government / mygov.scot",
+      "title": "Current rates — 6 April 2026 to 5 April 2027",
+      "date": "Updated 2026-04-06",
+      "url": "https://www.mygov.scot/scottish-income-tax/current-income-tax-rates",
+      "accessed": "2026-10-27",
+      "finding": "Scottish rates on earned income differ; allowance remains £12,570."
+    },
+    {
+      "id": "tax-uc",
+      "publisher": "DWP / GOV.UK",
+      "title": "Universal Credit: how your wages affect your payments",
+      "date": "Undated live guidance; checked 2026-10-27",
+      "url": "https://www.gov.uk/universal-credit/how-your-wages-affect-your-payments",
+      "accessed": "2026-10-27",
+      "finding": "Payments reduce by 55p for an additional £1 of earnings subject to applicable work allowance. New exempt overtime treatment requires policy design."
+    },
+    {
+      "id": "tax-ofgem",
+      "publisher": "Ofgem",
+      "title": "Energy price cap and standing charges explained",
+      "date": "Undated live guidance; checked 2026-10-27",
+      "url": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-and-standing-charges-explained",
+      "accessed": "2026-10-27",
+      "finding": "GB cap limits rates rather than total bills; components include wholesale, networks, policy costs and VAT. Does not independently validate £250 claim."
+    },
+    {
+      "id": "tax-electricity-vat",
+      "publisher": "HMRC",
+      "title": "Temporary zero rate of VAT for domestic electricity in Great Britain",
+      "date": "2026-09-08",
+      "url": "https://www.gov.uk/government/publications/temporary-zero-rate-of-vat-for-domestic-electricity-in-great-britain",
+      "accessed": "2026-10-27",
+      "finding": "Qualifying domestic GB electricity zero-rated 1 October 2026–31 March 2027; other domestic fuels retain 5%."
+    },
+    {
+      "id": "tax-obr-vat",
+      "publisher": "Office for Budget Responsibility",
+      "title": "The impact of the frozen VAT registration threshold",
+      "date": "March 2023, EFO box 3.3",
+      "url": "https://obr.uk/box/the-impact-of-the-frozen-vat-registration-threshold/",
+      "accessed": "2026-10-27",
+      "finding": "Historical threshold bunching and restricted turnover; a raised threshold moves the distortion."
+    },
+    {
+      "id": "tax-vat-threshold",
+      "publisher": "HMRC / GOV.UK",
+      "title": "How VAT works: VAT thresholds",
+      "date": "Undated live guidance; checked 2026-10-27",
+      "url": "https://www.gov.uk/how-vat-works/vat-thresholds",
+      "accessed": "2026-10-27",
+      "finding": "£90,000 taxable-turnover registration threshold, distinct £150,000 Flat Rate Scheme entry threshold and NI/EU rules."
+    },
+    {
+      "id": "tax-fuel-duty",
+      "publisher": "HMRC",
+      "title": "Amended Fuel Duty rates: 2026 to 2027",
+      "date": "2026-05-22",
+      "url": "https://www.gov.uk/government/publications/amended-fuel-duty-rates-for-2026-to-2027/amended-fuel-duty-rates-2026-to-2027",
+      "accessed": "2026-10-27",
+      "finding": "5p cut extended to 31 December 2026, subsequent legislative defaults subject to Budget 2026; supersedes earlier schedule."
+    },
+    {
+      "id": "tax-cma-fuel",
+      "publisher": "Competition and Markets Authority",
+      "title": "Road fuel review",
+      "date": "Updated 2022-10-12",
+      "url": "https://www.gov.uk/government/publications/road-fuel-review/road-fuel-review",
+      "accessed": "2026-10-27",
+      "finding": "Historical 2022 review: stocks/wholesale volatility complicate precise duty pass-through measurement; no finding of certain future retention."
+    },
+    {
+      "id": "tax-hours",
+      "publisher": "GOV.UK",
+      "title": "Maximum weekly working hours: overview",
+      "date": "Undated live guidance; checked 2026-10-27",
+      "url": "https://www.gov.uk/maximum-weekly-working-hours",
+      "accessed": "2026-10-27",
+      "finding": "General 48-hour average working week, opt-out and exceptions; not evidence that tax-free overtime raises productivity."
+    },
+    {
+      "id": "tax-reserve",
+      "publisher": "British Army",
+      "title": "Pay & Benefits as a Reservist",
+      "date": "Undated recruitment guidance; checked 2026-10-27",
+      "url": "https://jobs.army.mod.uk/army-reserve/life-in-the-army-reserve/pay-benefits/",
+      "accessed": "2026-10-27",
+      "finding": "Ordinary reserve daily pay differs from already tax-free qualifying training bounty. Rates vary by rank and service."
+    },
+    {
+      "id": "tax-pub-rates",
+      "publisher": "GOV.UK",
+      "title": "Business rates relief: pubs and live music venues relief",
+      "date": "Undated live guidance; 2026/27 scheme checked",
+      "url": "https://www.gov.uk/business-rates-relief/pubs-and-live-music-venues-relief",
+      "accessed": "2026-10-27",
+      "finding": "England 2026/27 pub relief uses eligibility tests; business rates devolved. Does not estimate Reform package employment effects."
+    },
+    {
+      "id": "tax-hospitality",
+      "publisher": "HMRC",
+      "title": "VAT: reduced rate for hospitality, holiday accommodation and attractions",
+      "date": "2020-07-09; updated 2026-10-23",
+      "url": "https://www.gov.uk/guidance/vat-reduced-rate-for-hospitality-holiday-accommodation-and-attractions",
+      "accessed": "2026-10-27",
+      "finding": "Historical temporary hospitality VAT relief ended 31 March 2022; qualifying scope excluded alcoholic drinks, showing boundary/design issues."
+    },
+    {
+      "id": "tax-inheritance",
+      "publisher": "HMRC",
+      "title": "Agricultural property relief and business property relief changes",
+      "date": "Updated 2026-03-03",
+      "url": "https://www.gov.uk/government/publications/changes-to-agricultural-property-relief-and-business-property-relief/agricultural-property-relief-and-business-property-relief-changes",
+      "accessed": "2026-10-27",
+      "finding": "£2.5m combined 100% allowance from 6 April 2026, transferable allowance, 50% above, interest-free instalments. Different baseline from original £1m proposal."
+    },
+    {
+      "id": "tax-agricultural-guide",
+      "publisher": "HMRC / GOV.UK",
+      "title": "Agricultural Relief for Inheritance Tax",
+      "date": "Undated live guidance; rules from 2026-04-06 checked",
+      "url": "https://www.gov.uk/guidance/agricultural-relief-on-inheritance-tax",
+      "accessed": "2026-10-27",
+      "finding": "Confirms current £2.5m allowance and 50% relief over limit; guide corroborates legal implementation but not independent costing."
+    }
+  ]
+}

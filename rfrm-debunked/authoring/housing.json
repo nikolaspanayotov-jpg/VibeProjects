@@ -1,0 +1,404 @@
+{
+  "articles": [
+    {
+      "id": "measure-11",
+      "number": 11,
+      "category": "Getting homes built in cities",
+      "page": "25",
+      "title": "Cut affordable housing on brownfield land",
+      "proposal": "Set affordable-housing requirements at 0% outside major cities and 5% in major cities for brownfield development.",
+      "counter": "A blanket cut can remove affordable homes without ensuring either cheaper land or faster building.",
+      "critique": "Reducing contributions could make some difficult brownfield schemes viable, particularly where contamination or demolition makes redevelopment expensive. That is a real argument for examining costs. But a national zero-or-five-per-cent rule does not distinguish those sites from profitable developments that can support affordable homes. English viability guidance already provides a framework for considering abnormal costs and says policy obligations should be reflected in the value of land. Removing obligations therefore creates a distributional question: will the saving finance extra construction, or increase what purchasers can pay landowners? There is no automatic requirement in this proposal for the saving to become lower sale prices. Households unable to buy market housing could lose a route to a secure home even if total completions rise. A credible assessment needs additional completions, lost affordable units and replacement subsidy considered together, with a clear definition of major cities.",
+      "sourceIds": [
+        "housing-viability"
+      ],
+      "related": [
+        "measure-12",
+        "measure-20"
+      ]
+    },
+    {
+      "id": "measure-12",
+      "number": 12,
+      "category": "Getting homes built in cities",
+      "page": "25",
+      "title": "Expand permitted development on brownfield sites",
+      "proposal": "Introduce broad permitted development rights allowing brownfield land to become housing.",
+      "counter": "Faster permission needs enforceable housing quality and infrastructure safeguards to deliver places people can live well.",
+      "critique": "A simpler route to permission can reduce uncertainty and bring redundant urban land back into use. The important question is what conditions accompany that route. Government-commissioned research examined permitted-development housing across 11 English areas using measures including space, amenity, location and design. It provides a reason to test living conditions rather than judge success only by the number of units approved. That historical study cannot establish the outcome of a future regime with different safeguards. However, brownfield status alone says little about flood risk, contamination, daylight, school capacity or proximity to jobs. These issues still need decisions, funding and accountable enforcement even when a full planning application disappears. A broad entitlement could also make it harder to secure the right mix of homes locally. Reform needs to specify minimum standards, prior-approval checks and infrastructure contributions before claiming that deregulation will produce better housing outcomes.",
+      "sourceIds": [
+        "housing-pdr",
+        "housing-viability"
+      ],
+      "related": [
+        "measure-11",
+        "measure-13",
+        "measure-17"
+      ]
+    },
+    {
+      "id": "measure-13",
+      "number": 13,
+      "category": "Getting homes built in cities",
+      "page": "25",
+      "title": "Repeal biodiversity net gain",
+      "proposal": "Repeal Biodiversity Net Gain requirements for development.",
+      "counter": "Repeal removes a habitat-replacement mechanism, while the English system already has exemptions and flexible delivery routes.",
+      "critique": "Biodiversity requirements can create survey costs, delays and particular difficulties for small builders. Those burdens deserve evidence and proportionate administration. But the English scheme is designed to leave measurable habitat improvements after development, rather than simply charge a fee for permission. In-scope developers can use onsite provision, offsite units and, as a last resort, statutory credits. Qualifying very small sites also gained an exemption in August 2026. It is therefore misleading to evaluate repeal as if every house faced the same unavoidable obligation. Removing the scheme could reduce some private development costs, but somebody would then bear the loss of habitat or the cost of restoring it through another programme. Brownfield land can have ecological value too. A stronger case would identify which requirements prevent otherwise viable homes and compare targeted simplification with wholesale repeal, including the effect on habitat delivery and existing long-term restoration investment.",
+      "sourceIds": [
+        "housing-bng"
+      ],
+      "related": [
+        "measure-12",
+        "measure-14",
+        "measure-15"
+      ]
+    },
+    {
+      "id": "measure-14",
+      "number": 14,
+      "category": "Getting homes built in cities",
+      "page": "25",
+      "title": "Leave the Aarhus Convention",
+      "proposal": "Withdraw the UK from the Aarhus Convention.",
+      "counter": "Withdrawing from environmental participation rights does not establish that viable housing will be built faster.",
+      "critique": "The convention covers access to environmental information, participation in decisions and access to independent review. Those rights help residents discover and contest the consequences of development, including pollution affecting their own neighbourhood. Reducing litigation uncertainty could benefit some projects, and repetitive or poorly founded challenges can consume public resources. But the case for withdrawal needs evidence about the delays specifically caused by convention obligations and the safeguards that would replace them. Leaving an international agreement would not, by itself, remove every domestic information duty, consultation procedure or ground of legal challenge. Further legislative choices would determine the practical result. There is also a cost to weakening scrutiny: mistakes or omitted impacts may emerge only after construction, when remedies are expensive. This proposal reaches far beyond housing. Improving the quality and speed of decisions and court procedures should be compared with removing the rights themselves.",
+      "sourceIds": [
+        "housing-aarhus"
+      ],
+      "related": [
+        "measure-15",
+        "measure-24",
+        "measure-27"
+      ]
+    },
+    {
+      "id": "measure-15",
+      "number": 15,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "Repeal and replace habitat protections",
+      "proposal": "Repeal and reform the Habitats Regulations, including Nutrient Neutrality requirements.",
+      "counter": "Ending the planning test leaves the extra pollution and the need to fund river restoration unresolved.",
+      "critique": "Nutrient mitigation has delayed housing in affected English catchments, and government guidance acknowledges the additional cost. It is reasonable to ask whether collective treatment upgrades and catchment-wide solutions would work better than negotiating mitigation development by development. But neutrality addresses an underlying problem: additional wastewater can worsen pollution in already damaged protected waters. It is not a nationwide prohibition on housing, and the calculators were updated in March 2026. Repeal would remove a constraint on consenting development without necessarily removing the pollution it creates. The plan needs to explain what replacement protection would apply, who would finance it and when effective capacity would be available. Habitat regulation also covers more than nutrient pollution, so broad repeal risks consequences beyond the stated housing problem. Faster permissions would be a benefit only if the replacement system credibly delivers both homes and functioning water and nature infrastructure.",
+      "sourceIds": [
+        "housing-nutrients",
+        "housing-nutrients-context"
+      ],
+      "related": [
+        "measure-13",
+        "measure-14",
+        "measure-25"
+      ]
+    },
+    {
+      "id": "measure-16",
+      "number": 16,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "End the claimed household boiler ban",
+      "proposal": "Remove the restriction on household boilers described by the plan as a ban.",
+      "counter": "Existing-home choices and future new-build heating standards are different policies and need separate scrutiny.",
+      "critique": "The proposal needs to identify the legal restriction it intends to remove. The Commons Library explains the distinction between existing homes and standards for new construction; its briefing does not describe a general requirement for homeowners to replace working boilers. England’s 2026 Future Homes and Buildings Standards regulations concern a different choice: how new buildings should be constructed, with their principal commencement in 2027 and transitional provisions. Giving households flexibility can avoid inappropriate installations and large upfront costs. But fitting fossil-fuel heating in newly constructed homes can leave later occupants with exposure to gas prices and a future conversion bill. Those costs should sit alongside any saving to the builder. A credible policy would distinguish replacement boilers, new-build systems and rental obligations, and compare whole-life costs under realistic electricity and gas prices. Calling all these rules a household ban obscures the decision being made.",
+      "sourceIds": [
+        "housing-boilers",
+        "housing-fhs"
+      ],
+      "related": [
+        "measure-18",
+        "measure-19"
+      ]
+    },
+    {
+      "id": "measure-17",
+      "number": 17,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "Allow air conditioning without a cooling hierarchy",
+      "proposal": "Allow air conditioning to satisfy overheating requirements and prohibit cooling hierarchy rules.",
+      "counter": "English rules already permit mechanical cooling after practicable passive measures, so the change is about priority and cost.",
+      "critique": "Overheating is a serious housing-quality problem, and mechanical cooling can be essential where noise, security or outdoor temperatures limit ventilation. The English Part O guidance already allows it when practicable passive measures have been incorporated. The proposal therefore changes the sequence of design choices rather than simply legalising a forbidden technology. Removing that sequence might make some awkward sites easier to develop. It could also encourage designs that rely on equipment and electricity instead of shading, suitable glazing and removal of excess heat. A builder’s cheaper solution may leave occupants with bills, maintenance and replacement costs, particularly in rented homes where the person choosing the design does not pay for its operation. Effective cooling and good passive design can complement each other. Reform should specify performance, running-cost and maintenance safeguards and show where the existing hierarchy causes disproportionate costs before banning local or national prioritisation outright.",
+      "sourceIds": [
+        "housing-overheat"
+      ],
+      "related": [
+        "measure-12",
+        "measure-18",
+        "measure-19"
+      ]
+    },
+    {
+      "id": "measure-18",
+      "number": 18,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "Remove mandatory EPC improvements",
+      "proposal": "Remove mandatory Energy Performance Certificate improvements for residential and commercial buildings.",
+      "counter": "Cancelling efficiency duties reduces owners’ costs but can leave tenants paying for avoidable energy waste.",
+      "critique": "EPC policies need careful design: a headline rating is an imperfect description of comfort, running costs and the best improvement for an individual building. Cost caps, exemptions and suitable assessment methods matter. However, the plan combines residential and commercial policy without distinguishing existing rules from future tightening. The government’s response for privately rented homes in England and Wales sets out an intended higher standard for October 2030, with a £10,000 investment cap and exemptions; it also describes legislation still to follow. That is different from saying every owner must upgrade immediately. Abandoning requirements could reduce refurbishment costs and make some properties easier to let. Yet tenants often cannot choose or finance insulation themselves, while landlords do not receive the resulting bill savings. This split incentive is a reason for minimum standards. Reform needs evidence on rental supply, tenant energy costs and alternative support, rather than treating avoided capital spending as an unqualified economic saving.",
+      "sourceIds": [
+        "housing-epc"
+      ],
+      "related": [
+        "measure-16",
+        "measure-17",
+        "measure-20"
+      ]
+    },
+    {
+      "id": "measure-19",
+      "number": 19,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "Revoke the Future Homes Standard",
+      "proposal": "Revoke the Future Homes Standard for new homes.",
+      "counter": "Lower construction costs need to be weighed against decades of household energy use and later retrofit costs.",
+      "critique": "New-build standards influence homes that will remain in use for many decades. Relaxing them can reduce some upfront costs, and implementation needs sufficient installers, suitable technology and clear guidance. But England’s Future Homes and Buildings Standards have progressed beyond an unspecified aspiration: regulations were made in 2026, with the main commencement in March 2027 and separate transitional arrangements. The official circular describes efficient buildings with low-carbon heating and onsite generation requirements. Repeal should therefore be assessed against that actual framework and timing. The crucial comparison is the lifetime cost to occupants and the energy system, not simply the developer’s initial bill. Buyers may have little practical ability to judge future conversion costs when choosing a home. Reform should publish the saving per dwelling, realistic operating-cost comparisons and the implications for later upgrades. Without those, revocation is a transfer of risk to future residents rather than a demonstrated improvement in housing affordability.",
+      "sourceIds": [
+        "housing-fhs"
+      ],
+      "related": [
+        "measure-16",
+        "measure-17",
+        "measure-18"
+      ]
+    },
+    {
+      "id": "measure-20",
+      "number": 20,
+      "category": "Getting homes built in cities",
+      "page": "26",
+      "title": "Repeal the Renters’ Rights Act",
+      "proposal": "Repeal the Renters’ Rights Act.",
+      "counter": "Weakening tenancy security does not demonstrate that rents will fall or that additional homes will appear.",
+      "critique": "Landlords need workable possession procedures and predictable rules, and an overloaded court system can undermine both supply and tenant confidence. Those implementation problems deserve attention. But repeal would reach protections already operating in England’s private rented sector from May 2026, including periodic tenancies and the end of section 21 evictions. The new regime retains legal grounds for landlords who need to sell, move in or address arrears and antisocial behaviour. The relevant question is how effectively those routes work, not whether owners can ever recover a property. Removing tenant protections may make letting more attractive to some owners, but it would also expose households to greater insecurity and moving costs. A sale to an owner-occupier changes tenure without necessarily removing a home from the housing stock. Reform needs evidence separating rental supply, overall housing supply and tenant welfare before presenting wholesale repeal as a job-creating housing measure.",
+      "sourceIds": [
+        "housing-renters"
+      ],
+      "related": [
+        "measure-11",
+        "measure-18"
+      ]
+    },
+    {
+      "id": "measure-21",
+      "number": 21,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Approve airport runways by legislation",
+      "proposal": "Legislate planning and environmental approval for new runways, including Heathrow and Gatwick, overriding other legislation.",
+      "counter": "An Act can authorise a runway but cannot remove its financing, transport, noise and emissions costs.",
+      "critique": "Additional airport capacity can improve connectivity and create economic opportunities. Yet a statutory override is a method of deciding who may proceed, not proof that every associated cost has been resolved. Gatwick’s northern-runway scheme was already granted development consent in September 2025 after examination, so it should not be presented as wholly awaiting its first approval. Heathrow and Gatwick also require project-specific treatment. Surface transport, construction, local disturbance and environmental mitigation still need credible plans and funding even if ordinary approval rules are displaced. The Climate Change Committee’s aviation pathway makes growth conditional on progress in cleaner fuels, emissions reductions and removals; it is advice, rather than a direct legal airport limit. Ignoring those dependencies can make an investment appear cheaper without making the consequences disappear. Reform should set out a transparent appraisal, delivery timetable and enforceable protections for each scheme before granting unrestricted legislative approval.",
+      "sourceIds": [
+        "housing-gatwick",
+        "housing-aviation"
+      ],
+      "related": [
+        "measure-22",
+        "measure-23",
+        "measure-24",
+        "measure-42"
+      ]
+    },
+    {
+      "id": "measure-22",
+      "number": 22,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Auction airport landing and take-off slots",
+      "proposal": "Auction new and surrendered airport slots, beginning at Heathrow and Gatwick.",
+      "counter": "Auctions have a credible competition rationale, but passenger benefits depend on design and protection against market concentration.",
+      "critique": "This proposal has a stronger evidence base than an assumption that deregulation always helps. The Competition and Markets Authority supports market-based allocation because scarce airport capacity can be used inefficiently and incumbent holdings can restrict entry. Auctioning new or surrendered slots could improve access and reveal their value. The unresolved questions are practical and distributional. Airlines need usable combinations of take-off and landing times, while a wealthy incumbent may be able to outbid a smaller competitor for a strategically important slot. An auction’s revenue is not automatically a reduction in fares, and the highest private bid need not secure the greatest regional connectivity benefit. Starting with a limited pool may also leave much existing concentration intact. Reform should specify competition safeguards, bidding arrangements, slot duration and treatment of essential connections. Acknowledging these design choices supports a serious reform case rather than overstating what an auction alone will deliver.",
+      "sourceIds": [
+        "housing-slots"
+      ],
+      "related": [
+        "measure-21",
+        "measure-42"
+      ]
+    },
+    {
+      "id": "measure-23",
+      "number": 23,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Stop target-consistent carbon appraisal",
+      "proposal": "Stop using target-consistent carbon prices when evaluating projects.",
+      "counter": "Removing an appraisal value changes the accounting of emissions, rather than removing their economic consequences.",
+      "critique": "Target-consistent carbon values are estimates of the cost of reducing emissions enough to meet adopted targets. They are appraisal inputs, not a bill automatically charged to every project. They can make a carbon-intensive scheme look less attractive, but their purpose is to compare options consistently across government. There are legitimate disputes about assumptions, technology costs and future policy. The published methodology explicitly uses uncertainty ranges, so scrutiny can test whether a result depends on optimistic or pessimistic values. The proposal does not identify what alternative valuation would replace the existing approach. Giving emissions no value would favour projects whose costs fall elsewhere in the economy or in the future. If climate targets remain, extra emissions can require additional reductions elsewhere. Reform should state the replacement method and publish sensitivity analysis, allowing claimed growth benefits to be evaluated alongside the full costs instead of simply removing an inconvenient line from the appraisal.",
+      "sourceIds": [
+        "housing-carbon"
+      ],
+      "related": [
+        "measure-21",
+        "measure-24",
+        "measure-28"
+      ]
+    },
+    {
+      "id": "measure-24",
+      "number": 24,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Exclude emissions from planning decisions",
+      "proposal": "Prohibit consideration of carbon emissions in individual planning applications.",
+      "counter": "National climate policy and project-level evidence serve different purposes, so a blanket exclusion creates blind spots.",
+      "critique": "Clear national rules can reduce repetitive arguments and give developers more certainty. But an individual project determines real emissions through its location, technology and operating model, and those effects can be missed if every decision assumes they are somebody else’s responsibility. The Supreme Court’s Finch ruling illustrates the distinction: it required assessment of significant downstream emissions that inevitably followed the oil project. It did not establish that environmental assessment automatically prohibits a project causing harm. Decision-makers can weigh evidence and reach a reasoned conclusion. A blanket ban would instead prevent them considering relevant information even where a project has unusually large or avoidable effects. National carbon targets and pricing can help coordinate action, but they do not necessarily capture every design alternative or local infrastructure decision. Reform needs a credible replacement mechanism for identifying and managing these emissions, and should explain why proportionate assessment cannot provide certainty while retaining informed decisions.",
+      "sourceIds": [
+        "housing-finch",
+        "housing-carbon"
+      ],
+      "related": [
+        "measure-14",
+        "measure-21",
+        "measure-23"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "housing-viability",
+      "publisher": "MHCLG",
+      "title": "Viability",
+      "date": "2025-12-16",
+      "url": "https://www.gov.uk/guidance/viability",
+      "accessed": "2026-10-27",
+      "finding": "England guidance requires affordable housing and abnormal brownfield costs to be reflected in viability and benchmark land values; the price paid for land does not justify policy non-compliance."
+    },
+    {
+      "id": "housing-pdr",
+      "publisher": "MHCLG",
+      "title": "Quality standard of homes delivered through change of use permitted development rights",
+      "date": "2020-07-21",
+      "url": "https://www.gov.uk/government/publications/quality-standard-of-homes-delivered-through-change-of-use-permitted-development-rights",
+      "accessed": "2026-10-27",
+      "finding": "Government-commissioned independent research compares size, amenity, location and design of permitted-development and planning-permission homes across 11 English areas; historical evidence, not a forecast of a new scheme."
+    },
+    {
+      "id": "housing-bng",
+      "publisher": "Defra",
+      "title": "Understanding biodiversity net gain",
+      "date": "2026-07-14",
+      "url": "https://www.gov.uk/guidance/understanding-biodiversity-net-gain",
+      "accessed": "2026-10-27",
+      "finding": "England requires 10% measurable gain for in-scope development, using onsite or offsite delivery and credits; exemptions include qualifying sites of 0.2 hectares or less from August 2026."
+    },
+    {
+      "id": "housing-aarhus",
+      "publisher": "Swedish Environmental Protection Agency",
+      "title": "The Aarhus Convention",
+      "date": "2026-02-27",
+      "url": "https://www.naturvardsverket.se/en/international/cooperation/multilateral-agreements/the-aarhus-convention/",
+      "accessed": "2026-10-27",
+      "finding": "Official explanation identifies public rights to environmental information, participation and access to independent review."
+    },
+    {
+      "id": "housing-nutrients",
+      "publisher": "Natural England and Defra",
+      "title": "Using the nutrient neutrality calculators",
+      "date": "2026-03-11",
+      "url": "https://www.gov.uk/guidance/using-the-nutrient-neutrality-calculators",
+      "accessed": "2026-10-27",
+      "finding": "English catchment-specific methodology calculates the net nutrient impact of residential development on protected habitats; calculators were updated in March 2026."
+    },
+    {
+      "id": "housing-nutrients-context",
+      "publisher": "Defra",
+      "title": "Nutrient pollution: reducing the impact on protected sites",
+      "date": "2023-06-28",
+      "url": "https://www.gov.uk/government/publications/nutrient-pollution-reducing-the-impact-on-protected-sites/nutrient-pollution-reducing-the-impact-on-protected-sites",
+      "accessed": "2026-10-27",
+      "finding": "Explains additional wastewater loads, mitigation through wetlands and buffers, and acknowledges development costs and delays; treats neutrality as an interim solution alongside pollution reduction."
+    },
+    {
+      "id": "housing-boilers",
+      "publisher": "House of Commons Library",
+      "title": "Housing and net zero",
+      "date": "2024-07-08",
+      "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-8830/",
+      "accessed": "2026-10-27",
+      "finding": "Explains differences between new-build standards, existing homes and rental efficiency duties; describes no general requirement to retrofit existing homes or install low-carbon heating at publication."
+    },
+    {
+      "id": "housing-fhs",
+      "publisher": "MHCLG",
+      "title": "The Future Homes and Buildings Standards: Building Circular 01/2026 - letter",
+      "date": "2026-03-24",
+      "url": "https://www.gov.uk/government/publications/the-future-homes-and-buildings-standards-building-circular-012026/the-future-homes-and-buildings-standards-building-circular-012026-letter",
+      "accessed": "2026-10-27",
+      "finding": "English regulations implement low-carbon heating, efficiency and onsite generation standards; principal commencement is March 2027, with later higher-risk-building arrangements and transition provisions."
+    },
+    {
+      "id": "housing-overheat",
+      "publisher": "MHCLG",
+      "title": "Approved Document O: Overheating, frequently asked questions",
+      "date": "2022-06-15",
+      "url": "https://www.gov.uk/guidance/approved-document-o-overheating-frequently-asked-questions",
+      "accessed": "2026-10-27",
+      "finding": "For new English residential buildings, mechanical cooling is allowed after practicable passive measures; cooling also affects energy compliance. Part O does not apply to changes of use."
+    },
+    {
+      "id": "housing-epc",
+      "publisher": "DESNZ",
+      "title": "Improving the energy performance of privately rented homes: government response",
+      "date": "2026 (government response; publication day not verified)",
+      "url": "https://www.gov.uk/government/consultations/improving-the-energy-performance-of-privately-rented-homes-2025-update/outcome/improving-the-energy-performance-of-privately-rented-homes-government-response-html",
+      "accessed": "2026-10-27",
+      "finding": "England and Wales response sets out intended higher rental standards for October 2030 with a £10,000 cost cap, exemptions and future legislation; existing EPC E standard continues during transition."
+    },
+    {
+      "id": "housing-renters",
+      "publisher": "MHCLG",
+      "title": "Renters’ Rights Act overview for tenants",
+      "date": "2026-05-01",
+      "url": "https://www.gov.uk/guidance/renters-rights-act-overview-for-tenants",
+      "accessed": "2026-10-27",
+      "finding": "English private-tenancy reforms operating from May 2026 include periodic tenancies, abolition of section 21 and possession grounds for sale, occupation, arrears and antisocial behaviour."
+    },
+    {
+      "id": "housing-gatwick",
+      "publisher": "Planning Inspectorate",
+      "title": "Gatwick Airport Northern Runway development consent decision announced",
+      "date": "2025-09-22",
+      "url": "https://www.gov.uk/government/news/gatwick-airport-northern-runway-development-consent-decision-announced",
+      "accessed": "2026-10-27",
+      "finding": "Records development consent for routine northern-runway use after examination, with associated highways, river and mitigation works."
+    },
+    {
+      "id": "housing-aviation",
+      "publisher": "Climate Change Committee",
+      "title": "The Seventh Carbon Budget",
+      "date": "2025-02-26",
+      "url": "https://www.theccc.org.uk/publication/the-seventh-carbon-budget/",
+      "accessed": "2026-10-27",
+      "finding": "Advisory pathway makes aviation growth conditional on emissions technology, removals and demand management; this is a modelled pathway rather than an airport planning decision."
+    },
+    {
+      "id": "housing-slots",
+      "publisher": "Competition and Markets Authority",
+      "title": "CMA response to airport slot allocation system reform consultation",
+      "date": "2024-08-16",
+      "url": "https://www.gov.uk/government/publications/cma-response-to-airport-slot-allocation-system-reform-consultation",
+      "accessed": "2026-10-27",
+      "finding": "Competition authority supports reform and makes the case for market-based allocation of scarce airport slots; supports the proposal’s underlying competition rationale."
+    },
+    {
+      "id": "housing-carbon",
+      "publisher": "BEIS",
+      "title": "Valuation of greenhouse gas emissions: for policy appraisal and evaluation",
+      "date": "2021-09-02",
+      "url": "https://www.gov.uk/government/publications/valuing-greenhouse-gas-emissions-in-policy-appraisal/valuation-of-greenhouse-gas-emissions-for-policy-appraisal-and-evaluation",
+      "accessed": "2026-10-27",
+      "finding": "Target-consistent carbon values reflect marginal abatement costs and are inputs into overall appraisal, with high and low uncertainty ranges; they are not a tax charged to a project."
+    },
+    {
+      "id": "housing-finch",
+      "publisher": "UK Supreme Court",
+      "title": "Finch v Surrey County Council: press summary",
+      "date": "2024-06-20",
+      "url": "https://www.supremecourt.uk/cases/press-summary/uksc-2022-0064",
+      "accessed": "2026-10-27",
+      "finding": "Judgment required assessment of inevitable significant downstream oil-combustion emissions; assessment informs decisions and does not itself prohibit environmentally harmful projects."
+    }
+  ]
+}

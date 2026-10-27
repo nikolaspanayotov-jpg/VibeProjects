@@ -1,0 +1,453 @@
+{
+  "articles": [
+    {
+      "id": "measure-25",
+      "number": 25,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Classify every reservoir as national infrastructure",
+      "proposal": "Classify all water reservoirs as Nationally Significant Infrastructure Projects.",
+      "counter": "National designation can coordinate major reservoirs, but sending every small scheme through a national process could create new delays.",
+      "critique": "Reservoir investment can improve drought resilience and unlock development where water supply is constrained. A national route can help projects crossing council boundaries. But the Planning Act already includes dams and reservoirs within its national infrastructure categories, subject to qualifying rules. Reform is proposing to widen coverage, rather than inventing this route. The important question is which projects benefit from its expense and scrutiny. Requiring a small agricultural reservoir to use a process designed for strategic infrastructure could be disproportionate. National designation also does not supply land, finance, engineering staff or a sustainable source of water. Those remain separate delivery constraints. A credible reform would publish thresholds, demonstrate where local decisions are the binding obstacle and resource the examining bodies. Water planning is devolved, so an English consenting change must not be presented as automatically changing the rules across the UK.",
+      "sourceIds": [
+        "infra-planning"
+      ],
+      "related": [
+        "measure-26",
+        "measure-27"
+      ]
+    },
+    {
+      "id": "measure-26",
+      "number": 26,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Make development consent a single route",
+      "proposal": "Make Development Consent Orders a single approval route, removing the requirement for agreement from the original authority.",
+      "counter": "Combining permissions can save time, provided the replacement process retains specialist safeguards and enough staff to assess them.",
+      "critique": "Developers can waste time negotiating overlapping approvals, and combining genuinely duplicated decisions is a reasonable objective. But a Development Consent Order does not simply duplicate ordinary local planning. It can bring together powers for major infrastructure, while some specialist consents have their own purposes. Section 150 of the Planning Act concerns agreement to remove prescribed consent requirements; describing this as an unrestricted local planning veto would mislead. The proposal needs to identify precisely which approvals would be absorbed, who would assess the underlying risks and who would enforce the conditions. Removing an authority's agreement does not remove the need for its technical knowledge. Without that capacity, a single route may merely concentrate a queue in Whitehall. Any time saving should be tested against poorer scrutiny, disputes over responsibilities and remedial work after approval. Faster decisions are valuable when the resulting permission is workable and robust.",
+      "sourceIds": [
+        "infra-consents"
+      ],
+      "related": [
+        "measure-25",
+        "measure-27"
+      ]
+    },
+    {
+      "id": "measure-27",
+      "number": 27,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Restrict planning judicial review",
+      "proposal": "Restrict judicial review of planning decisions made by the Secretary of State.",
+      "counter": "Fewer weak challenges may reduce delays, but weakening review also makes unlawful ministerial decisions harder to correct.",
+      "critique": "Judicial review examines whether a decision was made lawfully; it is not normally a fresh vote on a project's merits. Repeated weak claims can impose costs and uncertainty, so tighter procedures can have benefits. However, legal scrutiny can also expose failures to consider evidence, consultation duties or statutory protections before expensive construction begins. Treasury's May 2026 paper describes reforms already aimed at meritless challenges and further proposals requiring legislation. Reform therefore needs to explain what additional restriction it wants and why existing changes are insufficient. A blanket limit on challenges to ministerial decisions would protect bad decisions alongside sound ones. The practical alternative is prompt case management, clear legal requirements and adequately staffed courts and consenting bodies. Any claimed delivery gain should be measured against the public's ability to obtain a remedy when government breaks its own rules.",
+      "sourceIds": [
+        "infra-jr"
+      ],
+      "related": [
+        "measure-26",
+        "measure-14"
+      ]
+    },
+    {
+      "id": "measure-28",
+      "number": 28,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Remove construction Net Zero requirements",
+      "proposal": "Scrap Net Zero construction rules, including the Lower Thames Crossing requirement to build without diesel.",
+      "counter": "Removing a construction requirement may widen supplier choice, but the plan provides no demonstrated net saving after fuel, pollution and contract costs.",
+      "critique": "Construction requirements can become costly when suitable machinery or fuel is scarce, and government should test them against delivery and value for money. But Reform treats the Lower Thames Crossing's diesel restriction as if its cost alone settles the question. National Highways reports that work is using electric, HVO and hydrogen equipment. That is evidence of an operating approach, although the promoter's account does not independently establish its economy. A proper comparison would include fuel and maintenance, equipment availability, local air pollution, carbon impacts and the cost of changing contracts already let. Scrapping the rule could also weaken demand for suppliers investing in cleaner equipment. Conversely, a requirement that genuinely blocks essential work should allow justified exceptions. The proposal offers neither that assessment nor a distinction between project-specific contractual commitments and general legal rules applying to construction everywhere.",
+      "sourceIds": [
+        "infra-ltc"
+      ],
+      "related": [
+        "measure-29",
+        "measure-23"
+      ]
+    },
+    {
+      "id": "measure-29",
+      "number": 29,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Scrap procurement social value tests",
+      "proposal": "Remove the social value test from public procurement.",
+      "counter": "Simpler tenders could help smaller suppliers, but abolishing social value would also discard a way to compare benefits beyond the initial price.",
+      "critique": "Suppliers can face costly tender paperwork, and vague promises about community benefits are a poor substitute for reliable delivery. Reform has a reasonable target where social value scoring rewards polished documents rather than measurable results. However, the central government model already requires relevance and proportionality and directs buyers to avoid unnecessary burdens on suppliers. Its scope is also narrower than every public purchase across the UK. Removing the test entirely could stop buyers rewarding useful training, better working conditions or other additional benefits linked to a contract. A cheaper bid can cost the public more over its lifetime if quality and wider consequences are ignored. The stronger approach would simplify evidence, audit delivery and remove irrelevant criteria. Reform needs to show whether the problem is the principle of social value, excessive administration or poor enforcement, because these require different remedies.",
+      "sourceIds": [
+        "infra-social"
+      ],
+      "related": [
+        "measure-28",
+        "measure-38"
+      ]
+    },
+    {
+      "id": "measure-30",
+      "number": 30,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Lift SaxaVord launch limits",
+      "proposal": "Remove limits on the number of launches at SaxaVord Spaceport.",
+      "counter": "A higher launch ceiling could support growth, but it needs evidence that capacity is constrained and that additional activity remains safe.",
+      "critique": "A successful spaceport could support skilled employment and provide launch services closer to UK satellite businesses. If credible demand exceeds a licence ceiling, raising it may be sensible. But a ceiling is part of a safety and environmental assessment, rather than proof that regulators oppose growth. The CAA's original December 2023 spaceport licence permitted up to 30 launches a year following safety, security and environmental scrutiny. That historical figure should not be assumed to describe every subsequent licence or launch operator. Spaceport permission also does not replace the approvals needed by individual operators. Reform should publish demand, range capacity, public safety and cumulative environmental evidence before promising an unlimited schedule. Removing a numerical limit cannot manufacture reliable rockets, customers or suitable launch conditions. A proportionate licence variation, with monitoring and enforceable conditions, offers a clearer route to expansion than an unconditional political override.",
+      "sourceIds": [
+        "infra-space"
+      ],
+      "related": [
+        "measure-27",
+        "measure-32"
+      ]
+    },
+    {
+      "id": "measure-31",
+      "number": 31,
+      "category": "Building critical national infrastructure",
+      "page": 26,
+      "title": "Open completed East West Rail sections",
+      "proposal": "Resolve industrial disputes and open already-built sections of East West Rail.",
+      "counter": "Opening the railway would deliver real benefits, but completed track still needs tested trains, trained drivers and agreed operating arrangements.",
+      "critique": "There is a strong public interest in using infrastructure that has already been built. Earlier services could improve journeys and start returning benefits on money already spent. However, the plan's emphasis on industrial disputes leaves out important operational prerequisites. In a September 2026 parliamentary answer, the Department for Transport listed train modification and testing, driver training, Winslow station handover and staffing arrangements among outstanding requirements for Oxford–Milton Keynes services. That does not establish that one dispute alone is holding everything up. Ministers can coordinate the operator, infrastructure owner and workforce and set transparent milestones. They cannot safely substitute an announcement for train assurance or staff competence. The useful challenge is to identify the critical path, publish who is responsible for each remaining task and fund a realistic service plan. Opening sections should also account for timetabling and connections so passengers receive a dependable railway.",
+      "sourceIds": [
+        "infra-rail"
+      ],
+      "related": [
+        "measure-26",
+        "measure-36"
+      ]
+    },
+    {
+      "id": "measure-32",
+      "number": 32,
+      "category": "Joining the AI revolution",
+      "page": 26,
+      "title": "Review barriers to AI adoption",
+      "proposal": "Rapidly review regulatory barriers to AI adoption across the economy.",
+      "counter": "A focused review could remove needless friction, but regulation is only one obstacle to useful and trustworthy AI adoption.",
+      "critique": "AI can help firms improve services and reduce routine work, and unclear rules can discourage worthwhile trials. A rapid review could identify genuine contradictions and give businesses practical guidance. But the existing AI Opportunities Action Plan already treats adoption as a combination of regulation, skills, data, compute and energy. Removing rules alone does not help a small business judge whether a system works or integrate it into existing processes. Poor deployments can expose personal information, produce unreliable decisions or create expensive dependence on suppliers. Some safeguards therefore support adoption by building confidence and clarifying responsibility. Reform should specify the barriers it would investigate, the evidence required to change them and how results would be measured. Training, evaluation tools and procurement expertise deserve equal attention. The relevant outcome is higher productivity and better services, rather than simply counting how many requirements a review removes.",
+      "sourceIds": [
+        "infra-ai"
+      ],
+      "related": [
+        "measure-33",
+        "measure-49"
+      ]
+    },
+    {
+      "id": "measure-33",
+      "number": 33,
+      "category": "Joining the AI revolution",
+      "page": 26,
+      "title": "Permit on-site dispatchable generation",
+      "proposal": "Explicitly permit on-site dispatchable electricity generation, including gas engines and turbines, for industrial developments such as data centres.",
+      "counter": "On-site generation may ease connection delays, but it brings fuel, pollution and infrastructure constraints of its own.",
+      "critique": "Data centres and industrial users need dependable power, and on-site controllable generation can provide resilience or help a project start before a network upgrade is complete. That is a plausible benefit. However, explicit planning permission does not guarantee an affordable gas connection, machinery supply, fuel security or efficient operation. Running engines near communities can also raise air-quality and noise concerns. The AI Opportunities Action Plan recognises that energy provision is an important part of expanding compute; it does not reduce the challenge to a single permission. Reform needs to distinguish emergency backup from continuous generation and explain what planning and environmental controls would remain. It should also compare total costs with grid reinforcement, storage and flexible demand. An unrestricted gas-led solution could lock businesses into fuel-price exposure while shifting pollution costs to neighbours. A workable policy would assess sites and operating patterns rather than promise blanket approval.",
+      "sourceIds": [
+        "infra-ai"
+      ],
+      "related": [
+        "measure-32",
+        "measure-28"
+      ]
+    },
+    {
+      "id": "measure-34",
+      "number": 34,
+      "category": "Reducing the cost of hiring British workers",
+      "page": 27,
+      "title": "Cut employer NI for British workers",
+      "proposal": "Reduce employer National Insurance for British workers from 15% to 13.8%, funded by a new Employers’ Migrant Labour Levy; introduce both in the second tax year.",
+      "counter": "A lower payroll tax could support hiring, but its benefits depend on who receives the relief and whether the proposed migrant levy can fund it.",
+      "critique": "Reducing the employer rate from 15% to 13.8% would lower the tax cost of eligible employment above the relevant threshold. It is an employer tax cut, rather than an automatic increase in take-home pay. Over time some benefit could reach workers through wages or employment, while some could remain in profits or lower prices. The OBR's analysis of employer NICs changes illustrates these channels, but is not a costing of this package. Reform ties the cut to a new migrant labour levy and delays both until the second tax year for design work. The revenue estimate must therefore allow for changed hiring, exemptions and avoidance. Defining British eligibility also adds payroll administration and difficult boundary cases. A levy that worsens shortages could raise costs for firms supplying the very infrastructure the plan wants built. The package needs independent costing and an implementation specification before its net employment effects can be judged.",
+      "sourceIds": [
+        "infra-ni",
+        "infra-incidence",
+        "infra-migration"
+      ],
+      "related": [
+        "measure-35",
+        "measure-38"
+      ]
+    },
+    {
+      "id": "measure-35",
+      "number": 35,
+      "category": "Reducing the cost of hiring British workers",
+      "page": 27,
+      "title": "Introduce a migrant labour levy",
+      "proposal": "Introduce an Employers’ Migrant Labour Levy to discourage low-skilled foreign hiring, encourage British workers or automation and fund the British-worker NI cut from the second tax year.",
+      "counter": "The levy could change hiring incentives, but it cannot ensure suitable workers or viable automation are available where shortages occur.",
+      "critique": "An additional cost on migrant employment could encourage some businesses to train residents, raise pay or invest in equipment. But those responses require time, suitable applicants and investment finance. A business may instead reduce output, pass costs to customers or relocate work. The Migration Advisory Committee links immigration policy with skills and recognises that some occupations matter to industrial investment and infrastructure delivery. Nationality is also an imperfect guide to skill or local labour availability. Reform proposes the levy as funding for reducing British-worker employer NI from 15% to 13.8%, with both starting in the second tax year. Its design therefore matters to a substantial tax promise: who counts, which existing residents are covered, what exemptions apply and how employers report changes. If it successfully reduces the taxed employment base, receipts may fall. Published costing must account for that tension and for possible labour shortages in construction, care and other services.",
+      "sourceIds": [
+        "infra-migration",
+        "infra-incidence"
+      ],
+      "related": [
+        "measure-34",
+        "measure-38"
+      ]
+    },
+    {
+      "id": "measure-36",
+      "number": 36,
+      "category": "Reducing the cost of hiring British workers",
+      "page": 27,
+      "title": "Repeal the Employment Rights Act",
+      "proposal": "Repeal the Employment Rights Act, including mandatory trade-union access provisions.",
+      "counter": "Repeal could reduce some compliance costs, but it would also remove worker protections and create another round of legal change.",
+      "critique": "Employment rules can impose real adjustment costs, especially on small employers without dedicated personnel staff. Reviewing poorly designed requirements is legitimate. But repealing an entire Act bundles those costs together with protections against insecurity and unfair treatment. The official timetable shows phased implementation, so it is misleading to treat every provision as already operating. As at 27 October 2026, strengthened trade-union access is scheduled for 30 October, with other important measures planned for 2027. Those future dates remain subject to the stated implementation process. Reform should identify which duties it would reverse and assess each against recruitment, retention, disputes and worker welfare. Easier dismissal or weaker representation is not automatically a productivity gain. Repeal would itself require employers to change policies and systems again. A credible assessment would compare targeted simplification with wholesale reversal, including the effects on employees' ability to challenge mistreatment.",
+      "sourceIds": [
+        "infra-rights"
+      ],
+      "related": [
+        "measure-37",
+        "measure-31"
+      ]
+    },
+    {
+      "id": "measure-37",
+      "number": 37,
+      "category": "Reducing the cost of hiring British workers",
+      "page": 27,
+      "title": "Clarify duties on workplace training",
+      "proposal": "Clarify that taking reasonable steps to meet workplace-rights duties does not require mandatory training courses.",
+      "counter": "Avoiding pointless courses could save time, but employers still need effective ways to prevent harassment and demonstrate that staff understand their duties.",
+      "critique": "Generic courses can become a box-ticking exercise, and employers should be able to use methods suited to their workplace. But removing an expectation of training does not remove harassment risks or explain what effective prevention requires. EHRC guidance for Great Britain describes reasonable steps as a context-dependent assessment, considering factors such as risks, resources and effectiveness. It is not simply a universal list of compulsory courses, and the guidance flags updates for 2026 law changes. The government's timetable also schedules stronger harassment duties for 30 October 2026, after this page's access date. Reform needs to distinguish those duties from other workplace requirements rather than issue a broad exemption that staff could misunderstand. Clear policies, induction, competent managers and practical reporting channels may all matter. The useful test is whether a measure prevents harm and supports compliance, rather than whether it carries the label training.",
+      "sourceIds": [
+        "infra-training",
+        "infra-rights"
+      ],
+      "related": [
+        "measure-36",
+        "measure-38"
+      ]
+    },
+    {
+      "id": "measure-38",
+      "number": 38,
+      "category": "Reducing the cost of hiring British workers",
+      "page": 27,
+      "title": "Reform construction certification",
+      "proposal": "Allow experienced tradespeople to substitute experience for qualifications on government contracts and open CSCS certification to competition.",
+      "counter": "Recognising experience could widen access, but public contracts still need a consistent and independently checked standard of competence.",
+      "critique": "Experienced tradespeople should not be forced through unnecessary classroom study merely to repeat skills they already possess. Faster recognition could help a sector facing recruitment pressures. However, CSCS says experienced workers can obtain qualifications through workplace assessment; the choice is not simply a full college course or exclusion. Its former Industry Accreditation route relied on employer recommendation and has closed. Reform needs to explain what evidence would replace the qualification standard and how assessors would check it consistently. Years worked do not necessarily demonstrate safe practice in every task. Competition between certification providers could improve service, but weak common standards could also encourage the cheapest certificate to win. Government procurement should accept genuinely equivalent evidence while preserving independent assessment, health and safety checks and reliable verification. Removing certification barriers without replacing their assurance function risks defects, disputes and injury costs that outweigh any initial saving.",
+      "sourceIds": [
+        "infra-cscs"
+      ],
+      "related": [
+        "measure-29",
+        "measure-35"
+      ]
+    },
+    {
+      "id": "measure-39",
+      "number": 39,
+      "category": "Unleashing the City to invest in the real economy",
+      "page": 28,
+      "title": "Review bank capital requirements",
+      "proposal": "Review bank capital requirements to encourage lending to businesses and the wider economy.",
+      "counter": "Better-calibrated capital rules can help lending, but cutting loss-absorbing capacity too far risks crises that damage investment.",
+      "critique": "A simpler capital framework can reduce unnecessary compliance and make it easier for banks to support creditworthy businesses. But capital is funding that absorbs losses, not cash locked in a vault and unavailable for lending. Weaker requirements can increase the likelihood that a downturn forces banks to cut credit when firms most need it. The Bank of England's July 2026 framework paper already proposes changes to simplify rules and improve buffer usability while preserving resilience. Reform should identify where its review would add value and what evidence shows capital rules are the main obstacle to business lending. Demand, borrowers' prospects and banks' commercial choices also matter. Extra balance-sheet capacity could support mortgages, dividends or other activity rather than productive business investment. The objective should be reliable lending across the economic cycle, tested against stress scenarios and international standards, rather than a general presumption that less capital means more growth.",
+      "sourceIds": [
+        "infra-capital"
+      ],
+      "related": [
+        "measure-40",
+        "measure-41"
+      ]
+    },
+    {
+      "id": "measure-40",
+      "number": 40,
+      "category": "Unleashing the City to invest in the real economy",
+      "page": 28,
+      "title": "Remove Net Zero from regulator remits",
+      "proposal": "Send a remit letter excluding Net Zero considerations from financial regulators’ remits, including the Bank of England and FCA.",
+      "counter": "Clarifying regulators’ priorities may help accountability, but excluding climate-related financial risks would undermine sound supervision.",
+      "critique": "Financial regulators should have clear statutory objectives and should not substitute their preferences for elected decisions about energy policy. A remit letter can clarify government priorities. However, supporting a Net Zero target and assessing climate-related financial risk are different activities. Flooding can damage mortgaged property; changes in technology, demand or overseas policy can weaken borrowers even if UK targets change. The Bank of England explains why those risks matter to financial stability and insurers' and banks' resilience. Reform needs to say whether it would remove a policy-support consideration or prevent regulators assessing material exposures. A ministerial letter also cannot by itself repeal statutory obligations. The stronger argument is for transparent, proportionate supervision grounded in evidence, with uncertainty openly recognised. Treating every climate consideration as an unwanted political instruction risks concealing risks that investors, depositors and policyholders ultimately bear.",
+      "sourceIds": [
+        "infra-climate"
+      ],
+      "related": [
+        "measure-39",
+        "measure-41"
+      ]
+    },
+    {
+      "id": "measure-41",
+      "number": 41,
+      "category": "Unleashing the City to invest in the real economy",
+      "page": 28,
+      "title": "Repeal climate financial disclosures",
+      "proposal": "Repeal climate-related financial disclosure requirements.",
+      "counter": "Simpler reporting could save money, but removing useful climate information would make it harder for investors to compare financial risks.",
+      "critique": "Climate reporting can be repetitive, costly and difficult to interpret, especially where firms must estimate data they cannot reliably obtain. Simplification is therefore a serious policy option. But investors also need comparable information about risks to assets, earnings and insurance exposure. The FCA's September 2026 update shows that the regime is already changing, including more targeted product disclosures and forthcoming listed-company rules for accounting periods beginning in January 2027. Reform must identify which requirements it would repeal rather than imply a single unchanged system. Blanket repeal could increase investors' private due-diligence costs and leave smaller investors with less information than large institutions. Firms raising money internationally may still face overseas or customer reporting demands, reducing any saving. A credible alternative would remove duplication and immaterial detail while retaining information needed to price risk and assess management, with clear boundaries between financial disclosure and compulsory investment choices.",
+      "sourceIds": [
+        "infra-disclosure",
+        "infra-climate"
+      ],
+      "related": [
+        "measure-39",
+        "measure-40"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "infra-planning",
+      "publisher": "UK legislation",
+      "title": "Planning Act 2008, nationally significant infrastructure projects",
+      "date": "2008-11-26",
+      "url": "https://www.legislation.gov.uk/ukpga/2008/29/body/2026-04-30",
+      "accessed": "2026-10-27",
+      "finding": "The national regime includes dams and reservoirs, subject to statutory definitions and thresholds; its scope is not a uniform UK planning system."
+    },
+    {
+      "id": "infra-consents",
+      "publisher": "UK legislation",
+      "title": "Planning Act 2008, section 150",
+      "date": "2008-11-26",
+      "url": "https://www.legislation.gov.uk/ukpga/2008/29/section/150",
+      "accessed": "2026-10-27",
+      "finding": "The section concerns prescribed consents and the agreement of the body otherwise responsible; it is not a universal local-authority planning veto."
+    },
+    {
+      "id": "infra-jr",
+      "publisher": "HM Treasury",
+      "title": "Getting Britain Building: Reforming judicial review for infrastructure",
+      "date": "2026-05-20",
+      "url": "https://www.gov.uk/government/publications/getting-britain-building-reforming-judicial-review-for-infrastructure/getting-britain-building-reforming-judicial-review-for-infrastructure",
+      "accessed": "2026-10-27",
+      "finding": "Describes existing reforms against meritless challenges and further proposed mechanisms requiring legislation."
+    },
+    {
+      "id": "infra-ltc",
+      "publisher": "National Highways",
+      "title": "Lower Thames Crossing begins one of world’s largest deployments of zero-emissions construction machinery",
+      "date": null,
+      "url": "https://nationalhighways-newsroom.prgloo.com/news/lower-thames-crossing-begins-one-of-worlds-largest-deployments-of-zero-emissions-construction-machinery",
+      "accessed": "2026-10-27",
+      "finding": "Reports construction using electric, HVO and hydrogen equipment and no diesel on sites since 2025; this is the promoter's account, not independent cost evaluation."
+    },
+    {
+      "id": "infra-social",
+      "publisher": "Cabinet Office",
+      "title": "PPN 002: Taking account of social value in the award of central government contracts",
+      "date": "2025-02-13",
+      "url": "https://www.gov.uk/government/publications/ppn-002-taking-account-of-social-value-in-the-award-of-contracts/ppn-002-taking-account-of-social-value-in-the-award-of-central-government-contracts-html",
+      "accessed": "2026-10-27",
+      "finding": "The model applies to specified central-government procurements, requires proportionality and seeks to avoid unnecessary supplier burdens."
+    },
+    {
+      "id": "infra-space",
+      "publisher": "Civil Aviation Authority",
+      "title": "SaxaVord granted spaceport licence by UK Civil Aviation Authority",
+      "date": "2023-12-17",
+      "url": "https://www.caa.co.uk/newsroom/news/saxavord-granted-spaceport-licence-by-uk-civil-aviation-authority/",
+      "accessed": "2026-10-27",
+      "finding": "The original spaceport licence permitted up to 30 launches annually following safety, security and environmental assessment."
+    },
+    {
+      "id": "infra-rail",
+      "publisher": "Department for Transport / UK Parliament",
+      "title": "East West Rail: outstanding operational requirements",
+      "date": "2026-09-07",
+      "url": "https://questions-statements.parliament.uk/written-questions/detail/2026-09-01/26119",
+      "accessed": "2026-10-27",
+      "finding": "Identifies train modification and testing, driver training, station handover and staffing agreements before Oxford–Milton Keynes services."
+    },
+    {
+      "id": "infra-ai",
+      "publisher": "Department for Science, Innovation and Technology",
+      "title": "AI Opportunities Action Plan",
+      "date": "2025-01-13",
+      "url": "https://www.gov.uk/government/publications/ai-opportunities-action-plan/ai-opportunities-action-plan",
+      "accessed": "2026-10-27",
+      "finding": "Recommendations combine regulatory work with compute, energy, skills, data and adoption support."
+    },
+    {
+      "id": "infra-ni",
+      "publisher": "HM Revenue and Customs",
+      "title": "National Insurance rates and categories: contribution rates",
+      "date": null,
+      "url": "https://www.gov.uk/national-insurance-rates-letters/contribution-rates",
+      "accessed": "2026-10-27",
+      "finding": "Standard employer contributions are 15% for 2026/27, with category-specific reliefs and thresholds."
+    },
+    {
+      "id": "infra-incidence",
+      "publisher": "Office for Budget Responsibility",
+      "title": "Economic and fiscal outlook – March 2025",
+      "date": "2025-03-26",
+      "url": "https://obr.uk/efo/economic-and-fiscal-outlook-march-2025/",
+      "accessed": "2026-10-27",
+      "finding": "Explains that employer NICs costs can affect wages, prices, profits and employment; its forecasts are not costings of Reform's proposed levy."
+    },
+    {
+      "id": "infra-migration",
+      "publisher": "Migration Advisory Committee",
+      "title": "Migration Advisory Committee annual report 2025",
+      "date": "2025-12-17",
+      "url": "https://www.gov.uk/government/publications/migration-advisory-committee-annual-report-2025/migration-advisory-committee-mac-annual-report-2025-accessible",
+      "accessed": "2026-10-27",
+      "finding": "Discusses linking immigration and skills policy and temporary access for occupations important to industry and infrastructure."
+    },
+    {
+      "id": "infra-rights",
+      "publisher": "Department for Business and Trade",
+      "title": "Plan to Make Work Pay and Employment Rights Act: timeline update",
+      "date": "2026-10-22",
+      "url": "https://www.gov.uk/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update",
+      "accessed": "2026-10-27",
+      "finding": "Implementation is phased; strengthened union access and harassment duties are scheduled for 30 October 2026, after this site's access date."
+    },
+    {
+      "id": "infra-training",
+      "publisher": "Equality and Human Rights Commission",
+      "title": "Sexual harassment and harassment at work: technical guidance",
+      "date": "2024-09-26",
+      "url": "https://www.equalityhumanrights.com/guidance/sexual-harassment-and-harassment-work-technical-guidance",
+      "accessed": "2026-10-27",
+      "finding": "Guidance for Great Britain describes a context-dependent reasonable-steps duty; warns it is being updated for 2026 changes."
+    },
+    {
+      "id": "infra-cscs",
+      "publisher": "Construction Skills Certification Scheme",
+      "title": "CSCS Industry Accreditation",
+      "date": null,
+      "url": "https://www.cscs.uk.com/about/industry-accreditation/",
+      "accessed": "2026-10-27",
+      "finding": "The employer-recommendation route has closed; experienced workers can demonstrate competence through workplace assessment rather than necessarily attending college."
+    },
+    {
+      "id": "infra-capital",
+      "publisher": "Bank of England",
+      "title": "Financial Stability in Focus: The bank capital framework",
+      "date": "2026-07-07",
+      "url": "https://www.bankofengland.co.uk/financial-stability-in-focus/2026/fsif-the-bank-capital-framework",
+      "accessed": "2026-10-27",
+      "finding": "Proposes simplification and usable buffers while maintaining resilience and international consistency."
+    },
+    {
+      "id": "infra-climate",
+      "publisher": "Bank of England",
+      "title": "The Bank of England’s climate-related financial disclosure 2025",
+      "date": "2025-06-26",
+      "url": "https://www.bankofengland.co.uk/climate-change/the-bank-of-englands-climate-related-financial-disclosure-2025",
+      "accessed": "2026-10-27",
+      "finding": "Explains physical and transition risks to borrowers, collateral, insurance and stability."
+    },
+    {
+      "id": "infra-disclosure",
+      "publisher": "Financial Conduct Authority",
+      "title": "Sustainability reporting requirements",
+      "date": "2026-09-30",
+      "url": "https://www.fca.org.uk/firms/climate-change-sustainable-finance/reporting-requirements",
+      "accessed": "2026-10-27",
+      "finding": "Sets out current and forthcoming reporting regimes, including September 2026 product-reporting simplification and listed-company changes for accounting periods from January 2027."
+    }
+  ]
+}

@@ -1,0 +1,650 @@
+{
+  "articles": [
+    {
+      "id": "claim-spend-tax-borrow-less",
+      "number": null,
+      "category": "Headlines and economic claims",
+      "page": "4, 11, 23, 32",
+      "title": "Three promises depend on the same savings",
+      "proposal": "Cut welfare, Net Zero, aid and administration to spend less, tax less and borrow less.",
+      "counter": "These goals can coexist only if deliverable net savings exceed tax cuts, replacement costs and new spending.",
+      "critique": "There is no arithmetic contradiction in cutting expenditure, taxes and borrowing together. The question is which services and transfers shrink, whether the savings arrive in cash, and what government must spend to implement the changes. Taxpayers receiving relief could benefit, while households losing benefits and people using affected services bear different costs. Administrative efficiencies can improve outcomes, but a lower budget does not establish an efficiency gain. The plan’s savings must therefore be assessed alongside redundancy costs, replacement asylum accommodation, welfare administration and its defence allowance. Its borrowing figures also depend on economic conditions and interest costs. An official OBR baseline supplies a comparison, not independent endorsement of the policy package. Without independently reproducible costings and distributional analysis, the headline describes a conditional political choice rather than a demonstrated improvement for every household.",
+      "sourceIds": [
+        "support-obr-baseline",
+        "support-ons-finances"
+      ],
+      "related": [
+        "claim-fiscal-savings",
+        "claim-fiscal-timing"
+      ]
+    },
+    {
+      "id": "claim-debt-three-trillion",
+      "number": null,
+      "category": "Headlines and economic claims",
+      "page": "9",
+      "title": "£3 trillion is a debt stock, not a household invoice",
+      "proposal": "The plan says net debt passed £3 trillion on 21 October, exceeds £100,000 per household, and stays around 95% of GDP.",
+      "counter": "The official release supports the broad debt scale, but its publication date is not the exact date debt crossed the threshold.",
+      "critique": "ONS published a provisional estimate on 21 October 2026 that net debt stood at £3,005 billion at the end of September. That supports the headline scale while clarifying the timing: a monthly statistical release does not identify the day a threshold was crossed. Dividing national debt by households can illustrate magnitude, but households do not each receive an equal repayment bill. Governments service and refinance debt through future revenues, and some public liabilities are assets held by domestic savers. Debt relative to GDP, interest costs and the assets associated with borrowing are more informative about sustainability than the nominal total alone. Lower borrowing can reduce future financing pressure and benefit taxpayers. However, cutting productive investment or essential support can also weaken incomes and growth, so the debt number itself does not establish which spending should be removed.",
+      "sourceIds": [
+        "support-ons-finances"
+      ],
+      "related": [
+        "claim-fiscal-borrowing"
+      ]
+    },
+    {
+      "id": "claim-tax-burden-comparison",
+      "number": null,
+      "category": "Headlines and economic claims",
+      "page": "13",
+      "title": "A tax-to-GDP ratio needs dates and definitions",
+      "proposal": "Taxes rise from 29.6% of GDP to a forecast 38.3%, described as a post-war high.",
+      "counter": "A historical starting point and a forecast endpoint are not a like-for-like account of every household’s tax bill.",
+      "critique": "Tax receipts divided by GDP are a useful measure of the state’s overall revenue claim, but the comparison needs the years, forecast vintage and exact receipts definition. The plan’s 29.6% and 38.3% should remain attributed to the document unless independently matched to those series. A rising ratio can reflect policy changes, fiscal drag, the composition of income or weaker growth in the denominator. It does not mean each taxpayer pays that share of personal income, or that every group has experienced the same increase. Lower taxes can improve disposable incomes and investment incentives for beneficiaries. The corresponding service cuts or borrowing consequences matter to their overall welfare. A fair assessment therefore asks who receives the reductions and what they lose elsewhere, rather than treating the aggregate ratio as evidence that any particular tax cut will pay for itself.",
+      "sourceIds": [
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-spend-tax-borrow-less"
+      ]
+    },
+    {
+      "id": "claim-living-standards-counterfactual",
+      "number": null,
+      "category": "Headlines and economic claims",
+      "page": "8, 23; endnotes 6, 32",
+      "title": "£11,000 is a gap against an assumed trend",
+      "proposal": "Real household disposable income per person is said to be 30%, or £11,000, below a continued pre-1997 growth trend.",
+      "counter": "A trend extrapolation illustrates lost potential but does not prove a recoverable loss or establish its cause.",
+      "critique": "The ONS measure combines income, taxes, benefits and price changes, then divides by population. It is useful for assessing average purchasing power, but it is not the median person’s wage or a cash sum every household has lost. Extending an earlier growth trend produces a counterfactual: the result depends on the chosen start and end years, trend method and price basis. A persistent productivity slowdown can make such a gap economically important, but global shocks and demographic or structural changes may also affect the comparison. Faster sustainable growth would benefit wages and public revenues. The proposed deregulation package still needs evidence about how much of the gap it could close and over what period. The headline cannot attribute the entire shortfall to Net Zero, employment rights or planning, nor show that removing them would restore the earlier trajectory.",
+      "sourceIds": [
+        "support-ons-income"
+      ],
+      "related": [
+        "claim-growth-inflation-causality"
+      ]
+    },
+    {
+      "id": "claim-growth-inflation-causality",
+      "number": null,
+      "category": "Headlines and economic claims",
+      "page": "11, 23–28",
+      "title": "Growth, prices and interest rates follow different channels",
+      "proposal": "Cheaper energy, easier construction and fewer hiring rules would raise growth and lower inflation and interest rates.",
+      "counter": "Some supply reforms can help, but the size, timing and distribution of gains require separate evidence.",
+      "critique": "Removing a genuinely unnecessary constraint can lower production costs or allow more homes and infrastructure to be built. Businesses and consumers could benefit where competition passes savings through. Yet a regulation may also protect workers, prevent pollution or improve investment certainty; its repeal can transfer costs rather than remove them. More domestic fossil fuel output does not automatically translate into substantially cheaper gas in internationally linked markets. Planning and training reforms also take time to expand capacity. Inflation depends on demand as well as supply, while the Bank of England sets interest rates in response to the overall outlook. Tax cuts that increase spending before capacity expands can work in the opposite direction. These mechanisms make the claim plausible in parts but insufficient as a blanket promise: each reform needs a credible timetable and an account of affected workers, communities and consumers.",
+      "sourceIds": [
+        "support-boe-inflation",
+        "support-ccc-budget"
+      ],
+      "related": [
+        "claim-spend-tax-borrow-less"
+      ]
+    },
+    {
+      "id": "claim-welfare-community-work",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "Community work needs an employment pathway",
+      "proposal": "Require work-capable long-term benefit claimants to work for their communities.",
+      "counter": "Useful placements can build experience, but compulsory activity does not by itself establish sustained employment gains.",
+      "critique": "Community placements could provide routine, references and useful local work for some long-term claimants. Their value depends on matching people to appropriate activities, supporting disabilities and caring responsibilities, and leaving enough time for paid job search. Councils and charities would need supervision, safeguarding and funding; otherwise a nominally cheap requirement can impose substantial costs on hosts. It also matters whether placements displace paid jobs or volunteering rather than create additional services. DWP evaluated an earlier targeted Mandatory Work Activity scheme, but that is not direct validation of this broader proposal. A credible costing should include administration and distinguish departures from benefits from entry into lasting, adequately paid work. Claimants unable to comply need workable assessment and appeal arrangements. The potential benefit is a better route into employment, which should be measured directly rather than inferred from sanctions or lower caseloads.",
+      "sourceIds": [
+        "support-work-activity"
+      ],
+      "related": [
+        "claim-welfare-disability-redesign"
+      ]
+    },
+    {
+      "id": "claim-welfare-citizenship",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "Citizenship restrictions affect settled workers too",
+      "proposal": "Make British citizenship a condition for almost every benefit; the plan says one in seven UC claimants are neither British nor Irish.",
+      "counter": "Recorded nationality is not a measure of unlawful claims, unemployment or savings available without wider consequences.",
+      "critique": "Universal Credit already requires qualifying immigration status and other eligibility conditions. DWP warns that nationality records can lag naturalisation, and some claimants work while receiving help with low earnings, housing or children. The plan’s one-in-seven figure therefore needs a date, population and treatment of unknown records; it should not be presented as a count of people without a lawful entitlement. A citizenship rule could reduce expenditure and prioritise citizens, its stated objective. It would also affect settled residents, refugees and mixed-nationality families, potentially including British children supported through a parent’s claim. The promised exceptions and legal treatment of existing entitlements would be central to the actual saving. Costs could shift to councils or emergency support if households become destitute. The fiscal case requires net effects and transition arrangements, rather than multiplying a claimant share by total benefit spending.",
+      "sourceIds": [
+        "support-uc-method"
+      ],
+      "related": [
+        "claim-welfare-seven-thousand"
+      ]
+    },
+    {
+      "id": "claim-welfare-disability-redesign",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "Employment support and disability costs are different needs",
+      "proposal": "Replace disability benefits with employer-connected support and gradually remove unconditional cash for mild cases; protect pension-age people, severe cash awards, existing child DLA recipients and severely disabled children, with three-year reassessment protection for existing non-trivial, non-mental-health-related cases.",
+      "counter": "The protections matter, but removing cash can still undermine work where disability creates unavoidable living costs.",
+      "critique": "Keeping disabled people connected to supportive employers can improve income, independence and retention. However, PIP addresses daily-living and mobility costs and can already be paid to people in work; it is not simply compensation for unemployment. A replacement must distinguish capacity for particular jobs from the extra costs of disability, including fluctuating and mental-health conditions. The plan’s stated protections should be reported in full: pension-age people, severely disabled cash recipients and children have explicit safeguards, while the three-year exemption is narrower and temporary. Those excluded from protection may face reassessment and reduced income even if a suitable employer is unavailable. Terms such as mild and severe need operational definitions, appeals and costed support. Better employment outcomes are possible, but assumed benefit reductions should not be counted as evidence that health needs have diminished or that claimants can obtain sustainable work.",
+      "sourceIds": [
+        "support-pip",
+        "support-atw"
+      ],
+      "related": [
+        "claim-welfare-employer-disability"
+      ]
+    },
+    {
+      "id": "claim-welfare-fraud-error",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "Fraud prevention is not a recoverable cash pot",
+      "proposal": "Tighten benefit fraud and error enforcement.",
+      "counter": "Preventing incorrect payments can save money, but fraud, mistakes, recoveries and legitimate claims must be distinguished.",
+      "critique": "Stopping deliberate misrepresentation and correcting mistakes can protect public funds and confidence in welfare. DWP statistics distinguish fraud from claimant error and official error, and separately identify underpayments. Those categories imply different solutions: better data and clearer processes may address mistakes, while investigation is needed for suspected deception. An estimated overpayment is not automatically an amount that can be recovered or permanently prevented. Enforcement has staffing, technology and legal costs, and some prevented spending may already appear in the baseline. Legitimate claimants can face delays or hardship if broad checks are inaccurate, so appeal outcomes and underpayments belong in the assessment too. Historical official estimates demonstrate the categories but do not verify Reform’s future saving. A robust proposal would publish additional net recoveries and prevention assumptions, delivery costs and safeguards, avoiding any implication that the wider disability caseload represents fraud.",
+      "sourceIds": [
+        "support-fraud"
+      ],
+      "related": [
+        "claim-fiscal-savings"
+      ]
+    },
+    {
+      "id": "claim-welfare-indexation-child-cap",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "Indexation and the two-child cap reduce household support",
+      "proposal": "Change benefit indexation and reintroduce the two-child benefit cap.",
+      "counter": "These can generate fiscal savings by lowering entitlements, with consequences for purchasing power and child poverty.",
+      "critique": "Indexation determines how the value of support changes as prices or earnings rise. A less generous formula can lower expenditure relative to a baseline while leaving nominal awards unchanged, so the practical effect depends on inflation and the replacement rule. Reinstating the two-child limit would restrict support for larger families, including households with working parents. The government’s modelling of removal indicates that this policy materially affects relative child poverty; its exact estimates cannot simply be reversed for an unspecified future reinstatement because caseloads and transition rules may differ. Taxpayers could benefit from lower spending, and supporters may emphasise incentives and consistency with family budgeting. Children do not choose household size, however, and lower income can increase pressure on schools, health services and councils. The plan needs distributional analysis, clear exceptions and an explicit account of those secondary costs.",
+      "sourceIds": [
+        "support-child-limit"
+      ],
+      "related": [
+        "claim-welfare-seven-thousand"
+      ]
+    },
+    {
+      "id": "claim-welfare-seven-thousand",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "18–19",
+      "title": "£7,000 per household is a spending comparison",
+      "proposal": "Non-pension welfare is forecast to cost the equivalent of £7,000 per household annually by 2031.",
+      "counter": "Dividing spending by households is not the typical household’s benefit receipt or an equal tax charge.",
+      "critique": "An aggregate cost expressed per household can communicate the scale of a budget. It does not show who receives support, who finances it, or the distribution of need. Non-pension welfare covers different purposes, including disability, housing, children and low-paid employment, so it should not be equated with payments to people choosing not to work. The projected year, price basis and household-count denominator also matter: a nominal future total can rise with prices and population even when real support per recipient changes little. Reducing avoidable expenditure could leave resources for taxpayers or other services. Cutting legitimate entitlements instead shifts resources away from households with particular needs. Assessing the claim therefore requires the underlying forecast and categories, followed by policy-specific evidence on net savings and hardship. The number alone cannot justify the citizenship, disability or indexation proposals.",
+      "sourceIds": [
+        "support-uc-method",
+        "support-pip"
+      ],
+      "related": [
+        "claim-welfare-citizenship",
+        "claim-welfare-indexation-child-cap"
+      ]
+    },
+    {
+      "id": "claim-welfare-employer-disability",
+      "number": null,
+      "category": "Welfare claims",
+      "page": "33, endnote 20",
+      "title": "Employer incentives need support beyond the workplace",
+      "proposal": "Consider a further employer NI cut in exchange for managing employee disabilities, with no obligations on firms employing fewer than six people.",
+      "counter": "A payroll incentive may improve retention, but cannot replace independent support for people without suitable employment.",
+      "critique": "An employer contribution discount could encourage investment in adjustments, occupational health and retention when a worker develops a condition. The plan’s exemption for firms with fewer than six employees reduces burdens on very small businesses, but also raises questions about the support available to their workers. Existing law already requires reasonable adjustments, and Access to Work provides help beyond that duty; the new system would need to explain how these interact. Incentives should reward additional support rather than subsidise actions employers would have taken anyway. Workers whose needs are costly or unpredictable could still face recruitment disadvantage if employers become responsible for managing more risk. Unemployed and self-employed disabled people also need a clear route to help. Any savings depend on actual retention and health outcomes, offset against the NI revenue forgone and the costs of administration and enforcement.",
+      "sourceIds": [
+        "support-adjustments",
+        "support-atw"
+      ],
+      "related": [
+        "claim-welfare-disability-redesign"
+      ]
+    },
+    {
+      "id": "claim-net-zero-spending",
+      "number": null,
+      "category": "Spending and services",
+      "page": "19",
+      "title": "Cancelling investment has costs beyond this year’s budget",
+      "proposal": "Cut industrial decarbonisation, transport grants, heat networks, land carbon schemes, boiler upgrades, CCS and electric-car grants; end Great British Energy spending except nuclear, and extra government decarbonisation costs, excluding levies, tax reliefs and mandates addressed separately.",
+      "counter": "Cash savings can be real, but the net case includes commitments, replacement investment and future energy and climate exposure.",
+      "critique": "The proposal covers several distinct programmes rather than a single administrative budget. Ending grants could lower near-term public spending and benefit taxpayers who value other uses more highly. It would also change investment decisions for manufacturers, installers, households and project developers, with consequences depending on contracts and transition rules. Nuclear is explicitly retained within Great British Energy, so the proposal should not be described as ending every public energy investment. The document also excludes bill levies, tax reliefs and regulatory mandates from this savings category; adding their effects again would risk double counting. The Climate Change Committee’s work illustrates that decarbonisation involves coordinated sector changes and affected workers. Its advice does not prove every subsidy is efficient. Each cancellation needs a separate assessment of delivery value, termination liabilities, future operating savings forgone and exposure to fossil fuel prices or emissions costs.",
+      "sourceIds": [
+        "support-ccc-budget"
+      ],
+      "related": [
+        "claim-fiscal-savings"
+      ]
+    },
+    {
+      "id": "claim-spending-aid-cap",
+      "number": null,
+      "category": "Spending and services",
+      "page": "19–20",
+      "title": "A £1 billion aid ceiling forces explicit priorities",
+      "proposal": "Cap the overseas budget at £1 billion while retaining international organisations serving UK interests, Ukraine aid and emergency humanitarian relief.",
+      "counter": "The cap can save money, but retained commitments and overlap with domestic refugee spending determine the net reduction.",
+      "critique": "An aid ceiling would release resources for domestic priorities if expenditure genuinely falls against the relevant baseline. The plan preserves several purposes, so the question is how much each receives within the £1 billion and which existing commitments are cancelled. Humanitarian emergencies are uncertain, and predictable funding can matter to health, food security and conflict response. People receiving aid would experience the immediate effects, while the UK could also lose diplomatic influence or preventive capacity. Official aid statistics include eligible refugee costs incurred inside the UK, showing why aid cannot always be treated as money spent overseas. The costing must reconcile this category with the separate saving from ending migrant hotels. A transparent proposal would identify the budget boundary, retained allocations, termination obligations and treatment of extraordinary emergencies, allowing taxpayers to compare a clear fiscal benefit with the programmes forgone.",
+      "sourceIds": [
+        "support-aid",
+        "support-hotels"
+      ],
+      "related": [
+        "claim-spending-migrant-hotels"
+      ]
+    },
+    {
+      "id": "claim-spending-civil-service",
+      "number": null,
+      "category": "Spending and services",
+      "page": "20–21; 33, endnote 30",
+      "title": "68,500 roles is a gross reduction",
+      "proposal": "Initially cut about 68,500 FTE roles (13%), halve policy posts, cut communications 60% and HR about two-thirds, protect frontline services, and claim £4.2bn annual cash savings plus £1bn lower future pension liabilities, including redundancy costs.",
+      "counter": "Future pension liabilities are not today’s cash, and extra DWP reassessment staff reduce the net headcount saving.",
+      "critique": "The plan distinguishes near-term cash savings from lower future pension liabilities, which should remain separate in any presentation. A smaller future liability is not an additional pound available to fund an immediate tax cut. Endnote 30 also acknowledges that welfare reassessments may require more DWP staff, making the headline a gross reduction. The operational question is how policy, communications and HR work is reduced rather than transferred to consultants, managers or frontline staff. Some functions may be consolidated efficiently, benefiting taxpayers without harming services. Others support recruitment, fraud prevention and implementation of the plan itself. Cabinet Office statistics show that operational delivery forms the majority of the Civil Service, reinforcing the need to identify the actual roles affected. Delivery requires a departmental workforce plan, realistic redundancy timing, contractor costs and measured service outcomes, not an assumption that support roles have no operational value.",
+      "sourceIds": [
+        "support-civil-service"
+      ],
+      "related": [
+        "claim-welfare-fraud-error",
+        "claim-welfare-disability-redesign"
+      ]
+    },
+    {
+      "id": "claim-spending-alb-budgets",
+      "number": null,
+      "category": "Spending and services",
+      "page": "21",
+      "title": "A 7.5% budget cut is not automatically efficiency",
+      "proposal": "Reduce covered arm’s-length body budgets overall by 7.5%, claiming about £2.3bn annually, with variable cuts, periodic parliamentary renewal, and exclusions for NHS England, Network Rail and bodies separately abolished.",
+      "counter": "Different bodies perform different tasks, so savings depend on which activities end and which obligations remain.",
+      "critique": "Arm’s-length bodies can sometimes share corporate services, improve procurement or stop outdated work. Those changes could save taxpayers money while retaining useful outputs. A percentage budget target, however, does not identify such opportunities or establish their size. Regulators, research bodies and grant distributors may respond by reducing inspections, investment or services, raising charges, or shifting work into departments. Users and regulated businesses can then face delays or weaker oversight. The exclusions matter: the proposal does not impose this reduction on NHS England or Network Rail, and bodies separately abolished must not also generate the same saving here. Parliamentary renewal may improve scrutiny if it is substantive and resourced, but repeated uncertainty can disrupt staffing and contracts. A credible estimate needs body-level baselines, statutory responsibilities, implementation costs and service consequences, with genuine efficiencies distinguished from decisions to provide less.",
+      "sourceIds": [
+        "support-obr-baseline",
+        "support-civil-service"
+      ],
+      "related": [
+        "claim-spending-civil-service",
+        "claim-fiscal-savings"
+      ]
+    },
+    {
+      "id": "claim-spending-migrant-hotels",
+      "number": null,
+      "category": "Spending and services",
+      "page": "22, 31",
+      "title": "Ending hotels requires a replacement asylum system",
+      "proposal": "Count savings from ending migrant hotel spending from 2028/29.",
+      "counter": "Removing a costly accommodation type does not remove the cost of processing claims or housing people who remain eligible.",
+      "critique": "Hotel dependence can be expensive and unsuitable for residents and local communities. Faster, lawful case decisions and well-procured alternatives could reduce both cost and disruption. The fiscal saving must nevertheless be net of dispersal accommodation, transition contracts, caseworkers, appeals and any support still required. The National Audit Office found that some large-site alternatives were expected to cost more than hotels, demonstrating why a closure announcement alone is insufficient. Demand also depends on arrivals, decision backlogs and the time people remain in supported accommodation. The plan starts its saving in 2028/29, so delivery milestones before that year are material. Some asylum costs can count towards aid, requiring reconciliation with the separate aid reduction. A credible estimate identifies which costs disappear, which move elsewhere and how accommodation obligations will be met without simply transferring pressure to councils and homelessness services.",
+      "sourceIds": [
+        "support-hotels",
+        "support-aid"
+      ],
+      "related": [
+        "claim-spending-aid-cap"
+      ]
+    },
+    {
+      "id": "claim-defence",
+      "number": null,
+      "category": "Spending and services",
+      "page": "18, 31",
+      "title": "Defence ambitions need a common timetable",
+      "proposal": "Fund the Defence Investment Plan shortfall and provide extra defence, border-security and public-safety allowance; the text says 3% defence spending by 2030 while the table says by 2029/30.",
+      "counter": "An allowance is useful provision, but its adequacy depends on scope, delivery costs and a consistent target year.",
+      "critique": "Additional defence funding can strengthen readiness, procurement and support for service personnel, while border and public-safety funding can improve operational capacity. The proposal therefore contains spending increases as well as cuts. Its target wording needs care: calendar 2030 and financial year 2029/30 are not identical deadlines, and the document uses both. The percentage also depends on future GDP and the definition of eligible defence expenditure. Equipment commitments, recruitment, maintenance and industrial capacity determine how quickly money becomes usable capability. A general allowance creates flexibility but does not demonstrate that every named objective is fully funded. Taxpayers benefit only if spending delivers useful outcomes rather than cost overruns. Reviewers need a reconciliation of the specific Defence Investment Plan provision with the wider allowance and any border costs associated with ending hotels, so the same spending need is neither omitted nor counted twice.",
+      "sourceIds": [
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-fiscal-spending",
+        "claim-spending-migrant-hotels"
+      ]
+    },
+    {
+      "id": "claim-spending-degree-funding",
+      "number": null,
+      "category": "Spending and services",
+      "page": "21–22",
+      "title": "Course earnings are an incomplete measure of value",
+      "proposal": "Stop new loans for the bottom 20% of course-and-university combinations by long-term economic outcomes; let current students finish, allow cultural and strategic exceptions, protect teacher, nursing, midwifery and allied medical training, and stop loans to foreign nationals.",
+      "counter": "Targeting weak provision may improve value, but earnings rankings and nationality restrictions affect access as well as quality.",
+      "critique": "Removing support from persistently poor provision could protect students from courses that offer limited educational or employment value. The proposed unit is the course-and-university combination, not an automatic ban on entire subjects, and current students are promised completion funding. Explicit strategic, cultural and professional exceptions also matter. Long-term earnings still reflect prior attainment, regional wages, family background and unpaid or public-service work, not just teaching quality. A ranking can disadvantage providers serving less affluent communities unless those factors are handled carefully. Ending loans for foreign nationals is a separate eligibility change: existing English student finance already uses residence and immigration-status rules, and settled residents can qualify. Savings depend on which borrowers lose support and their likely repayments, rather than the full face value of loans. The policy needs transparent metrics, appeals and evidence about alternative routes available to affected applicants.",
+      "sourceIds": [
+        "support-student-eligibility"
+      ],
+      "related": [
+        "claim-spending-overseas-loans",
+        "claim-spending-nhs-training"
+      ]
+    },
+    {
+      "id": "claim-spending-overseas-loans",
+      "number": null,
+      "category": "Spending and services",
+      "page": "21–22",
+      "title": "A loan-book revaluation is not immediate collection",
+      "proposal": "Strengthen overseas student-loan collection and count an initial positive revaluation of the loan book.",
+      "counter": "Better recovery can help taxpayers, but revised expected repayments are different from cash received.",
+      "critique": "Borrowers do not lose their repayment obligations by moving overseas. Student Loans Company guidance already requires income information and repayments above country-specific thresholds, with arrears arising when obligations are not met. Better tracing and enforcement could increase collections and reduce unfairness to compliant borrowers. The additional gain must be measured against that existing system and after administration, litigation and international collection costs. An initial positive loan-book revaluation reflects a changed expectation about future repayments; it is not the same as collecting the money now. Its fiscal treatment also depends on the accounting measure being discussed. Graduates with low incomes may legitimately owe little in a given year, so residence abroad alone is not evidence of evasion. The plan needs evidence that new collection mechanisms change actual repayment behaviour, a credible cash profile and a clear separation of recurring recoveries from one-off accounting effects.",
+      "sourceIds": [
+        "support-overseas-loans",
+        "support-ons-finances"
+      ],
+      "related": [
+        "claim-fiscal-borrowing"
+      ]
+    },
+    {
+      "id": "claim-spending-nhs-training",
+      "number": null,
+      "category": "Spending and services",
+      "page": "18",
+      "title": "More training places need a full clinical pathway",
+      "proposal": "Uncap medical school places and offer 0% student loans for nurses to expand domestic NHS training.",
+      "counter": "Training incentives can help, but placement capacity, postgraduate posts and retention determine the workforce gain.",
+      "critique": "Removing a numerical cap can allow additional medical students where universities and hospitals can train them safely. Zero-interest nursing loans could reduce borrowing costs and encourage some applicants. Neither measure alone guarantees more qualified staff working in the NHS: clinical placements, educators, facilities, living costs and postgraduate training posts all constrain the pathway. Loan interest relief also has different value depending on whether a graduate would otherwise repay the balance before write-off. Nurses facing immediate maintenance costs may respond differently from those expecting high lifetime repayments. Patients and staff could benefit if expansion reduces shortages, but benefits arrive over years and depend on retention and working conditions. The National Audit Office’s workforce-modelling review highlights the importance of transparent assumptions. A complete estimate would fund the training pipeline and publish expected additional completions and NHS retention, rather than equating offered places with available clinicians.",
+      "sourceIds": [
+        "support-nhs-workforce",
+        "support-student-eligibility"
+      ],
+      "related": [
+        "claim-fiscal-spending"
+      ]
+    },
+    {
+      "id": "claim-spending-triple-lock",
+      "number": null,
+      "category": "Spending and services",
+      "page": "32",
+      "title": "Baseline pension funding still carries future risk",
+      "proposal": "Preserve the State Pension triple lock for this Parliament and the next; the plan says its cost is already in the OBR baseline.",
+      "counter": "A baseline commitment need not be charged twice, but inflation and earnings shocks can still raise its cost.",
+      "critique": "The triple lock protects the basic and new State Pension through the highest of earnings growth, CPI inflation or 2.5%. Pensioners gain predictability and protection against falling behind wages or prices. If that policy is already included in the comparison forecast, retaining it is not an additional policy cost relative to that baseline. That is a legitimate accounting distinction, not evidence that the commitment is free. The OBR identifies sensitivity to inflation and earnings volatility, alongside demographic pressure, so actual spending can exceed a central forecast. Protecting pension uprating while changing working-age benefit indexation also has distributional consequences between households and generations. The plan’s assurance should therefore be read as a statement about its chosen baseline, subject to independent reconciliation. Long-term affordability remains relevant even where the near-term fiscal table contains no separate new charge for preserving the policy.",
+      "sourceIds": [
+        "support-pensions"
+      ],
+      "related": [
+        "claim-welfare-indexation-child-cap",
+        "claim-fiscal-timing"
+      ]
+    },
+    {
+      "id": "claim-fiscal-savings",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "22, 30–31",
+      "title": "Savings totals need net, comparable components",
+      "proposal": "State nominal savings rising from £39.88bn in 2027/28 to £87.48bn in 2031/32 across welfare, Net Zero, aid, hotels, administration, loans and smaller measures.",
+      "counter": "A summed table is only as reliable as its underlying baselines, delivery assumptions and avoidance of overlap.",
+      "critique": "The totals are the document’s nominal annual figures, not independently certified resources available today. Nominal savings in later years can reflect price growth and a rising baseline as well as larger policy effects. Several categories need particular reconciliation: aid and asylum accommodation can overlap; administration includes gross staff reductions; pension-liability reductions differ from near-term cash; student-loan revaluation differs from actual recovery. Separately listed energy levies and tax changes should not be added to spending savings a second time. Genuine efficiencies could fund tax cuts without equivalent service losses, while entitlement reductions primarily redistribute resources. The effect on affected households depends on that distinction. A reproducible fiscal bridge would show each measure’s baseline, recurring cash effect, one-off accounting treatment, implementation cost and interaction with other measures. Until then, the aggregate is a party costing claim rather than proof that the full amount can be spent elsewhere.",
+      "sourceIds": [
+        "support-ons-finances",
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-spending-civil-service",
+        "claim-spending-overseas-loans"
+      ]
+    },
+    {
+      "id": "claim-fiscal-revenue",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "31",
+      "title": "Net tax reductions include offsetting revenues",
+      "proposal": "Show net revenue reductions of £26.74bn to £39.68bn, alongside immigration-fee increases stated at £1.36bn initially and £3.52bn finally.",
+      "counter": "Net revenue loss is not the gross value of tax cuts, and fee receipts depend on behaviour and the table’s treatment.",
+      "critique": "A package can cut some taxes while raising charges or levies elsewhere. The relevant borrowing effect is the net change in public receipts, while the distributional effect depends on who pays and benefits. Higher immigration fees could raise revenue from applicants and sponsoring organisations, but may also change application volumes, employer decisions and administrative demand. The document’s fee line must be reconciled with its net revenue reduction before being treated as an additional offset; otherwise it may be counted twice. The same principle applies to the migrant labour levy and the employer NI reduction discussed elsewhere in the plan. Households and businesses can benefit from lower taxes, yet those gains do not imply every taxpayer gains equally. Independent scrutiny needs gross and net receipts, behavioural assumptions, administrative costs and a clear account of which measures start in each year of the forecast.",
+      "sourceIds": [
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-fiscal-savings",
+        "claim-fiscal-timing"
+      ]
+    },
+    {
+      "id": "claim-fiscal-spending",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "18, 30–31",
+      "title": "The plan includes substantial new spending",
+      "proposal": "Provide specific defence and NHS-training increases plus an additional allowance of £10bn initially, rising to £15bn, including defence and Home Office needs.",
+      "counter": "An unallocated allowance provides flexibility but needs a spending plan before adequacy can be judged.",
+      "critique": "The fiscal story is not simply total savings minus tax cuts. The document also deducts specific spending increases and a wider allowance, which is essential to an honest account of its borrowing arithmetic. Defence, training, border operations and public safety can produce benefits for service users and national resilience, but they compete for the same envelope. A general allowance may prudently recognise costs not yet specified. It can also conceal an unresolved mismatch if several expensive promises are assumed to fit without programme-level estimates. Implementation of welfare assessments, restructuring and asylum accommodation may require additional provision elsewhere. Reviewers should ask which costs are already within departmental baselines, which sit in the specific lines and which must be met from the allowance. Treating it as a guaranteed funding solution without that mapping would overstate certainty about service protection and the resulting deficit reduction.",
+      "sourceIds": [
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-defence",
+        "claim-spending-nhs-training"
+      ]
+    },
+    {
+      "id": "claim-fiscal-borrowing",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "30–31",
+      "title": "Lower borrowing can coexist with a worse current deficit",
+      "proposal": "Claim lower net borrowing every year, including £46.86bn in 2029/30 and £30.89bn in 2030/31, while the current deficit worsens by £4.24bn in 2027/28.",
+      "counter": "Borrowing, the current budget and cash requirements measure different things, so these statements are not inherently contradictory.",
+      "critique": "Public sector net borrowing includes current spending and net investment, whereas the current budget excludes net investment. A package that cuts investment while reducing taxes can therefore lower overall borrowing and simultaneously worsen the current balance. Financial transactions and accounting adjustments can also affect debt and balance-sheet measures differently from borrowing. The document’s first-year deterioration deserves explicit mention because it qualifies the impression of immediate improvement on every fiscal test. Lower borrowing can reduce financing needs, but its economic value depends on what expenditure is removed and whether future growth or service capacity suffers. The quoted future borrowing totals and percentage improvements remain outputs of the plan’s own comparison, not ONS observations or independently verified OBR policy forecasts. A useful assessment needs a bridge across current spending, capital spending, receipts, loans and cash, rather than one preferred headline treated as a complete fiscal verdict.",
+      "sourceIds": [
+        "support-ons-finances"
+      ],
+      "related": [
+        "claim-spending-overseas-loans",
+        "claim-fiscal-headroom"
+      ]
+    },
+    {
+      "id": "claim-fiscal-headroom",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "30–31",
+      "title": "Headroom depends on the selected rule and forecast",
+      "proposal": "Report £26.59bn deficit-rule and £36.68bn balance-sheet-rule headroom in 2029/30, while reserving the possibility of different future Reform rules.",
+      "counter": "Modelled headroom is a forecast margin against a chosen test, not an independently available spending fund.",
+      "critique": "Fiscal rules specify a target, a measure and a date. A package can improve one test while leaving other risks unresolved, especially when accounting treatment differs between borrowing, debt and net financial liabilities. The plan tests itself against government rules but does not commit to adopting those same rules in office. Its headroom figures should therefore be described as results under that comparison, not a settled framework for future policy. A margin can provide resilience against forecast errors and benefit taxpayers by reducing the need for abrupt adjustments. It can also disappear when growth, interest rates, valuations or delivery assumptions change. Spending it would itself alter the result. Independent scrutiny should reproduce the baseline and policy adjustments, identify which savings affect each target and test adverse scenarios. The existence of an official OBR forecast does not mean the OBR has certified the party’s calculated margins.",
+      "sourceIds": [
+        "support-ons-finances",
+        "support-obr-baseline"
+      ],
+      "related": [
+        "claim-fiscal-timing"
+      ]
+    },
+    {
+      "id": "claim-fiscal-timing",
+      "number": null,
+      "category": "Fiscal claims",
+      "page": "30–31",
+      "title": "Sequencing makes the fiscal promise conditional",
+      "proposal": "Use the March 2026 OBR outlook adjusted for interest rates, an in-house tax-and-transfer model, and election-time flexibility on sequencing except First 100 Days pledges.",
+      "counter": "A real official baseline does not independently validate the plan’s adjustments, model or delivery timetable.",
+      "critique": "The March 2026 OBR outlook is an identifiable official publication. This confirms the named forecast exists, but the plan’s adaptation, later-year extension and in-house policy model require separate scrutiny. Interest rates, wages, migration, inflation and implementation dates can change both receipts and expenditure. Some measures need legislation, new administration or training capacity, so immediate tax reductions and delayed savings create a particular financing risk. Flexibility at election time may be sensible when conditions change, yet it also means the printed annual profile is conditional rather than a binding schedule for the entire programme. First 100 Days commitments narrow that flexibility for selected measures. Taxpayers, claimants and service providers need a clear distinction between those firm promises and assumptions. A credible assessment should publish model inputs, interactions, sensitivity ranges and updated comparisons, while avoiding any claim that the supplied document’s provenance or adjusted baseline has been independently authenticated here.",
+      "sourceIds": [
+        "support-obr-baseline",
+        "support-boe-inflation"
+      ],
+      "related": [
+        "claim-spend-tax-borrow-less",
+        "claim-fiscal-headroom"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "support-ons-finances",
+      "publisher": "Office for National Statistics",
+      "title": "Public sector finances, UK: September 2026",
+      "date": "2026-10-21",
+      "url": "https://www.ons.gov.uk/economy/governmentpublicsectorandtaxes/publicsectorfinance/bulletins/publicsectorfinances/september2026",
+      "accessed": "2026-10-27",
+      "finding": "Provisional month-end net debt exceeded £3 trillion; debt, borrowing, current deficit and balance-sheet measures have distinct definitions."
+    },
+    {
+      "id": "support-obr-baseline",
+      "publisher": "HM Treasury / Office for Budget Responsibility",
+      "title": "March 2026 Economic and fiscal outlook",
+      "date": "2026-03-03",
+      "url": "https://www.gov.uk/government/publications/march-2026-economic-and-fiscal-outlook",
+      "accessed": "2026-10-27",
+      "finding": "Official publication confirms the March 2026 forecast exists; it does not validate Reform’s adjusted baseline or in-house policy costings."
+    },
+    {
+      "id": "support-ons-income",
+      "publisher": "Office for National Statistics",
+      "title": "Understanding real household disposable income per head",
+      "date": "2025-11-07",
+      "url": "https://www.ons.gov.uk/economy/nationalaccounts/uksectoraccounts/articles/understandingrealhouseholddisposableincomeperhead/2025-11-07",
+      "accessed": "2026-10-27",
+      "finding": "RHDI combines household income, benefits, taxes and inflation before dividing by population; it is an average, not a median pay measure."
+    },
+    {
+      "id": "support-boe-inflation",
+      "publisher": "Bank of England",
+      "title": "How do higher interest rates help to lower inflation?",
+      "date": "2023-05-11",
+      "url": "https://www.bankofengland.co.uk/explainers/how-do-higher-interest-rates-help-to-lower-inflation",
+      "accessed": "2026-10-27",
+      "finding": "Interest rates affect demand with a lag; energy shocks and subsequent domestic price pressures have distinct mechanisms."
+    },
+    {
+      "id": "support-ccc-budget",
+      "publisher": "Climate Change Committee",
+      "title": "The Seventh Carbon Budget",
+      "date": null,
+      "url": "https://www.theccc.org.uk/publication/the-seventh-carbon-budget/",
+      "accessed": "2026-10-27",
+      "finding": "Independent statutory advice models a transition across sectors and highlights declining fossil fuel production and transition planning for affected workers."
+    },
+    {
+      "id": "support-work-activity",
+      "publisher": "Department for Work and Pensions",
+      "title": "Evaluation of Mandatory Work Activity (RR823)",
+      "date": "2012-12-01",
+      "url": "https://www.gov.uk/government/publications/evaluation-of-mandatory-work-activity-rr823",
+      "accessed": "2026-10-27",
+      "finding": "Documents an earlier, targeted mandatory community-work programme; its specific design differs from Reform’s broad proposal."
+    },
+    {
+      "id": "support-uc-method",
+      "publisher": "Department for Work and Pensions",
+      "title": "Universal Credit statistics: background information and methodology",
+      "date": "2026-08-18",
+      "url": "https://www.gov.uk/government/publications/universal-credit-statistics-background-information-and-methodology/universal-credit-statistics-background-information-and-methodology",
+      "accessed": "2026-10-27",
+      "finding": "Access depends on immigration status and other conditions; recorded nationality may lag naturalisation and claimants can be in work."
+    },
+    {
+      "id": "support-pip",
+      "publisher": "UK Government",
+      "title": "Personal Independence Payment: What PIP is for",
+      "date": null,
+      "url": "https://www.gov.uk/pip",
+      "accessed": "2026-10-27",
+      "finding": "PIP addresses extra daily-living and mobility costs for physical or mental conditions and can be received while working."
+    },
+    {
+      "id": "support-fraud",
+      "publisher": "Department for Work and Pensions",
+      "title": "Fraud and error in the benefit system: financial year 2024 to 2025 estimates",
+      "date": "2025-06-12",
+      "url": "https://www.gov.uk/government/statistics/fraud-and-error-in-the-benefit-system-financial-year-2024-to-2025-estimates",
+      "accessed": "2026-10-27",
+      "finding": "Official estimates separate fraud, claimant error, official error and underpayments; this historical release is not the latest 2026 estimate."
+    },
+    {
+      "id": "support-child-limit",
+      "publisher": "Department for Work and Pensions",
+      "title": "Removing the two-child limit on Universal Credit: Impact on low income poverty levels in the United Kingdom",
+      "date": "2025-12-04",
+      "url": "https://www.gov.uk/government/publications/poverty-impacts-of-social-security-changes-at-budget-2025/removing-the-two-child-limit-on-universal-credit-impact-on-low-income-poverty-levels-in-the-united-kingdom",
+      "accessed": "2026-10-27",
+      "finding": "Government modelling estimates removal reduces relative low income; it is a modelled comparison, not proof of the precise impact of a future reinstatement."
+    },
+    {
+      "id": "support-adjustments",
+      "publisher": "UK Government",
+      "title": "Reasonable adjustments for workers with disabilities or health conditions",
+      "date": null,
+      "url": "https://www.gov.uk/reasonable-adjustments-for-disabled-workers",
+      "accessed": "2026-10-27",
+      "finding": "Employers already have duties to remove substantial disability-related disadvantage, including changes to equipment, location and hours."
+    },
+    {
+      "id": "support-atw",
+      "publisher": "Department for Work and Pensions",
+      "title": "Access to Work factsheet for employers",
+      "date": "2025-10-07",
+      "url": "https://www.gov.uk/government/publications/access-to-work-guide-for-employers/access-to-work-factsheet-for-employers",
+      "accessed": "2026-10-27",
+      "finding": "Access to Work can fund support beyond employers’ existing reasonable-adjustment obligations."
+    },
+    {
+      "id": "support-aid",
+      "publisher": "Foreign, Commonwealth & Development Office",
+      "title": "Statistics on International Development: provisional UK Official Development Assistance spend 2025",
+      "date": null,
+      "url": "https://www.gov.uk/government/statistics/statistics-on-international-development-provisional-uk-official-development-assistance-spend-2025/statistics-on-international-development-provisional-uk-official-development-assistance-spend-2025",
+      "accessed": "2026-10-27",
+      "finding": "Aid statistics include eligible in-donor refugee costs as well as overseas development programmes, creating potential overlap with asylum savings."
+    },
+    {
+      "id": "support-civil-service",
+      "publisher": "Cabinet Office",
+      "title": "Statistical bulletin - Civil Service Statistics: 2026",
+      "date": "2026-07-29",
+      "url": "https://www.gov.uk/government/statistics/civil-service-statistics-2026/statistical-bulletin-civil-service-statistics-2026",
+      "accessed": "2026-10-27",
+      "finding": "Distinguishes full-time equivalents from headcount and shows operational delivery constitutes the majority of civil servants."
+    },
+    {
+      "id": "support-hotels",
+      "publisher": "National Audit Office",
+      "title": "Investigation into asylum accommodation",
+      "date": "2024-03-20",
+      "url": "https://www.nao.org.uk/reports/investigation-into-asylum-accommodation/",
+      "accessed": "2026-10-27",
+      "finding": "Hotel dependence reflects accommodation demand and backlogs; some alternative large sites were expected to cost more than hotels."
+    },
+    {
+      "id": "support-student-eligibility",
+      "publisher": "UK Government",
+      "title": "Student finance for undergraduates: Eligibility",
+      "date": null,
+      "url": "https://www.gov.uk/student-finance/who-qualifies",
+      "accessed": "2026-10-27",
+      "finding": "Student support eligibility combines course, residence and nationality or status; it is not a universal entitlement for overseas students."
+    },
+    {
+      "id": "support-overseas-loans",
+      "publisher": "Student Loans Company",
+      "title": "How arrears can accrue on your student loan account when you’re overseas",
+      "date": null,
+      "url": "https://www.gov.uk/guidance/how-arrears-can-accrue-on-your-student-loan-account-when-youre-overseas",
+      "accessed": "2026-10-27",
+      "finding": "Borrowers overseas must supply income details and repay above country-specific thresholds; arrears and repayment duties already exist."
+    },
+    {
+      "id": "support-nhs-workforce",
+      "publisher": "National Audit Office",
+      "title": "NHS England’s modelling for the Long Term Workforce Plan",
+      "date": "2024-03-22",
+      "url": "https://www.nao.org.uk/reports/nhs-englands-modelling-for-the-long-term-workforce-plan/",
+      "accessed": "2026-10-27",
+      "finding": "Workforce planning depends on training, retention, productivity and transparent assumptions; independent review identified modelling weaknesses."
+    },
+    {
+      "id": "support-pensions",
+      "publisher": "Office for Budget Responsibility",
+      "title": "Fiscal risks and sustainability – July 2026",
+      "date": "2026-07-07",
+      "url": "https://obr.uk/frs/fiscal-risks-and-sustainability-july-2026/",
+      "accessed": "2026-10-27",
+      "finding": "The triple lock increases pension spending over time and exposes costs to the volatility of earnings and inflation."
+    }
+  ]
+}
