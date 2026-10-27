@@ -6,7 +6,7 @@ Build “rfrm debunked”: a searchable public evidence page examining the suppl
 
 - Preserve the source summary unchanged. Cover exactly 64 numbered measures, in their original order and ten original categories, with permanent IDs `measure-01` through `measure-64`.
 - Add unnumbered supporting claims for all headline, tax, bill, welfare, spending, education, health, pension and fiscal proposals. Record a coverage inventory in RESEARCH.md; duplicate proposals link to their numbered analysis.
-- Every article carries the attributed proposal, original number where applicable, category and printed PDF page, one visible counterargument, and a native details disclosure labelled “Debunked” with 120–200 words of analysis, relevant sources and related articles.
+- Every article carries the attributed proposal, original number where applicable, category and printed PDF page, one visible counterargument, and a native details disclosure labelled “Analysis and sources” with 120–200 words of analysis, relevant sources and related articles.
 - Research real sources and record publisher, title, date, exact URL, access date and supported finding. Prefer UK primary evidence, verify jurisdiction and legal status, separate forecast from fact and trade-off. Do not imply the supplied PDF has independently verified official provenance.
 - Include complete, faithful transcriptions of the savings table on printed page 22 and fiscal table on page 31. Preserve every year, value and empty cell; explain nominal £bn, parentheses, cash versus accounting, gross versus net, current deficit versus borrowing, and unverified model assumptions.
 
