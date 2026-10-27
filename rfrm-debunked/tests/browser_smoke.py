@@ -22,6 +22,110 @@ def check(condition,label):
     results.append(label)
 def visible_ids(page):return page.locator('.policy:not([hidden])').evaluate_all('(els)=>els.map(el=>el.id)')
 def no_overflow(page):return page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
+
+def exercise_controls(context, url):
+    """Click each control family, including retries and filtered deep links."""
+    page = context.new_page()
+    page.on('pageerror', lambda err: errors.append(str(err)))
+    page.goto(url)
+    page.wait_for_selector('html.js')
+
+    # Assigning the value without an input event tests the actual submit button.
+    page.locator('#query').evaluate('(el) => { el.value = "#12"; }')
+    page.locator('#filters button[type="submit"]').click()
+    check(visible_ids(page) == ['measure-12'], 'Search button submits without reloading')
+    page.locator('#reset').click()
+    topics = page.locator('.topic-nav a[data-topic]').evaluate_all('(els) => els.map(el => el.dataset.topic)')
+    for topic in topics:
+        page.locator(f'.topic-nav a[data-topic="{topic}"]').click()
+        expected = page.locator('.policy').evaluate_all(
+            '(els, topic) => els.filter(el => topic === "all" || el.dataset.topic === topic).map(el => el.id)', topic)
+        assert visible_ids(page) == expected, topic
+        assert page.locator('#topic-select').input_value() == topic, topic
+    check(True, f'All {len(topics)} desktop topic controls filter and synchronise')
+    page.locator('#reset').click()
+
+    # These are native browser clicks, not assignments to details.open.
+    summaries = page.locator('details > summary')
+    for i in range(summaries.count()):
+        summary = summaries.nth(i)
+        summary.click()
+        assert summary.evaluate('(el) => el.parentElement.open'), i
+        summary.click()
+        assert not summary.evaluate('(el) => el.parentElement.open'), i
+    check(True, f'All {summaries.count()} analysis, audit and evidence disclosures toggle')
+
+    page.evaluate('window.copiedURLs = []; Object.defineProperty(navigator, "clipboard", {configurable:true, value:{writeText:async url => { window.copiedURLs.push(url); }}})')
+    article_ids = page.locator('.policy').evaluate_all('(els) => els.map(el => el.id)')
+    for article_id in article_ids:
+        button = page.locator(f'#{article_id} .copy-link')
+        button.click()
+        page.wait_for_function('(id) => document.querySelector(`#${id} .copy-link`).textContent === "Link copied"', arg=article_id)
+        assert page.evaluate('window.copiedURLs.at(-1)') == url + '#' + article_id
+    check(True, 'All 101 copy buttons send their own permanent URL to clipboard API')
+    page.evaluate('navigator.clipboard.writeText = () => Promise.reject(new Error("Denied"))')
+    page.locator('#measure-01 .copy-link').click()
+    page.wait_for_selector('#measure-01 .copy-fallback:not([hidden])')
+    check(page.locator('#measure-01 .copy-link').text_content() == 'Copy link', 'Failed retry clears stale copied feedback')
+    page.locator('#measure-02 .copy-link').click()
+    page.wait_for_selector('#measure-02 .copy-fallback:not([hidden])')
+    check(page.locator('.copy-fallback:not([hidden])').count() == 1, 'Copying another entry closes the previous fallback')
+
+    for target in ['measure-12-heading', 'measure-12-source-1']:
+        page.locator('#query').fill('no-such-entry-xyz')
+        page.evaluate('(id) => { location.hash = id; }', target)
+        page.wait_for_function('(id) => document.activeElement.id === id', arg=target)
+        check(len(visible_ids(page)) == 101 and page.locator('#measure-12 details').get_attribute('open') is not None,
+              f'Deep link {target} reveals filtered and collapsed content')
+    page.locator('#measure-12 summary').click()
+    page.locator('#measure-12 summary').click()
+    page.locator('#measure-12 .citations a').first.click()
+    page.wait_for_function('document.activeElement.id === "measure-12-source-1"')
+    check(True, 'Repeated source fragment returns keyboard focus to the citation')
+
+    page.evaluate('location.hash = "measure-12"')
+    page.wait_for_function('document.activeElement.id === "measure-12-heading"')
+    page.locator('#query').fill('no-such-entry-xyz')
+    page.locator('.number-grid a[href="#measure-12"]').click()
+    page.wait_for_function('document.activeElement.id === "measure-12-heading"')
+    check('measure-12' in visible_ids(page), 'Repeated number link clears conflicting filters')
+
+    topic = 'unlocking-the-north-sea'
+    page.evaluate('(topic) => { location.hash = "topic-" + topic; }', topic)
+    page.wait_for_function('(topic) => document.activeElement.id === "topic-" + topic', arg=topic)
+    page.locator(f'.topic-nav a[data-topic="{topic}"]').click()
+    check(page.locator('#topic-select').input_value() == topic and len(visible_ids(page)) < 101,
+          'Same-hash topic click retains its filter')
+    page.locator('#reset').click()
+    audit_id = page.locator('.audit-item').first.get_attribute('id')
+    page.evaluate('(id) => { location.hash = id; }', audit_id)
+    page.wait_for_function('(id) => document.activeElement.id === id', arg=audit_id)
+    check(page.locator(f'#{audit_id}').get_attribute('open') is not None, 'Audit fragment opens its disclosure')
+
+    page.locator('#query').fill('#12')
+    snapshot = page.locator('details').evaluate_all('(els) => els.map(el => el.open)')
+    # A nonblocking print implementation must remain prepared until afterprint.
+    page.evaluate('window.print = () => { window.printInvoked = true; window.dispatchEvent(new Event("beforeprint")); }')
+    page.locator('#print-page').click()
+    check(page.evaluate('window.printInvoked') and len(visible_ids(page)) == 101 and
+          page.locator('details:not([open])').count() == 0, 'Print button opens every entry until print completes')
+    page.evaluate('window.dispatchEvent(new Event("afterprint"))')
+    check(visible_ids(page) == ['measure-12'] and page.locator('details').evaluate_all('(els) => els.map(el => el.open)') == snapshot,
+          'Print button restores original filters and disclosures after completion')
+    page.evaluate('window.print = () => { throw new Error("Unavailable"); }')
+    page.locator('#print-page').click()
+    check(page.locator('#print-status').is_visible() and visible_ids(page) == ['measure-12'] and
+          page.locator('details').evaluate_all('(els) => els.map(el => el.open)') == snapshot,
+          'Print failure restores state and displays recovery guidance')
+    page.locator('#reset').click()
+    page.set_viewport_size({'width':390, 'height':1000})
+    for topic in topics:
+        page.locator('#topic-select').select_option(topic)
+        expected = page.locator('.policy').evaluate_all(
+            '(els, topic) => els.filter(el => topic === "all" || el.dataset.topic === topic).map(el => el.id)', topic)
+        assert visible_ids(page) == expected, topic
+    check(True, f'All {len(topics)} phone topic options work')
+    page.close()
 try:
  with sync_playwright() as p:
     browser_options={'headless':True,'args':['--no-sandbox']}
@@ -29,6 +133,7 @@ try:
     if executable:browser_options['executable_path']=executable
     browser=p.chromium.launch(**browser_options)
     context=browser.new_context(viewport={'width':1440,'height':1000})
+    exercise_controls(context, url)
     page=context.new_page();page.on('pageerror',lambda err:errors.append(str(err)))
     page.on('console',lambda msg:errors.append(msg.text) if msg.type=='error' else None)
     page.goto(url);page.wait_for_selector('html.js')
@@ -53,7 +158,7 @@ try:
     check(page.locator('.headline-card').count()==8,'Eight feature panels are separate from policy results')
     page.locator('#query').fill('#12')
     check(visible_ids(page)==['measure-12'],'Exact #12 query')
-    page.locator('[data-topic="unlocking-the-north-sea"]').click()
+    page.locator('.topic-nav a[data-topic="unlocking-the-north-sea"]').click()
     check(visible_ids(page)==[] and page.locator('#no-results').is_visible(),'Search AND topic, empty state')
     page.locator('#empty-reset').click()
     check(len(visible_ids(page))==101 and page.locator('#query').input_value()=='','Clear filters restores original entries')

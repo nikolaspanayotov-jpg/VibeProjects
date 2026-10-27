@@ -16,7 +16,7 @@ These checks establish static integrity and syntax. They do not establish browse
 
 ## Browser verification limitation
 
-Browser tests have **not passed and runtime behaviour has not been verified**. No mobile or desktop screenshots were captured or inspected. No successful browser check of search, filters, disclosures, hashes, copying, printing, keyboard focus, reduced motion, overflow, zoom, file URLs or HTTP hosting is claimed.
+Browser tests have **not passed and real-browser behaviour has not been verified**. No mobile or desktop screenshots were captured or inspected. No successful browser check of search, filters, disclosures, hashes, copying, printing, keyboard focus, reduced motion, overflow, zoom, file URLs or HTTP hosting is claimed. The later DOM/event checks below execute the application script with modelled browser APIs; they do not remove this limitation.
 
 The managed execution sandbox denied local socket creation when the browser smoke test attempted to start its temporary HTTP server (`PermissionError: [Errno 1] Operation not permitted`). An installed Chromium browser was subsequently found at `/usr/bin/chromium`; the root agent also encountered sandbox socket restrictions during browser launch. Attempts to run with additional network permission were aborted. They are not test results and are not treated as approvals or successful checks.
 
@@ -58,3 +58,34 @@ The shared container now owns safe-area-aware horizontal gutters; the headline s
 Static checks verify all 120 check statuses and note content (including linked notes), each compact summary, 20 audit disclosures and exactly two financial tables. Browser coverage now explicitly checks both container and reading gutters at 320px/390px, 44px numbered links, audit keyboard disclosure, phone overflow and print visibility without JavaScript. These browser additions have not been run in this socket-restricted environment; the browser limitation above still applies.
 
 The final scanability refinement keeps collapsed audit rows to policy name, published profile and “View disclosure details”; all six checks remain in each expansion. The number index uses six columns from 350px through 1000px and four below 350px, retaining 44px cells. Static audit and syntax checks passed after regeneration; browser coverage includes the 350px and 950px boundaries but remains unrun.
+
+## Control regression review — 27 October 2026
+
+The previous topic-filter selector matched both navigation links and every policy article because both carried `data-topic`. The handler called `preventDefault()` on clicks bubbling through an article, cancelling native summary and link actions and unexpectedly applying its topic filter. It now selects only `.topic-nav a[data-topic]`.
+
+Other fixes reveal and focus nested citation, heading and audit fragment targets; preserve topic filtering on repeated fragment clicks; clear stale copied feedback and older manual-copy fields; and restore state with visible recovery guidance when opening print throws. Normal print restoration still waits for `afterprint`, including browsers whose print call returns immediately. Modern closed-disclosure print styling also includes `::details-content`.
+
+The actual inline application JavaScript passed `tests/control_runtime.mjs` using Node and LinkeDOM 0.18.12. Eight regression groups cover:
+
+- Initial control visibility and all 101 entries.
+- Summary, permanent-link and source-link events in all 101 articles retain their default action and do not change the selected topic.
+- Form submission, exact-number and evidence searches, combined filters, empty-state reset and clear-all.
+- Every topic navigation link and select option.
+- All 64 measure fragments and repeated-fragment recovery.
+- Nested and initial citation fragments, topic and main navigation, malformed fragments and all 20 audit targets.
+- All 101 copy handlers, with successful and denied clipboard API responses, correct per-entry URLs, selected manual fallback and stale-feedback recovery.
+- Print preparation, non-blocking completion, exact filter/disclosure restoration, failed-print recovery and clearing an earlier error on retry.
+
+These tests parse the real HTML and dispatch events to the real application handlers. Location, animation frames, focus/selection, reflected disclosure state, clipboard and printing are explicitly modelled. They verify handler logic and DOM state; they do not verify browser rendering, native click/keyboard activation, actual clipboard permissions, or operating-system print dialogs.
+
+The regression test was also run against the inline script from commit `d88519d58f3c4bfc232a8b7834f8166254feacc8`. It failed with `Analysis summary click must keep its native disclosure default`, confirming that the test detects the original click-cancellation bug.
+
+Command used in this environment:
+
+```bash
+LINKEDOM_WORKER_PATH=/tmp/rfrm-linkedom-0.18.12.mjs node tests/control_runtime.mjs
+```
+
+The standalone worker was fetched from the upstream `WebReflection/linkedom` 0.18.12 GitHub source; SHA-256 `38824d3d2933bd753456e7e87558121cfd31c1c08dedcd72ef4be9a75907322c`. It is a temporary test dependency, not a site asset. Elsewhere, install the pinned test dependency with `npm install --prefix tests` and run `npm test --prefix tests`.
+
+The static audit and Python/JavaScript syntax checks passed after the fixes. The browser suite now includes actual clicks on every summary and copy button, every desktop/mobile topic control, the Search button, deep links and print recovery. A browser run was attempted again but stopped at local server startup with `PermissionError: [Errno 1] Operation not permitted`. None of its browser checks executed. The browser verification limitation above therefore still applies.
