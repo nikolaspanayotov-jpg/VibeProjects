@@ -15,7 +15,8 @@
       "related": [
         "measure-26",
         "measure-27"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-26",
@@ -32,7 +33,8 @@
       "related": [
         "measure-25",
         "measure-27"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-27",
@@ -49,7 +51,8 @@
       "related": [
         "measure-26",
         "measure-14"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-28",
@@ -66,7 +69,8 @@
       "related": [
         "measure-29",
         "measure-23"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-29",
@@ -83,7 +87,8 @@
       "related": [
         "measure-28",
         "measure-38"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-30",
@@ -100,7 +105,8 @@
       "related": [
         "measure-27",
         "measure-32"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-31",
@@ -117,7 +123,8 @@
       "related": [
         "measure-26",
         "measure-36"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-32",
@@ -134,7 +141,8 @@
       "related": [
         "measure-33",
         "measure-49"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-33",
@@ -151,7 +159,8 @@
       "related": [
         "measure-32",
         "measure-28"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-34",
@@ -160,16 +169,43 @@
       "page": 27,
       "title": "Cut employer NI for British workers",
       "proposal": "Reduce employer National Insurance for British workers from 15% to 13.8%, funded by a new Employers’ Migrant Labour Levy; introduce both in the second tax year.",
-      "counter": "A lower payroll tax could support hiring, but its benefits depend on who receives the relief and whether the proposed migrant levy can fund it.",
-      "critique": "Reducing the employer rate from 15% to 13.8% would lower the tax cost of eligible employment above the relevant threshold. It is an employer tax cut, rather than an automatic increase in take-home pay. Over time some benefit could reach workers through wages or employment, while some could remain in profits or lower prices. The OBR's analysis of employer NICs changes illustrates these channels, but is not a costing of this package. Reform ties the cut to a new migrant labour levy and delays both until the second tax year for design work. The revenue estimate must therefore allow for changed hiring, exemptions and avoidance. Defining British eligibility also adds payroll administration and difficult boundary cases. A levy that worsens shortages could raise costs for firms supplying the very infrastructure the plan wants built. The package needs independent costing and an implementation specification before its net employment effects can be judged.",
+      "counter": "The NI cut is funded pound for pound by projected migrant-levy receipts, so its funding depends on how employers respond to that levy.",
+      "critique": "Reducing the employer rate from 15% to 13.8% would lower the tax cost of eligible employment above the threshold. Some benefit could eventually reach workers through pay or hiring, but it is not an automatic take-home increase. The plan delays both this cut and the migrant levy until the second tax year. Its table then makes their annual costs and receipts exactly equal.\n\nThat is a published funding assumption, not proof the arithmetic is impossible. It needs a behavioural model because the levy is also intended to reduce reliance on the employment being taxed. Training, substitution and automation may improve productivity, while contraction or relocation could reduce output and receipts. Payroll definitions and exemptions matter too. Nationality-based treatment also raises a compatibility question for workers protected by Withdrawal Agreement equal-treatment provisions; the legal outcome cannot be inferred without the levy’s design. The tax promise should therefore be assessed with the levy, labour availability and implementation costs, rather than as a standalone reduction.",
       "sourceIds": [
         "infra-ni",
         "infra-incidence",
-        "infra-migration"
+        "official-plan-download",
+        "update-wa-guide"
       ],
       "related": [
         "measure-35",
         "measure-38"
+      ],
+      "evidenceLabel": "Costing uncertainty",
+      "evidencePanels": [
+        {
+          "title": "The funding dependency in the published table",
+          "paragraphs": [
+            "For 2028/29, 2029/30, 2030/31 and 2031/32 respectively, employer NI costs and migrant-levy receipts match at £7.14bn, £6.96bn, £6.76bn and £6.77bn. These are annual nominal amounts. They are two sides of one funding assumption, not two independent fiscal gains."
+          ],
+          "sourceIds": [
+            "official-plan-download"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "measure-35",
+          "reason": "The levy must finance the full cost shown here after employer responses and administration."
+        },
+        {
+          "id": "claim-fiscal-revenue",
+          "reason": "Both lines are already included in the net revenue figure."
+        },
+        {
+          "id": "claim-welfare-employer-disability",
+          "reason": "The separate disability-related NI incentive needs its own interaction treatment."
+        }
       ]
     },
     {
@@ -179,15 +215,43 @@
       "page": 27,
       "title": "Introduce a migrant labour levy",
       "proposal": "Introduce an Employers’ Migrant Labour Levy to discourage low-skilled foreign hiring, encourage British workers or automation and fund the British-worker NI cut from the second tax year.",
-      "counter": "The levy could change hiring incentives, but it cannot ensure suitable workers or viable automation are available where shortages occur.",
-      "critique": "An additional cost on migrant employment could encourage some businesses to train residents, raise pay or invest in equipment. But those responses require time, suitable applicants and investment finance. A business may instead reduce output, pass costs to customers or relocate work. The Migration Advisory Committee links immigration policy with skills and recognises that some occupations matter to industrial investment and infrastructure delivery. Nationality is also an imperfect guide to skill or local labour availability. Reform proposes the levy as funding for reducing British-worker employer NI from 15% to 13.8%, with both starting in the second tax year. Its design therefore matters to a substantial tax promise: who counts, which existing residents are covered, what exemptions apply and how employers report changes. If it successfully reduces the taxed employment base, receipts may fall. Published costing must account for that tension and for possible labour shortages in construction, care and other services.",
+      "counter": "A levy designed to reduce migrant hiring cannot be costed reliably without modelling the resulting changes in its own tax base.",
+      "critique": "An extra cost on migrant employment could encourage resident recruitment, training or automation. Those responses may be desirable, but they also change the base from which the levy collects revenue. Businesses may instead raise prices, reduce output, leave vacancies or relocate work. The published table assumes levy receipts exactly cover the British-worker employer NI cut in each year from 2028/29. That is feasible only under particular rates, coverage and behavioural assumptions; it is not established by matching the rows.\n\nA transparent model should show which existing residents are covered, exemptions, compliance costs and how hiring changes over time. Labour shortages could also impede the construction and care services on which other promises depend. Withdrawal Agreement provisions protect equal treatment for people within their scope, including worker social and tax advantages. A nationality-based employment levy therefore needs a specific legal-compatibility assessment. This is a potential obstacle, not an adjudicated finding of unlawfulness. Neither the revenue nor the desired substitution can simply be assumed in full.",
       "sourceIds": [
         "infra-migration",
-        "infra-incidence"
+        "official-plan-download",
+        "update-wa-guide"
       ],
       "related": [
         "measure-34",
         "measure-38"
+      ],
+      "evidenceLabel": "Costing uncertainty",
+      "evidencePanels": [
+        {
+          "title": "What would make this funding case reproducible?",
+          "paragraphs": [
+            "Publish the levy rate and liable population; model substitution into British labour, automation, output reduction and relocation; then reconcile the net receipts with the four NI-cut costings. Articles 23 and 24 of the Withdrawal Agreement also require attention for protected people. The precise legal effect depends on the eventual scheme."
+          ],
+          "sourceIds": [
+            "official-plan-download",
+            "update-wa-guide"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "measure-34",
+          "reason": "Every fall in net levy receipts must be reconciled with the promised NI cut or another source of funding."
+        },
+        {
+          "id": "claim-welfare-citizenship",
+          "reason": "Nationality-based rules also need to distinguish immigration status, treaty protection and current UK-law rights."
+        },
+        {
+          "id": "measure-38",
+          "reason": "Domestic training and certification capacity affect how quickly substitution is possible."
+        }
       ]
     },
     {
@@ -205,7 +269,8 @@
       "related": [
         "measure-37",
         "measure-31"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-37",
@@ -223,7 +288,8 @@
       "related": [
         "measure-36",
         "measure-38"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-38",
@@ -240,7 +306,8 @@
       "related": [
         "measure-29",
         "measure-35"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-39",
@@ -257,7 +324,8 @@
       "related": [
         "measure-40",
         "measure-41"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-40",
@@ -274,7 +342,8 @@
       "related": [
         "measure-39",
         "measure-41"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-41",
@@ -292,7 +361,8 @@
       "related": [
         "measure-39",
         "measure-40"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     }
   ],
   "sources": [

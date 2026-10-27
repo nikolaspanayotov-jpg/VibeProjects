@@ -1,0 +1,151 @@
+[
+  {
+    "id": "headline-migrant-levy",
+    "title": "The NI cut relies on exactly matching levy receipts",
+    "label": "Costing uncertainty",
+    "text": "The table pairs £7.14bn of migrant-levy receipts with £7.14bn of employer NI cuts in 2028/29, with matching figures in every later year. Yet the levy is meant to encourage substitution and automation that can shrink its own tax base.",
+    "links": [
+      {
+        "id": "measure-35",
+        "label": "Examine the levy and its funding"
+      },
+      {
+        "id": "measure-34",
+        "label": "Follow the employer NI cut"
+      }
+    ],
+    "sourceIds": [
+      "official-plan-download"
+    ]
+  },
+  {
+    "id": "headline-costing-model",
+    "title": "The arithmetic is published; the model is not",
+    "label": "Costing uncertainty",
+    "text": "Reform calls the plan fully costed and publishes its totals. The plan and linked policy page do not supply the model needed to reproduce them. Our audit tests all 20 policy lines reaching £1bn in any forecast year against six disclosure questions.",
+    "links": [
+      {
+        "id": "claim-fiscal-timing",
+        "label": "Examine the costing assumptions"
+      },
+      {
+        "id": "costing-audit",
+        "label": "Check the major-line audit"
+      }
+    ],
+    "sourceIds": [
+      "official-plan-download"
+    ]
+  },
+  {
+    "id": "headline-overtime",
+    "title": "Overtime’s behavioural cost needs an explanation",
+    "label": "Costing uncertainty",
+    "text": "Tax Policy Associates’ May estimate was about £14bn, including roughly £7bn of pay relabelling and £3bn of company arbitrage. Reform’s October table shows £4.44–£8.54bn from 2028/29 to 2031/32. Different vintages and assumptions make these non-like-for-like figures, not a directly measurable extra shortfall.",
+    "links": [
+      {
+        "id": "claim-overtime",
+        "label": "Examine overtime and its costing"
+      }
+    ],
+    "sourceIds": [
+      "update-tpa-overtime",
+      "official-plan-download"
+    ]
+  },
+  {
+    "id": "headline-euss-welfare",
+    "title": "Keeping settled status does not settle benefit rights",
+    "label": "Legal obstacle",
+    "text": "Reform’s FAQ keeps settled status but removes welfare. Current EUSS guidance and UK-law deeming protect benefit rights, while the Withdrawal Agreement protects equal treatment for people within its scope. Those distinct protections need a specific compatibility assessment.",
+    "links": [
+      {
+        "id": "claim-welfare-citizenship",
+        "label": "Examine eligibility and protected rights"
+      }
+    ],
+    "sourceIds": [
+      "update-reform-euss",
+      "update-public-funds",
+      "update-euss-section45",
+      "update-wa-guide"
+    ]
+  },
+  {
+    "id": "headline-carbon-border",
+    "title": "EU carbon-border rules already operate",
+    "label": "Distributional trade-off",
+    "text": "The EU’s definitive CBAM began in January 2026 and allows credit for verified carbon charges paid abroad. Abolishing the UK ETS could increase the EU importer’s charge on covered British exports while reducing domestic carbon costs. Linkage and exemptions remain contingent on agreement.",
+    "links": [
+      {
+        "id": "measure-06",
+        "label": "Examine the UK ETS proposal"
+      },
+      {
+        "id": "measure-07",
+        "label": "Distinguish the UK import mechanism"
+      }
+    ],
+    "sourceIds": [
+      "update-eu-cbam",
+      "update-ets-overview",
+      "update-linkage"
+    ]
+  },
+  {
+    "id": "headline-uc",
+    "title": "A £486 tax cut can leave about £219 after UC",
+    "label": "Distributional trade-off",
+    "text": "If the whole income-tax gain is exposed to the 55% Universal Credit earnings taper and enough entitlement remains, UC falls £267.30 and the household keeps £218.70. This conditional example excludes council-tax support and other interactions.",
+    "links": [
+      {
+        "id": "claim-personal-allowance",
+        "label": "See the worked household example"
+      }
+    ],
+    "sourceIds": [
+      "tax-uc",
+      "update-net-earnings"
+    ]
+  },
+  {
+    "id": "headline-energy",
+    "title": "Energy policy costs are real; so is gas exposure",
+    "label": "Distributional trade-off",
+    "text": "IFS puts taxes and levies excluding VAT at about 17% of the average household electricity bill in July–October 2026. That is not the combined energy bill. Gas-driven wholesale pricing remains a separate cause, and moving costs to taxation does not eliminate them.",
+    "links": [
+      {
+        "id": "claim-energy-bills",
+        "label": "Examine bills and their baseline"
+      },
+      {
+        "id": "claim-net-zero-spending",
+        "label": "Follow the spending cuts"
+      }
+    ],
+    "sourceIds": [
+      "update-ifs-electricity",
+      "update-committee-energy"
+    ]
+  },
+  {
+    "id": "headline-concessions",
+    "title": "There are credible diagnoses and worthwhile aims",
+    "label": "Reasonable policy with caveats",
+    "text": "The OBR documents firms bunching below the VAT registration threshold. Addressing that barrier has merit, as does improving nuclear regulation. The remaining questions concern the remedy, cost, safety and delivery—not whether every diagnosis is false.",
+    "links": [
+      {
+        "id": "claim-vat-threshold",
+        "label": "Read the VAT-threshold concession"
+      },
+      {
+        "id": "measure-09",
+        "label": "Read the nuclear-regulation caveats"
+      }
+    ],
+    "sourceIds": [
+      "tax-obr-vat",
+      "energy-fingleton"
+    ]
+  }
+]

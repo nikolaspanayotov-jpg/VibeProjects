@@ -16,7 +16,8 @@
         "measure-21",
         "measure-22",
         "measure-59"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-43",
@@ -34,7 +35,8 @@
         "measure-33",
         "measure-48",
         "measure-59"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-44",
@@ -51,7 +53,8 @@
       "related": [
         "measure-38",
         "measure-47"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-45",
@@ -68,7 +71,8 @@
       "related": [
         "measure-42",
         "measure-46"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-46",
@@ -85,7 +89,8 @@
       "related": [
         "measure-21",
         "measure-45"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-47",
@@ -101,7 +106,8 @@
       ],
       "related": [
         "measure-44"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-48",
@@ -118,7 +124,8 @@
       "related": [
         "measure-43",
         "measure-59"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-49",
@@ -136,7 +143,8 @@
       "related": [
         "measure-32",
         "measure-51"
-      ]
+      ],
+      "evidenceLabel": "Legal obstacle"
     },
     {
       "id": "measure-50",
@@ -153,7 +161,8 @@
       "related": [
         "measure-51",
         "measure-57"
-      ]
+      ],
+      "evidenceLabel": "Strong evidence"
     },
     {
       "id": "measure-51",
@@ -171,7 +180,8 @@
         "measure-49",
         "measure-50",
         "measure-52"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-52",
@@ -189,7 +199,8 @@
         "measure-51",
         "measure-63",
         "measure-64"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-53",
@@ -206,7 +217,8 @@
       "related": [
         "measure-51",
         "measure-64"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-54",
@@ -223,7 +235,8 @@
       "related": [
         "measure-38",
         "measure-58"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-55",
@@ -240,7 +253,8 @@
       "related": [
         "measure-12",
         "measure-56"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-56",
@@ -257,7 +271,8 @@
       "related": [
         "measure-55",
         "measure-62"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "measure-57",
@@ -274,7 +289,8 @@
       "related": [
         "measure-50",
         "measure-56"
-      ]
+      ],
+      "evidenceLabel": "Strong evidence"
     },
     {
       "id": "measure-58",
@@ -292,7 +308,8 @@
       "related": [
         "measure-54",
         "measure-62"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-59",
@@ -310,7 +327,8 @@
         "measure-21",
         "measure-42",
         "measure-48"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-60",
@@ -327,7 +345,8 @@
       "related": [
         "measure-48",
         "measure-64"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-61",
@@ -344,7 +363,8 @@
       "related": [
         "measure-58",
         "measure-64"
-      ]
+      ],
+      "evidenceLabel": "Strong evidence"
     },
     {
       "id": "measure-62",
@@ -361,7 +381,8 @@
       "related": [
         "measure-56",
         "measure-58"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-63",
@@ -378,7 +399,8 @@
       "related": [
         "measure-52",
         "measure-64"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-64",
@@ -396,7 +418,8 @@
         "measure-51",
         "measure-52",
         "measure-63"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     }
   ],
   "sources": [

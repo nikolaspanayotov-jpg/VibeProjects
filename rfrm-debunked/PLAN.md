@@ -27,3 +27,7 @@ Work only inside this project. Use vanilla HTML/CSS/JS with one runtime index.ht
 ## Acceptance
 
 Check exact numbering/category/page/coverage, article lengths and citations, table transcription and fiscal treatment. Exercise title and collapsed-text search, #12, AND topic, empty/reset, multiple disclosures, initial/changed hashes including filtered targets, copy fallback, print/restoration, file and HTTP, JavaScript disabled, keyboard focus, reduced motion, 320/390/1440 widths, 200% zoom, screenshots and browser errors. Report only checks actually run and any evidence limitations.
+
+## Approved editorial update, 27 October 2026
+
+The subsequent user feedback adds eight prominent headline panels, explicit argument-type labels for all 101 articles, visible numerical examples and cross-policy dependencies, and a six-dimension disclosure audit covering all 20 policy lines reaching an absolute £1bn in any forecast year. It strengthens the NI/levy, overtime, EUSS, EU CBAM, energy and Universal Credit analysis with verified sources. The original provenance limitation above records the initial brief; the publisher-hosted plan and its 26 October 2026 launch have since been verified. RESEARCH.md records the scoped comparison without claiming byte-for-byte identity. All 64 permanent numbered IDs, all 101 entries and the preserved source summary remain unchanged in scope.

@@ -16,7 +16,8 @@
       "related": [
         "claim-fiscal-savings",
         "claim-fiscal-timing"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-debt-three-trillion",
@@ -32,7 +33,8 @@
       ],
       "related": [
         "claim-fiscal-borrowing"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-tax-burden-comparison",
@@ -48,7 +50,8 @@
       ],
       "related": [
         "claim-spend-tax-borrow-less"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-living-standards-counterfactual",
@@ -64,7 +67,8 @@
       ],
       "related": [
         "claim-growth-inflation-causality"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-growth-inflation-causality",
@@ -81,7 +85,8 @@
       ],
       "related": [
         "claim-spend-tax-borrow-less"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-welfare-community-work",
@@ -97,7 +102,8 @@
       ],
       "related": [
         "claim-welfare-disability-redesign"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-welfare-citizenship",
@@ -106,13 +112,42 @@
       "page": "18–19",
       "title": "Citizenship restrictions affect settled workers too",
       "proposal": "Make British citizenship a condition for almost every benefit; the plan says one in seven UC claimants are neither British nor Irish.",
-      "counter": "Recorded nationality is not a measure of unlawful claims, unemployment or savings available without wider consequences.",
-      "critique": "Universal Credit already requires qualifying immigration status and other eligibility conditions. DWP warns that nationality records can lag naturalisation, and some claimants work while receiving help with low earnings, housing or children. The plan’s one-in-seven figure therefore needs a date, population and treatment of unknown records; it should not be presented as a count of people without a lawful entitlement. A citizenship rule could reduce expenditure and prioritise citizens, its stated objective. It would also affect settled residents, refugees and mixed-nationality families, potentially including British children supported through a parent’s claim. The promised exceptions and legal treatment of existing entitlements would be central to the actual saving. Costs could shift to councils or emergency support if households become destitute. The fiscal case requires net effects and transition arrangements, rather than multiplying a claimant share by total benefit spending.",
+      "counter": "Withdrawing benefits while retaining settled status raises a specific equal-treatment question under current UK law and, for protected people, the Withdrawal Agreement.",
+      "critique": "Reform’s FAQ says settled status would remain while welfare entitlement is withdrawn. That distinction does not resolve the legal question. Home Office guidance currently treats EUSS settled-status holders as eligible on the same basis as British citizens, subject to ordinary benefit conditions. Section 45 implementation also deems citizens’ rights to apply to an additional cohort under UK law; this must not be confused with everyone independently falling within the treaty’s personal scope.\n\nFor protected people, Withdrawal Agreement national equal-treatment and worker social-advantage provisions raise a potential compatibility obstacle. The proposal needs to identify exceptions, affected cohorts, transition arrangements and its legal route before counting secure savings. This is not a court finding that the policy is unlawful. Settled workers and mixed-nationality families, potentially including British children, could lose income or seek help from councils. The plan’s one-in-seven UC statistic is also not a count of unlawful claims: nationality records and ordinary eligibility need separate treatment. Net savings require more than multiplying a claimant share by spending.",
       "sourceIds": [
+        "update-reform-euss",
+        "update-public-funds",
+        "update-euss-section45",
+        "update-wa-guide",
         "support-uc-method"
       ],
       "related": [
         "claim-welfare-seven-thousand"
+      ],
+      "evidenceLabel": "Legal obstacle",
+      "evidencePanels": [
+        {
+          "title": "Status, treaty scope and benefit entitlement are separate questions",
+          "paragraphs": [
+            "The current guidance and the proposed party position point in different directions. The legal assessment must distinguish people protected directly by the Withdrawal Agreement from people whose equivalent rights arise through UK-law deeming. Keeping an immigration status does not by itself demonstrate that a change to its associated benefit rights is compatible with those protections."
+          ],
+          "sourceIds": [
+            "update-reform-euss",
+            "update-public-funds",
+            "update-euss-section45",
+            "update-wa-guide"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "measure-35",
+          "reason": "A nationality-based levy presents a related, but distinct, protected-worker compatibility question."
+        },
+        {
+          "id": "claim-fiscal-savings",
+          "reason": "The welfare saving depends on lawful coverage, transition and replacement costs."
+        }
       ]
     },
     {
@@ -126,10 +161,33 @@
       "critique": "Keeping disabled people connected to supportive employers can improve income, independence and retention. However, PIP addresses daily-living and mobility costs and can already be paid to people in work; it is not simply compensation for unemployment. A replacement must distinguish capacity for particular jobs from the extra costs of disability, including fluctuating and mental-health conditions. The plan’s stated protections should be reported in full: pension-age people, severely disabled cash recipients and children have explicit safeguards, while the three-year exemption is narrower and temporary. Those excluded from protection may face reassessment and reduced income even if a suitable employer is unavailable. Terms such as mild and severe need operational definitions, appeals and costed support. Better employment outcomes are possible, but assumed benefit reductions should not be counted as evidence that health needs have diminished or that claimants can obtain sustainable work.",
       "sourceIds": [
         "support-pip",
-        "support-atw"
+        "support-atw",
+        "update-ifs-welfare"
       ],
       "related": [
         "claim-welfare-employer-disability"
+      ],
+      "evidenceLabel": "Distributional trade-off",
+      "evidencePanels": [
+        {
+          "title": "The scale of the welfare dependency",
+          "paragraphs": [
+            "IFS’s August 2026 response assessed proposed annual cuts of around £50bn, falling almost entirely on a working-age benefit system forecast to cost just over £200bn in 2030/31. It also noted that earlier tighter disability assessments had saved less than expected. That is evidence about scale and delivery risk, not independent scoring of every October line."
+          ],
+          "sourceIds": [
+            "update-ifs-welfare"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "claim-fiscal-savings",
+          "reason": "The August welfare package supplies the largest single savings line."
+        },
+        {
+          "id": "claim-spending-civil-service",
+          "reason": "Reassessments need administrative capacity despite the gross staff-reduction pledge."
+        }
       ]
     },
     {
@@ -146,7 +204,8 @@
       ],
       "related": [
         "claim-fiscal-savings"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-welfare-indexation-child-cap",
@@ -162,7 +221,8 @@
       ],
       "related": [
         "claim-welfare-seven-thousand"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-welfare-seven-thousand",
@@ -180,7 +240,8 @@
       "related": [
         "claim-welfare-citizenship",
         "claim-welfare-indexation-child-cap"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-welfare-employer-disability",
@@ -197,7 +258,8 @@
       ],
       "related": [
         "claim-welfare-disability-redesign"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-net-zero-spending",
@@ -213,7 +275,8 @@
       ],
       "related": [
         "claim-fiscal-savings"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-spending-aid-cap",
@@ -230,7 +293,8 @@
       ],
       "related": [
         "claim-spending-migrant-hotels"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-spending-civil-service",
@@ -247,7 +311,8 @@
       "related": [
         "claim-welfare-fraud-error",
         "claim-welfare-disability-redesign"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-spending-alb-budgets",
@@ -265,7 +330,8 @@
       "related": [
         "claim-spending-civil-service",
         "claim-fiscal-savings"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-spending-migrant-hotels",
@@ -282,7 +348,8 @@
       ],
       "related": [
         "claim-spending-aid-cap"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-defence",
@@ -299,7 +366,8 @@
       "related": [
         "claim-fiscal-spending",
         "claim-spending-migrant-hotels"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-spending-degree-funding",
@@ -316,7 +384,8 @@
       "related": [
         "claim-spending-overseas-loans",
         "claim-spending-nhs-training"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-spending-overseas-loans",
@@ -333,7 +402,8 @@
       ],
       "related": [
         "claim-fiscal-borrowing"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-spending-nhs-training",
@@ -350,7 +420,8 @@
       ],
       "related": [
         "claim-fiscal-spending"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-spending-triple-lock",
@@ -367,7 +438,8 @@
       "related": [
         "claim-welfare-indexation-child-cap",
         "claim-fiscal-timing"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-fiscal-savings",
@@ -385,7 +457,8 @@
       "related": [
         "claim-spending-civil-service",
         "claim-spending-overseas-loans"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-fiscal-revenue",
@@ -402,7 +475,8 @@
       "related": [
         "claim-fiscal-savings",
         "claim-fiscal-timing"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-fiscal-spending",
@@ -419,7 +493,8 @@
       "related": [
         "claim-defence",
         "claim-spending-nhs-training"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-fiscal-borrowing",
@@ -436,7 +511,8 @@
       "related": [
         "claim-spending-overseas-loans",
         "claim-fiscal-headroom"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-fiscal-headroom",
@@ -445,14 +521,26 @@
       "page": "30–31",
       "title": "Headroom depends on the selected rule and forecast",
       "proposal": "Report £26.59bn deficit-rule and £36.68bn balance-sheet-rule headroom in 2029/30, while reserving the possibility of different future Reform rules.",
-      "counter": "Modelled headroom is a forecast margin against a chosen test, not an independently available spending fund.",
-      "critique": "Fiscal rules specify a target, a measure and a date. A package can improve one test while leaving other risks unresolved, especially when accounting treatment differs between borrowing, debt and net financial liabilities. The plan tests itself against government rules but does not commit to adopting those same rules in office. Its headroom figures should therefore be described as results under that comparison, not a settled framework for future policy. A margin can provide resilience against forecast errors and benefit taxpayers by reducing the need for abrupt adjustments. It can also disappear when growth, interest rates, valuations or delivery assumptions change. Spending it would itself alter the result. Independent scrutiny should reproduce the baseline and policy adjustments, identify which savings affect each target and test adverse scenarios. The existence of an official OBR forecast does not mean the OBR has certified the party’s calculated margins.",
+      "counter": "The reported margins depend on the chosen fiscal rules and forecast; interest-rate effects must be reconciled, not deducted twice.",
+      "critique": "Fiscal headroom is a forecast margin against a chosen rule, not money in a separate account. Reform tests its package against the government’s rules while reserving the right to choose different rules later. Its £26.59bn deficit-rule and £36.68bn balance-sheet-rule margins therefore describe that particular comparison, not a settled future framework. Delivery failures or changes in wages, migration, growth and valuations can alter the result.\n\nIFS’s October assessment illustrates the uncertainty: higher rates could add around £10bn to 2029/30 borrowing relative to March, while inflation-related revenues and other changes can offset part of the pressure. That is not an extra £10bn to subtract mechanically from Reform’s margin, because the plan already adjusts borrowing costs. The correct task is to reconcile assumptions and dates. A buffer can protect taxpayers from abrupt changes, but spending it changes the buffer itself. Independent scrutiny needs a reproducible bridge from baseline to policy result and stress tests for the largest risks.",
       "sourceIds": [
-        "support-ons-finances",
+        "official-plan-download",
+        "update-ifs-fiscal",
         "support-obr-baseline"
       ],
       "related": [
         "claim-fiscal-timing"
+      ],
+      "evidenceLabel": "Costing uncertainty",
+      "dependencies": [
+        {
+          "id": "claim-fiscal-timing",
+          "reason": "The missing model and delivery profile determine whether the stated margins can be reproduced."
+        },
+        {
+          "id": "claim-fiscal-borrowing",
+          "reason": "Different fiscal measures respond differently to investment and accounting changes."
+        }
       ]
     },
     {
@@ -462,15 +550,28 @@
       "page": "30–31",
       "title": "Sequencing makes the fiscal promise conditional",
       "proposal": "Use the March 2026 OBR outlook adjusted for interest rates, an in-house tax-and-transfer model, and election-time flexibility on sequencing except First 100 Days pledges.",
-      "counter": "A real official baseline does not independently validate the plan’s adjustments, model or delivery timetable.",
-      "critique": "The March 2026 OBR outlook is an identifiable official publication. This confirms the named forecast exists, but the plan’s adaptation, later-year extension and in-house policy model require separate scrutiny. Interest rates, wages, migration, inflation and implementation dates can change both receipts and expenditure. Some measures need legislation, new administration or training capacity, so immediate tax reductions and delayed savings create a particular financing risk. Flexibility at election time may be sensible when conditions change, yet it also means the printed annual profile is conditional rather than a binding schedule for the entire programme. First 100 Days commitments narrow that flexibility for selected measures. Taxpayers, claimants and service providers need a clear distinction between those firm promises and assumptions. A credible assessment should publish model inputs, interactions, sensitivity ranges and updated comparisons, while avoiding any claim that the supplied document’s provenance or adjusted baseline has been independently authenticated here.",
+      "counter": "The official plan publishes its arithmetic, but the plan and linked policy page do not provide the model needed to reproduce its results.",
+      "critique": "Calling a plan fully costed is different from publishing the model needed to reproduce its results. Reform’s official document provides annual totals, but page 30 describes an indicative profile using an adjusted March 2026 OBR baseline and an in-house tax-and-transfer model. The reviewed plan and linked policy page do not disclose enough inputs, behavioural responses and calculations to reproduce the full result. That is a disclosure gap, not proof that the figures are false.\n\nTiming is part of the costing. Tax reductions can begin before savings materialise, while legislation, payroll systems, reassessments and contract changes require capacity and money. Election-time sequencing flexibility may be sensible, but it makes the annual profile conditional, apart from specified First 100 Days commitments. The six-part audit separates published headline amounts from the detail needed to test baselines, coverage, behaviour, administration, interactions and sensitivity. Taxpayers and service users need that detail, plus an updated delivery timetable, before treating the stated fiscal margins as secure.",
       "sourceIds": [
-        "support-obr-baseline",
-        "support-boe-inflation"
+        "official-plan",
+        "official-launch",
+        "official-plan-download",
+        "support-obr-baseline"
       ],
       "related": [
         "claim-spend-tax-borrow-less",
         "claim-fiscal-headroom"
+      ],
+      "evidenceLabel": "Costing uncertainty",
+      "dependencies": [
+        {
+          "id": "claim-fiscal-headroom",
+          "reason": "Headroom changes when delivery dates, economic assumptions or classifications change."
+        },
+        {
+          "id": "claim-fiscal-savings",
+          "reason": "Cash savings and accounting gains cannot be treated as interchangeable funding."
+        }
       ]
     }
   ],

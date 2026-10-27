@@ -15,7 +15,8 @@
       "related": [
         "measure-12",
         "measure-20"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-12",
@@ -34,7 +35,8 @@
         "measure-11",
         "measure-13",
         "measure-17"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-13",
@@ -52,7 +54,8 @@
         "measure-12",
         "measure-14",
         "measure-15"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-14",
@@ -70,7 +73,8 @@
         "measure-15",
         "measure-24",
         "measure-27"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-15",
@@ -89,7 +93,8 @@
         "measure-13",
         "measure-14",
         "measure-25"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-16",
@@ -107,7 +112,8 @@
       "related": [
         "measure-18",
         "measure-19"
-      ]
+      ],
+      "evidenceLabel": "Strong evidence"
     },
     {
       "id": "measure-17",
@@ -125,7 +131,8 @@
         "measure-12",
         "measure-18",
         "measure-19"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-18",
@@ -143,7 +150,8 @@
         "measure-16",
         "measure-17",
         "measure-20"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-19",
@@ -161,7 +169,8 @@
         "measure-16",
         "measure-17",
         "measure-18"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-20",
@@ -178,7 +187,8 @@
       "related": [
         "measure-11",
         "measure-18"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-21",
@@ -198,7 +208,8 @@
         "measure-23",
         "measure-24",
         "measure-42"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-22",
@@ -215,7 +226,8 @@
       "related": [
         "measure-21",
         "measure-42"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "measure-23",
@@ -233,7 +245,8 @@
         "measure-21",
         "measure-24",
         "measure-28"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "measure-24",
@@ -252,7 +265,8 @@
         "measure-14",
         "measure-21",
         "measure-23"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     }
   ],
   "sources": [

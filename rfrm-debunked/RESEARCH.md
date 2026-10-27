@@ -1,16 +1,16 @@
 # Research and coverage record
 
-Reviewed: **27 October 2026**. Scope: **64 original numbered measures, 37 supporting entries, 10 original numbered categories, 104 source records**. All analyses are 120–200 words excluding attributed proposals and sources. This is a critical examination, not an independent fiscal certification.
+Reviewed: **27 October 2026**. Scope: **64 original numbered measures, 37 supporting entries, 10 original numbered categories, 120 source records**. All analyses are 120–200 words excluding attributed proposals and sources. This is a critical examination, not an independent fiscal certification.
 
 ## Source document and limits
 
-The user supplied a 36-page PDF titled *Economic Rescue Plan*. Its printed pages run through page 33, followed by covers/blank material. Title, foreword, branding and metadata do not independently establish official provenance. No authenticated publisher-hosted original was established. Policy attributions refer to that supplied document; they do not imply current party policy has been independently confirmed.
+Reform UK published its official *Economic Rescue Plan* on **26 October 2026**. The [official policy page](https://reformparty.uk/policies/economic-rescue-plan) links a [36-page PDF download](https://reformparty.uk/policies/economic-rescue-plan/download), and the [official launch](https://reformparty.uk/news/reform-economic-rescue-plan-jenrick-tax-free-overtime-growth) supplies the publication date. The official text was checked against the supplied document, including the foreword, 64 measures and p.30 model/phasing passages. This establishes the publisher-hosted version’s provenance; no byte-for-byte identity is claimed. The original supplied summary remains preserved as historical source notes.
 
 The preserved summary is [economic-rescue-plan-summary.md](./economic-rescue-plan-summary.md). SHA-256: `6bd56fc035838ee613067efd673beaf0c02a8c3ae5893e38e489ac0d5ac76c8f`. It has not been edited. Numbered categories follow the preserved summary headings; detailed page breaks were checked in the extracted supplied PDF: measures 11–14 p.25, 15–20 p.26, 53–54 p.28, 55–64 p.29.
 
 Sources were searched, opened and read through the web connector on the access dates recorded below. Live guidance may lack a displayed publication date; that is marked rather than invented. Some legislation records use the original enactment date with the accessed version identified in the URL/finding. A publication date is not itself a statement about commencement. Historical evidence is labelled in analyses. Sources primarily establish rules, data and mechanisms; proposed estimates remain attributed where replication is unavailable.
 
-Evidence gaps: the plan's in-house tax-and-transfer model and full policy-level behavioural assumptions were not available. Counts such as 2.9 million income-tax exits, 320,000 VAT beneficiaries, £860 average reservist saving and the exact £1,300 household promise have not been independently reproduced. Tax burden comparison and trend-based £11,000 gap require complete series/method choices. No independently audited net package costing, distributional model or implementation timetable was established. These are explicit limits, not findings that every proposal is false. Sources may share underlying official data; two government pages are not independent corroboration. No uncited independent certification is implied.
+Evidence gaps: the official plan and linked policy page do not provide the in-house model needed to reproduce the published arithmetic. This is a scoped disclosure finding, not a claim about every document that may exist elsewhere. Counts such as 2.9 million income-tax exits, 320,000 VAT beneficiaries, £860 average reservist saving and the exact £1,300 household promise have not been independently reproduced. Tax burden comparison and trend-based £11,000 gap require complete series/method choices. No independently audited net package costing, distributional model or implementation timetable was established. These are explicit limits, not findings that every proposal is false. Sources may share underlying official data; two government pages are not independent corroboration. No uncited independent certification is implied.
 
 ## Coverage inventory against the summary
 
@@ -136,6 +136,39 @@ Every substantive bullet, numbered proposal, narrative proposal and financial ro
 | 203 | - Reform does **not commit to its own future fiscal rules** in this document. It tests the plan against the government's rules and says its own rules may differ. (p. 30) | [claim-fiscal-headroom](./index.html#claim-fiscal-headroom) |
 | 204 | - The document says policy timing and sequencing may change depending on conditions at election time, except for **“First 100 Days” pledges**. (p. 30) | [claim-fiscal-timing](./index.html#claim-fiscal-timing) |
 
+## Editorial update and evidence types
+
+The page now leads with eight static headline panels: five principal funding/legal/trade questions and three panels on UC, energy and credible concessions. Every one of the 101 policy articles has an explicit evidence label describing the argument, not an automatic truth verdict. Legal obstacles are potential compatibility issues, not findings of adjudicated unlawfulness. Worked examples and dependency panels remain outside the 120–200 word core critique and are included in DOM search.
+
+Updated analysis covers the exact NI/levy funding pair, non-like-for-like May TPA versus October overtime estimates, current EUSS rights and legal cohorts, paid-carbon credits under the EU CBAM regime and contingent ETS linkage, real electricity policy costs alongside gas exposure, the UC net-earnings example and baseline-sensitive fiscal headroom.
+
+## Major costing disclosure audit
+
+Scope: all 20 policy lines whose absolute effect reaches £1bn in any 2027/28–2031/32 year, excluding aggregates, memos and starting/closing stocks. The arithmetic is published; the model needed to reproduce it is not in the reviewed plan or its linked policy page. This is not evidence that every number is wrong or that no related material exists elsewhere. Published, Partial, Not provided in the plan, and Not applicable are disclosure statuses, not truth scores. Each question is recorded below; policy narrative notes identify where partial disclosure occurs. The NI/levy lines form one funding pair; overtime includes reservist pay; loan revaluation is not recurring cash.
+
+| Policy / printed p.31 table label / profile | Baseline | Take-up or coverage | Behaviour | Administration | Interactions | Sensitivity |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Personal allowance](./index.html#claim-personal-allowance) — Personal Allowance to £15k — £18.33bn → £21.09bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Partial: 2.9 million income-tax exits claimed; underlying population calculation not reproduced. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Household energy bills](./index.html#claim-energy-bills) — Cut energy bills by £250 — £4.92bn → £7.01bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Partial: Printed p.14–15 explains initial Treasury transfer of policy costs; complete tax/spending interaction calculation is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Permanent fuel-duty cut](./index.html#claim-fuel-duty) — Make 5p fuel duty cut permanent — £2.08bn → £2.03bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [VAT threshold](./index.html#claim-vat-threshold) — Increase VAT threshold — £1.48bn → £1.95bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Partial: 320,000 beneficiaries claimed; underlying business-level calculation not reproduced. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Energy Profits Levy abolition](./index.html#measure-04) — Abolish North Sea windfall tax — £1.17bn in 2027/28; later cells include blanks | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Employer NI cut](./index.html#measure-34) — Reverse Rachel Reeves’ employer NI increase — £7.14bn → £6.77bn, from 2028/29 | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Partial: Printed pp.15–16 and31 pair the levy with employer NI cuts; quantified behavioural interaction is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Migrant labour levy](./index.html#measure-35) — Introduce Migrant Workers Levy — £7.14bn → £6.77bn, from 2028/29 | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Partial: Printed pp.15–16 and31 pair the levy with employer NI cuts; quantified behavioural interaction is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Overtime including reservist pay](./index.html#claim-overtime) — No Tax on Overtime (Hard Work Bonus) — £0.04bn → £8.54bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Partial: Printed p.31 identifies reservist pay within the overtime line; a full interaction calculation is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Pubs package](./index.html#claim-pubs) — Save Our Pubs Package — £2.58bn → £3.04bn, from 2028/29 | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Immigration fees](./index.html#claim-fiscal-revenue) — Increased immigration fees — £1.36bn → £3.52bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [August welfare package](./index.html#claim-welfare-disability-redesign) — Savings from welfare (August package) — £17.48bn → £52.64bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Partial: Document says redundancy or reassessment administration is allowed for; calculation not reproduced. | Partial: Endnote30 recognises additional reassessment staffing; a full net interaction calculation is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Additional welfare measures](./index.html#claim-welfare-indexation-child-cap) — Additional welfare measures — £2.70bn → £3.29bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Net Zero subsidies](./index.html#claim-net-zero-spending) — Scrap net zero subsidies — £8.18bn → £8.96bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Foreign aid](./index.html#claim-spending-aid-cap) — Shrink foreign aid — £5.80bn → £7.40bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Migrant hotels](./index.html#claim-spending-migrant-hotels) — End migrant hotel spending — £1.60bn → £1.80bn, from 2028/29 | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [QUANGOs and Civil Service](./index.html#claim-spending-civil-service) — Shrink QUANGOs and Civil Service — £2.31bn → £7.21bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Partial: Document says redundancy or reassessment administration is allowed for; calculation not reproduced. | Partial: Printed p.21 and endnote30 identify redundancy and additional DWP staffing; a full net workforce/cost bridge is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Student loans](./index.html#claim-spending-overseas-loans) — Reform student loans to reduce costs — £2.54bn → £5.01bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Partial: Printed p.22 identifies initial loan-book revaluation; a recurring-cash/accounting bridge is not provided. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Additional small measures](./index.html#claim-fiscal-savings) — Additional small measures — £0.88bn → £1.18bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Defence Investment Plan](./index.html#claim-defence) — Fund the Defence Investment Plan — £1.80bn → £4.70bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not provided in the plan: Reproducible affected-population or demand assumptions not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+| [Additional spending allowance](./index.html#claim-fiscal-spending) — ADDITIONAL SPENDING incl. Home Office and Defence — £10bn → £15bn | Partial: March 2026 OBR baseline named; policy-line reconciliation not established. | Not applicable: This is an unallocated envelope, not an entitlement with a claimant take-up rate; programme coverage remains unspecified. | Not provided in the plan: Quantified responses and calibration not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: Separately reproducible implementation and running costs not provided as a reproducible calculation in the reviewed plan. | Not provided in the plan: A reproducible policy-interaction calculation is not provided in the reviewed plan. | Not provided in the plan: Policy-level alternative scenarios and sensitivity ranges not provided as a reproducible calculation in the reviewed plan. |
+
 ## Complete financial-table inventory
 
 Both PDF table images were visually inspected. The complete printed page 22 savings table and page 31 fiscal table are transcribed in [authoring/tables.json](./authoring/tables.json) and rendered as accessible HTML. All financial years, numeric strings, parentheses, percentages and blank cells are preserved. Source labels retain the document’s terminology; typography is adapted. A blank is unknown/not supplied, not zero. No values were silently reconciled to force totals. Rounding can prevent exact row sums. Memo rows and included reservist costs must not be added again.
@@ -214,109 +247,109 @@ The page 31 table extends beyond the summary’s abbreviated fiscal table: it in
 
 ## Article and citation audit
 
-| ID | Original number | Category | Printed page | Critique words | Sources |
-| --- | --- | --- | --- | --- | --- |
-| [measure-01](./index.html#measure-01) | 1 | Unlocking the North Sea | 24 | 152 | energy-north-sea, energy-rosebank-status, energy-markets |
-| [measure-02](./index.html#measure-02) | 2 | Unlocking the North Sea | 24 | 153 | energy-north-sea, energy-markets |
-| [measure-03](./index.html#measure-03) | 3 | Unlocking the North Sea | 24 | 152 | energy-onshore, energy-markets |
-| [measure-04](./index.html#measure-04) | 4 | Unlocking the North Sea | 24 | 156 | energy-epl, energy-ogrl, energy-markets |
-| [measure-05](./index.html#measure-05) | 5 | Unlocking the North Sea | 24 | 154 | energy-strategy, energy-north-sea |
-| [measure-06](./index.html#measure-06) | 6 | Reindustrialising Britain | 25 | 156 | energy-ets, energy-cbam |
-| [measure-07](./index.html#measure-07) | 7 | Reindustrialising Britain | 25 | 153 | energy-cbam, energy-ets |
-| [measure-08](./index.html#measure-08) | 8 | Reindustrialising Britain | 25 | 158 | energy-ar7, energy-cfd |
-| [measure-09](./index.html#measure-09) | 9 | Reindustrialising Britain | 25 | 165 | energy-fingleton, energy-nuclear |
-| [measure-10](./index.html#measure-10) | 10 | Reindustrialising Britain | 25 | 154 | energy-nuclear |
-| [measure-11](./index.html#measure-11) | 11 | Getting homes built in cities | 25 | 142 | housing-viability |
-| [measure-12](./index.html#measure-12) | 12 | Getting homes built in cities | 25 | 144 | housing-pdr, housing-viability |
-| [measure-13](./index.html#measure-13) | 13 | Getting homes built in cities | 25 | 146 | housing-bng |
-| [measure-14](./index.html#measure-14) | 14 | Getting homes built in cities | 25 | 144 | housing-aarhus |
-| [measure-15](./index.html#measure-15) | 15 | Getting homes built in cities | 26 | 144 | housing-nutrients, housing-nutrients-context |
-| [measure-16](./index.html#measure-16) | 16 | Getting homes built in cities | 26 | 144 | housing-boilers, housing-fhs |
-| [measure-17](./index.html#measure-17) | 17 | Getting homes built in cities | 26 | 146 | housing-overheat |
-| [measure-18](./index.html#measure-18) | 18 | Getting homes built in cities | 26 | 154 | housing-epc |
-| [measure-19](./index.html#measure-19) | 19 | Getting homes built in cities | 26 | 151 | housing-fhs |
-| [measure-20](./index.html#measure-20) | 20 | Getting homes built in cities | 26 | 147 | housing-renters |
-| [measure-21](./index.html#measure-21) | 21 | Building critical national infrastructure | 26 | 146 | housing-gatwick, housing-aviation |
-| [measure-22](./index.html#measure-22) | 22 | Building critical national infrastructure | 26 | 148 | housing-slots |
-| [measure-23](./index.html#measure-23) | 23 | Building critical national infrastructure | 26 | 151 | housing-carbon |
-| [measure-24](./index.html#measure-24) | 24 | Building critical national infrastructure | 26 | 151 | housing-finch, housing-carbon |
-| [measure-25](./index.html#measure-25) | 25 | Building critical national infrastructure | 26 | 141 | infra-planning |
-| [measure-26](./index.html#measure-26) | 26 | Building critical national infrastructure | 26 | 145 | infra-consents |
-| [measure-27](./index.html#measure-27) | 27 | Building critical national infrastructure | 26 | 138 | infra-jr |
-| [measure-28](./index.html#measure-28) | 28 | Building critical national infrastructure | 26 | 138 | infra-ltc |
-| [measure-29](./index.html#measure-29) | 29 | Building critical national infrastructure | 26 | 140 | infra-social |
-| [measure-30](./index.html#measure-30) | 30 | Building critical national infrastructure | 26 | 143 | infra-space |
-| [measure-31](./index.html#measure-31) | 31 | Building critical national infrastructure | 26 | 144 | infra-rail |
-| [measure-32](./index.html#measure-32) | 32 | Joining the AI revolution | 26 | 143 | infra-ai |
-| [measure-33](./index.html#measure-33) | 33 | Joining the AI revolution | 26 | 147 | infra-ai |
-| [measure-34](./index.html#measure-34) | 34 | Reducing the cost of hiring British workers | 27 | 151 | infra-ni, infra-incidence, infra-migration |
-| [measure-35](./index.html#measure-35) | 35 | Reducing the cost of hiring British workers | 27 | 151 | infra-migration, infra-incidence |
-| [measure-36](./index.html#measure-36) | 36 | Reducing the cost of hiring British workers | 27 | 143 | infra-rights |
-| [measure-37](./index.html#measure-37) | 37 | Reducing the cost of hiring British workers | 27 | 144 | infra-training, infra-rights |
-| [measure-38](./index.html#measure-38) | 38 | Reducing the cost of hiring British workers | 27 | 145 | infra-cscs |
-| [measure-39](./index.html#measure-39) | 39 | Unleashing the City to invest in the real economy | 28 | 149 | infra-capital |
-| [measure-40](./index.html#measure-40) | 40 | Unleashing the City to invest in the real economy | 28 | 138 | infra-climate |
-| [measure-41](./index.html#measure-41) | 41 | Unleashing the City to invest in the real economy | 28 | 146 | infra-disclosure, infra-climate |
-| [measure-42](./index.html#measure-42) | 42 | Getting motorists moving | 28 | 144 | dg-airport |
-| [measure-43](./index.html#measure-43) | 43 | Getting motorists moving | 28 | 152 | dg-zev |
-| [measure-44](./index.html#measure-44) | 44 | Getting motorists moving | 28 | 150 | dg-hours |
-| [measure-45](./index.html#measure-45) | 45 | Getting motorists moving | 28 | 162 | dg-ltn |
-| [measure-46](./index.html#measure-46) | 46 | Getting motorists moving | 28 | 155 | dg-m4 |
-| [measure-47](./index.html#measure-47) | 47 | Getting motorists moving | 28 | 159 | dg-mot |
-| [measure-48](./index.html#measure-48) | 48 | Getting motorists moving | 28 | 164 | dg-rtfo |
-| [measure-49](./index.html#measure-49) | 49 | Using Brexit freedoms | 28 | 157 | dg-data, dg-adequacy |
-| [measure-50](./index.html#measure-50) | 50 | Using Brexit freedoms | 28 | 164 | dg-units |
-| [measure-51](./index.html#measure-51) | 51 | Using Brexit freedoms | 28 | 163 | dg-reul |
-| [measure-52](./index.html#measure-52) | 52 | Using Brexit freedoms | 28 | 160 | dg-reul |
-| [measure-53](./index.html#measure-53) | 53 | General deregulatory measures | 28 | 155 | dg-mtd |
-| [measure-54](./index.html#measure-54) | 54 | General deregulatory measures | 28 | 163 | dg-directors |
-| [measure-55](./index.html#measure-55) | 55 | General deregulatory measures | 29 | 169 | dg-land |
-| [measure-56](./index.html#measure-56) | 56 | General deregulatory measures | 29 | 164 | dg-pavement |
-| [measure-57](./index.html#measure-57) | 57 | General deregulatory measures | 29 | 160 | dg-shops |
-| [measure-58](./index.html#measure-58) | 58 | General deregulatory measures | 29 | 159 | dg-board, dg-diversity |
-| [measure-59](./index.html#measure-59) | 59 | General deregulatory measures | 29 | 163 | dg-saf |
-| [measure-60](./index.html#measure-60) | 60 | General deregulatory measures | 29 | 155 | dg-packaging |
-| [measure-61](./index.html#measure-61) | 61 | General deregulatory measures | 29 | 155 | dg-media |
-| [measure-62](./index.html#measure-62) | 62 | General deregulatory measures | 29 | 161 | dg-equality |
-| [measure-63](./index.html#measure-63) | 63 | General deregulatory measures | 29 | 160 | dg-bodies |
-| [measure-64](./index.html#measure-64) | 64 | General deregulatory measures | 29 | 160 | dg-review |
-| [claim-personal-allowance](./index.html#claim-personal-allowance) | Unnumbered | Tax cuts and household bills | 13–14 | 147 | tax-hmrc-rates, tax-uc, tax-scotland |
-| [claim-household-relief](./index.html#claim-household-relief) | Unnumbered | Tax cuts and household bills | 4, 13–15 | 157 | tax-hmrc-rates, tax-uc, tax-ofgem |
-| [claim-energy-bills](./index.html#claim-energy-bills) | Unnumbered | Tax cuts and household bills | 14–15 | 162 | tax-ofgem, tax-electricity-vat |
-| [claim-vat-threshold](./index.html#claim-vat-threshold) | Unnumbered | Tax cuts and household bills | 15 | 160 | tax-obr-vat, tax-vat-threshold |
-| [claim-fuel-duty](./index.html#claim-fuel-duty) | Unnumbered | Tax cuts and household bills | 15 | 161 | tax-fuel-duty, tax-cma-fuel |
-| [claim-overtime](./index.html#claim-overtime) | Unnumbered | Tax cuts and household bills | 16 | 169 | tax-hours, tax-uc, tax-hmrc-rates |
-| [claim-reservist-pay](./index.html#claim-reservist-pay) | Unnumbered | Tax cuts and household bills | 16 | 166 | tax-reserve, tax-hmrc-rates |
-| [claim-pubs](./index.html#claim-pubs) | Unnumbered | Tax cuts and household bills | 16 | 172 | tax-pub-rates, tax-hospitality |
-| [claim-inheritance-reliefs](./index.html#claim-inheritance-reliefs) | Unnumbered | Tax cuts and household bills | 16–17 | 161 | tax-inheritance, tax-agricultural-guide |
-| [claim-spend-tax-borrow-less](./index.html#claim-spend-tax-borrow-less) | Unnumbered | Headlines and economic claims | 4, 11, 23, 32 | 133 | support-obr-baseline, support-ons-finances |
-| [claim-debt-three-trillion](./index.html#claim-debt-three-trillion) | Unnumbered | Headlines and economic claims | 9 | 137 | support-ons-finances |
-| [claim-tax-burden-comparison](./index.html#claim-tax-burden-comparison) | Unnumbered | Headlines and economic claims | 13 | 138 | support-obr-baseline |
-| [claim-living-standards-counterfactual](./index.html#claim-living-standards-counterfactual) | Unnumbered | Headlines and economic claims | 8, 23; endnotes 6, 32 | 138 | support-ons-income |
-| [claim-growth-inflation-causality](./index.html#claim-growth-inflation-causality) | Unnumbered | Headlines and economic claims | 11, 23–28 | 142 | support-boe-inflation, support-ccc-budget |
-| [claim-welfare-community-work](./index.html#claim-welfare-community-work) | Unnumbered | Welfare claims | 18–19 | 140 | support-work-activity |
-| [claim-welfare-citizenship](./index.html#claim-welfare-citizenship) | Unnumbered | Welfare claims | 18–19 | 138 | support-uc-method |
-| [claim-welfare-disability-redesign](./index.html#claim-welfare-disability-redesign) | Unnumbered | Welfare claims | 18–19 | 140 | support-pip, support-atw |
-| [claim-welfare-fraud-error](./index.html#claim-welfare-fraud-error) | Unnumbered | Welfare claims | 18–19 | 140 | support-fraud |
-| [claim-welfare-indexation-child-cap](./index.html#claim-welfare-indexation-child-cap) | Unnumbered | Welfare claims | 18–19 | 138 | support-child-limit |
-| [claim-welfare-seven-thousand](./index.html#claim-welfare-seven-thousand) | Unnumbered | Welfare claims | 18–19 | 135 | support-uc-method, support-pip |
-| [claim-welfare-employer-disability](./index.html#claim-welfare-employer-disability) | Unnumbered | Welfare claims | 33, endnote 20 | 139 | support-adjustments, support-atw |
-| [claim-net-zero-spending](./index.html#claim-net-zero-spending) | Unnumbered | Spending and services | 19 | 141 | support-ccc-budget |
-| [claim-spending-aid-cap](./index.html#claim-spending-aid-cap) | Unnumbered | Spending and services | 19–20 | 140 | support-aid, support-hotels |
-| [claim-spending-civil-service](./index.html#claim-spending-civil-service) | Unnumbered | Spending and services | 20–21; 33, endnote 30 | 143 | support-civil-service |
-| [claim-spending-alb-budgets](./index.html#claim-spending-alb-budgets) | Unnumbered | Spending and services | 21 | 138 | support-obr-baseline, support-civil-service |
-| [claim-spending-migrant-hotels](./index.html#claim-spending-migrant-hotels) | Unnumbered | Spending and services | 22, 31 | 138 | support-hotels, support-aid |
-| [claim-defence](./index.html#claim-defence) | Unnumbered | Spending and services | 18, 31 | 141 | support-obr-baseline |
-| [claim-spending-degree-funding](./index.html#claim-spending-degree-funding) | Unnumbered | Spending and services | 21–22 | 140 | support-student-eligibility |
-| [claim-spending-overseas-loans](./index.html#claim-spending-overseas-loans) | Unnumbered | Spending and services | 21–22 | 143 | support-overseas-loans, support-ons-finances |
-| [claim-spending-nhs-training](./index.html#claim-spending-nhs-training) | Unnumbered | Spending and services | 18 | 143 | support-nhs-workforce, support-student-eligibility |
-| [claim-spending-triple-lock](./index.html#claim-spending-triple-lock) | Unnumbered | Spending and services | 32 | 139 | support-pensions |
-| [claim-fiscal-savings](./index.html#claim-fiscal-savings) | Unnumbered | Fiscal claims | 22, 30–31 | 145 | support-ons-finances, support-obr-baseline |
-| [claim-fiscal-revenue](./index.html#claim-fiscal-revenue) | Unnumbered | Fiscal claims | 31 | 142 | support-obr-baseline |
-| [claim-fiscal-spending](./index.html#claim-fiscal-spending) | Unnumbered | Fiscal claims | 18, 30–31 | 142 | support-obr-baseline |
-| [claim-fiscal-borrowing](./index.html#claim-fiscal-borrowing) | Unnumbered | Fiscal claims | 30–31 | 144 | support-ons-finances |
-| [claim-fiscal-headroom](./index.html#claim-fiscal-headroom) | Unnumbered | Fiscal claims | 30–31 | 145 | support-ons-finances, support-obr-baseline |
-| [claim-fiscal-timing](./index.html#claim-fiscal-timing) | Unnumbered | Fiscal claims | 30–31 | 148 | support-obr-baseline, support-boe-inflation |
+| ID | Original number | Category | Printed page | Critique words | Evidence type | Sources |
+| --- | --- | --- | --- | --- | --- | --- |
+| [measure-01](./index.html#measure-01) | 1 | Unlocking the North Sea | 24 | 152 | Costing uncertainty | energy-north-sea, energy-rosebank-status, energy-markets |
+| [measure-02](./index.html#measure-02) | 2 | Unlocking the North Sea | 24 | 153 | Costing uncertainty | energy-north-sea, energy-markets |
+| [measure-03](./index.html#measure-03) | 3 | Unlocking the North Sea | 24 | 152 | Costing uncertainty | energy-onshore, energy-markets |
+| [measure-04](./index.html#measure-04) | 4 | Unlocking the North Sea | 24 | 156 | Costing uncertainty | energy-epl, energy-ogrl, energy-markets |
+| [measure-05](./index.html#measure-05) | 5 | Unlocking the North Sea | 24 | 154 | Costing uncertainty | energy-strategy, energy-north-sea |
+| [measure-06](./index.html#measure-06) | 6 | Reindustrialising Britain | 25 | 181 | Distributional trade-off | energy-ets, update-eu-cbam, update-ets-overview, update-linkage |
+| [measure-07](./index.html#measure-07) | 7 | Reindustrialising Britain | 25 | 156 | Distributional trade-off | energy-cbam, update-eu-cbam, update-ets-overview, update-linkage |
+| [measure-08](./index.html#measure-08) | 8 | Reindustrialising Britain | 25 | 158 | Costing uncertainty | energy-ar7, energy-cfd |
+| [measure-09](./index.html#measure-09) | 9 | Reindustrialising Britain | 25 | 165 | Reasonable policy with caveats | energy-fingleton, energy-nuclear |
+| [measure-10](./index.html#measure-10) | 10 | Reindustrialising Britain | 25 | 154 | Reasonable policy with caveats | energy-nuclear |
+| [measure-11](./index.html#measure-11) | 11 | Getting homes built in cities | 25 | 142 | Distributional trade-off | housing-viability |
+| [measure-12](./index.html#measure-12) | 12 | Getting homes built in cities | 25 | 144 | Distributional trade-off | housing-pdr, housing-viability |
+| [measure-13](./index.html#measure-13) | 13 | Getting homes built in cities | 25 | 146 | Distributional trade-off | housing-bng |
+| [measure-14](./index.html#measure-14) | 14 | Getting homes built in cities | 25 | 144 | Distributional trade-off | housing-aarhus |
+| [measure-15](./index.html#measure-15) | 15 | Getting homes built in cities | 26 | 144 | Distributional trade-off | housing-nutrients, housing-nutrients-context |
+| [measure-16](./index.html#measure-16) | 16 | Getting homes built in cities | 26 | 144 | Strong evidence | housing-boilers, housing-fhs |
+| [measure-17](./index.html#measure-17) | 17 | Getting homes built in cities | 26 | 146 | Distributional trade-off | housing-overheat |
+| [measure-18](./index.html#measure-18) | 18 | Getting homes built in cities | 26 | 154 | Distributional trade-off | housing-epc |
+| [measure-19](./index.html#measure-19) | 19 | Getting homes built in cities | 26 | 151 | Distributional trade-off | housing-fhs |
+| [measure-20](./index.html#measure-20) | 20 | Getting homes built in cities | 26 | 147 | Distributional trade-off | housing-renters |
+| [measure-21](./index.html#measure-21) | 21 | Building critical national infrastructure | 26 | 146 | Costing uncertainty | housing-gatwick, housing-aviation |
+| [measure-22](./index.html#measure-22) | 22 | Building critical national infrastructure | 26 | 148 | Costing uncertainty | housing-slots |
+| [measure-23](./index.html#measure-23) | 23 | Building critical national infrastructure | 26 | 151 | Distributional trade-off | housing-carbon |
+| [measure-24](./index.html#measure-24) | 24 | Building critical national infrastructure | 26 | 151 | Distributional trade-off | housing-finch, housing-carbon |
+| [measure-25](./index.html#measure-25) | 25 | Building critical national infrastructure | 26 | 141 | Reasonable policy with caveats | infra-planning |
+| [measure-26](./index.html#measure-26) | 26 | Building critical national infrastructure | 26 | 145 | Reasonable policy with caveats | infra-consents |
+| [measure-27](./index.html#measure-27) | 27 | Building critical national infrastructure | 26 | 138 | Costing uncertainty | infra-jr |
+| [measure-28](./index.html#measure-28) | 28 | Building critical national infrastructure | 26 | 138 | Costing uncertainty | infra-ltc |
+| [measure-29](./index.html#measure-29) | 29 | Building critical national infrastructure | 26 | 140 | Distributional trade-off | infra-social |
+| [measure-30](./index.html#measure-30) | 30 | Building critical national infrastructure | 26 | 143 | Distributional trade-off | infra-space |
+| [measure-31](./index.html#measure-31) | 31 | Building critical national infrastructure | 26 | 144 | Reasonable policy with caveats | infra-rail |
+| [measure-32](./index.html#measure-32) | 32 | Joining the AI revolution | 26 | 143 | Reasonable policy with caveats | infra-ai |
+| [measure-33](./index.html#measure-33) | 33 | Joining the AI revolution | 26 | 147 | Costing uncertainty | infra-ai |
+| [measure-34](./index.html#measure-34) | 34 | Reducing the cost of hiring British workers | 27 | 162 | Costing uncertainty | infra-ni, infra-incidence, official-plan-download, update-wa-guide |
+| [measure-35](./index.html#measure-35) | 35 | Reducing the cost of hiring British workers | 27 | 164 | Costing uncertainty | infra-migration, official-plan-download, update-wa-guide |
+| [measure-36](./index.html#measure-36) | 36 | Reducing the cost of hiring British workers | 27 | 143 | Costing uncertainty | infra-rights |
+| [measure-37](./index.html#measure-37) | 37 | Reducing the cost of hiring British workers | 27 | 144 | Costing uncertainty | infra-training, infra-rights |
+| [measure-38](./index.html#measure-38) | 38 | Reducing the cost of hiring British workers | 27 | 145 | Reasonable policy with caveats | infra-cscs |
+| [measure-39](./index.html#measure-39) | 39 | Unleashing the City to invest in the real economy | 28 | 149 | Costing uncertainty | infra-capital |
+| [measure-40](./index.html#measure-40) | 40 | Unleashing the City to invest in the real economy | 28 | 138 | Distributional trade-off | infra-climate |
+| [measure-41](./index.html#measure-41) | 41 | Unleashing the City to invest in the real economy | 28 | 146 | Distributional trade-off | infra-disclosure, infra-climate |
+| [measure-42](./index.html#measure-42) | 42 | Getting motorists moving | 28 | 144 | Distributional trade-off | dg-airport |
+| [measure-43](./index.html#measure-43) | 43 | Getting motorists moving | 28 | 152 | Distributional trade-off | dg-zev |
+| [measure-44](./index.html#measure-44) | 44 | Getting motorists moving | 28 | 150 | Distributional trade-off | dg-hours |
+| [measure-45](./index.html#measure-45) | 45 | Getting motorists moving | 28 | 162 | Distributional trade-off | dg-ltn |
+| [measure-46](./index.html#measure-46) | 46 | Getting motorists moving | 28 | 155 | Distributional trade-off | dg-m4 |
+| [measure-47](./index.html#measure-47) | 47 | Getting motorists moving | 28 | 159 | Distributional trade-off | dg-mot |
+| [measure-48](./index.html#measure-48) | 48 | Getting motorists moving | 28 | 164 | Distributional trade-off | dg-rtfo |
+| [measure-49](./index.html#measure-49) | 49 | Using Brexit freedoms | 28 | 157 | Legal obstacle | dg-data, dg-adequacy |
+| [measure-50](./index.html#measure-50) | 50 | Using Brexit freedoms | 28 | 164 | Strong evidence | dg-units |
+| [measure-51](./index.html#measure-51) | 51 | Using Brexit freedoms | 28 | 163 | Reasonable policy with caveats | dg-reul |
+| [measure-52](./index.html#measure-52) | 52 | Using Brexit freedoms | 28 | 160 | Distributional trade-off | dg-reul |
+| [measure-53](./index.html#measure-53) | 53 | General deregulatory measures | 28 | 155 | Reasonable policy with caveats | dg-mtd |
+| [measure-54](./index.html#measure-54) | 54 | General deregulatory measures | 28 | 163 | Costing uncertainty | dg-directors |
+| [measure-55](./index.html#measure-55) | 55 | General deregulatory measures | 29 | 169 | Reasonable policy with caveats | dg-land |
+| [measure-56](./index.html#measure-56) | 56 | General deregulatory measures | 29 | 164 | Reasonable policy with caveats | dg-pavement |
+| [measure-57](./index.html#measure-57) | 57 | General deregulatory measures | 29 | 160 | Strong evidence | dg-shops |
+| [measure-58](./index.html#measure-58) | 58 | General deregulatory measures | 29 | 159 | Costing uncertainty | dg-board, dg-diversity |
+| [measure-59](./index.html#measure-59) | 59 | General deregulatory measures | 29 | 163 | Distributional trade-off | dg-saf |
+| [measure-60](./index.html#measure-60) | 60 | General deregulatory measures | 29 | 155 | Distributional trade-off | dg-packaging |
+| [measure-61](./index.html#measure-61) | 61 | General deregulatory measures | 29 | 155 | Strong evidence | dg-media |
+| [measure-62](./index.html#measure-62) | 62 | General deregulatory measures | 29 | 161 | Distributional trade-off | dg-equality |
+| [measure-63](./index.html#measure-63) | 63 | General deregulatory measures | 29 | 160 | Costing uncertainty | dg-bodies |
+| [measure-64](./index.html#measure-64) | 64 | General deregulatory measures | 29 | 160 | Costing uncertainty | dg-review |
+| [claim-personal-allowance](./index.html#claim-personal-allowance) | Unnumbered | Tax cuts and household bills | 13–14 | 147 | Distributional trade-off | tax-hmrc-rates, tax-uc, tax-scotland, update-net-earnings |
+| [claim-household-relief](./index.html#claim-household-relief) | Unnumbered | Tax cuts and household bills | 4, 13–15 | 157 | Costing uncertainty | tax-hmrc-rates, tax-uc, tax-ofgem |
+| [claim-energy-bills](./index.html#claim-energy-bills) | Unnumbered | Tax cuts and household bills | 14–15 | 161 | Distributional trade-off | update-ifs-electricity, update-committee-energy, tax-electricity-vat, tax-ofgem |
+| [claim-vat-threshold](./index.html#claim-vat-threshold) | Unnumbered | Tax cuts and household bills | 15 | 160 | Reasonable policy with caveats | tax-obr-vat, tax-vat-threshold |
+| [claim-fuel-duty](./index.html#claim-fuel-duty) | Unnumbered | Tax cuts and household bills | 15 | 161 | Distributional trade-off | tax-fuel-duty, tax-cma-fuel |
+| [claim-overtime](./index.html#claim-overtime) | Unnumbered | Tax cuts and household bills | 16 | 161 | Costing uncertainty | update-tpa-overtime, official-plan-download, tax-hours |
+| [claim-reservist-pay](./index.html#claim-reservist-pay) | Unnumbered | Tax cuts and household bills | 16 | 166 | Reasonable policy with caveats | tax-reserve, tax-hmrc-rates |
+| [claim-pubs](./index.html#claim-pubs) | Unnumbered | Tax cuts and household bills | 16 | 172 | Distributional trade-off | tax-pub-rates, tax-hospitality |
+| [claim-inheritance-reliefs](./index.html#claim-inheritance-reliefs) | Unnumbered | Tax cuts and household bills | 16–17 | 161 | Distributional trade-off | tax-inheritance, tax-agricultural-guide |
+| [claim-spend-tax-borrow-less](./index.html#claim-spend-tax-borrow-less) | Unnumbered | Headlines and economic claims | 4, 11, 23, 32 | 133 | Costing uncertainty | support-obr-baseline, support-ons-finances |
+| [claim-debt-three-trillion](./index.html#claim-debt-three-trillion) | Unnumbered | Headlines and economic claims | 9 | 137 | Distributional trade-off | support-ons-finances |
+| [claim-tax-burden-comparison](./index.html#claim-tax-burden-comparison) | Unnumbered | Headlines and economic claims | 13 | 138 | Costing uncertainty | support-obr-baseline |
+| [claim-living-standards-counterfactual](./index.html#claim-living-standards-counterfactual) | Unnumbered | Headlines and economic claims | 8, 23; endnotes 6, 32 | 138 | Costing uncertainty | support-ons-income |
+| [claim-growth-inflation-causality](./index.html#claim-growth-inflation-causality) | Unnumbered | Headlines and economic claims | 11, 23–28 | 142 | Costing uncertainty | support-boe-inflation, support-ccc-budget |
+| [claim-welfare-community-work](./index.html#claim-welfare-community-work) | Unnumbered | Welfare claims | 18–19 | 140 | Reasonable policy with caveats | support-work-activity |
+| [claim-welfare-citizenship](./index.html#claim-welfare-citizenship) | Unnumbered | Welfare claims | 18–19 | 166 | Legal obstacle | update-reform-euss, update-public-funds, update-euss-section45, update-wa-guide, support-uc-method |
+| [claim-welfare-disability-redesign](./index.html#claim-welfare-disability-redesign) | Unnumbered | Welfare claims | 18–19 | 140 | Distributional trade-off | support-pip, support-atw, update-ifs-welfare |
+| [claim-welfare-fraud-error](./index.html#claim-welfare-fraud-error) | Unnumbered | Welfare claims | 18–19 | 140 | Reasonable policy with caveats | support-fraud |
+| [claim-welfare-indexation-child-cap](./index.html#claim-welfare-indexation-child-cap) | Unnumbered | Welfare claims | 18–19 | 138 | Distributional trade-off | support-child-limit |
+| [claim-welfare-seven-thousand](./index.html#claim-welfare-seven-thousand) | Unnumbered | Welfare claims | 18–19 | 135 | Costing uncertainty | support-uc-method, support-pip |
+| [claim-welfare-employer-disability](./index.html#claim-welfare-employer-disability) | Unnumbered | Welfare claims | 33, endnote 20 | 139 | Reasonable policy with caveats | support-adjustments, support-atw |
+| [claim-net-zero-spending](./index.html#claim-net-zero-spending) | Unnumbered | Spending and services | 19 | 141 | Distributional trade-off | support-ccc-budget |
+| [claim-spending-aid-cap](./index.html#claim-spending-aid-cap) | Unnumbered | Spending and services | 19–20 | 140 | Distributional trade-off | support-aid, support-hotels |
+| [claim-spending-civil-service](./index.html#claim-spending-civil-service) | Unnumbered | Spending and services | 20–21; 33, endnote 30 | 143 | Costing uncertainty | support-civil-service |
+| [claim-spending-alb-budgets](./index.html#claim-spending-alb-budgets) | Unnumbered | Spending and services | 21 | 138 | Costing uncertainty | support-obr-baseline, support-civil-service |
+| [claim-spending-migrant-hotels](./index.html#claim-spending-migrant-hotels) | Unnumbered | Spending and services | 22, 31 | 138 | Costing uncertainty | support-hotels, support-aid |
+| [claim-defence](./index.html#claim-defence) | Unnumbered | Spending and services | 18, 31 | 141 | Costing uncertainty | support-obr-baseline |
+| [claim-spending-degree-funding](./index.html#claim-spending-degree-funding) | Unnumbered | Spending and services | 21–22 | 140 | Distributional trade-off | support-student-eligibility |
+| [claim-spending-overseas-loans](./index.html#claim-spending-overseas-loans) | Unnumbered | Spending and services | 21–22 | 143 | Reasonable policy with caveats | support-overseas-loans, support-ons-finances |
+| [claim-spending-nhs-training](./index.html#claim-spending-nhs-training) | Unnumbered | Spending and services | 18 | 143 | Reasonable policy with caveats | support-nhs-workforce, support-student-eligibility |
+| [claim-spending-triple-lock](./index.html#claim-spending-triple-lock) | Unnumbered | Spending and services | 32 | 139 | Distributional trade-off | support-pensions |
+| [claim-fiscal-savings](./index.html#claim-fiscal-savings) | Unnumbered | Fiscal claims | 22, 30–31 | 145 | Costing uncertainty | support-ons-finances, support-obr-baseline |
+| [claim-fiscal-revenue](./index.html#claim-fiscal-revenue) | Unnumbered | Fiscal claims | 31 | 142 | Costing uncertainty | support-obr-baseline |
+| [claim-fiscal-spending](./index.html#claim-fiscal-spending) | Unnumbered | Fiscal claims | 18, 30–31 | 142 | Costing uncertainty | support-obr-baseline |
+| [claim-fiscal-borrowing](./index.html#claim-fiscal-borrowing) | Unnumbered | Fiscal claims | 30–31 | 144 | Costing uncertainty | support-ons-finances |
+| [claim-fiscal-headroom](./index.html#claim-fiscal-headroom) | Unnumbered | Fiscal claims | 30–31 | 155 | Costing uncertainty | official-plan-download, update-ifs-fiscal, support-obr-baseline |
+| [claim-fiscal-timing](./index.html#claim-fiscal-timing) | Unnumbered | Fiscal claims | 30–31 | 159 | Costing uncertainty | official-plan, official-launch, official-plan-download, support-obr-baseline |
 
 ## Source register
 
@@ -1257,4 +1290,148 @@ Each exact URL is retained. Findings state the purpose for which evidence is use
 - Exact URL: https://obr.uk/frs/fiscal-risks-and-sustainability-july-2026/
 - Accessed: 2026-10-27
 - Supported finding / qualification: The triple lock increases pension spending over time and exposes costs to the volatility of earnings and inflation.
+
+### official-plan
+
+- Publisher: Reform UK
+- Title: Economic Rescue Plan — official policy page and 36-page download
+- Publication/update date: Published 26 October 2026; checked against official launch
+- Exact URL: https://reformparty.uk/policies/economic-rescue-plan
+- Accessed: 2026-10-27
+- Supported finding / qualification: Official policy page links the 36-page plan. Text checked against supplied version, including the £1,300 foreword, 64 measures and p.30 in-house model/phasing. Not a byte-for-byte identity claim.
+
+### official-plan-download
+
+- Publisher: Reform UK
+- Title: Economic Rescue Plan — official PDF download
+- Publication/update date: 26 October 2026
+- Exact URL: https://reformparty.uk/policies/economic-rescue-plan/download
+- Accessed: 2026-10-27
+- Supported finding / qualification: Official 36-page PDF; printed pp.22 and 31 contain the financial tables, p.30 names an in-house tax-and-transfer model. Published totals do not themselves provide a reproducible model.
+
+### official-launch
+
+- Publisher: Reform UK
+- Title: “Britain is broke, but Britain isn’t beaten”: Reform UK unveils SIXTY-FOUR pro-growth measures to get Britain moving
+- Publication/update date: 26 October 2026
+- Exact URL: https://reformparty.uk/news/reform-economic-rescue-plan-jenrick-tax-free-overtime-growth
+- Accessed: 2026-10-27
+- Supported finding / qualification: Official launch dates the plan to 26 October 2026 and describes 64 measures. Confirms provenance of the publisher-hosted version, not independent verification of its costings.
+
+### update-tpa-overtime
+
+- Publisher: Tax Policy Associates
+- Title: Ten better tax cuts than Reform’s £14bn overtime gimmick
+- Publication/update date: 25 May 2026; updated 27 May 2026
+- Exact URL: https://taxpolicy.org.uk/2026/05/25/reform-uk-overtime-tax-cut/
+- Accessed: 2026-10-27
+- Supported finding / qualification: Central estimate about £14bn including roughly £4bn static,£7bn relabelling and£3bn PSC arbitrage, less £0.2bn NICs. Earlier proposal/vintage than October plan; not a like-for-like independently certified costing of the final package. Conditional £75,000 hard-cutoff example illustrates a cliff edge.
+
+### update-ifs-electricity
+
+- Publisher: Institute for Fiscal Studies
+- Title: Electricity prices
+- Publication/update date: 22 September 2026
+- Exact URL: https://ifs.org.uk/publications/electricity-prices
+- Accessed: 2026-10-27
+- Supported finding / qualification: Jarvis, Levell and Upton: taxes/levies excluding VAT were 17% of average household electricity bill July–October 2026, not 17% of combined gas and electricity. Policy costs real alongside exposure to global gas.
+
+### update-committee-energy
+
+- Publisher: House of Commons Energy Security and Net Zero Committee
+- Title: The cost of energy
+- Publication/update date: 21 October 2026
+- Exact URL: https://publications.parliament.uk/pa/cm5902/cmselect/cmesnz/416/report.html
+- Accessed: 2026-10-27
+- Supported finding / qualification: Wholesale electricity price is set most of the time by gas; report recommends reducing policy costs. Supports a multi-cause explanation, not attributing every price change to Net Zero.
+
+### update-eu-cbam
+
+- Publisher: European Commission
+- Title: CBAM definitive regime
+- Publication/update date: Undated live guidance; regime from 1 January 2026
+- Exact URL: https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en
+- Accessed: 2026-10-27
+- Supported finding / qualification: EU CBAM definitive regime operates from 1 January 2026; EU importers carry certificate obligations and a verified carbon price paid abroad can reduce the charge, subject to rules. UK exporters face commercial effects rather than automatic direct legal liability.
+
+### update-linkage
+
+- Publisher: HM Treasury / HMRC
+- Title: Factsheet: Carbon Border Adjustment Mechanism (CBAM)
+- Publication/update date: Updated 28 November 2025
+- Exact URL: https://www.gov.uk/government/publications/factsheet-carbon-border-adjustment-mechanism-cbam/factsheet-carbon-border-adjustment-mechanism
+- Accessed: 2026-10-27
+- Supported finding / qualification: Section 11 describes May 2025 agreement to work towards UK–EU ETS linkage and mutual CBAM exemptions subject to agreement provisions; not evidence of a completed exemption.
+
+### update-reform-euss
+
+- Publisher: Reform UK
+- Title: Policy FAQs
+- Publication/update date: Undated live page; accessed 27 October 2026
+- Exact URL: https://www.reformparty.uk/policy-faqs
+- Accessed: 2026-10-27
+- Supported finding / qualification: FAQ says settled status retained while welfare entitlement withdrawn. Establishes party position, not legal compatibility.
+
+### update-euss-section45
+
+- Publisher: Home Office
+- Title: Implementation of section 45 of the Border Security, Asylum and Immigration Act 2025
+- Publication/update date: 3 December 2025
+- Exact URL: https://www.gov.uk/government/publications/border-security-asylum-and-immigration-act-2025-section-45/implementation-of-section-45-of-the-border-security-asylum-and-immigration-act-2025
+- Accessed: 2026-10-27
+- Supported finding / qualification: Explains current UK-law deeming of citizens’ rights for EUSS status holders, including an extra cohort. Distinguish rights conferred by UK law from everyone independently falling within treaty personal scope.
+
+### update-wa-guide
+
+- Publisher: DWP
+- Title: Guidance on the social security coordination provisions of Part 2 of the EU Withdrawal Agreement
+- Publication/update date: Updated 29 November 2021
+- Exact URL: https://www.gov.uk/government/publications/social-security-arrangements-between-the-uk-and-the-eu-from-1-january-2021-staff-guide/guidance-relating-to-the-uks-operational-implementation-of-the-social-security-coordination-provisions-of-part-2-of-the-eu-withdrawal-agreement-citi
+- Accessed: 2026-10-27
+- Supported finding / qualification: Chapter 2, paragraphs 43–45: Article 23 national equal treatment with limited exceptions and Article 24 worker social/tax advantages. Supports legal-compatibility questions for protected people; does not establish proposed levy or citizenship rule is unlawful.
+
+### update-ifs-welfare
+
+- Publisher: Institute for Fiscal Studies
+- Title: Reform UK’s plan for welfare: IFS response
+- Publication/update date: 17 August 2026
+- Exact URL: https://ifs.org.uk/articles/reform-uks-plan-welfare-ifs-response
+- Accessed: 2026-10-27
+- Supported finding / qualification: Assessment of August welfare package: around £50bn annual cuts almost entirely from working-age bill just over £200bn in 2030/31; previous tougher disability assessments saved less than expected. Different vintage from October plan; not independent scoring of every final line.
+
+### update-ifs-fiscal
+
+- Publisher: Institute for Fiscal Studies
+- Title: Spending pressures, not fiscal headroom, are the Chancellor’s key Budget challenge
+- Publication/update date: 12 October 2026
+- Exact URL: https://ifs.org.uk/news/spending-pressures-not-fiscal-headroom-are-chancellors-key-budget-challenge
+- Accessed: 2026-10-27
+- Supported finding / qualification: Higher interest rates add around £10bn to borrowing in 2029/30 versus March baseline, while other effects can offset this. Not an extra deduction from Reform’s margin: its plan already adjusts interest rates.
+
+### update-net-earnings
+
+- Publisher: Money and Pensions Service / MoneyHelper
+- Title: How much is Universal Credit?
+- Publication/update date: Undated live guidance; 2026/27 amounts checked
+- Exact URL: https://www.moneyhelper.org.uk/en/benefits/universal-credit/how-much-is-universal-credit
+- Accessed: 2026-10-27
+- Supported finding / qualification: Earnings taper applies after income tax and National Insurance, above any work allowance; supports conditional own arithmetic £486×55%=£267.30 less UC and £218.70 net gain, not a full household simulation.
+
+### update-public-funds
+
+- Publisher: Home Office
+- Title: Public funds: accessible guidance
+- Publication/update date: Updated 9 April 2025, version21
+- Exact URL: https://www.gov.uk/government/publications/public-funds/public-funds-accessible
+- Accessed: 2026-10-27
+- Supported finding / qualification: EUSS settled-status section states benefit access is on the same basis as British citizens or other settled people, subject to normal eligibility. Describes current law, not a ruling on a future policy.
+
+### update-ets-overview
+
+- Publisher: Department for Energy Security and Net Zero
+- Title: UK Emissions Trading Scheme (UK ETS): a policy overview
+- Publication/update date: Updated 21 October 2026
+- Exact URL: https://www.gov.uk/government/publications/uk-emissions-trading-scheme-uk-ets-policy-overview/uk-emissions-trading-scheme-uk-ets-a-policy-overview
+- Accessed: 2026-10-27
+- Supported finding / qualification: Current overview says UK and EU are negotiating ETS linkage; negotiations are not a completed agreement or automatic mutual CBAM exemption.
 

@@ -1,29 +1,346 @@
 {
   "articles": [
-    {"id":"measure-01","number":1,"category":"Unlocking the North Sea","page":24,"title":"Approve Rosebank immediately","proposal":"Approve the Rosebank North Sea oil and gas project immediately.","counter":"Rosebank could support jobs and production, but immediate approval offers no guaranteed household price cut and must address the consenting evidence.","critique":"Rosebank could sustain offshore employment, engineering contracts and tax receipts, so its economic benefits deserve examination. But approving a field is different from delivering cheaper fuel. Its output would be predominantly oil, while the household heating problem is largely about gas. International trading also means domestic extraction does not automatically create a discounted British price. An immediate political commitment risks prejudging the environmental assessment rather than resolving it. The Commons Library records that the earlier consent was effectively quashed in January 2025 and fresh applications followed in July 2026. A ministerial answer on 14 September 2026 said the regulatory process was continuing; that dated answer does not establish the project's final status today. A credible approval case should therefore publish the assessment, realistic production timetable, public revenue implications and conditions protecting the environment. Workers and supply chains need a durable decision that survives scrutiny, alongside investment beyond the lifetime of one field.","sourceIds":["energy-north-sea","energy-rosebank-status","energy-markets"],"related":["measure-02","measure-04","measure-05"]},
-    {"id":"measure-02","number":2,"category":"Unlocking the North Sea","page":24,"title":"Restart licensing for new oil and gas fields","proposal":"Resume issuing exploration licences for new oil and gas fields.","counter":"New licences can encourage exploration, but they cannot guarantee discoveries, rapid production or insulation from international fuel prices.","critique":"A predictable licensing regime can support exploration businesses and preserve specialist skills. There is a legitimate debate about how much of Britain's continuing fuel demand should be supplied domestically. However, a licence is only an early step: commercially viable discoveries, finance, infrastructure and development consent must follow before production. That makes licensing a weak answer to an immediate cost of living crisis. The North Sea is also a mature basin, so ministers should distinguish slowing decline from reversing it. The Commons Library's September 2026 briefing describes the government's policy against new licences while allowing existing licensed projects to seek consent. Restarting rounds would therefore need a clear account of what additional investment is genuinely caused by the change. The trade-off is between possible future jobs and receipts, environmental impacts and capital committed to long-lived assets. Judging projects against realistic demand and price scenarios would be more informative than counting licences as energy delivered.","sourceIds":["energy-north-sea","energy-markets"],"related":["measure-01","measure-04","measure-05"]},
-    {"id":"measure-03","number":3,"category":"Unlocking the North Sea","page":24,"title":"Legalise onshore exploration in new licences","proposal":"Allow onshore oil and gas exploration through new licences.","counter":"Licensing onshore exploration does not settle local planning, environmental permissions or the separate restrictions on shale fracking.","critique":"Domestic onshore exploration could create some local contracts and identify useful resources. The proposal nevertheless needs much more precision about geography and drilling methods. Conventional exploration and high-volume hydraulic fracturing are different activities, and issuing a licence would not by itself resolve the permissions needed to drill or produce. A ministerial answer on 16 October 2026 confirmed that the effective shale-fracking moratorium continued for existing licences and distinguished conventional low-volume techniques. The same answer described forthcoming legislation, rather than establishing an already operative blanket statutory ban. Nearby residents would need clear protections for water, traffic, noise and site restoration, together with a meaningful planning process. Commercial success is uncertain, so promises of large tax receipts or cheap gas should not be booked in advance. Any assessment should compare the expected recoverable resource and development time with the disruption borne by host communities, rather than assuming permission to explore guarantees a productive industry.","sourceIds":["energy-onshore","energy-markets"],"related":["measure-02","measure-13","measure-24"]},
-    {"id":"measure-04","number":4,"category":"Unlocking the North Sea","page":24,"title":"Abolish the Energy Profits Levy immediately","proposal":"Immediately remove the additional tax on oil and gas profits known as the Energy Profits Levy.","counter":"Removing the levy could improve investment incentives, but gives up public revenue without requiring firms to invest or cut British energy prices.","critique":"Frequent tax changes can discourage investment, and removing an additional profit tax could make some marginal developments more attractive. That is a real potential benefit for offshore workers and suppliers. The fiscal question is how much extra activity the tax cut would generate compared with the revenue lost on production that would happen anyway. A Treasury answer in July 2026 put the levy at 38%, alongside a 40% permanent regime, with reliefs affecting actual liabilities. Abolition therefore benefits existing profitable operations as well as possible new investment. Nothing in this measure requires recipients to spend the saving in Britain or sell fuel below market prices. HMRC has also published proposals for a different, price-triggered replacement after the levy ends; that proposal should not be confused with an existing additional charge. A credible costing needs investment responses, timing and the alternative use of lost revenue, rather than treating a producer tax cut as an automatic consumer saving.","sourceIds":["energy-epl","energy-ogrl","energy-markets"],"related":["measure-01","measure-02","measure-05"]},
-    {"id":"measure-05","number":5,"category":"Unlocking the North Sea","page":24,"title":"Change the North Sea regulator's objective and name","proposal":"Restore maximum economic extraction as the regulator's statutory objective, remove its Net Zero obligation and rename the North Sea Transition Authority the Oil & Gas Authority.","counter":"A new name and narrower objective cannot remove depletion or commercial constraints, while dropping emissions duties weakens accountability for production impacts.","critique":"A clearer regulatory mandate could help operators understand how investment proposals will be judged. But the premise needs care: the regulator's published strategy already combines maximising economic recovery with a duty to assist the net zero target. Economic recovery has therefore not simply disappeared from its framework. Removing the emissions element would change how competing costs and benefits are weighed, rather than uncovering resources by administrative instruction. The measure also needs to explain how the regulator would treat methane leaks, platform energy use and investment that reduces operational emissions. These affect the public interest even where oil and gas remain necessary. A focus on extraction could favour continued production, but cannot make every discovery commercially viable or replace depleted reservoirs. Parliament should assess the proposed statutory wording, the treatment of emissions and the consequences for taxpayers and offshore workers. Renaming the organisation provides little evidence of additional output or lower bills on its own.","sourceIds":["energy-strategy","energy-north-sea"],"related":["measure-01","measure-02","measure-04"]},
-    {"id":"measure-06","number":6,"category":"Reindustrialising Britain","page":25,"title":"Abolish the Emissions Trading Scheme","proposal":"Abolish the UK Emissions Trading Scheme.","counter":"Scrapping carbon trading may reduce some firms' immediate costs, but removes a declining emissions cap and changes incentives for industrial investment.","critique":"Carbon costs can put pressure on energy-intensive businesses, especially when overseas competitors face weaker rules. Removing allowance purchases could therefore relieve some immediate costs, although the benefit would differ between firms. The UK scheme already provides free allocations to eligible installations to reduce the risk of production moving abroad. It also limits total covered emissions through a cap that falls over time. Abolition would remove both a compliance cost and that investment signal. A business that has already paid for cleaner equipment could find its competitive position weakened relative to a higher-emitting rival. Any claim about household savings needs to show how lower costs pass through wholesale markets and retail contracts, and what replaces the public revenue. The policy also interacts directly with border carbon adjustments: ending both instruments changes the whole competitive framework. A serious alternative should specify how emissions will be reduced, how exposed manufacturers will be supported and who bears the transition costs.","sourceIds":["energy-ets","energy-cbam"],"related":["measure-07","measure-08","measure-23"]},
-    {"id":"measure-07","number":7,"category":"Reindustrialising Britain","page":25,"title":"Stop implementing the Carbon Border Adjustment Mechanism","proposal":"Stop implementing the UK Carbon Border Adjustment Mechanism, including the proposed charge affecting fertiliser imports.","counter":"Cancelling the border charge could help importers and farmers, but also removes protection for British producers paying domestic carbon costs.","critique":"Farmers and manufacturers using imported inputs have a legitimate interest in avoiding additional costs and complicated emissions paperwork. Cancelling the planned border charge would remove that prospective burden. However, the mechanism is intended to address a real competitive problem: British producers can pay a carbon price while equivalent imports escape it. HMRC's September 2026 policy paper says the charge is due to begin on 1 January 2027 and includes specified fertiliser imports, alongside several other industrial sectors. Its rates are intended to reflect domestic carbon costs after relevant reliefs, so the headline existence of a charge does not establish a uniform price rise. Abolishing it alone could disadvantage cleaner UK production; abolishing the domestic trading scheme as well would remove that particular imbalance but also the emissions incentive. The plan needs an integrated assessment of farmers, domestic fertiliser manufacturers, import competition and food prices, including how suppliers would pass any savings to customers.","sourceIds":["energy-cbam","energy-ets"],"related":["measure-06","measure-08"]},
-    {"id":"measure-08","number":8,"category":"Reindustrialising Britain","page":25,"title":"Repudiate AR7 contracts and scrap AR8","proposal":"Repudiate contracts for difference from allocation round 7 and cancel allocation round 8.","counter":"Repudiating awarded support risks legal costs and investor confidence, while removing contracts that can also return money when wholesale prices rise.","critique":"It is reasonable to scrutinise renewable support prices and the wider costs of connecting and balancing new generation. But rejecting existing contracts is a different decision from designing a better future auction. The government published round 7 results in January 2026, followed by round 7a results in February; those results describe contract offers, so the legal position must be checked project by project. Contracts for difference support a negotiated revenue level: generators receive top-ups when the reference price is lower, and pay back the difference when it is higher. Treating them as an unconditional subsidy misses that protection. Repudiation could trigger disputes or compensation claims, depending on the executed contracts and legislation. It could also increase the return investors demand for future British infrastructure if government commitments look unreliable. Cancelling round 8 may avoid future commitments, but requires a replacement plan for capacity, finance and energy security. Any claimed saving should deduct legal exposure and replacement supply costs.","sourceIds":["energy-ar7","energy-cfd"],"related":["measure-06","measure-09","measure-33"]},
-    {"id":"measure-09","number":9,"category":"Reindustrialising Britain","page":25,"title":"Implement the Fingleton Review immediately","proposal":"Implement the Fingleton Review's nuclear energy recommendations in full immediately.","counter":"Reducing unnecessary nuclear delays is useful, but implementation needs legislation, regulatory capacity and a deliverable construction and financing programme.","critique":"The Fingleton review offers a serious route to reducing avoidable nuclear costs and delays. More predictable regulation could help bring reliable low-carbon electricity and skilled employment. This is therefore a proposal whose potential benefits should be acknowledged. Its claimed immediacy still needs testing. The government's March 2026 response says it had accepted the principles of all 47 recommendations and begun implementation, with necessary legislation intended before the end of 2027, subject to parliamentary timings. Reform should identify which remaining actions it would accelerate and how, rather than presenting the whole programme as untouched. Changing guidance and legislation also requires trained regulators, competent project organisations and coordination across environmental and planning bodies. Even successful regulatory reform does not itself provide finance, construction teams or a completed reactor. The relevant test is a published delivery programme with responsibilities, milestones and safeguards. Consumers need an account of when electricity arrives and who carries construction risk, rather than a promise that an entire review can take effect at once.","sourceIds":["energy-fingleton","energy-nuclear"],"related":["measure-10","measure-08","measure-26"]},
-    {"id":"measure-10","number":10,"category":"Reindustrialising Britain","page":25,"title":"Automatically approve French and South Korean nuclear designs","proposal":"Legislate to recognise French and South Korean nuclear designs automatically as safe.","counter":"Using trusted overseas assessments can save time, but a design's nationality cannot establish its suitability for a particular British site and operator.","critique":"Reusing high-quality assessments from experienced overseas regulators could cut duplication and make established reactor designs easier to deploy. The benefit depends on the precise design version and evidence, rather than whether its vendor is French or South Korean. British nuclear approval separates generic design work from site licensing, environmental permits and planning decisions. Automatic recognition of a design would therefore leave practical questions about cooling, flooding, security, waste arrangements and the operator's capability. Those are matters for the actual project, not a foreign design certificate. ONR's May 2026 update already describes a policy for using international regulators' judgements, so the useful comparison is with that developing approach. Parliament would need to know what additional checks the proposal removes and what replaces them. Faster assessment is worthwhile where evidence supports it; removing independent judgement by nationality could instead create uncertainty over responsibility. Financing, supply chains and construction performance would remain essential even after design recognition.","sourceIds":["energy-nuclear"],"related":["measure-09","measure-26"]}
+    {
+      "id": "measure-01",
+      "number": 1,
+      "category": "Unlocking the North Sea",
+      "page": 24,
+      "title": "Approve Rosebank immediately",
+      "proposal": "Approve the Rosebank North Sea oil and gas project immediately.",
+      "counter": "Rosebank could support jobs and production, but immediate approval offers no guaranteed household price cut and must address the consenting evidence.",
+      "critique": "Rosebank could sustain offshore employment, engineering contracts and tax receipts, so its economic benefits deserve examination. But approving a field is different from delivering cheaper fuel. Its output would be predominantly oil, while the household heating problem is largely about gas. International trading also means domestic extraction does not automatically create a discounted British price. An immediate political commitment risks prejudging the environmental assessment rather than resolving it. The Commons Library records that the earlier consent was effectively quashed in January 2025 and fresh applications followed in July 2026. A ministerial answer on 14 September 2026 said the regulatory process was continuing; that dated answer does not establish the project's final status today. A credible approval case should therefore publish the assessment, realistic production timetable, public revenue implications and conditions protecting the environment. Workers and supply chains need a durable decision that survives scrutiny, alongside investment beyond the lifetime of one field.",
+      "sourceIds": [
+        "energy-north-sea",
+        "energy-rosebank-status",
+        "energy-markets"
+      ],
+      "related": [
+        "measure-02",
+        "measure-04",
+        "measure-05"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-02",
+      "number": 2,
+      "category": "Unlocking the North Sea",
+      "page": 24,
+      "title": "Restart licensing for new oil and gas fields",
+      "proposal": "Resume issuing exploration licences for new oil and gas fields.",
+      "counter": "New licences can encourage exploration, but they cannot guarantee discoveries, rapid production or insulation from international fuel prices.",
+      "critique": "A predictable licensing regime can support exploration businesses and preserve specialist skills. There is a legitimate debate about how much of Britain's continuing fuel demand should be supplied domestically. However, a licence is only an early step: commercially viable discoveries, finance, infrastructure and development consent must follow before production. That makes licensing a weak answer to an immediate cost of living crisis. The North Sea is also a mature basin, so ministers should distinguish slowing decline from reversing it. The Commons Library's September 2026 briefing describes the government's policy against new licences while allowing existing licensed projects to seek consent. Restarting rounds would therefore need a clear account of what additional investment is genuinely caused by the change. The trade-off is between possible future jobs and receipts, environmental impacts and capital committed to long-lived assets. Judging projects against realistic demand and price scenarios would be more informative than counting licences as energy delivered.",
+      "sourceIds": [
+        "energy-north-sea",
+        "energy-markets"
+      ],
+      "related": [
+        "measure-01",
+        "measure-04",
+        "measure-05"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-03",
+      "number": 3,
+      "category": "Unlocking the North Sea",
+      "page": 24,
+      "title": "Legalise onshore exploration in new licences",
+      "proposal": "Allow onshore oil and gas exploration through new licences.",
+      "counter": "Licensing onshore exploration does not settle local planning, environmental permissions or the separate restrictions on shale fracking.",
+      "critique": "Domestic onshore exploration could create some local contracts and identify useful resources. The proposal nevertheless needs much more precision about geography and drilling methods. Conventional exploration and high-volume hydraulic fracturing are different activities, and issuing a licence would not by itself resolve the permissions needed to drill or produce. A ministerial answer on 16 October 2026 confirmed that the effective shale-fracking moratorium continued for existing licences and distinguished conventional low-volume techniques. The same answer described forthcoming legislation, rather than establishing an already operative blanket statutory ban. Nearby residents would need clear protections for water, traffic, noise and site restoration, together with a meaningful planning process. Commercial success is uncertain, so promises of large tax receipts or cheap gas should not be booked in advance. Any assessment should compare the expected recoverable resource and development time with the disruption borne by host communities, rather than assuming permission to explore guarantees a productive industry.",
+      "sourceIds": [
+        "energy-onshore",
+        "energy-markets"
+      ],
+      "related": [
+        "measure-02",
+        "measure-13",
+        "measure-24"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-04",
+      "number": 4,
+      "category": "Unlocking the North Sea",
+      "page": 24,
+      "title": "Abolish the Energy Profits Levy immediately",
+      "proposal": "Immediately remove the additional tax on oil and gas profits known as the Energy Profits Levy.",
+      "counter": "Removing the levy could improve investment incentives, but gives up public revenue without requiring firms to invest or cut British energy prices.",
+      "critique": "Frequent tax changes can discourage investment, and removing an additional profit tax could make some marginal developments more attractive. That is a real potential benefit for offshore workers and suppliers. The fiscal question is how much extra activity the tax cut would generate compared with the revenue lost on production that would happen anyway. A Treasury answer in July 2026 put the levy at 38%, alongside a 40% permanent regime, with reliefs affecting actual liabilities. Abolition therefore benefits existing profitable operations as well as possible new investment. Nothing in this measure requires recipients to spend the saving in Britain or sell fuel below market prices. HMRC has also published proposals for a different, price-triggered replacement after the levy ends; that proposal should not be confused with an existing additional charge. A credible costing needs investment responses, timing and the alternative use of lost revenue, rather than treating a producer tax cut as an automatic consumer saving.",
+      "sourceIds": [
+        "energy-epl",
+        "energy-ogrl",
+        "energy-markets"
+      ],
+      "related": [
+        "measure-01",
+        "measure-02",
+        "measure-05"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-05",
+      "number": 5,
+      "category": "Unlocking the North Sea",
+      "page": 24,
+      "title": "Change the North Sea regulator's objective and name",
+      "proposal": "Restore maximum economic extraction as the regulator's statutory objective, remove its Net Zero obligation and rename the North Sea Transition Authority the Oil & Gas Authority.",
+      "counter": "A new name and narrower objective cannot remove depletion or commercial constraints, while dropping emissions duties weakens accountability for production impacts.",
+      "critique": "A clearer regulatory mandate could help operators understand how investment proposals will be judged. But the premise needs care: the regulator's published strategy already combines maximising economic recovery with a duty to assist the net zero target. Economic recovery has therefore not simply disappeared from its framework. Removing the emissions element would change how competing costs and benefits are weighed, rather than uncovering resources by administrative instruction. The measure also needs to explain how the regulator would treat methane leaks, platform energy use and investment that reduces operational emissions. These affect the public interest even where oil and gas remain necessary. A focus on extraction could favour continued production, but cannot make every discovery commercially viable or replace depleted reservoirs. Parliament should assess the proposed statutory wording, the treatment of emissions and the consequences for taxpayers and offshore workers. Renaming the organisation provides little evidence of additional output or lower bills on its own.",
+      "sourceIds": [
+        "energy-strategy",
+        "energy-north-sea"
+      ],
+      "related": [
+        "measure-01",
+        "measure-02",
+        "measure-04"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-06",
+      "number": 6,
+      "category": "Reindustrialising Britain",
+      "page": 25,
+      "title": "Abolish the Emissions Trading Scheme",
+      "proposal": "Abolish the UK Emissions Trading Scheme.",
+      "counter": "Abolition can lower some domestic carbon costs while increasing the carbon-border exposure of covered British exports to the EU.",
+      "critique": "Carbon charges are a real cost for energy-intensive businesses, and removing them could relieve some immediate pressure. But the relevant comparison includes trade, investment and public revenue, rather than the domestic bill alone. The EU’s definitive carbon-border regime began on 1 January 2026. Its importers can deduct a verified carbon price paid abroad, subject to the scheme’s rules. Removing the UK ETS could therefore increase the charge associated with covered British exports, including qualifying steel, aluminium and cement products.\n\nThe legal certificate obligation sits with the EU importer, but British suppliers can face commercial consequences through prices, margins or demand. The effect varies with product coverage, emissions, reliefs and phasing; it is not a uniform charge on all UK exports. Current UK–EU linkage negotiations offer a possible exemption route, contingent on agreement. Abolition would also remove an emissions incentive and weaken the value of earlier clean investment. Some carbon revenue could shift from the UK to the EU. A larger gross border charge is not automatically an equal increase in combined production and border costs, because domestic carbon costs may fall.",
+      "sourceIds": [
+        "energy-ets",
+        "update-eu-cbam",
+        "update-ets-overview",
+        "update-linkage"
+      ],
+      "related": [
+        "measure-07",
+        "measure-08",
+        "measure-23"
+      ],
+      "evidenceLabel": "Distributional trade-off",
+      "dependencies": [
+        {
+          "id": "measure-07",
+          "reason": "The UK import charge is a different instrument from the EU border regime faced by British exports."
+        },
+        {
+          "id": "claim-energy-bills",
+          "reason": "The household saving depends on electricity-price effects and pass-through."
+        }
+      ]
+    },
+    {
+      "id": "measure-07",
+      "number": 7,
+      "category": "Reindustrialising Britain",
+      "page": 25,
+      "title": "Stop implementing the Carbon Border Adjustment Mechanism",
+      "proposal": "Stop implementing the UK Carbon Border Adjustment Mechanism, including the proposed charge affecting fertiliser imports.",
+      "counter": "Cancelling the UK import mechanism does not cancel EU carbon-border costs, and removing both UK instruments changes the competitive position of domestic producers.",
+      "critique": "Farmers and manufacturers using imported inputs have a legitimate interest in avoiding additional costs and emissions paperwork. Cancelling the UK’s planned charge would remove that prospective burden. However, its purpose is to address an imbalance between domestic production facing carbon costs and imports that may not. HMRC describes implementation from January 2027, including specified fertiliser imports. Design, reliefs and supplier responses determine the actual effect on input prices.\n\nThis is separate from the EU mechanism already operating from January 2026. Repealing the UK scheme would not remove the EU importer’s obligation on covered British exports. Abolishing the UK ETS alongside it may reduce deductible UK carbon payments and increase that commercial exposure. UK–EU ETS linkage could change the position, but negotiations do not guarantee an exemption. Reform needs a joined-up assessment of import users, domestic manufacturers, exporters and customers, rather than counting the removal of each UK charge as an independent benefit without its trade interactions.",
+      "sourceIds": [
+        "energy-cbam",
+        "update-eu-cbam",
+        "update-ets-overview",
+        "update-linkage"
+      ],
+      "related": [
+        "measure-06",
+        "measure-08"
+      ],
+      "evidenceLabel": "Distributional trade-off",
+      "dependencies": [
+        {
+          "id": "measure-06",
+          "reason": "Removing the domestic carbon price changes the rationale for an import adjustment and the credit available under EU rules."
+        },
+        {
+          "id": "claim-net-zero-spending",
+          "reason": "Energy investment and industrial support also affect manufacturers’ ability to compete."
+        }
+      ]
+    },
+    {
+      "id": "measure-08",
+      "number": 8,
+      "category": "Reindustrialising Britain",
+      "page": 25,
+      "title": "Repudiate AR7 contracts and scrap AR8",
+      "proposal": "Repudiate contracts for difference from allocation round 7 and cancel allocation round 8.",
+      "counter": "Repudiating awarded support risks legal costs and investor confidence, while removing contracts that can also return money when wholesale prices rise.",
+      "critique": "It is reasonable to scrutinise renewable support prices and the wider costs of connecting and balancing new generation. But rejecting existing contracts is a different decision from designing a better future auction. The government published round 7 results in January 2026, followed by round 7a results in February; those results describe contract offers, so the legal position must be checked project by project. Contracts for difference support a negotiated revenue level: generators receive top-ups when the reference price is lower, and pay back the difference when it is higher. Treating them as an unconditional subsidy misses that protection. Repudiation could trigger disputes or compensation claims, depending on the executed contracts and legislation. It could also increase the return investors demand for future British infrastructure if government commitments look unreliable. Cancelling round 8 may avoid future commitments, but requires a replacement plan for capacity, finance and energy security. Any claimed saving should deduct legal exposure and replacement supply costs.",
+      "sourceIds": [
+        "energy-ar7",
+        "energy-cfd"
+      ],
+      "related": [
+        "measure-06",
+        "measure-09",
+        "measure-33"
+      ],
+      "evidenceLabel": "Costing uncertainty"
+    },
+    {
+      "id": "measure-09",
+      "number": 9,
+      "category": "Reindustrialising Britain",
+      "page": 25,
+      "title": "Implement the Fingleton Review immediately",
+      "proposal": "Implement the Fingleton Review's nuclear energy recommendations in full immediately.",
+      "counter": "Reducing unnecessary nuclear delays is useful, but implementation needs legislation, regulatory capacity and a deliverable construction and financing programme.",
+      "critique": "The Fingleton review offers a serious route to reducing avoidable nuclear costs and delays. More predictable regulation could help bring reliable low-carbon electricity and skilled employment. This is therefore a proposal whose potential benefits should be acknowledged. Its claimed immediacy still needs testing. The government's March 2026 response says it had accepted the principles of all 47 recommendations and begun implementation, with necessary legislation intended before the end of 2027, subject to parliamentary timings. Reform should identify which remaining actions it would accelerate and how, rather than presenting the whole programme as untouched. Changing guidance and legislation also requires trained regulators, competent project organisations and coordination across environmental and planning bodies. Even successful regulatory reform does not itself provide finance, construction teams or a completed reactor. The relevant test is a published delivery programme with responsibilities, milestones and safeguards. Consumers need an account of when electricity arrives and who carries construction risk, rather than a promise that an entire review can take effect at once.",
+      "sourceIds": [
+        "energy-fingleton",
+        "energy-nuclear"
+      ],
+      "related": [
+        "measure-10",
+        "measure-08",
+        "measure-26"
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
+    },
+    {
+      "id": "measure-10",
+      "number": 10,
+      "category": "Reindustrialising Britain",
+      "page": 25,
+      "title": "Automatically approve French and South Korean nuclear designs",
+      "proposal": "Legislate to recognise French and South Korean nuclear designs automatically as safe.",
+      "counter": "Using trusted overseas assessments can save time, but a design's nationality cannot establish its suitability for a particular British site and operator.",
+      "critique": "Reusing high-quality assessments from experienced overseas regulators could cut duplication and make established reactor designs easier to deploy. The benefit depends on the precise design version and evidence, rather than whether its vendor is French or South Korean. British nuclear approval separates generic design work from site licensing, environmental permits and planning decisions. Automatic recognition of a design would therefore leave practical questions about cooling, flooding, security, waste arrangements and the operator's capability. Those are matters for the actual project, not a foreign design certificate. ONR's May 2026 update already describes a policy for using international regulators' judgements, so the useful comparison is with that developing approach. Parliament would need to know what additional checks the proposal removes and what replaces them. Faster assessment is worthwhile where evidence supports it; removing independent judgement by nationality could instead create uncertainty over responsibility. Financing, supply chains and construction performance would remain essential even after design recognition.",
+      "sourceIds": [
+        "energy-nuclear"
+      ],
+      "related": [
+        "measure-09",
+        "measure-26"
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
+    }
   ],
   "sources": [
-    {"id":"energy-north-sea","publisher":"House of Commons Library","title":"North Sea oil and gas","date":"2026-09-29","url":"https://commonslibrary.parliament.uk/research-briefings/cbp-12212/","accessed":"2026-10-27","finding":"Describes declining production, the distinction between licences and development consent, the policy against new licences, and Rosebank's predominantly oil output. Reports January 2025 consents being effectively quashed and fresh applications in July 2026; this is dated evidence, not confirmation of today's final consent status."},
-    {"id":"energy-rosebank-status","publisher":"UK Parliament / Department for Energy Security and Net Zero","title":"Written question 28523: Rosebank and Jackdaw development applications","date":"2026-09-14","url":"https://questions-statements.parliament.uk/written-questions/detail/2026-09-09/28523","accessed":"2026-10-27","finding":"Minister said both applications were then in the regulatory process and final consenting decisions belonged to NSTA. This does not establish either project's status after that answer."},
-    {"id":"energy-markets","publisher":"UK Parliament, Hansard","title":"Fracking Ban","date":"2026-09-15","url":"https://hansard.parliament.uk/commons/2026-09-15/debates/DE5D6B0F-B974-42BC-AB63-7DC34DA64A8A/FrackingBan","accessed":"2026-10-27","finding":"Ministerial response states that oil and gas are internationally traded and additional domestic production would not shield consumers from global price volatility. This is a ministerial explanation of the market mechanism, not a quantified estimate of any project's price effect."},
-    {"id":"energy-onshore","publisher":"UK Parliament / Department for Energy Security and Net Zero","title":"Written question 29884: Fracking moratorium","date":"2026-10-16","url":"https://questions-statements.parliament.uk/written-questions/detail/2026-09-14/29884/","accessed":"2026-10-27","finding":"Confirms effective shale-fracking moratorium continues for existing licences, describes planned Energy Independence Bill measures, and distinguishes low-volume conventional hydraulic fracturing from shale fracking."},
-    {"id":"energy-epl","publisher":"UK Parliament / HM Treasury","title":"Written question HL2572: Energy Profits Levy","date":"2026-07-30","url":"https://questions-statements.parliament.uk/written-questions/detail/2026-07-22/HL2572","accessed":"2026-10-27","finding":"Confirms EPL at 38% in addition to the permanent 40% regime and an end date of 31 March 2030 or earlier under the Energy Security Investment Mechanism."},
-    {"id":"energy-ogrl","publisher":"HM Revenue & Customs","title":"Oil and Gas Revenue Levy (OGRL)","date":"2026-07-13","url":"https://www.gov.uk/government/publications/oil-and-gas-taxation-oil-and-gas-revenue-levy/oil-and-gas-revenue-levy-ogrl","accessed":"2026-10-27","finding":"Describes draft legislation for a price-triggered levy replacing EPL when it ends; explicitly says the new levy has no current law and legislation is planned through Finance Bill 2026-27."},
-    {"id":"energy-strategy","publisher":"North Sea Transition Authority","title":"The OGA Strategy","date":"2024-05-24 (review noted on page)","url":"https://www.nstauthority.co.uk/regulatory-information/regulatory-framework/the-oga-strategy/","accessed":"2026-10-27","finding":"Published strategy combines maximising economic recovery with assisting the net zero target; entered force in February 2021 and the page records a May 2024 review proposing no revisions."},
-    {"id":"energy-ets","publisher":"Department for Energy Security and Net Zero","title":"Participating in the UK ETS","date":"2026-07-01 (updated)","url":"https://www.gov.uk/government/publications/participating-in-the-uk-ets/participating-in-the-uk-ets","accessed":"2026-10-27","finding":"Explains declining cap, surrender of allowances and free allocation for eligible installations to reduce carbon leakage risk."},
-    {"id":"energy-cbam","publisher":"HM Revenue & Customs","title":"Carbon Border Adjustment Mechanism","date":"2026-09-09 (updated)","url":"https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism","accessed":"2026-10-27","finding":"Sets intended start on 1 January 2027, includes specified fertiliser imports and explains rates reflecting domestic carbon pricing after relevant free allowances and discounts."},
-    {"id":"energy-ar7","publisher":"Department for Energy Security and Net Zero","title":"Contracts for Difference (CfD) Allocation Round 7: results","date":"2026-02-10 (updated)","url":"https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-results","accessed":"2026-10-27","finding":"Results first published 14 January 2026 with round 7a results added 10 February. Explicitly describes results as contract offers to be signed between developers and LCCC, not proof every offered contract was executed."},
-    {"id":"energy-cfd","publisher":"National Energy System Operator","title":"Contracts for Difference (CfD)","date":"Undated live guidance","url":"https://www.neso.energy/what-we-do/energy-markets/electricity-market-reform-emr-delivery-body/contracts-difference-cfd","accessed":"2026-10-27","finding":"Explains bilateral contracts with LCCC and two-way payments: top-ups below the strike price and generator repayments above it. Also links current AR8 guidance."},
-    {"id":"energy-fingleton","publisher":"Department for Energy Security and Net Zero","title":"Building our nuclear nation: government response to the Nuclear Regulatory Review 2025","date":"2026-03-13","url":"https://www.gov.uk/government/publications/building-our-nuclear-nation-government-response-to-the-nuclear-regulatory-review-2025/building-our-nuclear-nation-government-response-to-the-nuclear-regulatory-review-2025-accessible-webpage","accessed":"2026-10-27","finding":"Government accepted principles of all 47 recommendations, said implementation had begun and committed to necessary legislation before end 2027 subject to parliamentary timings."},
-    {"id":"energy-nuclear","publisher":"Office for Nuclear Regulation","title":"Generic Design Assessment of new nuclear power stations","date":"2026-05 (update within live page)","url":"https://www.onr.org.uk/generic-design-assessment","accessed":"2026-10-27","finding":"Distinguishes voluntary generic design assessment from required site licence, consents, environmental permits and planning. May 2026 update introduces greater use of trusted international assessments while retaining safety standards."}
+    {
+      "id": "energy-north-sea",
+      "publisher": "House of Commons Library",
+      "title": "North Sea oil and gas",
+      "date": "2026-09-29",
+      "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-12212/",
+      "accessed": "2026-10-27",
+      "finding": "Describes declining production, the distinction between licences and development consent, the policy against new licences, and Rosebank's predominantly oil output. Reports January 2025 consents being effectively quashed and fresh applications in July 2026; this is dated evidence, not confirmation of today's final consent status."
+    },
+    {
+      "id": "energy-rosebank-status",
+      "publisher": "UK Parliament / Department for Energy Security and Net Zero",
+      "title": "Written question 28523: Rosebank and Jackdaw development applications",
+      "date": "2026-09-14",
+      "url": "https://questions-statements.parliament.uk/written-questions/detail/2026-09-09/28523",
+      "accessed": "2026-10-27",
+      "finding": "Minister said both applications were then in the regulatory process and final consenting decisions belonged to NSTA. This does not establish either project's status after that answer."
+    },
+    {
+      "id": "energy-markets",
+      "publisher": "UK Parliament, Hansard",
+      "title": "Fracking Ban",
+      "date": "2026-09-15",
+      "url": "https://hansard.parliament.uk/commons/2026-09-15/debates/DE5D6B0F-B974-42BC-AB63-7DC34DA64A8A/FrackingBan",
+      "accessed": "2026-10-27",
+      "finding": "Ministerial response states that oil and gas are internationally traded and additional domestic production would not shield consumers from global price volatility. This is a ministerial explanation of the market mechanism, not a quantified estimate of any project's price effect."
+    },
+    {
+      "id": "energy-onshore",
+      "publisher": "UK Parliament / Department for Energy Security and Net Zero",
+      "title": "Written question 29884: Fracking moratorium",
+      "date": "2026-10-16",
+      "url": "https://questions-statements.parliament.uk/written-questions/detail/2026-09-14/29884/",
+      "accessed": "2026-10-27",
+      "finding": "Confirms effective shale-fracking moratorium continues for existing licences, describes planned Energy Independence Bill measures, and distinguishes low-volume conventional hydraulic fracturing from shale fracking."
+    },
+    {
+      "id": "energy-epl",
+      "publisher": "UK Parliament / HM Treasury",
+      "title": "Written question HL2572: Energy Profits Levy",
+      "date": "2026-07-30",
+      "url": "https://questions-statements.parliament.uk/written-questions/detail/2026-07-22/HL2572",
+      "accessed": "2026-10-27",
+      "finding": "Confirms EPL at 38% in addition to the permanent 40% regime and an end date of 31 March 2030 or earlier under the Energy Security Investment Mechanism."
+    },
+    {
+      "id": "energy-ogrl",
+      "publisher": "HM Revenue & Customs",
+      "title": "Oil and Gas Revenue Levy (OGRL)",
+      "date": "2026-07-13",
+      "url": "https://www.gov.uk/government/publications/oil-and-gas-taxation-oil-and-gas-revenue-levy/oil-and-gas-revenue-levy-ogrl",
+      "accessed": "2026-10-27",
+      "finding": "Describes draft legislation for a price-triggered levy replacing EPL when it ends; explicitly says the new levy has no current law and legislation is planned through Finance Bill 2026-27."
+    },
+    {
+      "id": "energy-strategy",
+      "publisher": "North Sea Transition Authority",
+      "title": "The OGA Strategy",
+      "date": "2024-05-24 (review noted on page)",
+      "url": "https://www.nstauthority.co.uk/regulatory-information/regulatory-framework/the-oga-strategy/",
+      "accessed": "2026-10-27",
+      "finding": "Published strategy combines maximising economic recovery with assisting the net zero target; entered force in February 2021 and the page records a May 2024 review proposing no revisions."
+    },
+    {
+      "id": "energy-ets",
+      "publisher": "Department for Energy Security and Net Zero",
+      "title": "Participating in the UK ETS",
+      "date": "2026-07-01 (updated)",
+      "url": "https://www.gov.uk/government/publications/participating-in-the-uk-ets/participating-in-the-uk-ets",
+      "accessed": "2026-10-27",
+      "finding": "Explains declining cap, surrender of allowances and free allocation for eligible installations to reduce carbon leakage risk."
+    },
+    {
+      "id": "energy-cbam",
+      "publisher": "HM Revenue & Customs",
+      "title": "Carbon Border Adjustment Mechanism",
+      "date": "2026-09-09 (updated)",
+      "url": "https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism/carbon-border-adjustment-mechanism",
+      "accessed": "2026-10-27",
+      "finding": "Sets intended start on 1 January 2027, includes specified fertiliser imports and explains rates reflecting domestic carbon pricing after relevant free allowances and discounts."
+    },
+    {
+      "id": "energy-ar7",
+      "publisher": "Department for Energy Security and Net Zero",
+      "title": "Contracts for Difference (CfD) Allocation Round 7: results",
+      "date": "2026-02-10 (updated)",
+      "url": "https://www.gov.uk/government/publications/contracts-for-difference-cfd-allocation-round-7-results",
+      "accessed": "2026-10-27",
+      "finding": "Results first published 14 January 2026 with round 7a results added 10 February. Explicitly describes results as contract offers to be signed between developers and LCCC, not proof every offered contract was executed."
+    },
+    {
+      "id": "energy-cfd",
+      "publisher": "National Energy System Operator",
+      "title": "Contracts for Difference (CfD)",
+      "date": "Undated live guidance",
+      "url": "https://www.neso.energy/what-we-do/energy-markets/electricity-market-reform-emr-delivery-body/contracts-difference-cfd",
+      "accessed": "2026-10-27",
+      "finding": "Explains bilateral contracts with LCCC and two-way payments: top-ups below the strike price and generator repayments above it. Also links current AR8 guidance."
+    },
+    {
+      "id": "energy-fingleton",
+      "publisher": "Department for Energy Security and Net Zero",
+      "title": "Building our nuclear nation: government response to the Nuclear Regulatory Review 2025",
+      "date": "2026-03-13",
+      "url": "https://www.gov.uk/government/publications/building-our-nuclear-nation-government-response-to-the-nuclear-regulatory-review-2025/building-our-nuclear-nation-government-response-to-the-nuclear-regulatory-review-2025-accessible-webpage",
+      "accessed": "2026-10-27",
+      "finding": "Government accepted principles of all 47 recommendations, said implementation had begun and committed to necessary legislation before end 2027 subject to parliamentary timings."
+    },
+    {
+      "id": "energy-nuclear",
+      "publisher": "Office for Nuclear Regulation",
+      "title": "Generic Design Assessment of new nuclear power stations",
+      "date": "2026-05 (update within live page)",
+      "url": "https://www.onr.org.uk/generic-design-assessment",
+      "accessed": "2026-10-27",
+      "finding": "Distinguishes voluntary generic design assessment from required site licence, consents, environmental permits and planning. May 2026 update introduces greater use of trusted international assessments while retaining safety standards."
+    }
   ]
 }

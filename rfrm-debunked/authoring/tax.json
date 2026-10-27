@@ -12,11 +12,36 @@
       "sourceIds": [
         "tax-hmrc-rates",
         "tax-uc",
-        "tax-scotland"
+        "tax-scotland",
+        "update-net-earnings"
       ],
       "related": [
         "claim-household-relief",
         "claim-fiscal-revenue"
+      ],
+      "evidenceLabel": "Distributional trade-off",
+      "evidencePanels": [
+        {
+          "title": "Worked example: £486 tax relief, about £219 more disposable income",
+          "paragraphs": [
+            "Assume the full £486 annual income-tax reduction becomes additional take-home earnings; the whole increase is above any applicable Universal Credit work allowance; the household remains entitled to enough UC for the full deduction; and employee NI does not change. The 55% taper then reduces UC by £267.30 (£486 × 0.55), leaving £218.70, or about £219, of the tax reduction.",
+            "This is an illustration, not a forecast for every claimant. It excludes council-tax support and other interactions. A household below the allowance, not exposed to the taper, or losing its remaining UC entitlement will have a different result."
+          ],
+          "sourceIds": [
+            "tax-uc",
+            "update-net-earnings"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "claim-household-relief",
+          "reason": "The household headline depends on the number of eligible earners and benefit interactions."
+        },
+        {
+          "id": "claim-fiscal-revenue",
+          "reason": "The published revenue cost must be funded even when a recipient’s net gain is smaller."
+        }
       ]
     },
     {
@@ -36,7 +61,8 @@
       "related": [
         "claim-personal-allowance",
         "claim-energy-bills"
-      ]
+      ],
+      "evidenceLabel": "Costing uncertainty"
     },
     {
       "id": "claim-energy-bills",
@@ -45,16 +71,45 @@
       "page": "14–15",
       "title": "Cut household energy bills by £250",
       "proposal": "Claim £250 a year by abolishing the UK ETS and Carbon Price Support, removing policy costs and domestic energy VAT. The text gives approximate component savings of £90, £80 and £90. Initially move policy costs to the Treasury while repealing statutory funding obligations.",
-      "counter": "Moving charges to taxation changes who pays, and the £250 saving needs a fresh, consistent baseline rather than adding overlapping estimates.",
-      "critique": "Taking a levy or VAT off a bill can reduce the amount a household pays its supplier. Moving an existing funding obligation to the Treasury, however, does not make its cost disappear: taxpayers or borrowing must cover it until obligations genuinely end. The three approximate component figures total £260, illustrating that the advertised £250 is an estimate rather than a fixed entitlement. Carbon-price effects also depend on the generator setting the electricity price and how suppliers pass changes through.\n\nOfgem separates wholesale, network, policy and tax costs, and explains that its cap limits rates rather than total bills. Moreover, HMRC records a temporary zero VAT rate for qualifying domestic electricity in Great Britain from October 2026 to March 2027; Northern Ireland and domestic gas require different treatment. Reform's saving therefore needs a dated counterfactual and jurisdictional breakdown. Lower bills are desirable, but deleting climate support also changes future generation and efficiency investment, so a first-year bill reduction is not a complete assessment.",
+      "counter": "Policy costs genuinely add to bills, but moving them to taxation does not remove their cost and abolishing them does not remove exposure to gas prices.",
+      "critique": "The plan identifies a real source of electricity costs. IFS analysis puts taxes and levies excluding VAT at about 17% of the average household electricity bill in July–October 2026. That is an electricity figure, not a share of the combined gas-and-electricity bill. Removing charges can therefore provide genuine relief. However, shifting existing obligations to the Treasury initially transfers the cost to taxpayers or borrowing rather than eliminating it.\n\nGas exposure remains a separate problem: the Commons energy committee reports that gas sets wholesale electricity prices much of the time. Reform’s proposed changes cannot be evaluated through a single-cause Net Zero diagnosis. The £250 estimate needs a dated baseline, clear pass-through assumptions and no overlap between its components. Existing temporary zero VAT on qualifying GB domestic electricity further changes the comparison. Longer-term effects on clean generation, efficiency and EU-facing industry also matter. Lower first-year bills can be valuable without establishing that every cancelled programme or carbon charge produces a net economic saving.",
       "sourceIds": [
-        "tax-ofgem",
-        "tax-electricity-vat"
+        "update-ifs-electricity",
+        "update-committee-energy",
+        "tax-electricity-vat",
+        "tax-ofgem"
       ],
       "related": [
         "measure-06",
         "measure-08",
         "claim-net-zero-spending"
+      ],
+      "evidenceLabel": "Distributional trade-off",
+      "evidencePanels": [
+        {
+          "title": "A concession, with the correct denominator",
+          "paragraphs": [
+            "Energy policy costs are real. The IFS figure is about 17% of the average household electricity bill, excluding VAT, for July–October 2026. It is not 17% of every household’s total energy bill. Gas-driven wholesale pricing and policy costs can both contribute; acknowledging one does not explain away the other."
+          ],
+          "sourceIds": [
+            "update-ifs-electricity",
+            "update-committee-energy"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "measure-06",
+          "reason": "The ETS proposal also affects industry, exports and investment."
+        },
+        {
+          "id": "claim-net-zero-spending",
+          "reason": "Moving obligations to the Treasury and cancelling programmes have different fiscal effects."
+        },
+        {
+          "id": "claim-household-relief",
+          "reason": "A typical bill saving cannot be assumed for every household."
+        }
       ]
     },
     {
@@ -73,6 +128,19 @@
       "related": [
         "measure-53",
         "claim-fiscal-revenue"
+      ],
+      "evidenceLabel": "Reasonable policy with caveats",
+      "evidencePanels": [
+        {
+          "title": "A documented problem, not an invented benefit",
+          "paragraphs": [
+            "The OBR’s historical analysis documents firms bunching below the registration threshold. That supports the case for addressing a genuine constraint. It does not independently establish Reform’s 320,000 beneficiary count or prove that moving the threshold to £150,000 resolves the cliff edge."
+          ],
+          "sourceIds": [
+            "tax-obr-vat",
+            "tax-vat-threshold"
+          ]
+        }
       ]
     },
     {
@@ -92,7 +160,8 @@
         "measure-43",
         "measure-48",
         "claim-fiscal-revenue"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-overtime",
@@ -101,16 +170,40 @@
       "page": "16",
       "title": "No income tax on qualifying overtime",
       "proposal": "A Hard Work Bonus for employees earning under £75,000, exempting overtime above a 40-hour week from income tax. Claim a 25–67% increase in qualifying net hourly pay; budget implementation for the second tax year.",
-      "counter": "An overtime exemption rewards particular working patterns and creates scope to relabel pay without proving that overall output rises.",
-      "critique": "Removing income tax from genuine additional hours can make those hours more rewarding. But the advertised percentage is a comparison of qualifying hourly pay under particular tax rates, not a forecast increase in annual income or national productivity. National Insurance, benefit treatment and the precise definition of earnings all matter. DWP's Universal Credit rules mean a pay gain does not automatically become an equal gain in household resources; the treatment of this new exemption would need explicit design.\n\nA sharp 40-hour boundary advantages employees offered recorded overtime over part-time workers, carers, salaried staff doing unpaid extra hours and people with no capacity to work longer. Employers and employees would have an incentive to restructure contracts so ordinary remuneration appears as exempt overtime. Payroll verification therefore brings administrative costs. Existing working-time limits and rest protections also still matter. This could help some staff and employers cover busy periods, but the plan needs anti-avoidance rules, health safeguards and evidence of additional work before presenting the exemption as a broad growth dividend.",
+      "counter": "Relabelling existing pay could cost far more than genuine additional overtime, and the £75,000 boundary needs a rule that avoids a cliff edge.",
+      "critique": "Tax-free genuine overtime could reward additional work and help employers cover busy periods. The main costing problem is distinguishing new hours from pay that would have been earned anyway. Employers and workers could redesign contracts, lower recorded basic hours or move remuneration into exempt overtime. Owner-managed companies create another potential route if service income becomes qualifying employee pay. These responses need modelling rather than a static calculation alone.\n\nTax Policy Associates’ earlier analysis illustrates how behavioural assumptions can dominate the cost. Its estimate is not a like-for-like score of this October package, but it makes the need for an independently reproducible model concrete. Eligibility below £75,000 also needs smoothing: if crossing the threshold removes relief on existing overtime, a pay rise could reduce take-home income. Final rules may avoid that outcome, so it is a design risk rather than a confirmed result. Carers, part-time workers and employees without overtime opportunities receive less direct help; payroll administration and working-time protections still matter.",
       "sourceIds": [
-        "tax-hours",
-        "tax-uc",
-        "tax-hmrc-rates"
+        "update-tpa-overtime",
+        "official-plan-download",
+        "tax-hours"
       ],
       "related": [
         "measure-34",
         "claim-fiscal-revenue"
+      ],
+      "evidenceLabel": "Costing uncertainty",
+      "evidencePanels": [
+        {
+          "title": "Two costings that must not be treated as like for like",
+          "paragraphs": [
+            "Tax Policy Associates’ May 2026 central estimate was about £14bn: roughly £4bn of static cost, £7bn from relabelling and £3bn from personal-service-company arbitrage, less about £0.2bn of NI effects. Reform’s October table shows £4.44bn in 2028/29, rising to £8.54bn in 2031/32, for overtime including reservist pay.",
+            "Different proposal vintages, years and assumptions prevent treating £14bn as a directly comparable extra shortfall. The useful test is whether Reform publishes enough detail to explain its own behavioural assumptions. A hard £75,000 cutoff could also remove relief on previously qualifying overtime; the final eligibility and taper rules must settle that issue."
+          ],
+          "sourceIds": [
+            "update-tpa-overtime",
+            "official-plan-download"
+          ]
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "claim-fiscal-revenue",
+          "reason": "The annual profile depends on behavioural responses, not only the advertised tax rate."
+        },
+        {
+          "id": "claim-personal-allowance",
+          "reason": "Income-tax relief and means-tested benefits interact with household gains."
+        }
       ]
     },
     {
@@ -129,7 +222,8 @@
       "related": [
         "claim-overtime",
         "claim-defence"
-      ]
+      ],
+      "evidenceLabel": "Reasonable policy with caveats"
     },
     {
       "id": "claim-pubs",
@@ -147,7 +241,8 @@
       "related": [
         "measure-56",
         "claim-fiscal-revenue"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     },
     {
       "id": "claim-inheritance-reliefs",
@@ -164,7 +259,8 @@
       ],
       "related": [
         "claim-fiscal-revenue"
-      ]
+      ],
+      "evidenceLabel": "Distributional trade-off"
     }
   ],
   "sources": [

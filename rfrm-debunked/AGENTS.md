@@ -10,15 +10,18 @@ Open `index.html` directly, or run `python3 -m http.server 8000` from this folde
 
 - `index.html`: complete generated static document, inline CSS and focused DOM-derived JavaScript.
 - `authoring/template.html`: page structure, styles and interactions.
-- `authoring/{energy,housing,infrastructure,deregulation,tax,support}.json`: reviewed article/source content. Article fields: id, number (null for supporting), category, page, title, proposal, counter, critique, sourceIds, related. Source fields: id, publisher, title, date, URL, accessed, finding.
+- `authoring/{energy,housing,infrastructure,deregulation,tax,support}.json`: reviewed article/source content. Article fields: id, number (null for supporting), category, page, title, proposal, counter, critique, sourceIds, related, evidenceLabel, optional evidencePanels and dependencies. Source fields: id, publisher, title, date, URL, accessed, finding.
+- `authoring/highlights.json`: eight static headline panels; these do not add to the 101 policy result count.
+- `authoring/audit.json`: all 20 policy lines reaching an absolute £1bn in any forecast year, tested against six disclosure dimensions. Keep unknown disclosure separate from falsity.
+- `authoring/updates.json`: verified official provenance and additional source records.
 - `authoring/tables.json`: literal source table strings, including blank cells and parentheses. Never infer zero from blank or silently reconcile rounded totals.
 - `authoring/generate.py`: optional Python3 authoring helper; run `python3 authoring/generate.py` after edits. It validates content lengths/references, writes static `index.html` and the coverage/source audit in `RESEARCH.md`. Readers need no build.
 - `economic-rescue-plan-summary.md`: preserved source notes. Do not edit to fit the critique. Original SHA256: 6bd56fc035838ee613067efd673beaf0c02a8c3ae5893e38e489ac0d5ac76c8f.
 - `PLAN.md`: approved brief. `RESEARCH.md`: provenance/evidence limitations, summary/table inventory and exact source register.
 
-Keep the folder name, `measure-01`…`measure-64` and descriptive `claim-*` IDs permanent; published links depend on them. Original numbering/order/category grouping must survive edits. Never add a measure 65. Every substantive addition needs a real opened source with publisher/title/date (or explicitly unknown), URL, access date and supported finding. Check jurisdiction, legal commencement and forecast vintage. Attributed source assertions are not automatically verified facts. Do not claim official PDF provenance or independent certification of the in-house fiscal model.
+Keep the folder name, `measure-01`…`measure-64` and descriptive `claim-*` IDs permanent; published links depend on them. Original numbering/order/category grouping must survive edits. Never add a measure 65. Every substantive addition needs a real opened source with publisher/title/date (or explicitly unknown), URL, access date and supported finding. Check jurisdiction, legal commencement and forecast vintage. Attributed source assertions are not automatically verified facts. The official publisher-hosted plan and launch were verified on 27 October 2026; preserve the scoped version comparison in RESEARCH.md. Do not claim byte-for-byte identity or independent certification of the in-house fiscal model.
 
-All articles are static HTML and native details. Search indexes heading/proposal/counter/analysis text directly from the DOM, including closed details. Search and topic combine with AND; #12 is an exact measure query. Hash navigation clears filters and opens/focuses the article. Before/after-print handlers temporarily reveal/open all then restore state. Clipboard failure reveals/selects the permanent URL.
+All articles are static HTML and native details. Search indexes headings, proposals, counterarguments, analysis, evidence labels, worked examples and dependency text directly from the DOM, including closed details. Headline panels and the audit do not become policy search results. Search and topic combine with AND; #12 is an exact measure query. Hash navigation clears filters and opens/focuses the article. Before/after-print handlers temporarily reveal/open all then restore state. Clipboard failure reveals/selects the permanent URL.
 
 ## Design
 

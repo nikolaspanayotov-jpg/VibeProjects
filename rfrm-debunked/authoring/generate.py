@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'authoring'
-BATCHES = ['energy', 'housing', 'infrastructure', 'deregulation', 'tax', 'support']
+BATCHES = ['energy', 'housing', 'infrastructure', 'deregulation', 'tax', 'support', 'updates']
 articles, sources = [], []
 for name in BATCHES:
     batch = json.loads((DATA / f'{name}.json').read_text())
@@ -20,11 +20,16 @@ source_map = {s['id']: s for s in sources}
 assert len(by_id) == len(articles)
 assert len(source_map) == len(sources)
 assert [a['number'] for a in articles if a['number']] == list(range(1, 65))
+EVIDENCE_LABELS = {'Internal contradiction', 'Legal obstacle', 'Costing uncertainty', 'Strong evidence', 'Distributional trade-off', 'Reasonable policy with caveats'}
 for a in articles:
+    assert a['evidenceLabel'] in EVIDENCE_LABELS, a['id']
     assert 120 <= len(a['critique'].split()) <= 200, a['id']
     assert a['sourceIds'] and all(s in source_map for s in a['sourceIds']), a['id']
     assert all(i in by_id for i in a['related']), a['id']
     assert a['number'] or a['id'].startswith('claim-')
+    for panel in a.get('evidencePanels', []):
+        assert all(i in source_map for i in panel['sourceIds'])
+    assert all(link['id'] in by_id for link in a.get('dependencies', []))
 for s in sources:
     assert s['url'].startswith('https://'), s['id']
 
@@ -70,9 +75,17 @@ def render_article(a):
         date = s.get('date') or 'Publication date not established; accessed 27 October 2026'
         citations += f'<li id="{esc(article_id)}-source-{i}"><a href="{esc(s["url"])}">{esc(s["publisher"])}: {esc(s["title"])}</a> <span>({esc(date)})</span></li>'
     related = ' '.join(article_link(i) for i in a['related'])
+    evidence_panels = ''
+    for i, panel in enumerate(a.get('evidencePanels', []), 1):
+        panel_sources = ' '.join(f'<a href="{esc(source_map[source_id]["url"])}">{esc(source_map[source_id]["publisher"])}</a>' for source_id in panel['sourceIds'])
+        evidence_panels += f'<aside class="evidence-panel" id="{esc(article_id)}-evidence-{i}" aria-labelledby="{esc(article_id)}-evidence-heading-{i}"><h4 id="{esc(article_id)}-evidence-heading-{i}">{esc(panel["title"])}</h4>' + ''.join(f'<p>{esc(paragraph)}</p>' for paragraph in panel['paragraphs']) + f'<p class="panel-sources">Evidence: {panel_sources}</p></aside>'
+    dependencies = ''
+    if a.get('dependencies'):
+        dependencies = '<div class="dependencies"><strong>What this depends on</strong><ul>' + ''.join(f'<li>{article_link(link["id"])}: {esc(link["reason"])}</li>' for link in a['dependencies']) + '</ul></div>'
+
     return f'''<article class="policy" id="{esc(article_id)}" data-number="{n or ''}" data-topic="{topic}" aria-labelledby="{esc(article_id)}-heading">
 <div class="policy-head"><span class="policy-number{'' if n else ' support'}" aria-hidden="true">{number}</span><div><h3 id="{esc(article_id)}-heading" tabindex="-1"><a href="#{esc(article_id)}">{esc(a['title'])}</a></h3><p class="meta">{'Original measure '+str(n) if n else 'Supporting entry'} in {esc(a['category'])}. PDF p. {esc(a['page'])}</p></div></div>
-<div class="policy-body"><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="counter">{esc(a['counter'])}</p><details class="analysis"><summary>Debunked<span class="sr-only">: analysis of {esc(a['title'])}</span></summary><div class="analysis-text">{analysis}</div><h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
+<div class="policy-body"><p class="evidence-label">{esc(a["evidenceLabel"])}</p><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="counter">{esc(a['counter'])}</p>{evidence_panels}{dependencies}<details class="analysis"><summary>Debunked<span class="sr-only">: analysis of {esc(a['title'])}</span></summary><div class="analysis-text">{analysis}</div><h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
 
 
 sections = ''
@@ -112,7 +125,31 @@ bibliography = ''
 for s in sources:
     date = s.get('date') or 'Publication date not established'
     bibliography += f'<li id="source-{esc(s["id"])}"><a href="{esc(s["url"])}">{esc(s["title"])}</a><small>{esc(s["publisher"])}. {esc(date)}. Accessed {esc(s["accessed"])}.</small><p class="source-finding">{esc(s["finding"])}</p></li>'
-replacements = {'SUPPORT_COUNT':len(articles)-64, 'NUMBER_INDEX':''.join(f'<a href="#measure-{i:02d}" aria-label="Measure {i}: {esc(by_id[f"measure-{i:02d}"]["title"])}">{i:02d}</a>' for i in range(1,65)), 'TOPIC_LINKS':topic_links,'TOPIC_OPTIONS':topic_options,'ARTICLES':sections,'TABLES':table_html,'BIBLIOGRAPHY':bibliography}
+highlights = json.loads((DATA / 'highlights.json').read_text())
+highlight_html = ''
+for i, card in enumerate(highlights):
+    assert card['label'] in EVIDENCE_LABELS
+    assert all(source_id in source_map for source_id in card['sourceIds'])
+    links = ' '.join(f'<a href="#{esc(link["id"])}">{esc(link["label"])}</a>' for link in card['links'])
+    evidence = ' '.join(f'<a href="{esc(source_map[source_id]["url"])}" title="{esc(source_map[source_id]["title"])}">{esc(source_map[source_id]["publisher"])}</a>' for source_id in card['sourceIds'])
+    highlight_html += f'<div class="headline-card {"supplemental" if i >= 5 else ""}" id="{esc(card["id"])}"><span class="evidence-label">{esc(card["label"])}</span><h3>{esc(card["title"])}</h3><p>{esc(card["text"])}</p><div class="headline-links">{links}</div><p class="headline-evidence">Evidence: {evidence}</p></div>'
+
+audit = json.loads((DATA / 'audit.json').read_text())
+assert len(audit['rows']) == 20
+AUDIT_STATUSES = {'Published', 'Partial', 'Not provided in the plan', 'Not applicable'}
+audit_rows = ''
+for row in audit['rows']:
+    assert row['target'] in by_id
+    assert set(row['checks']) == {d['id'] for d in audit['dimensions']}
+    cells = ''
+    for dim in audit['dimensions']:
+        cell = row['checks'][dim['id']]
+        assert cell['status'] in AUDIT_STATUSES
+        cells += f'<td><span class="audit-status">{esc(cell["status"])}</span><span class="audit-note">{esc(cell["note"])}</span></td>'
+    audit_rows += f'<tr><th scope="row">{article_link(row["target"], row["title"])}<br><span class="audit-note">{esc(row["profile"])}<br>Printed PDF p.{esc(row["page"])}</span></th>{cells}</tr>'
+audit_html = '<section class="reference-section costing-audit" id="costing-audit" aria-labelledby="costing-heading"><h2 id="costing-heading">Can the major costings be reproduced?</h2><p><strong>The arithmetic is published; the model needed to reproduce it is not.</strong> This disclosure audit covers the official plan and its linked policy page reviewed on 27 October 2026. It does not establish that no related material exists elsewhere, or that an unreplicated number is false.</p><p>Scope: every policy line with an absolute effect of at least £1bn in any financial year from 2027/28 to 2031/32: 20 lines. Aggregates, memo items and opening/closing stocks are excluded. Amounts below show first and final populated years, not necessarily the maximum. Read the complete financial tables for the annual profile.</p><p class="audit-key"><strong>Published</strong>: the relevant assumption or calculation is explicitly disclosed. <strong>Partial</strong>: some relevant information is disclosed, but it does not complete the calculation. <strong>Not provided in the plan</strong>: the reviewed plan does not disclose the reproducible detail required by this test. <strong>Not applicable</strong>: the question does not fit that line; the reason is stated. These are disclosure findings, not confidence scores.</p><p>Six questions: what is the baseline; who or what is covered and at what take-up; how do people and firms respond; what does administration cost; how do policies interact; and how sensitive is the answer? An official OBR baseline is not OBR certification of the policy package.</p><div class="table-scroll" role="region" aria-label="Major costing disclosure audit; scroll horizontally for all six questions" tabindex="0"><table id="table-costing-audit"><caption>Twenty major policy lines, six disclosure tests</caption><thead><tr><th scope="col">Policy and published nominal £bn profile</th>' + ''.join(f'<th scope="col">{esc(dim["title"])}</th>' for dim in audit['dimensions']) + '</tr></thead><tbody>' + audit_rows + '</tbody></table></div><p>The two NI/levy rows are a linked funding pair, not two independent gains. Overtime includes reservist pay. Student-loan revaluation is distinguished from recurring cash. Source: <a href="https://reformparty.uk/policies/economic-rescue-plan/download">Reform’s official plan</a>, especially printed pp.13–22 and 30–31; relevant article links explain each line.</p></section>'
+
+replacements = {'SUPPORT_COUNT':len(articles)-64, 'NUMBER_INDEX':''.join(f'<a href="#measure-{i:02d}" aria-label="Measure {i}: {esc(by_id[f"measure-{i:02d}"]["title"])}">{i:02d}</a>' for i in range(1,65)), 'TOPIC_LINKS':topic_links,'TOPIC_OPTIONS':topic_options,'ARTICLES':sections,'TABLES':table_html,'BIBLIOGRAPHY':bibliography,'HIGHLIGHTS':highlight_html,'COSTING_AUDIT':audit_html}
 page = (DATA / 'template.html').read_text()
 for key,value in replacements.items():
     page = page.replace('{{'+key+'}}', str(value))
@@ -130,17 +167,17 @@ for line_no,line in enumerate(summary_lines,1):
         line_map[line_no] = [f'measure-{int(numbered[1]):02d}']
 research = f'''# Research and coverage record
 
-Reviewed: **27 October 2026**. Scope: **64 original numbered measures, 37 supporting entries, 10 original numbered categories, 104 source records**. All analyses are 120–200 words excluding attributed proposals and sources. This is a critical examination, not an independent fiscal certification.
+Reviewed: **27 October 2026**. Scope: **64 original numbered measures, 37 supporting entries, 10 original numbered categories, {len(sources)} source records**. All analyses are 120–200 words excluding attributed proposals and sources. This is a critical examination, not an independent fiscal certification.
 
 ## Source document and limits
 
-The user supplied a 36-page PDF titled *Economic Rescue Plan*. Its printed pages run through page 33, followed by covers/blank material. Title, foreword, branding and metadata do not independently establish official provenance. No authenticated publisher-hosted original was established. Policy attributions refer to that supplied document; they do not imply current party policy has been independently confirmed.
+Reform UK published its official *Economic Rescue Plan* on **26 October 2026**. The [official policy page](https://reformparty.uk/policies/economic-rescue-plan) links a [36-page PDF download](https://reformparty.uk/policies/economic-rescue-plan/download), and the [official launch](https://reformparty.uk/news/reform-economic-rescue-plan-jenrick-tax-free-overtime-growth) supplies the publication date. The official text was checked against the supplied document, including the foreword, 64 measures and p.30 model/phasing passages. This establishes the publisher-hosted version’s provenance; no byte-for-byte identity is claimed. The original supplied summary remains preserved as historical source notes.
 
 The preserved summary is [economic-rescue-plan-summary.md](./economic-rescue-plan-summary.md). SHA-256: `{hashlib.sha256(summary.encode()).hexdigest()}`. It has not been edited. Numbered categories follow the preserved summary headings; detailed page breaks were checked in the extracted supplied PDF: measures 11–14 p.25, 15–20 p.26, 53–54 p.28, 55–64 p.29.
 
 Sources were searched, opened and read through the web connector on the access dates recorded below. Live guidance may lack a displayed publication date; that is marked rather than invented. Some legislation records use the original enactment date with the accessed version identified in the URL/finding. A publication date is not itself a statement about commencement. Historical evidence is labelled in analyses. Sources primarily establish rules, data and mechanisms; proposed estimates remain attributed where replication is unavailable.
 
-Evidence gaps: the plan's in-house tax-and-transfer model and full policy-level behavioural assumptions were not available. Counts such as 2.9 million income-tax exits, 320,000 VAT beneficiaries, £860 average reservist saving and the exact £1,300 household promise have not been independently reproduced. Tax burden comparison and trend-based £11,000 gap require complete series/method choices. No independently audited net package costing, distributional model or implementation timetable was established. These are explicit limits, not findings that every proposal is false. Sources may share underlying official data; two government pages are not independent corroboration. No uncited independent certification is implied.
+Evidence gaps: the official plan and linked policy page do not provide the in-house model needed to reproduce the published arithmetic. This is a scoped disclosure finding, not a claim about every document that may exist elsewhere. Counts such as 2.9 million income-tax exits, 320,000 VAT beneficiaries, £860 average reservist saving and the exact £1,300 household promise have not been independently reproduced. Tax burden comparison and trend-based £11,000 gap require complete series/method choices. No independently audited net package costing, distributional model or implementation timetable was established. These are explicit limits, not findings that every proposal is false. Sources may share underlying official data; two government pages are not independent corroboration. No uncited independent certification is implied.
 
 ## Coverage inventory against the summary
 
@@ -153,6 +190,9 @@ for line_no,ids in sorted(line_map.items()):
     assert all(i in by_id for i in ids)
     text = summary_lines[line_no-1].replace('|','\\|')
     research += f'| {line_no} | {text} | ' + ', '.join(f'[{i}](./index.html#{i})' for i in ids) + ' |\n'
+research += '\n## Editorial update and evidence types\n\nThe page now leads with eight static headline panels: five principal funding/legal/trade questions and three panels on UC, energy and credible concessions. Every one of the 101 policy articles has an explicit evidence label describing the argument, not an automatic truth verdict. Legal obstacles are potential compatibility issues, not findings of adjudicated unlawfulness. Worked examples and dependency panels remain outside the 120–200 word core critique and are included in DOM search.\n\nUpdated analysis covers the exact NI/levy funding pair, non-like-for-like May TPA versus October overtime estimates, current EUSS rights and legal cohorts, paid-carbon credits under the EU CBAM regime and contingent ETS linkage, real electricity policy costs alongside gas exposure, the UC net-earnings example and baseline-sensitive fiscal headroom.\n\n## Major costing disclosure audit\n\nScope: all 20 policy lines whose absolute effect reaches £1bn in any 2027/28–2031/32 year, excluding aggregates, memos and starting/closing stocks. The arithmetic is published; the model needed to reproduce it is not in the reviewed plan or its linked policy page. This is not evidence that every number is wrong or that no related material exists elsewhere. Published, Partial, Not provided in the plan, and Not applicable are disclosure statuses, not truth scores. Each question is recorded below; policy narrative notes identify where partial disclosure occurs. The NI/levy lines form one funding pair; overtime includes reservist pay; loan revaluation is not recurring cash.\n\n| Policy / printed p.31 table label / profile | Baseline | Take-up or coverage | Behaviour | Administration | Interactions | Sensitivity |\n| --- | --- | --- | --- | --- | --- | --- |\n'
+for row in audit['rows']:
+    research += f'| [{row["title"]}](./index.html#{row["target"]}) — {row["tableLabel"]} — {row["profile"]} | ' + ' | '.join(row['checks'][dim['id']]['status']+': '+row['checks'][dim['id']]['note'] for dim in audit['dimensions']) + ' |\n'
 research += '\n## Complete financial-table inventory\n\nBoth PDF table images were visually inspected. The complete printed page 22 savings table and page 31 fiscal table are transcribed in [authoring/tables.json](./authoring/tables.json) and rendered as accessible HTML. All financial years, numeric strings, parentheses, percentages and blank cells are preserved. Source labels retain the document’s terminology; typography is adapted. A blank is unknown/not supplied, not zero. No values were silently reconciled to force totals. Rounding can prevent exact row sums. Memo rows and included reservist costs must not be added again.\n\nThe page 31 table extends beyond the summary’s abbreviated fiscal table: it includes the 2026/27 starting aggregates, all revenue measures, interest adjustment and headroom, specific spending, primary-balance and interest effects, capital component and closing aggregates. Negative revenue/spending changes use the source’s parentheses. The borrowing reduction is a flow, net financial liabilities a stock, current deficit excludes net investment, and an accounting revaluation is not cash collected.\n\n| Table / row | Values in source order (empty = blank) | Related analysis |\n| --- | --- | --- |\n'
 for key,table in tables.items():
     research += f'| {key}: financial years | '+', '.join(table['years'])+' | [Tables](./index.html#financial-tables) |\n'
@@ -160,9 +200,9 @@ for key,table in tables.items():
         target = table_target(row[0])
         vals = ', '.join(value if value else '(blank)' for value in row[1:]) or '(section heading)'
         research += f'| {key}: {row[0]} | {vals} | [{target}](./index.html#{target}) |\n'
-research += '\n## Article and citation audit\n\n| ID | Original number | Category | Printed page | Critique words | Sources |\n| --- | --- | --- | --- | --- | --- |\n'
+research += '\n## Article and citation audit\n\n| ID | Original number | Category | Printed page | Critique words | Evidence type | Sources |\n| --- | --- | --- | --- | --- | --- | --- |\n'
 for a in articles:
-    research += f'| [{a["id"]}](./index.html#{a["id"]}) | {a["number"] or "Unnumbered"} | {a["category"]} | {a["page"]} | {len(a["critique"].split())} | '+', '.join(a['sourceIds'])+' |\n'
+    research += f'| [{a["id"]}](./index.html#{a["id"]}) | {a["number"] or "Unnumbered"} | {a["category"]} | {a["page"]} | {len(a["critique"].split())} | {a["evidenceLabel"]} | '+', '.join(a['sourceIds'])+' |\n'
 research += '\n## Source register\n\nEach exact URL is retained. Findings state the purpose for which evidence is used; they should not be read as support for every sentence in a linked article. The articles add clearly reasoned economic inferences about incentives, distribution and implementation.\n\n'
 for s in sources:
     research += f'### {s["id"]}\n\n- Publisher: {s["publisher"]}\n- Title: {s["title"]}\n- Publication/update date: {s.get("date") or "Not established; not invented"}\n- Exact URL: {s["url"]}\n- Accessed: {s["accessed"]}\n- Supported finding / qualification: {s["finding"]}\n\n'

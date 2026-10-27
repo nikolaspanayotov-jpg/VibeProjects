@@ -1,0 +1,149 @@
+{
+  "articles": [],
+  "sources": [
+    {
+      "id": "official-plan",
+      "publisher": "Reform UK",
+      "title": "Economic Rescue Plan — official policy page and 36-page download",
+      "date": "Published 26 October 2026; checked against official launch",
+      "url": "https://reformparty.uk/policies/economic-rescue-plan",
+      "accessed": "2026-10-27",
+      "finding": "Official policy page links the 36-page plan. Text checked against supplied version, including the £1,300 foreword, 64 measures and p.30 in-house model/phasing. Not a byte-for-byte identity claim."
+    },
+    {
+      "id": "official-plan-download",
+      "publisher": "Reform UK",
+      "title": "Economic Rescue Plan — official PDF download",
+      "date": "26 October 2026",
+      "url": "https://reformparty.uk/policies/economic-rescue-plan/download",
+      "accessed": "2026-10-27",
+      "finding": "Official 36-page PDF; printed pp.22 and 31 contain the financial tables, p.30 names an in-house tax-and-transfer model. Published totals do not themselves provide a reproducible model."
+    },
+    {
+      "id": "official-launch",
+      "publisher": "Reform UK",
+      "title": "“Britain is broke, but Britain isn’t beaten”: Reform UK unveils SIXTY-FOUR pro-growth measures to get Britain moving",
+      "date": "26 October 2026",
+      "url": "https://reformparty.uk/news/reform-economic-rescue-plan-jenrick-tax-free-overtime-growth",
+      "accessed": "2026-10-27",
+      "finding": "Official launch dates the plan to 26 October 2026 and describes 64 measures. Confirms provenance of the publisher-hosted version, not independent verification of its costings."
+    },
+    {
+      "id": "update-tpa-overtime",
+      "publisher": "Tax Policy Associates",
+      "title": "Ten better tax cuts than Reform’s £14bn overtime gimmick",
+      "date": "25 May 2026; updated 27 May 2026",
+      "url": "https://taxpolicy.org.uk/2026/05/25/reform-uk-overtime-tax-cut/",
+      "accessed": "2026-10-27",
+      "finding": "Central estimate about £14bn including roughly £4bn static,£7bn relabelling and£3bn PSC arbitrage, less £0.2bn NICs. Earlier proposal/vintage than October plan; not a like-for-like independently certified costing of the final package. Conditional £75,000 hard-cutoff example illustrates a cliff edge."
+    },
+    {
+      "id": "update-ifs-electricity",
+      "publisher": "Institute for Fiscal Studies",
+      "title": "Electricity prices",
+      "date": "22 September 2026",
+      "url": "https://ifs.org.uk/publications/electricity-prices",
+      "accessed": "2026-10-27",
+      "finding": "Jarvis, Levell and Upton: taxes/levies excluding VAT were 17% of average household electricity bill July–October 2026, not 17% of combined gas and electricity. Policy costs real alongside exposure to global gas."
+    },
+    {
+      "id": "update-committee-energy",
+      "publisher": "House of Commons Energy Security and Net Zero Committee",
+      "title": "The cost of energy",
+      "date": "21 October 2026",
+      "url": "https://publications.parliament.uk/pa/cm5902/cmselect/cmesnz/416/report.html",
+      "accessed": "2026-10-27",
+      "finding": "Wholesale electricity price is set most of the time by gas; report recommends reducing policy costs. Supports a multi-cause explanation, not attributing every price change to Net Zero."
+    },
+    {
+      "id": "update-eu-cbam",
+      "publisher": "European Commission",
+      "title": "CBAM definitive regime",
+      "date": "Undated live guidance; regime from 1 January 2026",
+      "url": "https://taxation-customs.ec.europa.eu/carbon-border-adjustment-mechanism/cbam-definitive-regime_en",
+      "accessed": "2026-10-27",
+      "finding": "EU CBAM definitive regime operates from 1 January 2026; EU importers carry certificate obligations and a verified carbon price paid abroad can reduce the charge, subject to rules. UK exporters face commercial effects rather than automatic direct legal liability."
+    },
+    {
+      "id": "update-linkage",
+      "publisher": "HM Treasury / HMRC",
+      "title": "Factsheet: Carbon Border Adjustment Mechanism (CBAM)",
+      "date": "Updated 28 November 2025",
+      "url": "https://www.gov.uk/government/publications/factsheet-carbon-border-adjustment-mechanism-cbam/factsheet-carbon-border-adjustment-mechanism",
+      "accessed": "2026-10-27",
+      "finding": "Section 11 describes May 2025 agreement to work towards UK–EU ETS linkage and mutual CBAM exemptions subject to agreement provisions; not evidence of a completed exemption."
+    },
+    {
+      "id": "update-reform-euss",
+      "publisher": "Reform UK",
+      "title": "Policy FAQs",
+      "date": "Undated live page; accessed 27 October 2026",
+      "url": "https://www.reformparty.uk/policy-faqs",
+      "accessed": "2026-10-27",
+      "finding": "FAQ says settled status retained while welfare entitlement withdrawn. Establishes party position, not legal compatibility."
+    },
+    {
+      "id": "update-euss-section45",
+      "publisher": "Home Office",
+      "title": "Implementation of section 45 of the Border Security, Asylum and Immigration Act 2025",
+      "date": "3 December 2025",
+      "url": "https://www.gov.uk/government/publications/border-security-asylum-and-immigration-act-2025-section-45/implementation-of-section-45-of-the-border-security-asylum-and-immigration-act-2025",
+      "accessed": "2026-10-27",
+      "finding": "Explains current UK-law deeming of citizens’ rights for EUSS status holders, including an extra cohort. Distinguish rights conferred by UK law from everyone independently falling within treaty personal scope."
+    },
+    {
+      "id": "update-wa-guide",
+      "publisher": "DWP",
+      "title": "Guidance on the social security coordination provisions of Part 2 of the EU Withdrawal Agreement",
+      "date": "Updated 29 November 2021",
+      "url": "https://www.gov.uk/government/publications/social-security-arrangements-between-the-uk-and-the-eu-from-1-january-2021-staff-guide/guidance-relating-to-the-uks-operational-implementation-of-the-social-security-coordination-provisions-of-part-2-of-the-eu-withdrawal-agreement-citi",
+      "accessed": "2026-10-27",
+      "finding": "Chapter 2, paragraphs 43–45: Article 23 national equal treatment with limited exceptions and Article 24 worker social/tax advantages. Supports legal-compatibility questions for protected people; does not establish proposed levy or citizenship rule is unlawful."
+    },
+    {
+      "id": "update-ifs-welfare",
+      "publisher": "Institute for Fiscal Studies",
+      "title": "Reform UK’s plan for welfare: IFS response",
+      "date": "17 August 2026",
+      "url": "https://ifs.org.uk/articles/reform-uks-plan-welfare-ifs-response",
+      "accessed": "2026-10-27",
+      "finding": "Assessment of August welfare package: around £50bn annual cuts almost entirely from working-age bill just over £200bn in 2030/31; previous tougher disability assessments saved less than expected. Different vintage from October plan; not independent scoring of every final line."
+    },
+    {
+      "id": "update-ifs-fiscal",
+      "publisher": "Institute for Fiscal Studies",
+      "title": "Spending pressures, not fiscal headroom, are the Chancellor’s key Budget challenge",
+      "date": "12 October 2026",
+      "url": "https://ifs.org.uk/news/spending-pressures-not-fiscal-headroom-are-chancellors-key-budget-challenge",
+      "accessed": "2026-10-27",
+      "finding": "Higher interest rates add around £10bn to borrowing in 2029/30 versus March baseline, while other effects can offset this. Not an extra deduction from Reform’s margin: its plan already adjusts interest rates."
+    },
+    {
+      "id": "update-net-earnings",
+      "publisher": "Money and Pensions Service / MoneyHelper",
+      "title": "How much is Universal Credit?",
+      "date": "Undated live guidance; 2026/27 amounts checked",
+      "url": "https://www.moneyhelper.org.uk/en/benefits/universal-credit/how-much-is-universal-credit",
+      "accessed": "2026-10-27",
+      "finding": "Earnings taper applies after income tax and National Insurance, above any work allowance; supports conditional own arithmetic £486×55%=£267.30 less UC and £218.70 net gain, not a full household simulation."
+    },
+    {
+      "id": "update-public-funds",
+      "publisher": "Home Office",
+      "title": "Public funds: accessible guidance",
+      "date": "Updated 9 April 2025, version21",
+      "url": "https://www.gov.uk/government/publications/public-funds/public-funds-accessible",
+      "accessed": "2026-10-27",
+      "finding": "EUSS settled-status section states benefit access is on the same basis as British citizens or other settled people, subject to normal eligibility. Describes current law, not a ruling on a future policy."
+    },
+    {
+      "id": "update-ets-overview",
+      "publisher": "Department for Energy Security and Net Zero",
+      "title": "UK Emissions Trading Scheme (UK ETS): a policy overview",
+      "date": "Updated 21 October 2026",
+      "url": "https://www.gov.uk/government/publications/uk-emissions-trading-scheme-uk-ets-policy-overview/uk-emissions-trading-scheme-uk-ets-a-policy-overview",
+      "accessed": "2026-10-27",
+      "finding": "Current overview says UK and EU are negotiating ETS linkage; negotiations are not a completed agreement or automatic mutual CBAM exemption."
+    }
+  ]
+}
