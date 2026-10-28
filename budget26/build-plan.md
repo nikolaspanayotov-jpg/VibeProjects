@@ -91,7 +91,7 @@ Identify figures as central forecasts published 28 October 2026. Include all eig
 
 Preserve the original timeline's coverage in twenty chronological entries, with explicit Starts, Relief ends and Planned labels. Split 1 April wage changes from 6 April tax changes and include 2 January 2028 private-hire VAT. Distinguish the final relief day (30 June 2027) from the following fuel-duty change, and keep pension and Carer's Allowance dates separate. Preserve starts, expiries, consultation qualifications and month-only precision. Link each to relevant policies. Each policy disclosure links to its source and identifies printed page/paragraph or OOTLAR section. Budget PDF anchors translate printed page numbers to PDF page numbers by adding six. Source links use the existing official URLs and relative PDF location; offer the markdown for download.
 
-Print this guide temporarily reveals all policies and opens every disclosure, then restores filters and disclosure states after printing. Hide navigation/controls in print, include all data tables and source URLs, and retain normal browser Print support.
+Print this guide temporarily reveals all policies and opens every disclosure, then restores filters and disclosure states after printing. Hide navigation/controls in print, include all data tables and source URLs, and retain normal browser Print support. Use 14mm vertical/12mm horizontal page margins, keep headings with following content and render source links as blocks so long URLs wrap cleanly.
 
 ## 4. Implementation stages
 

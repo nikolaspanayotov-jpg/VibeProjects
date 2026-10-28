@@ -3,12 +3,12 @@ from pathlib import Path
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from functools import partial
 from threading import Thread
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import sync_playwright, expect, Error as PlaywrightError
 import json, os
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'tests'/'artifacts'; OUT.mkdir(exist_ok=True)
-results=[]; errors=[]
+results=[]; errors=[]; skipped=[]; completed=False; browser_version=None
 def passed(name):
     results.append(name); print('PASS:',name,flush=True)
 
@@ -19,9 +19,10 @@ server=ThreadingHTTPServer(('127.0.0.1',0),partial(QuietHandler,directory=str(RO
 Thread(target=server.serve_forever,daemon=True).start()
 url=f'http://127.0.0.1:{server.server_port}/budget26/'
 
-def prepare(page):
-    page.on('pageerror',lambda e: errors.append(str(e)))
-    page.on('console',lambda m: errors.append(m.text) if m.type=='error' else None)
+def prepare(page,error_log=None):
+    log=errors if error_log is None else error_log
+    page.on('pageerror',lambda e: log.append(str(e)))
+    page.on('console',lambda m: log.append(m.text) if m.type=='error' else None)
     page.route('https://fonts.googleapis.com/**',lambda r:r.fulfill(status=200,content_type='text/css',body=''))
 
 def shown(page): return page.locator('.policy:visible').count()
@@ -31,6 +32,7 @@ def no_overflow(page):
 try:
   with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.environ.get('BUDGET26_CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
+    browser_version=browser.version
     context=browser.new_context(viewport={'width':1440,'height':1000})
     page=context.new_page(); prepare(page)
     page.goto(url)
@@ -173,15 +175,16 @@ try:
     assert query.input_value()=='ISA' and page.locator('#topic-select').input_value()=='tax'
     assert shown(page)==count
     assert page.locator('details').evaluate_all('(els)=>els.map(e=>e.open)')==before
-    page.evaluate("window.print=()=>{throw new Error('Blocked')}")
+    page.evaluate("() => { window.print = () => { throw new Error('Blocked'); }; }")
     page.locator('#print-guide').click()
     expect(page.locator('#print-status')).to_contain_text('Printing could not open')
     assert query.input_value()=='ISA' and shown(page)==count
     passed('Full-content print/PDF, exact state restoration and print failure recovery')
 
     page.goto(url)
-    page.locator('#changes-heading').scroll_into_view_if_needed()
+    page.goto(url+'#policy-household-energy-payment')
     page.screenshot(path=str(OUT/'desktop-policies.png'))
+    page.locator('.policy-details').evaluate_all('(els)=>els.forEach(e=>e.open=true)')
     for width in [320,390,768,1440]:
         page.set_viewport_size({'width':width,'height':920})
         no_overflow(page)
@@ -209,8 +212,11 @@ try:
     expect(page.locator('.skip')).to_be_focused()
     page.keyboard.press('Enter')
     expect(page.locator('#main')).to_be_focused()
+    # Let hashchange's scheduled focus complete before moving to another control.
+    page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
     page.locator('#policy-query').focus()
-    assert page.locator('#policy-query').evaluate('(e)=>getComputedStyle(e).outlineStyle')=='solid'
+    expect(page.locator('#policy-query')).to_be_focused()
+    expect(page.locator('#policy-query')).to_have_css('outline-style','solid')
     page.emulate_media(reduced_motion='reduce')
     assert page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches")
     page.evaluate("document.documentElement.style.zoom='2'")
@@ -218,12 +224,21 @@ try:
     page.screenshot(path=str(OUT/'zoom-200.png'))
     passed('Keyboard skip link, visible focus, reduced motion and 200% CSS zoom layout')
 
-    file_page=context.new_page(); prepare(file_page)
-    file_page.goto((ROOT/'index.html').as_uri()+'#policy-your-first-home')
-    expect(file_page.locator('#policy-your-first-home details')).to_have_attribute('open','')
-    file_page.locator('#policy-query').fill('Casey')
-    assert shown(file_page)==1
-    passed('file:// loading, initial deep fragment and search')
+    file_page=context.new_page(); file_errors=[]; prepare(file_page,file_errors)
+    try:
+        file_page.goto((ROOT/'index.html').as_uri()+'#policy-your-first-home')
+    except PlaywrightError as e:
+        if 'ERR_BLOCKED_BY_ADMINISTRATOR' not in str(e): raise
+        reason='file:// loading is blocked by this Chromium runtime administrator policy'
+        skipped.append(reason); print('SKIP:',reason,flush=True)
+    else:
+        expect(file_page.locator('#policy-your-first-home details')).to_have_attribute('open','')
+        file_page.locator('#policy-query').fill('Casey')
+        assert shown(file_page)==1
+        assert not file_errors,file_errors
+        passed('file:// loading, initial deep fragment and search')
+    finally:
+        file_page.close()
     plain_context=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844})
     plain=plain_context.new_page(); prepare(plain); plain.goto(url)
     assert shown(plain)==48
@@ -240,10 +255,45 @@ try:
     expect(plain.locator('#glossary-return')).to_be_hidden()
     no_overflow(plain)
     passed('No-JavaScript reading, audience/glossary links, comparisons, examples and native details')
+
+    touch_context=browser.new_context(viewport={'width':390,'height':844},device_scale_factor=3,is_mobile=True,has_touch=True)
+    touch=touch_context.new_page(); prepare(touch); touch.goto(url)
+    touch.locator('#contents-menu summary').tap()
+    touch.get_by_role('link',name='Reading routes',exact=True).tap()
+    expect(touch.locator('#contents-menu')).not_to_have_attribute('open','')
+    touch.locator('.route-grid').screenshot(path=str(OUT/'mobile-reading-routes.png'))
+    touch.locator('.route-grid a[href="#policy-trading-allowance"]').tap()
+    expect(touch.locator('#policy-trading-allowance .policy-details')).to_have_attribute('open','')
+    touch.locator('#policy-trading-allowance').screenshot(path=str(OUT/'mobile-comparison.png'))
+    touch.goto(url+'#example-business-mileage')
+    expect(touch.locator('#example-business-mileage')).to_be_focused()
+    touch.locator('#example-business-mileage').screenshot(path=str(OUT/'mobile-mileage-example.png'))
+    touch.goto(url+'#example-lifetime-isa')
+    touch.locator('#example-lifetime-isa').screenshot(path=str(OUT/'mobile-lisa-example.png'))
+    touch.goto(url+'#policy-your-first-home')
+    touch.locator('#read-term-your-first-home').tap()
+    expect(touch.locator('#term-equity-loan')).to_be_focused()
+    touch.locator('.glossary-grid').screenshot(path=str(OUT/'mobile-glossary.png'))
+    touch.locator('#glossary-return').tap()
+    expect(touch.locator('#read-term-your-first-home')).to_be_focused()
+    touch.locator('#contents-menu summary').tap()
+    touch.get_by_role('link',name='Dates to watch',exact=True).tap()
+    touch.screenshot(path=str(OUT/'mobile-timeline.png'))
+    touch.locator('.policy-details').evaluate_all('(els)=>els.forEach(e=>e.open=true)')
+    no_overflow(touch)
+    passed('390px touch-mobile routes, comparisons, both examples, glossary return and timeline')
+
+    native_context=browser.new_context(permissions=['clipboard-read','clipboard-write'])
+    native=native_context.new_page(); prepare(native); native.goto(url+'#policy-household-energy-payment')
+    native.locator('#policy-household-energy-payment .copy-link').click()
+    expect(native.locator('#copy-status')).to_contain_text('Link copied for Household Energy Payment')
+    assert native.evaluate('() => navigator.clipboard.readText()')==url+'#policy-household-energy-payment'
+    passed('Real Chromium clipboard writes and reads the expected permanent URL with permission granted')
     assert not errors, errors
     passed('No browser page or console errors')
+    completed=True
     browser.close()
 finally:
     server.shutdown(); server.server_close()
-    (OUT/'results.json').write_text(json.dumps({'passed':results,'errors':errors},indent=2))
+    (OUT/'results.json').write_text(json.dumps({'completed':completed,'browser_version':browser_version,'passed':results,'skipped':skipped,'errors':errors},indent=2))
 print('All',len(results),'browser scenarios passed.')

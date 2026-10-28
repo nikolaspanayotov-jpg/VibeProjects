@@ -1,6 +1,6 @@
 # Budget 26: five design and content improvements
 
-Reviewed against the implemented page, editorial markdown and Budget PDF. This is a source and content review; browser visual verification remains unavailable in this environment.
+Initially reviewed against the implemented page, editorial markdown and Budget PDF. The subsequent browser and screenshot review is recorded in tests/VERIFICATION.md.
 
 1. **Make expanded text add useful information.** Keep the announcement and principal figure visible. Use Details and sources for eligibility, exclusions, implementation stages and caveats. When there is no additional explanation, use Sources. The original page had ten exact summary/detail duplicates and 35 expanded paragraphs that began with the full summary, including those ten. **Applied:** none of the revised detail paragraphs repeats or starts with its full summary. Bus fares, Trading allowance and Corporation Tax now have source-only disclosures. For example, the energy-payment detail now explains the £100 million targeted-support allocation and devolved funding; the mileage detail explains the higher-mileage rate.
 
@@ -24,4 +24,4 @@ The next five recommendations were subsequently approved for implementation:
 4. **Plain-English terms:** six inline definition links and a static glossary, with a return-to-reading control when JavaScript is available. Links and explanations also work through native anchors without JavaScript.
 5. **Clearer timeline:** twenty entries, with text labels and distinct styling for Starts, Relief ends and Planned; separate 1/6 April dates; the 2 January 2028 private-hire VAT measure; precise relief expiry; and separate pension/carer milestones.
 
-These additions preserve the original 48-policy inventory, source documents and forecast tables. Browser screenshots and native layout verification remain blocked by the execution sandbox.
+These additions preserve the original 48-policy inventory, source documents and forecast tables. Subsequent Chromium testing completed 20 native scenarios with one file:// administrator-policy skip, and mobile/desktop screenshots were reviewed. The print review led to page margins, clearer source URL wrapping and better heading breaks. See tests/VERIFICATION.md for evidence and remaining limits.

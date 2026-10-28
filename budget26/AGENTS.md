@@ -29,6 +29,8 @@ Public Sans/system sans; teal #006B63, ink #162D3A, muted #526674, background #F
 
 Run `python3 tests/static_audit.py` and `python3 tests/browser_smoke.py`. Browser tests require Python Playwright and Chromium; use `/usr/bin/chromium` by default or set `BUDGET26_CHROMIUM` to another executable. Test-only tooling is not required by readers. Generated screenshots and results go in `tests/artifacts/` and are ignored by Git. Inspect the mobile and desktop screenshots before reporting success. Do not infer tests passed just because their scripts exist.
 
+The browser suite also exercises 390px touch emulation, no-JavaScript reading, native clipboard permission, print/PDF and 200% CSS zoom. Its result record distinguishes completed checks, skips and errors. A Chromium administrator-policy block on file:// is recorded as a specific skip; other navigation errors fail. HTTP-hosted tests must still pass. Print styles provide 14mm vertical/12mm horizontal page margins, keep headings with following content and wrap source URLs as ordinary block links.
+
 `tests/control_runtime.mjs` executes the actual page script against LinkeDOM with explicitly modelled browser-only APIs. Run with an installed `linkedom` package or set `BUDGET26_LINKEDOM_PATH` to a standalone worker module, e.g. `BUDGET26_LINKEDOM_PATH=/tmp/budget26-linkedom-worker.mjs node tests/control_runtime.mjs`. It tests DOM state and handlers, not native clicks, layout, clipboard permissions or visual rendering. See tests/VERIFICATION.md for the checks actually completed.
 
 Only change this project. Building and checking locally does not publish the page; repository updates and deployment are separate actions.

@@ -1,6 +1,6 @@
 # Budget 26 verification
 
-Edition: 28 October 2026. The page and its copy revision were pushed to GitHub in commits a751c66 and 5d9f210. The checks below assess the implementation and subsequent audience/comparison/example/glossary/timeline additions, not live hosting or deployment.
+Edition: 28 October 2026. The page, copy revision and reader improvements were pushed to GitHub in commits a751c66, 5d9f210 and 380a119. The checks below assess the local implementation under a nested static-hosting path; they do not establish production deployment status.
 
 ## Passed
 
@@ -13,12 +13,25 @@ Edition: 28 October 2026. The page and its copy revision were pushed to GitHub i
 
 The optional DOM test dependency was obtained from WebReflection/linkedom's standalone worker.js, Git blob `31bb78a1d7c77d689ddaf3048b22b7b51a47b59e`. It is stored temporarily outside the project, not bundled with the webpage.
 
-## Browser checks not completed
+## Native browser checks completed
 
-Chromium could not launch within the execution sandbox: socket operations were rejected with `Operation not permitted`. A request for the additional runtime network permission was cancelled before the browser suite ran. A subsequent in-sandbox launch with Chromium's crash reporting disabled still failed on a socket shutdown operation.
+`python3 tests/browser_smoke.py` completed in Chromium **154.0.8037.57** on 28 October 2026: **20 scenarios passed, one skipped, zero page/console errors**. The managed runner still needed additional network permission for its loopback HTTP server and Chromium; earlier socket restrictions are no longer blocking this HTTP-based suite.
 
-The latest browser-suite attempt failed before browser launch: opening the loopback HTTP server socket raised `PermissionError: [Errno 1] Operation not permitted`. The suite now includes the new reading routes, comparison/example search, glossary return path, labelled timeline and no-JavaScript reading aids, but these native browser checks have not run successfully.
+- The actual page loads under `/budget26/`, with the optional Google Fonts stylesheet replaced by empty CSS to exercise the system-font fallback.
+- All twelve audience links recover filtered policies and focus their headings. Searches find closed detail, comparison values and worked examples. Topic counts and combined filters are correct.
+- Every native policy disclosure and all 48 copy controls work. The denied-permission fallback and success feedback pass; a separate unmodified Clipboard API check writes and reads the correct URL with Chromium clipboard permissions granted.
+- All six glossary links focus their definitions and return to the original passage. Changed, repeated, nested and malformed fragments are handled. All six charts reproduce their source table values and year types.
+- Layouts fit **320, 390, 768 and 1440 CSS pixels**, including checks with policy disclosures open. The mobile menu closes on selection/Escape. Keyboard skip navigation, visible focus, reduced-motion preference and **200% CSS zoom** pass.
+- A **390 × 844** Chromium context with mobile/touch emulation and a 3× device scale exercises taps through the reading routes, comparison, both worked examples, glossary return and timeline.
+- Reading routes, comparisons, worked examples, definitions and native disclosures remain available with JavaScript disabled.
+- Print/PDF reveals all policies, restores the exact filter/disclosure state and handles a simulated print failure. The generated **25-page A4 PDF** contains all 48 policy titles and the worked-example amounts. Page margins, heading breaks and source-link wrapping were corrected after visual review.
 
-No mobile/desktop screenshots were produced or visually reviewed. Native keyboard/control behaviour, actual clipboard permissions, real print/PDF rendering, responsive layout, 200% zoom and font-failure browser behaviour remain unverified. The LinkeDOM checks use explicit stand-ins for focus, selection, scrolling, layout dimensions, window events and clipboard; they do not establish browser or accessibility conformance.
+Screenshots were produced and visually inspected for the desktop hero/routes/policies, mobile hero/OBR, touch-mobile reading routes/comparison/examples/glossary/timeline, 200% CSS zoom, and sample print pages. They are local ignored artifacts under `tests/artifacts/`; `results.json` records completion, browser version, passes, skips and errors. The native suite now waits for scheduled fragment focus before asserting another control's focus and installs the print-failure stub without accidentally invoking it.
 
-The complete browser smoke suite is provided as `browser_smoke.py`. On a machine that can launch Chromium, run `python3 tests/browser_smoke.py` from the project folder. It serves the actual page under /budget26/, also tests file:// and no-JavaScript reading, writes screenshots and a print PDF under artifacts/, and fails on page/console errors. Inspect the images after a successful run.
+## Remaining limits
+
+The **file://** navigation check is skipped because this Chromium runtime reports `ERR_BLOCKED_BY_ADMINISTRATOR`. The test records that exact policy block; other file-loading errors still fail. Static HTTP hosting and no-JavaScript reading passed. No attempt was made to disable the browser administrator policy.
+
+Testing used headless Chromium and touch/mobile emulation, not physical phones, Safari, Firefox or screen-reader software. Screenshots use the system-font fallback; remote Google Font loading was not tested. CSS zoom is not a physical device or browser-UI zoom test. These checks do not establish complete accessibility conformance.
+
+Run `python3 tests/browser_smoke.py` from the project folder on a runtime with Python Playwright, Chromium and local socket access. Screenshots and a print PDF are written under `artifacts/`; inspect the images as well as the exit status and recorded skips.
