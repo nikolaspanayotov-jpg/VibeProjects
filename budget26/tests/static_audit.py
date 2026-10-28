@@ -13,6 +13,7 @@ class Audit(HTMLParser):
         self.ids=[]; self.links=[]; self.counts=Counter(); self.titles=[]
         self.rows={}; self.metric=None; self.cells=[]; self.cell=None
         self.details=[]; self.detail=None; self.detail_depth=0
+        self.policy_text=[]; self.in_policy=False; self.fact_depth=0
         self.assessments=0; self.timelines=0; self.takeaways=0
         self.list_name=None
 
@@ -22,6 +23,11 @@ class Audit(HTMLParser):
         if tag=='a': self.links.append(a.get('href',''))
         if tag=='article' and 'policy' in classes:
             self.counts[a['data-topic']]+=1; self.titles.append(a['data-original-title'])
+            self.in_policy=True; self.policy_text.append('')
+        if self.fact_depth: self.fact_depth+=1
+        if self.in_policy and any(c in classes for c in ('policy-summary','policy-meta','source-detail')):
+            self.fact_depth=1
+            self.policy_text[-1]+=' '
         if tag=='tr' and 'data-metric' in a:
             self.metric=a['data-metric']; self.cells=[]
         if self.metric and tag in ('th','td'): self.cell=''
@@ -34,8 +40,11 @@ class Audit(HTMLParser):
     def handle_data(self, text):
         if self.cell is not None: self.cell+=text
         if self.detail is not None: self.detail+=text
+        if self.fact_depth: self.policy_text[-1]+=' '+text
 
     def handle_endtag(self, tag):
+        if self.fact_depth: self.fact_depth-=1
+        if tag=='article': self.in_policy=False
         if self.metric and tag in ('th','td') and self.cell is not None:
             self.cells.append(self.cell.strip()); self.cell=None
         if tag=='tr' and self.metric:
@@ -49,7 +58,8 @@ page=Audit(); html=(ROOT/'index.html').read_text(); page.feed(html)
 assert len(page.ids)==len(set(page.ids)), 'Duplicate IDs'
 assert page.counts==Counter(bills=8,tax=8,work=8,business=11,funding=8,spending=5), page.counts
 assert (page.assessments,page.timelines,page.takeaways)==(8,10,6)
-assert len(page.details)==48
+assert html.count('<details class="policy-details">')==48
+assert html.count('<p class="citation"><a href="./sources/budget-2026.pdf#page=')>=47
 assert len(page.titles)==len(set(page.titles))==48
 for link in page.links:
     parsed=urlsplit(link)
@@ -79,8 +89,13 @@ def plain(s):
     s=s.replace('**','')
     return ' '.join(s.split())
 assert page.titles==titles, 'Policy inventory/order differs from source'
-for title,source,rendered in zip(titles,originals,page.details):
-    assert plain(source)==plain(rendered), 'Lost or changed source detail: '+title
+# Facts may appear in the summary, metadata or complementary expanded prose.
+# Preserve every original numerical value without requiring verbatim duplication.
+def values(text):
+    return set(re.findall(r'(?<![\w.])£?\d+(?:,\d{3})*(?:\.\d+)?(?:%|p)?',text))
+for title,source,rendered in zip(titles,originals,page.policy_text):
+    source=re.sub(r'OOTLAR, sections .+$','',plain(source))
+    assert values(source)<=values(plain(rendered)), 'Missing source values: '+title+' '+str(values(source)-values(plain(rendered)))
 
 forecast=next(x for x in sections if x.startswith('7. '))
 expected_rows=[]
@@ -91,5 +106,5 @@ assert list(page.rows.values())==expected_rows, 'Forecast table cells differ'
 assert 'Annex A' in html and 'inaccessible' in html
 assert not re.search(r'<script[^>]+src=',html), 'Unexpected runtime script dependency'
 assert '{{' not in html
-print('PASS: 48 complete source-matched policies; 6 topics; 6 takeaways; 10 dates; 8 OBR points.')
+print('PASS: 48 policies retain source order and numerical values; 6 topics; 6 takeaways; 10 dates; 8 OBR points.')
 print('PASS: forecast table cells, unique IDs, fragments, local documents and static runtime.')

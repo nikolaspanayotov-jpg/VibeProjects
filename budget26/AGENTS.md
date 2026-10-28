@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python3 -m http.server 8000` in this folder.
 
 - `key-budget-points.md` is the editorial source of truth; preserve it and the original PDF in `sources/`.
 - `build-plan.md` records the approved design and behaviour.
-- `index.html` contains all 48 policy entries, six topic groups, ten timeline rows, eight OBR assessment points and both forecast tables as static HTML. There is no runtime Markdown parser or committed authoring generator.
+- `index.html` contains all 48 policy entries, six topic groups, ten timeline rows, eight OBR assessment points and both forecast tables as static HTML. There is no runtime Markdown parser or committed authoring generator. Give the main announcement in the summary and additional eligibility, exclusions, dates or caveats in Details and sources. If no extra explanation is needed, use a Sources disclosure with citations and the copy control; do not repeat the summary.
 - Chart values are read from the two HTML tables. Do not duplicate their numerical data in JavaScript.
 
 ## Content and public links

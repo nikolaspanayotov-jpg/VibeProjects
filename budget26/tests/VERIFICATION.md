@@ -1,14 +1,15 @@
 # Budget 26 verification
 
-Edition: 28 October 2026. The page is implemented locally; these results do not indicate deployment.
+Edition: 28 October 2026. The page was pushed to GitHub in commit a751c66; the checks below assess the implementation and its subsequent copy revision, not live hosting or deployment.
 
 ## Passed
 
-- `python3 tests/static_audit.py`: all 48 policy entries match their original source detail, in the approved order and six groups. Six takeaways, ten timeline rows and eight OBR assessment points are present. Both forecast tables match the markdown cell for cell. IDs are unique; fragments and local-document references resolve.
+- `python3 tests/static_audit.py`: all 48 policy entries retain the original inventory/order and numerical values across the combined summary, metadata and expanded prose, in the approved six groups. Summaries and expanded prose are edited for clarity rather than compared verbatim with the source. Six takeaways, ten timeline rows and eight OBR assessment points are present. Both forecast tables match the markdown cell for cell. IDs are unique; fragments and local-document references resolve; source citations remain present.
 - `node --check` on the extracted inline script: JavaScript syntax passes.
 - `BUDGET26_LINKEDOM_PATH=/tmp/budget26-linkedom-worker.mjs node tests/control_runtime.mjs`: eight groups of checks pass against the actual page script. These exercise initialisation; multi-word closed-detail search and topic AND combinations; all topic counts and synchronisation; filtered/repeated/nested/invalid fragments; six table-derived chart series; denied/successful clipboard paths including every copy button; full print-state restoration and failure recovery; and mobile Contents Escape/focus behaviour.
 - Structural inspection with lxml confirms all 48 native policy disclosures contain their copy controls and source references. Inputs have associated labels.
 - Palette text contrast passes WCAG AA for ink, muted text and accent against both white and the page background, including white text on the accent.
+- The copy review found ten exact summary/detail duplicates and 35 expanded paragraphs starting with their full summary. Both counts are now zero. All 15 lowercase summary openings were corrected. Three short measures use source-only disclosures; all 48 disclosures retain citations and copy controls. Qualitative source fidelity was also reviewed separately, because numerical checks cannot prove meaning is preserved.
 
 The optional DOM test dependency was obtained from WebReflection/linkedom's standalone worker.js, Git blob `31bb78a1d7c77d689ddaf3048b22b7b51a47b59e`. It is stored temporarily outside the project, not bundled with the webpage.
 
