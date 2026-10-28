@@ -11,7 +11,7 @@ Open `index.html` directly, or run `python3 -m http.server 8000` from this folde
 - `index.html`: complete generated static document, inline CSS and focused DOM-derived JavaScript.
 - `authoring/template.html`: page structure, styles and interactions.
 - `authoring/{energy,housing,infrastructure,deregulation,tax,support}.json`: reviewed article/source content. Article fields: id, number (null for supporting), category, page, title, proposal, counter, critique, sourceIds, related, evidenceLabel, optional evidencePanels and dependencies. Source fields: id, publisher, title, date, URL, accessed, finding.
-- `authoring/highlights.json`: eight static headline panels; these do not add to the 101 policy result count.
+- `authoring/highlights.json`: eight static headline panels: three initial findings and five inside a native overview disclosure. These do not add to the 101 policy result count. The 64-number index is also a native disclosure.
 - `authoring/audit.json`: all 20 policy lines reaching an absolute £1bn in any forecast year, tested against six disclosure dimensions. Display as 20 native disclosures with six labelled checks; shared full notes may be linked from a common-notes glossary. Keep unknown disclosure separate from falsity.
 - `authoring/updates.json`: verified official provenance and additional source records.
 - `authoring/tables.json`: literal source table strings, including blank cells and parentheses. Never infer zero from blank or silently reconcile rounded totals.
@@ -21,11 +21,13 @@ Open `index.html` directly, or run `python3 -m http.server 8000` from this folde
 
 Keep the folder name, `measure-01`…`measure-64` and descriptive `claim-*` IDs permanent; published links depend on them. Original numbering/order/category grouping must survive edits. Never add a measure 65. Every substantive addition needs a real opened source with publisher/title/date (or explicitly unknown), URL, access date and supported finding. Check jurisdiction, legal commencement and forecast vintage. Attributed source assertions are not automatically verified facts. The official publisher-hosted plan and launch were verified on 27 October 2026; preserve the scoped version comparison in RESEARCH.md. Do not claim byte-for-byte identity or independent certification of the in-house fiscal model.
 
-All articles are static HTML and native details. Search indexes headings, proposals, counterarguments, analysis, evidence labels, worked examples and dependency text directly from the DOM, including closed details. Headline panels and the audit do not become policy search results. Search and topic combine with AND; #12 is an exact measure query. Hash navigation clears filters and opens/focuses the article. Before/after-print handlers temporarily reveal/open all then restore state. Clipboard failure reveals/selects the permanent URL.
+All articles are static HTML and native details. Search indexes headings, proposals, counterarguments, analysis, evidence labels, worked examples and dependency text directly from the DOM, including closed details. Headline panels and the audit do not become policy search results. The four everyday shortcuts in `generate.py` collect explicit existing categories/entries; shortcut, search and original topic combine with AND. Repeating a shortcut removes it; Clear all filters and policy fragments clear all three. Search and topic combine with AND; #12 is an exact measure query. Hash navigation clears filters and opens/focuses the article. Before/after-print handlers temporarily reveal/open all then restore state. Clipboard failure reveals/selects the permanent URL.
 
 ## Design
 
 Apply the repository frontend-design skill and approved brief. Tokens: --bg #F4F6FA, --surface #FFF, --ink #172033, --muted #526079, --accent #234BB5, --analysis #71345D. Georgia major headings, system sans body 18px/1.65, 68ch reading measure. Restrained rules and original numbering carry the hierarchy. Sidebar 220px/sticky, stack below 900px; touch targets 44px, visible focus and no global overflow. No truth score, stock imagery, decorative charts, framework or runtime Markdown fetch.
+
+Evidence panels and dependencies stay inside each native analysis expansion and remain searchable. Each expansion ends with Back to results, preserving filters. The opening overview includes accessible UC arithmetic and paired annual NI/levy bars generated from existing source-backed notes/table data; do not imply predicted effects or omit taper assumptions. On phones the enhanced sticky reading bar shows the current filter view and returns focus to topic/search; retain scroll clearance and hide it without JavaScript and in print. Print snapshots include shortcut state and every native disclosure.
 
 ## Checks
 

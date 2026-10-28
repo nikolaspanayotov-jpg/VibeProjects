@@ -99,4 +99,33 @@ assert len(highlights)==8 and all(card['sourceIds'] for card in highlights)
 assert all(source_id in source_ids for card in highlights for source_id in card['sourceIds'])
 assert all(link['id'] in doc.ids for card in highlights for link in card['links'])
 assert '120 source records' in (ROOT/'RESEARCH.md').read_text()
+# Progressive overview and exact arithmetic remain available in static HTML.
+headline_blocks = re.findall(r'<div class="headline-card" id="([^"]+)">', page)
+assert len(headline_blocks) == 8
+more = re.search(r'<details class="overview-more" id="more-findings">(.*?)</details>', page, re.S).group(1)
+assert more.count('class="headline-card"') == 5
+assert 'open' not in re.search(r'<details[^>]+id="more-findings"[^>]*>', page).group(0)
+index_panel = re.search(r'<details id="number-index-panel">(.*?)</details>', page, re.S).group(1)
+assert index_panel.count('aria-label="Measure ') == 64
+assert len([1 for tag, attrs in doc.elements if tag == 'button' and 'data-shortcut' in attrs]) == 4
+assert all('data-shortcuts' in article for article in doc.policies)
+for article in articles:
+    markup = re.search(r'<article class="policy" id="' + article['id'] + r'"(.*?)</article>', page, re.S).group(1)
+    expansion = markup.index('<details class="analysis">')
+    assert 'Main question' in markup[:expansion]
+    assert 'class="evidence-panel"' not in markup[:expansion]
+    assert 'class="dependencies"' not in markup[:expansion]
+    assert 'class="back-results" href="#explorer-heading"' in markup
+figures = re.findall(r'<figure class="calculation".*?</figure>', page, re.S)
+assert len(figures) == 2 and all('figcaption' in figure and 'figure-source' in figure for figure in figures)
+assert all(page.index('id="' + identifier + '"') < page.index('id="explorer"') for identifier in ['uc-calculation', 'funding-calculation'])
+assert Decimal('486') * Decimal('.55') == Decimal('267.30')
+assert Decimal('486') - Decimal('267.30') == Decimal('218.70')
+assert '55% less UC' in figures[0] and '45% retained' in figures[0]
+assert 'sufficient' in figures[0] or 'enough UC' in figures[0]
+assert all(year in figures[1] for year in ['2028/29','2029/30','2030/31','2031/32'])
+assert all(figures[1].count('£' + value + 'bn') >= 2 for value in ['7.14','6.96','6.76','6.77'])
+assert figures[1].count('class="ni-bar"') == 4 and figures[1].count('class="levy-bar"') == 4
+assert 'not predicted effects' in figures[1]
+assert any(attrs.get('id') == 'mobile-tools' and 'hidden' in attrs for tag, attrs in doc.elements)
 print('PASS: 64 numbered +37 supporting; 8 headline panels;101 evidence labels;20 major lines ×6 disclosure tests; valid IDs/sources/links;120–200 word critiques; full tables; unchanged summary.')

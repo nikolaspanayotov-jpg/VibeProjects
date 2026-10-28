@@ -22,15 +22,21 @@
 @media(max-width:650px){.headline-section{padding-top:32px}.headline-grid{grid-template-columns:1fr}.headline-card{padding:20px}.headline-card h3{font-size:25px}.evidence-key dl{grid-template-columns:1fr}.evidence-panel{padding:16px}.audit-checks{grid-template-columns:1fr}}
 @media print{details::details-content{display:block!important;content-visibility:visible!important}.headline-section{padding-top:20px}.headline-grid{display:block}.headline-card{break-inside:avoid;padding:12px;margin-bottom:12px}.headline-card h3{font-size:15pt}.headline-card p,.headline-card a,.evidence-panel p{font-size:10pt}.evidence-key>*{display:block!important}.evidence-label{font-size:9pt}.evidence-panel{padding:10px;break-inside:avoid}.dependencies{font-size:9pt}.audit-item>*,.audit-item::details-content{display:block!important;content-visibility:visible!important}.audit-checks{display:block}.audit-check{margin-bottom:12px;break-inside:avoid}.audit-title{font-size:15pt}.audit-profile,.audit-prompt,.audit-note,.audit-status,.audit-check dt{font-size:10pt}.audit-item>summary{padding-block:12px}.audit-common{break-inside:avoid}.evidence-key dl{display:block}.evidence-key dl div{margin-bottom:8px}}
 
+/* Reading entry points retain the page's source-led hierarchy. */
+.number-index summary,.overview-more>summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:650;font-size:16px}.number-index .number-grid{margin-top:16px}.start-link{font-weight:700}.overview-more{border-block:1px solid var(--line);margin-block:24px}.shortcut-controls{margin-block:24px}.shortcut-controls .search-label{margin-block:0 8px}.shortcut-buttons{display:flex;gap:8px;flex-wrap:wrap}.shortcut-buttons button[aria-pressed="true"]{background:var(--accent);color:var(--surface);border-color:var(--accent)}.shortcut-controls .hint:empty{display:none}.calculation-links{font-size:16px;margin-top:24px}.calculations{margin-top:32px}.calculations>h3{font-size:27px}.calculation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.calculation{margin:0;padding:24px;background:var(--surface);border:1px solid var(--line);min-width:0}.calculation figcaption{font:26px/1.2 Georgia,serif;margin-bottom:16px}.calculation p,.calculation dt,.calculation dd{font-size:15px}.calculation-values{margin:16px 0;font-variant-numeric:tabular-nums}.calculation-values>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}.calculation-values dd{font-weight:700;margin:0;white-space:nowrap}.uc-bar{display:flex;min-height:44px;margin:16px 0 24px;font-size:12px;font-weight:650;text-align:center}.uc-bar span{display:flex;align-items:center;justify-content:center;padding:8px;min-width:0}.uc-lost{width:55%;background:#E8D8E3;color:var(--ink)}.uc-kept{width:45%;background:var(--accent);color:white}.figure-source{margin-bottom:0}.calculation a{display:inline-block;min-height:44px;padding-block:8px}.funding-year{margin-bottom:16px}.funding-year h4{margin:0 0 8px;font:700 15px/1.5 system-ui,sans-serif}.funding-row{font-size:13px;margin-bottom:8px}.funding-row>span:first-child{display:flex;justify-content:space-between;gap:8px}.funding-track{display:block;background:var(--bg);height:10px;margin-top:4px}.funding-track>span{display:block;height:100%}.ni-bar{background:var(--analysis)}.levy-bar{background:var(--accent)}.policy{padding-block:28px}.policy-head{margin-bottom:16px}.counter{margin:0 0 16px}.question-label{margin-top:16px;color:var(--analysis)}.policy .evidence-label{font-size:12px;margin-bottom:16px}.back-results{display:inline-flex;align-items:center;min-height:44px;font-size:14px;margin-top:16px}.mobile-tools{display:none}
+@media(max-width:899px){html{scroll-padding-top:96px}.mobile-tools{display:block;position:sticky;top:0;z-index:5;background:var(--surface);border-block:1px solid var(--line);box-shadow:0 2px 4px #1720330a}.mobile-tools>.wrap{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-block:8px}.mobile-tools p{margin:0;min-width:0;font-size:12px;line-height:1.4;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.mobile-tools .wrap>div{display:flex;gap:8px;flex-shrink:0}.mobile-tools button{font-size:12px;padding:8px}.policy,.topic-section,.reference-section,#explorer-heading,#query,#topic-select{scroll-margin-top:24px}.calculation-grid{grid-template-columns:1fr}.policy{padding-block:24px}}
+@media(max-width:450px){.calculation{padding:16px}.calculation figcaption{font-size:24px}.mobile-tools p{max-width:12ch}}
+@media print{.mobile-tools,.back-results,.calculation-links{display:none!important}.overview-more>*{display:block!important}.calculation-grid{display:block}.calculation{padding:12px;break-inside:avoid;margin-block:12px}.calculation figcaption{font-size:15pt}.calculation p,.calculation dt,.calculation dd{font-size:10pt}.uc-bar{print-color-adjust:exact;-webkit-print-color-adjust:exact}.funding-track{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to the policy explorer</a>
 <header class="masthead"><div class="wrap"><a class="brand" href="#top">rfrm <span>debunked</span></a><nav class="top-links" aria-label="Page information"><a href="#biggest-problems">Main findings</a><a href="#financial-tables">The numbers</a><a href="#methodology">Methodology</a><a href="#sources">Sources</a></nav></div></header>
 <main id="main">
-<section class="hero" id="top" aria-labelledby="page-title"><div class="wrap hero-grid"><div class="hero-copy"><h1 id="page-title">Reform’s economic rescue plan, examined</h1><p class="intro">What does the plan promise — and what does the evidence actually support?</p><p>A critical guide to the supplied <em>Economic Rescue Plan</em>. Read the proposal, check the counterargument, then open “Analysis and sources” for the evidence and the trade-offs.</p><p class="meta">Checked against <a href="https://reformparty.uk/policies/economic-rescue-plan">Reform UK’s official Economic Rescue Plan</a>, published <time datetime="2026-10-26">26 October 2026</time>. Evidence reviewed <time datetime="2026-10-27">27 October 2026</time>. <a href="./economic-rescue-plan-summary.md">Read the source summary</a>.</p><p class="coverage-count"><strong>64</strong> numbered measures + <strong>{{SUPPORT_COUNT}}</strong> supporting entries.<br>Original sequence, with evidence for every analysis.</p></div><nav class="number-index" aria-label="Original numbered measure index"><h2>Jump to a numbered measure</h2><div class="number-grid">{{NUMBER_INDEX}}</div><p>The plan’s original numbers, 1–64. Each link opens its analysis.</p></nav></div></section>
-<section class="headline-section wrap" id="biggest-problems" aria-labelledby="headline-heading"><h2 id="headline-heading">Biggest problems with the plan</h2><p class="headline-intro">Start with the dependencies that matter most to the plan’s funding and delivery. These are different kinds of argument: an uncertain costing, a potential legal obstacle and a policy trade-off are not interchangeable.</p><div class="headline-grid">{{HIGHLIGHTS}}</div><details class="evidence-key"><summary>What the evidence labels mean</summary><p>Each label describes the argument being made. It is not an automatic true-or-false verdict on the whole proposal. “Legal obstacle” identifies a compatibility question; it does not claim a court has found the policy unlawful.</p><dl><div><dt>Internal contradiction</dt><dd>Two claims in the plan cannot both hold as stated.</dd></div><div><dt>Legal obstacle</dt><dd>A potential conflict with legal or treaty obligations needs to be resolved.</dd></div><div><dt>Costing uncertainty</dt><dd>Assumptions, behaviour or delivery risks prevent confidence in the claimed result.</dd></div><div><dt>Strong evidence</dt><dd>Direct evidence supports the specific counterargument, such as the existing legal baseline.</dd></div><div><dt>Distributional trade-off</dt><dd>The policy can produce benefits while shifting costs or risks to others.</dd></div><div><dt>Reasonable policy with caveats</dt><dd>The objective or mechanism has merit, subject to design and implementation limits.</dd></div></dl></details></section>
-<div class="wrap layout"><aside class="sidebar"><nav class="topic-nav" aria-label="Policy topics"><h2>Browse the plan</h2><ul><li><a href="#explorer" data-topic="all" aria-current="true">All topics</a></li>{{TOPIC_LINKS}}</ul><div class="small-nav"><a href="#financial-tables">Financial tables</a><a href="#methodology">How we examine the plan</a><a href="./RESEARCH.md">Research &amp; coverage record</a></div></nav></aside><div class="reading">
+<section class="hero" id="top" aria-labelledby="page-title"><div class="wrap hero-grid"><div class="hero-copy"><h1 id="page-title">Reform’s economic rescue plan, examined</h1><p class="intro">What does the plan promise — and what does the evidence actually support?</p><p>A critical guide to the supplied <em>Economic Rescue Plan</em>. Read the proposal, check the counterargument, then open “Analysis and sources” for the evidence and the trade-offs.</p><p class="meta">Checked against <a href="https://reformparty.uk/policies/economic-rescue-plan">Reform UK’s official Economic Rescue Plan</a>, published <time datetime="2026-10-26">26 October 2026</time>. Evidence reviewed <time datetime="2026-10-27">27 October 2026</time>. <a href="./economic-rescue-plan-summary.md">Read the source summary</a>.</p><p class="coverage-count"><strong>64</strong> numbered measures + <strong>{{SUPPORT_COUNT}}</strong> supporting entries.<br>Original sequence, with evidence for every analysis.</p></div><nav class="number-index" aria-label="Original numbered measure index"><p><a class="start-link" href="#biggest-problems">Start here: the key findings</a></p><p><a href="#explorer">Search or browse the full plan</a></p><details id="number-index-panel"><summary>Choose a measure number (1–64)</summary><div class="number-grid">{{NUMBER_INDEX}}</div><p>The plan’s original numbers, 1–64. Each link opens its analysis.</p></details></nav></div></section>
+<section class="headline-section wrap" id="biggest-problems" aria-labelledby="headline-heading"><h2 id="headline-heading">Start here</h2><p class="headline-intro">Start with the dependencies that matter most to the plan’s funding and delivery. These are different kinds of argument: an uncertain costing, a potential legal obstacle and a policy trade-off are not interchangeable.</p>{{SHORTCUTS}}{{HIGHLIGHTS}}<p class="calculation-links">Check the arithmetic: <a href="#uc-calculation">Tax relief and Universal Credit</a> · <a href="#funding-calculation">NI cuts and levy receipts</a></p>{{CALCULATIONS}}<details class="evidence-key"><summary>What the evidence labels mean</summary><p>Each label describes the argument being made. It is not an automatic true-or-false verdict on the whole proposal. “Legal obstacle” identifies a compatibility question; it does not claim a court has found the policy unlawful.</p><dl><div><dt>Internal contradiction</dt><dd>Two claims in the plan cannot both hold as stated.</dd></div><div><dt>Legal obstacle</dt><dd>A potential conflict with legal or treaty obligations needs to be resolved.</dd></div><div><dt>Costing uncertainty</dt><dd>Assumptions, behaviour or delivery risks prevent confidence in the claimed result.</dd></div><div><dt>Strong evidence</dt><dd>Direct evidence supports the specific counterargument, such as the existing legal baseline.</dd></div><div><dt>Distributional trade-off</dt><dd>The policy can produce benefits while shifting costs or risks to others.</dd></div><div><dt>Reasonable policy with caveats</dt><dd>The objective or mechanism has merit, subject to design and implementation limits.</dd></div></dl></details></section>
+<nav class="mobile-tools enhanced" id="mobile-tools" aria-label="Reading controls" hidden><div class="wrap"><p id="current-topic">All topics</p><div><button type="button" id="change-topic">Change topic</button><button type="button" id="jump-search">Search</button></div></div></nav><div class="wrap layout"><aside class="sidebar"><nav class="topic-nav" aria-label="Policy topics"><h2>Browse the plan</h2><ul><li><a href="#explorer" data-topic="all" aria-current="true">All topics</a></li>{{TOPIC_LINKS}}</ul><div class="small-nav"><a href="#financial-tables">Financial tables</a><a href="#methodology">How we examine the plan</a><a href="./RESEARCH.md">Research &amp; coverage record</a></div></nav></aside><div class="reading">
 <section class="explorer" id="explorer" aria-labelledby="explorer-heading"><h2 id="explorer-heading" tabindex="-1">Explore the plan</h2><p>Start with a topic or a measure number. The proposal and the central counterargument stay visible; several analyses can be open together.</p><noscript><p>JavaScript is off. All entries, topic links, permanent links and “Analysis and sources” disclosures still work. Use your browser’s Find to search the page.</p></noscript><form class="enhanced" id="filters" hidden role="search"><label class="search-label" for="query">Search the whole analysis</label><div class="search-row"><input type="search" id="query" name="query" placeholder="Try energy, student loans or #12" aria-describedby="search-hint" autocomplete="off"><button type="submit" class="primary">Search</button></div><p class="hint" id="search-hint">Includes text inside closed analyses. Use #12 for exactly measure 12. Search and topic filters work together.</p><div class="mobile-topic"><label for="topic-select">Filter by topic</label><select id="topic-select" name="topic"><option value="all">All topics</option>{{TOPIC_OPTIONS}}</select></div><div class="filter-status"><p id="result-count" role="status" aria-live="polite" aria-atomic="true"></p><button type="button" id="reset">Clear all filters</button></div></form></section>
 <div class="no-results" id="no-results" hidden><h3>No matching entries</h3><p>Try fewer words or choose another topic.</p><button type="button" id="empty-reset">Clear all filters</button></div>
 <div id="policies">{{ARTICLES}}</div>
@@ -48,10 +54,14 @@ const filtersEl = document.getElementById('filters');
 const queryEl = document.getElementById('query');
 const topicSelectEl = document.getElementById('topic-select');
 const topicLinks = Array.from(document.querySelectorAll('.topic-nav a[data-topic]'));
+const shortcutButtons = Array.from(document.querySelectorAll('button[data-shortcut]'));
+const shortcutStatusEl = document.getElementById('shortcut-status');
+const currentTopicEl = document.getElementById('current-topic');
 const countEl = document.getElementById('result-count');
 const noResultsEl = document.getElementById('no-results');
 const searchIndex = new Map(articles.map(article => [article, Array.from(article.querySelectorAll('h3,.proposal,.counter,.analysis-text,.evidence-panel,.dependencies,.evidence-label')).map(el => el.textContent).join(' ').toLocaleLowerCase('en-GB')]));
 let activeTopic = 'all';
+let activeShortcut = '';
 let printSnapshot = null;
 function applyFilters() {
   const query = queryEl.value.trim().toLocaleLowerCase('en-GB');
@@ -60,16 +70,23 @@ function applyFilters() {
   articles.forEach(article => {
     const textMatches = numberQuery ? article.dataset.number === String(Number(numberQuery[1])) : searchIndex.get(article).includes(query);
     const topicMatches = activeTopic === 'all' || article.dataset.topic === activeTopic;
-    article.hidden = !(textMatches && topicMatches);
+    const shortcutMatches = !activeShortcut || article.dataset.shortcuts.split(' ').includes(activeShortcut);
+    article.hidden = !(textMatches && topicMatches && shortcutMatches);
     if (!article.hidden) count += 1;
   });
   sections.forEach(section => { section.hidden = !Array.from(section.querySelectorAll('.policy')).some(article => !article.hidden); });
   topicSelectEl.value = activeTopic;
   topicLinks.forEach(link => { if (link.dataset.topic === activeTopic) link.setAttribute('aria-current', 'true'); else link.removeAttribute('aria-current'); });
-  countEl.textContent = count + (count === 1 ? ' entry' : ' entries') + ' shown out of ' + articles.length + (activeTopic === 'all' ? '.' : ' in the selected topic.');
+  shortcutButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.shortcut === activeShortcut)));
+  const shortcutLabel = shortcutButtons.find(button => button.dataset.shortcut === activeShortcut)?.textContent || '';
+  shortcutStatusEl.textContent = shortcutLabel ? 'Selected: ' + shortcutLabel + '. Select it again to remove this shortcut.' : '';
+  const topicLabel = topicSelectEl.querySelector('option[value="' + activeTopic + '"]').textContent;
+  currentTopicEl.textContent = [shortcutLabel, topicLabel].filter(Boolean).join(' · ');
+  currentTopicEl.title = currentTopicEl.textContent;
+  countEl.textContent = count + (count === 1 ? ' entry' : ' entries') + ' shown out of ' + articles.length + (!activeShortcut && activeTopic === 'all' ? '.' : ' with the selected filters.');
   noResultsEl.hidden = count !== 0;
 }
-function resetFilters(focusSearch) { queryEl.value = ''; activeTopic = 'all'; applyFilters(); if (focusSearch) queryEl.focus(); }
+function resetFilters(focusSearch) { queryEl.value = ''; activeTopic = 'all'; activeShortcut = ''; applyFilters(); if (focusSearch) queryEl.focus(); }
 filtersEl.addEventListener('submit', event => { event.preventDefault(); applyFilters(); });
 queryEl.addEventListener('input', applyFilters);
 queryEl.addEventListener('search', applyFilters);
@@ -77,6 +94,19 @@ topicSelectEl.addEventListener('change', () => { activeTopic = topicSelectEl.val
 topicLinks.forEach(link => link.addEventListener('click', event => {
   event.preventDefault(); activeTopic = link.dataset.topic; applyFilters();
 }));
+shortcutButtons.forEach(button => button.addEventListener('click', () => {
+  activeShortcut = activeShortcut === button.dataset.shortcut ? '' : button.dataset.shortcut;
+  applyFilters();
+  const headingEl = document.getElementById('explorer-heading');
+  headingEl.focus({preventScroll:true});
+  headingEl.scrollIntoView({block:'start'});
+}));
+function focusExplorerControl(control) {
+  control.focus({preventScroll:true});
+  control.scrollIntoView({block:'center'});
+}
+document.getElementById('change-topic').addEventListener('click', () => focusExplorerControl(topicSelectEl));
+document.getElementById('jump-search').addEventListener('click', () => focusExplorerControl(queryEl));
 document.getElementById('reset').addEventListener('click', () => resetFilters(false));
 document.getElementById('empty-reset').addEventListener('click', () => resetFilters(true));
 function revealHash() {
@@ -125,13 +155,13 @@ document.querySelectorAll('.copy-link').forEach(button => button.addEventListene
 }));
 function preparePrint() {
   if (printSnapshot) return;
-  printSnapshot = {query:queryEl.value, topic:activeTopic, details:Array.from(document.querySelectorAll('details')).map(el => [el,el.open])};
-  queryEl.value = ''; activeTopic = 'all'; applyFilters();
+  printSnapshot = {query:queryEl.value, topic:activeTopic, shortcut:activeShortcut, details:Array.from(document.querySelectorAll('details')).map(el => [el,el.open])};
+  queryEl.value = ''; activeTopic = 'all'; activeShortcut = ''; applyFilters();
   printSnapshot.details.forEach(([el]) => { el.open = true; });
 }
 function restorePrint() {
   if (!printSnapshot) return;
-  queryEl.value = printSnapshot.query; activeTopic = printSnapshot.topic;
+  queryEl.value = printSnapshot.query; activeTopic = printSnapshot.topic; activeShortcut = printSnapshot.shortcut;
   printSnapshot.details.forEach(([el,open]) => { el.open = open; });
   printSnapshot = null; applyFilters();
 }

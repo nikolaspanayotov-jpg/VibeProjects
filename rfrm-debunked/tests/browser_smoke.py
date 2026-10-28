@@ -44,6 +44,25 @@ def exercise_controls(context, url):
         assert page.locator('#topic-select').input_value() == topic, topic
     check(True, f'All {len(topics)} desktop topic controls filter and synchronise')
     page.locator('#reset').click()
+    shortcuts = {
+        'pay': (['tax-cuts-and-household-bills', 'reducing-the-cost-of-hiring-british-workers', 'welfare-claims'], []),
+        'energy': (['unlocking-the-north-sea', 'reindustrialising-britain'], ['claim-energy-bills', 'claim-net-zero-spending']),
+        'housing': (['getting-homes-built-in-cities', 'building-critical-national-infrastructure'], []),
+        'services': (['spending-and-services', 'welfare-claims'], [])
+    }
+    for key, (group_topics, group_ids) in shortcuts.items():
+        button = page.locator(f'button[data-shortcut="{key}"]')
+        button.click()
+        expected = page.locator('.policy').evaluate_all(
+            '(els, group) => els.filter(el => group[0].includes(el.dataset.topic) || group[1].includes(el.id)).map(el => el.id)',
+            [group_topics, group_ids])
+        assert visible_ids(page) == expected
+        assert page.locator('#explorer-heading').evaluate('(el) => el === document.activeElement')
+        page.locator('#query').fill('#12')
+        assert visible_ids(page) == (['measure-12'] if 'measure-12' in expected else [])
+        page.locator('#reset').click()
+        assert page.locator('button[data-shortcut][aria-pressed="true"]').count() == 0
+    check(True, 'All everyday shortcuts route to results, collect expected entries and combine with search')
 
     # These are native browser clicks, not assignments to details.open.
     summaries = page.locator('details > summary')
@@ -86,6 +105,7 @@ def exercise_controls(context, url):
     page.evaluate('location.hash = "measure-12"')
     page.wait_for_function('document.activeElement.id === "measure-12-heading"')
     page.locator('#query').fill('no-such-entry-xyz')
+    page.locator('#number-index-panel > summary').click()
     page.locator('.number-grid a[href="#measure-12"]').click()
     page.wait_for_function('document.activeElement.id === "measure-12-heading"')
     check('measure-12' in visible_ids(page), 'Repeated number link clears conflicting filters')
@@ -139,6 +159,15 @@ try:
     page.goto(url);page.wait_for_selector('html.js')
     check(len(visible_ids(page))==101,'HTTP:101 articles visible')
     check(page.locator('details[open]').count()==0,'Native analyses initially closed')
+    check(page.locator('#biggest-problems > .headline-grid > .headline-card').count()==3 and
+          page.locator('#more-findings .headline-card').count()==5 and
+          page.locator('#more-findings .headline-card').first.is_hidden(), 'Start here shows three findings with five native expansions')
+    page.locator('#more-findings > summary').click()
+    check(page.locator('#more-findings .headline-card').first.is_visible(), 'More findings opens natively')
+    page.locator('#more-findings > summary').click()
+    check(page.locator('#uc-calculation').is_visible() and page.locator('#funding-calculation').is_visible(), 'Both sourced calculation figures are discoverable in the opening overview')
+    check(page.locator('.policy > .policy-body > .evidence-panel').count()==0 and
+          page.locator('.policy details.analysis .evidence-panel').count()>0, 'Supplementary evidence stays inside analysis expansions')
     audit_summary=page.locator('.audit-item > summary').first
     audit_summary.focus();page.keyboard.press('Enter')
     check(page.locator('.audit-item').first.get_attribute('open') is not None and page.locator('.audit-item .audit-check').first.is_visible(),'Audit opens with keyboard and exposes labelled checks')
@@ -190,6 +219,7 @@ try:
     page.goto(url);page.wait_for_selector('html.js')
     page.screenshot(path=str(ARTIFACTS/'desktop-1440.png'))
     check(no_overflow(page),'1440px no global overflow')
+    page.locator('#number-index-panel > summary').click()
     for width in [390,320,350,720,950]:
         page.set_viewport_size({'width':width,'height':1000})
         check(no_overflow(page),f'{width}px no global overflow')
@@ -211,6 +241,17 @@ try:
             page.locator('.audit-item > summary').first.click()
         if width==390:
             check(page.locator('#topic-select').is_visible(),'Mobile labelled topic select')
+            check(page.locator('#mobile-tools').is_visible(), 'Phone reading toolbar is available')
+            page.locator('#measure-01 summary').click()
+            page.locator('#measure-01 .back-results').click()
+            page.wait_for_function('document.activeElement.id === "explorer-heading"')
+            page.locator('#change-topic').click()
+            check(page.locator('#topic-select').evaluate('(el)=>el===document.activeElement'), 'Change topic returns focus to the topic chooser')
+            page.locator('#jump-search').click()
+            check(page.locator('#query').evaluate('(el)=>el===document.activeElement'), 'Reading toolbar search returns focus to search')
+            box=page.locator('#query').bounding_box()
+            toolbar=page.locator('#mobile-tools').bounding_box()
+            check(box['y']>=toolbar['y']+toolbar['height'], 'Focused search clears the sticky toolbar')
             page.locator('#topic-select').select_option('using-brexit-freedoms')
             check(visible_ids(page)==['measure-49','measure-50','measure-51','measure-52'],'Mobile topic filter synchronises')
             page.locator('#reset').click();page.screenshot(path=str(ARTIFACTS/'mobile-390.png'))
@@ -233,6 +274,13 @@ try:
     check(file_page.locator('#measure-12 .copy-fallback').is_visible(),'file://clipboard fallback works')
     nojs=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':1000});baseline=nojs.new_page();baseline.goto(url)
     check(baseline.locator('.policy').count()==101 and baseline.locator('#filters').is_hidden(),'No JS:all content available, enhanced controls hidden')
+    check(baseline.locator('#mobile-tools').is_hidden() and baseline.locator('.shortcut-controls').is_hidden(), 'No JS: enhanced reading controls remain hidden')
+    baseline.locator('#number-index-panel > summary').click()
+    check(baseline.locator('.number-grid a').first.is_visible(), 'No JS: native numbered index opens')
+    baseline.locator('#number-index-panel > summary').click()
+    baseline.locator('#more-findings > summary').click()
+    check(baseline.locator('#more-findings .headline-card').first.is_visible(), 'No JS: extra findings open')
+    baseline.locator('#more-findings > summary').click()
     baseline.locator('#measure-01 summary').click()
     check(baseline.locator('#measure-01 .analysis-text').is_visible(),'No JS:native details work')
     baseline.locator('.audit-item > summary').first.click()
@@ -240,6 +288,7 @@ try:
     baseline.locator('.audit-item > summary').first.click()
     baseline.emulate_media(media='print')
     check(baseline.locator('.audit-check').first.is_visible(),'No JS:print exposes closed audit details')
+    check(baseline.locator('#more-findings .headline-card').first.is_visible(),'No JS:print exposes extra findings')
     baseline.emulate_media(media='screen')
     check(no_overflow(baseline),'No JS:mobile has no global overflow')
     check(not errors,'No browser page errors')

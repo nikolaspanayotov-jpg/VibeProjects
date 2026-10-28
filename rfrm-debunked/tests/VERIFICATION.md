@@ -89,3 +89,21 @@ LINKEDOM_WORKER_PATH=/tmp/rfrm-linkedom-0.18.12.mjs node tests/control_runtime.m
 The standalone worker was fetched from the upstream `WebReflection/linkedom` 0.18.12 GitHub source; SHA-256 `38824d3d2933bd753456e7e87558121cfd31c1c08dedcd72ef4be9a75907322c`. It is a temporary test dependency, not a site asset. Elsewhere, install the pinned test dependency with `npm install --prefix tests` and run `npm test --prefix tests`.
 
 The static audit and Python/JavaScript syntax checks passed after the fixes. The browser suite now includes actual clicks on every summary and copy button, every desktop/mobile topic control, the Search button, deep links and print recovery. A browser run was attempted again but stopped at local server startup with `PermissionError: [Errno 1] Operation not permitted`. None of its browser checks executed. The browser verification limitation above therefore still applies.
+
+
+## Reading and navigation revision — 28 October 2026
+
+Implemented the five requested improvements: a Start here overview with three initial findings and five native expansions; an expandable original-number index; four everyday shortcuts; two sourced arithmetic figures in the opening overview; compact entries with supplementary evidence inside analyses; and phone reading controls with a Back to results link in every expansion.
+
+Shortcut membership is explicit in the authoring generator and leaves the original article order/categories untouched. Shortcuts, search and original topics combine with AND; repeating a shortcut removes it. Clear-all, empty-state reset and policy-fragment recovery clear shortcut state. Printing snapshots and restores shortcuts along with query/topic and all native disclosures.
+
+The UC figure retains the full existing annual £486 tax-saving example, £267.30 UC deduction and £218.70 retained amount, with full 55% taper exposure, sufficient entitlement, work-allowance and unchanged-NI assumptions and the existing exclusions. The four pairs of annual NI/levy bars are derived from the unchanged fiscal table: £7.14bn, £6.96bn, £6.76bn and £6.77bn in 2028/29–2031/32. Labels show costs/receipts as magnitudes on a shared zero-based scale and explicitly distinguish published funding assumptions from predicted behavioural effects. Existing source links accompany both figures. No new external source claims or JSON edits were introduced.
+
+Completed checks:
+
+- `python3 tests/static_audit.py` passed, including 3+5 overview structure, the 64-number disclosure, compact evidence placement, source-backed figure amounts/years/labels, all prior content/source/table integrity checks and unchanged summary hash.
+- `LINKEDOM_WORKER_PATH=/tmp/rfrm-linkedom-0.18.12.mjs node tests/control_runtime.mjs` passed all ten regression groups. New coverage checks each shortcut’s expected categories/entries, query/topic intersections, repeat-toggle, clear-all/empty reset, policy-hash recovery, filter-preserving return links, overview fragment expansion, native-summary defaults, reading-control focus, and shortcut restoration after printing.
+- The pinned upstream LinkeDOM worker was restored via the GitHub connector after the temporary dependency disappeared during environment refresh. It remains a temporary test dependency, not a hosting asset.
+- The authoring generator and both Python tests passed syntax compilation; generated inline JavaScript passed `node --check`.
+
+The browser smoke suite was updated for native overview/index expansion, shortcut navigation, moved evidence panels, phone toolbar focus/clearance and no-JavaScript/print visibility. It was **not rerun** because of the previously established socket restrictions. No new screenshots were captured or inspected. Sticky positioning, overflow, actual native interaction, keyboard defaults, mobile/desktop layout and print rendering remain unverified in a real browser; the existing browser limitation above continues to apply.

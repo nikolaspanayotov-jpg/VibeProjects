@@ -51,11 +51,23 @@ for a in articles:
     groups.setdefault(a['category'], []).append(a)
 
 
+# Curated entry points collect existing categories without renumbering articles.
+SHORTCUTS = {
+    'pay': {'label': 'Pay and taxes', 'topics': ['Tax cuts and household bills', 'Reducing the cost of hiring British workers', 'Welfare claims'], 'ids': []},
+    'energy': {'label': 'Energy bills', 'topics': ['Unlocking the North Sea', 'Reindustrialising Britain'], 'ids': ['claim-energy-bills', 'claim-net-zero-spending']},
+    'housing': {'label': 'Housing', 'topics': ['Getting homes built in cities', 'Building critical national infrastructure'], 'ids': []},
+    'services': {'label': 'Public services', 'topics': ['Spending and services', 'Welfare claims'], 'ids': []},
+}
+assert all(category in groups for shortcut in SHORTCUTS.values() for category in shortcut['topics'])
+assert all(article_id in by_id for shortcut in SHORTCUTS.values() for article_id in shortcut['ids'])
+
+
 def render_article(a):
     n = a['number']
     article_id = a['id']
     topic = slug(a['category'])
     number = f'{n:02d}' if n else 'Also'
+    shortcuts = ' '.join(key for key, entry in SHORTCUTS.items() if a['category'] in entry['topics'] or article_id in entry['ids'])
     source_refs = ' '.join(f'<a href="#{esc(article_id)}-source-{i}" aria-label="Source {i} for {esc(a["title"])}">[{i}]</a>' for i, _ in enumerate(a['sourceIds'], 1))
     paragraphs = a['critique'].split('\n\n')
     if len(paragraphs) == 1:
@@ -83,9 +95,9 @@ def render_article(a):
     if a.get('dependencies'):
         dependencies = '<div class="dependencies"><strong>What this depends on</strong><ul>' + ''.join(f'<li>{article_link(link["id"])}: {esc(link["reason"])}</li>' for link in a['dependencies']) + '</ul></div>'
 
-    return f'''<article class="policy" id="{esc(article_id)}" data-number="{n or ''}" data-topic="{topic}" aria-labelledby="{esc(article_id)}-heading">
+    return f'''<article class="policy" id="{esc(article_id)}" data-number="{n or ''}" data-topic="{topic}" data-shortcuts="{shortcuts}" aria-labelledby="{esc(article_id)}-heading">
 <div class="policy-head"><span class="policy-number{'' if n else ' support'}" aria-hidden="true">{number}</span><div><h3 id="{esc(article_id)}-heading" tabindex="-1"><a href="#{esc(article_id)}">{esc(a['title'])}</a></h3><p class="meta">{'Original measure '+str(n) if n else 'Supporting entry'} in {esc(a['category'])}. PDF p. {esc(a['page'])}</p></div></div>
-<div class="policy-body"><p class="evidence-label">{esc(a["evidenceLabel"])}</p><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="counter">{esc(a['counter'])}</p>{evidence_panels}{dependencies}<details class="analysis"><summary>Analysis and sources<span class="sr-only">: analysis of {esc(a['title'])}</span></summary><div class="analysis-text">{analysis}</div><h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
+<div class="policy-body"><p class="evidence-label">{esc(a["evidenceLabel"])}</p><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="proposal-label question-label">Main question</p><p class="counter">{esc(a['counter'])}</p><details class="analysis"><summary>Analysis and sources<span class="sr-only">: analysis of {esc(a['title'])}</span></summary><div class="analysis-text">{analysis}</div>{evidence_panels}{dependencies}<h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div><a class="back-results" href="#explorer-heading">Back to results</a></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
 
 
 sections = ''
@@ -126,13 +138,33 @@ for s in sources:
     date = s.get('date') or 'Publication date not established'
     bibliography += f'<li id="source-{esc(s["id"])}"><a href="{esc(s["url"])}">{esc(s["title"])}</a><small>{esc(s["publisher"])}. {esc(date)}. Accessed {esc(s["accessed"])}.</small><p class="source-finding">{esc(s["finding"])}</p></li>'
 highlights = json.loads((DATA / 'highlights.json').read_text())
-highlight_html = ''
+highlight_cards = []
 for i, card in enumerate(highlights):
     assert card['label'] in EVIDENCE_LABELS
     assert all(source_id in source_map for source_id in card['sourceIds'])
     links = ' '.join(f'<a href="#{esc(link["id"])}">{esc(link["label"])}</a>' for link in card['links'])
     evidence = ' '.join(f'<a href="{esc(source_map[source_id]["url"])}" title="{esc(source_map[source_id]["title"])}">{esc(source_map[source_id]["publisher"])}</a>' for source_id in card['sourceIds'])
-    highlight_html += f'<div class="headline-card {"supplemental" if i >= 5 else ""}" id="{esc(card["id"])}"><span class="evidence-label">{esc(card["label"])}</span><h3>{esc(card["title"])}</h3><p>{esc(card["text"])}</p><div class="headline-links">{links}</div><p class="headline-evidence">Evidence: {evidence}</p></div>'
+    highlight_cards.append(f'<div class="headline-card" id="{esc(card["id"])}"><span class="evidence-label">{esc(card["label"])}</span><h3>{esc(card["title"])}</h3><p>{esc(card["text"])}</p><div class="headline-links">{links}</div><p class="headline-evidence">Evidence: {evidence}</p></div>')
+
+highlight_html = '<div class="headline-grid">' + ''.join(highlight_cards[:3]) + '</div><details class="overview-more" id="more-findings"><summary>Explore five more findings</summary><div class="headline-grid">' + ''.join(highlight_cards[3:]) + '</div></details>'
+shortcut_controls = '<div class="shortcut-controls enhanced" hidden role="group" aria-label="Everyday topics"><p class="search-label">What matters to you?</p><div class="shortcut-buttons">' + ''.join(f'<button type="button" data-shortcut="{key}" aria-pressed="false">{entry["label"]}</button>' for key, entry in SHORTCUTS.items()) + '</div><p class="hint">These shortcuts collect related parts of the plan. Search and the original topic filter narrow the selection further.</p><p id="shortcut-status" class="hint" role="status"></p></div>'
+
+# Visualise existing source-backed arithmetic; preserve the original worked notes.
+uc_panel = by_id['claim-personal-allowance']['evidencePanels'][0]
+uc_sources = ' · '.join(f'<a href="{esc(source_map[key]["url"])}">{esc(source_map[key]["publisher"])}</a>' for key in uc_panel['sourceIds'])
+uc_notes = ''.join(f'<p>{esc(note)}</p>' for note in uc_panel['paragraphs'])
+uc_visual = f'''<figure class="calculation" id="uc-calculation" aria-labelledby="uc-caption"><figcaption id="uc-caption">How £486 tax relief can leave £218.70</figcaption><p class="hint">Illustrative annual change with the full 55% Universal Credit taper.</p><dl class="calculation-values"><div><dt>Income-tax saving</dt><dd>£486.00</dd></div><div><dt>Less Universal Credit</dt><dd>−£267.30</dd></div><div><dt>Retained by the household</dt><dd>£218.70</dd></div></dl><div class="uc-bar" aria-hidden="true"><span class="uc-lost">55% less UC</span><span class="uc-kept">45% retained</span></div><div class="calculation-notes">{uc_notes}</div><p class="figure-source">Sources: {uc_sources}. <a href="#claim-personal-allowance">Read the full analysis</a>.</p></figure>'''
+fiscal_rows = {row[0]: row for row in tables['fiscal']['rows']}
+ni_row = fiscal_rows['Reverse Rachel Reeves’ employer NI increase']
+levy_row = fiscal_rows['Introduce Migrant Workers Levy']
+paired_bars = ''
+for year, ni, levy in zip(tables['fiscal']['years'][2:], ni_row[3:], levy_row[3:]):
+    assert ni == '(' + levy + ')'
+    width = float(levy) / 7.14 * 100
+    paired_bars += f'<div class="funding-year"><h4>{esc(year)}</h4><div class="funding-row"><span>NI cut cost <strong>£{esc(levy)}bn</strong></span><span class="funding-track" aria-hidden="true"><span class="ni-bar" style="width:{width:.2f}%"></span></span></div><div class="funding-row"><span>Levy receipts <strong>£{esc(levy)}bn</strong></span><span class="funding-track" aria-hidden="true"><span class="levy-bar" style="width:{width:.2f}%"></span></span></div></div>'
+levy_source = source_map['official-plan-download']
+levy_visual = f'''<figure class="calculation" id="funding-calculation" aria-labelledby="funding-caption"><figcaption id="funding-caption">One funding assumption, two matching rows</figcaption><p class="hint">Published annual nominal £bn, on a shared scale from zero to £7.14bn. Costs and receipts are shown as magnitudes.</p>{paired_bars}<p>The levy receipts exactly match the employer NI cut in all four years. These are two sides of one funding assumption, not two independent gains.</p><p>The intended substitution into British labour and automation can change the levy’s tax base. The eventual receipts depend on those behavioural assumptions; these bars show the plan’s figures, not predicted effects.</p><p class="figure-source">Source: <a href="{esc(levy_source['url'])}">Reform’s official plan, printed p.31</a>. <a href="#measure-34">NI analysis</a> · <a href="#measure-35">Levy analysis</a>.</p></figure>'''
+calculation_html = '<section class="calculations" aria-labelledby="calculation-heading"><h3 id="calculation-heading">Two calculations to check</h3><div class="calculation-grid">' + uc_visual + levy_visual + '</div></section>'
 
 audit = json.loads((DATA / 'audit.json').read_text())
 assert len(audit['rows']) == 20
@@ -159,7 +191,7 @@ for row in audit['rows']:
     audit_rows += f'<details class="audit-item" id="audit-{esc(row["target"])}"><summary><span class="audit-title">{esc(row["title"])}</span><span class="audit-profile">Published nominal profile: {esc(row["profile"])}</span><span class="audit-prompt">View disclosure details</span></summary><div class="audit-detail"><p>{article_link(row["target"], "Read the policy analysis")} · Printed PDF p.{esc(row["page"])}</p><dl class="audit-checks">{checks}</dl></div></details>'
 audit_html = '''<section class="reference-section costing-audit" id="costing-audit" aria-labelledby="costing-heading"><h2 id="costing-heading">Can the major costings be reproduced?</h2><p><strong>The arithmetic is published; the model needed to reproduce it is not.</strong> This disclosure audit covers the official plan and its linked policy page reviewed on 27 October 2026. It does not establish that no related material exists elsewhere, or that an unreplicated number is false.</p><p>Scope: every policy line with an absolute effect of at least £1bn in any financial year from 2027/28 to 2031/32: 20 lines. Aggregates, memo items and opening/closing stocks are excluded. Amounts below show first and final populated years, not necessarily the maximum. Read the complete financial tables for the annual profile.</p><p class="audit-key"><strong>Published</strong>: the relevant assumption or calculation is explicitly disclosed. <strong>Partial</strong>: some relevant information is disclosed, but it does not complete the calculation. <strong>Not provided in the plan</strong>: the reviewed plan does not disclose the reproducible detail required by this test. <strong>Not applicable</strong>: the question does not fit that line; the reason is stated. These are disclosure findings, not confidence scores.</p><p>Six questions: what is the baseline; who or what is covered and at what take-up; how do people and firms respond; what does administration cost; how do policies interact; and how sensitive is the answer? An official OBR baseline is not OBR certification of the policy package.</p>''' + glossary + '<div class="audit-list" aria-label="Twenty major policy lines, six disclosure checks each">' + audit_rows + '</div>' + '''<p>The two NI/levy rows are a linked funding pair, not two independent gains. Overtime includes reservist pay. Student-loan revaluation is distinguished from recurring cash. Source: <a href="https://reformparty.uk/policies/economic-rescue-plan/download">Reform’s official plan</a>, especially printed pp.13–22 and 30–31; relevant article links explain each line.</p></section>'''
 
-replacements = {'SUPPORT_COUNT':len(articles)-64, 'NUMBER_INDEX':''.join(f'<a href="#measure-{i:02d}" aria-label="Measure {i}: {esc(by_id[f"measure-{i:02d}"]["title"])}">{i:02d}</a>' for i in range(1,65)), 'TOPIC_LINKS':topic_links,'TOPIC_OPTIONS':topic_options,'ARTICLES':sections,'TABLES':table_html,'BIBLIOGRAPHY':bibliography,'HIGHLIGHTS':highlight_html,'COSTING_AUDIT':audit_html}
+replacements = {'SUPPORT_COUNT':len(articles)-64, 'NUMBER_INDEX':''.join(f'<a href="#measure-{i:02d}" aria-label="Measure {i}: {esc(by_id[f"measure-{i:02d}"]["title"])}">{i:02d}</a>' for i in range(1,65)), 'TOPIC_LINKS':topic_links,'TOPIC_OPTIONS':topic_options,'ARTICLES':sections,'TABLES':table_html,'BIBLIOGRAPHY':bibliography,'HIGHLIGHTS':highlight_html,'SHORTCUTS':shortcut_controls,'CALCULATIONS':calculation_html,'COSTING_AUDIT':audit_html}
 page = (DATA / 'template.html').read_text()
 for key,value in replacements.items():
     page = page.replace('{{'+key+'}}', str(value))

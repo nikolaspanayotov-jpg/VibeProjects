@@ -80,6 +80,7 @@ function harness(initialHash = '') {
   const snapshot = () => JSON.stringify({
     query: $('#query').value,
     topic: $('#topic-select').value,
+    shortcuts: all('button[data-shortcut][aria-pressed="true"]').map(el => el.dataset.shortcut),
     visible: visible(),
     details: all('details').map(el => el.open)
   });
@@ -94,6 +95,67 @@ assert.equal(h.$('#filters').hidden, false);
 assert.ok(h.all('.copy-link').every(el => !el.hidden));
 assert.equal(h.$('#print-page').hidden, false);
 pass('Initialisation exposes enhanced controls and all 101 entries');
+assert.equal(h.all('#biggest-problems > .headline-grid > .headline-card').length, 3);
+assert.equal(h.all('#more-findings .headline-card').length, 5);
+assert.equal(h.$('#more-findings').open, false);
+assert.equal(h.$('#number-index-panel').open, false);
+assert.equal(h.all('#number-index-panel .number-grid a').length, 64);
+assert.equal(h.click('#number-index-panel > summary').defaultPrevented, false);
+assert.equal(h.click('#more-findings > summary').defaultPrevented, false);
+for (const panel of h.all('.evidence-panel,.dependencies')) {
+  assert.ok(panel.closest('details.analysis'), 'Supplementary evidence belongs inside native analysis');
+}
+assert.equal(h.all('.back-results').length, 101);
+pass('Overview has three initial and five expandable findings; number index and all supplementary analyses use native disclosures');
+
+const shortcutCases = {
+  pay: {topics: ['tax-cuts-and-household-bills', 'reducing-the-cost-of-hiring-british-workers', 'welfare-claims'], ids: []},
+  energy: {topics: ['unlocking-the-north-sea', 'reindustrialising-britain'], ids: ['claim-energy-bills', 'claim-net-zero-spending']},
+  housing: {topics: ['getting-homes-built-in-cities', 'building-critical-national-infrastructure'], ids: []},
+  services: {topics: ['spending-and-services', 'welfare-claims'], ids: []}
+};
+for (const [key, {topics, ids}] of Object.entries(shortcutCases)) {
+  const button = h.$('button[data-shortcut="' + key + '"]');
+  h.click(button);
+  const expected = h.all('.policy').filter(el => topics.includes(el.dataset.topic) || ids.includes(el.id)).map(el => el.id);
+  assert.deepEqual(h.visible(), expected, key + ' shortcut collects its curated categories and claims');
+  assert.equal(button.getAttribute('aria-pressed'), 'true');
+  assert.equal(h.document.activeElement.id, 'explorer-heading');
+  assert.equal(h.scrolls.at(-1), 'explorer-heading');
+  assert.ok(h.$('#current-topic').textContent.includes(button.textContent));
+  h.search('#12');
+  assert.deepEqual(h.visible(), expected.includes('measure-12') ? ['measure-12'] : []);
+  h.search('');
+  h.click('.topic-nav a[data-topic="welfare-claims"]');
+  assert.deepEqual(h.visible(), expected.filter(id => h.document.getElementById(id).dataset.topic === 'welfare-claims'));
+  h.click('#reset');
+  assert.equal(h.visible().length, 101);
+  assert.ok(h.all('button[data-shortcut]').every(el => el.getAttribute('aria-pressed') === 'false'));
+  h.click(button); h.click(button);
+  assert.equal(h.visible().length, 101, 'Repeating a shortcut removes that filter');
+}
+h.click('button[data-shortcut="energy"]');
+h.search('no-matching-policy');
+h.click('#empty-reset');
+assert.equal(h.visible().length, 101);
+assert.ok(h.all('button[data-shortcut]').every(el => el.getAttribute('aria-pressed') === 'false'));
+h.click('button[data-shortcut="energy"]');
+h.hash('#measure-12');
+assert.equal(h.visible().length, 101, 'Policy navigation clears shortcut filters too');
+h.$('#measure-12 details').open = false;
+h.hash('#' + h.$('#more-findings .headline-card').id);
+assert.equal(h.$('#more-findings').open, true, 'Links to an extra finding reveal its native disclosure');
+h.$('#more-findings').open = false;
+h.click('#change-topic');
+assert.equal(h.document.activeElement.id, 'topic-select');
+h.click('#jump-search');
+assert.equal(h.document.activeElement.id, 'query');
+h.click('button[data-shortcut="pay"]');
+h.hash('#explorer-heading');
+assert.ok(h.visible().length < 101, 'Back-to-results fragment preserves filters');
+h.click('#reset');
+pass('All four everyday shortcuts combine with search/topic, toggle, clear and reveal targets; reading controls focus without clearing results');
+
 assert.equal(h.click('#measure-01 summary').defaultPrevented, false, 'Analysis summary click must keep its native disclosure default');
 assert.equal(h.click('#measure-01 .article-sources a').defaultPrevented, false, 'Source links must keep their native navigation default');
 assert.equal(h.$('#topic-select').value, 'all', 'Clicking an article must not filter the page');
@@ -227,6 +289,7 @@ await h.tick();
 assert.equal(h.$('#measure-12 .copy-fallback').hidden, false);
 pass('All 101 copy handlers succeed, recover on denied retry, select a fallback and close older fallbacks');
 
+h.click('button[data-shortcut="housing"]');
 h.search('#12');
 h.all('details').forEach((el, index) => { el.open = index % 3 === 0; });
 const beforePrint = h.snapshot();
