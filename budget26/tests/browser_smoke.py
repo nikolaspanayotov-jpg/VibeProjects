@@ -41,6 +41,52 @@ try:
     page.screenshot(path=str(OUT/'desktop.png'))
 
     query=page.locator('#policy-query')
+    assert page.locator('.route-grid>li').count()==4
+    for link in page.locator('.route-grid a').all():
+        target=link.get_attribute('href')
+        query.fill('unmatchableqzx')
+        page.locator('button[data-topic="business"]').click()
+        link.click()
+        expect(page.locator(target)).to_be_visible()
+        expect(page.locator(target+' .policy-details')).to_have_attribute('open','')
+        expect(page.locator(target+' h3')).to_be_focused()
+        expect(query).to_have_value('')
+    passed('All twelve audience links recover filtered policies and focus their headings')
+
+    assert page.locator('.policy-comparison').count()==3
+    query.fill('£20,000')
+    expect(page.locator('#policy-cash-isa')).to_be_visible()
+    query.fill('£6,200')
+    assert shown(page)==1 and page.locator('#policy-business-mileage').is_visible()
+    page.locator('#reset-filters').click()
+    page.goto(url+'#example-business-mileage')
+    expect(page.locator('#policy-business-mileage .policy-details')).to_have_attribute('open','')
+    expect(page.locator('#example-business-mileage')).to_be_focused()
+    expect(page.locator('#example-business-mileage .calculation-total dd')).to_have_text('£6,200')
+    page.goto(url+'#example-lifetime-isa')
+    expect(page.locator('#example-lifetime-isa .calculation-total dd')).to_have_text('£500')
+    passed('Comparisons/examples are searchable; deep examples reveal their closed policies')
+
+    for term in page.locator('.term-link').all():
+        origin=term.get_attribute('id'); definition=term.get_attribute('href')
+        page.evaluate('(id)=>location.hash=id',origin)
+        expect(term).to_be_focused()
+        term.click()
+        expect(page.locator(definition)).to_be_focused()
+        page.locator('#glossary-return').click()
+        expect(term).to_be_focused()
+        assert page.evaluate('location.hash')=='#'+origin
+    passed('All six glossary links focus definitions and return to the exact reading passage')
+    assert page.locator('.timeline>li').count()==20
+    assert set(page.locator('.date-kind').all_text_contents())=={'Starts','Relief ends','Planned'}
+    expect(page.locator('.timeline time[datetime="2027-04-01"]')).to_have_text('1 April 2027')
+    expect(page.locator('.timeline time[datetime="2027-04-06"]')).to_have_text('6 April 2027')
+    expect(page.locator('.timeline-planned:has(time[datetime="2028-01-02"]) a')).to_have_attribute('href','#policy-private-hire')
+    passed('Timeline distinguishes exact starts, relief expiries and planned delivery')
+    page.goto(url)
+    page.locator('#reading-routes').scroll_into_view_if_needed()
+    page.screenshot(path=str(OUT/'reading-routes.png'))
+
     query.fill('CASEY pension')
     assert shown(page)==1
     assert page.locator('#policy-state-pension').is_visible()
@@ -185,8 +231,15 @@ try:
     expect(plain.locator('.baseline-topics')).to_be_visible()
     plain.locator('#policy-minimum-wages summary').click()
     expect(plain.locator('#policy-minimum-wages .source-detail')).to_be_visible()
+    assert plain.locator('.route-grid a').count()==12
+    expect(plain.locator('#policy-trading-allowance .policy-comparison')).to_be_visible()
+    plain.locator('#policy-lifetime-isa .policy-details>summary').click()
+    expect(plain.locator('#example-lifetime-isa')).to_be_visible()
+    plain.locator('#read-term-your-first-home').click()
+    expect(plain.locator('#term-equity-loan')).to_be_in_viewport()
+    expect(plain.locator('#glossary-return')).to_be_hidden()
     no_overflow(plain)
-    passed('No-JavaScript reading, topic anchors and native details')
+    passed('No-JavaScript reading, audience/glossary links, comparisons, examples and native details')
     assert not errors, errors
     passed('No browser page or console errors')
     browser.close()

@@ -36,7 +36,7 @@ Page order:
 3. Six concise overview takeaways, linked to relevant content.
 4. Changes: search, six topic filters and the 48-entry policy inventory below.
 5. OBR: forecast chart, complete data tables, eight assessment points.
-6. Dates: all ten rows from the source timeline, with policy links.
+6. Dates: an expanded twenty-entry timeline preserving the original ten rows' coverage, with exact dates, event labels and policy links.
 7. Sources: original documents, editorial notes, access limitations and downloads.
 8. Footer: edition date, independent explainer description and back-to-top link.
 
@@ -61,7 +61,17 @@ Keep grouped measures grouped and preserve all their components. Outside the ent
 
 Each article has a descriptive permanent policy-* ID, linked heading, short visible explanation with its principal figure, visible When and Where information, and any implementation qualification. Preserve every original fact across the whole article. A native Details and sources disclosure adds eligibility, staged dates, exclusions or caveats that the summary has not already explained, followed by precise source references and Copy link. Do not paste the visible summary into the expanded text. For short measures with no additional explanation, label the disclosure Sources and show only the citations and Copy link. Aim for 30–60 words of visible summary where appropriate; do not pad short items. All editorial content must be in initial HTML and readable without JavaScript.
 
-Use British English and absolute dates. Distinguish new policy, extensions, earlier policies being implemented, forecasts and consultations. Do not imply legislation passed solely because a commencement date is stated. Keep England/Great Britain/UK coverage distinct. Explain abbreviations. Retain annualised versus actual savings, annual versus multi-year spending, and investment/lending versus grants. Do not add personal tax calculations or unsupported eligibility decisions. Preserve the OBR debt qualification and Annex A access limitation.
+Use British English and absolute dates. Distinguish new policy, extensions, earlier policies being implemented, forecasts and consultations. Do not imply legislation passed solely because a commencement date is stated. Keep England/Great Britain/UK coverage distinct. Explain abbreviations. Retain annualised versus actual savings, annual versus multi-year spending, and investment/lending versus grants. Use clearly labelled illustrative arithmetic with explicit assumptions; do not estimate an individual reader's tax bill or determine their eligibility. Preserve the OBR debt qualification and Annex A access limitation.
+
+### Audience routes, comparisons and explanations
+
+Add a compact reading-routes section after the overview, with a hero shortcut and mobile Contents link. Four audiences—first-time buyers, pensioners, drivers and small-business owners—each have three ordinary links to relevant policies across topics. Keep the route links functional without JavaScript, and use existing fragment recovery with JavaScript. Routes suggest relevant reading, not universal eligibility.
+
+Use three visible comparison panels in the trading-allowance, Business Asset Disposal Relief and cash-ISA entries. Show before/existing and announced/retained values, units and the difference. Remove repeated figures from the surrounding summary. Include comparison text in search.
+
+Add two worked examples inside their relevant policy disclosures: 12,000 qualifying own-car/van business miles in 2027–28 gives 10,000 × 55p + 2,000 × 35p = £6,200; a qualifying £10,000 gross LISA withdrawal for a first home above £450,000 incurs a £2,000 charge at 20%, compared with £2,500 at 25%. Show the £500 reduction and £8,000/£7,500 available amounts. Preserve dates, eligibility assumptions and the distinction between a mileage reimbursement/deduction amount and resulting tax relief. Include examples in search and print.
+
+Explain rateable value, writing-down allowance, equity loan, real terms, annualised estimates and GDP in a static glossary after the timeline. Dotted-underlined links at the point of use navigate to focusable definitions. Support ordinary keyboard/tap navigation and no-JavaScript reading. With JavaScript, offer a return button to the last originating term link; use a stable read-term-* fragment to restore context and reveal any filtered or closed containing policy. Do not rely on hover or store reading history persistently. Do not invent repayment terms for Your First Home.
 
 ### Navigation and search
 
@@ -79,13 +89,13 @@ Identify figures as central forecasts published 28 October 2026. Include all eig
 
 ### Timeline, sources and print
 
-Keep all ten timeline rows, preserving starts, expiries and planned implementation windows. Link each to relevant policies. Each policy disclosure links to its source and identifies printed page/paragraph or OOTLAR section. Budget PDF anchors translate printed page numbers to PDF page numbers by adding six. Source links use the existing official URLs and relative PDF location; offer the markdown for download.
+Preserve the original timeline's coverage in twenty chronological entries, with explicit Starts, Relief ends and Planned labels. Split 1 April wage changes from 6 April tax changes and include 2 January 2028 private-hire VAT. Distinguish the final relief day (30 June 2027) from the following fuel-duty change, and keep pension and Carer's Allowance dates separate. Preserve starts, expiries, consultation qualifications and month-only precision. Link each to relevant policies. Each policy disclosure links to its source and identifies printed page/paragraph or OOTLAR section. Budget PDF anchors translate printed page numbers to PDF page numbers by adding six. Source links use the existing official URLs and relative PDF location; offer the markdown for download.
 
 Print this guide temporarily reveals all policies and opens every disclosure, then restores filters and disclosure states after printing. Hide navigation/controls in print, include all data tables and source URLs, and retain normal browser Print support.
 
 ## 4. Implementation stages
 
-1. Build the semantic document and all content. Confirm 48 entries, six groups, six takeaways, ten dates, eight OBR assessments and exact tables before styling.
+1. Build the semantic document and all content. Confirm 48 entries, six groups, six takeaways, twenty timeline entries, eight OBR assessments and exact tables before styling.
 2. Apply tokens, typography, responsive layout and opening calendar; check 390px before desktop.
 3. Add search, topic synchronisation, result counts/reset, fragment recovery, mobile navigation and clipboard fallback.
 4. Add the table-derived forecast chart and print snapshot/restoration.
@@ -95,7 +105,7 @@ Use small named functions. Interfaces introduced are the static /budget26/ page,
 
 ## 5. Acceptance
 
-- Content: exact 48-entry inventory; all original details, amounts, dates, jurisdictions and caveats; six takeaways, ten dates, eight OBR points; cell-for-cell forecast tables and working citations.
+- Content: exact 48-entry inventory; all original details, amounts, dates, jurisdictions and caveats; six takeaways, twenty timeline entries, eight OBR points; cell-for-cell forecast tables and working citations.
 - Functional: title/closed-detail search; all topic filters and AND combinations; empty/reset; desktop/mobile sync; initial/changed/repeated/nested/filtered fragments; multiple details; clipboard success/denial; six chart metrics; print/restoration.
 - Runtime: file://, HTTP, nested /budget26/ path, JavaScript disabled and optional fonts unavailable.
 - Visual: inspect 390px and 1440px screenshots; check 320px, 768px and 200% zoom. No global overflow; tables may scroll in labelled containers. No hidden anchor targets.

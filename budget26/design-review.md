@@ -13,3 +13,15 @@ Reviewed against the implemented page, editorial markdown and Budget PDF. This i
 5. **Give the OBR section a short forecast overview.** The chart requires readers to choose metrics and find the significant turning points; its generated description currently focuses on the first and final years. **Proposed:** introduce the chart with three sourced figures: 2027 GDP growth of 1.0%, 2027 CPI inflation of 3.4%, and debt peaking at 97.3% of GDP in 2028–29. Explain how these support the OBR’s limited-headroom assessment. Update chart descriptions to mention intervening troughs or peaks, while retaining the accessible tables and distinction between forecasts and policy.
 
 The copy revision leaves the layout, policy IDs, filters, forecasts and source documents intact. Content inventory, original numerical values, citations, syntax and modelled DOM interactions have been checked; these do not establish native browser behaviour or visual quality.
+
+## Further improvements implemented
+
+The next five recommendations were subsequently approved for implementation:
+
+1. **Audience reading routes:** four concise routes for first-time buyers, pensioners, drivers and small-business owners, with twelve cross-topic policy links, a hero shortcut and a mobile Contents entry.
+2. **Before-and-after comparisons:** three visible panels for the trading allowance (£1,000 to £3,000 a year), Business Asset Disposal Relief's lifetime qualifying-gains limit (£1 million to £500,000) and retained cash ISA limit (£20,000). Figures moved out of the surrounding summary to avoid repetition.
+3. **Worked examples:** a £6,200 mileage amount for 12,000 qualifying miles under the 2027–28 rates, and a £500 lower charge on a qualifying £10,000 LISA withdrawal. Both show their arithmetic, assumptions and relevant qualifications inside the original policy disclosures.
+4. **Plain-English terms:** six inline definition links and a static glossary, with a return-to-reading control when JavaScript is available. Links and explanations also work through native anchors without JavaScript.
+5. **Clearer timeline:** twenty entries, with text labels and distinct styling for Starts, Relief ends and Planned; separate 1/6 April dates; the 2 January 2028 private-hire VAT measure; precise relief expiry; and separate pension/carer milestones.
+
+These additions preserve the original 48-policy inventory, source documents and forecast tables. Browser screenshots and native layout verification remain blocked by the execution sandbox.

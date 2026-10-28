@@ -32,13 +32,19 @@ vm.runInContext(script,vm.createContext(window));
 const $=selector=>document.querySelector(selector);
 const $$=selector=>Array.from(document.querySelectorAll(selector));
 const visible=()=>$$('.policy').filter(e=>!e.hidden);
-const send=(el,type)=>el.dispatchEvent(new window.Event(type,{bubbles:true}));
+const send=(el,type)=>{
+  const event=new window.Event(type,{bubbles:true,cancelable:true});
+  if(type==='click') Object.defineProperty(event,'button',{value:0});
+  return el.dispatchEvent(event);
+};
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 const checks=[];
 function pass(s){checks.push(s);console.log('PASS:',s);}
 function search(text){$('#policy-query').value=text;send($('#policy-query'),'input');}
 function topic(value){$('#topic-select').value=value;send($('#topic-select'),'change');}
 function hash(id){window.location.hash=id;window.dispatchEvent(new window.Event('hashchange'));}
+// LinkeDOM does not perform native anchor navigation or emit hashchange.
+function follow(link){send(link,'click');hash(link.getAttribute('href').slice(1));}
 
 assert.equal(visible().length,48);
 assert.equal($('#forecast-panel').hidden,false);
@@ -68,6 +74,68 @@ topic('tax');hash('policy-household-energy-payment');assert.equal(visible().leng
 hash('economy-table');assert.equal($('#forecast-data').open,true);
 hash('%E0%A4%A');hash('unknown-target');
 pass('Filtered and repeated hash recovery, target focus, nested disclosure and invalid fragments');
+
+const routeLinks=$$('.route-grid a');
+assert.equal(routeLinks.length,12);
+for(const link of routeLinks){
+  topic('funding');search('unmatchableqzx');
+  assert.equal(visible().length,0);
+  follow(link);
+  const target=$(link.getAttribute('href'));
+  assert.equal(visible().length,48);
+  assert.equal($('#policy-query').value,'');
+  assert.equal($('#topic-select').value,'all');
+  assert.equal(target.querySelector('details').open,true);
+  assert.equal(document.activeElement,target.querySelector('h3'));
+}
+pass('All 12 audience-route links reveal filtered policies, open their details and focus their headings');
+
+$('#policy-business-mileage details').open=false;
+search('£6,200');
+assert.deepEqual(visible().map(e=>e.id),['policy-business-mileage']);
+assert.equal($('#policy-business-mileage details').open,false);
+assert.ok(!$('#policy-cash-isa .policy-summary').textContent.includes('£20,000'));
+search('£20,000');
+assert.ok(visible().includes($('#policy-cash-isa')));
+assert.equal($$('#policy-cash-isa .policy-comparison dd')[0].textContent,'£20,000');
+for(const id of ['example-business-mileage','example-lifetime-isa']){
+  const example=$('#'+id),article=example.closest('.policy');
+  article.querySelector('details').open=false;topic('spending');search('unmatchableqzx');
+  hash(id);
+  assert.equal(article.hidden,false);
+  assert.equal(article.querySelector('details').open,true);
+  assert.equal(document.activeElement,example);
+}
+pass('Search indexes comparison values and closed worked examples; example fragments recover filters and disclosures');
+
+assert.equal($('#glossary-return').hidden,true);
+const termLinks=$$('.term-link');
+assert.equal(termLinks.length,6);
+for(const link of termLinks){
+  hash(link.id);
+  follow(link);
+  const definition=$(link.getAttribute('href'));
+  assert.equal(document.activeElement,definition);
+  assert.equal($('#glossary-return').hidden,false);
+  const article=link.closest('.policy');
+  if(article){
+    article.querySelector('details').open=false;
+    topic('funding');search('unmatchableqzx');
+  }
+  send($('#glossary-return'),'click');
+  window.dispatchEvent(new window.Event('hashchange'));
+  assert.equal(window.location.hash,'#'+link.id);
+  assert.equal(document.activeElement,link);
+  if(article){
+    assert.equal(article.hidden,false);
+    assert.equal(article.querySelector('details').open,true);
+    assert.equal($('#policy-query').value,'');
+    assert.equal($('#topic-select').value,'all');
+  }
+  send($('#glossary-return'),'click');
+  assert.equal(document.activeElement,link);
+}
+pass('All six glossary links focus definitions and return to the originating text, recovering closed or filtered policies');
 
 for (const key of ['gdp','cpi','unemployment','borrowing','borrowing-share','debt']) {
   $('#forecast-metric').value=key;send($('#forecast-metric'),'change');

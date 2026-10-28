@@ -8,7 +8,7 @@ Open `index.html` directly, or run `python3 -m http.server 8000` in this folder.
 
 - `key-budget-points.md` is the editorial source of truth; preserve it and the original PDF in `sources/`.
 - `build-plan.md` records the approved design and behaviour.
-- `index.html` contains all 48 policy entries, six topic groups, ten timeline rows, eight OBR assessment points and both forecast tables as static HTML. There is no runtime Markdown parser or committed authoring generator. Give the main announcement in the summary and additional eligibility, exclusions, dates or caveats in Details and sources. If no extra explanation is needed, use a Sources disclosure with citations and the copy control; do not repeat the summary.
+- `index.html` contains all 48 policy entries, six topic groups, twenty timeline rows, eight OBR assessment points and both forecast tables as static HTML. There is no runtime Markdown parser or committed authoring generator. Give the main announcement in the summary and additional eligibility, exclusions, dates or caveats in Details and sources. If no extra explanation is needed, use a Sources disclosure with citations and the copy control; do not repeat the summary.
 - Chart values are read from the two HTML tables. Do not duplicate their numerical data in JavaScript.
 
 ## Content and public links
@@ -16,6 +16,10 @@ Open `index.html` directly, or run `python3 -m http.server 8000` in this folder.
 Keep the folder name, policy IDs and main section fragments stable. Check citations, geographical scope, dates, amounts and consultation qualifications when editing. The edition is historical; do not turn its planned dates into claims of enactment. Preserve the distinction between OBR forecasts and government policy. PDF citations use printed pages; add six for PDF page anchors. Keep the Annex A access limitation visible in Sources.
 
 Search indexes all words across titles, summaries, dates, geography and complete source detail. Search and one selected topic combine with AND. The 48 policy entries are the result count; overview, forecasts, timeline and sources are not policy results. Initial, changed and repeated fragments reveal filtered articles, open disclosures and focus the target. Clipboard failures expose a selected URL. Print snapshots reveal all content and restore the reader's filters and disclosure states afterwards.
+
+Four audience reading routes contain twelve ordinary policy links. They curate a reading path, not an entitlement determination. Three comparison panels replace repeated numerical summary prose and are indexed by search. The two worked examples show qualifying 2027–28 mileage (£6,200 for 12,000 miles) and a qualifying £10,000 LISA withdrawal (£500 lower charge); preserve their assumptions and reimbursement/tax-relief distinction. Six dotted-underlined terms link to static, focusable glossary definitions. JavaScript remembers only the last term link in memory; the glossary return button navigates to its stable read-term-* fragment and restores focus. Normal links and definitions remain readable without JavaScript.
+
+Timeline labels Starts, Relief ends and Planned describe the announced schedule, not enacted status. Keep month-only dates at month precision. The 30 June 2027 relief expiry, 1 July fuel-duty change, 1/6 April 2027 split, 2 January 2028 private-hire measure and separate pension/carer dates are deliberate.
 
 ## Design and accessibility
 
