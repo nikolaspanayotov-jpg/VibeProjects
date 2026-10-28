@@ -128,4 +128,25 @@ assert all(figures[1].count('£' + value + 'bn') >= 2 for value in ['7.14','6.96
 assert figures[1].count('class="ni-bar"') == 4 and figures[1].count('class="levy-bar"') == 4
 assert 'not predicted effects' in figures[1]
 assert any(attrs.get('id') == 'mobile-tools' and 'hidden' in attrs for tag, attrs in doc.elements)
+
+# New controls and reading aids preserve the original result inventory.
+evidence_select = re.search(r'<select id="evidence-select".*?</select>', page, re.S).group(0)
+assert evidence_select.count('<option ') == 7
+assert all(label in evidence_select for label in ['Internal contradiction','Legal obstacle','Costing uncertainty','Strong evidence','Distributional trade-off','Reasonable policy with caveats'])
+assert all('term-' + key in doc.ids for key in ['headroom','marginal-pricing','ets','cbam','ni','uc'])
+assert len(re.findall(r'<details id="term-', page)) == 6
+route = re.search(r'<section class="reading-route".*?</section>', page, re.S).group(0)
+assert re.findall(r'href="#([^"]+)"', route) == ['measure-35','measure-34','claim-fiscal-timing']
+assert page.count('class="route-steps"') == 3
+reports = [attrs for tag, attrs in doc.elements if tag == 'a' and attrs.get('class') == 'report-error']
+assert len(reports) == 102
+from urllib.parse import urlparse, parse_qs
+for report in reports:
+    url = urlparse(report['href'])
+    assert url.netloc == 'github.com' and url.path == '/nikolaspanayotov-jpg/VibeProjects/issues/new'
+    body = parse_qs(url.query)['body'][0]
+    assert 'Evidence / source URL' in body and 'blob/main/rfrm-debunked/index.html' in body
+    assert 'file:' not in body
+assert 'id="editorial"' in page and 'do not constitute a fresh review' in page
+assert "document.createElement('button')" in page and 'button.textContent' in page
 print('PASS: 64 numbered +37 supporting; 8 headline panels;101 evidence labels;20 major lines ×6 disclosure tests; valid IDs/sources/links;120–200 word critiques; full tables; unchanged summary.')

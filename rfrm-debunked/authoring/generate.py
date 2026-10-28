@@ -6,6 +6,7 @@ import json
 import re
 from collections import OrderedDict
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'authoring'
@@ -62,6 +63,33 @@ assert all(category in groups for shortcut in SHORTCUTS.values() for category in
 assert all(article_id in by_id for shortcut in SHORTCUTS.values() for article_id in shortcut['ids'])
 
 
+TERM_LABELS = {"headroom":"Fiscal headroom","marginal-pricing":"Marginal pricing","ets":"Emissions Trading Scheme (ETS)","cbam":"Carbon Border Adjustment Mechanism (CBAM)","ni":"National Insurance (NI)","uc":"Universal Credit (UC)"}
+ARTICLE_TERMS = {"measure-04":["marginal-pricing"],"measure-06":["ets","cbam"],"measure-07":["cbam","ets"],"measure-34":["ni"],"measure-35":["ni"],"claim-energy-bills":["marginal-pricing","ets"],"claim-personal-allowance":["uc","ni"],"claim-fiscal-headroom":["headroom"],"claim-fiscal-timing":["headroom"]}
+FUNDING_ROUTE = ['measure-35', 'measure-34', 'claim-fiscal-timing']
+ROUTE_LABELS = ['the levy', 'the NI cut', 'funding assumptions']
+
+
+def contextual_terms(article_id):
+    terms = ARTICLE_TERMS.get(article_id, [])
+    return ('<p class="term-links">Terms: ' + ' '.join(f'<a href="#term-{key}">{esc(TERM_LABELS[key])}</a>' for key in terms) + '</p>') if terms else ''
+
+
+def route_navigation(article_id):
+    if article_id not in FUNDING_ROUTE:
+        return ''
+    i = FUNDING_ROUTE.index(article_id)
+    previous = (f'<a href="#{FUNDING_ROUTE[i-1]}">Previous: {ROUTE_LABELS[i-1]}</a>' if i else '<a href="#funding-route">Route introduction</a>')
+    following = (f'<a href="#{FUNDING_ROUTE[i+1]}">Next: {ROUTE_LABELS[i+1]}</a>' if i < 2 else '<a href="#funding-route">Finish: return to the route</a>')
+    return f'<nav class="route-steps" aria-label="Funding reading route"><p>Funding route: step {i+1} of 3</p>{previous}{following}</nav>'
+
+
+def correction_url(article_id):
+    reference = 'https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/main/rfrm-debunked/index.html' + ('#' + article_id if article_id else '')
+    body = 'Article: ' + reference + '\n\nWhat seems wrong:\n\nEvidence / source URL (and relevant quotation or figures):\n\nSuggested correction:\n'
+    title = 'rfrm debunked: correction' + (' — ' + article_id if article_id else '')
+    return 'https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new?title=' + quote(title, safe="~()*!.'-") + '&body=' + quote(body, safe="~()*!.'-")
+
+
 def render_article(a):
     n = a['number']
     article_id = a['id']
@@ -97,7 +125,7 @@ def render_article(a):
 
     return f'''<article class="policy" id="{esc(article_id)}" data-number="{n or ''}" data-topic="{topic}" data-shortcuts="{shortcuts}" aria-labelledby="{esc(article_id)}-heading">
 <div class="policy-head"><span class="policy-number{'' if n else ' support'}" aria-hidden="true">{number}</span><div><h3 id="{esc(article_id)}-heading" tabindex="-1"><a href="#{esc(article_id)}">{esc(a['title'])}</a></h3><p class="meta">{'Original measure '+str(n) if n else 'Supporting entry'} in {esc(a['category'])}. PDF p. {esc(a['page'])}</p></div></div>
-<div class="policy-body"><p class="evidence-label">{esc(a["evidenceLabel"])}</p><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="proposal-label question-label">Main question</p><p class="counter">{esc(a['counter'])}</p><details class="analysis"><summary>Analysis and sources<span class="sr-only">: analysis of {esc(a['title'])}</span></summary><div class="analysis-text">{analysis}</div>{evidence_panels}{dependencies}<h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div><a class="back-results" href="#explorer-heading">Back to results</a></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
+<div class="policy-body"><p class="evidence-label">{esc(a["evidenceLabel"])}</p><p class="proposal-label">What Reform proposes</p><p class="proposal">{esc(a['proposal'])}</p><p class="proposal-label question-label">Main question</p><p class="counter">{esc(a['counter'])}</p><details class="analysis"><summary>Analysis and sources<span class="sr-only">: analysis of {esc(a['title'])}</span></summary>{contextual_terms(article_id)}<div class="analysis-text">{analysis}</div>{evidence_panels}{dependencies}<h4 class="sources-heading">Sources</h4><ol class="article-sources">{citations}</ol><div class="related"><strong>Related analysis</strong><br>{related}</div>{route_navigation(article_id)}<a class="back-results" href="#explorer-heading">Back to results</a></details><div class="article-actions"><a href="#{esc(article_id)}">Permanent link<span class="sr-only"> to {esc(a['title'])}</span></a><button class="copy-link" type="button" hidden aria-label="Copy link to {esc(a['title'])}">Copy link</button><a class="report-error" data-article="{esc(article_id)}" href="{esc(correction_url(article_id))}">Report an error<span class="sr-only"> in this entry</span></a></div><div class="copy-fallback" hidden><label for="{esc(article_id)}-copy">Copy this link</label><input id="{esc(article_id)}-copy" readonly type="text" spellcheck="false"></div></div></article>'''
 
 
 sections = ''

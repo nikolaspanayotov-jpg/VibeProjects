@@ -25,9 +25,9 @@ assert.ok(script, 'The generated page contains its inline application script');
 const passed = [];
 function pass(label) { passed.push(label); console.log('PASS ' + label); }
 
-function harness(initialHash = '') {
+function harness(initialHash = '', baseURL = 'https://example.test/rfrm-debunked/') {
   const {document, window: domWindow} = parseHTML(html);
-  const location = new URL('https://example.test/rfrm-debunked/' + initialHash);
+  const location = new URL(baseURL + initialHash);
   const window = new domWindow.EventTarget();
   const navigator = {};
   let activeElement = document.body;
@@ -80,6 +80,7 @@ function harness(initialHash = '') {
   const snapshot = () => JSON.stringify({
     query: $('#query').value,
     topic: $('#topic-select').value,
+    evidence: $('#evidence-select').value,
     shortcuts: all('button[data-shortcut][aria-pressed="true"]').map(el => el.dataset.shortcut),
     visible: visible(),
     details: all('details').map(el => el.open)
@@ -210,6 +211,96 @@ assert.equal(h.visible().length, 101);
 assert.equal(h.$('#query').value, '');
 assert.equal(h.$('#topic-select').value, 'all');
 pass('Every topic link and select option synchronises; clear-all restores entries');
+for (const option of h.all('#evidence-select option')) {
+  h.$('#evidence-select').value = option.value;
+  h.event(h.$('#evidence-select'), 'change');
+  const expected = h.all('.policy').filter(el => !option.value || el.querySelector('.evidence-label').textContent.trim() === option.value).map(el => el.id);
+  assert.deepEqual(h.visible(), expected);
+  assert.equal(h.all('#active-filters button').length, option.value ? 1 : 0);
+}
+h.click('#reset');
+h.click('button[data-shortcut="housing"]');
+h.click('.topic-nav a[data-topic="getting-homes-built-in-cities"]');
+h.search('#12');
+const measure12Label = h.$('#measure-12 .evidence-label').textContent.trim();
+h.$('#evidence-select').value = measure12Label;
+h.event(h.$('#evidence-select'), 'change');
+assert.deepEqual(h.visible(), ['measure-12']);
+assert.equal(h.all('#active-filters button').length, 4);
+h.click('#active-filters button[data-clear-filter="evidence"]');
+assert.equal(h.$('#evidence-select').value, '');
+assert.equal(h.$('#topic-select').value, 'getting-homes-built-in-cities');
+assert.equal(h.$('#query').value, '#12');
+assert.equal(h.document.activeElement.id, 'evidence-select');
+h.$('#evidence-select').value = measure12Label; h.event(h.$('#evidence-select'), 'change');
+h.click('#active-filters button[data-clear-filter="query"]');
+assert.equal(h.$('#query').value, '');
+assert.equal(h.$('#evidence-select').value, measure12Label);
+assert.equal(h.document.activeElement.id, 'query');
+h.search('#12');
+h.click('#active-filters button[data-clear-filter="topic"]');
+assert.equal(h.$('#topic-select').value, 'all');
+assert.equal(h.$('#evidence-select').value, measure12Label);
+assert.equal(h.document.activeElement.id, 'explorer-heading');
+h.click('.topic-nav a[data-topic="getting-homes-built-in-cities"]');
+h.click('#active-filters button[data-clear-filter="shortcut"]');
+assert.equal(h.all('button[data-shortcut][aria-pressed="true"]').length, 0);
+assert.equal(h.$('#topic-select').value, 'getting-homes-built-in-cities');
+assert.equal(h.$('#query').value, '#12');
+assert.equal(h.document.activeElement.id, 'explorer-heading');
+h.click('#reset');
+const hostileQuery = '<img src=x onerror=alert(1)>';
+h.search(hostileQuery);
+assert.ok(h.$('#active-filters button[data-clear-filter="query"]').textContent.includes(hostileQuery));
+assert.equal(h.all('#active-filters img').length, 0, 'Query chip is literal text, never markup');
+h.click('#reset');
+assert.equal(h.$('#active-filters').hidden, true);
+h.$('#evidence-select').value = 'Legal obstacle'; h.event(h.$('#evidence-select'), 'change');
+h.hash('#measure-12');
+assert.equal(h.$('#evidence-select').value, '', 'Policy hashes clear evidence filtering');
+h.$('#evidence-select').value = 'Legal obstacle'; h.event(h.$('#evidence-select'), 'change');
+h.search('no-such-entry'); h.click('#empty-reset');
+assert.equal(h.$('#evidence-select').value, '');
+assert.equal(h.$('#active-filters').hidden, true);
+pass('All six evidence labels combine with other filters; chips remove only one filter, restore logical focus and treat queries as text');
+
+const routeIds = ['measure-35','measure-34','claim-fiscal-timing'];
+assert.deepEqual(h.all('#funding-route li a').map(el => el.hash), routeIds.map(id => '#' + id));
+for (const id of routeIds) {
+  h.search('no-such-entry');
+  h.hash('#' + id);
+  assert.equal(h.document.getElementById(id).hidden, false);
+  assert.equal(h.$('#' + id + ' details').open, true);
+  assert.ok(h.$('#' + id + ' .route-steps'));
+}
+for (const id of ['headroom','marginal-pricing','ets','cbam','ni','uc']) {
+  const term = h.$('#term-' + id);
+  term.open = false;
+  h.hash('#term-' + id);
+  assert.equal(term.open, true);
+  assert.equal(h.document.activeElement.id, 'term-' + id);
+  assert.equal(h.click(term.querySelector('summary')).defaultPrevented, false);
+}
+assert.ok(h.all('.term-links a').every(link => h.document.getElementById(link.hash.slice(1))));
+h.click('#reset');
+pass('Static funding route and contextual glossary links resolve; term fragments open native definitions without cancelling summary defaults');
+
+for (const link of h.all('a.report-error')) {
+  const report = new URL(link.getAttribute('href'));
+  assert.equal(report.origin, 'https://github.com');
+  assert.equal(report.pathname, '/nikolaspanayotov-jpg/VibeProjects/issues/new');
+  const body = report.searchParams.get('body');
+  assert.ok(body.includes('Article: https://example.test/rfrm-debunked/' + (link.dataset.article ? '#' + link.dataset.article : '')));
+  assert.ok(body.includes('Evidence / source URL'));
+}
+const offline = harness('', 'file:///private-reader/secret/index.html');
+for (const link of offline.all('a.report-error')) {
+  const body = new URL(link.getAttribute('href')).searchParams.get('body');
+  assert.ok(body.includes('https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/main/rfrm-debunked/index.html'));
+  assert.ok(!body.includes('private-reader') && !body.includes('file:'), 'Reports never include local file paths');
+}
+pass('Correction links are prefilled GitHub issue drafts with evidence prompts; file readers retain public repository references');
+
 
 for (const link of h.all('.number-grid a')) {
   h.search('no-matching-policy');
@@ -293,6 +384,8 @@ pass('All 101 copy handlers succeed, recover on denied retry, select a fallback 
 
 h.click('button[data-shortcut="housing"]');
 h.search('#12');
+h.$('#evidence-select').value = h.$('#measure-12 .evidence-label').textContent.trim();
+h.event(h.$('#evidence-select'), 'change');
 h.all('details').forEach((el, index) => { el.open = index % 3 === 0; });
 const beforePrint = h.snapshot();
 let printCalls = 0;

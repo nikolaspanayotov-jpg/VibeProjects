@@ -112,3 +112,23 @@ The browser smoke suite was updated for native overview/index expansion, shortcu
 ## Topic navigation return — 28 October 2026
 
 Every Browse the plan topic link, including All topics, now applies its filter and then focuses and scrolls to the explorer heading through the same helper used by everyday shortcuts. The runtime test checks heading focus and the scroll target for every topic link; browser coverage checks focus but remains unrun under the existing restriction. Static audit and all ten DOM/runtime regression groups passed after regeneration.
+
+
+## Filters, reading route and editorial tools — 28 October 2026
+
+Added individually removable active-filter chips and an exact six-label evidence filter, both combined with query/topic/shortcut by AND. Evidence state participates in reset, policy-fragment recovery and print restoration. Chip text uses DOM textContent, including hostile-looking search strings; removing a chip preserves the other filters and restores focus to its control or the explorer heading.
+
+The static funding route links the existing levy, NI-cut and fiscal-timing entries. Six native glossary definitions cite existing sources and are linked contextually without changing original proposals, critiques, quotations or source records. Repository identification, documented update dates and prefilled GitHub correction links were added. These links open drafts only. Hosted readers use their current article URL; file readers and no-JavaScript readers use a public repository reference, never a local file path.
+
+Runtime regressions now cover all six evidence labels, four-way intersections, individual chip removal/focus, literal hostile query text, reset/hash recovery, glossary and route fragments, report destinations and local-file privacy, plus evidence print restoration. Static and browser suites were extended for the new controls and reference structure.
+
+This revision was authored through GitHub connector operations while the execution environment was unavailable. The application script was parsed with JavaScript Function syntax checking and index/template scripts were compared. No Node, Python, real browser, native interaction, screenshot or layout execution is claimed for this revision here. The integration reviewer will record any actual additional validation separately before publication. Existing browser limitations remain in force.
+
+
+### Integration validation — 28 October 2026
+
+The integration reviewer executed all 13 groups from the updated control_runtime.mjs against the actual generated HTML in the functions JavaScript V8 environment with the pinned standalone LinkeDOM 0.18.12 parser. Node imports were adapted to equivalent assertion and Function-based script runners; filesystem reporting was captured in memory. Location/URL and query parameters, focus/selection, animation frames, clipboard, print events and disclosure reflection were explicitly modelled. All groups passed, including all 101 copy handlers, all six evidence labels, chip removal, hostile-looking search text, route/glossary navigation, correction drafts, file-path exclusion, and print-state restoration. This is execution of application event logic against a DOM, not Node, Python or browser execution.
+
+A separate DOM comparison confirmed exact preservation of the ordered 101 article IDs, their headings/proposals/counterarguments/analysis/source lists, both original financial tables and the complete source-register markup. All 726 static IDs are unique and every internal fragment resolves. Original JSON and summary files remain unchanged in the Git tree. The final chip copy uses familiar theme/topic/search/evidence labels with explicit accessible removal names; this presentation refinement was checked separately. Application and authoring-template scripts match and pass Function syntax parsing.
+
+Python generation, Python audits, real-browser rendering/native interaction and screenshots remain unexecuted for this revision because the workspace is unavailable. Earlier verification records are retained with their original scope; their results are not presented as fresh checks.

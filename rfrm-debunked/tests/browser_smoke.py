@@ -65,6 +65,24 @@ def exercise_controls(context, url):
         assert page.locator('button[data-shortcut][aria-pressed="true"]').count() == 0
     check(True, 'All everyday shortcuts route to results, collect expected entries and combine with search')
 
+    for label in ['Internal contradiction','Legal obstacle','Costing uncertainty','Strong evidence','Distributional trade-off','Reasonable policy with caveats']:
+        page.locator('#evidence-select').select_option(label)
+        expected = page.locator('.policy').evaluate_all('(els, label) => els.filter(el => el.querySelector(".evidence-label").textContent.trim() === label).map(el => el.id)', label)
+        assert visible_ids(page) == expected
+        page.locator('#active-filters button[data-clear-filter="evidence"]').click()
+        assert len(visible_ids(page)) == 101
+        assert page.locator('#evidence-select').evaluate('(el) => el === document.activeElement')
+    page.locator('#query').fill('<img src=x onerror=alert(1)>')
+    assert page.locator('#active-filters img').count() == 0
+    page.locator('#active-filters button[data-clear-filter="query"]').click()
+    check(True, 'All six evidence filters and individual safe-text chips work')
+    for term in ['headroom','marginal-pricing','ets','cbam','ni','uc']:
+        page.evaluate('(id) => { location.hash = "term-" + id; }', term)
+        page.wait_for_function('(id) => document.activeElement.id === "term-" + id', arg=term)
+        assert page.locator('#term-' + term).get_attribute('open') is not None
+        page.locator('#term-' + term + ' > summary').click()
+    check(True, 'All native glossary fragments open and focus their definitions')
+
     # These are native browser clicks, not assignments to details.open.
     summaries = page.locator('details > summary')
     for i in range(summaries.count()):
