@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Understand the UK Budget of 28 October 2026. Explore 48 policy changes, their start dates, original sources and the OBR's independent assessment.">
+<meta name="theme-color" content="#006B63">
+<title>Budget 26: what changes, and when</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23006B63'/%3E%3Ctext x='6' y='28' fill='white' font-family='sans-serif' font-size='23' font-weight='700'%3E26%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;display=swap">
+<style>
+:root { --bg:#F4F7F8; --surface:#FFFFFF; --ink:#162D3A; --muted:#526674; --accent:#006B63; --line:#CDD8DE; --tint:#E5F2EF; --gutter:20px; --reading:68ch; --header-height:72px; }
+* { box-sizing:border-box; }
+html { scroll-padding-top:calc(var(--header-height) + 24px); }
+body { margin:0; color:var(--ink); background:var(--bg); font:400 18px/1.65 'Public Sans',system-ui,sans-serif; }
+button,input,select { font:inherit; color:inherit; }
+a { color:var(--accent); text-underline-offset:4px; text-decoration-thickness:1px; }
+a:hover { text-decoration-thickness:2px; }
+button,select,summary { cursor:pointer; }
+button { border:1px solid var(--line); background:var(--surface); border-radius:8px; padding:10px 16px; min-height:44px; }
+button:hover { border-color:var(--accent); }
+button.primary,.button.primary { background:var(--accent); border-color:var(--accent); color:var(--surface); }
+:focus-visible { outline:3px solid var(--accent); outline-offset:4px; }
+h1,h2,h3,p { margin:0; }
+h1,h2,h3 { line-height:1.2; font-weight:700; letter-spacing:-.035em; }
+h1 { font-size:clamp(38px,5.4vw,64px); max-width:14ch; }
+h2 { font-size:clamp(28px,3vw,36px); }
+h3 { font-size:24px; }
+p+p { margin-top:16px; }
+small { font-size:14px; }
+strong { font-weight:700; }
+svg { max-width:100%; }
+[hidden] { display:none!important; }
+.wrap { width:100%; max-width:1220px; margin-inline:auto; padding-inline:var(--gutter); }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.skip { position:fixed; top:8px; left:16px; z-index:30; padding:12px 20px; background:var(--surface); transform:translateY(-160%); }
+.skip:focus { transform:none; }
+.masthead { position:sticky; top:0; z-index:20; background:var(--surface); border-bottom:1px solid var(--line); }
+.masthead-inner { height:var(--header-height); display:flex; justify-content:space-between; align-items:center; gap:20px; }
+.brand { display:inline-flex; align-items:center; gap:10px; min-height:44px; color:var(--ink); font-size:20px; font-weight:700; letter-spacing:-.06em; text-decoration:none; }
+.brand-mark { display:grid; place-items:center; width:35px; height:35px; color:var(--surface); background:var(--accent); border-radius:8px; font-size:18px; letter-spacing:-.05em; }
+.desktop-nav { display:flex; gap:24px; font-size:14px; }
+.desktop-nav a { display:flex; align-items:center; min-height:44px; color:var(--muted); text-decoration:none; }
+.desktop-nav a:hover,.desktop-nav a[aria-current] { color:var(--accent); text-decoration:underline; }
+.mobile-menu { display:none; position:relative; }
+.mobile-menu summary { list-style-position:inside; font-size:14px; min-height:44px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; }
+.mobile-menu nav { position:absolute; top:calc(100% + 10px); right:0; width:min(280px,calc(100vw - 40px)); max-height:70vh; overflow-y:auto; padding:12px; background:var(--surface); border:1px solid var(--line); border-radius:12px; box-shadow:0 10px 26px #162d3a12; }
+.mobile-menu nav a { display:block; padding:10px 12px; min-height:44px; }
+.hero { padding:64px 0 56px; background:var(--surface); border-bottom:1px solid var(--line); }
+.hero-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr); gap:64px; align-items:center; }
+.edition { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:14px; margin-bottom:24px; }
+.edition::before { content:''; width:8px; height:8px; background:var(--accent); border-radius:50%; flex:none; }
+.hero-intro { font-size:20px; line-height:1.6; max-width:48ch; margin-top:24px; color:var(--muted); }
+.hero-links { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:10px 20px; border:1px solid var(--line); border-radius:8px; text-decoration:none; font-size:14px; font-weight:600; }
+.button:hover { border-color:var(--accent); }
+.calendar { background:var(--bg); border:1px solid var(--line); border-radius:16px; padding:28px; }
+.calendar>h2 { font-size:18px; letter-spacing:-.02em; }
+.calendar>p { font-size:13px; color:var(--muted); margin-top:8px; }
+.calendar ol { list-style:none; margin:24px 0 16px; padding:0; }
+.calendar li { position:relative; border-left:2px solid var(--line); padding:0 0 26px 24px; margin-left:5px; }
+.calendar li:last-child { padding-bottom:0; border-left-color:transparent; }
+.calendar li::before { content:''; position:absolute; top:5px; left:-6px; width:10px; height:10px; border-radius:50%; background:var(--accent); outline:5px solid var(--bg); }
+.calendar time { display:block; font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--accent); }
+.calendar li a { display:block; color:var(--ink); font-size:16px; text-decoration:none; margin-top:5px; line-height:1.5; }
+.calendar li a:hover { text-decoration:underline; }
+.calendar .all-dates { display:inline-flex; min-height:44px; align-items:center; font-size:13px; }
+.section-intro { max-width:var(--reading); margin-top:16px; color:var(--muted); }
+.overview { padding-top:56px; padding-bottom:64px; }
+.overview-heading { display:flex; align-items:baseline; justify-content:space-between; gap:24px; }
+.overview-heading p { font-size:14px; color:var(--muted); }
+.takeaways { list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; padding:0; margin:32px 0 0; }
+.takeaways li { border-top:2px solid var(--line); padding-top:16px; }
+.takeaway-topic { color:var(--accent); font-weight:600; font-size:13px; }
+.takeaways h3 { margin-top:10px; font-size:21px; letter-spacing:-.025em; }
+.takeaways a { color:var(--ink); text-decoration:none; }
+.takeaways a:hover { text-decoration:underline; text-decoration-color:var(--accent); }
+.takeaways p { font-size:15px; color:var(--muted); margin-top:12px; }
+.explorer-band { background:var(--surface); border-block:1px solid var(--line); }
+.explorer-layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:40px; padding-top:48px; padding-bottom:64px; align-items:start; }
+.sidebar { position:sticky; top:calc(var(--header-height) + 24px); max-height:calc(100dvh - var(--header-height) - 48px); overflow-y:auto; padding:4px 8px 16px 0; }
+.sidebar h2 { font-size:14px; letter-spacing:0; margin-bottom:16px; }
+.sidebar a,.topic-buttons button { display:flex; justify-content:space-between; gap:8px; width:100%; min-height:44px; align-items:center; font-size:14px; line-height:1.4; padding:12px; margin-bottom:4px; text-align:left; text-decoration:none; }
+.topic-buttons button { border-color:transparent; }
+.js-ready .baseline-topics { display:none; }
+.topic-buttons button[aria-pressed=true] { background:var(--tint); color:var(--accent); border-color:var(--accent); font-weight:600; }
+.topic-buttons span { font-size:12px; color:var(--muted); }
+.sidebar .side-note { border-top:1px solid var(--line); padding-top:20px; margin-top:24px; font-size:13px; color:var(--muted); }
+.reading { min-width:0; }
+.search-controls { margin-top:28px; }
+.search-controls label { display:block; font-size:14px; font-weight:600; margin-bottom:8px; }
+.search-row { display:flex; gap:8px; }
+input[type=search],.copy-fallback input,select { min-height:48px; border:1px solid var(--muted); border-radius:8px; padding:10px 14px; background:var(--surface); min-width:0; width:100%; }
+.search-row input { flex:1; }
+.search-row button { font-size:14px; }
+.filter-status { display:flex; gap:16px; align-items:center; justify-content:space-between; margin-top:12px; font-size:13px; color:var(--muted); }
+.filter-status button { font-size:13px; padding:8px 12px; }
+.mobile-topic { display:none; margin-top:16px; }
+.no-results { padding:24px; margin-top:32px; background:var(--bg); border-radius:12px; }
+.no-results h3 { font-size:22px; margin-bottom:12px; }
+.no-results button { margin-top:16px; }
+.topic-section { margin-top:48px; }
+.topic-heading { padding-bottom:20px; border-bottom:2px solid var(--accent); }
+.topic-heading h2 { font-size:28px; }
+.topic-heading p { margin-top:8px; font-size:15px; color:var(--muted); }
+.policy { border-bottom:1px solid var(--line); padding:28px 0; scroll-margin-top:calc(var(--header-height) + 20px); }
+.policy h3 { font-size:24px; }
+.policy h3 a { color:var(--ink); text-decoration:none; }
+.policy h3 a:hover { text-decoration:underline; text-decoration-color:var(--accent); }
+.policy-summary { max-width:var(--reading); margin-top:16px; font-size:17px; }
+.policy-meta { margin:20px 0 0; font-size:13px; display:grid; gap:8px; }
+.policy-meta>div { display:grid; grid-template-columns:48px minmax(0,1fr); gap:12px; }
+.policy-meta dt { font-weight:600; color:var(--ink); }
+.policy-meta dd { margin:0; color:var(--muted); }
+.status-note { margin-top:12px; color:var(--accent); font-size:13px; font-weight:600; }
+.policy-details { margin-top:16px; }
+summary { min-height:44px; padding:10px 0; font-size:14px; font-weight:600; color:var(--accent); list-style-position:inside; }
+.detail-body { border-left:2px solid var(--line); padding-left:20px; margin:12px 0 8px; max-width:var(--reading); font-size:16px; }
+.citation { font-size:13px; color:var(--muted); margin-top:16px; }
+.entry-actions { margin-top:4px; }
+.copy-link { padding:8px 10px; font-size:12px; background:transparent; border-color:transparent; color:var(--muted); }
+.copy-fallback { padding:16px; margin-top:12px; background:var(--bg); border-radius:8px; }
+.copy-fallback label { display:block; margin-bottom:8px; font-size:14px; }
+.copy-fallback input { font-size:14px; }
+.context-note { background:var(--bg); border-left:3px solid var(--accent); padding:24px; margin-top:28px; font-size:15px; }
+.context-note p { margin-top:12px; }
+.reference-section { padding-block:64px; }
+.reference-section + .reference-section { border-top:1px solid var(--line); }
+.reference-inner { max-width:920px; margin-inline:auto; }
+.obr-intro { display:grid; grid-template-columns:minmax(0,1fr) 260px; gap:40px; align-items:start; }
+.fiscal-note { padding:20px; border-left:3px solid var(--accent); background:var(--tint); border-radius:0 12px 12px 0; font-size:14px; }
+.fiscal-note strong { display:block; margin-bottom:8px; }
+.chart-panel { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:28px; margin:32px 0 0; }
+.chart-tools { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.chart-tools label { font-size:14px; font-weight:600; }
+.chart-tools select { font-size:14px; width:auto; max-width:100%; }
+.forecast-chart { display:block; width:100%; height:auto; margin-top:24px; overflow:visible; }
+.chart-description { font-size:14px; color:var(--muted); margin-top:16px; }
+.chart-caption { font-size:12px; color:var(--muted); margin-top:12px; }
+.data-details { margin-top:16px; }
+.table-scroll { max-width:100%; overflow-x:auto; background:var(--surface); border:1px solid var(--line); border-radius:8px; margin-top:20px; }
+table { border-collapse:collapse; width:100%; font-size:13px; line-height:1.5; font-variant-numeric:tabular-nums; }
+caption { padding:16px; text-align:left; font-weight:600; }
+th,td { padding:12px; border-top:1px solid var(--line); }
+thead th { background:var(--bg); text-align:right; white-space:nowrap; }
+thead th:first-child { text-align:left; }
+tbody th { text-align:left; font-weight:400; min-width:180px; }
+td { text-align:right; white-space:nowrap; }
+.assessment-heading { margin-top:48px; font-size:28px; }
+.assessments { list-style:none; padding:0; margin:24px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:24px 32px; }
+.assessments li { border-top:1px solid var(--line); padding-top:16px; }
+.assessments h3 { font-size:18px; letter-spacing:-.02em; }
+.assessments p { font-size:15px; margin-top:10px; }
+.timeline-band { background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.timeline { padding:0; list-style:none; margin:40px 0 0; }
+.timeline li { position:relative; display:grid; grid-template-columns:190px minmax(0,1fr); gap:32px; padding:0 0 32px 28px; margin-left:5px; border-left:2px solid var(--line); }
+.timeline li:last-child { border-left-color:transparent; padding-bottom:0; }
+.timeline li::before { content:''; position:absolute; top:7px; left:-6px; width:10px; height:10px; background:var(--accent); border-radius:50%; outline:5px solid var(--surface); }
+.date-label { color:var(--accent); font-size:15px; font-variant-numeric:tabular-nums; }
+.timeline li p { font-size:16px; }
+.timeline-links { display:flex; flex-wrap:wrap; gap:4px 16px; margin-top:8px; }
+.timeline-links a { min-height:44px; display:inline-flex; align-items:center; font-size:13px; }
+.source-list { padding:0; list-style:none; margin:32px 0; }
+.source-list li { border-top:1px solid var(--line); padding:24px 0; }
+.source-list h3 { font-size:20px; }
+.source-list p { margin-top:10px; font-size:15px; max-width:var(--reading); }
+.source-links { display:flex; gap:8px 24px; flex-wrap:wrap; margin-top:8px; }
+.source-links a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; }
+.editorial-notes { font-size:15px; max-width:var(--reading); }
+.editorial-notes h3 { font-size:20px; margin-bottom:16px; }
+.downloads { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.footer { background:var(--ink); color:var(--surface); padding:32px 0; font-size:13px; }
+.footer .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.footer a { color:var(--surface); display:inline-flex; min-height:44px; align-items:center; }
+a,.policy h3,.detail-body { overflow-wrap:anywhere; }
+@media(min-width:960px) { :root { --gutter:32px; } }
+@media(max-width:959px) {
+  .desktop-nav { display:none; } .mobile-menu { display:block; }
+  .hero { padding:40px 0; } .hero-grid { gap:32px; grid-template-columns:1fr; }
+  h1 { max-width:17ch; } .hero-intro { max-width:55ch; }
+  .calendar { max-width:600px; } .calendar ol { margin-bottom:8px; }
+  .takeaways { grid-template-columns:1fr 1fr; }
+  .explorer-layout { grid-template-columns:1fr; padding-top:32px; gap:0; }
+  .sidebar { position:static; max-height:none; }
+  .js-ready .sidebar { display:none; }
+  .baseline-topics { display:flex; flex-wrap:wrap; gap:8px; }
+  .sidebar a { width:auto; padding:8px; }
+  .sidebar .side-note { display:none; }
+  .mobile-topic { display:block; }
+  .reference-section { padding-block:48px; }
+}
+@media(max-width:600px) {
+  :root { --header-height:64px; }
+  body { font-size:17px; }
+  .overview { padding-block:40px; }
+  .overview-heading { align-items:start; flex-direction:column; gap:8px; }
+  .takeaways { grid-template-columns:1fr; gap:24px; margin-top:24px; }
+  .calendar { padding:24px; } .calendar li { padding-bottom:24px; }
+  .takeaways h3 { font-size:22px; }
+  .policy h3 { font-size:22px; }
+  .hero-links { gap:10px; } .hero-links .button { padding:10px 16px; }
+  .obr-intro { grid-template-columns:1fr; gap:24px; }
+  .assessments { grid-template-columns:1fr; }
+  .chart-panel { padding:20px 12px; }
+  .chart-tools { flex-direction:column; align-items:stretch; padding-inline:8px; gap:8px; }
+  .chart-tools select { width:100%; }
+  .chart-description,.chart-caption { padding-inline:8px; }
+  .timeline li { grid-template-columns:1fr; gap:8px; padding-left:24px; }
+  .timeline-links { gap:0 16px; }
+  .filter-status { align-items:start; }
+  .filter-status p { padding-top:10px; }
+  .context-note { padding:20px; }
+  .footer .wrap { align-items:start; flex-direction:column; gap:8px; }
+}
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation:none!important; transition:none!important; } }
+@media print {
+  :root { --bg:#fff; --ink:#000; --muted:#333; --accent:#000; --line:#ccc; }
+  body { font:10pt/1.5 sans-serif; background:#fff; }
+  .masthead { position:static; } .masthead-inner { height:auto; padding-block:12px; }
+  .desktop-nav,.mobile-menu,.skip,.sidebar,.hero-links,.all-dates,.search-controls,.entry-actions,.no-results,.downloads,.footer,.chart-tools { display:none!important; }
+  .wrap { max-width:none; padding:0; }
+  .hero,.overview,.reference-section { padding-block:20px; }
+  h1 { font-size:30pt; } h2 { font-size:19pt; } h3,.policy h3 { font-size:14pt; }
+  .hero-grid { grid-template-columns:1fr 1fr; gap:24px; }
+  .hero-intro { font-size:11pt; } .calendar { padding:16px; }
+  .takeaways { grid-template-columns:1fr 1fr; gap:16px; }
+  .takeaways h3 { font-size:12pt; } .takeaways p,.takeaway-topic { font-size:10pt; }
+  .explorer-layout { display:block; padding-block:20px; }
+  .topic-section { margin-top:24px; } .policy { padding-block:16px; }
+  .policy-summary,.source-detail,.detail-body,.timeline li p { font-size:10pt; }
+  .policy-meta { font-size:9pt; }
+  details::details-content { display:block!important; content-visibility:visible!important; height:auto!important; }
+  details> :not(summary) { display:block!important; }
+  .policy-details>summary { display:none; }
+  .table-scroll { overflow:visible; border:0; }
+  table { font-size:8pt; } th,td { padding:6px; } tbody th { min-width:0; }
+  .chart-panel { border:0; padding:0; max-width:600px; }
+  .assessments { display:block; } .assessments li { margin-top:16px; break-inside:avoid; }
+  .timeline li { grid-template-columns:140px 1fr; gap:16px; break-inside:avoid; }
+  .source-list a[href^=http]::after,.citation a[href^=http]::after,.editorial-notes a[href^=http]::after { content:' (' attr(href) ')'; font-size:8pt; overflow-wrap:anywhere; }
+  .source-list li,.policy-meta,.calendar { break-inside:avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<header class="masthead"><div class="wrap masthead-inner">
+<a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">26</span>Budget 26</a>
+<nav class="desktop-nav" aria-label="Main navigation"><a href="#overview">Overview</a><a href="#changes">Changes</a><a href="#obr">OBR</a><a href="#dates">Dates</a><a href="#sources">Sources</a></nav>
+<details class="mobile-menu" id="contents-menu"><summary>Contents</summary><nav aria-label="Mobile navigation"><a href="#overview">Overview</a><a href="#changes">Explore the changes</a><a href="#obr">The OBR outlook</a><a href="#dates">Dates to watch</a><a href="#sources">Sources</a></nav></details>
+</div></header>
+<main id="main" tabindex="-1">
+<section class="hero" id="top" aria-labelledby="page-title"><div class="wrap hero-grid"><div>
+<p class="edition">Budget of <time datetime="2026-10-28">28 October 2026</time></p>
+<h1 id="page-title">Budget 26: what changes, and when.</h1>
+<p class="hero-intro">A plain-English guide to the 28 October 2026 Budget: taxes, bills, public spending and the OBR outlook.</p>
+<div class="hero-links"><a class="button primary" href="#changes">Explore the changes</a><a class="button" href="#obr">Read the OBR outlook</a></div>
+</div><aside class="calendar" aria-labelledby="calendar-title"><h2 id="calendar-title">Three dates to start with</h2><p>Announcements happen now. Changes arrive in stages.</p>
+<ol><li><time datetime="2026-10-29">29 October 2026</time><a href="#policy-lifetime-isa">A lower LISA withdrawal charge</a></li><li><time datetime="2027-01">January 2027</time><a href="#policy-household-energy-payment">Energy payments and the £2 bus cap</a></li><li><time datetime="2027-04">April 2027</time><a href="#dates">The main tax, wage and support changes</a></li></ol><a class="all-dates" href="#dates">See the complete timeline</a></aside></div></section>
+<section class="wrap overview" id="overview" aria-labelledby="overview-heading"><div class="overview-heading"><h2 id="overview-heading" tabindex="-1">The Budget at a glance</h2><p>Six things to take away</p></div><ul class="takeaways"><li><span class="takeaway-topic">Bills</span><h3><a href="#policy-household-energy-payment">Some breathing space for energy costs</a></h3><p>£100 energy payments in England and the electricity VAT extension lead the immediate support.</p></li><li><span class="takeaway-topic">Travel</span><h3><a href="#policy-fuel-duty">Fuel relief lasts through June</a></h3><p>The 5p duty cut continues; a £2 bus cap returns outside London and business mileage rates increase.</p></li><li><span class="takeaway-topic">Savings</span><h3><a href="#policy-savings-income">Higher rates, the same cash ISA limit</a></h3><p>Savings and property income rates rise to 24%, 44% and 49%; the cash ISA limit remains £20,000.</p></li><li><span class="takeaway-topic">Business</span><h3><a href="#policy-founders-relief">Support comes with targeted changes</a></h3><p>More rates relief and new founder incentives sit alongside a lower Business Asset Disposal Relief limit and writing-down allowance.</p></li><li><span class="takeaway-topic">Housing &amp; pensions</span><h3><a href="#policy-your-first-home">Changes with different time horizons</a></h3><p>First-home equity loans start in April 2027; State Pension uprating changes from April 2030.</p></li><li><span class="takeaway-topic">The outlook</span><h3><a href="#obr">The public finances remain tight</a></h3><p>The OBR forecasts weaker growth in 2027 and limited room to absorb further shocks.</p></li></ul></section>
+<div class="explorer-band"><div class="wrap explorer-layout">
+<aside class="sidebar"><h2>Browse the changes</h2><nav class="baseline-topics" aria-label="Policy topics"><a href="#topic-bills">Bills and travel</a><a href="#topic-tax">Tax, savings and pensions</a><a href="#topic-work">Work and housing</a><a href="#topic-business">Business and investment</a><a href="#topic-funding">Funding and tax administration</a><a href="#topic-spending">Public spending</a></nav>
+<div class="topic-buttons" role="group" aria-label="Filter policies by topic" data-enhanced hidden><button type="button" data-topic="all" aria-pressed="true">All topics<span>48</span></button><button type="button" data-topic="bills" aria-pressed="false">Bills and travel<span>8</span></button><button type="button" data-topic="tax" aria-pressed="false">Tax, savings and pensions<span>8</span></button><button type="button" data-topic="work" aria-pressed="false">Work and housing<span>8</span></button><button type="button" data-topic="business" aria-pressed="false">Business and investment<span>11</span></button><button type="button" data-topic="funding" aria-pressed="false">Funding and tax administration<span>8</span></button><button type="button" data-topic="spending" aria-pressed="false">Public spending<span>5</span></button></div>
+<p class="side-note">48 policies, six topics.<br>Open any entry for its conditions and original sources.</p></aside>
+<div class="reading"><section id="changes" aria-labelledby="changes-heading"><h2 id="changes-heading" tabindex="-1">Explore the changes</h2><p class="section-intro">Find what matters to you. Dates and coverage stay visible; open the details for the conditions behind each announcement.</p>
+<noscript><p class="context-note">All 48 policies are listed below. Use the topic links or your browser’s Find command to navigate.</p></noscript>
+<form class="search-controls" role="search" data-enhanced hidden><label for="policy-query">Search all 48 policies</label><div class="search-row"><input type="search" id="policy-query" placeholder="Try pension, ISA or energy" autocomplete="off" aria-describedby="search-help"><button type="submit" class="primary">Search</button></div><p id="search-help" class="citation">Includes the text inside closed details. Search and topic filters work together.</p>
+<div class="mobile-topic"><label for="topic-select">Filter by topic</label><select id="topic-select"><option value="all">All topics</option><option value="bills">Bills and travel</option><option value="tax">Tax, savings and pensions</option><option value="work">Work and housing</option><option value="business">Business and investment</option><option value="funding">Funding and tax administration</option><option value="spending">Public spending</option></select></div>
+<div class="filter-status"><p id="result-count" role="status" aria-live="polite" aria-atomic="true">48 of 48 policies shown</p><button type="button" id="reset-filters">Clear filters</button></div></form>
+<div class="no-results" id="no-results" hidden><h3>No matching policies</h3><p>Try fewer words or choose another topic.</p><button type="button" id="empty-reset">Clear filters</button></div></section>
+<section class="topic-section" id="topic-bills" aria-labelledby="heading-bills"><header class="topic-heading"><h2 id="heading-bills" tabindex="-1">Bills and travel</h2><p>Immediate support, temporary relief and the longer-term energy changes.</p></header><article class="policy" id="policy-household-energy-payment" data-topic="bills" data-original-title="Household Energy Payment">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-household-energy-payment">Household Energy Payment</a></h3>
+<p class="policy-summary">A <strong>£100 payment</strong> for households in council tax bands A–D in England, delivered through local authorities. The £2.6 billion package also includes devolved funding and targeted local support.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>From January 2027</dd></div><div><dt>Where</dt><dd>England; devolved funding separately</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Household Energy Payment</span></summary>
+<div class="detail-body"><p class="source-detail"><strong>£100</strong> for households in council tax bands A–D; a £2.6 billion package, including devolved funding and £100 million of targeted local support. Payments through local authorities from <strong>January 2027</strong> in <strong>England</strong>. Devolved governments receive funding through the Barnett formula.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=117">HM Treasury Budget, printed p. 111</a>, 6.24.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-household-energy-payment">Copy link<span class="sr-only"> to Household Energy Payment</span></button>
+<div class="copy-fallback" hidden><label for="copy-household-energy-payment">Copy this policy link</label><input id="copy-household-energy-payment" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-electricity-vat" data-topic="bills" data-original-title="Domestic electricity VAT">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-electricity-vat">Domestic electricity VAT</a></h3>
+<p class="policy-summary">The temporary <strong>0% VAT rate</strong> on domestic electricity is extended through June 2027. Treasury estimates around £50 off the annualised April price cap; actual savings depend on use and prices.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Through 30 June 2027</dd></div><div><dt>Where</dt><dd>UK extension from April 2027</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Domestic electricity VAT</span></summary>
+<div class="detail-body"><p class="source-detail">Temporary <strong>0% VAT</strong> extended, rather than reverting to 5% in April. Treasury estimates an approximately <strong>£50 reduction in the annualised April 2027 price cap</strong>; actual savings depend on consumption and prices. Through <strong>30 June 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=138">HM Treasury Budget, printed p. 132</a>, 6.210.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-electricity-vat">Copy link<span class="sr-only"> to Domestic electricity VAT</span></button>
+<div class="copy-fallback" hidden><label for="copy-electricity-vat">Copy this policy link</label><input id="copy-electricity-vat" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-fuel-duty" data-topic="bills" data-original-title="Fuel duty">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-fuel-duty">Fuel duty</a></h3>
+<p class="policy-summary">The <strong>5p-per-litre cut</strong> and freeze continue; the additional <strong>3.7p red diesel duty cut</strong> is extended too.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Relief through 30 June 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Fuel duty</span></summary>
+<div class="detail-body"><p class="source-detail">The <strong>5p-per-litre cut</strong> and freeze continue; the additional <strong>3.7p red diesel duty cut</strong> is extended too. Through <strong>30 June 2027</strong>. The scheduled reversal and RPI uprating move to <strong>1 July 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=138">HM Treasury Budget, printed p. 132</a>, 6.211–6.212.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-fuel-duty">Copy link<span class="sr-only"> to Fuel duty</span></button>
+<div class="copy-fallback" hidden><label for="copy-fuel-duty">Copy this policy link</label><input id="copy-fuel-duty" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-bus-fares" data-topic="bills" data-original-title="Bus fares">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-bus-fares">Bus fares</a></h3>
+<p class="policy-summary"><strong>£2 cap on single fares</strong> for one year. <strong>1 January–31 December 2027</strong>, <strong>England outside London</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 January–31 December 2027</dd></div><div><dt>Where</dt><dd>England outside London</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Bus fares</span></summary>
+<div class="detail-body"><p class="source-detail"><strong>£2 cap on single fares</strong> for one year. <strong>1 January–31 December 2027</strong>, <strong>England outside London</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=106">HM Treasury Budget, printed p. 100</a>, Table 6.1, row 4.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-bus-fares">Copy link<span class="sr-only"> to Bus fares</span></button>
+<div class="copy-fallback" hidden><label for="copy-bus-fares">Copy this policy link</label><input id="copy-bus-fares" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-business-mileage" data-topic="bills" data-original-title="Own-vehicle business mileage">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-business-mileage">Business mileage</a></h3>
+<p class="policy-summary"><strong>55p a mile</strong> for the first 10,000 car/van business miles becomes permanent, effective from <strong>6 April 2026</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2026 / 6 April 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Business mileage</span></summary>
+<div class="detail-body"><p class="source-detail"><strong>55p a mile</strong> for the first 10,000 car/van business miles becomes permanent, effective from <strong>6 April 2026</strong>. The rate above 10,000 miles rises from <strong>25p to 35p</strong>. Higher-mileage increase from <strong>6 April 2027</strong>. These are tax-free reimbursement/deduction rates.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=138">HM Treasury Budget, printed p. 132</a>, 6.213; Table 6.1, row 5.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-business-mileage">Copy link<span class="sr-only"> to Business mileage</span></button>
+<div class="copy-fallback" hidden><label for="copy-business-mileage">Copy this policy link</label><input id="copy-business-mileage" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-public-ev-charging" data-topic="bills" data-original-title="Public EV charging">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-public-ev-charging">Public EV charging</a></h3>
+<p class="policy-summary"><strong>£100 million over two years</strong> to reduce costs at local, lower-powered public chargers.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>From spring 2027</dd></div><div><dt>Where</dt><dd>Great Britain</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Public EV charging</span></summary>
+<div class="detail-body"><p class="source-detail"><strong>£100 million over two years</strong> to reduce costs at local, lower-powered public chargers. From <strong>spring 2027</strong>, <strong>Great Britain</strong>. A taskforce will examine access to domestic tariffs at local chargers.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=54">HM Treasury Budget, printed p. 48</a>, 3.16.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-public-ev-charging">Copy link<span class="sr-only"> to Public EV charging</span></button>
+<div class="copy-fallback" hidden><label for="copy-public-ev-charging">Copy this policy link</label><input id="copy-public-ev-charging" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-food-and-heating-oil" data-topic="bills" data-original-title="Food and heating oil">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-food-and-heating-oil">Food, heating oil and fertiliser</a></h3>
+<p class="policy-summary">Tariffs suspended on <strong>101 additional food products</strong> and kerosene heating oil; fertiliser tariffs also suspended.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>From 26 November 2026</dd></div><div><dt>Where</dt><dd>UK imports</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Food, heating oil and fertiliser</span></summary>
+<div class="detail-body"><p class="source-detail">Tariffs suspended on <strong>101 additional food products</strong> and kerosene heating oil; fertiliser tariffs also suspended. From <strong>26 November 2026</strong> to <strong>31 December 2028</strong> for food/heating oil, and <strong>31 December 2027</strong> for fertiliser.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=118">HM Treasury Budget, printed p. 112</a>, 6.30.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-food-and-heating-oil">Copy link<span class="sr-only"> to Food, heating oil and fertiliser</span></button>
+<div class="copy-fallback" hidden><label for="copy-food-and-heating-oil">Copy this policy link</label><input id="copy-food-and-heating-oil" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-energy-reforms" data-topic="bills" data-original-title="Longer-term energy changes">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-energy-reforms">Longer-term energy reforms</a></h3>
+<p class="policy-summary">The government aims to remove gas standing charges, tackle energy debt and reform how electricity costs reach bills. <strong>Delivery and detailed design still lie ahead.</strong></p>
+<dl class="policy-meta"><div><dt>When</dt><dd>2027 onward; delivery work remains</dd></div><div><dt>Where</dt><dd>Great Britain for standing-charge reforms</dd></div></dl>
+<p class="status-note">Further design and delivery</p>
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Longer-term energy reforms</span></summary>
+<div class="detail-body"><p class="source-detail">the government aims to abolish domestic gas standing charges in Great Britain by the end of 2027 or as soon as possible afterwards, with mitigations to distribute costs fairly. Electricity standing-charge reform will follow. It will introduce an energy-debt strategy and targeted debt relief, abandon the planned Gas Shipper Obligation levy, and consult on wholesale Contracts for Difference. A new energy cost-control framework is due at the 2027 spending review. These are reforms with further delivery work, rather than immediate bill reductions.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=117">HM Treasury Budget, printed p. 111</a>, 6.25–6.28.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-energy-reforms">Copy link<span class="sr-only"> to Longer-term energy reforms</span></button>
+<div class="copy-fallback" hidden><label for="copy-energy-reforms">Copy this policy link</label><input id="copy-energy-reforms" readonly spellcheck="false"></div></div>
+</details></div></article></section><section class="topic-section" id="topic-tax" aria-labelledby="heading-tax"><header class="topic-heading"><h2 id="heading-tax" tabindex="-1">Tax, savings and pensions</h2><p>Rates, allowances and the changes to retirement income.</p></header><article class="policy" id="policy-headline-taxes" data-topic="tax" data-original-title="Headline taxes">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-headline-taxes">Headline tax rates</a></h3>
+<p class="policy-summary">No increase announced to the headline rates of income tax on earnings, National Insurance or VAT.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Budget of 28 October 2026</dd></div><div><dt>Where</dt><dd>UK headline commitments; devolved powers apply</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Headline tax rates</span></summary>
+<div class="detail-body"><p class="source-detail">No increase announced to the headline rates of income tax on earnings, National Insurance or VAT. Specific income categories and duties change as set out below. Budget 2026.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=41">HM Treasury Budget, printed p. 35</a>, 2.29.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-headline-taxes">Copy link<span class="sr-only"> to Headline tax rates</span></button>
+<div class="copy-fallback" hidden><label for="copy-headline-taxes">Copy this policy link</label><input id="copy-headline-taxes" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-savings-income" data-topic="tax" data-original-title="Savings income">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-savings-income">Tax on savings income</a></h3>
+<p class="policy-summary">Basic, higher and additional rates on savings income become <strong>24%, 44% and 49%</strong> from April 2027. Existing savings allowances and ISA exemptions continue to matter.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Tax on savings income</span></summary>
+<div class="detail-body"><p class="source-detail">Basic/higher/additional rates become <strong>24% / 44% / 49%</strong>, applying across the UK. <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.247.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-savings-income">Copy link<span class="sr-only"> to Tax on savings income</span></button>
+<div class="copy-fallback" hidden><label for="copy-savings-income">Copy this policy link</label><input id="copy-savings-income" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-property-income" data-topic="tax" data-original-title="Property income">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-property-income">Tax on property income</a></h3>
+<p class="policy-summary">Basic, higher and additional rates on property income become <strong>24%, 44% and 49%</strong> from April 2027, subject to devolved rate-setting powers.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2027</dd></div><div><dt>Where</dt><dd>England, Wales and Northern Ireland; devolved powers apply</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Tax on property income</span></summary>
+<div class="detail-body"><p class="source-detail">Basic/higher/additional rates become <strong>24% / 44% / 49%</strong> in <strong>England, Wales and Northern Ireland</strong>, subject to devolved rate-setting powers. <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.246.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-property-income">Copy link<span class="sr-only"> to Tax on property income</span></button>
+<div class="copy-fallback" hidden><label for="copy-property-income">Copy this policy link</label><input id="copy-property-income" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-cash-isa" data-topic="tax" data-original-title="Cash ISA">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-cash-isa">Cash ISA limit</a></h3>
+<p class="policy-summary">Annual cash ISA limit retained at <strong>£20,000</strong>, reversing the planned reduction.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Retained from April 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Cash ISA limit</span></summary>
+<div class="detail-body"><p class="source-detail">Annual cash ISA limit retained at <strong>£20,000</strong>, reversing the planned reduction. An incentive for first-time stocks and shares ISA investors will be explored; its design is pending. Retained from <strong>April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.248–6.249.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-cash-isa">Copy link<span class="sr-only"> to Cash ISA limit</span></button>
+<div class="copy-fallback" hidden><label for="copy-cash-isa">Copy this policy link</label><input id="copy-cash-isa" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-trading-allowance" data-topic="tax" data-original-title="Trading allowance">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-trading-allowance">Trading allowance</a></h3>
+<p class="policy-summary">Tax-free trading/miscellaneous income allowance rises from <strong>£1,000 to £3,000</strong> a year. <strong>6 April 2027</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Trading allowance</span></summary>
+<div class="detail-body"><p class="source-detail">Tax-free trading/miscellaneous income allowance rises from <strong>£1,000 to £3,000</strong> a year. <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.254.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-trading-allowance">Copy link<span class="sr-only"> to Trading allowance</span></button>
+<div class="copy-fallback" hidden><label for="copy-trading-allowance">Copy this policy link</label><input id="copy-trading-allowance" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-pension-tax-allowance" data-topic="tax" data-original-title="Pension Tax Allowance">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-pension-tax-allowance">Pension Tax Allowance</a></h3>
+<p class="policy-summary">Previously announced protection reduces small tax bills for eligible pensioners whose total income is no more than the full new State Pension. <strong>A taper applies just above that level.</strong></p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2027–5 April 2030</dd></div><div><dt>Where</dt><dd>Eligible people over State Pension age</dd></div></dl>
+<p class="status-note">Earlier policy confirmed</p>
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Pension Tax Allowance</span></summary>
+<div class="detail-body"><p class="source-detail">Previously announced protection: automatic tax reduction for eligible people over State Pension age whose total income is no more than the full new State Pension, with a taper just above that level. <strong>6 April 2027–5 April 2030</strong>; arrangements beyond that period remain to be decided.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=135">HM Treasury Budget, printed p. 129</a>, 6.182.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p><p>The tax reduction is withdrawn at £1 for every £3 of income above the full new State Pension (OOTLAR 1.4).</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-pension-tax-allowance">Copy link<span class="sr-only"> to Pension Tax Allowance</span></button>
+<div class="copy-fallback" hidden><label for="copy-pension-tax-allowance">Copy this policy link</label><input id="copy-pension-tax-allowance" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-pension-death-benefits" data-topic="tax" data-original-title="Pension death benefits">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-pension-death-benefits">Pension death benefits</a></h3>
+<p class="policy-summary">Removes taxation arising solely because otherwise tax-free pension/death benefits are paid after the two-year deadline.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Payments from 28 October 2026</dd></div><div><dt>Where</dt><dd>UK pension tax rules</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Pension death benefits</span></summary>
+<div class="detail-body"><p class="source-detail">Removes taxation arising solely because otherwise tax-free pension/death benefits are paid after the two-year deadline. Other tax conditions still apply. Payments from <strong>28 October 2026</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=141">HM Treasury Budget, printed p. 135</a>, 6.243.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-pension-death-benefits">Copy link<span class="sr-only"> to Pension death benefits</span></button>
+<div class="copy-fallback" hidden><label for="copy-pension-death-benefits">Copy this policy link</label><input id="copy-pension-death-benefits" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-state-pension" data-topic="tax" data-original-title="State Pension Triple Lock">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-state-pension">State Pension Triple Lock</a></h3>
+<p class="policy-summary">The current Triple Lock continues through April 2029. From <strong>April 2030</strong>, an adjusted formula aims to preserve its April 2029 value relative to earnings and remove the repeated upward ratchet.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Adjusted formula from April 2030</dd></div><div><dt>Where</dt><dd>State Pension; proposed care service in England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for State Pension Triple Lock</span></summary>
+<div class="detail-body"><p class="source-detail">the existing highest-of-earnings, inflation or 2.5% formula continues through <strong>April 2029</strong>. From <strong>April 2030</strong>, the annual increase becomes the highest of inflation, 2.5%, or the increase needed to preserve the pension’s April 2029 value relative to earnings. This is intended to remove the repeated upward ratchet relative to earnings. The government links future savings to a National Care Service providing older people in <strong>England</strong> with personal care free at the point of use. Detailed care arrangements remain to be developed; the Casey commission will report in 2027. Treasury cites estimated pension savings of £15 billion a year by the late 2030s and £50 billion by the late 2040s, beyond the Budget forecast period.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=99">HM Treasury Budget, printed p. 93</a>, 5.23–5.25.</p><p><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Check the HMRC tax overview</a>, sections 1.1–1.5 and 1.18. Income Tax dates and applicable devolved powers are set out there.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-state-pension">Copy link<span class="sr-only"> to State Pension Triple Lock</span></button>
+<div class="copy-fallback" hidden><label for="copy-state-pension">Copy this policy link</label><input id="copy-state-pension" readonly spellcheck="false"></div></div>
+</details></div></article><aside class="context-note"><strong>Why 24%, 44% and 49%?</strong><p>The increases are a further two percentage points on top of the two-point increases announced in Budget 2025 for April 2027. Existing savings allowances and ISA exemptions still matter.</p></aside></section><section class="topic-section" id="topic-work" aria-labelledby="heading-work"><header class="topic-heading"><h2 id="heading-work" tabindex="-1">Work and housing</h2><p>Pay, support for families and the routes into a first home.</p></header><article class="policy" id="policy-minimum-wages" data-topic="work" data-original-title="Minimum wages from 1 April 2027">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-minimum-wages">Minimum wages</a></h3>
+<p class="policy-summary">All minimum-wage rates rise by <strong>3.9%</strong>. The 21+ National Living Wage becomes <strong>£13.21 an hour</strong>; the 18–20 rate £11.27; and the 16–17/eligible apprentice rate £8.31.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 April 2027</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Minimum wages</span></summary>
+<div class="detail-body"><p class="source-detail">all rise by 3.9%. The National Living Wage for those aged 21 and over becomes <strong>£13.21/hour</strong>, the 18–20 rate <strong>£11.27</strong>, and the 16–17/eligible apprentice rate <strong>£8.31</strong>. Treasury estimates around 2.3 million workers will benefit.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=128">HM Treasury Budget, printed p. 122</a>, 6.128.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-minimum-wages">Copy link<span class="sr-only"> to Minimum wages</span></button>
+<div class="copy-fallback" hidden><label for="copy-minimum-wages">Copy this policy link</label><input id="copy-minimum-wages" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-parental-pay" data-topic="work" data-original-title="Parental pay">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-parental-pay">Self-employed parental pay</a></h3>
+<p class="policy-summary">eligible self-employed fathers, partners and adopters in <strong>Great Britain</strong> gain access from <strong>April 2029</strong>; the government expects more than 150,000 parents a year to benefit.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April 2029</dd></div><div><dt>Where</dt><dd>Great Britain</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Self-employed parental pay</span></summary>
+<div class="detail-body"><p class="source-detail">eligible self-employed fathers, partners and adopters in <strong>Great Britain</strong> gain access from <strong>April 2029</strong>; the government expects more than 150,000 parents a year to benefit.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=55">HM Treasury Budget, printed p. 49</a>, 3.20.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-parental-pay">Copy link<span class="sr-only"> to Self-employed parental pay</span></button>
+<div class="copy-fallback" hidden><label for="copy-parental-pay">Copy this policy link</label><input id="copy-parental-pay" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-carers-allowance" data-topic="work" data-original-title="Carer’s Allowance">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-carers-allowance">Carer’s Allowance</a></h3>
+<p class="policy-summary">an earnings taper will replace losing the whole benefit after exceeding the weekly earnings limit.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Planned during 2030–31</dd></div><div><dt>Where</dt><dd>England and Wales</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Carer’s Allowance</span></summary>
+<div class="detail-body"><p class="source-detail">an earnings taper will replace losing the whole benefit after exceeding the weekly earnings limit. Implementation is planned during <strong>2030–31</strong>, benefiting around 48,000 carers in <strong>England and Wales</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=55">HM Treasury Budget, printed p. 49</a>, 3.20.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-carers-allowance">Copy link<span class="sr-only"> to Carer’s Allowance</span></button>
+<div class="copy-fallback" hidden><label for="copy-carers-allowance">Copy this policy link</label><input id="copy-carers-allowance" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-youth-employment" data-topic="work" data-original-title="Youth employment">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-youth-employment">Youth employment</a></h3>
+<p class="policy-summary">£100 million over two years expands local apprenticeship services.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Funding over two years</dd></div><div><dt>Where</dt><dd>Local apprenticeship services; wider existing support</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Youth employment</span></summary>
+<div class="detail-body"><p class="source-detail">£100 million over two years expands local apprenticeship services. The Budget also confirms funding for the previously announced Jobs Guarantee and youth hiring support.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=127">HM Treasury Budget, printed p. 121</a>, 6.125–6.127.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-youth-employment">Copy link<span class="sr-only"> to Youth employment</span></button>
+<div class="copy-fallback" hidden><label for="copy-youth-employment">Copy this policy link</label><input id="copy-youth-employment" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-your-first-home" data-topic="work" data-original-title="Your First Home, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-your-first-home">Your First Home</a></h3>
+<p class="policy-summary">A <strong>£4.7 billion equity-loan scheme</strong> aims to support around 70,000 first-time buyers in England, with up to 20% equity loans, a minimum 2.5% deposit and five initial interest-free years.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>First loans from April 2027</dd></div><div><dt>Where</dt><dd>England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Your First Home</span></summary>
+<div class="detail-body"><p class="source-detail">a <strong>£4.7 billion equity-loan scheme</strong>, supporting about <strong>70,000 first-time buyers</strong>, with loans of up to <strong>20%</strong>, a minimum <strong>2.5% deposit</strong> and an initial <strong>five-year interest-free period</strong>. Household income caps are £110,000 outside London and £140,000 in London, with local property price caps. Pre-registration is planned by December 2026, applications from February 2027 and first loans from <strong>April 2027</strong>. Funding is reprioritised from existing departmental financial transactions.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=96">HM Treasury Budget, printed p. 90</a>, 5.5–5.9; 6.113.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-your-first-home">Copy link<span class="sr-only"> to Your First Home</span></button>
+<div class="copy-fallback" hidden><label for="copy-your-first-home">Copy this policy link</label><input id="copy-your-first-home" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-social-housing" data-topic="work" data-original-title="Social and affordable housing, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-social-housing">Social and affordable homes</a></h3>
+<p class="policy-summary">an extra <strong>£1.5 billion</strong> for around <strong>10,000 homes</strong>, prioritising Social Rent and council homes; total programme investment exceeds £40 billion over ten years.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Additional programme funding</dd></div><div><dt>Where</dt><dd>England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Social and affordable homes</span></summary>
+<div class="detail-body"><p class="source-detail">an extra <strong>£1.5 billion</strong> for around <strong>10,000 homes</strong>, prioritising Social Rent and council homes; total programme investment exceeds £40 billion over ten years.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=126">HM Treasury Budget, printed p. 120</a>, 6.114.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-social-housing">Copy link<span class="sr-only"> to Social and affordable homes</span></button>
+<div class="copy-fallback" hidden><label for="copy-social-housing">Copy this policy link</label><input id="copy-social-housing" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-lifetime-isa" data-topic="work" data-original-title="Lifetime ISA">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-lifetime-isa">Lifetime ISA withdrawal charge</a></h3>
+<p class="policy-summary">from <strong>29 October 2026</strong>, the withdrawal charge for qualifying first-home purchases <strong>above £450,000</strong> falls from <strong>25% to 20%</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>29 October 2026</dd></div><div><dt>Where</dt><dd>Qualifying first-home purchases above £450,000</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Lifetime ISA withdrawal charge</span></summary>
+<div class="detail-body"><p class="source-detail">from <strong>29 October 2026</strong>, the withdrawal charge for qualifying first-home purchases <strong>above £450,000</strong> falls from <strong>25% to 20%</strong>. Other unauthorised withdrawals retain the 25% charge.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=141">HM Treasury Budget, printed p. 135</a>, 6.240.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-lifetime-isa">Copy link<span class="sr-only"> to Lifetime ISA withdrawal charge</span></button>
+<div class="copy-fallback" hidden><label for="copy-lifetime-isa">Copy this policy link</label><input id="copy-lifetime-isa" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-first-time-buyer-isa" data-topic="work" data-original-title="New First Time Buyer ISA">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-first-time-buyer-isa">First Time Buyer ISA</a></h3>
+<p class="policy-summary">A new account for first-home saving replaces the Lifetime ISA for new savers in <strong>April 2029</strong>. It offers a 25% bonus at qualifying withdrawal, capped at £20,000, for homes up to £450,000.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April 2029</dd></div><div><dt>Where</dt><dd>New savers; existing LISAs continue</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for First Time Buyer ISA</span></summary>
+<div class="detail-body"><p class="source-detail">replaces the Lifetime ISA for <strong>new savers from April 2029</strong>, with up to £4,000 annual contributions, a 25% bonus paid at qualifying withdrawal, a <strong>£20,000 maximum bonus</strong>, a £450,000 property cap and no upper age restriction. Existing Lifetime ISA holders can continue under current account rules.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=141">HM Treasury Budget, printed p. 135</a>, 6.239; 5.8.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-first-time-buyer-isa">Copy link<span class="sr-only"> to First Time Buyer ISA</span></button>
+<div class="copy-fallback" hidden><label for="copy-first-time-buyer-isa">Copy this policy link</label><input id="copy-first-time-buyer-isa" readonly spellcheck="false"></div></div>
+</details></div></article></section><section class="topic-section" id="topic-business" aria-labelledby="heading-business"><header class="topic-heading"><h2 id="heading-business" tabindex="-1">Business and investment</h2><p>Business rates, founders, investment incentives and finance.</p></header><article class="policy" id="policy-corporation-tax" data-topic="business" data-original-title="Corporation Tax">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-corporation-tax">Corporation Tax</a></h3>
+<p class="policy-summary">Headline <strong>25%</strong> rate cap maintained under the Corporate Tax Roadmap.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Continuing commitment</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Corporation Tax</span></summary>
+<div class="detail-body"><p class="source-detail">Headline <strong>25%</strong> rate cap maintained under the Corporate Tax Roadmap. Continuing commitment.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=45">HM Treasury Budget, printed p. 39</a>, 2.54.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-corporation-tax">Copy link<span class="sr-only"> to Corporation Tax</span></button>
+<div class="copy-fallback" hidden><label for="copy-corporation-tax">Copy this policy link</label><input id="copy-corporation-tax" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-pubs-business-rates" data-topic="business" data-original-title="Business rates, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-pubs-business-rates">Rates relief for pubs and venues</a></h3>
+<p class="policy-summary">Relief for qualifying pubs, social clubs and live music venues rises from <strong>15% to 35%</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 April 2027</dd></div><div><dt>Where</dt><dd>England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Rates relief for pubs and venues</span></summary>
+<div class="detail-body"><p class="source-detail">Relief for qualifying pubs, social clubs and live music venues rises from <strong>15% to 35%</strong>. Venues with rateable value of £1 million or more do not receive the additional relief. <strong>1 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=136">HM Treasury Budget, printed p. 130</a>, 6.189.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-pubs-business-rates">Copy link<span class="sr-only"> to Rates relief for pubs and venues</span></button>
+<div class="copy-fallback" hidden><label for="copy-pubs-business-rates">Copy this policy link</label><input id="copy-pubs-business-rates" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-small-business-rates" data-topic="business" data-original-title="Small Business Rate Relief, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-small-business-rates">Small Business Rate Relief</a></h3>
+<p class="policy-summary">For qualifying retail, hospitality and leisure properties, 100% relief threshold rises from <strong>£12,000 to £18,000 rateable value</strong>, with tapered relief up to <strong>£21,000</strong>. <strong>1 April 2027</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 April 2027</dd></div><div><dt>Where</dt><dd>Qualifying retail, hospitality and leisure in England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Small Business Rate Relief</span></summary>
+<div class="detail-body"><p class="source-detail">For qualifying retail, hospitality and leisure properties, 100% relief threshold rises from <strong>£12,000 to £18,000 rateable value</strong>, with tapered relief up to <strong>£21,000</strong>. <strong>1 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=136">HM Treasury Budget, printed p. 130</a>, 6.190.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-small-business-rates">Copy link<span class="sr-only"> to Small Business Rate Relief</span></button>
+<div class="copy-fallback" hidden><label for="copy-small-business-rates">Copy this policy link</label><input id="copy-small-business-rates" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-rhl-business-rates" data-topic="business" data-original-title="Other RHL business rates, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-rhl-business-rates">Retail, hospitality and leisure rates</a></h3>
+<p class="policy-summary">Qualifying bill increases capped at CPI inflation, subject to stated exceptions. <strong>2027–28 and 2028–29</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>2027–28 and 2028–29</dd></div><div><dt>Where</dt><dd>England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Retail, hospitality and leisure rates</span></summary>
+<div class="detail-body"><p class="source-detail">Qualifying bill increases capped at CPI inflation, subject to stated exceptions. <strong>2027–28 and 2028–29</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=136">HM Treasury Budget, printed p. 130</a>, 6.191.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-rhl-business-rates">Copy link<span class="sr-only"> to Retail, hospitality and leisure rates</span></button>
+<div class="copy-fallback" hidden><label for="copy-rhl-business-rates">Copy this policy link</label><input id="copy-rhl-business-rates" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-industrial-electricity" data-topic="business" data-original-title="Industrial electricity">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-industrial-electricity">Industrial electricity</a></h3>
+<p class="policy-summary">British Industrial Competitiveness Scheme gives around <strong>10,000 eligible manufacturing firms</strong> an estimated <strong>20–25% electricity discount</strong>, including an additional payment reflecting earlier support. <strong>1 April 2027</strong>, Great Britain; funding for a comparable Northern Ireland scheme.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 April 2027</dd></div><div><dt>Where</dt><dd>Great Britain; comparable Northern Ireland funding</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Industrial electricity</span></summary>
+<div class="detail-body"><p class="source-detail">British Industrial Competitiveness Scheme gives around <strong>10,000 eligible manufacturing firms</strong> an estimated <strong>20–25% electricity discount</strong>, including an additional payment reflecting earlier support. <strong>1 April 2027</strong>, Great Britain; funding for a comparable Northern Ireland scheme.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=118">HM Treasury Budget, printed p. 112</a>, 6.31.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-industrial-electricity">Copy link<span class="sr-only"> to Industrial electricity</span></button>
+<div class="copy-fallback" hidden><label for="copy-industrial-electricity">Copy this policy link</label><input id="copy-industrial-electricity" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-founders-relief" data-topic="business" data-original-title="Founders’ Relief">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-founders-relief">Founders’ Relief</a></h3>
+<p class="policy-summary">Proposed <strong>10% Capital Gains Tax (CGT)</strong> on up to <strong>£10 million of lifetime gains</strong> for qualifying founders. Detailed eligibility remains subject to technical consultation and legislation.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Qualifying disposals from 6 April 2027</dd></div><div><dt>Where</dt><dd>Eligibility subject to consultation and legislation</dd></div></dl>
+<p class="status-note">Consultation and legislation pending</p>
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Founders’ Relief</span></summary>
+<div class="detail-body"><p class="source-detail">Proposed <strong>10% CGT rate on up to £10 million of lifetime gains</strong> for qualifying founders of innovative, high-growth companies. Detailed eligibility is subject to technical consultation and legislation. Qualifying disposals from <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=143">HM Treasury Budget, printed p. 137</a>, 6.257.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-founders-relief">Copy link<span class="sr-only"> to Founders’ Relief</span></button>
+<div class="copy-fallback" hidden><label for="copy-founders-relief">Copy this policy link</label><input id="copy-founders-relief" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-badr" data-topic="business" data-original-title="Business Asset Disposal Relief">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-badr">Business Asset Disposal Relief</a></h3>
+<p class="policy-summary">Lifetime qualifying-gains limit falls from <strong>£1 million to £500,000</strong>; the relief rate is 18%.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Disposals from 6 April 2027</dd></div><div><dt>Where</dt><dd>UK qualifying disposals</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Business Asset Disposal Relief</span></summary>
+<div class="detail-body"><p class="source-detail">Lifetime qualifying-gains limit falls from <strong>£1 million to £500,000</strong>; the relief rate is 18%. Disposals from <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=143">HM Treasury Budget, printed p. 137</a>, 6.261.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-badr">Copy link<span class="sr-only"> to Business Asset Disposal Relief</span></button>
+<div class="copy-fallback" hidden><label for="copy-badr">Copy this policy link</label><input id="copy-badr" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-employee-share-options" data-topic="business" data-original-title="Employee share options">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-employee-share-options">Employee share options</a></h3>
+<p class="policy-summary">The <strong>Company Share Option Plan (CSOP)</strong>, to be known as EMI2, doubles its individual limit to £120,000 and extends its exercise period to 15 years. Enterprise Management Incentives (EMI) gain a longer post-disqualification exercise window.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>6 April 2027</dd></div><div><dt>Where</dt><dd>Eligible schemes and employees</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Employee share options</span></summary>
+<div class="detail-body"><p class="source-detail">CSOP, to be known as EMI2, individual limit doubles to <strong>£120,000</strong>; exercise period extends to <strong>15 years</strong>. EMI’s post-disqualification exercise window increases from 90 to <strong>180 days</strong>. <strong>6 April 2027</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.255; 6.258.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-employee-share-options">Copy link<span class="sr-only"> to Employee share options</span></button>
+<div class="copy-fallback" hidden><label for="copy-employee-share-options">Copy this policy link</label><input id="copy-employee-share-options" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-capital-allowances" data-topic="business" data-original-title="Capital allowances">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-capital-allowances">Capital allowances</a></h3>
+<p class="policy-summary">Main-rate first-year allowance rises from <strong>40% to 50%</strong>; main writing-down allowance falls from <strong>14% to 12%</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>January and April 2027</dd></div><div><dt>Where</dt><dd>Corporation Tax and income tax dates differ</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Capital allowances</span></summary>
+<div class="detail-body"><p class="source-detail">Main-rate first-year allowance rises from <strong>40% to 50%</strong>; main writing-down allowance falls from <strong>14% to 12%</strong>. Full expensing is maintained. First-year change <strong>1 January 2027</strong>; writing-down change <strong>1 April 2027</strong> for Corporation Tax / <strong>6 April 2027</strong> for income tax.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.251.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-capital-allowances">Copy link<span class="sr-only"> to Capital allowances</span></button>
+<div class="copy-fallback" hidden><label for="copy-capital-allowances">Copy this policy link</label><input id="copy-capital-allowances" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-research-development" data-topic="business" data-original-title="R&amp;D relief administration">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-research-development">R&amp;D relief administration</a></h3>
+<p class="policy-summary">Claim Notification Form removed; Additional Information Form simplified. <strong>1 April 2027</strong> and <strong>autumn 2027</strong>, respectively.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April and autumn 2027</dd></div><div><dt>Where</dt><dd>UK Research and Development tax reliefs</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for R&amp;D relief administration</span></summary>
+<div class="detail-body"><p class="source-detail">Claim Notification Form removed; Additional Information Form simplified. <strong>1 April 2027</strong> and <strong>autumn 2027</strong>, respectively.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.253.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-research-development">Copy link<span class="sr-only"> to R&amp;D relief administration</span></button>
+<div class="copy-fallback" hidden><label for="copy-research-development">Copy this policy link</label><input id="copy-research-development" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-investment-finance" data-topic="business" data-original-title="Investment finance">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-investment-finance">Investment finance</a></h3>
+<p class="policy-summary">National Wealth Fund receives <strong>£15.4 billion additional capital</strong>, including £2 billion for an Energy Wealth Fund.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Multi-year commitments</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Investment finance</span></summary>
+<div class="detail-body"><p class="source-detail">National Wealth Fund receives <strong>£15.4 billion additional capital</strong>, including £2 billion for an Energy Wealth Fund. British Business Bank financial capacity increases by <strong>£5 billion</strong>. Multi-year commitments; capacity, lending and investment are distinct from annual grant spending.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=123">HM Treasury Budget, printed p. 117</a>, 6.82–6.83.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-investment-finance">Copy link<span class="sr-only"> to Investment finance</span></button>
+<div class="copy-fallback" hidden><label for="copy-investment-finance">Copy this policy link</label><input id="copy-investment-finance" readonly spellcheck="false"></div></div>
+</details></div></article></section><section class="topic-section" id="topic-funding" aria-labelledby="heading-funding"><header class="topic-heading"><h2 id="heading-funding" tabindex="-1">Funding and tax administration</h2><p>Targeted revenue measures and changes to paying tax.</p></header><article class="policy" id="policy-bank-surcharge" data-topic="funding" data-original-title="Banks">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-bank-surcharge">Bank surcharge</a></h3>
+<p class="policy-summary">Corporation Tax surcharge temporarily rises from <strong>3% to 6%</strong>, <strong>1 January 2027–31 March 2028</strong>, then returns to 3%.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>1 January 2027–31 March 2028</dd></div><div><dt>Where</dt><dd>UK banking companies</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Bank surcharge</span></summary>
+<div class="detail-body"><p class="source-detail">Corporation Tax surcharge temporarily rises from <strong>3% to 6%</strong>, <strong>1 January 2027–31 March 2028</strong>, then returns to 3%. This helps fund household support.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.252.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-bank-surcharge">Copy link<span class="sr-only"> to Bank surcharge</span></button>
+<div class="copy-fallback" hidden><label for="copy-bank-surcharge">Copy this policy link</label><input id="copy-bank-surcharge" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-gaming-machines" data-topic="funding" data-original-title="Gaming machines">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-gaming-machines">Gaming machines</a></h3>
+<p class="policy-summary">duty rises from <strong>20% to 25%</strong> for machines with stakes over £1 or prizes over £100 from <strong>1 April 2027</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April 2027; supplier changes April 2028</dd></div><div><dt>Where</dt><dd>Machine Games Duty rules</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Gaming machines</span></summary>
+<div class="detail-body"><p class="source-detail">duty rises from <strong>20% to 25%</strong> for machines with stakes over £1 or prizes over £100 from <strong>1 April 2027</strong>. Supplier liability under profit-sharing arrangements is planned from April 2028.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=139">HM Treasury Budget, printed p. 133</a>, 6.225.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-gaming-machines">Copy link<span class="sr-only"> to Gaming machines</span></button>
+<div class="copy-fallback" hidden><label for="copy-gaming-machines">Copy this policy link</label><input id="copy-gaming-machines" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-online-marketplaces" data-topic="funding" data-original-title="Online marketplaces">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-online-marketplaces">Online marketplaces</a></h3>
+<p class="policy-summary">from <strong>October 2027</strong>, platforms collect VAT on sales by UK VAT-registered businesses and other UK businesses meeting a <strong>£90,000 annual sales threshold per platform</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>October 2027</dd></div><div><dt>Where</dt><dd>Sales by qualifying UK businesses</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Online marketplaces</span></summary>
+<div class="detail-body"><p class="source-detail">from <strong>October 2027</strong>, platforms collect VAT on sales by UK VAT-registered businesses and other UK businesses meeting a <strong>£90,000 annual sales threshold per platform</strong>. Personal sales, second-hand goods and business-to-business transactions are excluded.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=130">HM Treasury Budget, printed p. 124</a>, 6.154.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-online-marketplaces">Copy link<span class="sr-only"> to Online marketplaces</span></button>
+<div class="copy-fallback" hidden><label for="copy-online-marketplaces">Copy this policy link</label><input id="copy-online-marketplaces" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-private-hire" data-topic="funding" data-original-title="Large private-hire operators">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-private-hire">Large private-hire operators</a></h3>
+<p class="policy-summary">liable for 20% VAT on the full fare from <strong>2 January 2028</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>2 January 2028</dd></div><div><dt>Where</dt><dd>Turnover threshold under consultation</dd></div></dl>
+<p class="status-note">Threshold under consultation</p>
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Large private-hire operators</span></summary>
+<div class="detail-body"><p class="source-detail">liable for 20% VAT on the full fare from <strong>2 January 2028</strong>. The turnover threshold is under consultation, with <strong>£50 million</strong> the lead option.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=139">HM Treasury Budget, printed p. 133</a>, 6.219.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-private-hire">Copy link<span class="sr-only"> to Large private-hire operators</span></button>
+<div class="copy-fallback" hidden><label for="copy-private-hire">Copy this policy link</label><input id="copy-private-hire" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-hmrc-modernisation" data-topic="funding" data-original-title="HMRC modernisation">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-hmrc-modernisation">HMRC modernisation</a></h3>
+<p class="policy-summary">mandatory VAT e-invoicing, more regular in-year Self Assessment payments for people making payments on account, and VAT/PAYE direct-debit arrangements are planned from <strong>April 2029</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April 2029</dd></div><div><dt>Where</dt><dd>Affected VAT, PAYE and Self Assessment taxpayers</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for HMRC modernisation</span></summary>
+<div class="detail-body"><p class="source-detail">mandatory VAT e-invoicing, more regular in-year Self Assessment payments for people making payments on account, and VAT/PAYE direct-debit arrangements are planned from <strong>April 2029</strong>. Direct debit collects outstanding balances after the payment cut-off; other payment methods remain available beforehand.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=129">HM Treasury Budget, printed p. 123</a>, 6.145–6.149.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-hmrc-modernisation">Copy link<span class="sr-only"> to HMRC modernisation</span></button>
+<div class="copy-fallback" hidden><label for="copy-hmrc-modernisation">Copy this policy link</label><input id="copy-hmrc-modernisation" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-making-tax-digital" data-topic="funding" data-original-title="Making Tax Digital">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-making-tax-digital">Making Tax Digital</a></h3>
+<p class="policy-summary">people joining income-tax MTD in April 2027 receive relief from late-submission penalty points for their first four quarterly updates.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>People joining in April 2027</dd></div><div><dt>Where</dt><dd>Income tax; some groups deferred</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Making Tax Digital</span></summary>
+<div class="detail-body"><p class="source-detail">people joining income-tax MTD in April 2027 receive relief from late-submission penalty points for their first four quarterly updates. Some taxpayer groups’ entry is deferred.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=130">HM Treasury Budget, printed p. 124</a>, 6.152.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-making-tax-digital">Copy link<span class="sr-only"> to Making Tax Digital</span></button>
+<div class="copy-fallback" hidden><label for="copy-making-tax-digital">Copy this policy link</label><input id="copy-making-tax-digital" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-other-duties" data-topic="funding" data-original-title="Other duties">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-other-duties">Other duties</a></h3>
+<p class="policy-summary">alcohol duty rises with RPI from <strong>1 February 2027</strong>, alongside more generous Small Producer Relief; car/van/motorcycle VED rises with RPI from April 2027; Air Passenger Duty is uprated from April 2028.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>February 2027 onward</dd></div><div><dt>Where</dt><dd>Coverage varies by duty</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Other duties</span></summary>
+<div class="detail-body"><p class="source-detail">alcohol duty rises with RPI from <strong>1 February 2027</strong>, alongside more generous Small Producer Relief; car/van/motorcycle VED rises with RPI from April 2027; Air Passenger Duty is uprated from April 2028.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=137">HM Treasury Budget, printed p. 131</a>, 6.201; 6.227–6.231.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-other-duties">Copy link<span class="sr-only"> to Other duties</span></button>
+<div class="copy-fallback" hidden><label for="copy-other-duties">Copy this policy link</label><input id="copy-other-duties" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-ootlar-measures" data-topic="funding" data-original-title="Additional points in OOTLAR">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-ootlar-measures">Additional OOTLAR measures</a></h3>
+<p class="policy-summary">The tax overview also covers earlier pension inheritance-tax and EV mileage-duty policies, plus cryptoasset reforms and a future levy on exceptional oil and gas revenues. These measures have different start dates.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>April 2027 onward; staged changes</dd></div><div><dt>Where</dt><dd>Coverage varies; see the tax overview</dd></div></dl>
+<p class="status-note">Includes earlier announcements</p>
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Additional OOTLAR measures</span></summary>
+<div class="detail-body"><p class="source-detail">most unused pension funds/death benefits entering inheritance tax from <strong>April 2027</strong> and mileage-based EV duty from <strong>April 2028</strong> are previously announced measures being implemented. EV rates are 3p/mile for battery/hydrogen vehicles and 1.5p for plug-in hybrids. OOTLAR also sets out April 2027 cryptoasset reforms and a permanent 35% levy on exceptional oil/gas revenues after the Energy Profits Levy ends. Its Table 1 identifies measures absent from the main Budget report. <a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">OOTLAR, sections 1.27, 1.35, 1.45, 1.48 and 1.76</a>.</p><p class="citation"><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">HMRC tax overview (OOTLAR)</a>, sections 1.27, 1.35, 1.45, 1.48 and 1.76.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-ootlar-measures">Copy link<span class="sr-only"> to Additional OOTLAR measures</span></button>
+<div class="copy-fallback" hidden><label for="copy-ootlar-measures">Copy this policy link</label><input id="copy-ootlar-measures" readonly spellcheck="false"></div></div>
+</details></div></article></section><section class="topic-section" id="topic-spending" aria-labelledby="heading-spending"><header class="topic-heading"><h2 id="heading-spending" tabindex="-1">Public spending</h2><p>Departmental choices, devolution and strategic investment.</p></header><article class="policy" id="policy-spending-discipline" data-topic="spending" data-original-title="Spending discipline">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-spending-discipline">Spending discipline</a></h3>
+<p class="policy-summary">the next spending review is in <strong>2027</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Spending review in 2027</dd></div><div><dt>Where</dt><dd>UK departments; allocations vary</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Spending discipline</span></summary>
+<div class="detail-body"><p class="source-detail">the next spending review is in <strong>2027</strong>. The government says day-to-day departmental spending grows overall in real terms, but individual departments may face real cuts. Civil Service administration budgets are to fall <strong>20% by 2029–30</strong>, compared with the previous 16% plan.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=37">HM Treasury Budget, printed p. 31</a>, 2.3; 2.14.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-spending-discipline">Copy link<span class="sr-only"> to Spending discipline</span></button>
+<div class="copy-fallback" hidden><label for="copy-spending-discipline">Copy this policy link</label><input id="copy-spending-discipline" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-defence-funding" data-topic="spending" data-original-title="Defence funding">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-defence-funding">Defence funding</a></h3>
+<p class="policy-summary">the remaining <strong>£4.7 billion</strong> needed for the announced Defence Investment Plan is funded through <strong>£3 billion of further departmental capital-budget reductions</strong> and <strong>£1.7 billion from the capital Reserve</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Targets for 2030 and 2035</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Defence funding</span></summary>
+<div class="detail-body"><p class="source-detail">the remaining <strong>£4.7 billion</strong> needed for the announced Defence Investment Plan is funded through <strong>£3 billion of further departmental capital-budget reductions</strong> and <strong>£1.7 billion from the capital Reserve</strong>. The 2027 spending review will detail the path to <strong>3% of GDP in 2030</strong> and <strong>3.5% in 2035</strong>.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=37">HM Treasury Budget, printed p. 31</a>, 2.5–2.6; 6.134.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-defence-funding">Copy link<span class="sr-only"> to Defence funding</span></button>
+<div class="copy-fallback" hidden><label for="copy-defence-funding">Copy this policy link</label><input id="copy-defence-funding" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-ukraine" data-topic="spending" data-original-title="Ukraine">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-ukraine">Support for Ukraine</a></h3>
+<p class="policy-summary">over <strong>£10 billion of additional financial support</strong>, including lending/export-finance capacity and <strong>£500 million emergency military support</strong>; this is separate from the continuing £3 billion annual military support commitment.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Additional package and continuing commitment</dd></div><div><dt>Where</dt><dd>UK support for Ukraine</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Support for Ukraine</span></summary>
+<div class="detail-body"><p class="source-detail">over <strong>£10 billion of additional financial support</strong>, including lending/export-finance capacity and <strong>£500 million emergency military support</strong>; this is separate from the continuing £3 billion annual military support commitment.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=129">HM Treasury Budget, printed p. 123</a>, 6.144.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-ukraine">Copy link<span class="sr-only"> to Support for Ukraine</span></button>
+<div class="copy-fallback" hidden><label for="copy-ukraine">Copy this policy link</label><input id="copy-ukraine" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-fiscal-devolution" data-topic="spending" data-original-title="Fiscal devolution, England">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-fiscal-devolution">Fiscal devolution</a></h3>
+<p class="policy-summary">mayors gain a share of business rates from <strong>2027–28</strong> and income tax from <strong>2028–29</strong>.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>2027–28 onward</dd></div><div><dt>Where</dt><dd>England</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for Fiscal devolution</span></summary>
+<div class="detail-body"><p class="source-detail">mayors gain a share of business rates from <strong>2027–28</strong> and income tax from <strong>2028–29</strong>. Good Growth Funds receive <strong>£285 million transitional seed funding</strong> in 2027–28 and a <strong>£1.5 billion borrowing facility</strong> from April 2028. Strategic authorities will be enabled to introduce visitor levies.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=119">HM Treasury Budget, printed p. 113</a>, 6.40–6.44.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-fiscal-devolution">Copy link<span class="sr-only"> to Fiscal devolution</span></button>
+<div class="copy-fallback" hidden><label for="copy-fiscal-devolution">Copy this policy link</label><input id="copy-fiscal-devolution" readonly spellcheck="false"></div></div>
+</details></div></article><article class="policy" id="policy-ai-security" data-topic="spending" data-original-title="AI and security">
+<div class="policy-copy"><h3 tabindex="-1"><a href="#policy-ai-security">AI and security</a></h3>
+<p class="policy-summary">an additional <strong>£120 million</strong> for the AI Security Institute, <strong>£165 million</strong> for AI biosecurity, <strong>£40 million</strong> for a National Agentic Security Unit and <strong>£140 million</strong> of additional Sovereign AI investment/procurement activity.</p>
+<dl class="policy-meta"><div><dt>When</dt><dd>Multi-year commitments</dd></div><div><dt>Where</dt><dd>UK</dd></div></dl>
+
+<details class="policy-details"><summary>Details and sources<span class="sr-only"> for AI and security</span></summary>
+<div class="detail-body"><p class="source-detail">an additional <strong>£120 million</strong> for the AI Security Institute, <strong>£165 million</strong> for AI biosecurity, <strong>£40 million</strong> for a National Agentic Security Unit and <strong>£140 million</strong> of additional Sovereign AI investment/procurement activity. Further cyber measures and public-service AI adoption are also funded.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=125">HM Treasury Budget, printed p. 119</a>, 6.99–6.108.</p></div>
+<div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-ai-security">Copy link<span class="sr-only"> to AI and security</span></button>
+<div class="copy-fallback" hidden><label for="copy-ai-security">Copy this policy link</label><input id="copy-ai-security" readonly spellcheck="false"></div></div>
+</details></div></article><aside class="context-note"><strong>Put the spending comparisons in context</strong><p>The £40 billion extra annual day-to-day spending by 2028–29 and £120 billion additional investment over the Parliament compare total plans with the previous government’s spring 2024 plans. They are broader comparisons across the Parliament, rather than new money announced solely on 28 October 2026.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=37">Budget, printed p. 31, paragraph 2.2</a>.</p></aside></section>
+</div></div></div>
+<section class="reference-section wrap" id="obr" aria-labelledby="obr-heading"><div class="reference-inner"><div class="obr-intro"><div><h2 id="obr-heading" tabindex="-1">What the OBR says</h2><p class="section-intro">The Office for Budget Responsibility (OBR) provides the independent economic and fiscal forecast. Its central outlook assumes energy prices ease.</p></div><aside class="fiscal-note"><strong>Headroom is a buffer, not a guarantee.</strong>The £15 billion current-budget margin is the room before the rule would be missed. The OBR puts the chance of meeting that rule at 56%.</aside></div>
+<figure class="chart-panel" id="forecast-panel" hidden><div class="chart-tools"><label for="forecast-metric">Explore the forecast</label><select id="forecast-metric"><option value="gdp">GDP growth (%)</option><option value="cpi">CPI inflation (%)</option><option value="unemployment">Unemployment (%)</option><option value="borrowing">Borrowing (£bn)</option><option value="borrowing-share">Borrowing (% of GDP)</option><option value="debt">Net debt (% of GDP)</option></select></div><svg class="forecast-chart" id="forecast-chart" viewBox="0 0 720 290" role="img" aria-labelledby="chart-title chart-desc"></svg><figcaption><p class="chart-description" id="chart-description" role="status" aria-live="polite"></p><p class="chart-caption">OBR central forecast, published 28 October 2026. Values reproduced in HM Treasury’s Budget. All chart scales start at zero.</p></figcaption></figure>
+<details class="data-details" id="forecast-data"><summary>View all forecast data</summary><p class="citation">Calendar years apply to the economic table; financial years apply to the fiscal table.</p><div class="table-scroll" role="region" aria-label="Economic forecast · calendar years" tabindex="0"><table id="economy-table"><caption>Economic forecast · calendar years</caption><thead><tr><th scope="col">Economic indicator</th><th scope="col">2026</th><th scope="col">2027</th><th scope="col">2028</th><th scope="col">2029</th><th scope="col">2030</th><th scope="col">2031</th></tr></thead><tbody><tr data-metric="gdp"><th scope="row">Real GDP growth, %</th><td>1.2</td><td>1.0</td><td>1.6</td><td>1.8</td><td>1.7</td><td>1.6</td></tr><tr data-metric="cpi"><th scope="row">CPI inflation, annual average, %</th><td>3.1</td><td>3.4</td><td>2.1</td><td>2.1</td><td>2.0</td><td>2.0</td></tr><tr data-metric="unemployment"><th scope="row">Unemployment rate, annual average, %</th><td>5.0</td><td>5.1</td><td>4.9</td><td>4.5</td><td>4.3</td><td>4.1</td></tr></tbody></table></div><div class="table-scroll" role="region" aria-label="Fiscal forecast · financial years" tabindex="0"><table id="fiscal-table"><caption>Fiscal forecast · financial years</caption><thead><tr><th scope="col">Fiscal indicator</th><th scope="col">2026–27</th><th scope="col">2027–28</th><th scope="col">2028–29</th><th scope="col">2029–30</th><th scope="col">2030–31</th><th scope="col">2031–32</th></tr></thead><tbody><tr data-metric="borrowing"><th scope="row">Public sector net borrowing, £bn</th><td>133.2</td><td>112.0</td><td>99.5</td><td>73.8</td><td>66.9</td><td>68.3</td></tr><tr data-metric="borrowing-share"><th scope="row">Borrowing, % of GDP</th><td>4.2</td><td>3.4</td><td>2.9</td><td>2.1</td><td>1.8</td><td>1.8</td></tr><tr data-metric="debt"><th scope="row">Public sector net debt, % of GDP</th><td>95.5</td><td>96.7</td><td>97.3</td><td>96.7</td><td>95.9</td><td>95.6</td></tr></tbody></table></div><p class="citation"><a href="./sources/budget-2026.pdf#page=31">Budget, printed pp. 25–27, Tables 1.1–1.3</a>. The borrowing table’s “November 2026 forecast” label appears to be a labelling error in this October document.</p></details>
+<h3 class="assessment-heading">The assessment behind the numbers</h3><ul class="assessments"><li><h3>Living standards</h3><p>real disposable income per person in 2030–31 is about 2% above pre-pandemic levels and ¾% below March’s forecast.</p></li><li><h3>Fiscal rules</h3><p><strong>£15 billion</strong> current-budget headroom and <strong>£24 billion</strong> financial-liabilities headroom in 2029–30; <strong>56% probability</strong> of meeting the current-budget rule, down from 59%.</p></li><li><h3>Debt</h3><p>falls after its peak but ends <strong>no lower than now</strong>, qualifying the Budget’s executive summary.</p></li><li><h3>Tax</h3><p>the tax-to-GDP ratio exceeds its previous record in 2027–28; frozen thresholds contribute.</p></li><li><h3>Renters</h3><p>higher property taxes risk reducing rental supply and raising long-term rents.</p></li><li><h3>Pensions</h3><p>uprating reform improves long-term sustainability; care reform’s cost remains unsettled.</p></li><li><h3>Risks</h3><p>a persistent energy shock could add <strong>£17 billion</strong> to 2027–28 borrowing; a one-point interest-rate shift changes medium-term borrowing by about <strong>£16 billion</strong>.</p></li><li><h3>Growth</h3><p>no material real-GDP forecast adjustment attributed to the fiscal changes.</p></li></ul><p class="citation"><a href="https://assets.publishing.service.gov.uk/media/6ae1f7b839d29f3f9b9b3f36/economic-and-fiscal-outlook-october-2026-web-accessible.pdf">OBR report</a>, paragraphs 1.2–1.4, 1.22–1.29, 2.19, 3.41 and 3.46. Forecasts and scenarios carry uncertainty.</p></div></section>
+<div class="timeline-band"><section class="reference-section wrap" id="dates" aria-labelledby="dates-heading"><div class="reference-inner"><h2 id="dates-heading" tabindex="-1">Dates to watch</h2><p class="section-intro">The full sequence of starts, expiries and planned changes. Consultations, legislation and delivery plans can still affect the details.</p><ol class="timeline"><li><div class="date-label"><strong>29 October 2026</strong></div><div><p>Reduced LISA charge for first-home purchases above the price cap.</p><div class="timeline-links"><a href="#policy-lifetime-isa">Lifetime ISA withdrawal charge</a></div></div></li><li><div class="date-label"><strong>26 November 2026</strong></div><div><p>Additional food, heating-oil and fertiliser tariff suspensions start.</p><div class="timeline-links"><a href="#policy-food-and-heating-oil">Food, heating oil and fertiliser</a></div></div></li><li><div class="date-label"><strong>January 2027</strong></div><div><p>Household Energy Payments begin; £2 bus cap starts; temporary bank surcharge increase and higher first-year capital allowance begin.</p><div class="timeline-links"><a href="#policy-household-energy-payment">Household Energy Payment</a><a href="#policy-bus-fares">Bus fares</a><a href="#policy-bank-surcharge">Bank surcharge</a><a href="#policy-capital-allowances">Capital allowances</a></div></div></li><li><div class="date-label"><strong>February 2027</strong></div><div><p>Alcohol duty changes; Your First Home applications expected to open.</p><div class="timeline-links"><a href="#policy-other-duties">Other duties</a><a href="#policy-your-first-home">Your First Home</a></div></div></li><li><div class="date-label"><strong>April 2027</strong></div><div><p>Higher minimum wages, savings/property tax rates, trading allowance, business rates support, founders/share-option changes and first housing equity loans.</p><div class="timeline-links"><a href="#policy-minimum-wages">Minimum wages</a><a href="#policy-savings-income">Tax on savings income</a><a href="#policy-trading-allowance">Trading allowance</a><a href="#policy-pubs-business-rates">Rates relief for pubs and venues</a><a href="#policy-founders-relief">Founders’ Relief</a><a href="#policy-employee-share-options">Employee share options</a><a href="#policy-your-first-home">Your First Home</a></div></div></li><li><div class="date-label"><strong>1 July 2027</strong></div><div><p>Scheduled end of temporary domestic-electricity VAT zero rate and fuel-duty relief; fuel-duty RPI increase.</p><div class="timeline-links"><a href="#policy-electricity-vat">Domestic electricity VAT</a><a href="#policy-fuel-duty">Fuel duty</a></div></div></li><li><div class="date-label"><strong>October 2027</strong></div><div><p>Extended marketplace VAT collection starts.</p><div class="timeline-links"><a href="#policy-online-marketplaces">Online marketplaces</a></div></div></li><li><div class="date-label"><strong>April 2028</strong></div><div><p>Previously announced EV mileage duty starts; other staged tax/admin changes.</p><div class="timeline-links"><a href="#policy-ootlar-measures">Additional OOTLAR measures</a></div></div></li><li><div class="date-label"><strong>April 2029</strong></div><div><p>New First Time Buyer ISA, self-employed parental pay, VAT e-invoicing and more regular tax-payment arrangements.</p><div class="timeline-links"><a href="#policy-first-time-buyer-isa">First Time Buyer ISA</a><a href="#policy-parental-pay">Self-employed parental pay</a><a href="#policy-hmrc-modernisation">HMRC modernisation</a></div></div></li><li><div class="date-label"><strong>April 2030</strong></div><div><p>Adjusted State Pension uprating begins; Carer’s Allowance earnings taper follows during 2030–31.</p><div class="timeline-links"><a href="#policy-state-pension">State Pension Triple Lock</a><a href="#policy-carers-allowance">Carer’s Allowance</a></div></div></li></ol></div></section></div>
+<section class="reference-section wrap" id="sources" aria-labelledby="sources-heading"><div class="reference-inner"><h2 id="sources-heading" tabindex="-1">Follow the sources</h2><p class="section-intro">An independent explainer based on the Budget document, HMRC’s tax overview and the OBR’s report. The original documents are the place to check the full conditions.</p>
+<ol class="source-list"><li id="source-budget"><h3>HM Treasury</h3><p>Budget 2026: Breathing Space for Today, Fresh Hope for the Future. HC 726, published 28 October 2026.</p><div class="source-links"><a href="./sources/budget-2026.pdf">Read the attached Budget PDF</a><a href="./key-budget-points.md" download>Download the source summary</a></div><p>Budget citations use printed pages. Printed page 1 is page 7 of the PDF.</p></li>
+<li id="source-ootlar"><h3>HM Revenue &amp; Customs</h3><p>Overview of tax legislation and rates (OOTLAR), published 28 October 2026.</p><div class="source-links"><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">Read the tax legislation overview</a></div><p>The main overview was reviewed. Its linked Annex A rates tables were inaccessible and have not been relied on here.</p></li>
+<li id="source-obr"><h3>Office for Budget Responsibility</h3><p>Economic and fiscal outlook, October 2026. Published 28 October 2026.</p><div class="source-links"><a href="https://www.gov.uk/government/publications/october-2026-economic-and-fiscal-outlook">Official publication page</a><a href="https://assets.publishing.service.gov.uk/media/6ae1f7b839d29f3f9b9b3f36/economic-and-fiscal-outlook-october-2026-web-accessible.pdf">Read the OBR report</a></div></li></ol>
+<div class="editorial-notes"><h3>About this edition</h3><p>This guide covers the announcements of 28 October 2026. Announced measures, earlier policies being implemented, consultations and forecasts are distinguished where the source specifies them. A stated start date does not by itself mean legislation has passed.</p><p>Geographical scope and spending periods matter. England-only measures are labelled; annualised estimates, multi-year funding and lending capacity are kept distinct.</p><p>The supplied Google share links could not be opened, so the corresponding official GOV.UK publications were located and reviewed directly. This guide prioritises material changes rather than every technical amendment.</p></div>
+<div class="downloads"><a class="button" href="./sources/budget-2026.pdf" download>Download the Budget PDF</a><button type="button" id="print-guide" data-enhanced hidden>Print this guide</button></div><p id="print-status" class="citation" role="status" hidden></p>
+</div></section>
+</main><footer class="footer"><div class="wrap"><p>Budget 26. Independent Budget explainer.<br>Edition of 28 October 2026.</p><a href="#top">Back to the top</a></div></footer><div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+<script>
+(function () {
+  'use strict';
+  const policies = Array.from(document.querySelectorAll('.policy'));
+  const topics = Array.from(document.querySelectorAll('.topic-section'));
+  const queryEl = document.getElementById('policy-query');
+  const topicEl = document.getElementById('topic-select');
+  const topicButtons = Array.from(document.querySelectorAll('button[data-topic]'));
+  const countEl = document.getElementById('result-count');
+  const emptyEl = document.getElementById('no-results');
+  const menuEl = document.getElementById('contents-menu');
+  const copyStatusEl = document.getElementById('copy-status');
+  const normalise = text => text.toLocaleLowerCase('en-GB').replace(/\s+/g, ' ').trim();
+  const index = new Map(policies.map(article => [article, normalise(Array.from(article.querySelectorAll('h3,.policy-summary,.policy-meta,.status-note,.source-detail')).map(el => el.textContent).join(' '))]));
+  let activeTopic = 'all';
+  let printSnapshot = null;
+  let copyRequest = 0;
+
+  function applyFilters() {
+    const words = normalise(queryEl.value).split(' ').filter(Boolean);
+    let count = 0;
+    policies.forEach(article => {
+      const visible = (activeTopic === 'all' || article.dataset.topic === activeTopic) && words.every(word => index.get(article).includes(word));
+      article.hidden = !visible;
+      if (visible) count += 1;
+    });
+    topics.forEach(section => { section.hidden = !Array.from(section.querySelectorAll('.policy')).some(article => !article.hidden); });
+    topicEl.value = activeTopic;
+    topicButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.topic === activeTopic)));
+    countEl.textContent = count + ' of ' + policies.length + (count === 1 ? ' policy shown' : ' policies shown');
+    emptyEl.hidden = count !== 0;
+  }
+
+  function focusTarget(el, block = 'start') {
+    if (!el) return;
+    if (!el.matches('a,button,input,select,summary,[tabindex]')) el.setAttribute('tabindex', '-1');
+    el.focus({preventScroll: true});
+    el.scrollIntoView({block});
+  }
+
+  function resetFilters(focusSearch = false) {
+    queryEl.value = '';
+    activeTopic = 'all';
+    applyFilters();
+    if (focusSearch) focusTarget(queryEl, 'center');
+  }
+
+  function chooseTopic(value) {
+    activeTopic = value;
+    applyFilters();
+    focusTarget(document.getElementById('changes-heading'));
+  }
+
+  document.querySelector('.search-controls').addEventListener('submit', event => { event.preventDefault(); applyFilters(); });
+  queryEl.addEventListener('input', applyFilters);
+  queryEl.addEventListener('search', applyFilters);
+  topicEl.addEventListener('change', () => chooseTopic(topicEl.value));
+  topicButtons.forEach(button => button.addEventListener('click', () => chooseTopic(button.dataset.topic)));
+  document.getElementById('reset-filters').addEventListener('click', () => resetFilters());
+  document.getElementById('empty-reset').addEventListener('click', () => resetFilters(true));
+
+  function revealHash() {
+    let id;
+    try { id = decodeURIComponent(location.hash.slice(1)); } catch (_) { return; }
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    const hash = location.hash;
+    const article = target.closest('.policy');
+    const topicSection = target.closest('.topic-section');
+    if (article || topicSection) resetFilters();
+    if (article) article.querySelector('.policy-details').open = true;
+    for (let el = target; el; el = el.parentElement) {
+      if (el.matches('details')) el.open = true;
+    }
+    const focusEl = target === article ? article.querySelector('h3') : target;
+    requestAnimationFrame(() => { if (hash === location.hash) focusTarget(focusEl); });
+  }
+  window.addEventListener('hashchange', revealHash);
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (menuEl.contains(link)) menuEl.open = false;
+    if (link.hash === location.hash) { event.preventDefault(); revealHash(); }
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menuEl.open) {
+      menuEl.open = false;
+      menuEl.querySelector('summary').focus();
+    }
+  });
+
+  document.querySelectorAll('.copy-link').forEach(button => button.addEventListener('click', async () => {
+    const request = ++copyRequest;
+    const article = document.getElementById(button.dataset.id);
+    const fallbackEl = article.querySelector('.copy-fallback');
+    const title = article.querySelector('h3').textContent;
+    const url = new URL(location.href);
+    url.hash = article.id;
+    copyStatusEl.textContent = '';
+    document.querySelectorAll('.copy-fallback').forEach(el => { el.hidden = true; });
+    document.querySelectorAll('.copy-link').forEach(el => { el.firstChild.textContent = 'Copy link'; });
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(url.href);
+      if (request !== copyRequest) return;
+      button.firstChild.textContent = 'Link copied';
+      copyStatusEl.textContent = 'Link copied for ' + title + '.';
+    } catch (_) {
+      if (request !== copyRequest) return;
+      fallbackEl.hidden = false;
+      const inputEl = fallbackEl.querySelector('input');
+      inputEl.value = url.href;
+      inputEl.focus();
+      inputEl.select();
+      copyStatusEl.textContent = 'Copy the selected link using your browser or keyboard.';
+    }
+  }));
+
+  const METRICS = {
+    gdp: {label: 'Real GDP growth', unit: '%', max: 2},
+    cpi: {label: 'CPI inflation', unit: '%', max: 4},
+    unemployment: {label: 'Unemployment rate', unit: '%', max: 6},
+    borrowing: {label: 'Public sector net borrowing', unit: '£bn', max: 150},
+    'borrowing-share': {label: 'Borrowing as a share of GDP', unit: '%', max: 5},
+    debt: {label: 'Public sector net debt as a share of GDP', unit: '%', max: 100}
+  };
+  const chartEl = document.getElementById('forecast-chart');
+  const metricEl = document.getElementById('forecast-metric');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  function svgElement(name, attributes, content) {
+    const el = document.createElementNS(svgNS, name);
+    Object.entries(attributes).forEach(([key, value]) => el.setAttribute(key, String(value)));
+    if (content !== undefined) el.textContent = content;
+    return el;
+  }
+  function renderChart() {
+    const key = metricEl.value;
+    const metric = METRICS[key];
+    const rowEl = document.querySelector('tr[data-metric="' + key + '"]');
+    const values = Array.from(rowEl.querySelectorAll('td')).map(cell => Number(cell.textContent));
+    const years = Array.from(rowEl.closest('table').querySelectorAll('thead th')).slice(1).map(cell => cell.textContent.trim());
+    const financial = key === 'borrowing' || key === 'borrowing-share' || key === 'debt';
+    const description = metric.label + ' (' + metric.unit + '), ' + (financial ? 'financial years' : 'calendar years') + ': ' + years.map((year, i) => year + ': ' + values[i].toFixed(1)).join('; ') + '. OBR central forecast, 28 October 2026.';
+    chartEl.replaceChildren(svgElement('title', {id: 'chart-title'}, metric.label + ' forecast'), svgElement('desc', {id: 'chart-desc'}, description));
+    const panelStyle = getComputedStyle(document.getElementById('forecast-panel'));
+    const available = document.querySelector('#obr .reference-inner').clientWidth - parseFloat(panelStyle.paddingLeft) - parseFloat(panelStyle.paddingRight) - 2;
+    const width = Math.min(720, Math.max(250, available));
+    chartEl.setAttribute('viewBox', '0 0 ' + width + ' 290');
+    const left = 48, right = 32, top = 38, bottom = 238;
+    for (let i = 0; i <= 4; i += 1) {
+      const value = metric.max * i / 4;
+      const y = bottom - (bottom - top) * i / 4;
+      chartEl.append(svgElement('line', {x1: left, y1: y, x2: width - right, y2: y, stroke: 'var(--line)', 'stroke-width': 1}));
+      chartEl.append(svgElement('text', {x: left - 10, y: y + 4, fill: 'var(--muted)', 'font-size': 12, 'text-anchor': 'end'}, Number(value.toFixed(2))));
+    }
+    const points = values.map((value, i) => [left + (width - right - left) * i / (values.length - 1), bottom - value / metric.max * (bottom - top)]);
+    chartEl.append(svgElement('polyline', {points: points.map(p => p.join(',')).join(' '), fill: 'none', stroke: 'var(--accent)', 'stroke-width': 3, 'stroke-linejoin': 'round'}));
+    points.forEach(([x, y], i) => {
+      chartEl.append(svgElement('circle', {cx: x, cy: y, r: 5, fill: 'var(--surface)', stroke: 'var(--accent)', 'stroke-width': 3}));
+      chartEl.append(svgElement('text', {x, y: y - 15, fill: 'var(--ink)', 'font-size': 14, 'font-weight': 600, 'text-anchor': 'middle'}, values[i].toFixed(1)));
+      chartEl.append(svgElement('text', {x, y: bottom + 26, fill: 'var(--muted)', 'font-size': 12, 'text-anchor': 'middle'}, financial && width < 420 ? years[i].slice(2) : years[i]));
+    });
+    document.getElementById('chart-description').textContent = metric.label + ': ' + values[0].toFixed(1) + (metric.unit === '%' ? '%' : ' £bn') + ' in ' + years[0] + ', ' + values[5].toFixed(1) + (metric.unit === '%' ? '%' : ' £bn') + ' in ' + years[5] + '. ' + (financial ? 'Financial years.' : 'Calendar years.');
+  }
+  metricEl.addEventListener('change', renderChart);
+  window.addEventListener('resize', () => requestAnimationFrame(renderChart));
+
+  function preparePrint() {
+    if (printSnapshot) return;
+    printSnapshot = {query: queryEl.value, topic: activeTopic, details: Array.from(document.querySelectorAll('details')).map(el => [el, el.open])};
+    queryEl.value = '';
+    activeTopic = 'all';
+    applyFilters();
+    printSnapshot.details.forEach(([el]) => { el.open = true; });
+  }
+  function restorePrint() {
+    if (!printSnapshot) return;
+    queryEl.value = printSnapshot.query;
+    activeTopic = printSnapshot.topic;
+    printSnapshot.details.forEach(([el, open]) => { el.open = open; });
+    printSnapshot = null;
+    applyFilters();
+  }
+  window.addEventListener('beforeprint', preparePrint);
+  window.addEventListener('afterprint', restorePrint);
+  document.getElementById('print-guide').addEventListener('click', () => {
+    const statusEl = document.getElementById('print-status');
+    statusEl.hidden = true;
+    statusEl.textContent = '';
+    preparePrint();
+    try { window.print(); } catch (_) {
+      restorePrint();
+      statusEl.hidden = false;
+      statusEl.textContent = 'Printing could not open. Use your browser’s Print command.';
+    }
+  });
+
+  applyFilters();
+  document.querySelectorAll('[data-enhanced]').forEach(el => { el.hidden = false; });
+  document.documentElement.classList.add('js-ready');
+  renderChart();
+  document.getElementById('forecast-panel').hidden = false;
+  revealHash();
+})();
+
+</script>
+</body></html>

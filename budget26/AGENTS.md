@@ -1,0 +1,30 @@
+# Budget 26
+
+A neutral, public Budget explainer for the 28 October 2026 edition. Intended static-hosting path: `/budget26/`. Apply the VibeProjects root rules and shared frontend-design skill.
+
+## Run and architecture
+
+Open `index.html` directly, or run `python3 -m http.server 8000` in this folder. The runtime is one HTML file with inline CSS and JavaScript. No build, package installation, API, account or storage is required. An optional Public Sans Google Fonts stylesheet has system-font fallbacks.
+
+- `key-budget-points.md` is the editorial source of truth; preserve it and the original PDF in `sources/`.
+- `build-plan.md` records the approved design and behaviour.
+- `index.html` contains all 48 policy entries, six topic groups, ten timeline rows, eight OBR assessment points and both forecast tables as static HTML. There is no runtime Markdown parser or committed authoring generator.
+- Chart values are read from the two HTML tables. Do not duplicate their numerical data in JavaScript.
+
+## Content and public links
+
+Keep the folder name, policy IDs and main section fragments stable. Check citations, geographical scope, dates, amounts and consultation qualifications when editing. The edition is historical; do not turn its planned dates into claims of enactment. Preserve the distinction between OBR forecasts and government policy. PDF citations use printed pages; add six for PDF page anchors. Keep the Annex A access limitation visible in Sources.
+
+Search indexes all words across titles, summaries, dates, geography and complete source detail. Search and one selected topic combine with AND. The 48 policy entries are the result count; overview, forecasts, timeline and sources are not policy results. Initial, changed and repeated fragments reveal filtered articles, open disclosures and focus the target. Clipboard failures expose a selected URL. Print snapshots reveal all content and restore the reader's filters and disclosure states afterwards.
+
+## Design and accessibility
+
+Public Sans/system sans; teal #006B63, ink #162D3A, muted #526674, background #F4F7F8, white #FFFFFF and lines #CDD8DE. The calendar rail is the main visual device. Keep text left aligned and avoid decorative imagery, counters or motion. At 960px use a 220px sticky sidebar; below it use a native topic select. Preserve keyboard focus, 44px controls, reduced-motion support, no-JavaScript reading and no global overflow. The forecast tables may scroll inside their labelled containers.
+
+## Verification
+
+Run `python3 tests/static_audit.py` and `python3 tests/browser_smoke.py`. Browser tests require Python Playwright and Chromium; use `/usr/bin/chromium` by default or set `BUDGET26_CHROMIUM` to another executable. Test-only tooling is not required by readers. Generated screenshots and results go in `tests/artifacts/` and are ignored by Git. Inspect the mobile and desktop screenshots before reporting success. Do not infer tests passed just because their scripts exist.
+
+`tests/control_runtime.mjs` executes the actual page script against LinkeDOM with explicitly modelled browser-only APIs. Run with an installed `linkedom` package or set `BUDGET26_LINKEDOM_PATH` to a standalone worker module, e.g. `BUDGET26_LINKEDOM_PATH=/tmp/budget26-linkedom-worker.mjs node tests/control_runtime.mjs`. It tests DOM state and handlers, not native clicks, layout, clipboard permissions or visual rendering. See tests/VERIFICATION.md for the checks actually completed.
+
+Only change this project. Building and checking locally does not publish the page; repository updates and deployment are separate actions.
