@@ -1,36 +1,58 @@
 # Neural
 
-Interactive educational neural-network simulation. `index.html` contains the interface, CSS, canvas rendering, and real batch gradient-descent training. No dependencies, build step, external assets, persistence, or backend. Open the file directly or serve this folder with `python3 -m http.server 8000`.
+An interactive field guide for complete beginners learning how a neural network practices with examples. The stable folder is `neural`; do not rename it. The default lamp rule is AND (both switches on), with XOR (exactly one on) offered as a harder follow-up. OR is also available.
 
-## Architecture
+## Run and files
 
-- Fixed 2–4–1 network, sigmoid hidden/output activations, mean squared error. `forward` computes predictions; `trainEpoch` accumulates gradients across all four binary examples before applying updates. Keep numerical changes separate from rendering.
-- `weights`, `biases`, `outWeights`, and `outBias` contain model parameters. `epoch` and `history` track learning. History is periodically downsampled to bound memory.
-- `liveInput` is independent of training data: sliders and decision-field dragging explore continuous values; only the four binary corners train the model. Intermediate inputs have no ground-truth target.
-- `selected` is a corner-row index, or -1 for intermediate inputs. `inspected` identifies a neuron (`i0`, `h0`, `o0`, etc.). Accessible neuron buttons mirror diagram selection.
-- `render` updates metrics, table, explanations, and canvases. `updateExplore` explains the current prediction and neuron calculation. `showGuide` advances a five-step beginner walkthrough. Each step has an explicit action in `guideAction`; navigation alone must not start learning or reset model settings. `taskInfo` and `syncTaskCopy` keep the lamp story and worked example consistent with XOR, AND, and OR.
-- The animation loop uses a fixed 30 Hz training clock with bounded catch-up. The speed selector changes epochs per tick. Training pauses when every binary example has absolute prediction error below 0.08; the user can continue. Reset and task changes stop training and randomize parameters.
+Open `index.html` directly, or serve this folder with `python3 -m http.server 8000`. No build, backend, external resources, runtime dependencies, or persistence.
 
-## Beginner explanations
+- `index.html`: semantic page structure, experiment, lesson rail, reference material.
+- `style.css`: design tokens, dark experiment stage, reading surfaces, responsive and sticky layouts.
+- `app.js`: numerical model, training, model snapshots, slow rounds, rendering, guided lesson, and challenges.
+- `tests/browser.cjs`: Playwright smoke and regression checks, using an existing Playwright/Chromium installation. See `tests/README.md`.
 
-Use the two-switch/lamp story: 0 = off/no, 1 = on/yes. Describe XOR as exactly one switch on, AND as both on, and OR as at least one on (including both). Explain concepts before jargon. Asking with sliders, presets, table rows, or the map must not train the model; only training controls change parameters.
+The source was split once it grew beyond a small single-file demo. Keep all assets self-contained with relative paths.
 
-Display epochs as practice rounds and accuracy as correct examples out of four. Keep the distinction between correct Yes/No categories and score error. Scores use a 0.5 threshold and are not calibrated confidence probabilities. Scores are rounded for display; classification uses the full value. Completion only means the four practice scores are close to their targets, not that generalization has been tested.
+## Model and invariants
 
-Middle circles are small calculators, weights are signed influences, biases are learned starting nudges, and activation is the outgoing signal. Keep equations and extra controls optional in collapsed `details`. The answer-map background shows predictions, corner dots show correct teaching answers, and the white ring shows the current query. Intermediate inputs have no supplied target. Glossary and FAQ content should remain accurate if the algorithm changes.
+Fixed 2–4–1 network, sigmoid hidden/output activations, mean squared error. `forward` computes a prediction. `trainEpoch(rate)` accumulates gradients across all four binary examples, then applies exactly one batch update. An epoch is described as a practice round. Do not change one model parameter while still calculating another gradient in the same batch.
 
-## UI conventions
+`weights`, `biases`, `outWeights`, and `outBias` hold live parameters. `copyModel` and `restoreModel` deep-copy arrays. `baseline` retains the initial model, four initial scores, and initial error until Reset or a task change. `replayStart` restores that exact model and clears round history; it does not randomize or replace the comparison baseline. This lets users compare adjustment sizes from identical starting settings.
 
-The frontend design follows the repository's `.agents/skills/frontend-design/SKILL.md` and its design reference. The direction is an interactive field guide: pale sage reading surfaces around a forest-green experiment panel. The live switch-and-lamp circuit is the main visual element; surrounding headings, navigation, and lesson sections stay simple.
+`liveInput` is a query, independent of the four training examples. Sliders, presets, hero switches, table buttons, and map dragging must never train the model. `selected` is a binary-example index, or -1 for intermediate inputs. Intermediate inputs have no supplied correct answer. `inspected` identifies a circle (`i0`, `h0`, `o0`, etc.).
 
-CSS tokens: `--bg` #f2f5ef, `--paper` #ffffff, `--panel` #e4ecdf, `--ink` #213d32, `--muted` #52655b, `--accent` #245a3c. The experiment panel scopes a dark palette using `--stage` #142b23, light ink, lime positive signals, and coral negative signals. Keep canvas constants synchronized with stage tokens. Blue-to-lime answer-map semantics remain unchanged.
+The requestAnimationFrame loop uses a fixed 30 Hz practice clock with bounded catch-up. Speed changes rounds per tick; learning rate changes adjustment size. Practice automatically pauses when every score is within 0.08 of its supplied target. This only checks training examples, not generalization.
 
-Large headings and values use a local serif stack (Iowan Old Style / Palatino / Georgia); reading text uses a humanist sans stack (Trebuchet MS / Segoe UI / sans-serif). No remote fonts or assets are required. Use sentence case, visible focus, restrained borders, and meaningful section anchors. Main responsive breakpoints are 1100px, 760px, and 520px, with a narrow 360px adjustment. Respect reduced motion; suppress moving signal particles while retaining training updates.
+## Slow round
 
-The opening circuit uses `heroSwitch0/1`, `heroBulb`, `heroScore`, and `heroTarget`. `updateExplore` synchronizes them with `liveInput` and the current model. The switches only query the network; they must not train it. The lamp shows the network's Yes/No guess, while the separate correct-answer text uses the selected task. Intermediate inputs have no supplied target. Canvas interactions have keyboard-accessible controls as alternatives.
+`roundDemo` is null, or a four-stage state machine: guess (0), compare (1), adjust (2), try again (3). `startRound` pauses normal learning and captures the current model, scores, error, adjustment size, and epoch. Stages 0 and 1 do not change parameters. Entering stage 2 calls `trainEpoch` exactly once; stage 3 and Finish do not train again. Exit before adjusting changes nothing; exit after adjusting keeps the committed update. Do not roll it back silently.
 
-The `neural` folder is the stable URL path. Do not rename it. Deployment depends on repository GitHub Pages settings; do not claim a live URL without verifying hosting.
+Competing input/training/task/reset/replay controls are locked during a slow round. Circle inspection remains available. The optional table shows all four before/after scores at higher precision. `biggestWeightChange` identifies the real connection with the greatest absolute weight adjustment; `drawNetwork` highlights it in yellow. Biases are adjusted too. An individual example may worsen temporarily because the update reflects all four examples.
 
-## Verification
+## Guided learning and accessibility
 
-Check XOR, AND, and OR learning, live-input feedback, inspected calculations, guide navigation, dragging the field, play/pause, reset, speed changes, and mobile overflow. Network initialization is random, so allow occasional slow XOR convergence. JavaScript syntax, numerical convergence for all three tasks, and interaction-handler checks passed for the beginner rewrite. Checks cover asking without training, presets, sliders, task-specific stories, all five guide actions, pause/reset, inspection, and map input. HTML IDs, anchor links, labels, and ARIA references were checked. For the design update, DOM binding and interaction-handler checks passed for the opening switches, score/target synchronization across all rules, guide actions, training controls, inspector, and map input. Core text/background color pairs were calculated above 4.5:1 contrast. HTML section nesting and references passed. Browser launch remains blocked by sandbox socket restrictions, so phone/desktop screenshots, actual browser interactions, and rendered overflow/focus checks remain outstanding.
+`guide` has five steps, each with a nearby target and explicit action. The lesson rail stays beside the experiment and results on desktop. On mobile it becomes compact and sticky; expanding lesson details makes it flow normally so it cannot cover the entire experiment. Keep scroll margins consistent with the compact rail height.
+
+`guideAction` advances an active slow round instead of restarting it. Navigation never starts a practice round. `challengeForStep` supplies a short conceptual question with explanatory feedback. The first question adapts to the selected rule. `challengeAnswers` stays in memory; changing rules resets it. No locked progression or persistence. Preserve keyboard focus after choosing an answer.
+
+`taskInfo` and `syncTaskCopy` keep story and rule descriptions consistent. `renderExamples` updates stable table rows with native buttons so training does not remove keyboard focus. The starting and current scores remain separate. Improvement text distinguishes category correctness from distance to the target.
+
+Charts have drawn axis titles, values, and a starting-error reference. `mapBounds` defines the plotted rectangle for both rendering and pointer conversion. The selected-point readout includes input values, predicted answer/score, and the supplied answer if there is one. Corner dots represent targets, background represents predictions, and the white ring marks the current query. Keep slider alternatives for canvas interactions.
+
+Use plain explanations before technical terms. Keep equations and extra controls optional. A score is not a calibrated confidence probability. Scores are rounded for display; Yes/No uses the full value with a 0.5 threshold. Brightness is activation, not knowledge or certainty.
+
+## Design
+
+Follow `../.agents/skills/frontend-design/SKILL.md` and its reference. Interactive field-guide direction: pale sage reading surfaces surrounding a forest-green experiment stage. The live switch/lamp circuit is the main visual element.
+
+Core tokens: background #f2f5ef, white paper, panel #e4ecdf, ink #213d32, muted #52655b, accent #245a3c. Stage #142b23, light ink #f0f3e9, lime positive connections #c6f681, coral negative connections #df9a87, blue low-score map #75c6db. Canvas constants mirror stage colors; keep them synchronized. Yellow highlights the largest weight adjustment in a slow round.
+
+Local serif stack for large headings/values (Iowan Old Style / Palatino / Georgia), humanist sans for reading (Trebuchet MS / Segoe UI / sans-serif). No remote fonts. Visible focus, sentence case, restrained borders, readable contrast, reduced motion. Breakpoints at 1100px, 760px, 520px, with a 360px adjustment. Reduced motion suppresses moving signal particles; user-paced slow rounds still work.
+
+## Verification and deployment
+
+Run `node --check neural/app.js` and `node neural/tests/browser.cjs` from the repository root with Playwright and Chromium available. Tests cover exact single-update slow rounds, unchanged exploration, exact replay, immutable baselines, challenge feedback/focus, all three learning tasks, training controls, keyboard table actions, mobile/desktop/narrow overflow, and console errors. Inspect screenshots, including the active slow round at phone width.
+
+Browser checks and screenshot inspection passed for the guided-learning update. The browser environment blocks local-file and local-server navigation, so the test assembles the actual HTML/CSS/JS into an in-memory browser page without network requests. Relative asset references and HTML IDs/nesting are also checked separately.
+
+Publish all application files together; index now references both style.css and app.js. Hosting depends on repository GitHub Pages settings; do not claim a live URL without verifying it.
