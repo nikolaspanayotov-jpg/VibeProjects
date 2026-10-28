@@ -440,7 +440,7 @@ a,.policy h3,.detail-body { overflow-wrap:anywhere; }
 <div class="detail-body"><p class="source-detail">As with savings income, this adds <strong>two percentage points</strong> to the two-point increase announced in Budget 2025. The commitment to unchanged headline tax rates on earnings is separate from this property-income measure.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=142">HM Treasury Budget, printed p. 136</a>, 6.246.</p></div>
 <div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-property-income">Copy link<span class="sr-only"> to Tax on property income</span></button>
 <div class="copy-fallback" hidden><label for="copy-property-income">Copy this policy link</label><input id="copy-property-income" readonly spellcheck="false"></div></div>
-</details></div></article><article class="policy" id="policy-cash-isa" data-topic="tax" data-original-title="Cash ISA">
+</details></div></article><aside class="context-note" id="savings-property-context" aria-label="Savings and property income tax rates" data-related-policies="policy-savings-income policy-property-income"><strong>Why 24%, 44% and 49%?</strong><p>The increases are a further two percentage points on top of the two-point increases announced in Budget 2025 for April 2027. Existing savings allowances and ISA exemptions still matter.</p><p class="citation"><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">HMRC tax overview (OOTLAR)</a>, sections 1.1–1.5 and 1.18.</p></aside><article class="policy" id="policy-cash-isa" data-topic="tax" data-original-title="Cash ISA">
 <div class="policy-copy"><h3 tabindex="-1"><a href="#policy-cash-isa">Cash ISA limit</a></h3>
 <p class="policy-summary">The planned reduction is reversed and the annual cash ISA allowance is retained.</p>
 <dl class="policy-comparison" aria-label="Annual cash ISA limit"><div><dt>Existing limit</dt><dd>£20,000</dd></div><div><dt>Retained limit</dt><dd>£20,000</dd></div><div class="comparison-change"><dt>Change</dt><dd>No reduction to the cash limit</dd></div></dl>
@@ -490,7 +490,7 @@ a,.policy h3,.detail-body { overflow-wrap:anywhere; }
 <div class="detail-body"><p class="source-detail">Through April 2029, uprating remains the highest of earnings growth, inflation or <strong>2.5%</strong>. From <strong>April 2030</strong>, it becomes the highest of inflation, 2.5%, or the increase needed to maintain the pension’s <strong>April 2029 value relative to earnings</strong>. The government links future savings to a National Care Service offering older people in <strong>England</strong> personal care free at the point of use. Detailed care arrangements are still to be developed, with the <strong>Casey commission reporting in 2027</strong>. Treasury estimates pension savings of <strong>£15 billion a year by the late 2030s</strong> and <strong>£50 billion by the late 2040s</strong>. Those estimates sit beyond the Budget forecast period.</p><p class="citation"><a href="./sources/budget-2026.pdf#page=99">HM Treasury Budget, printed p. 93</a>, 5.23–5.25.</p></div>
 <div class="entry-actions" data-enhanced hidden><button type="button" class="copy-link" data-id="policy-state-pension">Copy link<span class="sr-only"> to State Pension Triple Lock</span></button>
 <div class="copy-fallback" hidden><label for="copy-state-pension">Copy this policy link</label><input id="copy-state-pension" readonly spellcheck="false"></div></div>
-</details></div></article><aside class="context-note"><strong>Why 24%, 44% and 49%?</strong><p>The increases are a further two percentage points on top of the two-point increases announced in Budget 2025 for April 2027. Existing savings allowances and ISA exemptions still matter.</p><p class="citation"><a href="https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar">HMRC tax overview (OOTLAR)</a>, sections 1.1–1.5 and 1.18.</p></aside></section><section class="topic-section" id="topic-work" aria-labelledby="heading-work"><header class="topic-heading"><h2 id="heading-work" tabindex="-1">Work and housing</h2><p>Pay, support for families and the routes into a first home.</p></header><article class="policy" id="policy-minimum-wages" data-topic="work" data-original-title="Minimum wages from 1 April 2027">
+</details></div></article></section><section class="topic-section" id="topic-work" aria-labelledby="heading-work"><header class="topic-heading"><h2 id="heading-work" tabindex="-1">Work and housing</h2><p>Pay, support for families and the routes into a first home.</p></header><article class="policy" id="policy-minimum-wages" data-topic="work" data-original-title="Minimum wages from 1 April 2027">
 <div class="policy-copy"><h3 tabindex="-1"><a href="#policy-minimum-wages">Minimum wages</a></h3>
 <p class="policy-summary">All minimum-wage rates rise by <strong>3.9%</strong>. The 21+ National Living Wage becomes <strong>£13.21 an hour</strong>; the 18–20 rate £11.27; and the 16–17/eligible apprentice rate £8.31.</p>
 
@@ -831,6 +831,7 @@ a,.policy h3,.detail-body { overflow-wrap:anywhere; }
 (function () {
   'use strict';
   const policies = Array.from(document.querySelectorAll('.policy'));
+  const contextNotes = Array.from(document.querySelectorAll('[data-related-policies]'));
   const topics = Array.from(document.querySelectorAll('.topic-section'));
   const queryEl = document.getElementById('policy-query');
   const topicEl = document.getElementById('topic-select');
@@ -856,6 +857,7 @@ a,.policy h3,.detail-body { overflow-wrap:anywhere; }
       if (visible) count += 1;
     });
     topics.forEach(section => { section.hidden = !Array.from(section.querySelectorAll('.policy')).some(article => !article.hidden); });
+    contextNotes.forEach(note => { note.hidden = note.dataset.relatedPolicies.split(' ').every(id => document.getElementById(id).hidden); });
     topicEl.value = activeTopic;
     topicButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.topic === activeTopic)));
     countEl.textContent = count + ' of ' + policies.length + (count === 1 ? ' policy shown' : ' policies shown');

@@ -19,6 +19,7 @@ The optional DOM test dependency was obtained from WebReflection/linkedom's stan
 
 - The actual page loads under `/budget26/`, with the optional Google Fonts stylesheet replaced by empty CSS to exercise the system-font fallback.
 - All twelve audience links recover filtered policies and focus their headings. Searches find closed detail, comparison values and worked examples. Topic counts and combined filters are correct.
+- The 24%/44%/49% explanation sits immediately after the property-income entry, following the savings-income entry. It remains visible for either related tax, disappears for pension-only searches, and is included/restored correctly during print. Desktop/mobile placement screenshots are recorded as desktop-tax-context.png and mobile-tax-context.png.
 - Every native policy disclosure and all 48 copy controls work. The denied-permission fallback and success feedback pass; a separate unmodified Clipboard API check writes and reads the correct URL with Chromium clipboard permissions granted.
 - All six glossary links focus their definitions and return to the original passage. Changed, repeated, nested and malformed fragments are handled. All six charts reproduce their source table values and year types.
 - Layouts fit **320, 390, 768 and 1440 CSS pixels**, including checks with policy disclosures open. The mobile menu closes on selection/Escape. Keyboard skip navigation, visible focus, reduced-motion preference and **200% CSS zoom** pass.

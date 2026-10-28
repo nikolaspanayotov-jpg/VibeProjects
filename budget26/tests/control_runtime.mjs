@@ -66,6 +66,17 @@ for (const [name,count] of Object.entries({bills:8,tax:8,work:8,business:11,fund
 }
 pass('All six topic filters, result counts and selection synchronisation');
 
+const taxContext=$('#savings-property-context');
+assert.equal(taxContext.previousElementSibling.id,'policy-property-income');
+assert.equal(taxContext.nextElementSibling.id,'policy-cash-isa');
+for(const query of ['savings income','property income']){
+  search(query);assert.equal(taxContext.hidden,false);
+}
+search('Casey pension');assert.equal(taxContext.hidden,true);
+window.dispatchEvent(new window.Event('beforeprint'));assert.equal(taxContext.hidden,false);
+window.dispatchEvent(new window.Event('afterprint'));assert.equal(taxContext.hidden,true);
+search('');topic('all');assert.equal(taxContext.hidden,false);
+
 topic('business');search('unmatchableqzx');hash('policy-household-energy-payment');
 assert.equal(visible().length,48);assert.equal($('#policy-query').value,'');
 assert.equal($('#policy-household-energy-payment details').open,true);

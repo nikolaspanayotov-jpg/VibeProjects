@@ -110,6 +110,24 @@ try:
         expect(page.locator(f'button[data-topic="{topic}"]')).to_have_attribute('aria-pressed','true')
     passed('All six topic counts and desktop/mobile state synchronisation')
 
+    tax_context=page.locator('#savings-property-context')
+    assert tax_context.evaluate('(e)=>e.previousElementSibling.id')=='policy-property-income'
+    assert tax_context.evaluate('(e)=>e.nextElementSibling.id')=='policy-cash-isa'
+    for phrase in ['savings income','property income']:
+        query.fill(phrase); expect(tax_context).to_be_visible()
+    query.fill('Casey pension'); expect(tax_context).to_be_hidden()
+    page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
+    expect(tax_context).to_be_visible()
+    page.evaluate("window.dispatchEvent(new Event('afterprint'))")
+    expect(tax_context).to_be_hidden()
+    for width,name in [(1440,'desktop'),(390,'mobile')]:
+        page.set_viewport_size({'width':width,'height':920})
+        page.goto(url+'#policy-property-income')
+        page.locator('#policy-property-income .policy-details').evaluate('(e)=>e.open=false')
+        page.screenshot(path=str(OUT/(name+'-tax-context.png')))
+    page.set_viewport_size({'width':1440,'height':1000})
+    page.goto(url)
+
     page.locator('button[data-topic="business"]').click()
     query.fill('unmatchableqzx')
     page.evaluate("location.hash='policy-household-energy-payment'")
