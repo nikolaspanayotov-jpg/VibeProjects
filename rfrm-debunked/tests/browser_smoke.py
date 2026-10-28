@@ -42,6 +42,7 @@ def exercise_controls(context, url):
             '(els, topic) => els.filter(el => topic === "all" || el.dataset.topic === topic).map(el => el.id)', topic)
         assert visible_ids(page) == expected, topic
         assert page.locator('#topic-select').input_value() == topic, topic
+        assert page.locator('#explorer-heading').evaluate('(el) => el === document.activeElement'), topic
     check(True, f'All {len(topics)} desktop topic controls filter and synchronise')
     page.locator('#reset').click()
     shortcuts = {

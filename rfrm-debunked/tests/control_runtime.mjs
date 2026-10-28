@@ -192,6 +192,8 @@ pass('Search submit, exact number, evidence text, combined filter and empty rese
 for (const link of h.all('.topic-nav a[data-topic]')) {
   h.click(link);
   const topic = link.dataset.topic;
+  assert.equal(h.document.activeElement.id, 'explorer-heading', topic + ' topic link focuses results');
+  assert.equal(h.scrolls.at(-1), 'explorer-heading', topic + ' topic link scrolls to results');
   const expected = h.all('.policy').filter(el => topic === 'all' || el.dataset.topic === topic).map(el => el.id);
   assert.deepEqual(h.visible(), expected);
   assert.equal(h.$('#topic-select').value, topic);

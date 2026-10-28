@@ -107,3 +107,8 @@ Completed checks:
 - The authoring generator and both Python tests passed syntax compilation; generated inline JavaScript passed `node --check`.
 
 The browser smoke suite was updated for native overview/index expansion, shortcut navigation, moved evidence panels, phone toolbar focus/clearance and no-JavaScript/print visibility. It was **not rerun** because of the previously established socket restrictions. No new screenshots were captured or inspected. Sticky positioning, overflow, actual native interaction, keyboard defaults, mobile/desktop layout and print rendering remain unverified in a real browser; the existing browser limitation above continues to apply.
+
+
+## Topic navigation return — 28 October 2026
+
+Every Browse the plan topic link, including All topics, now applies its filter and then focuses and scrolls to the explorer heading through the same helper used by everyday shortcuts. The runtime test checks heading focus and the scroll target for every topic link; browser coverage checks focus but remains unrun under the existing restriction. Static audit and all ten DOM/runtime regression groups passed after regeneration.

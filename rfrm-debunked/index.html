@@ -293,15 +293,19 @@ filtersEl.addEventListener('submit', event => { event.preventDefault(); applyFil
 queryEl.addEventListener('input', applyFilters);
 queryEl.addEventListener('search', applyFilters);
 topicSelectEl.addEventListener('change', () => { activeTopic = topicSelectEl.value; applyFilters(); });
+function showExplorer() {
+  const headingEl = document.getElementById('explorer-heading');
+  headingEl.focus({preventScroll:true});
+  headingEl.scrollIntoView({block:'start'});
+}
 topicLinks.forEach(link => link.addEventListener('click', event => {
   event.preventDefault(); activeTopic = link.dataset.topic; applyFilters();
+  showExplorer();
 }));
 shortcutButtons.forEach(button => button.addEventListener('click', () => {
   activeShortcut = activeShortcut === button.dataset.shortcut ? '' : button.dataset.shortcut;
   applyFilters();
-  const headingEl = document.getElementById('explorer-heading');
-  headingEl.focus({preventScroll:true});
-  headingEl.scrollIntoView({block:'start'});
+  showExplorer();
 }));
 function focusExplorerControl(control) {
   control.focus({preventScroll:true});
