@@ -1,6 +1,6 @@
 # Verification record
 
-Recorded 27 October 2026 for the completed static page.
+Initial checks recorded 27 October 2026. Latest real-browser and mobile review completed 28 October 2026; see the final section for the current results and scope.
 
 ## Checks completed
 
@@ -14,9 +14,9 @@ Recorded 27 October 2026 for the completed static page.
 
 These checks establish static integrity and syntax. They do not establish browser behaviour or visual accessibility.
 
-## Browser verification limitation
+## Earlier browser verification limitation
 
-Browser tests have **not passed and real-browser behaviour has not been verified**. No mobile or desktop screenshots were captured or inspected. No successful browser check of search, filters, disclosures, hashes, copying, printing, keyboard focus, reduced motion, overflow, zoom, file URLs or HTTP hosting is claimed. The later DOM/event checks below execute the application script with modelled browser APIs; they do not remove this limitation.
+Before the real-browser review on 28 October 2026, browser tests had not passed and no mobile or desktop screenshots had been captured or inspected. At that stage, DOM/event checks executed the application script with modelled browser APIs and did not establish browser behaviour. The final review below supersedes this earlier limitation for its stated HTTP Chromium scope; file URLs, Safari, physical devices and actual browser zoom remain outside that scope.
 
 The managed execution sandbox denied local socket creation when the browser smoke test attempted to start its temporary HTTP server (`PermissionError: [Errno 1] Operation not permitted`). An installed Chromium browser was subsequently found at `/usr/bin/chromium`; the root agent also encountered sandbox socket restrictions during browser launch. Attempts to run with additional network permission were aborted. They are not test results and are not treated as approvals or successful checks.
 
@@ -132,3 +132,29 @@ The integration reviewer executed all 13 groups from the updated control_runtime
 A separate DOM comparison confirmed exact preservation of the ordered 101 article IDs, their headings/proposals/counterarguments/analysis/source lists, both original financial tables and the complete source-register markup. All 726 static IDs are unique and every internal fragment resolves. Original JSON and summary files remain unchanged in the Git tree. The final chip copy uses familiar theme/topic/search/evidence labels with explicit accessible removal names; this presentation refinement was checked separately. Application and authoring-template scripts match and pass Function syntax parsing.
 
 Python generation, Python audits, real-browser rendering/native interaction and screenshots remain unexecuted for this revision because the workspace is unavailable. Earlier verification records are retained with their original scope; their results are not presented as fresh checks.
+
+
+## Real browser and mobile review — 28 October 2026
+
+Tested the page from commit `0218f7f7861f80bee581f612ca6338c265c1686b` with installed Chromium `154.0.8037.57` and Python Playwright. The restored workspace was synchronised with that GitHub version before testing. Browser execution required approved socket access for Chromium and the temporary loopback HTTP servers. No application or policy content changes were required.
+
+Completed results:
+
+- `python3 tests/browser_smoke.py`: **109 recorded checks passed**, exit status 0, no browser page errors. Coverage includes all 130 native disclosures, all 101 copy buttons with clipboard API test doubles, all 16 topic controls/options, shortcuts, evidence filtering and individual chips, search, fragment navigation, keyboard/focus, reduced motion, print events/restoration and citation styles, no-JavaScript reading/disclosures/printing, phone gutters, 44px numbered targets and global overflow. Viewport widths included 320, 350, 390, 720, 950 and 1440px. The 720px layout is a reflow equivalent, not a test of actual browser zoom.
+- `python3 tests/mobile_review.py`: **131 recorded checks passed across seven contexts**, exit status 0, no JavaScript errors. Chromium emitted real touch events in emulated mobile contexts at 320×850, 375×900, 390×900, 430×932, 844×390 landscape and 768×1024; desktop used 1440×1000. Four-way filtering, chip removal, sticky-toolbar clearance, focus, native disclosure/route/glossary navigation, correction-draft destinations, figures, gutters and overflow passed. No external correction reports were submitted.
+- A separate fresh Chromium context used the real `navigator.clipboard.writeText/readText` APIs after granting clipboard permission. Clicking the measure 12 copy button wrote and returned its exact permanent URL. Clipboard-denial/fallback scenarios remain covered separately with test doubles.
+- Actual Chromium PDF generation completed and restored the previous disclosure state. Text extraction from the 158-page PDF confirmed all 101 article headings are present. This verifies generated print output, not an operating-system print dialog or physical printer.
+- `python3 tests/static_audit.py` passed on the synchronised page. Test script syntax was checked after the test-harness refinements.
+
+Screenshots were captured under `tests/artifacts/`: desktop and narrow layouts from the smoke suite, plus top, filtered explorer, expanded analysis, glossary and both figures for each of the seven responsive contexts. Representative desktop, 320px phone, 390px expanded analysis/glossary/UC figure and landscape screenshots were visually inspected. Text remains inside the page gutters; reviewed controls and text did not overlap or overflow. These observations cover the inspected views, not every pixel of the complete page.
+
+Three previously unexecuted test-fixture problems were corrected: clipboard/print assignment expressions now use wrappers so Playwright does not invoke their returned functions prematurely; keyboard typing waits for skip-link focus navigation to finish; and result records are written even on failure. The suite reports rather than bypasses an explicit managed-browser restriction on file URLs.
+
+**Limits:** file-URL navigation returned `ERR_BLOCKED_BY_ADMINISTRATOR`; those two offline checks are explicitly skipped. All main browser and touch checks used local HTTP. This is Chromium viewport/touch emulation, not Safari, Firefox, physical phones, mobile keyboards, a screen-reader audit, real browser zoom, a live hosting deployment or real OS print-dialog testing. No claim is made for those environments. The earlier historical records above remain scoped to their original revisions.
+
+Generated local review artefacts (excluded from hosting/source control):
+
+- `tests/artifacts/results.json`: completed smoke results and the explicit file-URL skip.
+- `tests/artifacts/mobile-review/results.json`: per-viewport checks, geometry and error records.
+- `tests/artifacts/native-browser-results.json`: actual clipboard/PDF results and Chromium version.
+- `tests/artifacts/print-all.pdf`: the generated 158-page print output.

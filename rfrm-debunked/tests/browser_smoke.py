@@ -7,7 +7,7 @@ import os
 import shutil
 import threading
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Error as PlaywrightError
 
 ROOT=Path(__file__).resolve().parents[1]
 ARTIFACTS=ROOT/'tests/artifacts';ARTIFACTS.mkdir(exist_ok=True)
@@ -16,10 +16,11 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(QuietHandler,directory=str(ROOT)))
 thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
 url=f'http://127.0.0.1:{server.server_port}/index.html'
-results=[]; errors=[]
+results=[]; errors=[]; skipped=[]; completed=False
 def check(condition,label):
     assert condition,label
     results.append(label)
+    print('PASS ' + label, flush=True)
 def visible_ids(page):return page.locator('.policy:not([hidden])').evaluate_all('(els)=>els.map(el=>el.id)')
 def no_overflow(page):return page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
 
@@ -101,7 +102,7 @@ def exercise_controls(context, url):
         page.wait_for_function('(id) => document.querySelector(`#${id} .copy-link`).textContent === "Link copied"', arg=article_id)
         assert page.evaluate('window.copiedURLs.at(-1)') == url + '#' + article_id
     check(True, 'All 101 copy buttons send their own permanent URL to clipboard API')
-    page.evaluate('navigator.clipboard.writeText = () => Promise.reject(new Error("Denied"))')
+    page.evaluate('() => { navigator.clipboard.writeText = () => Promise.reject(new Error("Denied")); }')
     page.locator('#measure-01 .copy-link').click()
     page.wait_for_selector('#measure-01 .copy-fallback:not([hidden])')
     check(page.locator('#measure-01 .copy-link').text_content() == 'Copy link', 'Failed retry clears stale copied feedback')
@@ -144,14 +145,14 @@ def exercise_controls(context, url):
     page.locator('#query').fill('#12')
     snapshot = page.locator('details').evaluate_all('(els) => els.map(el => el.open)')
     # A nonblocking print implementation must remain prepared until afterprint.
-    page.evaluate('window.print = () => { window.printInvoked = true; window.dispatchEvent(new Event("beforeprint")); }')
+    page.evaluate('() => { window.print = () => { window.printInvoked = true; window.dispatchEvent(new Event("beforeprint")); }; }')
     page.locator('#print-page').click()
     check(page.evaluate('window.printInvoked') and len(visible_ids(page)) == 101 and
           page.locator('details:not([open])').count() == 0, 'Print button opens every entry until print completes')
     page.evaluate('window.dispatchEvent(new Event("afterprint"))')
     check(visible_ids(page) == ['measure-12'] and page.locator('details').evaluate_all('(els) => els.map(el => el.open)') == snapshot,
           'Print button restores original filters and disclosures after completion')
-    page.evaluate('window.print = () => { throw new Error("Unavailable"); }')
+    page.evaluate('() => { window.print = () => { throw new Error("Unavailable"); }; }')
     page.locator('#print-page').click()
     check(page.locator('#print-status').is_visible() and visible_ids(page) == ['measure-12'] and
           page.locator('details').evaluate_all('(els) => els.map(el => el.open)') == snapshot,
@@ -281,16 +282,26 @@ try:
     page.goto(url);page.keyboard.press('Tab')
     check(page.locator('.skip').evaluate('(el)=>el===document.activeElement'),'Keyboard begins at skip link')
     page.keyboard.press('Enter')
+    page.wait_for_function('document.activeElement.id === "main"')
+    page.locator('#query').fill('')
     page.locator('#query').focus();page.keyboard.type('#12')
     check(visible_ids(page)==['measure-12'],'Keyboard search remains usable')
     focus_outline=page.locator('#query').evaluate('(el)=>getComputedStyle(el).outlineStyle')
     check(focus_outline!='none','Keyboard focus visibly outlined')
     file_page=context.new_page();file_page.on('pageerror',lambda err:errors.append(str(err)))
-    file_page.goto((ROOT/'index.html').as_uri());file_page.wait_for_selector('html.js');file_page.locator('#query').fill('#12')
-    check(visible_ids(file_page)==['measure-12'],'file://search works')
-    file_page.evaluate('Object.defineProperty(navigator,"clipboard",{configurable:true,value:undefined})')
-    file_page.locator('#measure-12 .copy-link').click()
-    check(file_page.locator('#measure-12 .copy-fallback').is_visible(),'file://clipboard fallback works')
+    try:
+        file_page.goto((ROOT/'index.html').as_uri())
+    except PlaywrightError as error:
+        if 'ERR_BLOCKED_BY_ADMINISTRATOR' not in str(error):
+            raise
+        skipped.append('file:// checks: managed browser policy blocks local file navigation')
+        print('SKIP ' + skipped[-1], flush=True)
+    else:
+        file_page.wait_for_selector('html.js');file_page.locator('#query').fill('#12')
+        check(visible_ids(file_page)==['measure-12'],'file://search works')
+        file_page.evaluate('Object.defineProperty(navigator,"clipboard",{configurable:true,value:undefined})')
+        file_page.locator('#measure-12 .copy-link').click()
+        check(file_page.locator('#measure-12 .copy-fallback').is_visible(),'file://clipboard fallback works')
     nojs=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':1000});baseline=nojs.new_page();baseline.goto(url)
     check(baseline.locator('.policy').count()==101 and baseline.locator('#filters').is_hidden(),'No JS:all content available, enhanced controls hidden')
     check(baseline.locator('#mobile-tools').is_hidden() and baseline.locator('.shortcut-controls').is_hidden(), 'No JS: enhanced reading controls remain hidden')
@@ -312,7 +323,8 @@ try:
     check(no_overflow(baseline),'No JS:mobile has no global overflow')
     check(not errors,'No browser page errors')
     browser.close()
+    completed=True
 finally:
  server.shutdown()
-(ARTIFACTS/'results.json').write_text(json.dumps({'passed':results,'pageErrors':errors},indent=2)+'\n')
-print('\n'.join('PASS '+r for r in results))
+ (ARTIFACTS/'results.json').write_text(json.dumps({'completed':completed,'passed':results,'pageErrors':errors,'skipped':skipped},indent=2)+'\n')
+print(f'Completed {len(results)} browser checks.', flush=True)
