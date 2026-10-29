@@ -363,6 +363,75 @@
       .bridge-icon { margin-bottom: 12px; }
     }
 
+
+    .step-map { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 16px 0 24px; }
+    .step-map button { min-height: 72px; padding: 10px 8px; background: var(--surface-soft); color: var(--ink); border: 1px solid var(--line); font-size: 14px; font-weight: 650; line-height: 1.5; }
+    .step-map button[aria-current="step"] { background: var(--green-dark); color: var(--white); border-color: var(--green-dark); box-shadow: inset 0 -3px 0 var(--gold); }
+    .prediction-launch { display: flex; align-items: center; justify-content: space-between; text-align: left; gap: 16px; width: 100%; min-height: 110px; padding: 18px 20px; margin-top: 26px; color: var(--green-dark); background: var(--green-soft); border: 1px solid var(--green); }
+    .prediction-launch strong { display: block; font-size: 16px; margin-bottom: 5px; }
+    .prediction-launch small { display: block; font-size: 14px; line-height: 1.65; font-weight: 400; }
+    .prediction-launch > span:last-child { font: 400 26px Georgia, serif; flex: 0 0 auto; }
+    .prediction-panel { z-index: 21; width: min(560px, calc(100% - 32px)); }
+    .prediction-panel .definition-heading h2 { font-size: 26px; }
+    #predictionClose { min-height: 44px; padding: 9px 12px; flex: 0 0 auto; background: var(--green-soft); color: var(--green-dark); border: 1px solid var(--line); font-size: 14px; }
+    #predictionQuestion { font: 400 23px/1.4 Georgia, serif; margin: 18px 0; }
+    .prediction-answers { display: grid; gap: 10px; }
+    .prediction-answer { min-height: 60px; padding: 14px 16px; text-align: left; background: var(--surface-soft); border: 1px solid var(--line); color: var(--ink); font-size: 16px; line-height: 1.6; }
+    .prediction-answer[aria-pressed="true"] { border: 2px solid var(--green); background: var(--green-soft); }
+    .prediction-answer[data-correct="false"][aria-pressed="true"] { background: var(--rust-soft); border-color: var(--rust); }
+    .prediction-feedback { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .prediction-feedback p { font-size: 16px; }
+    .prediction-feedback p + p { margin-top: 10px; }
+    .story-footer { display: block; }
+    .story-metadata { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .story-share { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .share-controls { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 12px; }
+    .share-controls .button { min-height: 46px; font-size: 14px; background: var(--surface); }
+    .share-link { width: 100%; min-width: 0; min-height: 46px; font: 14px/1.5 system-ui, sans-serif; padding: 11px 12px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: var(--surface); text-overflow: ellipsis; }
+    .share-hint { font-size: 14px; margin-bottom: 12px; }
+    #shareStatus, #hostCopyStatus { display: block; min-height: 3.4em; font-size: 14px; line-height: 1.7; margin-top: 10px; color: var(--green-dark); }
+    input:focus-visible, textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+    .login-journey { background: var(--ink); color: var(--surface); border: 1px solid var(--ink); padding: 28px; border-radius: 12px; margin: 32px 0; }
+    .login-journey > h3 { font: 400 28px/1.3 Georgia, serif; margin-bottom: 12px; }
+    .login-journey > p { color: var(--desk-text); font-size: 16px; max-width: 72ch; }
+    .journey-map { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; padding: 0; margin: 24px 0; }
+    .journey-map li { position: relative; min-width: 0; }
+    .journey-map li:not(:last-child):after { content: "→"; position: absolute; left: calc(100% + 5px); top: 40%; color: var(--gold); font-size: 22px; }
+    .journey-stop { width: 100%; height: 100%; min-height: 148px; padding: 22px 18px; text-align: left; background: var(--ink-soft); color: var(--surface); border: 1px solid var(--desk-line); }
+    .journey-stop:disabled { opacity: 1; }
+    .journey-stop[aria-pressed="true"] { background: var(--surface); color: var(--ink); border-color: var(--gold); box-shadow: inset 0 -3px 0 var(--gold); }
+    .journey-stop strong { display: block; font-size: 18px; margin-bottom: 12px; }
+    .journey-stop span { display: block; font-size: 14px; line-height: 1.65; }
+    .journey-stop .vulnerable-point { display: inline-block; border-radius: 5px; padding: 4px 8px; font-size: 13px; font-weight: 650; background: var(--rust-soft); color: var(--rust); }
+    .journey-copy, .journey-sizer { display: grid; }
+    .journey-copy > *, .journey-sizer > * { grid-area: 1 / 1; min-width: 0; }
+    .journey-sizer { visibility: hidden; pointer-events: none; user-select: none; }
+    .journey-copy { padding-top: 22px; border-top: 1px solid var(--desk-line); }
+    .journey-copy h4 { margin: 0 0 10px; font-size: 18px; line-height: 1.5; }
+    .journey-copy p { font-size: 16px; line-height: 1.8; color: var(--desk-text); max-width: 72ch; }
+    .journey-copy .term { color: inherit; }
+    .owner-plan { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .owner-plan h3 { font: 400 25px/1.3 Georgia, serif; margin-bottom: 12px; }
+    .owner-plan > p { font-size: 15px; line-height: 1.75; color: var(--muted); }
+    .host-checklist { display: grid; gap: 10px; border: 0; padding: 0; margin: 20px 0; min-width: 0; }
+    .host-checklist legend { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    .host-checklist label { display: flex; align-items: flex-start; gap: 12px; margin: 0; padding: 14px; min-height: 58px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); font-size: 15px; font-weight: 400; line-height: 1.7; cursor: pointer; }
+    .host-checklist input { width: 22px; height: 22px; flex: 0 0 auto; margin: 2px 0 0; accent-color: var(--green); }
+    .host-checklist label:has(input:checked) { border-color: var(--green); background: var(--green-soft); }
+    #hostProgress { font-weight: 650; color: var(--green-dark); font-size: 15px; }
+    .host-message { width: 100%; max-width: 100%; min-height: 225px; resize: vertical; font: 15px/1.75 system-ui, sans-serif; padding: 16px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 9px; }
+    .owner-plan .button { margin-top: 12px; }
+    @media (max-width: 1100px) { .step-map { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 750px) {
+      .share-controls { grid-template-columns: minmax(0, 1fr); }
+      .journey-map { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .journey-stop { min-height: 132px; }
+      .journey-map li:not(:last-child):after { content: "↓"; left: 50%; top: calc(100% - 3px); }
+      .login-journey { padding: 22px 20px; }
+      .prediction-panel { padding: 20px; }
+      .prediction-launch { min-height: 120px; padding: 16px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .object-arrives, .object-changes, .reference-arrives, .motion-layer .folder, .motion-layer .sticky { animation: none; }
@@ -370,7 +439,7 @@
     }
     @media print {
       header, .skip-link, .story-picker, .version-buttons, .story-navigation, .actions, .quiz button, .interactive-notice { display: none !important; }
-      .definition-panel, .bridge-controls, .motion-layer { display: none !important; }
+      .definition-panel, .bridge-controls, .motion-layer, .prediction-launch, .story-share, #copyHost, #hostCopyStatus { display: none !important; }
       .term { text-decoration: none; }
       body { font-size: 12px; }
       .hero { padding: 20px 0; }
@@ -462,7 +531,7 @@
           </div>
           <div class="story-narrative">
             <div class="eyebrow" id="counter"></div>
-            <div class="stepdots" id="dots" aria-hidden="true"></div>
+            <div class="step-map" id="dots" role="group" aria-label="Jump to a story step"></div>
             <div class="story-copy">
               <div aria-live="polite" aria-atomic="true">
                 <h3 id="stepTitle" tabindex="-1"></h3>
@@ -470,6 +539,9 @@
               </div>
               <div class="copy-sizer" id="copySizer" aria-hidden="true" inert></div>
             </div>
+            <button type="button" class="prediction-launch" id="predict" aria-haspopup="dialog" aria-controls="predictionPanel" aria-expanded="false">
+              <span><strong>Pause and predict</strong><small>What should happen when the job ends?</small></span><span aria-hidden="true">?</span>
+            </button>
           </div>
           <div class="story-navigation">
             <button class="button" id="back">← Previous step</button>
@@ -481,7 +553,14 @@
             <button class="button button-reset" id="reset">↺ Start again</button>
           </div>
         </div>
-        <div class="story-footer"><span id="cve"></span><span class="story-goal" id="storyGoal"></span></div>
+        <div class="story-footer">
+          <div class="story-metadata"><span id="cve"></span><span class="story-goal" id="storyGoal"></span></div>
+          <div class="story-share">
+            <p class="share-hint">Share this story, step and PHP version with a friend.</p>
+            <div class="share-controls"><button class="button" id="shareStep">Share this step →</button><input type="text" inputmode="url" class="share-link" id="shareLink" readonly aria-label="Link to this story moment"></div>
+            <p id="shareStatus" role="status"></p>
+          </div>
+        </div>
       </div>
     </div>
     <div class="story-notes">
@@ -535,6 +614,16 @@
         <div class="bridge-sizer" id="bridgeSizer" aria-hidden="true" inert></div>
       </div>
     </div>
+    <div class="login-journey" id="loginJourney">
+      <h3>Where does the login screen fit?</h3>
+      <p>In the demonstrated Apache/mod_php setup, PHP could reach the flaw before the website checked an account or password. Follow the request to see why.</p>
+      <ol class="journey-map" aria-label="The request’s journey to a login check">
+        <li><button class="journey-stop" id="journeyRequest" aria-pressed="false" aria-controls="journeyState" disabled><strong>The visitor</strong><span>A browser sends a request.</span></button></li>
+        <li><button class="journey-stop" id="journeyPhp" aria-pressed="true" aria-controls="journeyState" disabled><strong>PHP handles data</strong><span class="vulnerable-point">The flaw can happen here</span></button></li>
+        <li><button class="journey-stop" id="journeyLogin" aria-pressed="false" aria-controls="journeyState" disabled><strong>The website’s login</strong><span>The application checks the account.</span></button></li>
+      </ol>
+      <div class="journey-copy"><div id="journeyState" role="status" aria-atomic="true"><h4>The login check comes later.</h4><p>PHP can process some incoming data before the application reaches its login checks. That earlier processing is where the demonstrated attack could reach the memory flaw.</p></div><div class="journey-sizer" id="journeySizer" aria-hidden="true" inert></div></div>
+    </div>
     <div class="twocol">
       <div>
         <details open><summary>What is remote code execution?</summary><p>An outsider sends messages over the network that make the server run instructions they chose. “Unauthenticated” means they can do it without an account or password.</p></details>
@@ -557,6 +646,20 @@
         <label for="role">Choose your situation</label>
         <select id="role"><option value="visitor">I just browse websites</option><option value="owner">I own a site hosted by someone else</option><option value="admin">I manage a server or application</option></select>
         <div class="result" id="roleResult" aria-live="polite"></div>
+        <div class="owner-plan" id="ownerPlan" hidden>
+          <h3>Your next steps with your host</h3>
+          <p id="hostSaveHint">Tick each step as you follow up. Your ticks are saved in this browser.</p>
+          <fieldset class="host-checklist"><legend>Your follow-up checklist</legend>
+            <label><input type="checkbox" id="hostAsked"><span>I’ve asked my host about the PHP repairs.</span></label>
+            <label><input type="checkbox" id="hostUpdated"><span>My host has confirmed the update is deployed and the workers have been restarted.</span></label>
+            <label><input type="checkbox" id="hostVerified"><span>I’ve confirmed the running PHP version or the vendor’s security fixes.</span></label>
+          </fieldset>
+          <p id="hostProgress" role="status">0 of 3 follow-up steps recorded.</p>
+          <label for="hostMessage">A message to send your hosting provider</label>
+          <textarea class="host-message" id="hostMessage" readonly rows="8">Hello, could you confirm that the PHP runtime serving my website has the repairs for CVE-2026-109618 and CVE-2026-109619, including any vendor backports? Please confirm the running PHP version or package build, that the update has been deployed and the relevant workers restarted, and whether you have reviewed the 23 October session upload progress advisory, CVE-2026-115560. Thank you.</textarea>
+          <button class="button button-primary" id="copyHost">Copy question for my host</button>
+          <p id="hostCopyStatus" role="status"></p>
+        </div>
       </div>
       <div>
         <h3>The 21 October repair guide</h3>
@@ -623,11 +726,33 @@
   <p id="definitionText"></p>
   <div class="definition-hint">Tap a dotted word to see its meaning. Press Escape or Close to return.</div>
 </aside>
+<aside class="definition-panel prediction-panel" id="predictionPanel" role="dialog" aria-modal="false" aria-labelledby="predictionTitle" aria-describedby="predictionQuestion" hidden>
+  <div class="definition-heading"><h2 id="predictionTitle">Pause and predict</h2><button type="button" id="predictionClose">Close ×</button></div>
+  <h3 id="predictionQuestion"></h3>
+  <div class="prediction-answers" id="predictionAnswers" role="group" aria-labelledby="predictionQuestion"></div>
+  <div class="prediction-feedback" role="status" aria-atomic="true"><p id="predictionFeedback">Choose an answer to see why it matters.</p></div>
+</aside>
 <script>
 const $ = id => document.getElementById(id);
 let mode = 'oom';
 let step = 0;
 let patched = false;
+
+function readStoryLocation() {
+  const params = new URL(window.location.href).searchParams;
+  mode = ['oom', 'stale'].includes(params.get('story')) ? params.get('story') : 'oom';
+  step = /^[1-4]$/.test(params.get('step') || '') ? Number(params.get('step')) - 1 : 0;
+  patched = params.get('php') === 'repaired';
+}
+readStoryLocation();
+function storyLink() {
+  const url = new URL(window.location.href);
+  url.searchParams.set('story', mode);
+  url.searchParams.set('step', String(step + 1));
+  url.searchParams.set('php', patched ? 'repaired' : 'original');
+  url.hash = 'storyStage';
+  return url.href;
+}
 
 const definitions = {
   memory: {title: 'Memory', text: 'Temporary working space inside the server. In the story, it is the desk where a worker keeps the information needed for the current job.'},
@@ -686,6 +811,7 @@ function closeDefinition(restoreFocus = false) {
 document.addEventListener('click', event => {
   const termEl = event.target.closest('.term');
   if (termEl) {
+    closePrediction();
     const wasOpen = definitionTriggerEl === termEl;
     closeDefinition();
     if (wasOpen) return;
@@ -873,6 +999,76 @@ function renderWorkspace(visual) {
   if (!reducedMotion && referenceEl && referenceEl !== oldReferenceEl) referenceEl.classList.add('reference-arrives');
 }
 
+
+const predictions = {
+  oom: {
+    question: 'If PHP runs out of memory halfway through the job, what should cleanup do?',
+    answers: ['Keep the unfinished folder out of ordinary cleanup.', 'Treat the half-built folder as if it were ready.'],
+    correct: 0,
+    explanation: 'The safe choice is to keep unfinished data out of ordinary cleanup. The repair stops the job safely instead of letting cleanup trust an incomplete folder.'
+  },
+  stale: {
+    question: 'When A’s folder goes away, what should happen to the sticky note?',
+    answers: ['Keep it for the next request.', 'Clear it when the folder is removed.'],
+    correct: 1,
+    explanation: 'The safe choice is to clear the note with the folder. Keeping it leaves a reference to released memory, which a later request could follow.'
+  }
+};
+const predictionChoices = {oom: null, stale: null};
+function closePrediction(restoreFocus = false) {
+  if ($('predictionPanel').hidden) return;
+  $('predictionPanel').hidden = true;
+  $('predict').setAttribute('aria-expanded', 'false');
+  if (restoreFocus) $('predict').focus({preventScroll: true});
+}
+function showPredictionFeedback() {
+  const choice = predictionChoices[mode];
+  const value = predictions[mode];
+  for (const [index, buttonEl] of [...$('predictionAnswers').children].entries()) {
+    buttonEl.setAttribute('aria-pressed', choice === index);
+  }
+  $('predictionFeedback').textContent = choice === null ? 'Choose an answer to see why it matters.'
+    : (choice === value.correct ? 'Exactly. ' : 'Think about what could go wrong. ') + value.explanation;
+}
+$('predict').onclick = () => {
+  closeDefinition();
+  const value = predictions[mode];
+  $('predictionQuestion').textContent = value.question;
+  $('predictionAnswers').replaceChildren(...value.answers.map((text, index) => {
+    const buttonEl = document.createElement('button');
+    buttonEl.className = 'prediction-answer';
+    buttonEl.textContent = text;
+    buttonEl.dataset.correct = String(index === value.correct);
+    buttonEl.onclick = () => { predictionChoices[mode] = index; showPredictionFeedback(); };
+    return buttonEl;
+  }));
+  showPredictionFeedback();
+  $('predictionPanel').hidden = false;
+  $('predict').setAttribute('aria-expanded', 'true');
+  $('predictionAnswers').children[predictionChoices[mode] ?? 0].focus({preventScroll: true});
+};
+$('predictionClose').onclick = () => closePrediction(true);
+document.addEventListener('click', event => {
+  if (!event.target.closest('#predictionPanel, #predict')) closePrediction();
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !$('predictionPanel').hidden) {
+    event.preventDefault();
+    closePrediction(true);
+  }
+});
+const stepLabels = {
+  oom: ['Request arrives', 'Work begins', 'Memory runs out', 'Request ends'],
+  stale: ['Worker ready', 'A’s folder', 'A’s job ends', 'B arrives']
+};
+for (let index = 0; index < 4; index++) {
+  const buttonEl = document.createElement('button');
+  buttonEl.id = 'storyStep' + index;
+  buttonEl.setAttribute('aria-controls', 'storyStage');
+  buttonEl.onclick = () => changeStory(() => { step = index; });
+  $('dots').append(buttonEl);
+}
+
 function prepareStorySizing() {
   const states = Object.keys(notes).flatMap(story => [...notes[story], ...repairs[story]].map(state => ({...state, story})));
   for (const story of Object.keys(notes)) for (let index = 0; index < 4; index++) for (const repaired of [false, true]) {
@@ -922,7 +1118,15 @@ function render() {
   $('badge').textContent = patched ? 'Repaired PHP' : 'Original PHP';
   $('badgeDetail').textContent = patched ? 'After the security update' : 'Before the security update';
   $('counter').textContent = 'STEP ' + (step + 1) + ' OF 4';
-  $('dots').innerHTML = [0, 1, 2, 3].map(index => '<span class="dot' + (index <= step ? ' on' : '') + '"></span>').join('');
+  for (let index = 0; index < 4; index++) {
+    const buttonEl = $('storyStep' + index);
+    buttonEl.textContent = stepLabels[mode][index];
+    buttonEl.setAttribute('aria-label', 'Step ' + (index + 1) + ': ' + stepLabels[mode][index]);
+    if (index === step) buttonEl.setAttribute('aria-current', 'step');
+    else buttonEl.removeAttribute('aria-current');
+  }
+  $('shareLink').value = storyLink();
+  $('shareStatus').textContent = '';
   $('stepTitle').textContent = repair ? repair.title : current.title;
   explainText($('stepText'), repair ? repair.text : current.text);
   renderWorkspace(repair ? repair.visual : current.visual);
@@ -953,6 +1157,7 @@ function render() {
 function changeStory(action) {
   const activeEl = document.activeElement;
   closeDefinition();
+  closePrediction();
   action();
   render();
   // Only transfer focus when its control disappears or becomes disabled.
@@ -972,6 +1177,46 @@ $('back').onclick = () => changeStory(() => { step = Math.max(step - 1, 0); });
 $('reset').onclick = () => changeStory(() => { step = 0; });
 render();
 
+
+
+$('shareStep').onclick = async () => {
+  const url = $('shareLink').value;
+  try {
+    await navigator.clipboard.writeText(url);
+    $('shareStatus').textContent = 'Link copied. It opens the same story moment.';
+  } catch {
+    $('shareStatus').textContent = 'Select the link above to copy it.';
+    $('shareLink').focus({preventScroll: true});
+    $('shareLink').select();
+  }
+};
+$('shareLink').onclick = () => $('shareLink').select();
+window.addEventListener('popstate', () => changeStory(readStoryLocation));
+
+const journey = {
+  journeyRequest: {title: 'The visitor sends a message.', text: 'Opening a page or submitting a form sends a request to the server. A visitor can send that message before having an account or logging in.'},
+  journeyPhp: {title: 'The login check comes later.', text: 'PHP can process some incoming data before the application reaches its login checks. That earlier processing is where the demonstrated attack could reach the memory flaw.'},
+  journeyLogin: {title: 'A password protects the application at this stage.', text: 'The website checks the account and password when its login logic runs. In the demonstrated route, the vulnerable processing happened earlier, so the attack did not need to pass this check.'}
+};
+function journeyContent(value) {
+  const containerEl = document.createElement('div');
+  const titleEl = document.createElement('h4');
+  titleEl.textContent = value.title;
+  const textEl = document.createElement('p');
+  explainText(textEl, value.text);
+  containerEl.append(titleEl, textEl);
+  return containerEl;
+}
+for (const [key, value] of Object.entries(journey)) {
+  $('journeySizer').append(journeyContent(value));
+  $(key).disabled = false;
+  $(key).onclick = () => {
+    closeDefinition();
+    for (const id of Object.keys(journey)) $(id).setAttribute('aria-pressed', id === key);
+    $('journeyState').replaceChildren(...journeyContent(value).childNodes);
+  };
+}
+$('journeyPhp').onclick();
 
 const bridgePaths = {
   ordinary: {
@@ -1036,12 +1281,48 @@ for (const path of Object.keys(bridgePaths)) {
 $('ordinary').onclick();
 for (const element of document.querySelectorAll('.hero-copy p, .chapter-intro, .story-notes p, .flow p, .rule, #impact details p, .mechanism p, #action details p, .version-intro, .attack-bridge > p')) addDefinitions(element);
 
+
+const CHECKLIST_KEY = 'php-explained.v1';
+const hostTasks = ['hostAsked', 'hostUpdated', 'hostVerified'];
+function updateHostProgress() {
+  const completed = hostTasks.filter(id => $(id).checked).length;
+  $('hostProgress').textContent = completed + ' of 3 follow-up steps recorded.';
+}
+try {
+  const saved = JSON.parse(window.localStorage.getItem(CHECKLIST_KEY));
+  if (saved?.version === 1 && Array.isArray(saved.hostTasks)) {
+    hostTasks.forEach((id, index) => { $(id).checked = saved.hostTasks[index] === true; });
+  }
+} catch {
+  $('hostSaveHint').textContent = 'Tick each step as you follow up. Your ticks last while this page is open.';
+}
+for (const id of hostTasks) $(id).onchange = () => {
+  updateHostProgress();
+  try {
+    window.localStorage.setItem(CHECKLIST_KEY, JSON.stringify({version: 1, hostTasks: hostTasks.map(key => $(key).checked)}));
+    $('hostSaveHint').textContent = 'Tick each step as you follow up. Your ticks are saved in this browser.';
+  } catch {
+    $('hostSaveHint').textContent = 'Tick each step as you follow up. Your ticks last while this page is open.';
+  }
+};
+updateHostProgress();
+$('copyHost').onclick = async () => {
+  try {
+    await navigator.clipboard.writeText($('hostMessage').value);
+    $('hostCopyStatus').textContent = 'Question copied. It is ready to send to your host.';
+  } catch {
+    $('hostCopyStatus').textContent = 'Select the message above to copy it.';
+    $('hostMessage').focus({preventScroll: true});
+    $('hostMessage').select();
+  }
+};
+
 const roles = {
   visitor: '<strong>The server operator handles the repair.</strong><p>PHP runs on the website’s server. The organisation hosting the site is responsible for updating that software.</p>',
   owner: '<strong>Ask your hosting provider.</strong><p>“Have you installed the repairs for CVE-2026-109618 and CVE-2026-109619 on the PHP runtime serving my site, restarted its workers and reviewed the 23 October session upload progress advisory?”</p>',
   admin: '<strong>Inventory, update and verify.</strong><p>Identify your PHP deployments, install repaired upstream or vendor packages, update containers and restart the relevant workers. Check the running versions and review the logs.</p>'
 };
-$('role').onchange = () => { $('roleResult').innerHTML = roles[$('role').value]; addDefinitions($('roleResult')); };
+$('role').onchange = () => { $('roleResult').innerHTML = roles[$('role').value]; addDefinitions($('roleResult')); $('ownerPlan').hidden = $('role').value !== 'owner'; };
 $('role').onchange();
 
 const fixes = {'8.5': '8.5.12', '8.4': '8.4.27', '8.3': '8.3.36', '8.2': '8.2.35'};

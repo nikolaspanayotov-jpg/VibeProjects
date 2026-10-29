@@ -171,6 +171,121 @@ async function run() {
         assert(await page.locator(selector).first().evaluate(element => parseFloat(getComputedStyle(element).fontSize) >= 12));
       }
 
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+        configurable: true, value: {writeText: async text => {window.copiedText = text;}}
+      }));
+      const baseAddress = page.url();
+      const momentLinks = [];
+      for (const story of ['oom', 'stale']) {
+        await clickStory(story);
+        for (const version of ['original', 'repaired']) {
+          await clickStory(version);
+          for (const index of [3, 0, 2, 1]) {
+            await clickStory('storyStep' + index);
+            assert.match(await text('#counter'), new RegExp(`STEP ${index + 1} OF 4`));
+            assert.equal(await page.locator('#dots [aria-current="step"]').count(), 1);
+            assert.equal(await page.locator('#storyStep' + index).getAttribute('aria-current'), 'step');
+            assert.equal(await page.evaluate(() => document.activeElement.id), 'storyStep' + index);
+            await page.locator('#shareStep').click();
+            const copied = await page.evaluate(() => window.copiedText);
+            const url = new URL(copied);
+            assert.equal(url.searchParams.get('story'), story);
+            assert.equal(url.searchParams.get('step'), String(index + 1));
+            assert.equal(url.searchParams.get('php'), version);
+            assert.equal(url.hash, '#storyStage');
+            assert.equal(page.url(), baseAddress, 'Sharing must not change the current URL');
+            momentLinks.push({url: copied, story, version, step: index + 1});
+          }
+        }
+        await page.locator('#predict').evaluate(element => element.scrollIntoView({block: 'center', behavior: 'instant'}));
+        const before = await page.evaluate(() => window.scrollY);
+        const counter = await text('#counter');
+        await page.locator('#predict').click();
+        assert(await page.locator('#predictionPanel').isVisible());
+        for (const index of [0, 1]) {
+          await page.locator('.prediction-answer').nth(index).click();
+          assert.equal(await page.locator('.prediction-answer').nth(index).getAttribute('aria-pressed'), 'true');
+          assert.match(await text('#predictionFeedback'), index === (story === 'oom' ? 0 : 1) ? /^Exactly/ : /^Think about/);
+        }
+        await page.locator('#predictionClose').click();
+        assert(await page.locator('#predictionPanel').isHidden());
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'predict');
+        assert.equal(await text('#counter'), counter);
+        assert(Math.abs((await page.evaluate(() => window.scrollY)) - before) <= 1);
+        await page.keyboard.press('Enter');
+        assert.equal(await page.locator('.prediction-answer').nth(1).getAttribute('aria-pressed'), 'true');
+        await page.keyboard.press('Escape');
+        assert.equal(await page.evaluate(() => document.activeElement.id), 'predict');
+        await page.locator('#predict').click();
+        await page.mouse.click(5, 5);
+        assert(await page.locator('#predictionPanel').isHidden());
+      }
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+        configurable: true, value: {writeText: async () => {throw new Error('Clipboard denied');}}
+      }));
+      await page.locator('#shareStep').click();
+      assert.match(await text('#shareStatus'), /Select the link/);
+      assert.equal(await page.evaluate(() => document.activeElement.id), 'shareLink');
+      assert(await page.locator('#shareLink').evaluate(element => element.selectionStart === 0 && element.selectionEnd === element.value.length));
+      for (const [id, title] of Object.entries({journeyRequest: /visitor sends/, journeyPhp: /login check comes later/, journeyLogin: /password protects/})) {
+        await page.locator('#' + id).evaluate(element => element.scrollIntoView({block: 'center', behavior: 'instant'}));
+        const before = await page.evaluate(() => ({scroll: window.scrollY, bottom: document.querySelector('#loginJourney').getBoundingClientRect().bottom}));
+        await page.locator('#' + id).click();
+        assert.equal(await page.locator('.journey-stop[aria-pressed="true"]').count(), 1);
+        assert.equal(await page.locator('#' + id).getAttribute('aria-pressed'), 'true');
+        assert.match(await text('#journeyState h4'), title);
+        const after = await page.evaluate(() => ({scroll: window.scrollY, bottom: document.querySelector('#loginJourney').getBoundingClientRect().bottom}));
+        assert(Math.abs(after.scroll - before.scroll) <= 1);
+        assert(Math.abs(after.bottom - before.bottom) <= 1);
+      }
+      await page.selectOption('#role', 'owner');
+      assert(await page.locator('#ownerPlan').isVisible());
+      const tasks = ['hostAsked', 'hostUpdated', 'hostVerified'];
+      for (const [index, id] of tasks.entries()) {
+        await page.locator('#' + id).check();
+        assert.match(await text('#hostProgress'), new RegExp(`${index + 1} of 3`));
+      }
+      assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('php-explained.v1'))), {version: 1, hostTasks: [true, true, true]});
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+        configurable: true, value: {writeText: async text => {window.copiedText = text;}}
+      }));
+      await page.locator('#copyHost').click();
+      const message = await page.evaluate(() => window.copiedText);
+      assert.equal(message, await page.locator('#hostMessage').inputValue());
+      for (const cve of ['CVE-2026-109618', 'CVE-2026-109619', 'CVE-2026-115560']) assert(message.includes(cve));
+      await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
+        configurable: true, value: {writeText: async () => {throw new Error('Clipboard denied');}}
+      }));
+      await page.locator('#copyHost').click();
+      assert.match(await text('#hostCopyStatus'), /Select the message/);
+      assert.equal(await page.evaluate(() => document.activeElement.id), 'hostMessage');
+      assert(await page.locator('#hostMessage').evaluate(element => element.selectionEnd === element.value.length));
+      if (width === 1280) {
+        const linkedPage = await context.newPage();
+        for (const moment of momentLinks) {
+          await linkedPage.goto(moment.url);
+          assert.equal(await linkedPage.locator('#' + moment.story).getAttribute('aria-pressed'), 'true');
+          assert.equal(await linkedPage.locator('#badge').innerText(), moment.version === 'repaired' ? 'Repaired PHP' : 'Original PHP');
+          assert.match(await linkedPage.locator('#counter').innerText(), new RegExp(`STEP ${moment.step} OF 4`));
+        }
+        await linkedPage.goto(pageUrl);
+        await linkedPage.selectOption('#role', 'owner');
+        for (const id of tasks) assert(await linkedPage.locator('#' + id).isChecked());
+        await linkedPage.reload();
+        await linkedPage.selectOption('#role', 'owner');
+        for (const id of tasks) assert(await linkedPage.locator('#' + id).isChecked());
+        for (const params of ['story=__proto__&step=9', 'step=2.5', 'step=-1', 'step=2junk', 'story=unknown&step=0&php=bad']) {
+          const invalidUrl = new URL(pageUrl);
+          invalidUrl.search = params;
+          await linkedPage.goto(invalidUrl.href);
+          assert.equal(await linkedPage.locator('#oom').getAttribute('aria-pressed'), 'true');
+          assert.match(await linkedPage.locator('#counter').innerText(), /STEP 1 OF 4/);
+        }
+        await linkedPage.close();
+      }
+      for (const id of tasks) await page.locator('#' + id).uncheck();
+      await assertNoOverflow();
+
       const roles = {visitor: 'server operator', owner: 'hosting provider', admin: 'Inventory, update'};
       for (const [value, result] of Object.entries(roles)) {
         await page.selectOption('#role', value);
@@ -274,6 +389,14 @@ async function run() {
       await page.locator('#storyLab').screenshot({path: path.join(artifacts, `story-${width}.png`), style: 'header, .skip-link { visibility: hidden !important; }'});
       await page.locator('#prepared').click();
       await page.locator('#attackBridge').screenshot({path: path.join(artifacts, `attack-${width}.png`)});
+      await page.locator('#loginJourney').screenshot({path: path.join(artifacts, `login-${width}.png`)});
+      await page.selectOption('#role', 'owner');
+      await page.locator('#ownerPlan').screenshot({path: path.join(artifacts, `host-${width}.png`)});
+      await page.selectOption('#role', 'visitor');
+      await page.locator('#predict').click();
+      await page.locator('.prediction-answer').first().click();
+      await page.locator('#predictionPanel').screenshot({path: path.join(artifacts, `prediction-${width}.png`)});
+      await page.locator('#predictionClose').click();
       await page.screenshot({path: path.join(artifacts, `page-${width}.png`), fullPage: true});
       console.log(`PASS: stable story viewport/control positions, all interactions, keyboard focus and no overflow at ${width}px`);
       await context.close();
@@ -288,8 +411,29 @@ async function run() {
     assert(await noJsPage.locator('#copyActions').isHidden());
     assert(await noJsPage.locator('#bridgeControls').isHidden());
     assert(await noJsPage.locator('#bridgeState').isVisible());
+    assert(await noJsPage.locator('#journeyState').isVisible());
+    for (const button of await noJsPage.locator('.journey-stop').all()) assert(await button.isDisabled());
     assert(await noJsPage.locator('#basics').isVisible());
     await noJsContext.close();
+
+    // Unavailable or corrupt storage cannot stop the guide or its checklist.
+    for (const denied of [true, false]) {
+      const storageContext = await browser.newContext();
+      await storageContext.addInitScript(blocked => {
+        if (blocked) Object.defineProperty(window, 'localStorage', {get() {throw new DOMException('Storage denied', 'SecurityError');}});
+        else localStorage.setItem('php-explained.v1', '{invalid JSON');
+      }, denied);
+      const storagePage = await storageContext.newPage();
+      const storageErrors = [];
+      storagePage.on('pageerror', error => storageErrors.push(error.message));
+      await storagePage.goto(pageUrl);
+      await storagePage.selectOption('#role', 'owner');
+      await storagePage.locator('#hostAsked').check();
+      assert.match(await storagePage.locator('#hostProgress').innerText(), /1 of 3/);
+      if (denied) assert.match(await storagePage.locator('#hostSaveHint').innerText(), /while this page is open/);
+      assert.deepEqual(storageErrors, []);
+      await storageContext.close();
+    }
     console.log(`PASS: no-JavaScript fallback. Screenshots: ${artifacts}`);
   } finally {
     await browser.close();

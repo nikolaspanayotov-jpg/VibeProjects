@@ -11,13 +11,20 @@ const {document, window: domWindow} = parseHTML(html);
 let focused = '', scrolled = 0, printed = false, focusCount = 0;
 let activeEl = null;
 let reducedMotion = true;
+let selectedInput = '';
+const stored = new Map();
+const windowListeners = {};
 const focusOptions = [];
 Object.defineProperty(document, 'activeElement', {get: () => activeEl});
 domWindow.HTMLElement.prototype.focus = function (options) {
   focused = this.id; activeEl = this; focusCount++; focusOptions.push(options);
 };
 domWindow.HTMLElement.prototype.scrollIntoView = function () { scrolled++; };
+domWindow.HTMLElement.prototype.select = function () { selectedInput = this.id; };
 const window = {
+  location: new URL('https://example.test/php-explained/index.html'),
+  addEventListener(name, handler) { windowListeners[name] = handler; },
+  localStorage: {getItem(key) { return stored.get(key) ?? null; }, setItem(key, value) { stored.set(key, value); }},
   matchMedia: () => ({matches: reducedMotion}),
   scroll() { scrolled++; }, scrollTo() { scrolled++; }, scrollBy() { scrolled++; },
   print() { printed = true; }
@@ -50,12 +57,16 @@ assert($('copyActions').hidden);
 assert(!$('interactiveNotice').hidden);
 // LinkeDOM does not select the first option automatically as browsers do.
 for (const selectEl of document.querySelectorAll('select')) selectEl.querySelector('option').selected = true;
-vm.runInNewContext(html.match(/<script>([\s\S]*?)<\/script>/)[1], {document, window, navigator});
+const script = html.match(/<script>([\s\S]*?)<\/script>/)[1];
+vm.runInNewContext(script, {document, window, navigator, URL});
 assert(!$('storyLab').hidden);
 assert(!$('quizPanel').hidden);
 assert(!$('copyActions').hidden);
 assert($('interactiveNotice').hidden);
 assert(!$('bridgeControls').hidden);
+assert.equal($('dots').querySelectorAll('button').length, 4);
+assert($('predictionPanel').hidden);
+assert($('ownerPlan').hidden);
 
 for (const story of ['oom', 'stale']) {
   click(story);
@@ -252,4 +263,109 @@ for (const anchor of document.querySelectorAll('a[href^="#"]')) {
 const ids = [...document.querySelectorAll('[id]')].map(element => element.id);
 assert.equal(new Set(ids).size, ids.length);
 assert.equal(document.documentElement.lang, 'en-GB');
-console.log('PASS: both stories, repair explanations, retained sticky note and folder departures, rapid transitions, reduced motion, all eight definitions/close/Escape/outside dismissal, both attack paths, zero scroll API calls, safe focus, every existing control, quiz path, copy/print, anchors and initial no-JavaScript state.');
+
+// Direct selection and copied links cover every story/step/version combination.
+navigator.clipboard.writeText = async text => { navigator.copied = text; };
+const originalAddress = window.location.href;
+for (const story of ['oom', 'stale']) {
+  click(story);
+  for (const version of ['original', 'repaired']) {
+    click(version);
+    for (const index of [3, 0, 2, 1]) {
+      click('storyStep' + index);
+      assert.match($('counter').textContent, new RegExp(`STEP ${index + 1} OF 4`));
+      assert.equal($('dots').querySelectorAll('[aria-current="step"]').length, 1);
+      assert.equal($('storyStep' + index).getAttribute('aria-current'), 'step');
+      assert.equal(focused, 'storyStep' + index);
+      await $('shareStep').onclick();
+      const copied = new URL(navigator.copied);
+      assert.equal(copied.searchParams.get('story'), story);
+      assert.equal(copied.searchParams.get('step'), String(index + 1));
+      assert.equal(copied.searchParams.get('php'), version);
+      assert.equal(copied.hash, '#storyStage');
+      assert.equal(window.location.href, originalAddress, 'Copying a moment must not navigate');
+    }
+  }
+  const counter = $('counter').textContent;
+  click('predict');
+  assert(!$('predictionPanel').hidden);
+  assert.equal($('predict').getAttribute('aria-expanded'), 'true');
+  assert.equal($('predictionAnswers').children.length, 2);
+  for (const index of [0, 1]) {
+    const answer = $('predictionAnswers').children[index];
+    answer.click();
+    assert.equal(answer.getAttribute('aria-pressed'), 'true');
+    assert.match($('predictionFeedback').textContent, index === (story === 'oom' ? 0 : 1) ? /^Exactly/ : /^Think about/);
+    assert($('predictionFeedback').textContent.length > 100);
+  }
+  click('predictionClose');
+  assert($('predictionPanel').hidden);
+  assert.equal(activeEl, $('predict'));
+  assert.equal($('counter').textContent, counter);
+  click('predict');
+  assert.equal($('predictionAnswers').children[1].getAttribute('aria-pressed'), 'true');
+  const escapePrediction = new domWindow.Event('keydown', {bubbles: true, cancelable: true});
+  Object.defineProperty(escapePrediction, 'key', {value: 'Escape'});
+  document.dispatchEvent(escapePrediction);
+  assert($('predictionPanel').hidden);
+  assert.equal(activeEl, $('predict'));
+  click('predict');
+  $('storiesTitle').click();
+  assert($('predictionPanel').hidden);
+}
+for (const [key, title] of Object.entries({journeyRequest: 'visitor sends', journeyPhp: 'login check comes later', journeyLogin: 'password protects'})) {
+  assert(!$(key).disabled);
+  click(key);
+  assert.equal($(key).getAttribute('aria-pressed'), 'true');
+  assert.equal(document.querySelectorAll('.journey-stop[aria-pressed="true"]').length, 1);
+  assert($('journeyState').textContent.includes(title));
+}
+select('role', 'owner');
+assert(!$('ownerPlan').hidden);
+const tasks = ['hostAsked', 'hostUpdated', 'hostVerified'];
+for (const [index, id] of tasks.entries()) {
+  $(id).checked = true;
+  $(id).onchange();
+  assert.match($('hostProgress').textContent, new RegExp(`${index + 1} of 3`));
+}
+assert.deepEqual(JSON.parse(stored.get('php-explained.v1')), {version: 1, hostTasks: [true, true, true]});
+await $('copyHost').onclick();
+assert.equal(navigator.copied, $('hostMessage').value);
+assert(navigator.copied.includes('CVE-2026-109618') && navigator.copied.includes('CVE-2026-109619') && navigator.copied.includes('CVE-2026-115560'));
+navigator.clipboard.writeText = async () => {throw Error('Clipboard denied');};
+await $('copyHost').onclick();
+assert.equal(selectedInput, 'hostMessage');
+assert.equal(activeEl, $('hostMessage'));
+await $('shareStep').onclick();
+assert.equal(selectedInput, 'shareLink');
+assert.equal(activeEl, $('shareLink'));
+window.localStorage.setItem = () => {throw Error('Storage denied');};
+$('hostAsked').checked = false;
+$('hostAsked').onchange();
+assert.match($('hostProgress').textContent, /2 of 3/);
+assert.match($('hostSaveHint').textContent, /while this page is open/);
+select('role', 'visitor');
+assert($('ownerPlan').hidden);
+select('role', 'owner');
+assert($('hostUpdated').checked);
+
+// Open actual URL states in a fresh parsed page, including malformed parameters.
+for (const story of ['oom', 'stale']) for (const version of ['original', 'repaired']) for (let index = 1; index <= 4; index++) {
+  const {document: fresh} = parseHTML(html);
+  for (const selectEl of fresh.querySelectorAll('select')) selectEl.querySelector('option').selected = true;
+  const testWindow = {...window, location: new URL(`https://example.test/php-explained/?story=${story}&step=${index}&php=${version}`), addEventListener() {}, localStorage: {getItem: () => stored.get('php-explained.v1')}};
+  vm.runInNewContext(script, {document: fresh, window: testWindow, navigator, URL});
+  assert.equal(fresh.getElementById(story).getAttribute('aria-pressed'), 'true');
+  assert.equal(fresh.getElementById('badge').textContent, version === 'repaired' ? 'Repaired PHP' : 'Original PHP');
+  assert.match(fresh.getElementById('counter').textContent, new RegExp(`STEP ${index} OF 4`));
+  assert(fresh.getElementById('hostVerified').checked, 'Checklist must restore saved ticks');
+}
+for (const params of ['story=unknown&step=0&php=bad', 'story=__proto__&step=9', 'step=2.5', 'step=-1', 'step=2junk']) {
+  const {document: fresh} = parseHTML(html);
+  for (const selectEl of fresh.querySelectorAll('select')) selectEl.querySelector('option').selected = true;
+  vm.runInNewContext(script, {document: fresh, window: {...window, location: new URL('https://example.test/?' + params), addEventListener() {}}, navigator, URL});
+  assert.equal(fresh.getElementById('oom').getAttribute('aria-pressed'), 'true');
+  assert.match(fresh.getElementById('counter').textContent, /STEP 1 OF 4/);
+}
+assert.equal(scrolled, 0, 'All learning controls must preserve the viewport');
+console.log('PASS: every story, mode, direct step and shared URL; both predictions and dismissal paths; all login stages; checklist persistence/storage denial; copy success/denial; previous animations, definitions, quiz, copy/print and no-JavaScript checks.');
