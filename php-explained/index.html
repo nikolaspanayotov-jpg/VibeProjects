@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Understand PHP2Shell through two visual stories. Follow the memory mistakes, compare original and repaired PHP, and learn what changed.">
   <title>PHP2Shell — Under the hood</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23174c43'/%3E%3Cpath d='M10 7h9l4 4v14H10zM18 7v5h5M13 16h7M13 20h5' fill='none' stroke='%23fffefb' stroke-width='2'/%3E%3C/svg%3E">
   <style>
     :root {
       --paper: #f3f0e9;
@@ -59,7 +60,7 @@
     .navlinks a:first-child { color: var(--green); border-bottom: 2px solid var(--green); }
     main { max-width: 1240px; margin: auto; padding: 0 28px; }
     .hero { padding: 64px 12px 48px; }
-    .eyebrow { text-transform: uppercase; font-size: 11px; letter-spacing: 2px; font-weight: 750; line-height: 1.6; }
+    .eyebrow { text-transform: uppercase; font-size: 12px; letter-spacing: 1.1px; font-weight: 750; line-height: 1.6; }
     .hero .eyebrow { color: var(--rust); margin-bottom: 22px; }
     .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: end; }
     h1 { font: 400 clamp(44px, 5.5vw, 72px)/1.06 Georgia, serif; letter-spacing: -2px; max-width: 650px; }
@@ -82,7 +83,7 @@
     .story-picker { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
     .story-card { display: grid; grid-template-columns: auto 1fr auto; column-gap: 18px; text-align: left; align-items: center; padding: 24px; border: 1px solid var(--desk-line); color: var(--desk-text); background: var(--ink-soft); border-radius: 12px; min-height: 116px; }
     .story-card[aria-pressed="true"] { color: var(--ink); background: var(--surface); border-color: var(--highlight); box-shadow: inset 0 -3px 0 var(--gold); }
-    .story-card .eyebrow { display: block; letter-spacing: 1.5px; font-size: 10px; margin-bottom: 4px; }
+    .story-card .eyebrow { display: block; letter-spacing: .7px; font-size: 12px; margin-bottom: 4px; }
     .story-card strong { display: block; font: 400 25px/1.2 Georgia, serif; }
     .story-card-arrow { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--desk-line); border-radius: 50%; font-size: 18px; }
     .story-card[aria-pressed="true"] .story-card-arrow { border-color: var(--green); color: var(--green); }
@@ -92,7 +93,7 @@
     .story-panel { background: var(--surface); border: 1px solid var(--border-soft); border-radius: 12px; overflow: hidden; }
     .version-toolbar { padding: 22px 30px; background: var(--surface-soft); border-bottom: 1px solid var(--border-soft); display: flex; gap: 16px; align-items: center; justify-content: space-between; }
     .version-toolbar > div > strong { display: block; font-size: 14px; }
-    .version-toolbar > div > span { font-size: 12px; color: var(--muted); }
+    .version-toolbar > div > span { font-size: 14px; color: var(--muted); }
     .version-buttons { display: flex; gap: 5px; padding: 5px; border: 1px solid var(--line); border-radius: 11px; background: var(--surface); }
     .version-button { padding: 11px 18px; border: 1px solid transparent; background: transparent; font-weight: 700; font-size: 14px; color: var(--ink); white-space: nowrap; }
     #original[aria-pressed="true"] { background: var(--rust); color: var(--white); border-color: var(--rust); }
@@ -111,44 +112,43 @@
     #stepTitle:focus, #question:focus { outline: none; }
     #stepText, .step-text { line-height: 1.8; color: var(--muted); }
     .scene { grid-area: scene; align-self: start; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-    .scene-top { min-height: 110px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 10px; border-bottom: 1px solid var(--line); }
-    .scene-top > .eyebrow { color: var(--muted); font-size: 10px; max-width: 95px; }
-    .version-sign { width: 190px; min-height: 70px; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; padding: 12px 14px; background: var(--rust-soft); color: var(--rust); border: 1px solid var(--rust); border-left-width: 4px; border-radius: 7px; }
+    .scene-top { min-height: 140px; padding: 18px 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); }
+    .scene-top > .eyebrow { color: var(--muted); font-size: 12px; max-width: 105px; }
+    .version-sign { width: 216px; max-width: 100%; min-height: 70px; flex: 0 0 auto; display: flex; flex-direction: column; justify-content: center; padding: 12px 14px; background: var(--rust-soft); color: var(--rust); border: 1px solid var(--rust); border-left-width: 4px; border-radius: 7px; }
     #badge { display: block; font-size: 21px; font-weight: 800; line-height: 1.25; letter-spacing: -.4px; }
-    #badgeDetail { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    #badgeDetail { display: block; font-size: 13px; font-weight: 600; line-height: 1.5; margin-top: 5px; }
     [data-version="repaired"] .version-sign { background: var(--green-soft); color: var(--green-dark); border-color: var(--green); }
-    .visitor { min-height: 82px; display: flex; gap: 13px; align-items: center; padding: 18px 22px; font-size: 12px; line-height: 1.5; }
+    .visitor { min-height: 112px; display: flex; gap: 13px; align-items: center; padding: 18px 22px; font-size: 14px; line-height: 1.6; }
     .request-icon { width: 32px; height: 38px; border: 1.5px solid var(--ink); border-radius: 3px; padding: 9px 6px; background: var(--surface); flex: 0 0 auto; }
     .request-icon:before, .request-icon:after { content: ''; display: block; height: 1px; margin: 4px 0; background: var(--ink); }
-    #requestName { display: block; font-weight: 750; font-size: 13px; }
+    #requestName { display: block; font-weight: 750; font-size: 14px; }
     #requestState { color: var(--muted); }
     .request-arrow { margin-left: auto; font-size: 24px; color: var(--green); }
     .workdesk { margin: 0 20px; padding: 18px 18px 0; background: var(--desk); color: var(--surface); border-radius: 7px 7px 0 0; }
-    .worker { min-height: 19px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 11px; }
+    .worker { min-height: 52px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; font-size: 13px; }
     #workerState { color: var(--note); font-weight: 650; }
     .workspace { min-height: 172px; display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: nowrap; padding: 28px 5px 20px; }
-    .folder { width: 150px; min-width: 0; min-height: 116px; position: relative; padding: 15px; background: var(--surface); border-radius: 0 4px 4px 4px; color: var(--ink); box-shadow: 3px 4px 0 var(--ink); font-size: 12px; line-height: 1.65; }
+    .folder { width: 100%; max-width: 170px; min-width: 0; min-height: 116px; position: relative; padding: 15px; background: var(--surface); border-radius: 0 4px 4px 4px; color: var(--ink); box-shadow: 3px 4px 0 var(--ink); font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
     .folder:before { content: ''; position: absolute; top: -9px; left: 0; height: 10px; width: 60px; border-radius: 4px 4px 0 0; background: inherit; }
-    .folder strong { display: block; font-size: 13px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
+    .folder strong { display: block; font-size: 14px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--line); }
     .folder.bad { background: var(--rust-soft); color: var(--rust); }
-    .sticky { width: 105px; min-width: 0; padding: 14px; background: var(--note); color: var(--ink); transform: rotate(5deg); font-size: 12px; box-shadow: 3px 4px 0 var(--ink); line-height: 1.6; }
-    .sticky strong { display: block; margin-bottom: 7px; font-size: 10px; text-transform: uppercase; letter-spacing: .7px; }
-    .emptydesk { width: 170px; min-width: 0; padding: 20px 10px; border: 1px dashed var(--desk-line); border-radius: 4px; color: var(--desk-text); text-align: center; font-size: 13px; }
-    .desk-edge { padding: 10px 0; text-align: center; font-size: 8px; letter-spacing: 1.8px; color: var(--desk-text); border-top: 1px solid var(--desk-line); }
-    .outcome { min-height: 100px; padding: 16px 20px; background: var(--green-soft); border-top: 3px solid var(--green); font-size: 13px; line-height: 1.65; }
+    .sticky { width: 100%; max-width: 130px; min-width: 0; padding: 14px; background: var(--note); color: var(--ink); transform: rotate(3deg); font-size: 14px; box-shadow: 3px 4px 0 var(--ink); line-height: 1.6; }
+    .sticky strong { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 750; }
+    .emptydesk { width: 100%; max-width: 180px; min-width: 0; padding: 20px 10px; border: 1px dashed var(--desk-line); border-radius: 4px; color: var(--desk-text); text-align: center; font-size: 13px; }
+    .desk-edge { padding: 14px 0; text-align: center; font-size: 12px; line-height: 1.5; letter-spacing: .5px; color: var(--desk-text); border-top: 1px solid var(--desk-line); }
+    .outcome { min-height: 120px; padding: 16px 20px; background: var(--green-soft); border-top: 3px solid var(--green); font-size: 15px; line-height: 1.65; }
     .outcome.danger { background: var(--rust-soft); border-color: var(--rust); }
     .outcome.safe { background: var(--green-soft); border-color: var(--green); }
-    .outcome strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+    .outcome strong { display: block; font-size: 13px; letter-spacing: .2px; margin-bottom: 5px; }
     .story-navigation { grid-area: navigation; border: 1px solid var(--border-soft); border-radius: 10px; background: var(--surface-soft); padding: 16px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 13px 20px; border: 1px solid var(--ink); background: var(--surface); color: var(--ink); font-weight: 700; font-size: 14px; min-height: 50px; }
     .button:active:not(:disabled) { box-shadow: none; }
     .button-primary { background: var(--green); color: var(--white); border-color: var(--green); box-shadow: var(--button-shadow); }
     .primary-slot .button { width: 100%; min-height: 54px; font-size: 16px; }
     .button-reset { border-color: var(--line); color: var(--muted); background: transparent; }
-    .story-footer { min-height: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 13px 30px; background: var(--surface-soft); border-top: 1px solid var(--border-soft); color: var(--muted); font-size: 11px; }
+    .story-footer { min-height: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 13px 30px; background: var(--surface-soft); border-top: 1px solid var(--border-soft); color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
     .story-goal { font-weight: 650; }
-    .scene.reveal .workspace { animation: arrive .25s ease-out; }
-    @keyframes arrive { from { opacity: .35; } to { opacity: 1; } }
+
     .story-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 14px 10px 0; }
     .story-notes details { color: var(--desk-text); border: 0; }
     .story-notes summary { color: var(--surface); }
@@ -199,7 +199,7 @@
     .answer:disabled { opacity: 1; }
     .answer.is-correct { border: 2px solid var(--green); background: var(--green-soft); }
     .answer.is-incorrect { border-color: var(--rust); background: var(--rust-soft); }
-    .answer-result { margin-left: auto; font-size: 11px; font-weight: 750; color: var(--green-dark); }
+    .answer-result { margin-left: auto; font-size: 13px; font-weight: 750; color: var(--green-dark); }
     .feedback { margin: 18px 0; font-size: 15px; min-height: 50px; }
     .chapter-takeaway { background: var(--green-dark); border-color: var(--green-dark); color: var(--surface); }
     .chapter-takeaway .chapter-heading .eyebrow { color: var(--note); }
@@ -229,50 +229,50 @@
       .navlinks { gap: 20px; font-size: 12px; flex-wrap: wrap; }
       main { padding: 0 16px; }
       .hero { padding: 34px 6px 22px; }
-      .hero .eyebrow { margin-bottom: 16px; font-size: 10px; letter-spacing: 1.5px; }
+      .hero .eyebrow { margin-bottom: 16px; font-size: 12px; letter-spacing: .5px; }
       .hero-grid { grid-template-columns: 1fr; gap: 22px; }
       h1 { font-size: 43px; letter-spacing: -1.6px; }
       .hero-copy p { font-size: 16px; }
       .text-link { margin-top: 15px; }
       .chapter { margin-block: 24px; padding: 28px 22px; border-radius: 14px; }
       .chapter-heading { margin-bottom: 26px; }
-      .chapter-heading .eyebrow { font-size: 10px; letter-spacing: 1.3px; margin-bottom: 8px; }
-      .chapter-intro { font-size: 15px; margin-top: 12px; }
+      .chapter-heading .eyebrow { font-size: 12px; letter-spacing: .7px; margin-bottom: 8px; }
+      .chapter-intro { font-size: 16px; margin-top: 12px; }
       .chapter-stories { padding: 28px 12px 18px; }
       .chapter-stories > .chapter-heading { margin-inline: 8px; }
       .story-picker { gap: 9px; margin-bottom: 16px; }
       .story-card { display: block; padding: 16px 13px 20px; min-height: 166px; }
       .story-icon { display: block; width: 36px; height: 36px; padding: 7px; border-radius: 8px; margin-bottom: 14px; }
-      .story-card .eyebrow { font-size: 9px; letter-spacing: 1px; }
+      .story-card .eyebrow { font-size: 12px; letter-spacing: .4px; }
       .story-card strong { font-size: 21px; line-height: 1.25; }
       .story-card-arrow { display: none; }
       .version-toolbar { display: block; padding: 18px; }
-      .version-toolbar > div > span { display: none; }
+      .version-toolbar > div > span { display: block; margin-top: 3px; }
       .version-buttons { display: grid; grid-template-columns: 1fr 1fr; margin-top: 12px; gap: 4px; }
-      .version-button { font-size: 12px; padding: 12px 6px; white-space: normal; }
+      .version-button { font-size: 14px; padding: 12px 6px; white-space: normal; }
       .story-body { padding: 20px 16px; grid-template-columns: minmax(0, 1fr); grid-template-areas: "narrative" "scene" "navigation"; gap: 22px; }
       .story-narrative { padding: 0; }
       .stepdots { margin: 10px 0 18px; }
       #stepTitle, .step-title { font-size: 28px; margin-bottom: 14px; }
-      #stepText, .step-text { font-size: 15px; line-height: 1.75; }
-      .scene-top { min-height: 96px; padding: 14px; flex-wrap: nowrap; }
-      .scene-top > .eyebrow { font-size: 9px; max-width: 70px; }
-      .version-sign { width: 158px; min-height: 66px; padding: 10px 11px; }
-      #badge { font-size: 19px; }
-      #badgeDetail { font-size: 8px; letter-spacing: .6px; }
-      .visitor { min-height: 70px; padding: 12px 14px; }
+      #stepText, .step-text { font-size: 16px; line-height: 1.75; }
+      .scene-top { min-height: 144px; padding: 18px; display: block; }
+      .scene-top > .eyebrow { font-size: 12px; max-width: none; margin-bottom: 10px; }
+      .version-sign { width: 216px; min-height: 76px; padding: 11px 13px; }
+      #badge { font-size: 23px; }
+      #badgeDetail { font-size: 13px; }
+      .visitor { min-height: 112px; padding: 16px 14px; gap: 10px; }
       .workdesk { margin: 0 12px; padding: 13px 12px 0; }
-      .workspace { min-height: 146px; gap: 10px; padding: 24px 0 15px; }
-      .folder { width: 126px; padding: 11px; font-size: 11px; min-height: 100px; }
-      .folder strong { font-size: 12px; margin-bottom: 5px; padding-bottom: 5px; }
-      .sticky { width: 89px; padding: 10px; font-size: 11px; }
-      .emptydesk { width: 130px; padding: 16px 8px; font-size: 12px; }
-      .outcome { min-height: 0; padding: 13px 15px; font-size: 12px; }
+      .workspace { min-height: 200px; gap: 16px; padding: 28px 0 20px; }
+      .folder { padding: 12px 9px; font-size: 13px; min-height: 120px; }
+      .folder strong { font-size: 13px; margin-bottom: 5px; padding-bottom: 5px; }
+      .sticky { padding: 12px 9px; font-size: 13px; overflow-wrap: anywhere; }
+      .emptydesk { padding: 18px 8px; font-size: 13px; }
+      .outcome { min-height: 0; padding: 16px; font-size: 15px; }
       .story-navigation { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
       .primary-slot { grid-column: 1 / -1; grid-row: 1; }
-      .story-navigation > .button { font-size: 12px; padding: 11px 10px; min-height: 46px; }
-      .primary-slot .button { font-size: 14px; }
-      .story-footer { min-height: 60px; padding: 14px 18px; font-size: 10px; }
+      .story-navigation > .button { font-size: 14px; padding: 11px 10px; min-height: 46px; }
+      .primary-slot .button { font-size: 16px; }
+      .story-footer { min-height: 84px; padding: 16px 18px; font-size: 13px; }
       .story-goal { display: none; }
       .story-notes { grid-template-columns: 1fr; gap: 0; margin: 12px 8px 0; }
       .flow { grid-template-columns: 1fr; gap: 20px; margin-top: 24px; }
@@ -290,20 +290,88 @@
       .sources { grid-template-columns: minmax(0, 1fr); }
       footer { flex-direction: column; gap: 5px; padding: 8px 24px 30px; }
     }
-    @media (max-width: 370px) {
-      .scene-top > .eyebrow { display: none; }
-      .scene-top { justify-content: flex-end; }
-      .version-sign { width: 158px; }
-      .primary-slot .button { min-height: 80px; }
-      .visitor { min-height: 100px; }
+
+    .workspace-stage { position: relative; isolation: isolate; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 180px); justify-content: center; }
+    .workspace[data-story="stale"] { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 20px; }
+    .workspace[data-story="oom"] > .reference-slot { display: none; }
+    .object-slot, .reference-slot { display: grid; place-items: center; min-width: 0; align-self: stretch; }
+    .reference-slot { position: relative; }
+    .reference-slot.has-note:before { content: "←"; position: absolute; top: 50%; right: calc(100% + 2px); font-size: 21px; color: var(--note); }
+    .motion-layer { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+    .motion-layer > .workspace { position: absolute; inset: 0; }
+    .motion-layer .emptydesk, .motion-layer .reference-slot:before { visibility: hidden; }
+    .motion-layer .folder { animation: file-away .65s ease-in both; }
+    .motion-layer .sticky { animation: clear-note .65s ease-in both; }
+    .object-arrives { animation: folder-arrives .65s ease-out both; }
+    .object-changes { animation: show-change .6s ease-out both; }
+    .reference-arrives { animation: note-arrives .65s ease-out both; }
+    .scene[data-difference="true"] .outcome { box-shadow: inset 5px 0 0 var(--rust); }
+    [data-version="repaired"] .scene[data-difference="true"] .outcome { box-shadow: inset 5px 0 0 var(--green); }
+    @keyframes folder-arrives { from { opacity: 0; transform: translateX(-18px) rotate(-3deg); } to { opacity: 1; transform: none; } }
+    @keyframes note-arrives { from { opacity: 0; transform: translateY(-14px) rotate(-5deg); } to { opacity: 1; transform: rotate(3deg); } }
+    @keyframes file-away { to { opacity: 0; transform: translateY(-22px) rotate(-6deg); } }
+    @keyframes clear-note { to { opacity: 0; transform: translateY(-16px) rotate(10deg); } }
+    @keyframes show-change { from { outline: 3px solid var(--gold); outline-offset: 4px; } to { outline: 3px solid transparent; outline-offset: 1px; } }
+    .primary-slot, .primary-sizer, .comparison-copy, .comparison-sizer, .bridge-stage, .bridge-sizer { display: grid; min-width: 0; }
+    .primary-slot > *, .primary-sizer > *, .comparison-copy > *, .comparison-sizer > *, .bridge-stage > *, .bridge-sizer > * { grid-area: 1 / 1; min-width: 0; }
+    .primary-sizer, .comparison-sizer, .bridge-sizer { visibility: hidden; pointer-events: none; user-select: none; }
+    .primary-sizer .button { height: 100%; }
+    .comparison { display: flex; gap: 14px; padding: 22px 30px; border-bottom: 1px solid var(--line); background: var(--green-soft); }
+    .comparison[data-kind="original"] { background: var(--rust-soft); }
+    .comparison-mark { flex: 0 0 auto; display: grid; place-items: center; align-self: start; width: 32px; height: 32px; border: 1px solid currentColor; border-radius: 50%; font-size: 20px; font-weight: 750; color: var(--green-dark); }
+    .comparison[data-kind="original"] .comparison-mark { color: var(--rust); }
+    .comparison h3 { font-size: 15px; margin-bottom: 5px; }
+    .comparison p { font-size: 14px; line-height: 1.65; color: var(--ink-soft); max-width: 70ch; }
+    .term { display: inline; position: relative; padding: 0; border: 0; border-radius: 0; font: inherit; line-height: inherit; color: inherit; background: transparent; text-decoration: underline dotted; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    .term:after { content: ""; position: absolute; inset: -6px 0; }
+    .term[aria-expanded="true"], .term:hover { text-decoration-style: solid; }
+    .definition-panel { position: fixed; z-index: 20; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(500px, calc(100% - 32px)); max-height: calc(100dvh - 40px); overflow-y: auto; border: 2px solid var(--green); border-radius: 14px; background: var(--surface); color: var(--ink); box-shadow: 0 12px 50px #16313940; padding: 24px; }
+    .definition-heading { display: flex; align-items: start; justify-content: space-between; gap: 20px; margin-bottom: 12px; }
+    .definition-heading h2 { font: 400 28px/1.2 Georgia, serif; letter-spacing: -.5px; margin-top: 7px; }
+    #definitionClose { flex: 0 0 auto; min-height: 44px; padding: 9px 12px; font-size: 14px; background: var(--green-soft); border: 1px solid var(--line); color: var(--green-dark); }
+    .definition-panel p { font-size: 17px; line-height: 1.7; }
+    .definition-hint { font-size: 14px; margin-top: 12px; color: var(--muted); }
+    .attack-bridge { padding: 28px; background: var(--surface); border: 1px solid var(--green); border-radius: 12px; margin-bottom: 32px; }
+    .attack-bridge > h3 { font: 400 28px/1.25 Georgia, serif; letter-spacing: -.5px; margin-bottom: 12px; }
+    .attack-bridge > p { color: var(--muted); max-width: 68ch; font-size: 16px; }
+    .bridge-controls { display: flex; gap: 8px; flex-wrap: wrap; padding: 6px; margin: 22px 0; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 11px; }
+    .bridge-controls button { flex: 1; min-width: 0; min-height: 50px; padding: 12px 16px; font-size: 15px; font-weight: 700; color: var(--ink); background: transparent; border: 1px solid transparent; }
+    .bridge-controls button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+    .bridge-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; }
+    .bridge-flow li { position: relative; min-width: 0; padding: 20px; background: var(--surface-soft); border: 1px solid var(--line); border-radius: 10px; }
+    .bridge-flow li:not(:last-child):after { content: "→"; position: absolute; top: 50%; left: calc(100% + 5px); font-size: 22px; color: var(--green); }
+    .bridge-icon { width: 42px; height: 42px; display: grid; place-items: center; margin-bottom: 16px; background: var(--green-soft); color: var(--green-dark); border-radius: 10px; }
+    .bridge-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .bridge-flow h4 { font-size: 17px; line-height: 1.4; margin: 0 0 10px; }
+    .bridge-flow p { font-size: 15px; line-height: 1.75; color: var(--muted); }
+    [data-path="prepared"] .bridge-flow li:last-child { background: var(--rust-soft); border-color: var(--rust); }
+    [data-path="prepared"] .bridge-flow li:last-child .bridge-icon { background: var(--surface); color: var(--rust); }
+    .bridge-takeaway { border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; font-size: 15px; line-height: 1.75; }
+    .bridge-takeaway strong { display: block; margin-bottom: 4px; }
+    @media (max-width: 750px) {
+      .workspace[data-story="stale"] { gap: 18px; }
+      .comparison { padding: 20px 18px; gap: 10px; }
+      .comparison h3 { font-size: 16px; }
+      .comparison p { font-size: 15px; }
+      .attack-bridge { padding: 20px; }
+      .bridge-controls { gap: 4px; }
+      .bridge-controls button { padding: 12px 8px; }
+      .bridge-flow { grid-template-columns: 1fr; gap: 26px; }
+      .bridge-flow li:not(:last-child):after { content: "↓"; top: calc(100% - 2px); left: 50%; }
+      .bridge-flow li { padding: 18px; }
+      .bridge-icon { margin-bottom: 12px; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .scene.reveal .workspace { animation: none; }
+      .object-arrives, .object-changes, .reference-arrives, .motion-layer .folder, .motion-layer .sticky { animation: none; }
       button { transition: none; }
     }
     @media print {
       header, .skip-link, .story-picker, .version-buttons, .story-navigation, .actions, .quiz button, .interactive-notice { display: none !important; }
+      .definition-panel, .bridge-controls, .motion-layer { display: none !important; }
+      .term { text-decoration: none; }
       body { font-size: 12px; }
       .hero { padding: 20px 0; }
       .chapter { break-inside: avoid; box-shadow: none; }
@@ -321,7 +389,7 @@
     <div class="navlinks">
       <a href="#explore">The stories</a>
       <a href="#action">What to do</a>
-      <a href="#sources">Sources ↗</a>
+      <a href="#sources">Sources →</a>
     </div>
   </nav>
 </header>
@@ -351,12 +419,12 @@
         <button class="story-card" id="oom" aria-pressed="true" aria-controls="storyStage">
           <span class="story-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h3"/></svg></span>
           <span><span class="eyebrow">Story one</span><strong>An interrupted job</strong></span>
-          <span class="story-card-arrow" aria-hidden="true">↗</span>
+          <span class="story-card-arrow" aria-hidden="true">→</span>
         </button>
         <button class="story-card" id="stale" aria-pressed="false" aria-controls="storyStage">
           <span class="story-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v11l-5 5H4zM15 20v-5h5M8 9h8M8 12h5"/></svg></span>
           <span><span class="eyebrow">Story two</span><strong>An old sticky note</strong></span>
-          <span class="story-card-arrow" aria-hidden="true">↗</span>
+          <span class="story-card-arrow" aria-hidden="true">→</span>
         </button>
       </div>
       <div class="story-panel" id="storyStage" data-version="original">
@@ -365,6 +433,13 @@
           <div class="version-buttons" role="group" aria-label="PHP version">
             <button class="version-button" id="original" aria-pressed="true">Original PHP</button>
             <button class="version-button" id="repaired" aria-pressed="false">Repaired PHP</button>
+          </div>
+        </div>
+        <div class="comparison" id="comparison" data-kind="shared">
+          <span class="comparison-mark" id="comparisonMark" aria-hidden="true">=</span>
+          <div class="comparison-copy">
+            <div role="status" aria-atomic="true"><h3 id="comparisonTitle"></h3><p id="comparisonDescription"></p></div>
+            <div class="comparison-sizer" id="comparisonSizer" aria-hidden="true" inert></div>
           </div>
         </div>
         <div class="story-body">
@@ -380,8 +455,8 @@
             </div>
             <div class="workdesk">
               <div class="worker"><strong>PHP worker</strong><span id="workerState">Ready</span></div>
-              <div class="workspace-stage"><div class="workspace" id="workspace"></div><div class="workspace-sizer" id="workspaceSizer" aria-hidden="true" inert></div></div>
-              <div class="desk-edge">TEMPORARY WORKING MEMORY</div>
+              <div class="workspace-stage"><div class="workspace" id="workspace"></div><div class="workspace-sizer" id="workspaceSizer" aria-hidden="true" inert></div><div class="motion-layer" id="storyMotion" aria-hidden="true" inert></div></div>
+              <div class="desk-edge">Temporary working memory</div>
             </div>
             <div class="outcome-stage"><div class="outcome" id="outcome" role="status"></div><div class="outcome-sizer" id="outcomeSizer" aria-hidden="true" inert></div></div>
           </div>
@@ -401,6 +476,7 @@
             <div class="primary-slot">
               <button class="button button-primary" id="next"></button>
               <button class="button button-primary" id="patch" hidden>Replay with the repair →</button>
+              <div class="primary-sizer" id="primarySizer" aria-hidden="true" inert></div>
             </div>
             <button class="button button-reset" id="reset">↺ Start again</button>
           </div>
@@ -439,6 +515,25 @@
   <section class="chapter" id="impact" aria-labelledby="impactTitle">
     <div class="chapter-heading">
       <div><div class="eyebrow">Why it matters</div><h2 id="impactTitle">From a memory mistake to an attacker’s instructions.</h2><p class="chapter-intro">Researchers showed that carefully arranged memory could turn these bookkeeping errors into remote code execution.</p></div>
+    </div>
+    <div class="attack-bridge" id="attackBridge">
+      <h3>How does the mistake become an attack?</h3>
+      <p>A memory mistake can stop a job. An attacker’s aim is to arrange the data so that the same mistake redirects what the worker does.</p>
+      <div class="bridge-controls" id="bridgeControls" role="group" aria-label="Compare a failure with a prepared attack" hidden>
+        <button id="ordinary" aria-pressed="true" aria-controls="bridgeState">Ordinary failure</button>
+        <button id="prepared" aria-pressed="false" aria-controls="bridgeState">Prepared attack</button>
+      </div>
+      <div class="bridge-stage">
+        <div id="bridgeState" role="status" aria-atomic="true" data-path="ordinary">
+          <ol class="bridge-flow">
+            <li><h4>A request hits the bug</h4><p>PHP reaches unfinished data or an outdated reference.</p></li>
+            <li><h4>The wrong data is used</h4><p>The worker tries to use information that is unfinished or no longer valid.</p></li>
+            <li><h4>The worker may crash</h4><p>The request can fail and the worker can stop. A crash interrupts the job.</p></li>
+          </ol>
+          <p class="bridge-takeaway"><strong>A failure interrupts the job.</strong>A memory error can cause a crash. Turning it into control takes more preparation.</p>
+        </div>
+        <div class="bridge-sizer" id="bridgeSizer" aria-hidden="true" inert></div>
+      </div>
     </div>
     <div class="twocol">
       <div>
@@ -502,7 +597,7 @@
       <div><div class="eyebrow">Take the idea with you</div><h2 id="takeawayTitle">The thirty-second explanation.</h2><p class="chapter-intro">For the next time someone asks, “So what actually happened?”</p></div>
     </div>
     <blockquote id="explanation">“PHP helps websites handle visitors’ requests. Two bugs meant it could trust unfinished data or follow an old reference to memory it had already released. Researchers showed that attackers could exploit those mistakes to make a server run their instructions, without logging in. Website operators need to update PHP and follow their hosting provider’s advice.”</blockquote>
-    <div class="actions" id="copyActions" hidden><button class="button" id="copy">Copy explanation ↗</button><button class="button button-secondary" id="print">Print this guide</button></div>
+    <div class="actions" id="copyActions" hidden><button class="button" id="copy">Copy explanation</button><button class="button button-secondary" id="print">Print this guide</button></div>
     <span id="copyStatus" role="status"></span>
   </section>
 
@@ -511,29 +606,111 @@
       <div><div class="eyebrow">Keep exploring</div><h2 id="sourcesTitle">Straight from the source.</h2><p class="chapter-intro">The original PHP announcements, technical advisories and national cybersecurity guidance.</p></div>
     </div>
     <div class="sources">
-      <a href="https://www.php.net/archive/2026.php"><span>PHP project · 21 and 23 October announcements</span><span aria-hidden="true">↗</span></a>
-      <a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w"><span>PHP · Out-of-memory corruption advisory</span><span aria-hidden="true">↗</span></a>
-      <a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"><span>PHP · Stale global state advisory</span><span aria-hidden="true">↗</span></a>
-      <a href="https://cert.europa.eu/publications/security-advisories/2026-018"><span>CERT-EU · Affected versions and response</span><span aria-hidden="true">↗</span></a>
-      <a href="https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php"><span>UK NCSC · Security overview</span><span aria-hidden="true">↗</span></a>
-      <a href="https://www.cyber.gc.ca/en/alerts-advisories/al26-026-critical-vulnerabilities-impacting-php-cve-2026-109618-cve-2026-109619"><span>Canadian Cyber Centre · 23 October follow-up</span><span aria-hidden="true">↗</span></a>
+      <a href="https://www.php.net/archive/2026.php"><span>PHP project · 21 and 23 October announcements</span><span aria-hidden="true">→</span></a>
+      <a href="https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w"><span>PHP · Out-of-memory corruption advisory</span><span aria-hidden="true">→</span></a>
+      <a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp"><span>PHP · Stale global state advisory</span><span aria-hidden="true">→</span></a>
+      <a href="https://cert.europa.eu/publications/security-advisories/2026-018"><span>CERT-EU · Affected versions and response</span><span aria-hidden="true">→</span></a>
+      <a href="https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php"><span>UK NCSC · Security overview</span><span aria-hidden="true">→</span></a>
+      <a href="https://www.cyber.gc.ca/en/alerts-advisories/al26-026-critical-vulnerabilities-impacting-php-cve-2026-109618-cve-2026-109619"><span>Canadian Cyber Centre · 23 October follow-up</span><span aria-hidden="true">→</span></a>
     </div>
     <p class="source-note">PHP2Shell: CVE-2026-109618 and CVE-2026-109619 · Disclosed 21 October 2026</p>
     <details><summary>A small glossary</summary><p><strong>Server:</strong> a computer that answers requests. <strong>Runtime:</strong> the software that runs application code. <strong>Worker:</strong> a process doing server tasks. <strong>Memory:</strong> temporary working space. <strong>Reference or pointer:</strong> a way to locate data in memory. <strong>Use-after-free:</strong> using memory after it has been released. <strong>Patch:</strong> a software repair. <strong>CVE:</strong> an identifier for a publicly tracked security flaw. <strong>Backport:</strong> a repair applied to an older software branch.</p></details>
   </section>
 </main>
 <footer><span>Under the hood.</span><span>An illustrated guide to PHP2Shell · October 2026</span></footer>
+<aside class="definition-panel" id="definitionPanel" role="dialog" aria-modal="false" aria-labelledby="definitionTitle" aria-describedby="definitionText" hidden>
+  <div class="definition-heading"><h2 id="definitionTitle"></h2><button type="button" id="definitionClose">Close ×</button></div>
+  <p id="definitionText"></p>
+  <div class="definition-hint">Tap a dotted word to see its meaning. Press Escape or Close to return.</div>
+</aside>
 <script>
 const $ = id => document.getElementById(id);
 let mode = 'oom';
 let step = 0;
 let patched = false;
 
+const definitions = {
+  memory: {title: 'Memory', text: 'Temporary working space inside the server. In the story, it is the desk where a worker keeps the information needed for the current job.'},
+  reference: {title: 'Reference', text: 'A note telling PHP where to find some data in memory. The note is useful only while the data at that location is still valid.'},
+  worker: {title: 'Worker', text: 'A running part of the server that handles requests. Like a member of staff, one worker can finish a job and then handle another.'},
+  request: {title: 'Request', text: 'A message sent to a website, for example when you open a page or submit a form. PHP does work on the server to help answer it.'},
+  server: {title: 'Server', text: 'A computer that receives requests and sends back web pages or other responses. PHP runs here, behind the scenes of the website.'},
+  cleanup: {title: 'Cleanup', text: 'The work PHP does to finish a request and release information it no longer needs. Cleanup must also be safe when a job stops halfway through.'},
+  runtime: {title: 'Runtime', text: 'Software that runs an application’s code. PHP is a runtime: it powers part of the website on the server.'},
+  'use-after-free': {title: 'Use-after-free', text: 'Using memory after it has been released. The old location might be empty or might now contain somebody else’s data, like following a sticky note to a folder that has already gone.'}
+};
+const termPattern = /\b(use-after-free|references?|workers?|requests?|servers?|cleanup|runtime|memory)\b/gi;
+function termNodes(text) {
+  const nodes = [];
+  const explained = new Set();
+  let start = 0;
+  for (const match of text.matchAll(termPattern)) {
+    nodes.push(document.createTextNode(text.slice(start, match.index)));
+    const key = match[0].toLowerCase().replace(/^(reference|worker|request|server)s$/, '$1');
+    if (explained.has(key)) {
+      nodes.push(document.createTextNode(match[0]));
+      start = match.index + match[0].length;
+      continue;
+    }
+    explained.add(key);
+    const termEl = document.createElement('button');
+    termEl.type = 'button';
+    termEl.className = 'term';
+    termEl.dataset.term = key;
+    termEl.textContent = match[0];
+    termEl.setAttribute('aria-label', 'Explain ' + match[0].toLowerCase());
+    termEl.setAttribute('aria-haspopup', 'dialog');
+    termEl.setAttribute('aria-controls', 'definitionPanel');
+    termEl.setAttribute('aria-expanded', 'false');
+    nodes.push(termEl);
+    start = match.index + match[0].length;
+  }
+  nodes.push(document.createTextNode(text.slice(start)));
+  return nodes;
+}
+function explainText(element, text) { element.replaceChildren(...termNodes(text)); }
+function addDefinitions(element) {
+  for (const child of [...element.childNodes]) {
+    if (child.nodeType === 3) child.replaceWith(...termNodes(child.textContent));
+    else if (child.nodeType === 1 && !child.matches('a, button, code')) addDefinitions(child);
+  }
+}
+let definitionTriggerEl = null;
+function closeDefinition(restoreFocus = false) {
+  const triggerEl = definitionTriggerEl;
+  if (triggerEl) triggerEl.setAttribute('aria-expanded', 'false');
+  definitionTriggerEl = null;
+  $('definitionPanel').hidden = true;
+  if (restoreFocus && triggerEl?.isConnected) triggerEl.focus({preventScroll: true});
+}
+document.addEventListener('click', event => {
+  const termEl = event.target.closest('.term');
+  if (termEl) {
+    const wasOpen = definitionTriggerEl === termEl;
+    closeDefinition();
+    if (wasOpen) return;
+    const definition = definitions[termEl.dataset.term];
+    $('definitionTitle').textContent = definition.title;
+    $('definitionText').textContent = definition.text;
+    definitionTriggerEl = termEl;
+    termEl.setAttribute('aria-expanded', 'true');
+    $('definitionPanel').hidden = false;
+    $('definitionClose').focus({preventScroll: true});
+  } else if (!event.target.closest('#definitionPanel')) closeDefinition();
+});
+$('definitionClose').onclick = () => closeDefinition(true);
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !$('definitionPanel').hidden) {
+    event.preventDefault();
+    closeDefinition(true);
+  }
+});
+
 function folder(title, body, bad = false) {
   return '<div class="folder' + (bad ? ' bad' : '') + '"><strong>' + title + '</strong>' + body + '</div>';
 }
 function note(body) {
-  return '<div class="sticky"><strong>Reference</strong>' + body + '</div>';
+  return '<div class="sticky"><strong>Note</strong>' + body + '</div>';
 }
 const empty = '<div class="emptydesk">An empty desk<br>Ready for a request</div>';
 const notes = {
@@ -553,7 +730,7 @@ const notes = {
     },
     {
       title: 'The worker runs out of memory.',
-      text: 'A memory allocation fails. In the original PHP, error handling can jump out of the operation before its internal data is ready. The request fails, leaving an unfinished folder behind.',
+      text: 'PHP cannot set aside more temporary memory. In the original PHP, error handling can stop the job before its internal data is ready. The request fails, leaving an unfinished folder behind.',
       action: 'Let cleanup run →', visual: folder('Unfinished folder', '✓ Ready field<br>? Unknown field<br>? Unknown field', true),
       worker: 'Job interrupted', request: 'Request failed',
       outcome: 'The job has stopped. PHP still has to end the request safely.'
@@ -576,21 +753,21 @@ const notes = {
     {
       title: 'Request A leaves a sticky note.',
       text: 'PHP stores a reference to request A’s information in state the worker keeps. Picture a sticky note saying, “Use the information in A’s folder.”',
-      action: 'Finish request A →', visual: folder('Request A', 'Temporary data') + note('Use A’s folder →'),
+      action: 'Finish request A →', visual: folder('Request A', 'Temporary data') + note('Use A’s folder'),
       worker: 'Handling request A', request: 'Request A in progress',
       outcome: 'The note points to A’s folder, which is still on the desk.'
     },
     {
       title: 'The folder goes. The note stays.',
       text: 'In an affected path, PHP releases the data but fails to clear its reference safely. The worker is left with a note pointing to memory that has already been freed.',
-      action: 'Send request B →', visual: '<div class="emptydesk">A’s folder<br>has been removed</div>' + note('Old note →<br>Use A’s folder'),
+      action: 'Send request B →', visual: '<div class="emptydesk">A’s folder<br>has been removed</div>' + note('Use A’s folder'),
       worker: 'Stale reference', request: 'Request A ended',
       outcome: 'The reference survives even though its target has been released.'
     },
     {
       title: 'Request B follows the outdated note.',
       text: 'A later request on the same worker uses the old reference before normal initialisation replaces it. That location may now hold different data. Carefully controlled reuse can lead to memory disclosure or code execution.',
-      action: '', visual: folder('Reused space', 'Different data now<br>⚠ Old note used', true) + note('Old note →<br>Wrong target'),
+      action: '', visual: folder('Reused space', 'Different data now<br>⚠ Old note used', true) + note('Use A’s folder'),
       worker: 'Invalid access', request: 'Request B arrived',
       outcome: 'This is use-after-free: using memory after it has been released.'
     }
@@ -601,7 +778,7 @@ const repairs = {
   oom: [
     {
       title: 'The interruption is handled safely.',
-      text: 'The repaired PHP changes how it handles memory exhaustion. It stops at a safe execution point, or exits the process immediately at a higher memory threshold. The unfinished data stays out of ordinary cleanup.',
+      text: 'The repaired PHP stops at a safe point, or closes the worker immediately when it hits a higher memory limit. It keeps the unfinished folder out of ordinary cleanup.',
       visual: '<div class="emptydesk">✓ Safe failure<br>No invalid cleanup</div>',
       outcome: 'The request fails safely. Cleanup stays clear of the unfinished data.'
     },
@@ -615,7 +792,7 @@ const repairs = {
   stale: [
     {
       title: 'The old reference is cleared.',
-      text: 'The repaired lifecycle prevents the worker from retaining a usable reference to released request memory. In our desk story, A’s folder goes away and its sticky note is cleared too.',
+      text: 'The repaired PHP clears the old reference safely. In our desk story, A’s folder goes away and its sticky note is cleared too. The worker is ready for a fresh job.',
       visual: '<div class="emptydesk">✓ Folder released<br>Old reference cleared</div>',
       outcome: 'The desk is ready for the next request, with the old reference cleared.'
     },
@@ -628,8 +805,85 @@ const repairs = {
   ]
 };
 
+
+function comparison(story, index, repaired) {
+  if (index < 2) return {kind: 'shared', mark: '=', title: 'Both versions behave the same here.', text: 'The repair changes what happens at step three. Switch versions now or keep going to see the difference.'};
+  const text = story === 'oom'
+    ? repaired ? 'PHP keeps the unfinished folder out of ordinary cleanup. The request can fail safely.' : 'The unfinished folder can reach cleanup, which may treat its contents as valid.'
+    : repaired ? 'The old folder and its reference are cleared safely. The next request uses valid information.' : 'The folder is gone, but its reference remains. The next request may follow the old note.';
+  return {kind: repaired ? 'repaired' : 'original', mark: repaired ? '✓' : '!', title: repaired ? 'Here is what the repair changes.' : 'Here is where the versions differ.', text};
+}
+function comparisonContent(value) {
+  const copyEl = document.createElement('div');
+  const titleEl = document.createElement('h3');
+  const textEl = document.createElement('p');
+  titleEl.textContent = value.title;
+  textEl.textContent = value.text;
+  copyEl.append(titleEl, textEl);
+  return copyEl;
+}
+function workspaceParts(visual) {
+  const containerEl = document.createElement('div');
+  containerEl.innerHTML = visual;
+  return {object: containerEl.querySelector('.folder, .emptydesk'), reference: containerEl.querySelector('.sticky')};
+}
+function fillWorkspace(workspaceEl, visual, story) {
+  const parts = workspaceParts(visual);
+  workspaceEl.dataset.story = story;
+  for (const [name, content] of Object.entries(parts)) {
+    const slotClass = name === 'object' ? 'object-slot' : 'reference-slot';
+    let slotEl = workspaceEl.querySelector('.' + slotClass);
+    if (!slotEl) {
+      slotEl = document.createElement('div');
+      slotEl.className = slotClass;
+      workspaceEl.append(slotEl);
+    }
+    const previousEl = slotEl.firstElementChild?.cloneNode(true);
+    previousEl?.classList.remove('object-arrives', 'object-changes', 'reference-arrives');
+    if ((previousEl?.outerHTML || '') !== (content?.outerHTML || '')) slotEl.replaceChildren(...(content ? [content] : []));
+    if (name === 'reference') slotEl.classList.toggle('has-note', !!content);
+  }
+}
+function renderWorkspace(visual) {
+  const workspaceEl = $('workspace');
+  const oldObjectEl = workspaceEl.querySelector('.object-slot > *');
+  const oldReferenceEl = workspaceEl.querySelector('.sticky');
+  const parts = workspaceParts(visual);
+  const sameStory = workspaceEl.dataset.story === mode;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const removedFolder = sameStory && oldObjectEl?.classList.contains('folder') && !parts.object?.classList.contains('folder');
+  const removedNote = sameStory && oldReferenceEl && !parts.reference;
+  $('storyMotion').replaceChildren();
+  if (!reducedMotion && (removedFolder || removedNote)) {
+    const ghostEl = workspaceEl.cloneNode(true);
+    ghostEl.removeAttribute('id');
+    if (!removedFolder) ghostEl.querySelector('.object-slot').replaceChildren();
+    if (!removedNote) ghostEl.querySelector('.reference-slot').replaceChildren();
+    ghostEl.querySelectorAll('.object-arrives, .object-changes, .reference-arrives').forEach(el => el.classList.remove('object-arrives', 'object-changes', 'reference-arrives'));
+    ghostEl.addEventListener('animationend', () => ghostEl.remove(), {once: true});
+    $('storyMotion').append(ghostEl);
+  }
+  fillWorkspace(workspaceEl, visual, mode);
+  const objectEl = workspaceEl.querySelector('.object-slot > *');
+  const referenceEl = workspaceEl.querySelector('.sticky');
+  if (!reducedMotion && objectEl && objectEl !== oldObjectEl) {
+    const changedInPlace = sameStory && oldObjectEl?.classList.contains('folder') && objectEl.classList.contains('folder');
+    objectEl.classList.add(removedFolder || changedInPlace ? 'object-changes' : 'object-arrives');
+  }
+  if (!reducedMotion && referenceEl && referenceEl !== oldReferenceEl) referenceEl.classList.add('reference-arrives');
+}
+
 function prepareStorySizing() {
-  const states = [...Object.values(notes).flat(), ...Object.values(repairs).flat()];
+  const states = Object.keys(notes).flatMap(story => [...notes[story], ...repairs[story]].map(state => ({...state, story})));
+  for (const story of Object.keys(notes)) for (let index = 0; index < 4; index++) for (const repaired of [false, true]) {
+    $('comparisonSizer').append(comparisonContent(comparison(story, index, repaired)));
+  }
+  for (const text of [...Object.values(notes).flat().map(state => state.action).filter(Boolean), 'See the safe outcome →', 'Replay the original story →', 'Replay with the repair →']) {
+    const buttonEl = document.createElement('span');
+    buttonEl.className = 'button button-primary';
+    buttonEl.textContent = text;
+    $('primarySizer').append(buttonEl);
+  }
   for (const state of states) {
     const copyEl = document.createElement('div');
     const titleEl = document.createElement('h3');
@@ -637,13 +891,13 @@ function prepareStorySizing() {
     titleEl.textContent = state.title;
     const textEl = document.createElement('p');
     textEl.className = 'step-text';
-    textEl.textContent = state.text;
+    explainText(textEl, state.text);
     copyEl.append(titleEl, textEl);
     $('copySizer').append(copyEl);
 
     const workspaceEl = document.createElement('div');
     workspaceEl.className = 'workspace';
-    workspaceEl.innerHTML = state.visual;
+    fillWorkspace(workspaceEl, state.visual, state.story);
     $('workspaceSizer').append(workspaceEl);
 
     const outcomeEl = document.createElement('div');
@@ -651,6 +905,7 @@ function prepareStorySizing() {
     const labelEl = document.createElement('strong');
     labelEl.textContent = 'What’s happening';
     outcomeEl.append(labelEl, document.createTextNode(state.outcome));
+    addDefinitions(outcomeEl);
     $('outcomeSizer').append(outcomeEl);
   }
 }
@@ -669,8 +924,14 @@ function render() {
   $('counter').textContent = 'STEP ' + (step + 1) + ' OF 4';
   $('dots').innerHTML = [0, 1, 2, 3].map(index => '<span class="dot' + (index <= step ? ' on' : '') + '"></span>').join('');
   $('stepTitle').textContent = repair ? repair.title : current.title;
-  $('stepText').textContent = repair ? repair.text : current.text;
-  $('workspace').innerHTML = repair ? repair.visual : current.visual;
+  explainText($('stepText'), repair ? repair.text : current.text);
+  renderWorkspace(repair ? repair.visual : current.visual);
+  const comparisonState = comparison(mode, step, patched);
+  $('comparison').dataset.kind = comparisonState.kind;
+  $('comparisonMark').textContent = comparisonState.mark;
+  $('comparisonTitle').textContent = comparisonState.title;
+  $('comparisonDescription').textContent = comparisonState.text;
+  document.querySelector('.scene').dataset.difference = String(step >= 2);
   $('workerState').textContent = repair ? 'Safe handling' : current.worker;
   $('requestName').textContent = mode === 'oom' ? 'A visitor’s request' : step === 3 ? 'Request B' : 'Request A';
   $('requestState').textContent = current.request;
@@ -678,6 +939,7 @@ function render() {
   const outcomeLabelEl = document.createElement('strong');
   outcomeLabelEl.textContent = repair ? 'With the repair' : 'What’s happening';
   $('outcome').append(outcomeLabelEl, document.createTextNode(repair ? repair.outcome : current.outcome));
+  addDefinitions($('outcome'));
   $('outcome').className = 'outcome' + (!patched && step === 3 ? ' danger' : repair ? ' safe' : '');
   $('next').textContent = repair && step === 2 ? 'See the safe outcome →' : current.action;
   $('next').hidden = step === 3;
@@ -686,14 +948,11 @@ function render() {
   $('back').disabled = step === 0;
   $('cve').textContent = mode === 'oom' ? 'CVE-2026-109618 · Out-of-memory corruption' : 'CVE-2026-109619 · Stale global state';
   $('storyGoal').textContent = mode === 'oom' ? 'An interrupted job' : 'An old sticky note';
-  const sceneEl = document.querySelector('.scene');
-  sceneEl.classList.remove('reveal');
-  void sceneEl.offsetWidth;
-  sceneEl.classList.add('reveal');
 }
 
 function changeStory(action) {
   const activeEl = document.activeElement;
+  closeDefinition();
   action();
   render();
   // Only transfer focus when its control disappears or becomes disabled.
@@ -713,12 +972,76 @@ $('back').onclick = () => changeStory(() => { step = Math.max(step - 1, 0); });
 $('reset').onclick = () => changeStory(() => { step = 0; });
 render();
 
+
+const bridgePaths = {
+  ordinary: {
+    steps: [
+      ['A request hits the bug', 'PHP reaches unfinished data or an outdated reference.'],
+      ['The wrong data is used', 'The worker tries to use information that is unfinished or no longer valid.'],
+      ['The worker may crash', 'The request can fail and the worker can stop. A crash interrupts the job.']
+    ],
+    title: 'A failure interrupts the job.',
+    takeaway: 'A memory error can cause a crash. Turning it into control takes more preparation.'
+  },
+  prepared: {
+    steps: [
+      ['A request sets the scene', 'An attacker carefully shapes request data and the way memory is reused.'],
+      ['The bug trusts the wrong data', 'Some memory values guide PHP’s next operation. If the bug makes PHP use attacker-influenced values, it may follow a path the attacker chose.'],
+      ['The attacker redirects the worker', 'They may make it run operations they chose, using the worker’s permissions.']
+    ],
+    title: 'Prepared data can turn the mistake into control.',
+    takeaway: 'The PHP repairs close the two memory mistakes shown in the stories, breaking this chain at the point where invalid data gets used.'
+  }
+};
+const bridgeIcons = [
+  '<path d="M5 3h10l4 4v14H5zM15 3v5h4M8 12h8M8 16h5"/>',
+  '<path d="M3 7h7l2 3h9v10H3zM8 3h8M12 3v5"/>',
+  '<path d="M4 5h16v12H4zM8 21h8M12 17v4M8 10h8M13 7l3 3-3 3"/>'
+];
+function bridgeContent(path) {
+  const containerEl = document.createElement('div');
+  containerEl.dataset.path = path;
+  const listEl = document.createElement('ol');
+  listEl.className = 'bridge-flow';
+  bridgePaths[path].steps.forEach(([title, text], index) => {
+    const itemEl = document.createElement('li');
+    const iconEl = document.createElement('span');
+    iconEl.className = 'bridge-icon';
+    iconEl.setAttribute('aria-hidden', 'true');
+    iconEl.innerHTML = '<svg viewBox="0 0 24 24">' + bridgeIcons[index] + '</svg>';
+    const headingEl = document.createElement('h4');
+    headingEl.textContent = title;
+    const textEl = document.createElement('p');
+    explainText(textEl, text);
+    itemEl.append(iconEl, headingEl, textEl);
+    listEl.append(itemEl);
+  });
+  const takeawayEl = document.createElement('p');
+  takeawayEl.className = 'bridge-takeaway';
+  const labelEl = document.createElement('strong');
+  labelEl.textContent = bridgePaths[path].title;
+  takeawayEl.append(labelEl, ...termNodes(bridgePaths[path].takeaway));
+  containerEl.append(listEl, takeawayEl);
+  return containerEl;
+}
+for (const path of Object.keys(bridgePaths)) {
+  $('bridgeSizer').append(bridgeContent(path));
+  $(path).onclick = () => {
+    closeDefinition();
+    for (const key of Object.keys(bridgePaths)) $(key).setAttribute('aria-pressed', key === path);
+    $('bridgeState').dataset.path = path;
+    $('bridgeState').replaceChildren(...bridgeContent(path).childNodes);
+  };
+}
+$('ordinary').onclick();
+for (const element of document.querySelectorAll('.hero-copy p, .chapter-intro, .story-notes p, .flow p, .rule, #impact details p, .mechanism p, #action details p, .version-intro, .attack-bridge > p')) addDefinitions(element);
+
 const roles = {
   visitor: '<strong>The server operator handles the repair.</strong><p>PHP runs on the website’s server. The organisation hosting the site is responsible for updating that software.</p>',
   owner: '<strong>Ask your hosting provider.</strong><p>“Have you installed the repairs for CVE-2026-109618 and CVE-2026-109619 on the PHP runtime serving my site, restarted its workers and reviewed the 23 October session upload progress advisory?”</p>',
   admin: '<strong>Inventory, update and verify.</strong><p>Identify your PHP deployments, install repaired upstream or vendor packages, update containers and restart the relevant workers. Check the running versions and review the logs.</p>'
 };
-$('role').onchange = () => { $('roleResult').innerHTML = roles[$('role').value]; };
+$('role').onchange = () => { $('roleResult').innerHTML = roles[$('role').value]; addDefinitions($('roleResult')); };
 $('role').onchange();
 
 const fixes = {'8.5': '8.5.12', '8.4': '8.4.27', '8.3': '8.3.36', '8.2': '8.2.35'};
@@ -735,7 +1058,7 @@ function check() {
   } else {
     result = 'PHP ' + fixes[branch] + ' includes the 21 October repairs. Check that your host has deployed the update and restarted the PHP workers.';
   }
-  $('versionResult').textContent = result;
+  explainText($('versionResult'), result);
 }
 $('branch').onchange = check;
 $('level').onchange = check;
@@ -825,6 +1148,7 @@ $('copy').onclick = async () => {
   }
 };
 $('print').onclick = () => window.print();
+$('bridgeControls').hidden = false;
 $('storyLab').hidden = false;
 $('quizPanel').hidden = false;
 $('copyActions').hidden = false;

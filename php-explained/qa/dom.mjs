@@ -10,6 +10,7 @@ const html = fs.readFileSync(file, 'utf8');
 const {document, window: domWindow} = parseHTML(html);
 let focused = '', scrolled = 0, printed = false, focusCount = 0;
 let activeEl = null;
+let reducedMotion = true;
 const focusOptions = [];
 Object.defineProperty(document, 'activeElement', {get: () => activeEl});
 domWindow.HTMLElement.prototype.focus = function (options) {
@@ -17,7 +18,7 @@ domWindow.HTMLElement.prototype.focus = function (options) {
 };
 domWindow.HTMLElement.prototype.scrollIntoView = function () { scrolled++; };
 const window = {
-  matchMedia: () => ({matches: true}),
+  matchMedia: () => ({matches: reducedMotion}),
   scroll() { scrolled++; }, scrollTo() { scrolled++; }, scrollBy() { scrolled++; },
   print() { printed = true; }
 };
@@ -54,6 +55,7 @@ assert(!$('storyLab').hidden);
 assert(!$('quizPanel').hidden);
 assert(!$('copyActions').hidden);
 assert($('interactiveNotice').hidden);
+assert(!$('bridgeControls').hidden);
 
 for (const story of ['oom', 'stale']) {
   click(story);
@@ -69,6 +71,9 @@ for (const story of ['oom', 'stale']) {
     assertVersion(true);
     assert.equal(focusCount, beforeToggle, 'Version comparison must not steal focus');
     assert.match($('counter').textContent, new RegExp(`STEP ${index + 1} OF 4`));
+    assert.equal($('comparison').dataset.kind, index < 2 ? 'shared' : 'repaired');
+    assert.match($('comparisonTitle').textContent, index < 2 ? /Both versions behave the same/ : /repair changes/);
+    if (index < 2) assert.match($('comparisonDescription').textContent, /step three/);
     if (index >= 2) {
       assert.notEqual($('workspace').innerHTML, originalScene);
       assert.notEqual($('stepTitle').textContent, originalTitle);
@@ -76,6 +81,7 @@ for (const story of ['oom', 'stale']) {
     }
     click('original');
     assertVersion(false);
+    assert.equal($('comparison').dataset.kind, index < 2 ? 'shared' : 'original');
     assert.equal($('workspace').innerHTML, originalScene);
     if (index < 3) {
       assert($('patch').hidden);
@@ -116,10 +122,79 @@ assert.equal(scrolled, 0, 'Story controls must never scroll the page');
 assert(focusOptions.length > 0, 'Final-step focus transfers should be exercised');
 assert(focusOptions.every(options => options?.preventScroll === true), 'Story focus transfers must prevent scrolling');
 assert.equal(document.querySelectorAll('.chapter-number, .story-card-number, .flow-index').length, 0);
-for (const id of ['copySizer', 'workspaceSizer', 'outcomeSizer']) {
+for (const id of ['copySizer', 'workspaceSizer', 'outcomeSizer', 'comparisonSizer', 'primarySizer', 'bridgeSizer', 'storyMotion']) {
   assert.equal($(id).getAttribute('aria-hidden'), 'true');
   assert($(id).hasAttribute('inert'));
 }
+
+// Exercise actual transition logic as well as the reduced-motion path.
+reducedMotion = false;
+click('stale');
+click('next');
+const retainedNote = $('workspace').querySelector('.sticky');
+assert(retainedNote.classList.contains('reference-arrives'));
+click('next');
+assert.equal($('workspace').querySelector('.sticky'), retainedNote, 'The note must stay while the folder leaves');
+assert($('storyMotion').querySelector('.folder'), 'The removed folder must have an exit illustration');
+assert(!$('storyMotion').querySelector('.sticky'), 'The retained note must not leave with the folder');
+$('storyMotion').querySelector('.folder').dispatchEvent(new domWindow.Event('animationend', {bubbles: true}));
+assert.equal($('storyMotion').children.length, 0);
+click('next');
+assert.equal($('workspace').querySelector('.sticky'), retainedNote);
+assert($('workspace').querySelector('.folder').classList.contains('object-arrives'));
+click('repaired');
+assert(!$('workspace').querySelector('.sticky'));
+assert($('storyMotion').querySelector('.sticky'), 'The repair must clear the old note visibly');
+for (let index = 0; index < 30; index++) {
+  click(index % 2 ? 'original' : 'repaired');
+  assert($('storyMotion').children.length <= 1, 'Rapid changes must replace old animations');
+}
+reducedMotion = true;
+click('original');
+assert.equal($('storyMotion').children.length, 0, 'Reduced motion must omit departure animations');
+
+// Every definition opens, closes, restores focus and leaves story state intact.
+for (const key of ['request', 'server', 'memory', 'worker', 'reference', 'cleanup', 'runtime', 'use-after-free']) {
+  const termEl = [...document.querySelectorAll('.term')].find(el => el.dataset.term === key && !el.closest('[inert]'));
+  assert(termEl, `Missing definition trigger: ${key}`);
+  const before = $('counter').textContent;
+  termEl.click();
+  assert(!$('definitionPanel').hidden);
+  assert.equal(termEl.getAttribute('aria-expanded'), 'true');
+  assert.equal(activeEl, $('definitionClose'));
+  assert($('definitionText').textContent.length > 70);
+  assert.equal($('definitionTitle').textContent.toLowerCase(), key);
+  click('definitionClose');
+  assert($('definitionPanel').hidden);
+  assert.equal(termEl.getAttribute('aria-expanded'), 'false');
+  assert.equal(activeEl, termEl);
+  assert.equal($('counter').textContent, before);
+}
+const termEl = $('stepText').querySelector('.term');
+termEl.click();
+const escape = new domWindow.Event('keydown', {bubbles: true, cancelable: true});
+Object.defineProperty(escape, 'key', {value: 'Escape'});
+document.dispatchEvent(escape);
+assert(escape.defaultPrevented);
+assert($('definitionPanel').hidden);
+assert.equal(activeEl, termEl);
+termEl.click();
+$('storiesTitle').click();
+assert($('definitionPanel').hidden, 'Clicking outside must dismiss the definition');
+termEl.click();
+click('reset');
+assert($('definitionPanel').hidden, 'Changing a story must dismiss its old definition');
+
+for (const path of ['prepared', 'ordinary', 'prepared', 'ordinary']) {
+  click(path);
+  assert.equal($('bridgeState').dataset.path, path);
+  assert.equal($(path).getAttribute('aria-pressed'), 'true');
+  assert.equal($(path === 'ordinary' ? 'prepared' : 'ordinary').getAttribute('aria-pressed'), 'false');
+  assert.equal($('bridgeState').querySelectorAll('li').length, 3);
+  assert.match($('bridgeState').querySelector('li:last-child h4').textContent, path === 'prepared' ? /attacker redirects/ : /may crash/);
+}
+assert.equal(scrolled, 0, 'New interactions must never invoke scrolling');
+assert(focusOptions.every(options => options?.preventScroll === true), 'Definition focus must also prevent scrolling');
 
 for (const [value, result] of Object.entries({visitor: 'server operator', owner: 'hosting provider', admin: 'Inventory, update'})) {
   select('role', value);
@@ -177,4 +252,4 @@ for (const anchor of document.querySelectorAll('a[href^="#"]')) {
 const ids = [...document.querySelectorAll('[id]')].map(element => element.id);
 assert.equal(new Set(ids).size, ids.length);
 assert.equal(document.documentElement.lang, 'en-GB');
-console.log('PASS: no story scrolling, stable control focus, unnumbered sections, both stories, version comparison at every step, replay/back/restart, all audience/version choices, all nine quiz answers, scoring/reset, copy success/denial, print dispatch, anchors and initial no-JavaScript state.');
+console.log('PASS: both stories, repair explanations, retained sticky note and folder departures, rapid transitions, reduced motion, all eight definitions/close/Escape/outside dismissal, both attack paths, zero scroll API calls, safe focus, every existing control, quiz path, copy/print, anchors and initial no-JavaScript state.');

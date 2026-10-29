@@ -6,7 +6,7 @@ const path = require('node:path');
 const {pathToFileURL} = require('node:url');
 const {chromium} = require('playwright');
 
-const pageUrl = pathToFileURL(path.resolve(__dirname, '../index.html')).href;
+const pageUrl = process.env.PHP_GUIDE_URL || pathToFileURL(path.resolve(__dirname, '../index.html')).href;
 const launchOptions = {headless: true};
 if (process.env.CHROMIUM_EXECUTABLE) {
   launchOptions.executablePath = process.env.CHROMIUM_EXECUTABLE;
@@ -49,6 +49,7 @@ async function run() {
       assert(await page.locator('#storyLab').isVisible());
       assert(await page.locator('#quizPanel').isVisible());
       assert(await page.locator('#copyActions').isVisible());
+      assert(await page.locator('#bridgeControls').isVisible());
       assert.equal(await page.locator('html').getAttribute('lang'), 'en-GB');
       assert.equal(await page.locator('.chapter-number, .story-card-number, .flow-index').count(), 0);
       await assertNoOverflow();
@@ -60,7 +61,7 @@ async function run() {
         assert(await page.locator('#back').isDisabled());
         assert.match(await text('#counter'), /STEP 1 OF 4/);
         for (let index = 0; index < 4; index++) {
-          const originalScene = await page.locator('#workspace').innerHTML();
+          const originalScene = await text('#workspace');
           const originalTitle = await text('#stepTitle');
           await clickStory('repaired');
           assert.equal(await text('#badge'), 'Repaired PHP');
@@ -69,8 +70,11 @@ async function run() {
           assert.equal(await page.locator('#original').getAttribute('aria-pressed'), 'false');
           assert.equal(await page.evaluate(() => document.activeElement.id), 'repaired');
           assert.match(await text('#counter'), new RegExp(`STEP ${index + 1} OF 4`));
+          assert.equal(await page.locator('#comparison').getAttribute('data-kind'), index < 2 ? 'shared' : 'repaired');
+          assert.match(await text('#comparisonTitle'), index < 2 ? /Both versions behave the same/ : /repair changes/);
+          if (index < 2) assert.match(await text('#comparisonDescription'), /step three/);
           if (index >= 2) {
-            assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
+            assert.notEqual(await text('#workspace'), originalScene);
             assert.notEqual(await text('#stepTitle'), originalTitle);
           }
           await clickStory('original');
@@ -78,11 +82,12 @@ async function run() {
           assert.equal(await page.locator('#storyStage').getAttribute('data-version'), 'original');
           assert.equal(await page.locator('#original').getAttribute('aria-pressed'), 'true');
           assert.equal(await page.locator('#repaired').getAttribute('aria-pressed'), 'false');
-          assert.equal(await page.locator('#workspace').innerHTML(), originalScene);
+          assert.equal(await text('#workspace'), originalScene);
+          assert.equal(await page.locator('#comparison').getAttribute('data-kind'), index < 2 ? 'shared' : 'original');
           if (index < 3) {
             assert(await page.locator('#patch').isHidden());
             await clickStory('next');
-            assert.notEqual(await page.locator('#workspace').innerHTML(), originalScene);
+            assert.notEqual(await text('#workspace'), originalScene);
           }
           await assertNoOverflow();
         }
@@ -111,6 +116,59 @@ async function run() {
         await clickStory('reset');
         assert.match(await text('#counter'), /STEP 1 OF 4/);
         assert(await page.locator('#back').isDisabled());
+      }
+
+      // The note remains the same element while its folder is taken away.
+      await clickStory('stale');
+      await clickStory('next');
+      await page.evaluate(() => {window.retainedNote = document.querySelector('#workspace .sticky');});
+      await clickStory('next');
+      assert(await page.evaluate(() => window.retainedNote === document.querySelector('#workspace .sticky')));
+      await clickStory('next');
+      assert(await page.evaluate(() => window.retainedNote === document.querySelector('#workspace .sticky')));
+
+      // All definitions open above the page without changing its scroll position.
+      for (const term of ['request', 'server', 'memory', 'worker', 'reference', 'cleanup', 'runtime', 'use-after-free']) {
+        const control = page.locator(`button.term[data-term="${term}"]:visible`).first();
+        await control.evaluate(element => element.scrollIntoView({block: 'center', behavior: 'instant'}));
+        const before = await page.evaluate(() => window.scrollY);
+        await control.click();
+        assert(await page.locator('#definitionPanel').isVisible());
+        assert.equal((await text('#definitionTitle')).toLowerCase(), term);
+        assert((await text('#definitionText')).length > 70);
+        assert.equal(await control.getAttribute('aria-expanded'), 'true');
+        assert(Math.abs((await page.evaluate(() => window.scrollY)) - before) <= 1);
+        await page.locator('#definitionClose').click();
+        assert(await page.locator('#definitionPanel').isHidden());
+        assert.equal(await control.getAttribute('aria-expanded'), 'false');
+        assert(await control.evaluate(element => document.activeElement === element));
+      }
+      const keyboardTerm = page.locator('#stepText .term').first();
+      await keyboardTerm.focus();
+      await page.keyboard.press('Enter');
+      assert(await page.locator('#definitionPanel').isVisible());
+      await page.keyboard.press('Escape');
+      assert(await keyboardTerm.evaluate(element => document.activeElement === element));
+      await keyboardTerm.click();
+      await page.locator('#storiesTitle').click();
+      assert(await page.locator('#definitionPanel').isHidden());
+
+      for (const path of ['prepared', 'ordinary', 'prepared', 'ordinary']) {
+        await page.locator('#' + path).evaluate(element => element.scrollIntoView({block: 'center', behavior: 'instant'}));
+        const before = await page.evaluate(() => ({scroll: window.scrollY, bottom: document.querySelector('#attackBridge').getBoundingClientRect().bottom}));
+        await page.locator('#' + path).click();
+        assert.equal(await page.locator('#bridgeState').getAttribute('data-path'), path);
+        assert.equal(await page.locator('#' + path).getAttribute('aria-pressed'), 'true');
+        assert.equal(await page.locator('#bridgeState li').count(), 3);
+        assert.match(await text('#bridgeState li:last-child h4'), path === 'prepared' ? /attacker redirects/ : /may crash/);
+        const after = await page.evaluate(() => ({scroll: window.scrollY, bottom: document.querySelector('#attackBridge').getBoundingClientRect().bottom}));
+        assert(Math.abs(after.scroll - before.scroll) <= 1);
+        assert(Math.abs(after.bottom - before.bottom) <= 1, 'Changing the attack path must not shift the page');
+        await assertNoOverflow();
+      }
+      // Supporting diagram labels remain readable at every tested width.
+      for (const selector of ['#badgeDetail', '.desk-edge', '.worker', '.story-card .eyebrow']) {
+        assert(await page.locator(selector).first().evaluate(element => parseFloat(getComputedStyle(element).fontSize) >= 12));
       }
 
       const roles = {visitor: 'server operator', owner: 'hosting provider', admin: 'Inventory, update'};
@@ -186,6 +244,11 @@ async function run() {
       assert(await page.evaluate(() => window.printCalled));
 
       for (const link of await page.locator('a[href^="#"]:not(.skip-link)').all()) {
+        await link.evaluate(element => {
+          for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+            if (parent.tagName === 'DETAILS') parent.open = true;
+          }
+        });
         const href = await link.getAttribute('href');
         await link.click();
         if (href !== '#') assert.equal(new URL(page.url()).hash, href);
@@ -200,6 +263,7 @@ async function run() {
       await page.locator('#next').focus();
       await page.keyboard.press('Space');
       assert.match(await text('#counter'), /STEP 2 OF 4/);
+      assert(await page.locator('#workspace .folder').evaluate(element => getComputedStyle(element).animationName === 'none'));
       if (width === 390) {
         await page.locator('#repaired').focus();
         await page.keyboard.press('Enter');
@@ -207,7 +271,9 @@ async function run() {
       }
       await assertNoOverflow();
       assert.deepEqual(errors, []);
-      await page.locator('#storyLab').screenshot({path: path.join(artifacts, `story-${width}.png`)});
+      await page.locator('#storyLab').screenshot({path: path.join(artifacts, `story-${width}.png`), style: 'header, .skip-link { visibility: hidden !important; }'});
+      await page.locator('#prepared').click();
+      await page.locator('#attackBridge').screenshot({path: path.join(artifacts, `attack-${width}.png`)});
       await page.screenshot({path: path.join(artifacts, `page-${width}.png`), fullPage: true});
       console.log(`PASS: stable story viewport/control positions, all interactions, keyboard focus and no overflow at ${width}px`);
       await context.close();
@@ -220,6 +286,8 @@ async function run() {
     assert(await noJsPage.locator('#storyLab').isHidden());
     assert(await noJsPage.locator('#quizPanel').isHidden());
     assert(await noJsPage.locator('#copyActions').isHidden());
+    assert(await noJsPage.locator('#bridgeControls').isHidden());
+    assert(await noJsPage.locator('#bridgeState').isVisible());
     assert(await noJsPage.locator('#basics').isVisible());
     await noJsContext.close();
     console.log(`PASS: no-JavaScript fallback. Screenshots: ${artifacts}`);
