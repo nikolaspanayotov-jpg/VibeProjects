@@ -2,7 +2,45 @@
 
 The standalone [page](../index.html) implements the reviewed design using both the Anthropic and SpaceX research documents. Those research documents were preserved. The page clearly identifies the 30 October research snapshot, the preliminary 26 October filing, and historical SpaceX observations through 29 October. It has no live quote feed.
 
-## Current reading experience revision
+## Latest revision: financial explanations and reading guidance
+
+The second set of five improvements is implemented, preserving the original dated research and the first improvements. The scope is in [reading-experience-plan.md](../reading-experience-plan.md).
+
+- **Three financial perspectives:** H1 2026 panels show −$693m operating loss, −$80.75bn rounded net loss and +$3.93bn rounded operating cash inflow. The note explains the $72.388bn of non-cash fair-value losses and investing needs. These are distinct measures, not an arithmetic waterfall. They retain their H1 label when the separate ledger switches to Q2.
+- **Dilution illustration:** starting indices of 100 become company value 120, economic shares 125 and value per share 96 (−4%). Native sliders explore company-value changes from −50% to +100% and share-count changes from 0% to +100%. One formula drives the outputs, bars and announcement. The result sits above the controls. The complete default illustration survives without JavaScript; it never supplies an Anthropic valuation or target price.
+- **Milestone roadmap:** expected December 2026 delivery, filed January/March 2027 contract windows and subsequent 90-day notice rights are distinguished from unresolved pricing, earnings and holder-specific release events. Each has a source and monitoring question. The roadmap remains tied to the October snapshot.
+- **First-use glossary:** nine term links open definitions from the existing glossary plus an Anthropic-specific explanation. Native dialogs provide keyboard containment, Escape/Close, focus/scroll restoration and a glossary handoff. Plain links still reach the native glossary without JavaScript. The 20 source previews remain separate.
+- **Reading guidance:** five main chapters are estimated at 200 words/minute. Default chapter estimates of 2, 2, 2, 3 and 3 minutes total about 12 minutes. Sources and closed disclosure bodies are excluded; opened supporting detail adds time. Desktop and mobile indicators describe position through the guide, not proof of reading. Nothing is persisted.
+
+### Latest checks
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8775/ python tests/browser_smoke.py
+```
+
+The run completed with **46 checks passed and one direct-file check unverified because administrator policy blocks file URLs**. The current [results](browser-results.json) supersede the historical runs below.
+
+Tests exercise all three H1 measures and their qualifications; the indexed formula; zero/gain/loss boundaries, native keys, reset and live output; roadmap statuses; all nine definitions; modal keyboard/focus behavior and glossary handoff; source/closed-detail word-count exclusions; opening detail; mobile chapter position and 0–100 bounds. Existing ledger, source-preview, citation, responsive, fallback, console and print checks still pass.
+
+Actual local captures inspected: `r2-mobile-financial-views.png`, `r2-mobile-dilution-example.png`, `r2-mobile-dilution-indices.png`, `r2-mobile-roadmap.png`, `r2-mobile-definition.png`, `r2-desktop-financial-views.png`, `r2-desktop-dilution-example.png` and `r2-desktop-roadmap.png`. A separate check confirmed definition actions remain reachable at 320px.
+
+Visual review led to moving the illustration result above its controls. The chapter strip required corrected mobile anchor offsets; navigation now clears the actual sticky-header height. The full suite passed after these corrections. Only affected print checks were repeated after keeping roadmap and scenario groups together.
+
+Both regenerated PDFs contain **23 A4 pages**. Text extraction checked the new financial measures, qualifications, illustration, roadmap, glossary and original source URLs with and without JavaScript. Printed financial panels, the illustration and roadmap were visually inspected. Reading aids, controls and dialogs do not print. An additional export verified an adjusted +60.0% illustration result; the main reading estimate is restored after printing.
+
+Limits remain: Chromium only, no screen-reader session, direct-file loading blocked by policy, a 720px/doubled-body-text check rather than every browser's zoom behavior, and no exhaustive new external-source/link audit. The research dates have not been advanced.
+
+### Latest publication
+
+The private deployment returned **`succeeded`** at 15:11:07 UTC on 30 October 2026, at the unchanged URL: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
+
+- Canonical/export SHA-256: `39c93673a84d81298791bbe706b289115d59d7991333b42b33881b21fc8ae3fb`.
+- Pushed hosting commit: `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`.
+- Saved version: `appgprj_6ae463759fc48191915e2a0679c838bb~appgver_a57f426fe37c8191badaed66b643c733`.
+- Deployment: `appgdep_6ae4b37d4f0881919b250b3181ce2df6`.
+- Site identity and owner-only audience were preserved. Packaging used the exact pushed export. No credential was persisted. The canonical source and supporting records are maintained in GitHub under `VibeProjects/Anthropic-ipo/` on `main`; generated screenshots and PDFs remain local and ignored.
+
+## First approved reading revision (historical)
 
 All five improvements approved by the user are implemented. See [reading-experience-plan.md](../reading-experience-plan.md) for the accepted scope.
 
@@ -12,9 +50,9 @@ All five improvements approved by the user are implemented. See [reading-experie
 - Three dated SpaceX observations are paired with Anthropic investment questions. The seven-event chronology remains available in a disclosure. Limits of inference and differences between the businesses are visible.
 - All **20 source entries** have local previews with provenance, dates, source-index research notes, original links, and verified excerpts where available. Seven short excerpt variants across five source entries were checked verbatim against the retained original filing text after whitespace normalization. Customer, financial, and compute citations choose the relevant MD&A excerpt. Other text is labeled as a research note. Market-data dates describe observations/cutoffs rather than invented publication dates. The filed Customer B concentration and Bloomberg identification have separate labels.
 
-### Current checks and evidence
+### Checks for the first reading revision
 
-`python tests/browser_smoke.py` completed with **38 checks passed and one direct-file check unverified because administrator policy blocks file URLs**. The current [machine-readable results](browser-results.json) supersede the initial run below.
+That revision recorded **38 checks passed and one direct-file check unverified because administrator policy blocks file URLs**. The linked JSON now contains the latest revision's results above.
 
 The browser tests cover the opening questions; three primary and three supporting themes; paired lessons and chronology; H1/Q2 results, margin, per-$100 values and fixed scale; all 20 previews; contextual excerpts; dates/provenance; original links; keyboard activation; forward/backward Tab containment; Escape and explicit Close; focus and article-scroll restoration; source-list handoff; and 320px preview scrolling to its actions. Existing 320/390/768/1440px reflow, mobile navigation, table, reduced-motion, increased-text, no-JavaScript, font-fallback, console, runtime-request, and print checks also passed.
 

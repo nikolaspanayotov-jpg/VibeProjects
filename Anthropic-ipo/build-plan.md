@@ -18,6 +18,8 @@ Private viewing link: https://anthropic-ipo-briefing-20261030.jazzychord256.chat
 
 The approved follow-up improvements are specified in [reading-experience-plan.md](reading-experience-plan.md): a 60-second opening brief, per-$100 financial explanations, three reading priorities, paired SpaceX implications, and source previews. This supplements the original implementation sequence below.
 
+The second approved set adds three H1 financial perspectives, an indexed dilution illustration with native controls, a dated milestone roadmap, first-use definitions, and chapter reading estimates/position indicators. These remain within the standalone architecture and preserve the original dated research. The numerical illustration uses hypothetical indices rather than Anthropic valuation inputs.
+
 Completed preparation:
 
 - [x] Locate and read the user's Frontend Design skill in the connected VibeProjects repository.

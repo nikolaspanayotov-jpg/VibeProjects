@@ -3,11 +3,12 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 import json
 import re
+import os
 
 PROJECT = Path(__file__).resolve().parents[1]
 OUTPUT = PROJECT / "tests" / "screenshots"
 OUTPUT.mkdir(parents=True, exist_ok=True)
-URL = "http://127.0.0.1:8765/"
+URL = os.environ.get("ANTHROPIC_TEST_URL", "http://127.0.0.1:8765/")
 results = []
 
 
@@ -22,8 +23,11 @@ def no_overflow(page, name):
 
 def go_section(page, section_id):
     page.evaluate("""id => {
-        const top = document.getElementById(id).getBoundingClientRect().top + scrollY;
-        scrollTo(0, top - (innerWidth >= 1100 ? 24 : 92));
+        const target = document.getElementById(id);
+        const padding = innerWidth < 1100 && target.matches('.section-divider') ? parseFloat(getComputedStyle(target).paddingTop) : 0;
+        const top = target.getBoundingClientRect().top + scrollY + padding;
+        const offset = innerWidth >= 1100 ? 24 : document.querySelector('.masthead').getBoundingClientRect().height + 20;
+        scrollTo(0, top - offset);
     }""", section_id)
     page.wait_for_timeout(100)
 
@@ -62,6 +66,104 @@ with sync_playwright() as p:
     ids = page.locator("[id]").evaluate_all("es => es.map(e => e.id)")
     assert len(ids) == len(set(ids)), "Duplicate IDs"
     record("Unique document and source identifiers")
+
+    views = page.locator("#financial-views")
+    expect(views.locator(".measure-card")).to_have_count(3)
+    expect(views).to_contain_text("H1 2026")
+    assert views.locator(".measure-value").all_text_contents() == ["−$693m", "−$80.75bn", "+$3.93bn"]
+    expect(views).to_contain_text("$72.388bn")
+    expect(views).to_contain_text("excludes investing activities and financing proceeds")
+    record("Three dated financial measures and the non-cash/investing qualifications")
+
+    expect(page.locator("#dilution-result")).to_have_text("−4.0%")
+    expect(page.locator("#per-share-index")).to_have_text("96")
+    expect(page.locator("#dilution-formula")).to_have_text("120 ÷ 125 × 100 = 96 per-share index.")
+    expect(page.locator("#dilution-assumptions")).to_contain_text("not Anthropic's valuation or a price forecast")
+    company_slider = page.get_by_role("slider", name="Company value change")
+    shares_slider = page.get_by_role("slider", name="Economic share count change")
+    company_slider.focus()
+    page.keyboard.press("ArrowRight")
+    expect(page.locator("#company-value-output")).to_have_text("+25%")
+    expect(page.locator("#dilution-result")).to_have_text("0.0%")
+    assert company_slider.evaluate("e=>e===document.activeElement")
+    page.keyboard.press("End")
+    expect(page.locator("#dilution-result")).to_have_text("+60.0%")
+    page.keyboard.press("Home")
+    expect(page.locator("#dilution-result")).to_have_text("−60.0%")
+    shares_slider.focus()
+    page.keyboard.press("End")
+    expect(page.locator("#dilution-result")).to_have_text("−75.0%")
+    assert abs(page.locator("#per-share-index-bar").evaluate("e=>parseFloat(e.style.width)") - 12.5) < .01
+    page.locator("#dilution-reset").click()
+    expect(page.locator("#dilution-result")).to_have_text("−4.0%")
+    expect(page.locator("#dilution-announcement")).to_contain_text("−4.0%")
+    assert company_slider.input_value() == "20" and shares_slider.input_value() == "25"
+    record("Illustrative dilution: formula, zero/gain/loss boundaries, native keys, reset and announcement")
+
+    expect(page.locator("#roadmap .milestone")).to_have_count(5)
+    expect(page.locator("#roadmap .expected")).to_contain_text("Expected")
+    expect(page.locator("#roadmap .contract")).to_contain_text("90 days' advance written notice")
+    expect(page.locator("#roadmap .contract")).to_contain_text("do not automatically end")
+    expect(page.locator("#roadmap .unknown")).to_have_count(3)
+    assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-12", "2027-01", "2027-03"]
+    record("Roadmap separates expected dates, contract windows and unresolved milestones")
+
+    expect(page.locator("a[data-term]")).to_have_count(9)
+    for link in page.locator("a[data-term]").all():
+        if not link.is_visible():
+            for ancestor in link.locator("xpath=ancestor::details").all():
+                ancestor.evaluate("e=>e.open=true")
+        key = link.get_attribute("data-term")
+        link.click()
+        expect(page.locator("#term-preview")).to_be_visible()
+        expect(page.locator("#term-preview-title")).to_have_text(page.locator(f"#definition-{key}").text_content())
+        assert len(page.locator("#term-preview-definition").inner_text()) > 35
+        expect(page.locator("#term-preview-relevance")).not_to_have_text("")
+        page.keyboard.press("Escape")
+        expect(page.locator("#term-preview")).not_to_be_visible()
+        assert link.evaluate("e=>e===document.activeElement")
+    record("All nine first-use definitions and Anthropic explanations open and restore focus")
+    term_link = page.locator('a[data-term="economic-shares"]')
+    term_link.scroll_into_view_if_needed()
+    scroll_before = page.evaluate("scrollY")
+    term_link.focus();page.keyboard.press("Enter")
+    page.keyboard.press("Shift+Tab")
+    assert page.locator("#term-preview-glossary").evaluate("e=>e===document.activeElement")
+    page.keyboard.press("Tab")
+    assert page.locator("#term-preview-close").evaluate("e=>e===document.activeElement")
+    page.locator("#term-preview-close").click()
+    assert abs(page.evaluate("scrollY") - scroll_before) < 2
+    term_link.click()
+    page.locator("#term-preview-glossary").click()
+    expect(page.locator("#glossary")).to_have_attribute("open", "")
+    assert page.evaluate("location.hash") == "#definition-economic-shares"
+    assert page.locator("#definition-economic-shares").evaluate("e=>e===document.activeElement")
+    page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
+    record("Definition keyboard containment, scroll restoration and glossary handoff")
+
+    # Count only the main chapters; sources and closed disclosure bodies are excluded.
+    expect(page.locator("#main-reading-time")).to_contain_text("min")
+    expect(page.locator("[data-reading-time]")).to_have_count(5)
+    before_times = page.locator("[data-reading-time]").all_text_contents()
+    page.locator(".sources-list").evaluate("e=>{const p=document.createElement('p');p.id='test-source-words';p.textContent='reference '.repeat(3000);e.append(p);}")
+    page.locator("#exact-figures").evaluate("e=>{const p=document.createElement('p');p.id='test-closed-words';p.textContent='optional '.repeat(3000);e.querySelector('.detail-body').append(p);}")
+    page.locator("#exact-figures > summary").click()
+    expect(page.locator('[data-reading-time="economics"]')).not_to_have_text(before_times[0])
+    page.locator("#exact-figures > summary").click()
+    expect(page.locator('[data-reading-time="economics"]')).to_have_text(before_times[0])
+    assert page.locator("[data-reading-time]").all_text_contents() == before_times
+    page.locator("#test-source-words, #test-closed-words").evaluate_all("es=>es.forEach(e=>e.remove())")
+    record("Reading estimates exclude sources/closed details and include opened detail")
+    go_section(page, "drivers")
+    expect(page.locator("#mobile-chapter-label")).to_contain_text("Chapter 2 of 5")
+    halfway = float(page.locator("#mobile-guide-progress").get_attribute("value"))
+    assert 0 < halfway < 100
+    go_section(page, "sources")
+    expect(page.locator("#mobile-chapter-label")).to_contain_text("end of main guide")
+    assert float(page.locator("#guide-progress").get_attribute("value")) == 100
+    page.evaluate("scrollTo(0,0)");page.wait_for_timeout(100)
+    assert float(page.locator("#guide-progress").get_attribute("value")) == 0
+    record("Mobile chapter/position indicator and bounded 0–100 main-guide progress")
 
     assert page.locator(".priority-driver h3").all_text_contents() == [
         "Demand quality", "Compute economics", "Valuation and dilution"
@@ -162,6 +264,8 @@ with sync_playwright() as p:
     expect(page.locator("#ledger-title")).to_have_text("Second quarter 2026")
     expect(page.locator("#revenue-amount")).to_have_text("$11.56bn")
     expect(page.locator("#expense-amount")).to_have_text("$10.58bn")
+    expect(page.locator("#financial-views")).to_contain_text("H1 2026")
+    expect(page.locator("#financial-views .measure-value").first).to_have_text("−$693m")
     expect(page.locator("#per100-amount")).to_have_text("$92")
     expect(page.locator("#per100-period")).to_have_text("Q2 2026")
     expect(page.locator("#margin-amount")).to_have_text("+8.4%")
@@ -190,7 +294,8 @@ with sync_playwright() as p:
     expect(menu).not_to_have_attribute("open", "")
     page.wait_for_timeout(100)
     top = page.locator("#spacex-title").bounding_box()["y"]
-    assert top >= 68 and top <= 140, top
+    header_height = page.locator(".masthead").bounding_box()["height"]
+    assert top >= header_height and top <= header_height + 45, top
     record("Mobile contents closes and target clears sticky header")
     page.locator("#spacex-chronology > summary").click()
     page.locator(".event").nth(4).locator("summary").click()
@@ -203,6 +308,12 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUTPUT / "mobile-top.png"))
     go_section(page, "briefing")
     page.screenshot(path=str(OUTPUT / "mobile-briefing.png"))
+    for section_id in ["financial-views", "dilution-example", "roadmap"]:
+        go_section(page, section_id)
+        page.screenshot(path=str(OUTPUT / f"r2-mobile-{section_id}.png"))
+    page.locator('a[data-term="economic-shares"]').click()
+    page.screenshot(path=str(OUTPUT / "r2-mobile-definition.png"))
+    page.locator("#term-preview-close").click()
     go_section(page, "economics")
     page.screenshot(path=str(OUTPUT / "mobile-economics.png"))
     page.screenshot(path=str(OUTPUT / "mobile-full.png"), full_page=True)
@@ -224,6 +335,9 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUTPUT / "desktop-briefing.png"))
     go_section(page, "economics")
     page.screenshot(path=str(OUTPUT / "desktop-economics.png"))
+    for section_id in ["financial-views", "dilution-example", "roadmap"]:
+        go_section(page, section_id)
+        page.screenshot(path=str(OUTPUT / f"r2-desktop-{section_id}.png"))
     go_section(page, "drivers")
     page.screenshot(path=str(OUTPUT / "desktop-drivers.png"))
     page.locator('#drivers a[href="#source-a-mda"]').first.click()
@@ -253,6 +367,15 @@ with sync_playwright() as p:
     nojs.locator("#exact-figures > summary").click()
     expect(nojs.locator("#exact-figures")).to_contain_text("11.555")
     expect(nojs.locator("#per100-amount")).to_have_text("$104")
+    expect(nojs.locator(".dilution-controls")).not_to_be_visible()
+    expect(nojs.locator("#dilution-result")).to_have_text("−4.0%")
+    expect(nojs.locator("#dilution-formula")).to_contain_text("120 ÷ 125")
+    expect(nojs.locator(".mobile-reading")).not_to_be_visible()
+    nojs.locator('a[data-term="economic-shares"]').click()
+    assert nojs.evaluate("location.hash") == "#glossary"
+    nojs.locator("#glossary > summary").click()
+    expect(nojs.locator("#definition-economic-shares")).to_be_visible()
+    record("No-JavaScript dilution illustration, term anchor and native glossary")
     expect(nojs.locator("#exact-figures")).to_contain_text("8.4%")
     nojs.locator('#briefing a[href="#source-a-mda"]').first.click()
     assert nojs.evaluate("location.hash") == "#source-a-mda"
@@ -292,7 +415,7 @@ with sync_playwright() as p:
 
     assert errors == [], errors
     assert console_errors == [], console_errors
-    assert all(r.startswith("http://127.0.0.1:8765") or r.startswith("data:") for r in requests), requests
+    assert all(r.startswith(URL) or r.startswith("data:") for r in requests), requests
     record("No page/console errors or runtime third-party requests")
     browser.close()
 

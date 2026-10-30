@@ -20,6 +20,34 @@
     "result": "passed"
   },
   {
+    "check": "Three dated financial measures and the non-cash/investing qualifications",
+    "result": "passed"
+  },
+  {
+    "check": "Illustrative dilution: formula, zero/gain/loss boundaries, native keys, reset and announcement",
+    "result": "passed"
+  },
+  {
+    "check": "Roadmap separates expected dates, contract windows and unresolved milestones",
+    "result": "passed"
+  },
+  {
+    "check": "All nine first-use definitions and Anthropic explanations open and restore focus",
+    "result": "passed"
+  },
+  {
+    "check": "Definition keyboard containment, scroll restoration and glossary handoff",
+    "result": "passed"
+  },
+  {
+    "check": "Reading estimates exclude sources/closed details and include opened detail",
+    "result": "passed"
+  },
+  {
+    "check": "Mobile chapter/position indicator and bounded 0\u2013100 main-guide progress",
+    "result": "passed"
+  },
+  {
     "check": "390px expanded supporting drivers",
     "result": "passed"
   },
@@ -121,6 +149,10 @@
   },
   {
     "check": "Increased text and narrow viewport reflow",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript dilution illustration, term anchor and native glossary",
     "result": "passed"
   },
   {

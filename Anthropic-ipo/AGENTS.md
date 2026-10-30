@@ -21,6 +21,12 @@ The reading experience changes are specified in `reading-experience-plan.md`. Th
 
 `source-preview-data` contains dated provenance and only verified original excerpts. Other preview text is explicitly a research note taken from the source index. MD&A excerpts follow the customer/compute/financial citation context. All 20 source entries retain ordinary links; JavaScript enhances those links with a native dialog where supported. Preserve modified-click behavior, focus containment, Escape/Close restoration without article scroll, an explicit source-index handoff, and the no-JavaScript anchor fallback. Never fetch sources or new quotes at runtime.
 
+The second reading revision adds the fixed H1 `financial-views` panels (independent of the ledger's selected period), the hypothetical `dilution-example`, the dated `roadmap`, first-use glossary links, and chapter reading aids. The dilution example starts each index at 100 and computes per-share index as company-value index / economic-share index × 100. Its two native sliders support gains, losses and reset; the complete default 120/125=96 illustration survives without JavaScript. These are illustrative indices, never Anthropic valuation inputs or price targets.
+
+`term-help-data` supplies the Anthropic-specific explanation; definitions come from the single glossary at `glossary`, with stable `definition-*` IDs. Term links fall back to that native disclosure and are enhanced by `term-preview` when supported. Preserve both dialog families' focus and keyboard behavior. Closing a definition must keep the reading position; its explicit glossary link opens the disclosure and focuses the chosen definition.
+
+`measureReading` estimates five main chapters at 200 words/minute; total minutes equal their rounded chapter estimates. It excludes sources, closed detail bodies, visually hidden descriptions, the controls and reading-time labels themselves. Opened supporting detail adds time. `updateReadingProgress` measures article position, not proof of reading; it does not persist state. Keep mobile chapter-strip height, section padding, anchor offsets and focus clearance consistent. Reading controls and dialogs are excluded from print; printed examples retain current displayed values.
+
 ## Stable conventions
 
 - Preserve the directory name and capitalization `Anthropic-ipo`, explicitly requested and already shared.
@@ -39,7 +45,7 @@ Use the six base variables `--paper`, `--ink`, `--muted`, `--accent`, `--tailwin
 
 ## Verification and publication
 
-Serve the page and run `python tests/browser_smoke.py`. Inspect screenshots after changes to hierarchy or layout; check affected periods and sources after factual changes. Record actual checks rather than claiming unrun tests. Before publication refresh the source status or clearly retain the historical snapshot.
+Serve the page and run `python tests/browser_smoke.py`. Set `ANTHROPIC_TEST_URL` when using another local port. Inspect screenshots after changes to hierarchy or layout; check affected periods and sources after factual changes. Record actual checks rather than claiming unrun tests. Before publication refresh the source status or clearly retain the historical snapshot.
 
 The canonical source is maintained in `nikolaspanayotov-jpg/VibeProjects` at `Anthropic-ipo/`. Keep future commits limited to this project. The private Sites copy is a viewing export; its hosting workspace is `/workspace/sites/anthropic-ipo-briefing`. Copy this exact `index.html` into that workspace's `dist/` only after validation. Hosting credentials must never enter project files.
 

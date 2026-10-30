@@ -21,3 +21,17 @@ Use `Filing`, `Third-party report`, `Analysis`, and `Calculated` labels selectiv
 - Recheck the existing responsive, fallback, print, navigation, financial reconciliation, console, and runtime-request checks. Inspect actual captures and correct findings before publication.
 
 All five changes are implemented and verified. Actual browser evidence, inspected captures, print corrections, publication records, and limitations are in [tests/VERIFICATION.md](tests/VERIFICATION.md). Keep both GitHub `Anthropic-ipo/` and the existing private Sites export current after future changes.
+
+## Second approved set: explain the figures and guide the reading
+
+Preserve the first set of improvements while adding these five:
+
+1. Three visibly dated H1 2026 panels distinguish operating loss, net loss, and operating cash inflow. Explain non-cash valuation adjustments and investing needs; do not present the three measures as an arithmetic waterfall.
+2. A clearly hypothetical dilution illustration starts all indices at 100. Company value +20% and economic shares +25% produce a per-share index of 96 (−4%). Optional native sliders and reset use one formula, preserve a complete static example without JavaScript, and never imply an Anthropic price forecast.
+3. A roadmap separates expected December 2026 capacity, filed January/March 2027 contract windows with subsequent 90-day notice rights, and offering/reporting/share-release events whose dates or quantities remain unresolved. Show sources and what each milestone means.
+4. First-use term links open plain-English definitions with an Anthropic-specific explanation. Reuse the existing glossary as the definition source, preserve ordinary anchor fallbacks, and provide keyboard focus containment, Close/Escape, focus restoration, and an explicit glossary handoff.
+5. Estimated main-guide and chapter reading times exclude the sources and closed supporting content. A subtle desktop position indicator and mobile chapter strip follow the current section. Position is not proof of reading. Opened details may add time; no persistent tracking is required.
+
+Verify calculations, date/status distinctions, both slider directions, reset and keyboard operation, term dialogs/fallbacks, word-count exclusions, chapter position, responsive offsets, printing, and existing interactions. Inspect mobile and desktop screenshots before synchronizing GitHub and Sites.
+
+This set is implemented. The full browser run recorded 46 passing checks, with direct-file loading unverified because the environment blocks it. Mobile/desktop captures were inspected, the illustration result was moved above its controls for immediate feedback, mobile anchor offsets were corrected for the chapter strip, and print groups were checked. Current publication and verification details are in `tests/VERIFICATION.md`.
