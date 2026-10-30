@@ -1,0 +1,110 @@
+[
+  {
+    "check": "390px default reflow",
+    "result": "passed"
+  },
+  {
+    "check": "HTTP 200, preliminary terms, H1 default",
+    "result": "passed"
+  },
+  {
+    "check": "All internal citation/navigation targets exist",
+    "result": "passed"
+  },
+  {
+    "check": "Integer financial reconciliation for both periods",
+    "result": "passed"
+  },
+  {
+    "check": "Q2 updates values, sign, period, announcement and fixed-scale geometry",
+    "result": "passed"
+  },
+  {
+    "check": "Native keyboard radio navigation and focus retention",
+    "result": "passed"
+  },
+  {
+    "check": "390px exact figures confined to table region",
+    "result": "passed"
+  },
+  {
+    "check": "Mobile contents closes and target clears sticky header",
+    "result": "passed"
+  },
+  {
+    "check": "320px default reflow",
+    "result": "passed"
+  },
+  {
+    "check": "320px expense segments have visible height",
+    "result": "passed"
+  },
+  {
+    "check": "320px expanded table reflow",
+    "result": "passed"
+  },
+  {
+    "check": "768px default reflow",
+    "result": "passed"
+  },
+  {
+    "check": "768px expense segments have visible height",
+    "result": "passed"
+  },
+  {
+    "check": "768px expanded table reflow",
+    "result": "passed"
+  },
+  {
+    "check": "1440px default reflow",
+    "result": "passed"
+  },
+  {
+    "check": "1440px expense segments have visible height",
+    "result": "passed"
+  },
+  {
+    "check": "1440px expanded table reflow",
+    "result": "passed"
+  },
+  {
+    "check": "Active desktop contents tracks the visible section",
+    "result": "passed"
+  },
+  {
+    "check": "Reduced-motion mode retains complete content",
+    "result": "passed"
+  },
+  {
+    "check": "Increased text and narrow viewport reflow",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript baseline reflow",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript figures, native disclosures and hidden non-working switch",
+    "result": "passed"
+  },
+  {
+    "check": "Embedded fonts unavailable: fallback reflow",
+    "result": "passed"
+  },
+  {
+    "check": "Direct file:// loading",
+    "result": "not verified: browser administrator policy blocks file URLs"
+  },
+  {
+    "check": "Print PDF generated for visual/text inspection",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript print PDF generated",
+    "result": "passed"
+  },
+  {
+    "check": "No page/console errors or runtime third-party requests",
+    "result": "passed"
+  }
+]
