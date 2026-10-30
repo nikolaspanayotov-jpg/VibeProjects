@@ -16,6 +16,8 @@ The implementation is complete in [index.html](index.html). Browser evidence, co
 
 Private viewing link: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
 
+The approved follow-up improvements are specified in [reading-experience-plan.md](reading-experience-plan.md): a 60-second opening brief, per-$100 financial explanations, three reading priorities, paired SpaceX implications, and source previews. This supplements the original implementation sequence below.
+
 Completed preparation:
 
 - [x] Locate and read the user's Frontend Design skill in the connected VibeProjects repository.
@@ -148,7 +150,7 @@ Record viewport/browser details, commands or scenarios, inspected captures, find
 
 Create project `AGENTS.md` with purpose, local serving instructions, architecture, stable anchor/data IDs, visual tokens, source-refresh rules, and important financial distinctions. Document the intentional directory case. Explain why SpaceX data remains a historical case study and why no runtime imports reach other project folders.
 
-The completed page was first published privately through Sites, with an exact export of the canonical HTML. The source archive, pushed hosting commit, and successful deployment are recorded in the verification document. The page and supporting text documents are now being synchronized to the user's requested `Anthropic-ipo/` folder on the VibeProjects `main` branch. Before subsequent publication, inspect the latest repository instructions and diff, reconfirm the dated source status, and verify the configured path.
+The completed page was first published privately through Sites, with an exact export of the canonical HTML. The source archive, pushed hosting commit, and successful deployment are recorded in the verification document. The page and supporting text documents are maintained in the user's requested `Anthropic-ipo/` folder on the VibeProjects `main` branch. Before subsequent publication, inspect the latest repository instructions and diff, reconfirm the dated source status, and verify the configured path.
 
 No additional stack selection or mandatory design sign-off is needed to start implementation. If final offer terms remain unavailable, the static guide can still accurately show the dated preliminary status. A numerical valuation model would be a separate extension after reliable capitalization and explicit modeling assumptions are available.
 

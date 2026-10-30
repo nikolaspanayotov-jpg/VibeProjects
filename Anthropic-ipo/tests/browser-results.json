@@ -1,5 +1,9 @@
 [
   {
+    "check": "60-second briefing and default per-$100 explanation",
+    "result": "passed"
+  },
+  {
     "check": "390px default reflow",
     "result": "passed"
   },
@@ -9,6 +13,46 @@
   },
   {
     "check": "All internal citation/navigation targets exist",
+    "result": "passed"
+  },
+  {
+    "check": "Unique document and source identifiers",
+    "result": "passed"
+  },
+  {
+    "check": "390px expanded supporting drivers",
+    "result": "passed"
+  },
+  {
+    "check": "Three reading priorities and preserved supporting evidence",
+    "result": "passed"
+  },
+  {
+    "check": "Three paired SpaceX lessons, visible limits and optional chronology",
+    "result": "passed"
+  },
+  {
+    "check": "Keyboard source preview, focus trap, Escape and reading-position restoration",
+    "result": "passed"
+  },
+  {
+    "check": "Source excerpts follow customer, financial and compute citation context",
+    "result": "passed"
+  },
+  {
+    "check": "All 20 source previews have provenance, dates, notes and original links",
+    "result": "passed"
+  },
+  {
+    "check": "Reported customer identification and explicit source-list handoff",
+    "result": "passed"
+  },
+  {
+    "check": "320px source preview reflow",
+    "result": "passed"
+  },
+  {
+    "check": "Small-screen source actions remain reachable by dialog scrolling",
     "result": "passed"
   },
   {
@@ -77,6 +121,10 @@
   },
   {
     "check": "Increased text and narrow viewport reflow",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript citations and newly grouped supporting content",
     "result": "passed"
   },
   {

@@ -47,6 +47,11 @@ with sync_playwright() as p:
     expect(page.locator("h1")).to_have_count(1)
     expect(page.locator("#result-amount")).to_have_text("−$693m")
     expect(page.get_by_text("Not specified in this filing", exact=True)).to_have_count(2)
+    expect(page.locator("#briefing h3")).to_have_count(3)
+    expect(page.locator("#briefing")).to_contain_text("Terms incomplete")
+    expect(page.locator("#per100-amount")).to_have_text("$104")
+    expect(page.locator("#margin-amount")).to_have_text("−4.3%")
+    record("60-second briefing and default per-$100 explanation")
     no_overflow(page, "390px default reflow")
     record("HTTP 200, preliminary terms, H1 default")
 
@@ -54,6 +59,97 @@ with sync_playwright() as p:
         .filter(a => !document.getElementById(a.hash.slice(1))).map(a => a.hash)""")
     assert invalid == [], invalid
     record("All internal citation/navigation targets exist")
+    ids = page.locator("[id]").evaluate_all("es => es.map(e => e.id)")
+    assert len(ids) == len(set(ids)), "Duplicate IDs"
+    record("Unique document and source identifiers")
+
+    assert page.locator(".priority-driver h3").all_text_contents() == [
+        "Demand quality", "Compute economics", "Valuation and dilution"
+    ]
+    expect(page.locator("#supporting-drivers")).not_to_have_attribute("open", "")
+    page.locator("#supporting-drivers > summary").click()
+    expect(page.locator("#supporting-drivers .driver-row")).to_have_count(3)
+    expect(page.locator("#supporting-drivers")).to_contain_text("Trust, safety and market access")
+    no_overflow(page, "390px expanded supporting drivers")
+    page.locator("#supporting-drivers > summary").click()
+    record("Three reading priorities and preserved supporting evidence")
+
+    expect(page.locator(".lesson-pair")).to_have_count(3)
+    expect(page.locator(".anthropic-lesson")).to_have_count(3)
+    expect(page.locator("#spacex-chronology")).not_to_have_attribute("open", "")
+    expect(page.locator(".lesson-limits")).to_contain_text("not Anthropic's future price path")
+    record("Three paired SpaceX lessons, visible limits and optional chronology")
+
+    dialog = page.get_by_role("dialog", name="Financial results, compute and financing")
+    trigger = page.locator('#economics .sources-inline a[href="#source-a-mda"]').first
+    trigger.scroll_into_view_if_needed()
+    before_scroll = page.evaluate("scrollY")
+    trigger.focus()
+    page.keyboard.press("Enter")
+    expect(dialog).to_be_visible()
+    expect(page.locator("#source-preview-kind")).to_have_text("Filing")
+    expect(page.locator("#source-preview-date")).to_have_text("26 October 2026")
+    expect(page.locator("#source-preview-excerpt")).to_contain_text("Revenue for the six months")
+    expect(page.locator("#source-preview-original")).to_have_attribute("href", re.compile(r"https://www.sec.gov/Archives/"))
+    expect(page.locator("#source-preview-original")).to_have_attribute("target", "_blank")
+    assert page.locator("#source-preview-close").evaluate("e=>e===document.activeElement")
+    page.keyboard.press("Shift+Tab")
+    assert page.locator("#source-preview-list").evaluate("e=>e===document.activeElement")
+    page.keyboard.press("Tab")
+    assert page.locator("#source-preview-close").evaluate("e=>e===document.activeElement")
+    page.keyboard.press("Escape")
+    expect(page.locator("#source-preview")).not_to_be_visible()
+    assert trigger.evaluate("e=>e===document.activeElement")
+    assert abs(page.evaluate("scrollY") - before_scroll) < 2
+    record("Keyboard source preview, focus trap, Escape and reading-position restoration")
+
+    page.locator('#briefing a[href="#source-a-mda"]').first.click()
+    expect(page.locator("#source-preview-excerpt")).to_contain_text("11,900 customers")
+    page.locator("#source-preview-close").click()
+    page.locator('#commitments a[href="#source-a-mda"]').first.click()
+    expect(page.locator("#source-preview-excerpt")).to_contain_text("up to $120.5 billion")
+    page.locator("#source-preview-close").click()
+    record("Source excerpts follow customer, financial and compute citation context")
+
+    metadata = json.loads(page.locator("#source-preview-data").text_content())
+    source_ids = page.locator(".sources-list > li").evaluate_all("es=>es.map(e=>e.id)")
+    assert sorted(source_ids) == sorted(metadata)
+    for source_id, meta in metadata.items():
+        link = page.locator(f'a[aria-haspopup="dialog"][href="#{source_id}"]').first
+        if not link.is_visible():
+            for ancestor in link.locator("xpath=ancestor::details").all():
+                ancestor.evaluate("e=>e.open=true")
+        link.click()
+        expect(page.locator("#source-preview")).to_be_visible()
+        expect(page.locator("#source-preview-kind")).to_have_text(meta["kind"])
+        expect(page.locator("#source-preview-date")).to_have_text(meta["displayDate"])
+        expect(page.locator("#source-preview-context")).to_contain_text("Research note:")
+        assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
+        page.locator("#source-preview-close").click()
+    page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
+    record("All 20 source previews have provenance, dates, notes and original links")
+
+    page.locator('a[aria-haspopup="dialog"][href="#source-bloomberg"]').first.click()
+    expect(page.locator("#source-preview-kind")).to_have_text("Third-party report")
+    expect(page.locator("#source-preview-excerpt")).not_to_be_visible()
+    page.screenshot(path=str(OUTPUT / "mobile-source-preview.png"))
+    page.locator("#source-preview-list").click()
+    expect(page.locator("#source-preview")).not_to_be_visible()
+    assert page.evaluate("location.hash") == "#source-bloomberg"
+    assert page.locator("#source-bloomberg").evaluate("e=>e===document.activeElement")
+    record("Reported customer identification and explicit source-list handoff")
+
+    page.set_viewport_size({"width": 320, "height": 568})
+    page.locator('a[aria-haspopup="dialog"][href="#source-a-mda"]').first.click()
+    no_overflow(page, "320px source preview reflow")
+    box = page.locator("#source-preview").bounding_box()
+    assert box["x"] >= 0 and box["x"] + box["width"] <= 320
+    assert box["height"] <= 568 * .89
+    page.locator("#source-preview-original").scroll_into_view_if_needed()
+    expect(page.locator("#source-preview-original")).to_be_in_viewport()
+    page.keyboard.press("Escape")
+    page.set_viewport_size({"width": 390, "height": 844})
+    record("Small-screen source actions remain reachable by dialog scrolling")
 
     data = json.loads(page.locator("#ledger-data").text_content())
     for key, period in data["periods"].items():
@@ -66,6 +162,9 @@ with sync_playwright() as p:
     expect(page.locator("#ledger-title")).to_have_text("Second quarter 2026")
     expect(page.locator("#revenue-amount")).to_have_text("$11.56bn")
     expect(page.locator("#expense-amount")).to_have_text("$10.58bn")
+    expect(page.locator("#per100-amount")).to_have_text("$92")
+    expect(page.locator("#per100-period")).to_have_text("Q2 2026")
+    expect(page.locator("#margin-amount")).to_have_text("+8.4%")
     assert abs(float(page.locator("#revenue-bar").evaluate("e => parseFloat(e.style.width)")) - 11555 / 18000 * 100) < .001
     expect(page.locator("#period-announcement")).to_contain_text("974 million")
     record("Q2 updates values, sign, period, announcement and fixed-scale geometry")
@@ -73,6 +172,8 @@ with sync_playwright() as p:
     page.keyboard.press("ArrowLeft")
     expect(page.get_by_role("radio", name="First half 2026")).to_be_checked()
     expect(page.locator("#result-amount")).to_have_text("−$693m")
+    expect(page.locator("#per100-amount")).to_have_text("$104")
+    expect(page.locator("#margin-amount")).to_have_text("−4.3%")
     assert page.locator('input[value="h1"]').evaluate("e => e === document.activeElement")
     record("Native keyboard radio navigation and focus retention")
 
@@ -91,13 +192,17 @@ with sync_playwright() as p:
     top = page.locator("#spacex-title").bounding_box()["y"]
     assert top >= 68 and top <= 140, top
     record("Mobile contents closes and target clears sticky header")
+    page.locator("#spacex-chronology > summary").click()
     page.locator(".event").nth(4).locator("summary").click()
     expect(page.locator(".event").nth(4)).to_contain_text("911.5m")
     page.screenshot(path=str(OUTPUT / "mobile-spacex.png"))
     page.locator(".event").nth(4).locator("summary").click()
+    page.locator("#spacex-chronology > summary").click()
 
     page.goto(URL, wait_until="networkidle")
     page.screenshot(path=str(OUTPUT / "mobile-top.png"))
+    go_section(page, "briefing")
+    page.screenshot(path=str(OUTPUT / "mobile-briefing.png"))
     go_section(page, "economics")
     page.screenshot(path=str(OUTPUT / "mobile-economics.png"))
     page.screenshot(path=str(OUTPUT / "mobile-full.png"), full_page=True)
@@ -115,10 +220,15 @@ with sync_playwright() as p:
     page.evaluate("scrollTo(0,0)")
     page.wait_for_timeout(100)
     page.screenshot(path=str(OUTPUT / "desktop-top.png"))
+    go_section(page, "briefing")
+    page.screenshot(path=str(OUTPUT / "desktop-briefing.png"))
     go_section(page, "economics")
     page.screenshot(path=str(OUTPUT / "desktop-economics.png"))
     go_section(page, "drivers")
     page.screenshot(path=str(OUTPUT / "desktop-drivers.png"))
+    page.locator('#drivers a[href="#source-a-mda"]').first.click()
+    page.screenshot(path=str(OUTPUT / "desktop-source-preview.png"))
+    page.locator("#source-preview-close").click()
     go_section(page, "spacex")
     expect(page.locator('[data-section="spacex"]')).to_have_attribute("aria-current", "location")
     record("Active desktop contents tracks the visible section")
@@ -142,6 +252,14 @@ with sync_playwright() as p:
     expect(nojs.locator("#result-amount")).to_have_text("−$693m")
     nojs.locator("#exact-figures > summary").click()
     expect(nojs.locator("#exact-figures")).to_contain_text("11.555")
+    expect(nojs.locator("#per100-amount")).to_have_text("$104")
+    expect(nojs.locator("#exact-figures")).to_contain_text("8.4%")
+    nojs.locator('#briefing a[href="#source-a-mda"]').first.click()
+    assert nojs.evaluate("location.hash") == "#source-a-mda"
+    expect(nojs.locator("#source-preview")).not_to_be_visible()
+    nojs.locator("#spacex-chronology > summary").click()
+    expect(nojs.locator(".event")).to_have_count(7)
+    record("No-JavaScript citations and newly grouped supporting content")
     no_overflow(nojs, "No-JavaScript baseline reflow")
     record("No-JavaScript figures, native disclosures and hidden non-working switch")
     nojs.screenshot(path=str(OUTPUT / "mobile-nojs.png"))

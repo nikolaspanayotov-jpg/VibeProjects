@@ -2,6 +2,8 @@
 
 Independent investor briefing built from `key-points-summary.md`, the SpaceX research in `../SpaceX-ipo/`, and the reviewed design documents in this folder. The page is a dated research snapshot, not a live market feed or an official Anthropic publication.
 
+Private viewing URL: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
+
 ## Run
 
 Open `index.html` in a browser, or run `python -m http.server 8765 --bind 127.0.0.1` from this directory. The execution environment's browser policy may block `file://`; serving over HTTP works. There is no installation, build step or backend.
@@ -14,6 +16,10 @@ Open `index.html` in a browser, or run `python -m http.server 8765 --bind 127.0.
 - `tests/VERIFICATION.md`: actual validation evidence, screenshot review and limitations.
 
 The inline `ledger-data` JSON uses integer USD millions and a fixed maximum of 18,000. `renderLedger` derives costs, signed operating results and bar widths. The default is H1 2026. The radio switch affects only this panel; the complete exact table always includes H1 and Q2. `updateNavigation` tracks the section at the reading line using a single scheduled animation frame. Print lifecycle handlers open and then restore details; print CSS also supports the no-JavaScript case. There is no persisted state.
+
+The reading experience changes are specified in `reading-experience-plan.md`. The ledger also derives operating margin and rounded operating expenses per $100 revenue from the same inputs; these are accounting measures, not cash-flow estimates. Keep `briefing`, `driver-demand`, `driver-compute`, and `driver-valuation` anchors stable. The three other driver themes and seven-event chronology remain available through native disclosures and print.
+
+`source-preview-data` contains dated provenance and only verified original excerpts. Other preview text is explicitly a research note taken from the source index. MD&A excerpts follow the customer/compute/financial citation context. All 20 source entries retain ordinary links; JavaScript enhances those links with a native dialog where supported. Preserve modified-click behavior, focus containment, Escape/Close restoration without article scroll, an explicit source-index handoff, and the no-JavaScript anchor fallback. Never fetch sources or new quotes at runtime.
 
 ## Stable conventions
 
