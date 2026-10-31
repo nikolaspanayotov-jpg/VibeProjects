@@ -239,3 +239,15 @@ Before calling the eventual implementation finished:
 - Inspect console errors and verify the page works both from a local file and under its folder URL.
 
 These are acceptance criteria for the later page build. This document does not imply that browser or accessibility testing has already been performed.
+
+## Implemented refinements: 31 October 2026
+
+The built page now includes the five agreed improvements while preserving the atlas typography, palette and visual restraint:
+
+1. Mobile milestone buttons use a compact three-column, two-row arrangement. The selected explanation precedes the diagram, with the station finder still near the opening.
+2. Station details include direct official facilities links, station codes, separately sourced current access categories, ticketing scope and explicit service or accessibility information. Unknown details remain labelled as unconfirmed.
+3. A written corridor key explains the highlighted branches. A dashed halo identifies a selected station shown on the diagram; an omission message links to the full station list when it is not shown.
+4. A worked Glossop–Piccadilly–St Peter's Square journey has three selectable payment explanations. Prices and geographic validity remain unconfirmed until authoritative rules support them.
+5. A single locally served Piccadilly panorama adds a sense of place between the introduction to changes and the ticketing explanation. Its visible caption identifies the archive image, photographer and licence.
+
+See [verification notes](tests/VERIFICATION.md) for checks actually performed on the implemented page.

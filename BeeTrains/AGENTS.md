@@ -12,6 +12,7 @@ Run `python3 BeeTrains/tests/browser_smoke.py` from the repository root for brow
 
 - `index.html`: all page HTML, CSS, SVG, JavaScript and embedded Latin WOFF2 fonts.
 - `FONT-LICENSES.txt`: the unmodified SIL Open Font License notices for the two embedded font families.
+- `assets/piccadilly.jpg` and `assets/README.md`: a locally served, licensed archive photograph and its attribution record.
 - `bee-network-plans.md`: research brief and source context.
 - `design-and-layout.md`: approved visual and interaction brief.
 - `tests/browser_smoke.py`: browser acceptance checks.
@@ -19,22 +20,28 @@ Run `python3 BeeTrains/tests/browser_smoke.py` from the repository root for brow
 
 ## Content and data
 
-The base HTML's four `[data-station-group]` lists are the single source for station records. Each entry has a stable `data-station` ID and display name. JavaScript derives search, list and share-link records from this HTML; do not introduce a second station dataset.
+The base HTML's four `[data-station-group]` lists are the single source for station records. Each entry has a stable `data-station` ID, display name, verified direct facilities URL, station code, postcode where checked, access category and review date. JavaScript derives search, list, detail and share-link records from this HTML; do not introduce a second station dataset.
 
 `PHASES` supplies milestone dates and explanatory copy. The `services` milestone is a separate December 2027 event, with no station membership. Keep service improvements, payments, station integration and accessibility completion distinct.
 
 Station groups were checked against TfGM's live station list on 31 October 2026: 14 entries for December 2026, 15 for March 2027, 42 named entries under the December 2028 heading, and 25 for 2030. The source's December 2028 heading says 43 while its visible list has 42. Preserve the named list and avoid a headline total until TfGM reconciles the discrepancy. “Lostock Parkway” is the source's displayed name; do not infer a different date or station record from that wording.
 
-All dates describe plans. Do not automatically mark a milestone delivered when its date passes. Confirm delivery with current evidence, then update the copy and review date together. Accessibility statements must be verified separately. The station-information link opens TfGM's official station directory, rather than a guessed per-station URL.
+All dates describe plans. Do not automatically mark a milestone delivered when its date passes. Confirm delivery with current evidence, then update the copy and review date together. Accessibility statements must be verified separately. National Rail's published station pages were fetched for 95 entries on 31 October 2026; direct URLs were resolved from its station sitemap, with explicit aliases for differently named stations. Salford Central's National Rail page returned 404, so its verified TfGM station page is used and its access category remains unconfirmed here. Do not guess facilities links or infer an access category from planned work.
+
+Access categories are nominal platform-access summaries, not real-time lift status or a guarantee of level boarding. Keep future access works separate from the current category. The guide gives station-specific service enhancements only for the verified Airport and Rochdale corridor examples; other results state that a station-specific change is not confirmed in this guide.
 
 ## Interactions and state
 
 `setPhase`, `selectStation`, `renderSearch`, `renderList` and `renderMap` coordinate the explorer. Search covers all groups. Selecting a station chooses its integration phase; choosing an incompatible phase clears the station detail. Controls are revealed only after setup succeeds; the original narrative and station lists remain readable without JavaScript.
 
+`CORRIDORS` supplies readable branch descriptions. A selected station shown on the SVG gets a separate halo; an omitted station gets an explicit explanation and a link to its full list entry. The service-only phase must not highlight the Wigan/Bolton branches. On mobile, phase controls occupy two rows and the selected explanation comes before the diagram.
+
+`setPayment` switches the three worked-journey panels: rail contactless, a daily paper ticket and future integrated caps. These illustrate Glossop–Piccadilly–St Peter's Square, with no assumed price or ticket validity. Without JavaScript and in print, all three explanations remain available.
+
 The `station` URL parameter uses stable IDs. Copying has a selectable-input fallback. No localStorage keys or persistent browser state are used. Keep history changes guarded for browsers that restrict history on local files.
 
 ## Visual conventions
 
-Preserve the six CSS colour variables, Barlow Condensed headings, Source Sans 3 body text and restrained rail-atlas composition. Fonts are embedded so the page does not depend on a Google Fonts request; retain their licence notices. The SVG depicts selected corridors, not a complete travel map, fare boundary or live railway state. Complete group membership is available in the HTML station list. Supplementary diagram links have equivalent large buttons in that list.
+Preserve the six CSS colour variables, Barlow Condensed headings, Source Sans 3 body text and restrained rail-atlas composition. Fonts are embedded so the page does not depend on a Google Fonts request; retain their licence notices. The SVG depicts selected corridors, not a complete travel map, fare boundary or live railway state. Complete group membership is available in the HTML station list. Supplementary diagram links have equivalent large buttons in that list. The Piccadilly photograph is a historical image, uploaded in 2012, and retains a visible source and CC BY-SA 3.0 credit. Do not present it as a current image of Bee Network rail services.
 
 Check mobile widths first, native keyboard interaction, visible focus, reduced motion, print and the no-JavaScript fallback after relevant changes. Keep runtime assets self-contained and source links beside factual claims.

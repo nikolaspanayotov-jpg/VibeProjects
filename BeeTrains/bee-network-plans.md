@@ -94,3 +94,13 @@ Update this file when launch arrangements, fares or delivery dates are confirmed
 [earlier-announcement]: https://news.tfgm.com/press-releases/a2e0db71-60ed-4200-a7d7-a7c18e6558e4/one-year-to-go-mayor-of-greater-manchester-reveals-step-by-step-plan-to-bring-trains-into-bee-network-from-2026
 [rail-update-coverage]: https://www.placenorthwest.co.uk/tfgm-lists-first-14-rail-stations-to-join-bee-network/
 [october-reporting]: https://ilovemanchester.com/bee-network-trains-greater-manchester
+
+## Station facilities and journey example research
+
+The implementation's station results were enriched on 31 October 2026 using [National Rail's station pages](https://www.nationalrail.co.uk/stations/) and its [published station sitemap](https://www.nationalrail.co.uk/sitemaps/sitemap-stations.xml). Ninety-five individual station pages were fetched and parsed for official URLs, station codes, postcodes and the reported platform-access category. These facts are stored on the existing station records in `index.html`, rather than a separate duplicated dataset.
+
+The National Rail page for Salford Central returned 404. Its result instead links to the verified [TfGM Salford Central station page](https://tfgm.com/travel-updates/live-departures/train/salford-central-rail), with current access left unconfirmed in this guide. A category is also left unconfirmed wherever the National Rail record did not provide one. Current access categories must remain distinct from planned accessibility projects.
+
+The worked journey uses Glossop to Manchester Piccadilly by train, followed by Metrolink to St Peter's Square. The tram connection is supported by [TfGM's travel guidance](https://tfgm.com/getting-to-the-trafford-palazzo); payment practice is supported by [TfGM's contactless guide](https://tfgm.com/ways-to-pay/contactless). It is an illustration of the published payment plans, not a fare quote or confirmation that a future ticket covers that exact journey. The page retains an explicit unconfirmed price and validity status.
+
+The Piccadilly archive photograph has its source, author and licence recorded in [the asset attribution](assets/README.md). It illustrates the place, not the future appearance of Bee Network services.

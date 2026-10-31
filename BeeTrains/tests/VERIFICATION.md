@@ -19,6 +19,15 @@ Checked 31 October 2026 using installed Chromium and Python Playwright.
 - The same document's search and enhancements work in an offline browser-local document.
 - Design-token contrast calculations: ink on paper 13.65:1, muted text on paper 5.82:1, ink on yellow 9.14:1, and muted text on white 6.41:1.
 
+## Checks after the five design and content refinements
+
+- Mobile milestone controls fit into two compact rows. The selected explanation precedes the diagram in both the visual and document reading order. The station search remains in the opening viewport.
+- Station details use direct official facilities URLs for all 96 records: 95 verified National Rail pages, with Salford Central using its verified TfGM station page. Glossop's category A access and Flowery Field's category C access were exercised in browser checks; the latter remains separate from its planned 2027–2028 work.
+- A selected station shown on the diagram gets a visible halo. Stations omitted from the drawing show an explicit message and a working link to their selected full-list entry. Main Manchester hubs also support the halo. The service-only phase leaves the Wigan/Bolton branches inactive.
+- All three Glossop–Piccadilly–St Peter's Square payment explanations switch correctly, with prices and validity left unconfirmed. Without JavaScript, all three are readable; print exposes the panels as well.
+- The local Piccadilly photograph loads at 1280px intrinsic width. Its visible caption includes archive status, author, source and CC BY-SA 3.0 licence. Mobile photography and station-result screenshots were captured for visual review.
+- Shared station links bring the focused result heading into the viewport, accounting for the sticky header and the expanded station detail.
+
 ## Repeating the browser checks
 
 From the repository root:
@@ -33,6 +42,6 @@ Requires Python Playwright and Chromium. `CHROMIUM_PATH` can select the browser 
 
 These checks cover Chromium and the interactions above, not a formal accessibility certification or a screen-reader compatibility audit. Other browser engines were not available. The environment's browser policy blocks direct `file://` navigation; local-file independence was instead checked by loading the complete HTML into an offline browser document. Serving the actual folder path passed.
 
-The station list and official directory were checked through TfGM's indexed source material. TfGM restricts automated fetching, so every external destination's live HTTP response was not verified. The page provides source links and a research date; it does not offer live service, fare or accessibility guarantees.
+The joining-date list was checked through TfGM's indexed source material. National Rail's station sitemap and 95 individual station pages were fetched successfully for the facilities enrichment. Its Salford Central page returned 404, so the page uses the verified TfGM station URL and an unconfirmed access status. TfGM restricts automated fetching, so every TfGM destination's live HTTP response was not verified. The page provides source links and a research date; it does not offer live service, fare or accessibility guarantees.
 
 TfGM's December 2028 heading says 43 stations, while the visible source list names 42. The implementation preserves the 42 named entries and avoids presenting that heading count or an overall programme total as a headline statistic. Changes remain labelled as planned until independently confirmed.

@@ -114,6 +114,8 @@ def main():
             assert "station=" not in page.url
             page.locator('[data-view="list"]').click()
             expect(page.locator("#station-list-view")).to_contain_text("no separate station group")
+            assert page.locator('[data-corridor="wigan-bolton"].is-active').count() == 0
+            assert page.locator('[data-corridor="rochdale"].is-active').count() == 2
             for phase, count in (("2026",14), ("2027",15), ("2028",42), ("2030",25)):
                 page.locator(f'[data-phase="{phase}"]').click()
                 assert page.locator("#station-list-view button").count() == count
@@ -121,6 +123,55 @@ def main():
             page.locator('[data-phase="2028"]').click()
             expect(page.locator('[data-panel="2028"]')).to_contain_text("separate milestones")
             checks.append("Every phase and complete station list works, including service-only and 2028 payment distinctions")
+
+            page.goto(url)
+            page.set_viewport_size({"width":390,"height":844})
+            assert page.locator(".phase-controls").bounding_box()["height"] <= 160
+            phase_box = page.locator(".phase-copy").bounding_box()
+            assert phase_box["y"] + phase_box["height"] <= page.locator("#atlas").bounding_box()["y"]
+            assert page.locator("#station-search").bounding_box()["y"] < 700
+            checks.append("Mobile controls fit two compact rows; the selected milestone explanation precedes the diagram")
+
+            page.goto(url + "?station=glossop#explore")
+            expect(page.locator("#station-facilities-link")).to_have_attribute("href","https://www.nationalrail.co.uk/stations/glossop/")
+            expect(page.locator("#station-access")).to_contain_text("category A")
+            expect(page.locator("#station-services")).to_contain_text("No station-specific timetable enhancement")
+            expect(page.locator("#selected-station-halo")).to_be_visible()
+            expect(page.locator("#corridor-list")).to_contain_text("Hadfield")
+            page.wait_for_function("(() => { const r=document.querySelector('#station-detail-title').getBoundingClientRect(); return r.top >= 70 && r.bottom < innerHeight; })()")
+            page.screenshot(path=str(ARTIFACTS / "station-glossop-mobile.png"))
+            page.goto(url + "?station=flowery-field#explore")
+            expect(page.locator("#station-access")).to_contain_text("category C")
+            expect(page.locator("#station-access-work-row")).to_be_visible()
+            expect(page.locator("#station-access-work")).to_contain_text("2027–2028")
+            expect(page.locator("#map-omission")).to_contain_text("not drawn")
+            expect(page.locator("#selected-station-halo")).to_be_hidden()
+            page.locator("#show-omitted-station").click()
+            expect(page.locator('#station-list-view [data-select-station="flowery-field"]')).to_be_focused()
+            expect(page.locator('#station-list-view [data-select-station="flowery-field"]')).to_have_attribute("aria-pressed","true")
+            page.goto(url + "?station=manchester-piccadilly#explore")
+            expect(page.locator("#selected-station-halo")).to_be_visible()
+            page.goto(url + "?station=salford-central#explore")
+            expect(page.locator("#station-facilities-link")).to_have_attribute("href","https://tfgm.com/travel-updates/live-departures/train/salford-central-rail")
+            expect(page.locator("#station-access")).to_contain_text("not confirmed")
+            assert page.locator('[data-information^="https://www.nationalrail.co.uk/stations/"]').count() == 95
+            checks.append("Station results have direct facilities links, sourced current access and separate planned work; omissions and map halos are explicit")
+
+            page.goto(url)
+            for option, phrase in (("rail","Complete each part"),("paper","different modes"),("caps","Joined-up capping")):
+                page.locator(f'[data-payment="{option}"]').click()
+                assert page.locator("[data-payment-panel]:visible").count() == 1
+                expect(page.locator(f'[data-payment-panel="{option}"]')).to_contain_text(phrase)
+                expect(page.locator(f'[data-payment="{option}"]')).to_have_attribute("aria-pressed","true")
+            expect(page.locator(".fare-note")).to_contain_text("awaiting confirmed rules")
+            image = page.locator(".place-story img")
+            image.scroll_into_view_if_needed()
+            image.evaluate("el => el.decode()")
+            assert image.evaluate("el => el.naturalWidth") == 1280
+            expect(page.locator(".place-story figcaption")).to_contain_text("archive photograph")
+            expect(page.locator('.place-story a[href="https://creativecommons.org/licenses/by-sa/3.0/"]')).to_be_visible()
+            page.screenshot(path=str(ARTIFACTS / "photo-mobile.png"))
+            checks.append("All three journey walkthrough options work; the local archive photograph loads with its visible credit and licence")
 
             page.goto(url + "?station=rose-hill-marple#explore")
             expect(page.locator("#station-detail-title")).to_have_text("Rose Hill Marple")
@@ -175,6 +226,7 @@ def main():
             fallback.goto(url)
             assert fallback.locator("[data-panel]:visible").count() == 5
             assert fallback.locator("[data-station-group] li:visible").count() == 96
+            assert fallback.locator("[data-payment-panel]:visible").count() == 3
             expect(fallback.locator("#finder")).to_be_hidden()
             assert fallback.evaluate("document.documentElement.scrollWidth <= innerWidth")
             fallback.screenshot(path=str(ARTIFACTS / "no-javascript.png"),full_page=True)
