@@ -112,17 +112,44 @@ def main():
             expect(page.locator("#station-detail")).to_be_hidden()
             expect(page.locator('[data-panel="services"]')).to_contain_text("does not add a separate station group")
             assert "station=" not in page.url
+            expect(page.locator("#diagram-view")).to_be_hidden()
+            expect(page.locator("#station-list-view")).to_be_hidden()
+            expect(page.locator("#view-controls")).to_be_hidden()
+            expect(page.locator("#service-visual-note")).to_be_visible()
+            expect(page.locator("#service-visual-note")).to_contain_text("No service routes are drawn here")
+            assert page.locator('[data-route~="services"]').count() == 0
+            assert page.locator('.route.is-active,.route-edge.is-active').count() == 0
+            for width in (390,1440):
+                page.set_viewport_size({"width":width,"height":1000})
+                page.locator("#service-visual-note").scroll_into_view_if_needed()
+                page.screenshot(path=str(ARTIFACTS / f"service-text-only-{width}.png"))
+            page.locator('[data-phase="2026"]').click()
             page.locator('[data-view="list"]').click()
-            expect(page.locator("#station-list-view")).to_contain_text("no separate station group")
-            assert page.locator('[data-corridor="wigan-bolton"].is-active').count() == 0
-            assert page.locator('[data-corridor="rochdale"].is-active').count() == 2
             for phase, count in (("2026",14), ("2027",15), ("2028",42), ("2030",25)):
                 page.locator(f'[data-phase="{phase}"]').click()
                 assert page.locator("#station-list-view button").count() == count
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.locator('[data-phase="2028"]').click()
-            expect(page.locator('[data-panel="2028"]')).to_contain_text("separate milestones")
-            checks.append("Every phase and complete station list works, including service-only and 2028 payment distinctions")
+            expect(page.locator('[data-panel="2028"]')).to_contain_text("rail-only contactless at all Greater Manchester stations by end-2028")
+            expect(page.locator('[data-panel="2028"]')).to_contain_text("separate from station integration through 2030")
+            expect(page.locator('[data-panel="2028"]')).to_contain_text("Eligible journeys and ticket conditions remain to be confirmed")
+            discrepancy="TfGM’s heading says 43 stations; its published list names 42. We reproduce the named entries pending clarification."
+            expect(page.locator("#station-list-view")).to_contain_text(discrepancy)
+            expect(page.locator("#station-count-note")).to_have_text(discrepancy)
+            assert page.locator('[data-panel="2028"] a[href="#source-october"]').count() >= 1
+            page.locator('[data-phase="services"]').click()
+            expect(page.locator("#diagram-view")).to_be_hidden()
+            page.locator('[data-phase="2028"]').click()
+            expect(page.locator("#station-list-view")).to_be_visible()
+            page.screenshot(path=str(ARTIFACTS / "2028-list-source-note.png"))
+            checks.append("Service milestone is text-only with zero route overlays; station groups retain their named entries and view selection")
+            checks.append("2028 coverage and the 43-versus-42 discrepancy are visible beside the list with secondary-source attribution")
+
+            expect(page.locator("#tickets .section-copy")).to_contain_text("rail-only contactless at all Greater Manchester stations by end-2028")
+            expect(page.locator(".change-item").first).to_contain_text("Rail contactless and a separate daily paper ticket are planned from December 2026")
+            expect(page.locator(".ticket-steps li").first).to_contain_text("Planned from December 2026")
+            expect(page.locator(".source-context")).to_contain_text("TfGM material was reviewed through indexed copies; external destinations were not all live-verified")
+            checks.append("Ticket copy labels the shared planned launch period; source context distinguishes indexed review from live checks")
 
             page.goto(url)
             page.set_viewport_size({"width":390,"height":844})
@@ -227,6 +254,7 @@ def main():
             assert fallback.locator("[data-panel]:visible").count() == 5
             assert fallback.locator("[data-station-group] li:visible").count() == 96
             assert fallback.locator("[data-payment-panel]:visible").count() == 3
+            expect(fallback.locator("#station-count-note")).to_be_visible()
             expect(fallback.locator("#finder")).to_be_hidden()
             assert fallback.evaluate("document.documentElement.scrollWidth <= innerWidth")
             fallback.screenshot(path=str(ARTIFACTS / "no-javascript.png"),full_page=True)

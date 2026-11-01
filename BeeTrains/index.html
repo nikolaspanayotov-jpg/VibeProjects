@@ -107,6 +107,10 @@
     .legend-line { display:inline-block; width:26px; height:7px; border:2px solid var(--ink); background:var(--bee); border-radius:5px; flex-shrink:0; }
     .atlas-selection { margin-top:8px; font-size:14px; }
     .station-list-view { min-height:438px; max-height:494px; overflow:auto; padding-block:20px; scrollbar-gutter:stable; }
+    .service-visual-note { min-height:300px; padding-block:32px; max-width:50ch; }
+    .service-visual-note h3 { margin-block:16px; }
+    .service-visual-note p { color:var(--muted); font-size:17px; }
+    .source-note { margin-top:16px; padding-left:14px; border-left:2px solid var(--rule); color:var(--muted); font-size:15px!important; line-height:1.5; }
     .station-list-view h3 { font-size:20px; margin-bottom:6px; }
     .station-list-view ul { list-style:none; padding:0; margin:16px 0 0; columns:2; column-gap:20px; }
     .station-list-view li { break-inside:avoid; }
@@ -262,6 +266,7 @@
       .atlas-top { padding-bottom:10px; }
       .map-label { font-size:22px; } .map-note { font-size:17px; }
       .station-list-view { min-height:300px; max-height:440px; }
+      .service-visual-note { min-height:0; padding-block:24px; }
       .explorer-body { display:contents; }
       .phase-copy { order:3; width:100%; padding-block:0 28px; } .phase-panel { margin-bottom:0; }
       .phase-panel h3 { font-size:25px; }
@@ -386,7 +391,7 @@
 <li data-station="woodley" data-name="Woodley" data-information="https://www.nationalrail.co.uk/stations/woodley/" data-code="WLY" data-postcode="SK6 1NX" data-access="" data-reviewed="2026-10-31"><a href="https://www.nationalrail.co.uk/stations/woodley/" title="Station facilities and access">Woodley</a></li>
 </ul></div></article>
             <article class="phase-panel" id="phase-services" data-panel="services"><span class="status">Planned service changes</span><h3>More possibilities after hours</h3><p>Northern plans more evening and weekend trains on selected Manchester Airport, Alderley Edge and Rochdale stopping services from the December 2027 timetable change. Exact timetables remain to be checked when published.</p><p>This milestone concerns service improvements. It does not add a separate station group.</p><a class="source-link" href="#source-rail-update">Service plans: October rail update coverage</a></article>
-            <article class="phase-panel" id="phase-2028" data-panel="2028"><span class="status">Planned milestone</span><h3>A wider network, simpler connections</h3><p>Further stations across the Airport, Stockport, Rochdale, Bolton and Wigan corridors are planned to join by December 2028. Integrated daily and weekly contactless caps across bus, tram and rail are also targeted by the end of 2028.</p><p>Rail-only contactless coverage and full Bee Network integration are separate milestones. Some local integration continues towards 2030.</p><a class="source-link" href="#source-stations">Station dates: TfGM</a> <span class="small muted">/</span> <a class="source-link" href="#source-october">Payment plans: October reporting</a><div class="phase-stations"><h4>Stations listed by December 2028</h4><ul data-station-group="2028">
+            <article class="phase-panel" id="phase-2028" data-panel="2028"><span class="status">Planned milestone</span><h3>A wider network, simpler connections</h3><p>Further stations across the Airport, Stockport, Rochdale, Bolton and Wigan corridors are planned to join by December 2028. Integrated daily and weekly contactless caps across bus, tram and rail are also targeted by the end of 2028.</p><p><a href="#source-october">October reporting</a> describes a target for rail-only contactless at all Greater Manchester stations by end-2028, separate from station integration through 2030. Eligible journeys and ticket conditions remain to be confirmed.</p><p class="source-note" id="station-count-note">TfGM’s heading says 43 stations; its published list names 42. We reproduce the named entries pending clarification.</p><a class="source-link" href="#source-stations">Station dates: TfGM</a> <span class="small muted">/</span> <a class="source-link" href="#source-october">Payment plans: October reporting</a><div class="phase-stations"><h4>Stations listed by December 2028</h4><ul data-station-group="2028">
 <li data-station="appley-bridge" data-name="Appley Bridge" data-information="https://www.nationalrail.co.uk/stations/appley-bridge/" data-code="APB" data-postcode="WN6 9AE" data-access="B" data-reviewed="2026-10-31"><a href="https://www.nationalrail.co.uk/stations/appley-bridge/" title="Station facilities and access">Appley Bridge</a></li>
 <li data-station="atherton" data-name="Atherton" data-information="https://www.nationalrail.co.uk/stations/atherton/" data-code="ATN" data-postcode="M46 9RH" data-access="B" data-reviewed="2026-10-31"><a href="https://www.nationalrail.co.uk/stations/atherton/" title="Station facilities and access">Atherton</a></li>
 <li data-station="bolton" data-name="Bolton" data-information="https://www.nationalrail.co.uk/stations/bolton/" data-code="BON" data-postcode="BL2 1BE" data-access="A" data-reviewed="2026-10-31"><a href="https://www.nationalrail.co.uk/stations/bolton/" title="Station facilities and access">Bolton</a></li>
@@ -466,14 +471,14 @@
             <g aria-hidden="true">
               <path class="route-edge" data-route="2028" data-corridor="wigan-bolton" d="M208 192 138 122V57M208 192H137L77 132H28"/>
               <path class="route" data-route="2028" data-corridor="wigan-bolton" d="M208 192 138 122V57M208 192H137L77 132H28"/>
-              <path class="route-edge" data-route="2028 services" data-corridor="rochdale" d="M208 192 288 112V40"/>
-              <path class="route" data-route="2028 services" data-corridor="rochdale" d="M208 192 288 112V40"/>
+              <path class="route-edge" data-route="2028" data-corridor="rochdale" d="M208 192 288 112V40"/>
+              <path class="route" data-route="2028" data-corridor="rochdale" d="M208 192 288 112V40"/>
               <path class="route-edge" data-route="2027" d="M208 192H345L392 145H449M228 270H305V368L350 413"/>
               <path class="route" data-route="2027" d="M208 192H345L392 145H449M228 270H305V368L350 413"/>
               <path class="route-edge is-active" data-route="2026" d="M228 270H320L365 315H450M365 315 403 268H450"/>
               <path class="route is-active" data-route="2026" d="M228 270H320L365 315H450M365 315 403 268H450"/>
-              <path class="route-edge" data-route="2028 services" d="M228 270V318H105V387H85M228 270V346L266 384V438"/>
-              <path class="route" data-route="2028 services" d="M228 270V318H105V387H85M228 270V346L266 384V438"/>
+              <path class="route-edge" data-route="2028" d="M228 270V318H105V387H85M228 270V346L266 384V438"/>
+              <path class="route" data-route="2028" d="M228 270V318H105V387H85M228 270V346L266 384V438"/>
               <path d="M208 210v32l20 10" stroke="var(--rule)" stroke-width="2" stroke-dasharray="3 5" fill="none"/>
               <text class="map-note" x="33" y="233">City centre</text>
               <g data-map-hub="manchester-victoria"><circle class="map-hub" cx="208" cy="192" r="8"/><text class="map-label hub-label" x="226" y="218">Manchester</text><text class="map-label hub-label" x="226" y="241">Victoria</text></g>
@@ -492,7 +497,8 @@
           </svg>
         </div>
         <div id="station-list-view" class="station-list-view" hidden></div>
-        <figcaption><div class="atlas-caption"><span class="legend-line" aria-hidden="true"></span><span id="map-caption">Highlighted: December 2026 station group</span></div><div class="map-legend"><span><i class="legend-muted" aria-hidden="true"></i>Other planned corridors</span><span><i class="legend-selected" aria-hidden="true"></i>Your selected station</span></div><div class="corridor-key"><h3>Routes in this milestone</h3><ul id="corridor-list"><li>Manchester Piccadilly to Glossop and Hadfield</li></ul></div><p class="small muted" style="margin-top:12px">Selected corridors, simplified. Branches and intermediate stops are omitted. Use <a href="https://tfgm.com/plan-a-journey">official journey planning</a> for travel.</p><p class="atlas-selection" id="atlas-selection" hidden></p><div class="map-omission" id="map-omission" hidden><p id="map-omission-message"></p><button type="button" id="show-omitted-station">Find this station in the full list</button></div></figcaption>
+        <div class="service-visual-note" id="service-visual-note" hidden><span class="status">Planned service changes</span><h3>Service plans, with their own scope.</h3><p>This milestone concerns selected service enhancements, not a new station group. No service routes are drawn here: the station-integration diagram does not establish the exact services or stopping patterns affected.</p><p>Read the <a href="#source-rail-update">October service update coverage</a> for the named corridors. Individual timetables still need confirmation.</p></div>
+        <figcaption><div class="atlas-caption"><span class="legend-line" id="highlight-key" aria-hidden="true"></span><span id="map-caption">Highlighted: December 2026 station group</span></div><div class="map-legend" id="map-legend"><span><i class="legend-muted" aria-hidden="true"></i>Other planned corridors</span><span><i class="legend-selected" aria-hidden="true"></i>Your selected station</span></div><div class="corridor-key"><h3 id="corridor-heading">Routes in this milestone</h3><ul id="corridor-list"><li>Manchester Piccadilly to Glossop and Hadfield</li></ul></div><p id="map-scope-note" class="small muted" style="margin-top:12px">Selected corridors, simplified. Branches and intermediate stops are omitted. Use <a href="https://tfgm.com/plan-a-journey">official journey planning</a> for travel.</p><p class="atlas-selection" id="atlas-selection" hidden></p><div class="map-omission" id="map-omission" hidden><p id="map-omission-message"></p><button type="button" id="show-omitted-station">Find this station in the full list</button></div></figcaption>
       </figure>
           <aside class="explore-note" id="explore-note"><h3>Your station, your next connection.</h3><p>Choose a station to see its planned joining date. Use the station list for every stop in a rollout group.</p><p>These are published plans, checked on 31 October 2026. Dates can change; joining the network does not mean every improvement arrives together.</p></aside>
           <aside class="station-detail" id="station-detail" aria-labelledby="station-detail-title" hidden><span class="status">Selected station</span><h3 id="station-detail-title" tabindex="-1"></h3><p class="small muted" id="station-detail-location"></p><p class="small muted">Planned to join</p><p class="join-date" id="station-detail-date"></p><p id="station-detail-description" class="small muted"></p><h4>What changes here?</h4><dl class="station-changes"><div><dt>Tickets and payments</dt><dd id="station-ticketing"></dd></div><div><dt>Train services</dt><dd id="station-services"></dd></div><div><dt>Current step-free access</dt><dd id="station-access"></dd></div><div id="station-access-work-row" hidden><dt>Planned accessibility work</dt><dd id="station-access-work"></dd></div></dl><a class="station-facilities" id="station-facilities-link" href="https://www.nationalrail.co.uk/stations/">Station facilities and access</a><p class="small muted" id="station-access-review">Check the station page for temporary changes and help with boarding.</p><p class="small"><a href="https://tfgm.com/future-bee-network-rail-stations">Check TfGM’s latest joining dates</a></p><div class="detail-actions"><button type="button" class="button secondary" id="copy-station-link">Copy station link</button><span class="small muted">Checked 31 Oct 2026</span></div><p class="copy-status" id="copy-status" role="status"></p><label id="share-label" class="small" for="share-fallback" hidden>Copy this station link</label><input id="share-fallback" class="share-fallback" readonly hidden></aside>
@@ -503,7 +509,7 @@
     <section class="changes" id="changes" aria-labelledby="changes-title">
       <h2 id="changes-title">What changes for your journey?</h2>
       <div class="change-grid">
-        <article class="change-item"><svg class="section-icon" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#icon-ticket"/></svg><h3>Tickets and payments</h3><p>Rail contactless payments first. A daily ticket across modes, then plans for integrated daily and weekly caps.</p><a href="#tickets">Understand the ticket plans</a></article>
+        <article class="change-item"><svg class="section-icon" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#icon-ticket"/></svg><h3>Tickets and payments</h3><p>Rail contactless and a separate daily paper ticket are planned from December 2026; integrated contactless caps are targeted for end-2028.</p><a href="#tickets">Understand the ticket plans</a></article>
         <article class="change-item"><svg class="section-icon" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#icon-station"/></svg><h3>At the station</h3><p>Clearer information, better wayfinding and accessibility work, with dates that depend on the individual scheme.</p><a href="#accessibility">See the station improvements</a></article>
         <article class="change-item"><svg class="section-icon" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><use href="#icon-connect"/></svg><h3>Services and connections</h3><p>Plans for more evening and weekend trains on selected corridors, and better connections to the wider network.</p><a href="#services">Explore the service plans</a></article>
       </div>
@@ -513,9 +519,9 @@
       <div><h2 id="place-title">A familiar arrival.<br>A simpler connection.</h2><p>Piccadilly is in the first planned station group. It is also where a train journey from Glossop can become a tram journey into the city centre.</p><p>The ambition is to make that change of mode easier to understand and pay for. Here is what the different ticket plans could mean for one real connection.</p><a class="story-link" href="#journey-example">Follow Glossop to St Peter’s Square</a></div>
     </section>
     <section class="reading-section" id="tickets" aria-labelledby="tickets-title">
-      <div class="section-copy"><h2 id="tickets-title">Tickets, explained.</h2><p>The goal is a simpler journey across train, tram and bus. Getting there involves different changes at different times.</p><p>Rail contactless, the daily paper ticket and integrated fare caps each have their own scope. Check the published rules before travelling.</p><p class="small">Exact fares, concessions, Railcard treatment and cross-boundary validity need confirmation. <a href="#source-october">Read the October ticketing update coverage</a>.</p></div>
+      <div class="section-copy"><h2 id="tickets-title">Tickets, explained.</h2><p>The goal is a simpler journey across train, tram and bus. Rail contactless and a separate daily paper ticket are both planned from December 2026; integrated contactless caps are targeted for end-2028.</p><p><a href="#source-october">October reporting</a> describes a target for rail-only contactless at all Greater Manchester stations by end-2028, separate from station integration through 2030. Eligible journeys and ticket conditions remain to be confirmed.</p><p class="small">Exact fares, concessions, Railcard treatment and cross-boundary validity need confirmation. <a href="#source-october">Read the October ticketing update coverage</a>.</p></div>
       <ol class="ticket-steps">
-        <li><span class="step-marker"><svg fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-rail"/></svg></span><div class="step-content"><span class="small">From December 2026, in phases</span><h3>Rail contactless</h3><p>Tap in and out on participating rail journeys, with the fare calculated for the journey you make.</p></div></li>
+        <li><span class="step-marker"><svg fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-rail"/></svg></span><div class="step-content"><span class="small">Planned from December 2026, in phases</span><h3>Rail contactless</h3><p>Tap in and out on participating rail journeys, with the fare calculated for the journey you make.</p></div></li>
         <li><span class="step-marker"><svg fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-ticket"/></svg></span><div class="step-content"><span class="small">Planned for December 2026</span><h3>A daily ticket across modes</h3><p>A separate paper-based daily ticket is planned for travel across bus, tram and train.</p></div></li>
         <li><span class="step-marker"><svg fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-modes"/></svg></span><div class="step-content"><span class="small">Targeted by the end of 2028</span><h3>Integrated daily and weekly caps</h3><p>The longer-term payment plan brings rail, bus and tram journeys together under integrated contactless caps.</p></div></li>
       </ol>
@@ -545,7 +551,7 @@
       <li id="source-facilities"><span class="source-publisher">National Rail</span><a class="source-title" href="https://www.nationalrail.co.uk/stations/">Station facilities and access categories</a><span class="source-type">Primary / checked 31 October 2026</span></li>
       <li id="source-rail-update"><span class="source-publisher">Place North West</span><a class="source-title" href="https://www.placenorthwest.co.uk/tfgm-lists-first-14-rail-stations-to-join-bee-network/">Rail integration and service update</a><span class="source-type">Secondary / 23 October 2026</span></li>
       <li id="source-october"><span class="source-publisher">I Love Manchester</span><a class="source-title" href="https://ilovemanchester.com/bee-network-trains-greater-manchester">Station rollout and ticketing plans</a><span class="source-type">Secondary / 26 October 2026</span></li>
-    </ul><p class="source-context">Some general rail FAQs still describe earlier rollout groupings. This guide uses the revised station timetable for joining dates. Fare details, individual service changes and accessibility completion dates should always be checked with the relevant official provider.</p></section>
+    </ul><p class="source-context">TfGM material was reviewed through indexed copies; external destinations were not all live-verified. Some general rail FAQs still describe earlier rollout groupings. This guide uses the revised station timetable for joining dates. Fare details, individual service changes and accessibility completion dates should always be checked with the relevant official provider.</p></section>
   </main>
   <footer class="wrap footer"><p>BeeTrains. An independent guide to the next connection.</p><a href="#page-title">Back to the beginning</a></footer>
   <script>
@@ -584,6 +590,7 @@
       const stations = [...document.querySelectorAll('[data-station-group] li')].map(el => ({ id:el.dataset.station, name:el.dataset.name, phase:el.parentElement.dataset.stationGroup, source:'https://tfgm.com/future-bee-network-rail-stations', information:el.dataset.information, code:el.dataset.code, postcode:el.dataset.postcode, access:el.dataset.access, reviewed:el.dataset.reviewed || REVIEW_DATE }));
       const stationsById = new Map(stations.map(station => [station.id,station]));
       let currentPhase = '2026';
+      let currentView = 'diagram';
       let selectedStation = null;
       let searchTimer;
 
@@ -606,6 +613,11 @@
           note.textContent = 'Service improvements are planned on selected Airport, Alderley Edge and Rochdale stopping services. This milestone adds no separate station group.'; listViewEl.append(note); return;
         }
         note.textContent = 'Stations listed by TfGM for this planned integration group.'; listViewEl.append(note);
+        if (currentPhase === '2028') {
+          const discrepancy = document.createElement('p'); discrepancy.className = 'source-note';
+          discrepancy.textContent = document.getElementById('station-count-note').textContent;
+          listViewEl.append(discrepancy);
+        }
         const list = document.createElement('ul');
         stations.filter(station => station.phase === currentPhase).sort((a,b) => a.name.localeCompare(b.name)).forEach(station => {
           const item = document.createElement('li'); const button = document.createElement('button');
@@ -615,10 +627,20 @@
         listViewEl.append(list);
       }
       function renderMap() {
+        const serviceOnly = currentPhase === 'services';
+        document.getElementById('diagram-view').hidden = serviceOnly || currentView === 'list';
+        listViewEl.hidden = serviceOnly || currentView !== 'list';
+        document.getElementById('service-visual-note').hidden = !serviceOnly;
+        document.getElementById('view-controls').hidden = serviceOnly;
+        document.getElementById('map-legend').hidden = serviceOnly;
+        document.getElementById('highlight-key').hidden = serviceOnly;
+        document.getElementById('map-scope-note').hidden = serviceOnly;
+        document.getElementById('atlas-title').textContent = serviceOnly ? 'December 2027 service plans' : 'Rollout diagram';
+        document.getElementById('corridor-heading').textContent = serviceOnly ? 'Services named in October reporting' : 'Routes in this milestone';
         document.querySelectorAll('[data-route]').forEach(route => route.classList.toggle('is-active',route.dataset.route.split(' ').includes(currentPhase)));
         document.querySelectorAll('[data-map-phase]').forEach(marker => marker.classList.toggle('active',marker.dataset.mapPhase === currentPhase));
         document.querySelectorAll('[data-map-station]').forEach(link => link.classList.toggle('is-selected',link.dataset.mapStation === selectedStation?.id));
-        document.getElementById('map-caption').textContent = (currentPhase === '2030' ? '' : 'Highlighted: ') + PHASES[currentPhase].caption;
+        document.getElementById('map-caption').textContent = serviceOnly ? 'December 2027: selected service improvements' : (currentPhase === '2030' ? '' : 'Highlighted: ') + PHASES[currentPhase].caption;
         const selectionEl = document.getElementById('atlas-selection');
         selectionEl.hidden = !selectedStation;
         selectionEl.textContent = selectedStation ? `Selected: ${selectedStation.name}. Planned to join: ${PHASES[selectedStation.phase].date}.` : '';
@@ -643,9 +665,8 @@
         if (notify) announce(`${PHASES[phase].date}. ${phase === 'services' ? 'Planned service improvements; no separate station group.' : 'Planned station integration group selected.'}`);
       }
       function setView(view) {
-        const showList = view === 'list';
-        document.getElementById('diagram-view').hidden = showList; listViewEl.hidden = !showList;
-        document.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.view === view)));
+        currentView = view === 'list' ? 'list' : 'diagram';
+        document.querySelectorAll('[data-view]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.view === currentView)));
         renderMap();
       }
       function selectStation(id, focus = true, changeUrl = true) {
@@ -673,7 +694,9 @@
         facilitiesEl.textContent = `${station.name}: facilities and access`;
         document.getElementById('station-access-review').textContent = station.access
           ? 'National Rail access category checked 31 October 2026. Follow the station page for temporary changes and help with boarding.'
-          : 'Facilities link checked 31 October 2026. Check the official page for current access conditions and help with boarding.';
+          : station.information.startsWith('https://tfgm.com/')
+            ? 'Station page identified in indexed TfGM material. Current access and live page availability are not confirmed here.'
+            : 'Facilities link checked 31 October 2026. Check the official page for current access conditions and help with boarding.';
         detailEl.hidden = false; document.getElementById('explore-note').hidden = true; resultsEl.hidden = true;
         if (changeUrl) updateUrl(id);
         announce(`${station.name}. Planned to join: ${PHASES[station.phase].date}.`);

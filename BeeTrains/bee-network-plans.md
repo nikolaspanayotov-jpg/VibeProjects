@@ -29,7 +29,7 @@ Explain the distinction between joining the Bee Network and changing who operate
 | March 2027 | A further 15 stations join, including Manchester Victoria, Stalybridge, Marple and Rose Hill Marple. | Planned second launch, bringing the first two groups to 29 stations. [Station timetable][stations] |
 | December 2027 | More evening and weekend services on selected Manchester Airport, Alderley Edge and Rochdale stopping services. | Planned Northern timetable enhancements; exact frequencies need checking when published. [October rail update coverage][rail-update-coverage] |
 | By December 2028 | Further stations join across the Airport, Stockport, Rochdale, Bolton and Wigan corridors. | TfGM's latest station list gives individual locations. [Station timetable][stations] |
-| By the end of 2028 | Integrated contactless payments with daily and weekly caps across bus, tram and rail. | October reporting also describes a target for rail-only contactless coverage at all Greater Manchester stations; this is distinct from full integration. [October reporting][october-reporting] |
+| By the end of 2028 | Integrated contactless payments with daily and weekly caps across bus, tram and rail; a separate rail-only contactless target. | October reporting describes a target for rail-only contactless at all Greater Manchester stations by end-2028, separate from station integration through 2030. Eligible journeys and ticket conditions remain to be confirmed. [October reporting][october-reporting] |
 | By 2030 | Remaining local rail integration. | TfGM lists a final group of 25 stations for this stage. [Station timetable][stations] |
 
 **Use the revised station timetable:** older announcements described 17 stations launching together in December 2026. The current TfGM list instead places 14 in December and the next 15 in March 2027. Do not reuse the earlier launch grouping. [Earlier announcement][earlier-announcement] · [Current station timetable][stations]
@@ -40,11 +40,15 @@ Build this section around the two initial station groups, followed by the later 
 
 Later corridors include Manchester Airport, Stockport, Rochdale, and Wigan via Atherton, Bolton and Golborne. [TfGM route outline][bee-network]
 
+TfGM’s December 2028 heading says 43 stations; its published list names 42. Reproduce the named entries pending clarification and show this discrepancy beside the reader-facing list. Do not invent a missing station.
+
 Any future map should show branches and ticketing boundaries. Confirm ticket acceptance for individual services before describing which trains passengers can use.
 
 ## Fares, tickets and contactless payments
 
 Explain how tapping in and out will calculate a rail fare, then distinguish that launch feature from the planned daily and weekly caps combining train, bus and tram journeys. Cover the daily paper multimodal ticket as a separate option. [October reporting][october-reporting]
+
+Rail contactless and a separate daily paper ticket are both planned from December 2026; integrated contactless caps are targeted for end-2028. Describe the shared planned launch period explicitly.
 
 Before adding a fare calculator or worked journey examples, confirm prices, peak restrictions, payment methods, Railcard and concession treatment, and the treatment of journeys outside the participating area. These are research questions for the page, not assumptions about the final fare rules.
 
@@ -53,6 +57,8 @@ Before adding a fare calculator or worked journey examples, confirm prices, peak
 Cover planned investment in signs, wayfinding, passenger information screens, CCTV and step-free access. [October rail update coverage][rail-update-coverage]
 
 TfGM has identified Flowery Field, Newton for Hyde and Levenshulme for step-free access work in 2027–2028. Check each scheme's latest delivery date before presenting it as available. Joining the network should not be presented as proof that every station is already fully accessible. [TfGM accessibility plans][bee-network]
+
+These dates are supported by indexed TfGM material. Reviewing that material does not confirm completion of the works or current availability of the linked pages.
 
 ## Journey information and connections
 
@@ -63,6 +69,8 @@ The eventual page should help readers connect from a train to a bus, tram or wal
 ## Services, reliability and accountability
 
 Cover the proposed evening and weekend improvements alongside ticketing. Separate an announced timetable enhancement from measured improvements in punctuality and cancellations. [October rail update coverage][rail-update-coverage]
+
+The December 2027 milestone remains text-only in the explorer. Shared station-integration paths do not establish the exact service geography or stopping patterns and must not be used as service overlays.
 
 Explain the roles of TfGM, train operators, Network Rail and government. Rail integration depends on partnership working; the operating model and delivery responsibilities differ from bus franchising. [TfGM explanation][bee-network]
 
@@ -77,7 +85,9 @@ Explain the roles of TfGM, train operators, Network Rail and government. Rail in
 
 ## Sources and updates
 
-Prioritise the live TfGM station timetable for rollout dates. Use older announcements for background only where they remain consistent with newer information. October news coverage is identified below as secondary reporting on the latest rail update.
+Prioritise the dedicated TfGM station timetable for rollout dates. TfGM material was reviewed through indexed copies; external destinations were not all live-verified. Use older announcements for background only where they remain consistent with newer information. October news coverage is identified below as secondary reporting on the latest rail update.
+
+Place North West's October article also has an inconsistent “December 2027” heading above the first station group. Use it for the attributed service and payment reporting, with station dates taken from TfGM's dedicated list.
 
 - [TfGM: stations joining the Bee Network][stations] — primary reference for the revised station groups.
 - [TfGM: Bee Network plans and rail FAQs][bee-network] — passenger benefits, routes, accessibility and operating arrangements; some rollout details still reflect earlier plans.
@@ -99,7 +109,7 @@ Update this file when launch arrangements, fares or delivery dates are confirmed
 
 The implementation's station results were enriched on 31 October 2026 using [National Rail's station pages](https://www.nationalrail.co.uk/stations/) and its [published station sitemap](https://www.nationalrail.co.uk/sitemaps/sitemap-stations.xml). Ninety-five individual station pages were fetched and parsed for official URLs, station codes, postcodes and the reported platform-access category. These facts are stored on the existing station records in `index.html`, rather than a separate duplicated dataset.
 
-The National Rail page for Salford Central returned 404. Its result instead links to the verified [TfGM Salford Central station page](https://tfgm.com/travel-updates/live-departures/train/salford-central-rail), with current access left unconfirmed in this guide. A category is also left unconfirmed wherever the National Rail record did not provide one. Current access categories must remain distinct from planned accessibility projects.
+The National Rail page for Salford Central returned 404. Its result instead links to the [TfGM Salford Central station page identified in indexed material](https://tfgm.com/travel-updates/live-departures/train/salford-central-rail), with current access and live page availability left unconfirmed in this guide. A category is also left unconfirmed wherever the National Rail record did not provide one. Current access categories must remain distinct from planned accessibility projects.
 
 The worked journey uses Glossop to Manchester Piccadilly by train, followed by Metrolink to St Peter's Square. The tram connection is supported by [TfGM's travel guidance](https://tfgm.com/getting-to-the-trafford-palazzo); payment practice is supported by [TfGM's contactless guide](https://tfgm.com/ways-to-pay/contactless). It is an illustration of the published payment plans, not a fare quote or confirmation that a future ticket covers that exact journey. The page retains an explicit unconfirmed price and validity status.
 
