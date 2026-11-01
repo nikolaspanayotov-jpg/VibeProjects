@@ -18,6 +18,8 @@ Run `python3 BeeTrains/tests/browser_smoke.py` from the repository root for brow
 - `tests/browser_smoke.py`: browser acceptance checks.
 - `tests/VERIFICATION.md`: recorded checks, scope and limits.
 
+The page also includes a dated roadmap comparison, a Piccadilly transfer guide, a reader-facing update history and generated station briefs. These are all part of the same build-free HTML file.
+
 ## Content and data
 
 The base HTML's four `[data-station-group]` lists are the single source for station records. Each entry has a stable `data-station` ID, display name, verified direct facilities URL, station code, postcode where checked, access category and review date. JavaScript derives search, list, detail and share-link records from this HTML; do not introduce a second station dataset.
@@ -41,6 +43,20 @@ Payment copy distinguishes the October secondary reporting's target for rail-onl
 `setPayment` switches the three worked-journey panels: rail contactless, a daily paper ticket and future integrated caps. These illustrate Glossop–Piccadilly–St Peter's Square, with no assumed price or ticket validity. Without JavaScript and in print, all three explanations remain available.
 
 The `station` URL parameter uses stable IDs. Copying has a selectable-input fallback. No localStorage keys or persistent browser state are used. Keep history changes guarded for browsers that restrict history on local files.
+
+## Reader tools
+
+- The static roadmap compares station integration, rail-only payment, cross-mode tickets/caps and services. Its date links select the matching explorer panel. A dash means no additional target specified here, not a guarantee that nothing changes. The comparison is a native disclosure, initially collapsed on a narrow-screen visit; it remains readable without JavaScript.
+- The selected-station bar appears only when the complete result has scrolled above the header. Its native disclosure is collapsible, and its name/date update with the current selection. `updateStationContext` adjusts anchor offsets for the measured header and bar heights. Never steal focus on scroll or keep a stale station after a phase clears the selection.
+- `buildStationBrief` uses the current station record and its rendered facts, so print/download content does not have a separate dataset. It retains the research date, source URLs, unknown fares and the 2028 count discrepancy where relevant. `printStationBrief` uses the browser's print dialog with a station-only print mode; `afterprint` restores the full page and title. `downloadStationBrief` creates a standalone, script-free HTML file with inline styles. No export request is sent to a server.
+- Keep station briefs to one A4 page with the default print stylesheet. Browser checks cover Glossop, Flowery Field, Stockport and Salford Central, including planned works, source discrepancies and unconfirmed access.
+- The update history distinguishes dates of published plans from dates of changes to this guide. Never infer an operational launch from an editorial update or automatically advance statuses when a target date passes.
+
+## Piccadilly transfer guidance
+
+The transfer section is based on Network Rail's accessible guide and September 2025 station map, both retrieved on 1 November 2026, plus National Rail's Passenger Assist information. It describes nominal lift routes and assistance planning, not live equipment availability or a guaranteed step-free journey. Keep TfGM alert links as external checks and retain the indexed-source limitation.
+
+Use the current guide URL ending `/2022/08/Manchester-Piccadilly-Station-Guide-Accessible.pdf`. The older indexed `/2022/11/Manchester-Piccadilly-accessible-station-guide.pdf` returned 404 during research. Recheck source URLs before substituting either one.
 
 ## Visual conventions
 

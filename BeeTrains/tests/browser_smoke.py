@@ -15,6 +15,8 @@ from collections import Counter
 import json
 import os
 import shutil
+import subprocess
+import re
 
 from playwright.sync_api import sync_playwright, expect
 
@@ -200,6 +202,99 @@ def main():
             page.screenshot(path=str(ARTIFACTS / "photo-mobile.png"))
             checks.append("All three journey walkthrough options work; the local archive photograph loads with its visible credit and licence")
 
+            page.set_viewport_size({"width":390,"height":844})
+            page.goto(url)
+            assert not page.locator("#roadmap-details").evaluate("el => el.open")
+            roadmap_summary = page.locator("#roadmap-details > summary")
+            roadmap_summary.focus(); page.keyboard.press("Enter")
+            expect(page.locator(".roadmap-table")).to_be_visible()
+            assert page.locator(".roadmap-table tbody tr").count() == 5
+            expect(page.locator('[data-milestone="2028"]')).to_contain_text("published list names 42")
+            expect(page.locator('[data-milestone="2028"]')).to_contain_text("Eligible journeys and conditions remain unconfirmed")
+            for width in (320,390,768,1440):
+                page.set_viewport_size({"width":width,"height":1000})
+                assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"),width
+            page.locator(".roadmap-table").screenshot(path=str(ARTIFACTS / "roadmap-desktop.png"))
+            page.locator('[data-jump-phase="services"]').click()
+            expect(page.locator('[data-panel="services"]')).to_be_visible()
+            expect(page.locator("#diagram-view")).to_be_hidden()
+            checks.append("Roadmap compares five qualified milestones, reflows at four widths and links to the correct explorer state")
+
+            expect(page.locator('#piccadilly-transfer a[href$="Manchester-Piccadilly-Station-Map.pdf"]')).to_have_count(1)
+            expect(page.locator('#piccadilly-transfer a[href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/"]')).to_have_count(1)
+            expect(page.locator("#piccadilly-transfer .source-note")).to_contain_text("not live lift availability")
+            assert page.locator("#updates .update-list li").count() == 3
+            expect(page.locator(".updates-intro")).to_contain_text("does not confirm")
+            assert page.locator('#updates time[datetime="2026-11-01"]').count() == 2
+            page.set_viewport_size({"width":390,"height":844})
+            page.locator("#piccadilly-transfer").screenshot(path=str(ARTIFACTS / "transfer-mobile.png"))
+            checks.append("Piccadilly transfer and dated update notes retain official sources and distinguish facilities from live conditions")
+
+            page.emulate_media(reduced_motion="reduce")
+            page.goto(url + "?station=glossop#explore")
+            expect(page.locator("#station-context")).to_be_hidden()
+            page.locator("#sources").scroll_into_view_if_needed()
+            expect(page.locator("#station-context")).to_be_visible()
+            expect(page.locator("#context-name")).to_have_text("Glossop")
+            expect(page.locator("#context-date")).to_contain_text("Planned to join: December 2026")
+            summary = page.locator("#station-context-details > summary")
+            summary.focus(); page.keyboard.press("Enter")
+            expect(page.locator("#context-return")).to_be_visible()
+            expect(summary).to_be_focused()
+            page.screenshot(path=str(ARTIFACTS / "station-context-mobile.png"))
+            page.locator("#context-return").click()
+            expect(page.locator("#station-detail-title")).to_be_focused()
+            expect(page.locator("#station-context")).to_be_hidden()
+            assert page.locator("#station-detail-title").bounding_box()["y"] >= page.locator(".masthead").bounding_box()["height"]
+            page.locator("#station-search").fill("Rose Hill")
+            page.locator('#search-results [data-select-station="rose-hill-marple"]').click()
+            page.locator("#sources").scroll_into_view_if_needed()
+            expect(page.locator("#context-name")).to_have_text("Rose Hill Marple")
+            expect(page.locator("#context-date")).to_contain_text("March 2027")
+            page.locator('[data-phase="2030"]').click()
+            expect(page.locator("#station-context")).to_be_hidden()
+            expect(page.locator("#station-brief")).to_be_empty()
+            checks.append("Selected-station bar appears only after the result, supports keyboard expansion, restores focus and clears stale selection")
+
+            for station_id in ("glossop","flowery-field","stockport","salford-central"):
+                page.goto(url + f"?station={station_id}#explore")
+                expect(page.locator("#station-detail")).to_be_visible()
+                page.evaluate("window.print = () => { window.printWasRequested = true; }")
+                page.locator("#print-station-brief").click()
+                assert page.evaluate("window.printWasRequested")
+                expect(page.locator("#station-brief")).to_be_hidden()
+                page.emulate_media(media="print")
+                expect(page.locator("#station-brief")).to_be_visible()
+                expect(page.locator("#main")).to_be_hidden()
+                expect(page.locator("#station-brief")).to_contain_text("Research snapshot: 31 October 2026")
+                expect(page.locator("#station-brief")).to_contain_text("Eligible journeys, fares and ticket conditions remain to be confirmed")
+                if station_id == "stockport":
+                    expect(page.locator("#station-brief")).to_contain_text("heading says 43")
+                pdf_path = ARTIFACTS / f"brief-{station_id}.pdf"
+                page.pdf(path=str(pdf_path),prefer_css_page_size=True)
+                if shutil.which("pdfinfo"):
+                    info = subprocess.check_output([shutil.which("pdfinfo"),str(pdf_path)],text=True)
+                    assert re.search(r"Pages:\s+1\s",info), (station_id,info)
+                page.emulate_media(media="screen")
+                page.evaluate("window.dispatchEvent(new Event('afterprint'))")
+                expect(page.locator("#main")).to_be_visible()
+                assert not page.evaluate("document.documentElement.dataset.printMode")
+            page.goto(url + "?station=glossop#explore")
+            with page.expect_download() as captured:
+                page.locator("#download-station-brief").click()
+            download = captured.value
+            assert download.suggested_filename == "beetrains-glossop-brief.html"
+            saved = ARTIFACTS / download.suggested_filename
+            download.save_as(saved)
+            exported = saved.read_text()
+            assert "<script" not in exported.lower()
+            offline_brief = browser.new_context(offline=True,java_script_enabled=False).new_page()
+            offline_brief.set_content(exported)
+            expect(offline_brief.get_by_role("heading",name="Glossop",exact=True)).to_be_visible()
+            expect(offline_brief.locator(".station-brief")).to_contain_text("December 2026")
+            expect(offline_brief.locator(".station-brief")).to_contain_text("Research snapshot: 31 October 2026")
+            checks.append("Station briefs print as one-page A4 PDFs for four representative records; standalone downloads retain dated facts, sources and uncertainty offline")
+
             page.goto(url + "?station=rose-hill-marple#explore")
             expect(page.locator("#station-detail-title")).to_have_text("Rose Hill Marple")
             page.evaluate("Object.defineProperty(navigator, 'clipboard', {configurable:true,value:{writeText:()=>Promise.reject(new Error('Denied'))}})")
@@ -230,10 +325,13 @@ def main():
             page.emulate_media(reduced_motion="reduce")
             assert page.evaluate("getComputedStyle(document.documentElement).scrollBehavior") == "auto"
             page.emulate_media(media="print")
+            page.evaluate("window.dispatchEvent(new Event('beforeprint'))")
             assert page.locator("[data-panel]:visible").count() == 5
             assert page.locator(".phase-stations:visible").count() == 4
+            expect(page.locator(".roadmap-table")).to_be_visible()
             page.pdf(path=str(ARTIFACTS / "print.pdf"))
             page.emulate_media(media="screen")
+            page.evaluate("window.dispatchEvent(new Event('afterprint'))")
             page.set_viewport_size({"width": 390,"height": 844})
             page.evaluate("document.documentElement.style.fontSize='200%'; document.body.style.fontSize='36px'")
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
@@ -255,6 +353,9 @@ def main():
             assert fallback.locator("[data-station-group] li:visible").count() == 96
             assert fallback.locator("[data-payment-panel]:visible").count() == 3
             expect(fallback.locator("#station-count-note")).to_be_visible()
+            expect(fallback.locator(".roadmap-table")).to_be_visible()
+            expect(fallback.locator("#piccadilly-transfer")).to_be_visible()
+            expect(fallback.locator("#updates")).to_be_visible()
             expect(fallback.locator("#finder")).to_be_hidden()
             assert fallback.evaluate("document.documentElement.scrollWidth <= innerWidth")
             fallback.screenshot(path=str(ARTIFACTS / "no-javascript.png"),full_page=True)

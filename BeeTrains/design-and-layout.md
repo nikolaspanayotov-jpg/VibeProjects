@@ -251,3 +251,13 @@ The built page now includes the five agreed improvements while preserving the at
 5. A single locally served Piccadilly panorama adds a sense of place between the introduction to changes and the ticketing explanation. Its visible caption identifies the archive image, photographer and licence.
 
 See [verification notes](tests/VERIFICATION.md) for checks actually performed on the implemented page.
+
+## Reader tools added 1 November 2026
+
+The next refinement adds five ways to compare, revisit and use the guide while preserving the atlas design:
+
+1. A roadmap table compares the five milestones across integration, rail payment, cross-mode payment and services. On mobile it becomes labelled rows inside a native disclosure. Qualifications, unknowns and the 43-versus-42 discrepancy remain visible.
+2. A compact station bar appears after the selected result has passed out of view. It keeps the planned date accessible and offers a return to details or a station brief. Its options collapse, and measured offsets keep anchored content clear of the header.
+3. A three-step Piccadilly interchange guide uses Network Rail's maps and accessible guide, with official assistance and equipment-alert links. It never presents a planning diagram as live lift status.
+4. A reader-facing update history distinguishes published changes to plans from dated clarifications in this guide. It records meaningful changes with sources, without implying that a service has launched.
+5. The chosen station has a one-page print/PDF brief and a standalone HTML download. Both retain the dated research snapshot, official links, unconfirmed details and relevant source notes. Browser-native printing and offline HTML keep the feature build-free.

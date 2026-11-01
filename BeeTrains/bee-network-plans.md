@@ -114,3 +114,11 @@ The National Rail page for Salford Central returned 404. Its result instead link
 The worked journey uses Glossop to Manchester Piccadilly by train, followed by Metrolink to St Peter's Square. The tram connection is supported by [TfGM's travel guidance](https://tfgm.com/getting-to-the-trafford-palazzo); payment practice is supported by [TfGM's contactless guide](https://tfgm.com/ways-to-pay/contactless). It is an illustration of the published payment plans, not a fare quote or confirmation that a future ticket covers that exact journey. The page retains an explicit unconfirmed price and validity status.
 
 The Piccadilly archive photograph has its source, author and licence recorded in [the asset attribution](assets/README.md). It illustrates the place, not the future appearance of Bee Network services.
+
+## Piccadilly interchange research: 1 November 2026
+
+The accessible-transfer section draws on [Network Rail's accessible station guide](https://www.networkrail.co.uk/wp-content/uploads/2022/08/Manchester-Piccadilly-Station-Guide-Accessible.pdf), the [official September 2025 station map](https://www.networkrail.co.uk/wp-content/uploads/2024/08/Manchester-Piccadilly-Station-Map.pdf) and [National Rail's Passenger Assist guidance](https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/). All three were retrieved successfully on 1 November 2026. An older indexed guide URL under `/2022/11/` returned 404; the page uses the retrieved `/2022/08/` guide.
+
+The guide describes access from platforms 1–12 to the concourse, a dedicated lift route for platforms 13–14, and lift connections towards Metrolink from the main concourse and platforms 8–9 and 12. These are facility descriptions, not confirmation of current lift availability. The page links [TfGM's accessible-travel guides](https://tfgm.com/accessibility/guides) and [travel alerts](https://tfgm.com/travel-updates/travel-alerts) as checks for the tram leg; those destinations were identified through indexed material and are not represented as live-verified here.
+
+The roadmap comparison and saved station briefs reuse the existing planned milestones and station records. An editorial update, a printed date or a completed download does not establish that a target has been delivered. The public update history labels guide clarifications separately from published rollout changes.

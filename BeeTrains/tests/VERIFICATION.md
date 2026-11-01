@@ -46,6 +46,22 @@ The two requested live destinations were checked separately on 1 November:
 
 These checks do not establish that either link is broken or available to a normal visitor. The official URLs are retained, and the source context does not claim they were live-verified.
 
+## Reader-tool additions checked 1 November 2026
+
+- The roadmap compares all five planned milestones, retains the 43-versus-42 note and unknown eligibility, reflows without horizontal overflow at 320, 390, 768 and 1440px, and opens the corresponding explorer panel from each date link. Its native disclosure is initially collapsed on a mobile visit and remains accessible without JavaScript.
+- The selected-station bar appears after the whole result passes above the header. Keyboard expansion, returning focus to the result, changing stations, clearing an incompatible selection and measured header offsets passed browser checks.
+- The Piccadilly transfer section links the official map, accessible station guide, Passenger Assist and TfGM advice/alerts. Its qualifications distinguish nominal facilities from live lift status. Recent updates are dated and explicitly separate guide clarifications from operational launches.
+- Station-only print rendering hides the full guide, keeps the research date, planned status, official URLs and unresolved details, and restores the full page after printing. PDFs for Glossop, Flowery Field, Stockport and Salford Central were each confirmed as one A4 page using `pdfinfo`. The Stockport output was rendered and visually inspected.
+- The downloaded Glossop brief was opened as a standalone document with JavaScript disabled and networking offline. Its dated facts, sources and uncertainty remain present, with no script or server dependency.
+- Full-guide printing temporarily expands closed disclosures so the mobile roadmap and question answers are included, then restores their prior state.
+- New roadmap, transfer and selected-station screenshots were inspected. The full browser suite passed without page JavaScript errors.
+
+### Additional source retrieval checks
+
+On 1 November 2026, direct retrieval returned HTTP 200 for the current Network Rail accessible guide (`/2022/08/Manchester-Piccadilly-Station-Guide-Accessible.pdf`), the official September 2025 station map and National Rail's Passenger Assist page. The PDF text was inspected for the stated lift connections and platform references. The older indexed guide URL under `/2022/11/` returned 404 and is not used in the page.
+
+These retrievals verify the cited documents' availability at that check, not live equipment operation. TfGM advice and alert links retain the indexed-source and live-verification limitations recorded above. The general station-access data remains the 31 October research snapshot.
+
 ## Repeating the browser checks
 
 From the repository root:
