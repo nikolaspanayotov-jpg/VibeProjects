@@ -63,3 +63,13 @@ Use the current guide URL ending `/2022/08/Manchester-Piccadilly-Station-Guide-A
 Preserve the six CSS colour variables, Barlow Condensed headings, Source Sans 3 body text and restrained rail-atlas composition. Fonts are embedded so the page does not depend on a Google Fonts request; retain their licence notices. The SVG depicts selected corridors, not a complete travel map, fare boundary or live railway state. Complete group membership is available in the HTML station list. Supplementary diagram links have equivalent large buttons in that list. The Piccadilly photograph is a historical image, uploaded in 2012, and retains a visible source and CC BY-SA 3.0 credit. Do not present it as a current image of Bee Network rail services.
 
 Check mobile widths first, native keyboard interaction, visible focus, reduced motion, print and the no-JavaScript fallback after relevant changes. Keep runtime assets self-contained and source links beside factual claims.
+
+## Reading and correction tools
+
+The hero's “Start here” links expose station dates, payment plans and Piccadilly access planning without displacing search. Definitions use native `.term-help` disclosures beside the relevant explanations; secondary organisation roles live in `#rail-responsibilities`. Keep dates, ticket uncertainty and the 2028 count discrepancy outside closed background disclosures.
+
+Native `.evidence` panels explain publishers, publication/review dates, supported claims, uncertainty and original URLs next to the main milestone, payment, access and service claims. TfGM review uses indexed material, not live verification. The station result reuses this same source context and updates its station/date sentence when selected. No network request is needed to expand a definition or evidence panel; full-guide print expands them with the existing disclosure handling.
+
+The cross-boundary section uses Glossop's Derbyshire address from National Rail's saved 31 October page and its independently sourced TfGM joining group. A fresh 2 November fetch returned 403. Do not turn geography or station inclusion into a ticket-validity rule, draw an assumed fare boundary, or infer coverage for the daily paper ticket or integrated caps.
+
+Correction anchors open `https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new` with a title/body draft. Static section drafts work without JavaScript. `stationCorrectionUrl` uses the current station record, planned date and review date; it never includes the visitor's current URL or personal information. The reader reviews and submits on GitHub. Do not create an issue automatically, add a backend or report a draft as submitted.

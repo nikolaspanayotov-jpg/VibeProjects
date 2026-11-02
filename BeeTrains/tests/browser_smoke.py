@@ -17,6 +17,7 @@ import os
 import shutil
 import subprocess
 import re
+from urllib.parse import urlparse, parse_qs
 
 from playwright.sync_api import sync_playwright, expect
 
@@ -83,6 +84,78 @@ def main():
                 if width in (390, 1440):
                     page.screenshot(path=str(ARTIFACTS / f"opening-{width}.png"))
             checks.append("No horizontal overflow at 320, 390, 768 and 1440px; screenshots saved")
+
+            # Reader choices keep the search prominent and link to real page sections.
+            assert page.locator(".quick-start a").count() == 3
+            for target in ("explore", "tickets", "piccadilly-transfer"):
+                page.locator(f'.quick-start a[href="#{target}"]').click()
+                assert page.url.endswith(f"#{target}")
+                expect(page.locator(f"#{target}")).to_be_visible()
+            page.goto(url)
+            for term_id in ("integration", "rail-contactless", "fare-cap", "stopping-service"):
+                disclosure = page.locator(f"#meaning-{term_id}")
+                summary = disclosure.locator("summary")
+                summary.focus(); page.keyboard.press("Enter")
+                assert disclosure.evaluate("el => el.open")
+                expect(disclosure.locator("p")).to_be_visible()
+                expect(summary).to_be_focused()
+                assert summary.bounding_box()["height"] >= 44
+                page.keyboard.press("Space")
+                assert not disclosure.evaluate("el => el.open")
+            role_summary = page.locator("#rail-responsibilities > summary")
+            expect(page.locator(".role-list")).to_be_hidden()
+            role_summary.focus(); page.keyboard.press("Enter")
+            expect(page.locator(".role-list")).to_be_visible()
+            checks.append("Quick start reaches three reader tasks; four contextual definitions and background responsibilities expand by keyboard")
+
+            for phase in ("2026", "2027", "services", "2028", "2030"):
+                page.locator(f'[data-phase="{phase}"]').click()
+                disclosure = page.locator(f'[data-panel="{phase}"] > .evidence')
+                before = page.url
+                disclosure.locator("summary").focus(); page.keyboard.press("Enter")
+                expect(disclosure.locator(".evidence-body")).to_be_visible()
+                expect(disclosure).to_contain_text("reviewed 31 October 2026")
+                expect(disclosure).to_contain_text("Still uncertain")
+                assert disclosure.locator('a[href^="https://"]').count() >= 1
+                assert page.url == before
+            expect(page.locator("#station-count-note")).to_have_count(1)
+            page.locator("#payment-evidence > summary").click()
+            expect(page.locator("#payment-evidence")).to_contain_text("secondary reporting")
+            expect(page.locator("#payment-evidence")).to_contain_text("26 October 2026")
+            expect(page.locator("#payment-evidence")).to_contain_text("cross-boundary ticket validity remain unconfirmed")
+            page.locator("#boundary-evidence > summary").click()
+            expect(page.locator("#boundary-journeys")).to_contain_text("Derbyshire")
+            expect(page.locator(".boundary-warning")).to_contain_text("remain unconfirmed")
+            expect(page.locator("#boundary-evidence")).to_contain_text("fresh retrieval on 2 November returned HTTP 403")
+            for width in (320,390,768,1440):
+                page.set_viewport_size({"width":width,"height":1000})
+                assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"),width
+                if width in (390,1440):
+                    page.locator("#boundary-journeys").scroll_into_view_if_needed()
+                    page.screenshot(path=str(ARTIFACTS / f"boundary-evidence-{width}.png"))
+                    page.locator("#payment-evidence").scroll_into_view_if_needed()
+                    page.screenshot(path=str(ARTIFACTS / f"payment-evidence-{width}.png"))
+            checks.append("Local evidence panels retain publisher, dates, claims, uncertainty and original URLs; the cross-boundary explanation reflows at four widths")
+
+            # Only inspect issue drafts: the browser never submits or opens GitHub.
+            for link in page.locator("[data-correction-section]").all():
+                issue_url = urlparse(link.get_attribute("href"))
+                assert issue_url.netloc == "github.com"
+                assert issue_url.path == "/nikolaspanayotov-jpg/VibeProjects/issues/new"
+                fields = parse_qs(issue_url.query)
+                assert link.get_attribute("data-correction-section") in fields["title"][0]
+                assert "Supporting source URL and publication date:" in fields["body"][0]
+            for station_id, name in (("glossop","Glossop"),("rose-hill-marple","Rose Hill Marple")):
+                page.goto(url+f"?station={station_id}")
+                expect(page.locator("#station-detail-title")).to_have_text(name)
+                fields = parse_qs(urlparse(page.locator("#station-correction-link").get_attribute("href")).query)
+                assert name in fields["title"][0]
+                assert f"Record ID: {station_id}" in fields["body"][0]
+                assert "Research snapshot: 31 October 2026" in fields["body"][0]
+                assert "127.0.0.1" not in fields["body"][0]
+                expect(page.locator("#station-date-evidence-context")).to_contain_text(name)
+            checks.append("Correction links create reviewable GitHub drafts with section or current station context, without submitting issues")
+            page.goto(url)
 
             page.locator("#station-search").fill("glossop")
             expect(page.locator("#search-results")).to_contain_text("1 match")
@@ -223,7 +296,7 @@ def main():
             expect(page.locator('#piccadilly-transfer a[href$="Manchester-Piccadilly-Station-Map.pdf"]')).to_have_count(1)
             expect(page.locator('#piccadilly-transfer a[href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/"]')).to_have_count(1)
             expect(page.locator("#piccadilly-transfer .source-note")).to_contain_text("not live lift availability")
-            assert page.locator("#updates .update-list li").count() == 3
+            assert page.locator("#updates .update-list li").count() == 4
             expect(page.locator(".updates-intro")).to_contain_text("does not confirm")
             assert page.locator('#updates time[datetime="2026-11-01"]').count() == 2
             page.set_viewport_size({"width":390,"height":844})
@@ -329,6 +402,8 @@ def main():
             assert page.locator("[data-panel]:visible").count() == 5
             assert page.locator(".phase-stations:visible").count() == 4
             expect(page.locator(".roadmap-table")).to_be_visible()
+            expect(page.locator("#payment-evidence .evidence-body")).to_be_visible()
+            expect(page.locator("#meaning-fare-cap p")).to_be_visible()
             page.pdf(path=str(ARTIFACTS / "print.pdf"))
             page.emulate_media(media="screen")
             page.evaluate("window.dispatchEvent(new Event('afterprint'))")
@@ -356,6 +431,12 @@ def main():
             expect(fallback.locator(".roadmap-table")).to_be_visible()
             expect(fallback.locator("#piccadilly-transfer")).to_be_visible()
             expect(fallback.locator("#updates")).to_be_visible()
+            expect(fallback.locator("#boundary-journeys")).to_be_visible()
+            fallback.locator("#payment-evidence > summary").click()
+            expect(fallback.locator("#payment-evidence .evidence-body")).to_be_visible()
+            fallback.locator("#meaning-rail-contactless > summary").focus(); fallback.keyboard.press("Enter")
+            expect(fallback.locator("#meaning-rail-contactless p")).to_be_visible()
+            assert "title=" in fallback.locator('[data-correction-section="Tickets and payments"]').get_attribute("href")
             expect(fallback.locator("#finder")).to_be_hidden()
             assert fallback.evaluate("document.documentElement.scrollWidth <= innerWidth")
             fallback.screenshot(path=str(ARTIFACTS / "no-javascript.png"),full_page=True)

@@ -261,3 +261,13 @@ The next refinement adds five ways to compare, revisit and use the guide while p
 3. A three-step Piccadilly interchange guide uses Network Rail's maps and accessible guide, with official assistance and equipment-alert links. It never presents a planning diagram as live lift status.
 4. A reader-facing update history distinguishes published changes to plans from dated clarifications in this guide. It records meaningful changes with sources, without implying that a service has launched.
 5. The chosen station has a one-page print/PDF brief and a standalone HTML download. Both retain the dated research snapshot, official links, unconfirmed details and relevant source notes. Browser-native printing and offline HTML keep the feature build-free.
+
+## Reading clarity additions — 2 November 2026
+
+1. Add a compact “Start here” navigation below the existing station finder. Three numbered text links lead to the station rollout, payment explanation and Piccadilly accessible-transfer guide. Keep search in the opening mobile viewport. Fold the secondary organisation-role list into a native “Who does what on the railway?” disclosure.
+2. Explain Glossop–Manchester as a cross-boundary journey in three parallel parts: geography, planned station inclusion and ticket validity. Keep the unresolved ticket conditions visible and avoid drawing a fare boundary. On narrow screens the three columns become a single reading order.
+3. Put plain-English meanings beside integration, rail-only contactless, fare caps and stopping services. Use native keyboard-operable disclosures with yellow left rules, no hover dependency and no account or request needed to read them.
+4. Expand milestone, payment, station-date, accessibility and service evidence in place. Identify publisher, primary or secondary status, publication versus research dates, supported claim, uncertainty and the original URL. Unknown publication dates are explicit. Preserve the full source directory and visible research limitations.
+5. Offer correction links for sections and the selected station. Open a prefilled GitHub issue draft containing the relevant context and prompts for a correction and source. Explain sign-in and submission on GitHub; no issue is created by the guide itself.
+
+These additions retain the existing palette, typography, quiet rules and build-free architecture. Definitions and source panels use native disclosures and remain usable without JavaScript; full-guide printing includes expanded content. The source snapshot and planned delivery labels do not advance merely because reading tools have changed.

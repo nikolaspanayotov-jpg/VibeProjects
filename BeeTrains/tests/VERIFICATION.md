@@ -62,6 +62,17 @@ On 1 November 2026, direct retrieval returned HTTP 200 for the current Network R
 
 These retrievals verify the cited documents' availability at that check, not live equipment operation. TfGM advice and alert links retain the indexed-source and live-verification limitations recorded above. The general station-access data remains the 31 October research snapshot.
 
+## Reading-clarity additions checked 2 November 2026
+
+- The three “Start here” links reach station dates, payment plans and Piccadilly transfer planning. Station search remains above 700px on the 390px opening viewport. Four contextual definitions and the organisation-role disclosure open and close with the keyboard, retain focus and use controls at least 44px high.
+- Milestone evidence expands in place without changing the page URL. Panels retain the publisher, primary/secondary attribution, publication versus review dates, supported claims, unresolved details and original external URLs. Ticket and source qualifications remain visible outside closed evidence panels.
+- The Glossop example distinguishes Derbyshire geography, planned December 2026 station inclusion and unresolved ticket validity. Its three-column explanation reflows to one column on mobile. Expanded source explanations were checked for overflow at 320, 390, 768 and 1440px.
+- Correction URLs were parsed without opening GitHub or submitting issues. Section drafts include the section and source prompts; station drafts update between Glossop and Rose Hill Marple and include the station ID, code, planned date and research date. They do not include the visitor's current URL. Repository metadata confirms that Issues are enabled.
+- Definitions, local evidence and section correction drafts remain available with JavaScript disabled. Full-guide print expands the new disclosures. Existing offline search, the text-only December 2027 milestone, the visible 43-versus-42 discrepancy and the qualified payment targets continue to pass.
+- The full Chromium suite passed with no page JavaScript errors, including four one-page station PDFs and a standalone offline station brief. Opening, boundary and payment-evidence screenshots were inspected at mobile and desktop widths. A missing arrow glyph found during visual inspection was removed; quick-start chevrons are drawn with CSS.
+
+National Rail's saved 31 October Glossop page confirms the Derbyshire address used in the example. A fresh direct retrieval on 2 November returned HTTP 403, so this addition does not claim a newly verified live destination or change the original research date. No new rollout, fare or completion announcement is inferred from these reading tools.
+
 ## Repeating the browser checks
 
 From the repository root:

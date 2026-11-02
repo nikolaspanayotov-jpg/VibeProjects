@@ -122,3 +122,18 @@ The accessible-transfer section draws on [Network Rail's accessible station guid
 The guide describes access from platforms 1–12 to the concourse, a dedicated lift route for platforms 13–14, and lift connections towards Metrolink from the main concourse and platforms 8–9 and 12. These are facility descriptions, not confirmation of current lift availability. The page links [TfGM's accessible-travel guides](https://tfgm.com/accessibility/guides) and [travel alerts](https://tfgm.com/travel-updates/travel-alerts) as checks for the tram leg; those destinations were identified through indexed material and are not represented as live-verified here.
 
 The roadmap comparison and saved station briefs reuse the existing planned milestones and station records. An editorial update, a printed date or a completed download does not establish that a target has been delivered. The public update history labels guide clarifications separately from published rollout changes.
+
+## Boundary example, definitions and evidence presentation — 2 November 2026
+
+Glossop's official National Rail address is “Glossop station, Norfolk Street, Glossop, Derbyshire, SK13 8BS”, recorded from the page retrieved on 31 October 2026. TfGM's dedicated list separately names Glossop in the planned December 2026 group. Glossop–Manchester crosses the county boundary; neither the address nor planned station inclusion establishes a future ticket boundary. The daily paper ticket's validity for that journey and the treatment of its rail and tram legs under integrated caps remain unconfirmed. Check origin/destination, operator, time restrictions, concessions and Railcards against the final published conditions.
+
+Source: [National Rail — Glossop](https://www.nationalrail.co.uk/stations/glossop/). A fresh retrieval on 2 November returned HTTP 403; the address statement relies on the saved 31 October page. This does not establish the destination's availability to an ordinary visitor. The broader rollout/source research date remains 31 October.
+
+Use these editorial explanations without implying new product rules:
+
+- **Integration:** bringing rail into the wider network through changes to ticketing, information and connections; parts can arrive separately and existing operators continue running trains.
+- **Rail-only contactless:** paying for eligible train journeys by card/device, following the railway's instructions; it does not itself establish an integrated bus/tram/rail cap.
+- **Fare cap:** a maximum charge for eligible travel within a stated period; coverage and conditions determine which journeys count.
+- **Stopping service:** a service that calls at stations along a route; consult the timetable for its actual calls. Do not infer that every service or station on a corridor receives the proposed enhancement.
+
+The page's evidence panels distinguish source publication dates, research dates and confirmed delivery. Where an official page's publication date is not known, say so. Payment coverage targets remain attributed to October secondary reporting. Correction links prepare a draft in the repository's enabled GitHub Issues; the reader must review and submit it, ideally with a dated supporting source.
