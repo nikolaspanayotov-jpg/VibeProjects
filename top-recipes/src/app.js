@@ -44,6 +44,44 @@
   let loadError = "";
   const grid = $("#planner-grid");
   const picker = $("#picker-dialog");
+  const libraryEl = $("#recipes");
+  const libraryContentEl = $("#recipes-content");
+  const libraryToggleEl = $("#recipes-toggle");
+  const stackedLayout = window.matchMedia("(max-width: 960px)");
+  let libraryExpanded = false;
+  let libraryChosenByUser = false;
+
+  function setLibraryExpanded(
+    expanded,
+    { user = false, goToPlan = false } = {},
+  ) {
+    if (user) libraryChosenByUser = true;
+    const scrolledPastHeader = libraryEl.getBoundingClientRect().top < 0;
+    const focusInContent = libraryContentEl.contains(document.activeElement);
+    libraryExpanded = expanded;
+    libraryContentEl.hidden = !expanded;
+    libraryToggleEl.setAttribute("aria-expanded", String(expanded));
+    $("#recipes-toggle-label").textContent = expanded
+      ? "Hide recipes"
+      : "Show recipes";
+    libraryEl.classList.toggle("library-expanded", expanded);
+    $(".workspace").classList.toggle("recipes-collapsed", !expanded);
+    if (!expanded) {
+      clearDrag();
+      if (focusInContent && !goToPlan)
+        libraryToggleEl.focus({ preventScroll: true });
+      if (goToPlan || scrolledPastHeader)
+        requestAnimationFrame(() => {
+          if (goToPlan) {
+            $("#planner-heading").focus({ preventScroll: true });
+            $("#weekly-plan").scrollIntoView({
+              block: "start",
+              behavior: "auto",
+            });
+          } else libraryEl.scrollIntoView({ block: "start", behavior: "auto" });
+        });
+    }
+  }
 
   function storageChanged() {
     const issue = persistence.issue;
@@ -277,6 +315,13 @@
   function renderLibrary() {
     const list = $("#recipe-list");
     list.replaceChildren();
+    $("#recipe-count").textContent =
+      loadState === "ready"
+        ? `${recipes.length} recipe${recipes.length === 1 ? "" : "s"}`
+        : loadState === "error"
+          ? "Recipes unavailable"
+          : "Opening the collection…";
+    $("#recipe-results").textContent = "";
     if (loadState === "loading") {
       list.append(el("p", "empty-message", "Opening the recipe notebook…"));
       return;
@@ -314,8 +359,10 @@
     const visible = recipes.filter((recipe) =>
       matchesRecipe(recipe, $("#recipe-search").value, filter),
     );
-    $("#recipe-count").textContent =
-      `${String(visible.length).padStart(2, "0")} RECIPE${visible.length === 1 ? "" : "S"}`;
+    $("#recipe-results").textContent =
+      visible.length === recipes.length
+        ? "All your favourites"
+        : `${visible.length} of ${recipes.length} recipes`;
     if (!visible.length) {
       const empty = el(
         "div",
@@ -553,6 +600,30 @@
     loadState = "ready";
     loadError = "";
   }
+
+  libraryToggleEl.addEventListener("click", () =>
+    setLibraryExpanded(!libraryExpanded, { user: true }),
+  );
+  $("#recipes-close").addEventListener("click", () =>
+    setLibraryExpanded(false, { user: true, goToPlan: true }),
+  );
+  $("#recipes-nav-link").addEventListener("click", () =>
+    setLibraryExpanded(true, { user: true }),
+  );
+  $("#planner-nav-link").addEventListener("click", () => {
+    if (stackedLayout.matches) setLibraryExpanded(false, { user: true });
+  });
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash === "#recipes")
+      setLibraryExpanded(true, { user: true });
+  });
+  stackedLayout.addEventListener("change", (event) => {
+    if (!libraryChosenByUser) setLibraryExpanded(!event.matches);
+  });
+  setLibraryExpanded(
+    window.location.hash === "#recipes" || !stackedLayout.matches,
+    { user: window.location.hash === "#recipes" },
+  );
 
   $("#recipe-search").addEventListener("input", renderLibrary);
   $("#meal-filters")

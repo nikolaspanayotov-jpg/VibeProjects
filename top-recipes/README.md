@@ -18,6 +18,7 @@ You can also open `index.html` directly from disk. Because browsers block automa
 
 ## Use the page
 
+- On phones and tablets, the recipe collection starts collapsed so the weekly planner is close to the top. Use **Show recipes** to browse and **Hide recipes** to close the whole collection. Its header stays visible while browsing, and **Hide recipes and plan my week** at the bottom returns you to the planner. The desktop collection starts open; collapsing it gives the planner the full width.
 - Search by recipe name, ingredient or tag, or filter by meal. Open a recipe to see quantities and method; tick ingredients you have and copy the checklist.
 - Drag a recipe's grip into any of the 21 meal slots, use its Add button, or tap an empty slot. Any recipe can go in any slot.
 - Open a planned meal to read it. Its `···` menu offers Change, Move and Remove. Moving into an occupied slot swaps the meals. Adding from the library replaces the target.
@@ -25,6 +26,8 @@ You can also open `index.html` directly from disk. Because browsers block automa
 - Previous, Next, This week and Choose week select separately saved weeks. Dates use the browser's local calendar, beginning on Monday.
 - **Shopping list** opens the selected week's ingredients. Shared items combine when their units match, with kilograms converted to grams and litres to millilitres. Untick items you have or want to skip, and use the minus/plus buttons or type a quantity. Screenshot view includes only selected items with positive quantities, with Previous/Next page controls for long lists. Hide controls for a clean screenshot; returning to the list keeps your edits.
 - Screenshot view shows the complete week as a portrait plan. Tap the plan or select Hide controls, take a screenshot, then tap again or press Escape to restore controls. Comfortable mode gives more room; Print uses a portrait page. For long names, use a full-page screenshot when needed.
+
+Showing or hiding recipes preserves your search, filters and saved data. The Recipes navigation link opens the collection; Weekly plan closes it on phones and tablets. Your explicit show/hide choice stays in place through screen-size changes during the current page visit.
 
 Plans, shopping-list edits and recipe ingredient checks save in this browser on this device; they do not sync between devices. Shopping lists save separately for each week. If browser storage is unavailable, the page stays usable for the session. Malformed saved data is preserved until you explicitly choose Reset saved data, which clears plans, shopping-list edits and ingredient checks.
 

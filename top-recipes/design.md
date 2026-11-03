@@ -39,7 +39,7 @@ Use short, welcoming copy: “A few favourites, a week of good meals.” Recipe 
 
 ## Page structure
 
-The desktop page uses a centred layout with a maximum width of roughly 1280 px. A compact header introduces the collection, followed by two areas: a recipe library on the left and the larger weekly planner on the right. Keep the recipe library within reach while planning. On narrow screens, stack the library above the planner and give both sections direct navigation links.
+The desktop page uses a centred layout with a maximum width of roughly 1280 px. A compact header introduces the collection, followed by two areas: a recipe library on the left and the larger weekly planner on the right. Keep the recipe library within reach while planning. On phones and tablets up to 960 px, stack the library above the planner and start the entire collection collapsed, so reaching the plan never requires scrolling through every recipe. Keep both sections' direct navigation links.
 
 ```text
 TOP RECIPES                         Recipes · Weekly plan
@@ -65,9 +65,14 @@ Dinner · 6 servings
 
 The B/L/D abbreviations above are only for this wireframe; the actual interface displays Breakfast, Lunch and Dinner in full.
 
-### Recipe library
+### Collapsible recipe library
 
-- Show all recipes initially, with search by title, ingredient and tag, plus meal filters.
+- Keep a compact, cream collection header visible with the serif title, total recipe count, and an explicit Show recipes / Hide recipes button with a rotating chevron. Use the existing olive and cream design system. The button has a 44 px touch target, `aria-expanded`, and `aria-controls` pointing to the complete collection body.
+- Start closed on phones and tablets, and open on the desktop's two-column layout. A direct `#recipes` link opens the collection. Preserve the user's explicit choice through responsive changes during the page visit.
+- Collapse the search, meal filters, cards and footer together with the native `hidden` attribute. Keep their DOM and state intact so reopening restores the search and filters. Display the total collection count in the header and the filtered result count within the expanded body.
+- Keep the expanded collection header sticky while scrolling through recipes, so Hide recipes remains available. Include Hide recipes and plan my week after the last card, returning focus and scroll to the planner. Closing a sticky header after a long scroll must bring the compact header back into view rather than leave the user stranded at the bottom of the page.
+- The Recipes navigation link opens the collection; Weekly plan collapses it in the stacked mobile layout. When the collection is closed on desktop, place the compact header above a full-width planner.
+- Within the open collection, show all recipes initially, with search by title, ingredient and tag, plus meal filters.
 - Each card displays the name, meal category, short description, servings and timing. Overnight chilling must be visible on the oats card.
 - Clicking the recipe title or “View recipe & ingredients” opens its details. A separate Add button starts meal placement, avoiding ambiguity between viewing and planning.
 - Cards have a visible drag handle on devices with a pointer. Dragging the handle must not interfere with clicking the recipe or selecting text.
@@ -253,6 +258,7 @@ Optional serving, preparation or substitution notes.
 ## Acceptance checks
 
 - The three starter recipes load directly from `recipes.md`. Adding a fourth valid recipe requires no interface code changes.
+- At phone width the complete recipe collection starts collapsed. Show/Hide remains keyboard accessible, preserves filtering and saved data, and lets the user return to the planner without scrolling through the full recipe collection. Check default desktop expansion and direct Recipes links.
 - Clicking each recipe reveals its complete quantities, ingredients and method, including the overnight wait for oats.
 - Search, filters, shopping checkboxes and Copy ingredients work, including empty results and clipboard failure.
 - All 21 slots accept recipes. Library drops copy; grid moves and swaps preserve the intended meals; replacement, Remove and Clear week can be undone.

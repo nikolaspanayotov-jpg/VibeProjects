@@ -31,8 +31,8 @@
         ></a
       >
       <nav aria-label="Main navigation">
-        <a href="#recipes">The recipes</a
-        ><a href="#weekly-plan"
+        <a id="recipes-nav-link" href="#recipes">The recipes</a
+        ><a id="planner-nav-link" href="#weekly-plan"
           >The weekly plan <span aria-hidden="true">↗</span></a
         >
       </nav>
@@ -66,63 +66,106 @@
       </div>
 
       <div class="workspace">
-        <section id="recipes" class="library" aria-labelledby="recipes-heading">
-          <div class="section-heading">
-            <h2 id="recipes-heading">The favourites</h2>
-            <span id="recipe-count" class="eyebrow">THE COLLECTION</span>
-          </div>
-          <label class="search-field"
-            ><span aria-hidden="true">⌕</span
-            ><span class="sr-only">Search recipes, ingredients or tags</span
-            ><input
-              id="recipe-search"
-              type="search"
-              placeholder="Find something delicious…"
-              autocomplete="off"
-          /></label>
-          <div
-            id="meal-filters"
-            class="filters"
-            role="group"
-            aria-label="Filter recipes by meal"
-          >
+        <section
+          id="recipes"
+          class="library recipe-library"
+          aria-labelledby="recipes-heading"
+        >
+          <div class="library-heading">
+            <div class="library-heading-copy">
+              <h2 id="recipes-heading">The favourites</h2>
+              <p id="recipe-count" class="library-count">
+                Opening the collection…
+              </p>
+            </div>
             <button
+              id="recipes-toggle"
+              class="library-toggle"
               type="button"
-              class="filter active"
-              data-filter="all"
-              aria-pressed="true"
+              aria-expanded="false"
+              aria-controls="recipes-content"
+              aria-describedby="recipe-count"
             >
-              All</button
-            ><button
-              type="button"
-              class="filter"
-              data-filter="breakfast"
-              aria-pressed="false"
-            >
-              Breakfast</button
-            ><button
-              type="button"
-              class="filter"
-              data-filter="lunch"
-              aria-pressed="false"
-            >
-              Lunch</button
-            ><button
-              type="button"
-              class="filter"
-              data-filter="dinner"
-              aria-pressed="false"
-            >
-              Dinner
+              <span id="recipes-toggle-label">Show recipes</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </button>
           </div>
-          <div id="recipe-list" class="recipe-list" aria-live="polite">
-            <p class="empty-message">Opening the recipe notebook…</p>
+          <div id="recipes-content" class="library-content" hidden>
+            <label class="search-field"
+              ><span aria-hidden="true">⌕</span
+              ><span class="sr-only">Search recipes, ingredients or tags</span
+              ><input
+                id="recipe-search"
+                type="search"
+                placeholder="Find something delicious…"
+                autocomplete="off"
+            /></label>
+            <div
+              id="meal-filters"
+              class="filters"
+              role="group"
+              aria-label="Filter recipes by meal"
+            >
+              <button
+                type="button"
+                class="filter active"
+                data-filter="all"
+                aria-pressed="true"
+              >
+                All</button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="breakfast"
+                aria-pressed="false"
+              >
+                Breakfast</button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="lunch"
+                aria-pressed="false"
+              >
+                Lunch</button
+              ><button
+                type="button"
+                class="filter"
+                data-filter="dinner"
+                aria-pressed="false"
+              >
+                Dinner
+              </button>
+            </div>
+            <p
+              id="recipe-results"
+              class="recipe-results"
+              aria-live="polite"
+            ></p>
+            <div id="recipe-list" class="recipe-list" aria-live="polite">
+              <p class="empty-message">Opening the recipe notebook…</p>
+            </div>
+            <p class="library-footnote">
+              <span aria-hidden="true">♡</span> The best recipes are the ones
+              you come back to.
+            </p>
+            <button
+              id="recipes-close"
+              class="button button-outline library-return"
+              type="button"
+            >
+              Hide recipes and plan my week
+            </button>
           </div>
-          <p class="library-footnote">
-            <span aria-hidden="true">♡</span> The best recipes are the ones you
-            come back to.
-          </p>
         </section>
 
         <section
@@ -133,7 +176,7 @@
           <div class="planner-top">
             <div>
               <p class="eyebrow">A LITTLE PLANNING, A LOT TO LOOK FORWARD TO</p>
-              <h2 id="planner-heading">
+              <h2 id="planner-heading" tabindex="-1">
                 This week, sorted<span class="brand-dot">.</span>
               </h2>
             </div>
