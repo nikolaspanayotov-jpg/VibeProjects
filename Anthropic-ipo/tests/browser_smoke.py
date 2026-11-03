@@ -49,15 +49,18 @@ with sync_playwright() as p:
     assert response.status == 200
     page.evaluate("document.fonts.ready")
     expect(page.locator("h1")).to_have_count(1)
-    expect(page.locator("#result-amount")).to_have_text("−$693m")
+    expect(page.locator("#result-amount")).to_have_text("−$567m")
+    expect(page.get_by_role("radio", name="Third quarter 2026")).to_be_checked()
+    expect(page.locator("#ledger-title")).to_have_text("Third quarter 2026")
     expect(page.get_by_text("Not specified in this filing", exact=True)).to_have_count(2)
     expect(page.locator("#briefing h3")).to_have_count(3)
     expect(page.locator("#briefing")).to_contain_text("Terms incomplete")
-    expect(page.locator("#per100-amount")).to_have_text("$104")
-    expect(page.locator("#margin-amount")).to_have_text("−4.3%")
-    record("60-second briefing and default per-$100 explanation")
+    expect(page.locator("#per100-amount")).to_have_text("$103")
+    expect(page.locator("#margin-amount")).to_have_text("−3.3%")
+    expect(page.locator("#briefing")).to_contain_text("Q3 2026 GAAP operating loss")
+    record("60-second briefing and latest-Q3 default explanation")
     no_overflow(page, "390px default reflow")
-    record("HTTP 200, preliminary terms, H1 default")
+    record("HTTP 200, preliminary terms and Q3 default")
 
     invalid = page.evaluate("""() => [...document.querySelectorAll('a[href^="#"]')]
         .filter(a => !document.getElementById(a.hash.slice(1))).map(a => a.hash)""")
@@ -69,11 +72,44 @@ with sync_playwright() as p:
 
     views = page.locator("#financial-views")
     expect(views.locator(".measure-card")).to_have_count(3)
-    expect(views).to_contain_text("H1 2026")
-    assert views.locator(".measure-value").all_text_contents() == ["−$693m", "−$80.75bn", "+$3.93bn"]
-    expect(views).to_contain_text("$72.388bn")
+    expect(views).to_contain_text("Nine months ended 30 September 2026")
+    assert views.locator(".measure-value").all_text_contents() == ["−$1.26bn", "−$104.04bn", "+$6.57bn"]
+    expect(views).to_contain_text("$94.324bn")
+    expect(views).to_contain_text("$131.845bn")
+    expect(views).to_contain_text("$2.540bn")
     expect(views).to_contain_text("excludes investing activities and financing proceeds")
-    record("Three dated financial measures and the non-cash/investing qualifications")
+    record("Nine-month financial measures, September liquidity and non-cash/investing qualifications")
+
+    expect(page.locator(".status-list")).to_contain_text("2 November 2026")
+    expect(page.locator(".status-list")).to_contain_text("3 November 2026")
+    page.locator("#filing-history > summary").click()
+    expect(page.locator("#filing-history li")).to_have_count(2)
+    expect(page.locator("#filing-history")).to_contain_text("26 October 2026")
+    page.locator("#filing-history > summary").click()
+    expect(page.locator('.comparison .historical-label')).to_contain_text("January–June 2026 for both")
+    record("Latest amendment/check dates, original filing history and historical matched comparison")
+
+    expect(page.locator("#operating-reconciliation .recon-steps li")).to_have_count(4)
+    assert page.locator("#operating-reconciliation .recon-steps strong").all_text_contents() == ["−$567m", "+$1,070m", "+$1,960m", "+$2,463m"]
+    expect(page.locator("#operating-reconciliation")).to_contain_text("not cash flow")
+    record("Complete Q3 GAAP-to-adjusted bridge with economic qualification")
+
+    commitments = json.loads(page.locator("#commitment-data").text_content())
+    assert commitments["aggregate"] == 895400
+    assert commitments["beforeEnd2030"] == 447500
+    assert commitments["nextTwelveMonths"] == 69800
+    assert commitments["preCommencementConditional"] == 213800
+    assert commitments["narrowMaturityTable"] == 319993
+    expect(page.locator("#commitment-overview")).to_contain_text("timing views overlap")
+    expect(page.locator("#commitment-overview")).to_contain_text("$213.8bn")
+    for key in ["aggregate", "beforeEnd2030", "nextTwelveMonths"]:
+        width = page.locator(f'[data-commitment="{key}"]').evaluate("e=>parseFloat(e.style.width)")
+        assert abs(width - commitments[key] / commitments["axisMaximum"] * 100) < .001
+    page.locator("#maturity-schedule > summary").click()
+    expect(page.locator("#maturity-schedule")).to_contain_text("narrower scope")
+    expect(page.locator("#maturity-schedule")).to_contain_text("319.993")
+    page.locator("#maturity-schedule > summary").click()
+    record("Company aggregate, overlapping timing, conditions and narrower maturity scope")
 
     expect(page.locator("#dilution-result")).to_have_text("−4.0%")
     expect(page.locator("#per-share-index")).to_have_text("96")
@@ -182,7 +218,7 @@ with sync_playwright() as p:
     expect(page.locator(".lesson-limits")).to_contain_text("not Anthropic's future price path")
     record("Three paired SpaceX lessons, visible limits and optional chronology")
 
-    dialog = page.get_by_role("dialog", name="Financial results, compute and financing")
+    dialog = page.get_by_role("dialog", name="Amended results, compute and contractual obligations")
     trigger = page.locator('#economics .sources-inline a[href="#source-a-mda"]').first
     trigger.scroll_into_view_if_needed()
     before_scroll = page.evaluate("scrollY")
@@ -190,8 +226,9 @@ with sync_playwright() as p:
     page.keyboard.press("Enter")
     expect(dialog).to_be_visible()
     expect(page.locator("#source-preview-kind")).to_have_text("Filing")
-    expect(page.locator("#source-preview-date")).to_have_text("26 October 2026")
-    expect(page.locator("#source-preview-excerpt")).to_contain_text("Revenue for the six months")
+    expect(page.locator("#source-preview-date")).to_have_text("2 November 2026")
+    expect(page.locator("#source-preview-excerpt")).not_to_be_visible()
+    expect(page.locator("#source-preview-context")).to_contain_text("Q3")
     expect(page.locator("#source-preview-original")).to_have_attribute("href", re.compile(r"https://www.sec.gov/Archives/"))
     expect(page.locator("#source-preview-original")).to_have_attribute("target", "_blank")
     assert page.locator("#source-preview-close").evaluate("e=>e===document.activeElement")
@@ -206,12 +243,12 @@ with sync_playwright() as p:
     record("Keyboard source preview, focus trap, Escape and reading-position restoration")
 
     page.locator('#briefing a[href="#source-a-mda"]').first.click()
-    expect(page.locator("#source-preview-excerpt")).to_contain_text("11,900 customers")
+    expect(page.locator("#source-preview-context")).to_contain_text("trailing-year")
     page.locator("#source-preview-close").click()
-    page.locator('#commitments a[href="#source-a-mda"]').first.click()
-    expect(page.locator("#source-preview-excerpt")).to_contain_text("up to $120.5 billion")
+    page.locator('#commitment-overview a[href="#source-a-mda"]').click()
+    expect(page.locator("#source-preview-context")).to_contain_text("$895.4bn")
     page.locator("#source-preview-close").click()
-    record("Source excerpts follow customer, financial and compute citation context")
+    record("Contextual research notes follow the amended customer, financial and commitment citations")
 
     metadata = json.loads(page.locator("#source-preview-data").text_content())
     source_ids = page.locator(".sources-list > li").evaluate_all("es=>es.map(e=>e.id)")
@@ -229,7 +266,10 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    record("All 20 source previews have provenance, dates, notes and original links")
+    assert len(metadata) == 22
+    record("All 22 current/historical source previews retain provenance, dates and original links")
+    expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
+    record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 
     page.locator('a[aria-haspopup="dialog"][href="#source-bloomberg"]').first.click()
     expect(page.locator("#source-preview-kind")).to_have_text("Third-party report")
@@ -256,7 +296,9 @@ with sync_playwright() as p:
     data = json.loads(page.locator("#ledger-data").text_content())
     for key, period in data["periods"].items():
         assert period["revenue"] - sum(period["costs"].values()) == period["reportedOperatingResult"]
-    record("Integer financial reconciliation for both periods")
+        assert period["reportedOperatingResult"] + period["stockCompensation"] + period["charitableContributions"] == period["adjustedOperatingResult"]
+    assert data["defaultPeriod"] == "q3" and len(data["periods"]) == 3
+    record("Integer GAAP and adjusted reconciliation for all three periods")
 
     q2 = page.get_by_role("radio", name="Second quarter 2026")
     q2.check()
@@ -264,8 +306,8 @@ with sync_playwright() as p:
     expect(page.locator("#ledger-title")).to_have_text("Second quarter 2026")
     expect(page.locator("#revenue-amount")).to_have_text("$11.56bn")
     expect(page.locator("#expense-amount")).to_have_text("$10.58bn")
-    expect(page.locator("#financial-views")).to_contain_text("H1 2026")
-    expect(page.locator("#financial-views .measure-value").first).to_have_text("−$693m")
+    expect(page.locator("#financial-views")).to_contain_text("Nine months ended 30 September 2026")
+    expect(page.locator("#financial-views .measure-value").first).to_have_text("−$1.26bn")
     expect(page.locator("#per100-amount")).to_have_text("$92")
     expect(page.locator("#per100-period")).to_have_text("Q2 2026")
     expect(page.locator("#margin-amount")).to_have_text("+8.4%")
@@ -280,11 +322,20 @@ with sync_playwright() as p:
     expect(page.locator("#margin-amount")).to_have_text("−4.3%")
     assert page.locator('input[value="h1"]').evaluate("e => e === document.activeElement")
     record("Native keyboard radio navigation and focus retention")
+    page.get_by_role("radio", name="Third quarter 2026").check()
+    expect(page.locator("#result-amount")).to_have_text("−$567m")
+    expect(page.locator("#revenue-amount")).to_have_text("$16.96bn")
+    expect(page.locator("#expense-amount")).to_have_text("$17.52bn")
+    expect(page.locator("#per100-period")).to_have_text("Q3 2026")
+    expect(page.locator("#per100-amount")).to_have_text("$103")
+    assert abs(page.locator("#revenue-bar").evaluate("e=>parseFloat(e.style.width)") - 16956 / 18000 * 100) < .001
+    record("Q3 selection restores latest values and the same fixed 0–18bn scale")
 
     page.locator("#exact-figures > summary").click()
     expect(page.locator("#exact-figures")).to_have_attribute("open", "")
     expect(page.locator("#exact-figures")).to_contain_text("16.286")
     expect(page.locator("#exact-figures")).to_contain_text("11.555")
+    expect(page.locator("#exact-figures")).to_contain_text("16.956")
     no_overflow(page, "390px exact figures confined to table region")
     page.locator("#exact-figures > summary").click()
 
@@ -308,7 +359,7 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUTPUT / "mobile-top.png"))
     go_section(page, "briefing")
     page.screenshot(path=str(OUTPUT / "mobile-briefing.png"))
-    for section_id in ["financial-views", "dilution-example", "roadmap"]:
+    for section_id in ["financial-views", "dilution-example", "roadmap", "operating-reconciliation", "commitment-overview"]:
         go_section(page, section_id)
         page.screenshot(path=str(OUTPUT / f"r2-mobile-{section_id}.png"))
     page.locator('a[data-term="economic-shares"]').click()
@@ -335,7 +386,7 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUTPUT / "desktop-briefing.png"))
     go_section(page, "economics")
     page.screenshot(path=str(OUTPUT / "desktop-economics.png"))
-    for section_id in ["financial-views", "dilution-example", "roadmap"]:
+    for section_id in ["financial-views", "dilution-example", "roadmap", "operating-reconciliation", "commitment-overview"]:
         go_section(page, section_id)
         page.screenshot(path=str(OUTPUT / f"r2-desktop-{section_id}.png"))
     go_section(page, "drivers")
@@ -363,10 +414,13 @@ with sync_playwright() as p:
     nojs = nojs_context.new_page()
     nojs.goto(URL, wait_until="networkidle")
     expect(nojs.locator(".period-control")).not_to_be_visible()
-    expect(nojs.locator("#result-amount")).to_have_text("−$693m")
+    expect(nojs.locator("#result-amount")).to_have_text("−$567m")
     nojs.locator("#exact-figures > summary").click()
     expect(nojs.locator("#exact-figures")).to_contain_text("11.555")
-    expect(nojs.locator("#per100-amount")).to_have_text("$104")
+    expect(nojs.locator("#per100-amount")).to_have_text("$103")
+    expect(nojs.locator("#exact-figures")).to_contain_text("16.956")
+    expect(nojs.locator("#operating-reconciliation")).to_contain_text("$2,463m")
+    expect(nojs.locator("#commitment-overview")).to_contain_text("$895.4bn")
     expect(nojs.locator(".dilution-controls")).not_to_be_visible()
     expect(nojs.locator("#dilution-result")).to_have_text("−4.0%")
     expect(nojs.locator("#dilution-formula")).to_contain_text("120 ÷ 125")

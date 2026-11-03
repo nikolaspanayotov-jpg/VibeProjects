@@ -1,6 +1,6 @@
 [
   {
-    "check": "60-second briefing and default per-$100 explanation",
+    "check": "60-second briefing and latest-Q3 default explanation",
     "result": "passed"
   },
   {
@@ -8,7 +8,7 @@
     "result": "passed"
   },
   {
-    "check": "HTTP 200, preliminary terms, H1 default",
+    "check": "HTTP 200, preliminary terms and Q3 default",
     "result": "passed"
   },
   {
@@ -20,7 +20,19 @@
     "result": "passed"
   },
   {
-    "check": "Three dated financial measures and the non-cash/investing qualifications",
+    "check": "Nine-month financial measures, September liquidity and non-cash/investing qualifications",
+    "result": "passed"
+  },
+  {
+    "check": "Latest amendment/check dates, original filing history and historical matched comparison",
+    "result": "passed"
+  },
+  {
+    "check": "Complete Q3 GAAP-to-adjusted bridge with economic qualification",
+    "result": "passed"
+  },
+  {
+    "check": "Company aggregate, overlapping timing, conditions and narrower maturity scope",
     "result": "passed"
   },
   {
@@ -64,11 +76,15 @@
     "result": "passed"
   },
   {
-    "check": "Source excerpts follow customer, financial and compute citation context",
+    "check": "Contextual research notes follow the amended customer, financial and commitment citations",
     "result": "passed"
   },
   {
-    "check": "All 20 source previews have provenance, dates, notes and original links",
+    "check": "All 22 current/historical source previews retain provenance, dates and original links",
+    "result": "passed"
+  },
+  {
+    "check": "Retention definition includes Pro, Max and Ultra cohort exclusions",
     "result": "passed"
   },
   {
@@ -84,7 +100,7 @@
     "result": "passed"
   },
   {
-    "check": "Integer financial reconciliation for both periods",
+    "check": "Integer GAAP and adjusted reconciliation for all three periods",
     "result": "passed"
   },
   {
@@ -93,6 +109,10 @@
   },
   {
     "check": "Native keyboard radio navigation and focus retention",
+    "result": "passed"
+  },
+  {
+    "check": "Q3 selection restores latest values and the same fixed 0\u201318bn scale",
     "result": "passed"
   },
   {

@@ -1,8 +1,40 @@
-# Implementation verification — 30 October 2026
+# Implementation verification — 3 November 2026
 
-The standalone [page](../index.html) implements the reviewed design using both the Anthropic and SpaceX research documents. Those research documents were preserved. The page clearly identifies the 30 October research snapshot, the preliminary 26 October filing, and historical SpaceX observations through 29 October. It has no live quote feed.
+The standalone [page](../index.html) now incorporates Anthropic's 2 November amendment, checked 3 November, with evidence in [amendment-2026-11-02-summary.md](../amendment-2026-11-02-summary.md). The original October research remains intact. The matched H1 SpaceX comparison and price observations through 29 October are explicitly historical. There is no live quote feed.
 
-## Latest revision: financial explanations and reading guidance
+## November amendment implementation
+
+All five approved updates are implemented: dated amendment status/history; default Q3 ledger with historical H1/Q2; the complete Q3 GAAP-to-adjusted bridge; issuer-reported commitment timing and scope; and updated nine-month cash panels, definitions and citations.
+
+The default ledger reconciles revenue 16,956 minus expenses 17,523 to operating loss 567, all USD millions. The same data supports −3.3% margin and about $103 expenses per $100 revenue. The fixed 0–18bn scale is preserved across all three periods. The adjusted bridge reconciles −567 + 1,070 stock compensation + 1,960 non-cash charitable contributions = 2,463. Qualifications distinguish the company's adjusted measure from GAAP, cash flow and shareholder economic costs.
+
+Nine-month panels show −$1.26bn operating loss, −$104.04bn rounded net loss and +$6.57bn operating cash inflow, including the fair-value qualification. Cash plus short-term securities is $131.845bn at 30 September, with restricted cash separate. The commitment graphic distinguishes the $895.4bn aggregate, overlapping $447.5bn expected-incurrence and $69.8bn twelve-month-payment views, $213.8bn subject to pre-commencement conditions/termination rights, and the narrower $319.993bn maturity schedule. Historical partner examples are not added to the aggregate.
+
+### November checks
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8785/ python tests/browser_smoke.py
+```
+
+**51 checks passed; direct-file loading remains unverified because browser administrator policy blocks file URLs.** The current [machine-readable results](browser-results.json) supersede the historical runs below. Checks cover all three financial periods and both reconciliations; Q3 restored values/geometry; nine-month and historical period boundaries; source/history dates; all 22 current/historical citation previews; cohort definitions including Ultra; aggregate/subset scope and bar geometry; source links; and all previous reading, glossary, slider, mobile navigation, responsive, fallback, console and print behavior.
+
+Actual screenshots inspected include the new phone overview, Q3 ledger, reconciliation and commitment graphic (`nov-mobile-*.png`), plus `desktop-top.png`, `r2-desktop-operating-reconciliation.png`, `r2-desktop-commitment-overview.png` and `r2-desktop-financial-views.png`. Print pages containing the complete reconciliation/exact table and the commitment graphic were also inspected. Following a print-only grouping correction, only affected PDFs/text checks were repeated; all new figures, source URLs, qualifications and historical comparison labels were retained with and without JavaScript.
+
+Both final PDFs contain 24 A4 pages. The corrected growth and maturity tables keep their headings with their data. The validated HTML SHA-256 is `da9f13df2b5c19263d1fe9ac890bec4ee104ad81956fb1959e49d3186fb6f29e`.
+
+No current offer price, share quantities, date, run-rate revenue or share-price forecast was invented. The only new original excerpt is the short cover qualification; other preview text is labeled as a research note. Original research files and unrelated repository files are preserved.
+
+### November publication boundary
+
+The existing public GitHub Pages route is https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/ and is deployed through the repository's normal `main` flow. Publication verification is recorded after the GitHub update.
+
+The private Sites mirror has **not** been refreshed. Automatic approval review rejected transfer of a live repository bearer token through terminal input because of secret-exposure risk. No token was delivered and the input-waiting helper was interrupted. A read-only ordinary-Git probe confirmed no protected credential was available. Native Sites save/deploy requires a pushed matching source commit, so it was not called with a stale commit or mismatched archive. The updated private export is prepared locally, awaiting a supported protected credential connection; the earlier owner-only audience is unchanged.
+
+Prepared private-export commit: `27d0cf6f9d7976386c94a17000f39e2b81b0107a`, based on the earlier `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`. Matching archive: `/workspace/sites/anthropic-ipo-briefing-november-prepared.tar.gz`. This is a local preparation record, not proof of a push or deployment. The export matches the canonical hash above. The public GitHub Pages version is verified separately after its normal repository deployment.
+
+Verification limits remain Chromium-only coverage, no screen-reader session, blocked direct-file access and a bounded increased-text check. The source refresh covered the selected amendment, filing register and material page inputs; it is not an exhaustive legal or real-time market audit.
+
+## October revision: financial explanations and reading guidance (historical)
 
 The second set of five improvements is implemented, preserving the original dated research and the first improvements. The scope is in [reading-experience-plan.md](../reading-experience-plan.md).
 

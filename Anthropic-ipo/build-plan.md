@@ -20,6 +20,8 @@ The approved follow-up improvements are specified in [reading-experience-plan.md
 
 The second approved set adds three H1 financial perspectives, an indexed dilution illustration with native controls, a dated milestone roadmap, first-use definitions, and chapter reading estimates/position indicators. These remain within the standalone architecture and preserve the original dated research. The numerical illustration uses hypothetical indices rather than Anthropic valuation inputs.
 
+The approved November amendment refresh is documented in [amendment-2026-11-02-summary.md](amendment-2026-11-02-summary.md). Q3 is now the default ledger, the current financial perspectives use nine-month figures, and the GAAP-to-adjusted bridge and company-reported commitment timing are visible. Original research and matched H1 comparisons remain historical. Publishing status and current verification are recorded separately; do not infer that the private export is current from the existence of the canonical HTML.
+
 Completed preparation:
 
 - [x] Locate and read the user's Frontend Design skill in the connected VibeProjects repository.

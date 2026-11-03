@@ -35,3 +35,7 @@ Preserve the first set of improvements while adding these five:
 Verify calculations, date/status distinctions, both slider directions, reset and keyboard operation, term dialogs/fallbacks, word-count exclusions, chapter position, responsive offsets, printing, and existing interactions. Inspect mobile and desktop screenshots before synchronizing GitHub and Sites.
 
 This set is implemented. The full browser run recorded 46 passing checks, with direct-file loading unverified because the environment blocks it. Mobile/desktop captures were inspected, the illustration result was moved above its controls for immediate feedback, mobile anchor offsets were corrected for the chapter strip, and print groups were checked. Current publication and verification details are in `tests/VERIFICATION.md`.
+
+## Approved November filing refresh
+
+Use the 2 November S-1/A, checked 3 November, to update status/history, default Q3 financials, the complete GAAP-to-adjusted bridge, overlapping company-reported commitment timing, nine-month cash panels, definitions and source previews. Preserve all earlier reading tools and historical comparisons. The evidence/model is in `amendment-2026-11-02-summary.md`; actual checks and any publishing limitation belong in `tests/VERIFICATION.md`.
