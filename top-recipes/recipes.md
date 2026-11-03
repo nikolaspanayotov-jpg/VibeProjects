@@ -6,10 +6,13 @@ To add a recipe, copy a complete recipe section from its `##` heading to the end
 
 Each recipe's quantities make its stated number of servings. Times are estimates; `wait_minutes` includes unattended waiting such as chilling or resting. The website design is in [design.md](design.md).
 
+The optional `image` field assigns that dish's local illustration. When copying a recipe to add a different dish, replace its image path or remove the field to show a neutral place setting.
+
 ## Overnight oats
 
 ```yaml
 id: overnight-oats
+image: assets/breakfast.svg
 meal_types: [breakfast]
 servings: 1
 prep_minutes: 5
@@ -47,6 +50,7 @@ Creamy oats prepared the night before, with yoghurt, berries and a little honey.
 
 ```yaml
 id: chicken-and-leek-pie
+image: assets/lunch.svg
 meal_types: [lunch]
 servings: 4
 prep_minutes: 20
@@ -97,6 +101,7 @@ Tender chicken and softened leeks in a creamy sauce, finished with a golden puff
 
 ```yaml
 id: moussaka
+image: assets/dinner.svg
 meal_types: [dinner]
 servings: 6
 prep_minutes: 25
@@ -149,6 +154,7 @@ A comforting baked dish of roasted aubergine, a warmly spiced lamb and tomato sa
 
 ```yaml
 id: chicken-with-rice
+image: assets/recipes/chicken-with-rice.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 15
@@ -192,6 +198,7 @@ Golden chicken thighs baked with fluffy rice, onion and a gently seasoned stock.
 
 ```yaml
 id: cottage-pie
+image: assets/recipes/cottage-pie.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 20
@@ -241,6 +248,7 @@ A rich beef and vegetable filling under a golden layer of buttery mashed potato.
 
 ```yaml
 id: lasagna
+image: assets/recipes/lasagna.svg
 meal_types: [dinner, lunch]
 servings: 6
 prep_minutes: 25
@@ -290,6 +298,7 @@ Layers of beef and tomato sauce, pasta and creamy béchamel, baked until golden.
 
 ```yaml
 id: spaghetti-bolognese
+image: assets/recipes/spaghetti-bolognese.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 15
@@ -335,6 +344,7 @@ Spaghetti with a rich beef, tomato and vegetable sauce. An easy favourite for a 
 
 ```yaml
 id: sausages
+image: assets/recipes/sausages.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 10
@@ -371,6 +381,7 @@ Golden oven-baked sausages with softened onions and thyme. Simple, comforting an
 
 ```yaml
 id: salmon
+image: assets/recipes/salmon.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 10
@@ -408,6 +419,7 @@ Tender baked salmon with lemon, garlic and dill. A fresh, simple option for a qu
 
 ```yaml
 id: chicken-soup
+image: assets/recipes/chicken-soup.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 15
@@ -452,6 +464,7 @@ A warming chicken soup with carrots, celery and rice, finished with parsley and 
 
 ```yaml
 id: meatballs-soup
+image: assets/recipes/meatballs-soup.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 25
@@ -499,6 +512,7 @@ Small, tender meatballs simmered in a vegetable and rice broth, with parsley and
 
 ```yaml
 id: filled-peppers
+image: assets/recipes/filled-peppers.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 25
@@ -546,6 +560,7 @@ Sweet peppers filled with seasoned beef and rice, baked in a tomato sauce until 
 
 ```yaml
 id: pancakes
+image: assets/recipes/pancakes.svg
 meal_types: [breakfast]
 servings: 4
 prep_minutes: 10
@@ -585,6 +600,7 @@ Soft, fluffy pancakes for a relaxed breakfast. Serve with fresh fruit and a litt
 
 ```yaml
 id: macaroni-bake
+image: assets/recipes/macaroni-bake.svg
 meal_types: [breakfast]
 servings: 4
 prep_minutes: 10
@@ -625,6 +641,7 @@ A gently sweet breakfast bake of macaroni, milk and eggs, with a golden top and 
 
 ```yaml
 id: tuna
+image: assets/recipes/tuna.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 10
@@ -662,6 +679,7 @@ Pan-fried tuna steaks with lemon, garlic and parsley. A simple fish option for a
 
 ```yaml
 id: chicken-kavarma
+image: assets/recipes/chicken-kavarma.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 20
@@ -707,6 +725,7 @@ A Bulgarian-style chicken stew with onions, peppers and mushrooms in a tomato an
 
 ```yaml
 id: wine-kebab
+image: assets/recipes/wine-kebab.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 20
@@ -754,6 +773,7 @@ Tender pork simmered with onions, red wine and tomato, served over fluffy rice. 
 
 ```yaml
 id: pizza
+image: assets/recipes/pizza.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 10
@@ -793,6 +813,7 @@ Simple tomato and mozzarella pizzas with oregano and basil. Ready-made bases kee
 
 ```yaml
 id: potato-and-leek-soup
+image: assets/recipes/potato-and-leek-soup.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 15
@@ -834,6 +855,7 @@ A smooth, comforting soup of softened leeks and potatoes, with an optional splas
 
 ```yaml
 id: banitsa
+image: assets/recipes/banitsa.svg
 meal_types: [breakfast, lunch]
 servings: 6
 prep_minutes: 20
@@ -873,6 +895,7 @@ Golden, flaky filo pastry filled with eggs, yoghurt and feta, rolled into a spir
 
 ```yaml
 id: spanish-omelette
+image: assets/recipes/spanish-omelette.svg
 meal_types: [breakfast, lunch, dinner]
 servings: 4
 prep_minutes: 15
@@ -910,6 +933,7 @@ A thick Spanish-style tortilla of tender potatoes, onion and eggs. Slice into we
 
 ```yaml
 id: egg-sandwich
+image: assets/recipes/egg-sandwich.svg
 meal_types: [breakfast, lunch]
 servings: 4
 prep_minutes: 10
@@ -949,6 +973,7 @@ A warm toasted sandwich filled with a fried egg, with optional Cheddar and tomat
 
 ```yaml
 id: roast-dinner
+image: assets/recipes/roast-dinner.svg
 meal_types: [dinner, lunch]
 servings: 6
 prep_minutes: 25
@@ -995,6 +1020,7 @@ A classic roast chicken dinner with crisp potatoes, carrots, broccoli and a simp
 
 ```yaml
 id: roast-turkey-with-potatoes
+image: assets/recipes/roast-turkey-with-potatoes.svg
 meal_types: [dinner, lunch]
 servings: 6
 prep_minutes: 20
@@ -1037,6 +1063,7 @@ Roast turkey breast with garlic, lemon and rosemary, served with golden roast po
 
 ```yaml
 id: french-toast
+image: assets/recipes/french-toast.svg
 meal_types: [breakfast]
 servings: 4
 prep_minutes: 10
@@ -1077,6 +1104,7 @@ Golden bread dipped in a vanilla egg-and-milk mixture and gently fried. Serve wa
 
 ```yaml
 id: chicken-pineapple-stir-fry
+image: assets/recipes/chicken-pineapple-stir-fry.svg
 meal_types: [dinner, lunch]
 servings: 4
 prep_minutes: 20
@@ -1123,6 +1151,7 @@ Chicken, peppers and pineapple in a lightly sweet and tangy sauce, served with r
 
 ```yaml
 id: turkey-soup
+image: assets/recipes/turkey-soup.svg
 meal_types: [lunch, dinner]
 servings: 4
 prep_minutes: 15

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140">
+<title>Pancake stack with butter and syrup</title>
+<rect width="180" height="140" fill="#eee4ce"/>
+<ellipse cx="90" cy="115" rx="61" ry="8" fill="#dbcfb4" />
+<g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="90" cy="102" rx="66" ry="28" fill="#faf8ef" stroke="#b9b39e" stroke-width="1.5" /><ellipse cx="90" cy="102" rx="58" ry="22" fill="none" stroke="#e0dbc9" stroke-width="1" /><path d="M48 91h84v8q-42 20-84 0Z" fill="#d9aa64" stroke="#bb8d4e" stroke-width="1" /><ellipse cx="90" cy="91" rx="42" ry="13" fill="#edcb88" stroke="#c59958" stroke-width="1" /><path d="M48 81h84v8q-42 20-84 0Z" fill="#d9aa64" stroke="#bb8d4e" stroke-width="1" /><ellipse cx="90" cy="81" rx="42" ry="13" fill="#edcb88" stroke="#c59958" stroke-width="1" /><path d="M48 71h84v8q-42 20-84 0Z" fill="#d9aa64" stroke="#bb8d4e" stroke-width="1" /><ellipse cx="90" cy="71" rx="42" ry="13" fill="#edcb88" stroke="#c59958" stroke-width="1" /><path d="M61 66q18-8 44-1t21 7l-3 18q-5 5-7-4l-1-11q-26 2-54-9" fill="#aa7140" /><rect x="81" y="56" width="18" height="11" rx="2" fill="#f8df92" stroke="#c9ab65" stroke-width="1.5" transform="rotate(-8 90 61)"/><ellipse cx="52" cy="98" rx="5" ry="5" fill="#68728a" /><ellipse cx="62" cy="103" rx="5" ry="5" fill="#68728a" /><ellipse cx="126" cy="96" rx="5" ry="5" fill="#68728a" /><ellipse cx="133" cy="102" rx="6" ry="6" fill="#a95e56" />
+</g>
+</svg>

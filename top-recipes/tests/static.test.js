@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import { Window } from "happy-dom";
+import { api } from "./setup.js";
 
 test("the project runs directly under its GitHub Pages subdirectory with local assets", async () => {
   const html = await readFile(
@@ -37,6 +38,22 @@ test("the project runs directly under its GitHub Pages subdirectory with local a
       new URL("./recipes.md", browser.document.baseURI).pathname,
       "/VibeProjects/top-recipes/recipes.md",
     );
+    const recipes = api.parseRecipes(
+      await readFile(new URL("../recipes.md", import.meta.url), "utf8"),
+    );
+    for (const recipe of recipes) {
+      if (!recipe.image) continue;
+      assert.ok(
+        api.validRecipeImagePath(recipe.image),
+        `Invalid image path for ${recipe.title}`,
+      );
+      await access(new URL(`../${recipe.image}`, import.meta.url));
+      assert.ok(
+        new URL(recipe.image, browser.document.baseURI).pathname.startsWith(
+          "/VibeProjects/top-recipes/assets/",
+        ),
+      );
+    }
     await assert.rejects(access(new URL("../package.json", import.meta.url)));
   } finally {
     browser.close();

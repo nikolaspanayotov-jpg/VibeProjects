@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140">
+<title>Potato and leek soup</title>
+<rect width="180" height="140" fill="#e3e9d7"/>
+<ellipse cx="90" cy="115" rx="61" ry="8" fill="#cdd6bb" />
+<g stroke-linecap="round" stroke-linejoin="round">
+<path d="M70 36q-6-7 0-14M90 33q6-7 0-14M109 36q-6-7 0-14" fill="none" stroke="#a9b5a0" stroke-width="1.5" /><path d="M39 65h102c-3 31-22 46-51 46S42 96 39 65" fill="#d9e2d5" stroke="#98aa92" stroke-width="1.5" /><ellipse cx="90" cy="65" rx="51" ry="20" fill="#d9e2d5" stroke="#98aa92" stroke-width="1.5" /><ellipse cx="90" cy="65" rx="44" ry="14" fill="#c7c69a" /><path d="M62 63q10-13 38-7t8 17q-28 5-28-5t23-2" fill="none" stroke="#f5edcf" stroke-width="3" /><ellipse cx="66" cy="69" rx="6" ry="3.5" fill="#7d9464" /><ellipse cx="66" cy="69" rx="3" ry="1.7" fill="#d7d4a5" /><ellipse cx="112" cy="59" rx="6" ry="3.5" fill="#7d9464" /><ellipse cx="112" cy="59" rx="3" ry="1.7" fill="#d7d4a5" /><ellipse cx="107" cy="72" rx="6" ry="3.5" fill="#7d9464" /><ellipse cx="107" cy="72" rx="3" ry="1.7" fill="#d7d4a5" /><path d="M142 46 149 104" fill="none" stroke="#a0a38e" stroke-width="4" /><ellipse cx="140" cy="40" rx="7" ry="12" fill="#bec3ad" />
+</g>
+</svg>

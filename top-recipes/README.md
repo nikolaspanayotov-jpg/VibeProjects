@@ -38,11 +38,13 @@ Tick choices persist as the plan changes. A manually changed quantity stays whil
 ## Update and publish recipes
 
 1. Edit [recipes.md](recipes.md). Copy a complete recipe section to add a dish.
-2. Give a new dish a unique slug `id`. Keep an existing dish's ID when renaming it so saved plans keep working. Ingredient IDs should also remain stable.
+2. Give a new dish a unique slug `id`. Keep an existing dish's ID when renaming it so saved plans keep working. Ingredient IDs should also remain stable. Change the copied `image` field to the new dish's artwork, or remove it to use a neutral place setting.
 3. Keep the YAML metadata, Ingredients table columns and numbered Method section.
 4. Commit and push the updated file to the VibeProjects repository's `main` branch. GitHub Pages publishes the folder; refresh the page after deployment.
 
 There is no generated data file or rebuild command. The browser reads and validates `recipes.md` directly using local Markdown and YAML libraries. The same file drives cards, search, ingredients and meal pickers. Errors identify the recipe and field; saved plans are retained if content cannot load. Text is rendered without executing authored HTML.
+
+Each current recipe has its own image assigned in its YAML metadata, for example `image: assets/recipes/pizza.svg`. The original oats, chicken pie and moussaka illustrations remain assigned to those three dishes; the other dishes have individual matching SVG illustrations in `assets/recipes/`. To replace an image, add a local SVG, PNG, JPEG, WebP or AVIF file under `assets/` and update that recipe's `image` path. Names may use letters, numbers, hyphens and underscores. The cards, details and meal picker all use that same assignment. Missing or unassigned pictures use a neutral place-setting illustration rather than a different dish. Library and picker thumbnails load lazily.
 
 Quantities describe each recipe's stated batch size. The starter quantities and methods are suggestions, ready to replace with your own. Shopping totals combine planned batches; automatic household portion scaling is outside this version.
 

@@ -14,14 +14,33 @@ test("compiles the authored recipes, preserving quantities, components and timin
   assert.deepEqual(
     recipes.map((recipe) => recipe.id),
     [
-      "overnight-oats", "chicken-and-leek-pie", "moussaka",
-      "chicken-with-rice", "cottage-pie", "lasagna", "spaghetti-bolognese",
-      "sausages", "salmon", "chicken-soup", "meatballs-soup", "filled-peppers",
-      "pancakes", "macaroni-bake",
-      "tuna", "chicken-kavarma", "wine-kebab",
-      "pizza", "potato-and-leek-soup", "banitsa", "spanish-omelette", "egg-sandwich",
-      "roast-dinner", "roast-turkey-with-potatoes", "french-toast",
-      "chicken-pineapple-stir-fry", "turkey-soup",
+      "overnight-oats",
+      "chicken-and-leek-pie",
+      "moussaka",
+      "chicken-with-rice",
+      "cottage-pie",
+      "lasagna",
+      "spaghetti-bolognese",
+      "sausages",
+      "salmon",
+      "chicken-soup",
+      "meatballs-soup",
+      "filled-peppers",
+      "pancakes",
+      "macaroni-bake",
+      "tuna",
+      "chicken-kavarma",
+      "wine-kebab",
+      "pizza",
+      "potato-and-leek-soup",
+      "banitsa",
+      "spanish-omelette",
+      "egg-sandwich",
+      "roast-dinner",
+      "roast-turkey-with-potatoes",
+      "french-toast",
+      "chicken-pineapple-stir-fry",
+      "turkey-soup",
     ],
   );
   assert.equal(recipes[0].waitMinutes, 480);
@@ -34,8 +53,18 @@ test("compiles the authored recipes, preserving quantities, components and timin
   assert.equal(recipes[2].method.length, 7);
   assert.ok(recipes[0].description.startsWith("Creamy oats"));
   assert.deepEqual(
-    recipes.filter(recipe => recipe.mealTypes.includes("breakfast")).map(recipe => recipe.id),
-    ["overnight-oats", "pancakes", "macaroni-bake", "banitsa", "spanish-omelette", "egg-sandwich", "french-toast"],
+    recipes
+      .filter((recipe) => recipe.mealTypes.includes("breakfast"))
+      .map((recipe) => recipe.id),
+    [
+      "overnight-oats",
+      "pancakes",
+      "macaroni-bake",
+      "banitsa",
+      "spanish-omelette",
+      "egg-sandwich",
+      "french-toast",
+    ],
   );
 });
 
@@ -64,6 +93,30 @@ test("content errors identify the affected recipe and field", async (t) => {
       "unknown category",
       markdown.replace("meal_types: [breakfast]", "meal_types: [snack]"),
       /Overnight oats → meal_types/,
+    ],
+    [
+      "remote image",
+      markdown.replace(
+        "image: assets/breakfast.svg",
+        "image: https://example.com/oats.svg",
+      ),
+      /Overnight oats → image/,
+    ],
+    [
+      "image outside the project assets",
+      markdown.replace(
+        "image: assets/breakfast.svg",
+        "image: other-project/oats.svg",
+      ),
+      /Overnight oats → image/,
+    ],
+    [
+      "image traversal",
+      markdown.replace(
+        "image: assets/breakfast.svg",
+        "image: assets/../recipes.md",
+      ),
+      /Overnight oats → image/,
     ],
     [
       "negative wait",

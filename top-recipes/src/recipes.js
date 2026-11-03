@@ -1,9 +1,35 @@
 (() => {
-  const { el, button, formatMinutes, showDialog, titleCase } =
-    globalThis.TopRecipes;
+  const {
+    el,
+    button,
+    formatMinutes,
+    showDialog,
+    titleCase,
+    validRecipeImagePath,
+  } = globalThis.TopRecipes;
 
+  const placeholderImage = () =>
+    new URL("./assets/recipe-placeholder.svg", document.baseURI).href;
   const recipeImage = (recipe) =>
-    new URL(`./assets/${recipe.mealTypes[0]}.svg`, document.baseURI).href;
+    validRecipeImagePath(recipe.image)
+      ? new URL(`./${recipe.image}`, document.baseURI).href
+      : placeholderImage();
+
+  function recipeIllustration(recipe, className, loading = "eager") {
+    const image = el("img", className);
+    image.alt = "";
+    image.loading = loading;
+    image.decoding = "async";
+    image.addEventListener(
+      "error",
+      () => {
+        image.src = placeholderImage();
+      },
+      { once: true },
+    );
+    image.src = recipeImage(recipe);
+    return image;
+  }
 
   function matchesRecipe(recipe, query, meal = "all") {
     const text = [
@@ -35,6 +61,7 @@
         ids.has(recipe.id) ||
         typeof recipe.title !== "string" ||
         typeof recipe.description !== "string" ||
+        (recipe.image !== undefined && !validRecipeImagePath(recipe.image)) ||
         !Array.isArray(recipe.mealTypes) ||
         !recipe.mealTypes.length ||
         recipe.mealTypes.some(
@@ -84,9 +111,7 @@
     function card(recipe) {
       const article = el("article", "recipe-card");
       const main = el("div", "recipe-card-main");
-      const image = el("img", "recipe-illustration");
-      image.src = recipeImage(recipe);
-      image.alt = "";
+      const image = recipeIllustration(recipe, "recipe-illustration", "lazy");
       image.width = 86;
       image.height = 92;
       const copy = el("div", "recipe-card-copy");
@@ -153,9 +178,7 @@
       const recipe = activeRecipe;
       container.replaceChildren();
       const header = el("div", "detail-header");
-      const image = el("img");
-      image.src = recipeImage(recipe);
-      image.alt = "";
+      const image = recipeIllustration(recipe);
       const intro = el("div");
       const title = el("h2", null, recipe.title);
       title.id = "detail-title";
@@ -299,6 +322,7 @@
 
   Object.assign((globalThis.TopRecipes ||= {}), {
     recipeImage,
+    recipeIllustration,
     matchesRecipe,
     validateRecipeData,
     createRecipeViews,

@@ -17,7 +17,7 @@
     showDialog,
     closeOnBackdrop,
     createRecipeViews,
-    recipeImage,
+    recipeIllustration,
     matchesRecipe,
     validateRecipeData,
     createCapture,
@@ -455,9 +455,7 @@
             },
             `Choose ${recipe.title} for ${slotLabel(target)}`,
           );
-          const image = el("img");
-          image.src = recipeImage(recipe);
-          image.alt = "";
+          const image = recipeIllustration(recipe, undefined, "lazy");
           const text = el("span");
           text.append(
             el("strong", null, recipe.title),

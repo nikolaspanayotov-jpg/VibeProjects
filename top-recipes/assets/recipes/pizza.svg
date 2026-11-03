@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140">
+<title>Tomato and mozzarella pizza</title>
+<rect width="180" height="140" fill="#e9e0cd"/>
+<ellipse cx="90" cy="115" rx="61" ry="8" fill="#d5c7af" />
+<g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="90" cy="75" rx="54" ry="54" fill="#f8f5e9" stroke="#bcb298" stroke-width="1.5" /><ellipse cx="90" cy="73" rx="47" ry="47" fill="#d4aa61" stroke="#b3894b" stroke-width="1.5" /><ellipse cx="90" cy="73" rx="40" ry="40" fill="#b96545" /><ellipse cx="71" cy="52" rx="12" ry="7" fill="#f2ddaa" /><ellipse cx="108" cy="53" rx="11" ry="8" fill="#f2ddaa" /><ellipse cx="59" cy="78" rx="8" ry="11" fill="#f2ddaa" /><ellipse cx="88" cy="81" rx="14" ry="11" fill="#f2ddaa" /><ellipse cx="116" cy="83" rx="9" ry="12" fill="#f2ddaa" /><ellipse cx="87" cy="106" rx="10" ry="5" fill="#f2ddaa" /><ellipse cx="78" cy="60" rx="6" ry="6" fill="#ca7353" stroke="#a95b40" stroke-width="1" /><ellipse cx="116" cy="69" rx="6" ry="6" fill="#ca7353" stroke="#a95b40" stroke-width="1" /><ellipse cx="66" cy="93" rx="6" ry="6" fill="#ca7353" stroke="#a95b40" stroke-width="1" /><ellipse cx="105" cy="100" rx="6" ry="6" fill="#ca7353" stroke="#a95b40" stroke-width="1" /><g transform="translate(86 47) rotate(25)"><path d="M0 8q-13-11 0-17 13 6 0 17" fill="#6c8453" /></g><g transform="translate(68 75) rotate(-40)"><path d="M0 8q-13-11 0-17 13 6 0 17" fill="#6c8453" /></g><g transform="translate(105 81) rotate(35)"><path d="M0 8q-13-11 0-17 13 6 0 17" fill="#6c8453" /></g><g transform="translate(87 99) rotate(-15)"><path d="M0 8q-13-11 0-17 13 6 0 17" fill="#6c8453" /></g>
+</g>
+</svg>

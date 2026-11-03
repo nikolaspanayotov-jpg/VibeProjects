@@ -1,6 +1,11 @@
 (() => {
   const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
   const mealTypes = new Set(["breakfast", "lunch", "dinner"]);
+  const validRecipeImagePath = (value) =>
+    typeof value === "string" &&
+    /^assets\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:svg|png|jpe?g|webp|avif)$/i.test(
+      value,
+    );
   const plain = (node) =>
     Array.isArray(node)
       ? node.map(plain).join("")
@@ -49,6 +54,11 @@
       if (ids.has(metadata.id))
         fail("id", `duplicate recipe ID "${metadata.id}"`);
       ids.add(metadata.id);
+      if (metadata.image !== undefined && !validRecipeImagePath(metadata.image))
+        fail(
+          "image",
+          "use a local image path under assets/, such as assets/recipes/pizza.svg",
+        );
       if (
         !Array.isArray(metadata.meal_types) ||
         !metadata.meal_types.length ||
@@ -134,6 +144,7 @@
       return {
         id: metadata.id,
         title,
+        ...(metadata.image ? { image: metadata.image } : {}),
         mealTypes: [...new Set(metadata.meal_types)],
         servings: metadata.servings,
         prepMinutes: metadata.prep_minutes,
@@ -145,5 +156,8 @@
       };
     });
   }
-  Object.assign((globalThis.TopRecipes ||= {}), { parseRecipes });
+  Object.assign((globalThis.TopRecipes ||= {}), {
+    parseRecipes,
+    validRecipeImagePath,
+  });
 })();

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140">
+<title>French toast with syrup and berries</title>
+<rect width="180" height="140" fill="#eee1cd"/>
+<ellipse cx="90" cy="115" rx="61" ry="8" fill="#d9c8ad" />
+<g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="90" cy="99" rx="66" ry="28" fill="#faf8ef" stroke="#b9b39e" stroke-width="1.5" /><ellipse cx="90" cy="99" rx="58" ry="22" fill="none" stroke="#e0dbc9" stroke-width="1" /><g transform="translate(75 77) rotate(-20)"><path d="M-24-21q0-10 13-9 13-7 25 0 13-1 13 10v43h-51Z" fill="#bd8b4e" stroke="#9c703f" stroke-width="1.5" /><path d="M-18-18q-2-7 10-6 12-5 21 0 9-1 8 7v33h-39Z" fill="#e4bc75" /><path d="M-14-12q21 12 30 1m-28 11q18 10 27 2m-24 9q15 8 23 2" fill="none" stroke="#a97940" stroke-width="2" /></g><g transform="translate(111 86) rotate(15)"><path d="M-24-21q0-10 13-9 13-7 25 0 13-1 13 10v43h-51Z" fill="#bd8b4e" stroke="#9c703f" stroke-width="1.5" /><path d="M-18-18q-2-7 10-6 12-5 21 0 9-1 8 7v33h-39Z" fill="#e4bc75" /><path d="M-14-12q21 12 30 1m-28 11q18 10 27 2m-24 9q15 8 23 2" fill="none" stroke="#a97940" stroke-width="2" /></g><ellipse cx="49" cy="105" rx="5" ry="5" fill="#68718a" /><ellipse cx="58" cy="110" rx="5" ry="5" fill="#68718a" /><ellipse cx="141" cy="102" rx="5" ry="5" fill="#68718a" /><ellipse cx="135" cy="110" rx="6" ry="6" fill="#b26c60" />
+</g>
+</svg>

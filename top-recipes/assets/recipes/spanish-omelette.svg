@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 140">
+<title>Spanish potato omelette</title>
+<rect width="180" height="140" fill="#e5e8d7"/>
+<ellipse cx="90" cy="115" rx="61" ry="8" fill="#d0d5bc" />
+<g stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="90" cy="98" rx="66" ry="28" fill="#faf8ef" stroke="#b9b39e" stroke-width="1.5" /><ellipse cx="90" cy="98" rx="58" ry="22" fill="none" stroke="#e0dbc9" stroke-width="1" /><path d="M43 74h94v18q-47 34-94 0Z" fill="#c99b4d" stroke="#aa7f3c" stroke-width="1.5" /><ellipse cx="90" cy="73" rx="47" ry="26" fill="#e3bc6a" stroke="#b58b44" stroke-width="1.5" /><path d="M56 61l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M77 55l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M103 59l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M114 74l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M73 74l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M54 78l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M91 84l9-2 4 5-8 4-6-2Z" fill="#efd393" /><path d="M73 66l3 2" fill="none" stroke="#a58a4b" stroke-width="2" /><path d="M102 72l3 2" fill="none" stroke="#a58a4b" stroke-width="2" /><path d="M87 90l3 2" fill="none" stroke="#a58a4b" stroke-width="2" /><path d="M116 67l3 2" fill="none" stroke="#a58a4b" stroke-width="2" /><path d="M91 73 132 84 105 103Z" fill="#faf7ed" /><path d="M103 79 146 91 119 111Z" fill="#e4bd70" stroke="#b58b44" stroke-width="1.5" /><path d="M119 111 146 91v8l-27 20Z" fill="#c69b52" /><rect x="121" y="98" width="7" height="4" rx="1" fill="#f3d79c" />
+</g>
+</svg>

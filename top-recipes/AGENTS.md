@@ -13,6 +13,7 @@ Opening `index.html` from disk loads the classic scripts normally. Local browser
 ## Architecture
 
 - `recipes.md` is the sole recipe content source. Edits appear after publishing and refreshing; no generated recipe JSON exists.
+- Recipe YAML may include `image: assets/recipes/<slug>.svg`. All current dishes have individual artwork assignments; the original three retain `assets/breakfast.svg`, `assets/lunch.svg` and `assets/dinner.svg` respectively. Never choose artwork by meal category. `validRecipeImagePath` accepts only local asset paths, and `recipeIllustration` is shared by cards, details and pickers with a one-time load-error fallback to `assets/recipe-placeholder.svg`. That neutral place setting also covers recipes without an image. Image changes need no code registry or build step.
 - `vendor/` contains local Marked 15.0.12 and js-yaml 4.1.0 browser distributions with their licenses.
 - `src/content.js` validates Marked tokens and YAML metadata. Never render authored content as HTML.
 - Classic scripts load with `defer`, in the order in index.html. They expose helpers through `globalThis.TopRecipes`; each file has its own function scope.

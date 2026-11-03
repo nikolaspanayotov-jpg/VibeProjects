@@ -35,7 +35,7 @@ Think of a well-kept kitchen notebook: warm, calm and inviting, with enough colo
 | Shape and spacing | 12–16 px card corners; generous spacing based on an 8 px rhythm |
 | Motion | Brief hover and placement feedback; respect reduced-motion preferences |
 
-Use short, welcoming copy: “A few favourites, a week of good meals.” Recipe illustrations or photographs can be added later; the layout should look complete without them. Avoid oversized decoration that pushes recipes or the planner down the page.
+Use short, welcoming copy: “A few favourites, a week of good meals.” Each recipe has its own small food illustration, using soft colours and simple outlines to match the original oats, chicken pie and moussaka drawings. Images depict the named dish: soup bowls, fish fillets, coiled banitsa, layered lasagna, pancakes and the other meals. Keep the original three illustrations assigned to their dishes. Avoid oversized decoration that pushes recipes or the planner down the page.
 
 ## Page structure
 
@@ -177,12 +177,15 @@ The metadata contract is:
 | Field | Required format |
 | --- | --- |
 | `id` | Unique permanent lowercase slug; keep it when renaming a dish |
+| `image` | Optional local path under `assets/`, such as `assets/recipes/pizza.svg`; SVG, PNG, JPEG, WebP and AVIF are supported |
 | `meal_types` | One or more of `breakfast`, `lunch`, `dinner` |
 | `servings` | Positive whole number describing the batch yield |
 | `prep_minutes`, `cook_minutes`, `wait_minutes` | Non-negative whole numbers; display total as their sum |
 | `tags` | A YAML list, which may be empty |
 
-The recipe title comes from its level-two heading. Every ingredient row has a unique, stable ID within that recipe, a display quantity, an ingredient name and a component group. Quantities are readable strings, such as `40 g` or `To taste`; this version does not attempt to add quantities across recipes or scale them automatically.
+The recipe title comes from its level-two heading. Every ingredient row has a unique, stable ID within that recipe, a display quantity, an ingredient name and a component group. Quantities are readable strings, such as `40 g` or `To taste`. Recipe details preserve these strings; weekly shopping totals combine compatible amounts, with portion adjustments left to the user.
+
+Image assignments live in the same recipe metadata and are shared by cards, detail panels and meal pickers. New recipes need no hard-coded image mapping in JavaScript. If an image is omitted or fails to load, show a neutral place setting. Never substitute a picture of another dish based on breakfast, lunch or dinner. Load list thumbnails lazily to keep mobile browsing light.
 
 ### Suggested implementation
 
@@ -229,6 +232,7 @@ Validation identifies the recipe and field for duplicate IDs, missing metadata, 
 
 ```yaml
 id: new-recipe-name
+image: assets/recipe-placeholder.svg
 meal_types: [dinner]
 servings: 2
 prep_minutes: 15
