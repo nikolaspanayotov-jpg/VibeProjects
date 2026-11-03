@@ -18,6 +18,7 @@ test("compiles the authored recipes, preserving quantities, components and timin
       "chicken-with-rice", "cottage-pie", "lasagna", "spaghetti-bolognese",
       "sausages", "salmon", "chicken-soup", "meatballs-soup", "filled-peppers",
       "pancakes", "macaroni-bake",
+      "tuna", "chicken-kavarma", "wine-kebab",
     ],
   );
   assert.equal(recipes[0].waitMinutes, 480);

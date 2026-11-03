@@ -620,3 +620,132 @@ A gently sweet breakfast bake of macaroni, milk and eggs, with a golden top and 
 
 - This starter version is a sweet breakfast macaroni bake, rather than a savoury cheese pasta bake.
 - The feta is optional; leave it out for a milder, sweeter version.
+
+## Tuna
+
+```yaml
+id: tuna
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 10
+cook_minutes: 10
+wait_minutes: 0
+tags: [fish, quick, pan-fried]
+```
+
+Pan-fried tuna steaks with lemon, garlic and parsley. A simple fish option for a quick lunch or dinner.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| tuna-steaks | 4, about 150 g each | Tuna steaks, thawed if frozen | Main |
+| olive-oil | 2 tbsp | Olive oil, divided | Main and dressing |
+| lemon | 1 | Lemon, half juiced and half cut into wedges | Dressing and serving |
+| garlic | 1 clove | Garlic, finely chopped | Dressing |
+| parsley | 1 small handful | Fresh parsley, chopped | Dressing |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Pat the tuna steaks dry. Rub with 1 tablespoon of the oil and season lightly with salt and pepper.
+2. Mix the remaining oil with the lemon juice, garlic and parsley to make a dressing.
+3. Heat a non-stick frying pan over medium-high heat. Add the steaks and cook for about 3–4 minutes on each side, depending on thickness, until the centre reaches 63°C. Lower the heat if the outside browns before the centre is ready.
+4. Spoon over the lemon dressing and serve with the lemon wedges.
+
+### Notes
+
+- This starter version uses tuna steaks. Rice, potatoes or salad are serving ideas and are not included in the ingredient quantities above.
+
+## Chicken Kavarma
+
+```yaml
+id: chicken-kavarma
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 20
+cook_minutes: 50
+wait_minutes: 0
+tags: [bulgarian, stew, one-pot, comfort-food]
+```
+
+A Bulgarian-style chicken stew with onions, peppers and mushrooms in a tomato and white-wine sauce, seasoned with paprika and savoury herbs.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| chicken | 600 g | Boneless, skinless chicken thighs, cut into bite-size pieces | Stew |
+| onions | 2 large | Onions, sliced | Stew |
+| peppers | 2 medium | Red bell peppers, sliced | Stew |
+| mushrooms | 250 g | Mushrooms, sliced | Stew |
+| garlic | 2 cloves | Garlic, finely chopped | Stew |
+| olive-oil | 2 tbsp | Olive oil | Stew |
+| chopped-tomatoes | 400 g | Tinned chopped tomatoes | Sauce |
+| white-wine | 150 ml | Dry white wine | Sauce |
+| paprika | 1 tsp | Sweet paprika | Seasoning |
+| savoury | 1 tsp | Dried summer savoury or dried thyme | Seasoning |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+| parsley | 1 small handful | Fresh parsley, chopped (optional) | To finish |
+
+### Method
+
+1. Heat the oil in a large casserole over medium-high heat. Season the chicken lightly and brown for about 8 minutes, working in batches if needed. Lift onto a plate.
+2. Lower the heat and soften the onions and peppers in the same casserole for about 8 minutes. Add the mushrooms and cook for another 5 minutes, then add the garlic for 1 minute.
+3. Stir in the paprika and savoury, then pour in the wine. Let it bubble for about 2 minutes, scraping up any browned bits from the base.
+4. Add the tomatoes and return the chicken and its juices to the casserole. Bring to a gentle simmer and cover partially with a lid.
+5. Cook for about 25 minutes, stirring occasionally, until the chicken is tender and reaches 75°C in the centre and the sauce has thickened. Add a splash of water if the sauce reduces too much.
+6. Taste and adjust the seasoning, then scatter with parsley if using and serve.
+
+### Notes
+
+- This starter version is cooked on the hob. Bread or rice make good sides and are not included in the ingredient quantities above.
+
+## Wine Kebab
+
+```yaml
+id: wine-kebab
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 20
+cook_minutes: 110
+wait_minutes: 0
+tags: [bulgarian, vinen-kebap, stew, comfort-food]
+```
+
+Tender pork simmered with onions, red wine and tomato, served over fluffy rice. A comforting Bulgarian-style wine kebab with a rich sauce.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| pork | 700 g | Boneless pork shoulder, cut into 2–3 cm cubes | Stew |
+| onions | 2 large | Onions, finely chopped | Stew |
+| garlic | 2 cloves | Garlic, finely chopped | Stew |
+| olive-oil | 2 tbsp | Olive oil | Stew |
+| flour | 1 tbsp | Plain flour | Sauce |
+| tomato-puree | 2 tbsp | Tomato purée | Sauce |
+| red-wine | 200 ml | Dry red wine | Sauce |
+| stock | 350 ml | Beef or vegetable stock | Sauce |
+| paprika | 1 tsp | Sweet paprika | Seasoning |
+| bay-leaves | 2 | Bay leaves | Seasoning |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+| rice | 250 g | Long-grain white rice, rinsed | To serve |
+| parsley | 1 small handful | Fresh parsley, chopped (optional) | To finish |
+
+### Method
+
+1. Pat the pork dry and season lightly. Heat the oil in a large casserole over medium-high heat and brown the pork in batches for about 10 minutes in total. Lift onto a plate.
+2. Lower the heat and cook the onions in the same casserole for about 8 minutes until softened. Add the garlic for 1 minute.
+3. Stir in the flour and tomato purée and cook for 1 minute. Add the paprika, then gradually stir in the wine, scraping up the browned bits. Let it bubble for 2–3 minutes.
+4. Stir in the stock, add the bay leaves and return the pork and its juices to the casserole. Bring to a gentle simmer, cover and cook over a low heat for 75–90 minutes, stirring occasionally, until the pork is tender. Add a little hot water if needed to keep it covered in sauce.
+5. During the final 15–20 minutes, cook the rice in water according to the packet instructions, then drain or let it absorb the water as directed.
+6. Remove the bay leaves. If the sauce is too thin, simmer uncovered for a few minutes. Season to taste, spoon the pork and sauce over the rice and scatter with parsley if using.
+
+### Notes
+
+- This is a slow-cooked pork stew, rather than a kebab cooked on skewers. The rice is included in the ingredient quantities.
+- Cooking time depends on the size of the pork pieces; continue simmering gently until they are tender.
