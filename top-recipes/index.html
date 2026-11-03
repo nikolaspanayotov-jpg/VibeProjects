@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#faf7f0" />
+    <meta
+      name="description"
+      content="A few favourite recipes, their ingredients, and a simple weekly meal planner to make every day a little more delicious."
+    />
+    <title>Top Recipes — a week of good meals</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/mark.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./vendor/marked.umd.js"></script>
+    <script defer src="./vendor/js-yaml.min.js"></script>
+    <script defer src="./src/planner.js"></script>
+    <script defer src="./src/storage.js"></script>
+    <script defer src="./src/ui.js"></script>
+    <script defer src="./src/content.js"></script>
+    <script defer src="./src/recipes.js"></script>
+    <script defer src="./src/capture.js"></script>
+    <script defer src="./src/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#weekly-plan">Skip to weekly planner</a>
+    <header class="site-header page-width">
+      <a class="brand" href="#" aria-label="Top Recipes home"
+        ><img src="./assets/mark.svg" width="40" height="40" alt="" /><span
+          >top recipes<span class="brand-dot">.</span></span
+        ></a
+      >
+      <nav aria-label="Main navigation">
+        <a href="#recipes">The recipes</a
+        ><a href="#weekly-plan"
+          >The weekly plan <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </header>
+
+    <main class="page-width">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">FROM MY KITCHEN, TO YOUR WEEK</p>
+          <h1 id="page-title">
+            A few favourites.<br />A week of <em>good meals.</em>
+          </h1>
+          <p class="intro-copy">
+            Recipes worth keeping. A little plan to bring them to the table.
+          </p>
+        </div>
+        <div class="intro-note">
+          <span aria-hidden="true" class="note-spark">✳</span>
+          <p>
+            Less wondering<br /><em>“what’s for dinner?”</em><br />More looking
+            forward to it.
+          </p>
+        </div>
+      </section>
+
+      <div id="storage-banner" class="notice" hidden>
+        <p id="storage-message"></p>
+        <button id="reset-storage" class="text-button" type="button" hidden>
+          Reset saved data
+        </button>
+      </div>
+
+      <div class="workspace">
+        <section id="recipes" class="library" aria-labelledby="recipes-heading">
+          <div class="section-heading">
+            <h2 id="recipes-heading">The favourites</h2>
+            <span id="recipe-count" class="eyebrow">THE COLLECTION</span>
+          </div>
+          <label class="search-field"
+            ><span aria-hidden="true">⌕</span
+            ><span class="sr-only">Search recipes, ingredients or tags</span
+            ><input
+              id="recipe-search"
+              type="search"
+              placeholder="Find something delicious…"
+              autocomplete="off"
+          /></label>
+          <div
+            id="meal-filters"
+            class="filters"
+            role="group"
+            aria-label="Filter recipes by meal"
+          >
+            <button
+              type="button"
+              class="filter active"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              All</button
+            ><button
+              type="button"
+              class="filter"
+              data-filter="breakfast"
+              aria-pressed="false"
+            >
+              Breakfast</button
+            ><button
+              type="button"
+              class="filter"
+              data-filter="lunch"
+              aria-pressed="false"
+            >
+              Lunch</button
+            ><button
+              type="button"
+              class="filter"
+              data-filter="dinner"
+              aria-pressed="false"
+            >
+              Dinner
+            </button>
+          </div>
+          <div id="recipe-list" class="recipe-list" aria-live="polite">
+            <p class="empty-message">Opening the recipe notebook…</p>
+          </div>
+          <p class="library-footnote">
+            <span aria-hidden="true">♡</span> The best recipes are the ones you
+            come back to.
+          </p>
+        </section>
+
+        <section
+          id="weekly-plan"
+          class="planner"
+          aria-labelledby="planner-heading"
+        >
+          <div class="planner-top">
+            <div>
+              <p class="eyebrow">A LITTLE PLANNING, A LOT TO LOOK FORWARD TO</p>
+              <h2 id="planner-heading">
+                This week, sorted<span class="brand-dot">.</span>
+              </h2>
+            </div>
+            <button
+              id="screenshot-open"
+              class="button button-primary"
+              type="button"
+            >
+              <span aria-hidden="true">▧</span> Screenshot view
+            </button>
+          </div>
+          <div class="week-toolbar">
+            <div class="week-navigation">
+              <button
+                id="previous-week"
+                type="button"
+                class="icon-button"
+                aria-label="Previous week"
+              >
+                ←
+              </button>
+              <div>
+                <span class="eyebrow">WEEK OF</span>
+                <h3 id="week-heading"></h3>
+              </div>
+              <button
+                id="next-week"
+                type="button"
+                class="icon-button"
+                aria-label="Next week"
+              >
+                →
+              </button>
+            </div>
+            <div class="week-tools">
+              <button id="current-week" class="text-button" type="button">
+                This week</button
+              ><label class="date-control"
+                >Choose week<input
+                  id="week-date"
+                  type="date"
+                  aria-label="Choose a date in the week to plan"
+              /></label>
+            </div>
+          </div>
+          <p class="planner-tip">
+            <span aria-hidden="true">⠿</span> Drag a favourite into your week,
+            or tap any space to add a meal.
+          </p>
+          <div
+            id="planner-grid"
+            class="planner-grid"
+            role="group"
+            aria-label="Weekly meal plan"
+          ></div>
+          <div class="planner-bottom">
+            <p id="plan-summary">A fresh week, full of possibilities.</p>
+            <div class="planner-bottom-actions">
+              <button id="undo-inline" class="text-button" type="button" hidden>
+                Undo last change</button
+              ><button id="clear-week" class="text-button" type="button">
+                Clear week
+              </button>
+            </div>
+          </div>
+          <div class="planner-note">
+            <span aria-hidden="true" class="note-icon">↗</span>
+            <p>
+              <strong>A little plan to keep close.</strong><br />Open screenshot
+              view, save your week, and take it with you.
+            </p>
+            <span class="note-rule" aria-hidden="true"></span>
+          </div>
+          <p class="save-note" id="save-note">
+            Your plan saves automatically in this browser.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer page-width">
+      <span>Good food. A little forethought.</span
+      ><span>Made for the everyday <span aria-hidden="true">✳</span></span>
+    </footer>
+    <div id="toast" class="toast" hidden>
+      <p id="status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <button id="undo" type="button" hidden>Undo</button
+      ><button
+        id="dismiss-toast"
+        type="button"
+        aria-label="Dismiss notification"
+      >
+        ×
+      </button>
+    </div>
+
+    <dialog
+      id="recipe-dialog"
+      class="recipe-dialog"
+      aria-labelledby="detail-title"
+    >
+      <div class="dialog-surface">
+        <div class="dialog-top">
+          <span class="eyebrow">FROM THE RECIPE NOTEBOOK</span
+          ><button
+            class="icon-button"
+            type="button"
+            data-close="recipe-dialog"
+            aria-label="Close recipe"
+          >
+            ×
+          </button>
+        </div>
+        <div id="recipe-detail"></div>
+      </div>
+    </dialog>
+    <dialog
+      id="picker-dialog"
+      class="picker-dialog"
+      aria-labelledby="picker-title"
+    >
+      <div class="dialog-surface">
+        <div class="dialog-top">
+          <span class="eyebrow">MAKE IT A GOOD MEAL</span
+          ><button
+            class="icon-button"
+            type="button"
+            data-close="picker-dialog"
+            aria-label="Close meal picker"
+          >
+            ×
+          </button>
+        </div>
+        <h2 id="picker-title"></h2>
+        <div id="picker-content"></div>
+      </div>
+    </dialog>
+
+    <dialog
+      id="capture-dialog"
+      class="capture-dialog"
+      aria-labelledby="capture-title"
+    >
+      <div class="capture-controls">
+        <button id="capture-close" type="button" class="button button-outline">
+          ← Back to planning</button
+        ><label
+          >Layout<select id="capture-size">
+            <option value="fit">Fit to screen</option>
+            <option value="comfortable">Comfortable</option>
+          </select></label
+        ><button id="capture-print" type="button" class="button button-outline">
+          Print</button
+        ><button id="capture-hide" type="button" class="button button-outline">
+          Hide controls
+        </button>
+        <p>
+          Tap your plan to hide controls. Tap again, press Escape, or use Back
+          to restore them.
+        </p>
+      </div>
+      <div
+        id="capture-sheet"
+        class="capture-sheet fit"
+        tabindex="0"
+        role="region"
+        aria-label="Weekly meal plan. Press Enter to toggle screenshot controls."
+      >
+        <div class="capture-heading">
+          <span class="eyebrow">GOOD FOOD. A LITTLE FORETHOUGHT.</span>
+          <h2 id="capture-title">My weekly<br /><em>meal plan.</em></h2>
+          <p id="capture-dates"></p>
+        </div>
+        <div
+          id="capture-grid"
+          class="capture-grid"
+          role="table"
+          aria-label="Weekly meal plan for screenshot"
+        ></div>
+        <div class="capture-footer">
+          <span>top recipes.</span
+          ><span>A week of good meals <span aria-hidden="true">✳</span></span>
+        </div>
+      </div>
+      <p class="capture-overflow" id="capture-overflow" hidden>
+        This plan needs a little more room. Use a full-page screenshot to keep
+        every meal readable.
+      </p>
+    </dialog>
+    <noscript
+      ><p class="notice page-width">
+        Please enable JavaScript to open recipes and arrange your weekly meal
+        plan.
+      </p></noscript
+    >
+  </body>
+</html>
