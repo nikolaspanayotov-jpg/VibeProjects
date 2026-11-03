@@ -19,6 +19,9 @@ test("compiles the authored recipes, preserving quantities, components and timin
       "sausages", "salmon", "chicken-soup", "meatballs-soup", "filled-peppers",
       "pancakes", "macaroni-bake",
       "tuna", "chicken-kavarma", "wine-kebab",
+      "pizza", "potato-and-leek-soup", "banitsa", "spanish-omelette", "egg-sandwich",
+      "roast-dinner", "roast-turkey-with-potatoes", "french-toast",
+      "chicken-pineapple-stir-fry", "turkey-soup",
     ],
   );
   assert.equal(recipes[0].waitMinutes, 480);
@@ -32,7 +35,7 @@ test("compiles the authored recipes, preserving quantities, components and timin
   assert.ok(recipes[0].description.startsWith("Creamy oats"));
   assert.deepEqual(
     recipes.filter(recipe => recipe.mealTypes.includes("breakfast")).map(recipe => recipe.id),
-    ["overnight-oats", "pancakes", "macaroni-bake"],
+    ["overnight-oats", "pancakes", "macaroni-bake", "banitsa", "spanish-omelette", "egg-sandwich", "french-toast"],
   );
 });
 

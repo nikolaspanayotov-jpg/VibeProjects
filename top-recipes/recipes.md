@@ -749,3 +749,416 @@ Tender pork simmered with onions, red wine and tomato, served over fluffy rice. 
 
 - This is a slow-cooked pork stew, rather than a kebab cooked on skewers. The rice is included in the ingredient quantities.
 - Cooking time depends on the size of the pork pieces; continue simmering gently until they are tender.
+
+## Pizza
+
+```yaml
+id: pizza
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 10
+cook_minutes: 15
+wait_minutes: 0
+tags: [vegetarian, easy, family-favourite]
+```
+
+Simple tomato and mozzarella pizzas with oregano and basil. Ready-made bases keep this version quick to prepare.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| pizza-bases | 2 large | Ready-made pizza bases | Base |
+| passata | 150 g | Passata | Topping |
+| mozzarella | 200 g | Mozzarella, drained and torn | Topping |
+| olive-oil | 1 tbsp | Olive oil | Topping |
+| oregano | 1 tsp | Dried oregano | Seasoning |
+| basil | 1 small handful | Fresh basil leaves (optional) | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 220°C, or 200°C fan, with two baking trays inside. Follow the pizza-base packet if it recommends a different temperature.
+2. Mix the passata with the oregano and a little salt and pepper. Spread over the bases, leaving a small border around the edges.
+3. Scatter over the mozzarella and drizzle with the olive oil.
+4. Carefully slide onto the hot trays and bake for 10–15 minutes, or according to the base packet, until the edges are crisp and the cheese is melted and lightly golden.
+5. Add the basil if using, slice and serve.
+
+### Notes
+
+- This quantity makes two large pizzas, with half a pizza per serving. Extra toppings can be added to your own version of the recipe.
+
+## Potato and leek soup
+
+```yaml
+id: potato-and-leek-soup
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 15
+cook_minutes: 35
+wait_minutes: 0
+tags: [soup, vegetarian, comfort-food, leak]
+```
+
+A smooth, comforting soup of softened leeks and potatoes, with an optional splash of cream.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| potatoes | 500 g | Floury potatoes, peeled and diced | Soup |
+| leeks | 2 large | Leeks, trimmed, washed and sliced | Soup |
+| onion | 1 medium | Onion, finely chopped | Soup |
+| garlic | 1 clove | Garlic, finely chopped | Soup |
+| butter | 25 g | Butter | Soup |
+| vegetable-stock | 1 litre | Vegetable stock | Soup |
+| thyme | 0.5 tsp | Dried thyme | Seasoning |
+| cream | 100 ml | Double cream (optional) | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Melt the butter in a large saucepan over medium-low heat. Add the leeks and onion and soften gently for about 10 minutes without browning.
+2. Add the garlic and cook for 1 minute. Stir in the potatoes, stock and thyme.
+3. Bring to a gentle simmer, cover partially and cook for about 20 minutes until the potatoes are very tender.
+4. Take off the heat and blend with a stick blender until smooth. Stir in the cream if using, then warm gently for 2–3 minutes. Add a splash of water if you prefer a thinner soup.
+5. Season to taste and serve.
+
+### Notes
+
+- For a dairy-free version, use olive oil instead of butter and leave out the cream or use a suitable plant alternative.
+
+## Banitsa
+
+```yaml
+id: banitsa
+meal_types: [breakfast, lunch]
+servings: 6
+prep_minutes: 20
+cook_minutes: 40
+wait_minutes: 10
+tags: [bulgarian, vegetarian, pastry, family-favourite]
+```
+
+Golden, flaky filo pastry filled with eggs, yoghurt and feta, rolled into a spiral. A comforting Bulgarian breakfast to share.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| filo-pastry | 270 g | Filo pastry sheets | Pastry |
+| butter | 60 g | Butter, melted, divided | Pastry and dish |
+| eggs | 3 large | Eggs | Filling |
+| yoghurt | 300 g | Plain yoghurt | Filling |
+| feta | 300 g | Feta, crumbled | Filling |
+| baking-powder | 1 tsp | Baking powder | Filling |
+
+### Method
+
+1. Heat the oven to 190°C, or 170°C fan. Grease a roughly 28 cm round baking dish with a little of the melted butter.
+2. Beat the eggs with the yoghurt and baking powder, then stir in the crumbled feta.
+3. Lay out a filo sheet and brush lightly with butter. If the sheets are very thin, use two together. Spread a little filling along the length and roll loosely into a long sausage shape.
+4. Coil the first roll in the centre of the dish. Repeat with the remaining sheets and filling, arranging the rolls around it in a loose spiral. Divide the filling between the rolls so none are overfilled.
+5. Brush the top with the remaining butter. Bake for 35–40 minutes until deeply golden and the filling is set and piping hot in the centre.
+6. Rest for 10 minutes before cutting into portions.
+
+### Notes
+
+- Keep unused filo covered with a clean, slightly damp tea towel while assembling so it does not dry out.
+- Feta is already salty, so this starter version needs no added salt.
+
+## Spanish omelette
+
+```yaml
+id: spanish-omelette
+meal_types: [breakfast, lunch, dinner]
+servings: 4
+prep_minutes: 15
+cook_minutes: 35
+wait_minutes: 5
+tags: [vegetarian, tortilla, potatoes, pan-fried]
+```
+
+A thick Spanish-style tortilla of tender potatoes, onion and eggs. Slice into wedges for breakfast or a simple meal later in the day.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| potatoes | 600 g | Waxy potatoes, peeled and thinly sliced | Main |
+| onion | 1 large | Onion, thinly sliced | Main |
+| eggs | 6 large | Eggs | Main |
+| olive-oil | 4 tbsp | Olive oil | Cooking |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat 3 tablespoons of the oil in a roughly 24 cm non-stick frying pan over medium-low heat. Add the potatoes and onion, cover and cook gently for 18–22 minutes, stirring carefully, until the potatoes are tender without becoming crisp.
+2. Beat the eggs in a large bowl with a little salt and pepper. Lift the potatoes and onion into the eggs, leaving any excess oil in the pan, and fold together gently.
+3. Add the remaining tablespoon of oil to the pan if needed. Pour in the mixture, spread evenly and cook over low heat for 6–8 minutes until the underside is golden and the edges are set.
+4. Cover the pan with a large plate, carefully invert the omelette onto it, then slide it back into the pan. Cook for another 3–5 minutes until the centre is set.
+5. Rest for 5 minutes before slicing into wedges.
+
+### Notes
+
+- Instead of flipping, use an oven-safe pan and finish under a medium grill until the top and centre are set. Keep the handle protected when serving.
+
+## Egg Sandwich
+
+```yaml
+id: egg-sandwich
+meal_types: [breakfast, lunch]
+servings: 4
+prep_minutes: 10
+cook_minutes: 10
+wait_minutes: 0
+tags: [vegetarian, quick, sandwich]
+```
+
+A warm toasted sandwich filled with a fried egg, with optional Cheddar and tomato. A simple breakfast or lunch.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| bread | 8 | Bread slices | Sandwich |
+| eggs | 4 large | Eggs | Filling |
+| butter | 20 g | Butter | Cooking |
+| cheddar | 80 g | Cheddar, sliced (optional) | Filling |
+| tomatoes | 2 medium | Tomatoes, sliced (optional) | Filling |
+| mayonnaise | 2 tbsp | Mayonnaise (optional) | Sandwich |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Toast the bread to your liking.
+2. Melt the butter in a large non-stick frying pan over medium heat. Crack in the eggs, working in batches if needed, and season lightly.
+3. Cook for 3–5 minutes until the whites are set. Turn the eggs or briefly cover the pan if you prefer the yolks firmer.
+4. Spread four slices of toast with the mayonnaise if using. Add an egg to each, then the Cheddar and tomato if using, and close with the remaining toast.
+5. Cut in half and serve warm.
+
+### Notes
+
+- Each serving is one sandwich. The bread quantity is eight individual slices, not eight loaves.
+
+## Roast dinner
+
+```yaml
+id: roast-dinner
+meal_types: [dinner, lunch]
+servings: 6
+prep_minutes: 25
+cook_minutes: 100
+wait_minutes: 20
+tags: [roast, family-favourite, weekend-cooking]
+```
+
+A classic roast chicken dinner with crisp potatoes, carrots, broccoli and a simple pan gravy.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| whole-chicken | 1, about 1.8 kg | Whole chicken | Roast |
+| butter | 25 g | Butter, softened | Roast |
+| lemon | 1 | Lemon, cut into quarters | Roast |
+| garlic | 4 cloves | Garlic, lightly crushed | Roast |
+| rosemary | 2 tsp | Dried rosemary | Roast and potatoes |
+| potatoes | 1 kg | Floury potatoes, peeled and cut into chunks | Vegetables |
+| carrots | 4 medium | Carrots, cut into large pieces | Vegetables |
+| broccoli | 1 head | Broccoli, cut into florets | Vegetables |
+| olive-oil | 4 tbsp | Olive oil, divided | Vegetables |
+| flour | 1 tbsp | Plain flour | Gravy |
+| chicken-stock | 500 ml | Chicken stock | Gravy |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan. Put the chicken in a roasting tin, rub with the butter and season. Place the lemon and garlic in the cavity and scatter half the rosemary over the bird.
+2. Roast for about 90–100 minutes, following the bird's packet guidance and checking that the thickest part of the breast and thigh reaches 75°C without the thermometer touching bone.
+3. Meanwhile, parboil the potatoes in salted water for 10 minutes. Drain, let the steam escape and shake gently to roughen the edges. Toss with 3 tablespoons of the oil, the remaining rosemary and a little seasoning.
+4. Roast the potatoes on a separate tray for 55–65 minutes, turning halfway. Time this to overlap the chicken's cooking and resting time. Toss the carrots with the remaining tablespoon of oil and add them to the tray for the final 30–35 minutes.
+5. Transfer the cooked chicken to a board, cover loosely and rest for 20 minutes. Spoon excess fat from the roasting tin, leaving about 1 tablespoon with the juices. Stir in the flour over low heat, then gradually whisk in the stock. Simmer for 5–8 minutes until thickened, then strain if desired.
+6. Near serving time, steam or boil the broccoli for 4–6 minutes until tender. Carve the chicken and serve with the vegetables and gravy.
+
+### Notes
+
+- This starter roast dinner uses chicken. All the vegetables and gravy listed are included in the shopping quantities.
+- Cooking time varies with the bird's size and oven; the potatoes and gravy are prepared alongside the chicken rather than one after another.
+
+## Roast turkey with potatoes
+
+```yaml
+id: roast-turkey-with-potatoes
+meal_types: [dinner, lunch]
+servings: 6
+prep_minutes: 20
+cook_minutes: 100
+wait_minutes: 20
+tags: [roast, family-favourite, weekend-cooking]
+```
+
+Roast turkey breast with garlic, lemon and rosemary, served with golden roast potatoes.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| turkey-joint | 1, about 1.2 kg | Boneless turkey breast joint | Roast |
+| butter | 40 g | Butter, softened | Roast |
+| garlic | 4 cloves | Garlic, finely chopped | Roast |
+| lemon | 1 | Lemon, half juiced and half cut into wedges | Roast |
+| rosemary | 2 tsp | Dried rosemary, divided | Roast and potatoes |
+| chicken-stock | 200 ml | Chicken stock | Roast |
+| potatoes | 1 kg | Floury potatoes, peeled and cut into chunks | Potatoes |
+| olive-oil | 3 tbsp | Olive oil | Potatoes |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 190°C, or 170°C fan. Mix the butter with the garlic, lemon juice, half the rosemary and a little salt and pepper. Rub over the turkey joint.
+2. Put the turkey in a roasting tin with the lemon wedges and stock. Cover loosely with foil and roast according to the joint's packet instructions, allowing roughly 90–100 minutes for this size. Uncover for the final 25–30 minutes to colour the skin. Check that the centre reaches 75°C.
+3. While the turkey cooks, parboil the potatoes for 10 minutes. Drain, let the steam escape, roughen the edges and toss with the oil, remaining rosemary and a little seasoning.
+4. Roast the potatoes on a separate tray for about 55–65 minutes, turning halfway. Start them in time to finish during the turkey's resting period.
+5. Rest the cooked turkey, loosely covered, for 20 minutes. Slice and serve with the potatoes and the hot roasting juices spooned over.
+
+### Notes
+
+- This version uses a boneless breast joint, not a whole turkey. Follow the joint's own cooking instructions and check its centre temperature.
+- Potatoes are included in the recipe quantities; extra vegetables can be added to your own version.
+
+## French toast
+
+```yaml
+id: french-toast
+meal_types: [breakfast]
+servings: 4
+prep_minutes: 10
+cook_minutes: 20
+wait_minutes: 0
+tags: [vegetarian, sweet, quick]
+```
+
+Golden bread dipped in a vanilla egg-and-milk mixture and gently fried. Serve warm with berries and maple syrup.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| bread | 8 | Bread slices | Main |
+| eggs | 3 large | Eggs | Egg mixture |
+| milk | 150 ml | Milk | Egg mixture |
+| sugar | 1 tbsp | Caster sugar | Egg mixture |
+| vanilla | 1 tsp | Vanilla extract | Egg mixture |
+| cinnamon | 0.5 tsp | Ground cinnamon (optional) | Egg mixture |
+| butter | 25 g | Butter | Cooking |
+| berries | 150 g | Fresh berries (optional) | To serve |
+| maple-syrup | 2 tbsp | Maple syrup (optional) | To serve |
+
+### Method
+
+1. Whisk the eggs, milk, sugar, vanilla and cinnamon if using in a shallow dish.
+2. Dip each bread slice into the mixture, coating both sides without soaking it until it falls apart.
+3. Heat a little of the butter in a large non-stick frying pan over medium heat. Add the coated bread in batches and cook for about 2–3 minutes on each side until golden and the egg mixture is cooked through.
+4. Repeat with the remaining bread and butter, lowering the heat if the outside browns before the centre is ready.
+5. Serve warm with the berries and maple syrup if using.
+
+### Notes
+
+- Slightly stale, sturdy bread holds its shape well. Each serving is two slices.
+
+## Chicken pineapple stir fry
+
+```yaml
+id: chicken-pineapple-stir-fry
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 20
+cook_minutes: 20
+wait_minutes: 0
+tags: [stir-fry, sweet-and-sour, family-favourite]
+```
+
+Chicken, peppers and pineapple in a lightly sweet and tangy sauce, served with rice.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| chicken | 500 g | Chicken breast, cut into bite-size pieces | Stir fry |
+| pineapple | 300 g | Pineapple chunks | Stir fry |
+| pepper | 1 large | Red bell pepper, sliced | Stir fry |
+| onion | 1 medium | Onion, sliced | Stir fry |
+| garlic | 2 cloves | Garlic, finely chopped | Stir fry |
+| oil | 1 tbsp | Rapeseed oil | Cooking |
+| soy-sauce | 3 tbsp | Soy sauce | Sauce |
+| pineapple-juice | 100 ml | Pineapple juice | Sauce |
+| ketchup | 2 tbsp | Tomato ketchup | Sauce |
+| honey | 1 tbsp | Honey | Sauce |
+| rice-vinegar | 1 tbsp | Rice vinegar | Sauce |
+| cornflour | 1 tbsp | Cornflour | Sauce |
+| rice | 250 g | Long-grain white rice, rinsed | To serve |
+
+### Method
+
+1. Cook the rice in water according to the packet instructions while you prepare the stir fry.
+2. Whisk the cornflour into the cold pineapple juice, then stir in the soy sauce, ketchup, honey and vinegar.
+3. Heat the oil in a large frying pan or wok over medium-high heat. Stir-fry the chicken for 6–8 minutes until lightly browned, then lift onto a plate.
+4. Add the onion and pepper to the pan and stir-fry for about 4 minutes. Add the garlic for 1 minute, then the pineapple for another 1–2 minutes.
+5. Return the chicken and its juices to the pan. Stir the sauce mixture again, pour it in and simmer for 3–5 minutes until glossy and thickened and the chicken reaches 75°C in the centre. Add a splash of water if the sauce is too thick.
+6. Serve over the cooked rice.
+
+### Notes
+
+- Use fresh pineapple or tinned pineapple in juice. The pineapple quantity is the drained fruit weight; reserve juice from the tin for the sauce if available.
+- Rice is included in the ingredient quantities.
+
+## Turkey soup
+
+```yaml
+id: turkey-soup
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 15
+cook_minutes: 40
+wait_minutes: 0
+tags: [soup, comfort-food, one-pot]
+```
+
+A warming turkey and vegetable soup with rice, parsley and a little lemon.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| turkey | 400 g | Boneless, skinless turkey thigh, diced | Soup |
+| onion | 1 medium | Onion, finely chopped | Soup |
+| carrots | 2 medium | Carrots, diced | Soup |
+| celery | 2 sticks | Celery, diced | Soup |
+| garlic | 2 cloves | Garlic, finely chopped | Soup |
+| olive-oil | 1 tbsp | Olive oil | Cooking |
+| chicken-stock | 1.5 litres | Chicken stock | Soup |
+| rice | 75 g | Long-grain white rice, rinsed | Soup |
+| bay-leaf | 1 | Bay leaf | Seasoning |
+| parsley | 1 small handful | Fresh parsley, chopped | To finish |
+| lemon | Half | Lemon, juiced | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oil in a large saucepan. Soften the onion, carrots and celery over medium heat for 8–10 minutes, then add the garlic for 1 minute.
+2. Add the diced turkey and stir for 3–4 minutes. Pour in the stock, add the bay leaf and bring to a gentle simmer.
+3. Stir in the rice and simmer for 20–25 minutes, until the rice and vegetables are tender and the turkey reaches 75°C in the centre.
+4. Remove the bay leaf, stir in the parsley and lemon juice, and season to taste. Add a little hot water if you prefer a lighter broth.
+5. Serve hot.
+
+### Notes
+
+- To use leftovers, replace the raw turkey with 300 g cooked, shredded turkey and add it for the final 5–10 minutes, until piping hot throughout. The shopping quantities above describe the raw-turkey version.
