@@ -14,6 +14,7 @@ for (const path of [
   "src/ui.js",
   "src/content.js",
   "src/recipes.js",
+  "src/shopping.js",
   "src/capture.js",
 ])
   await runScript(path);

@@ -11,6 +11,19 @@
   function validPlanner(value) {
     if (!object(value) || value.schemaVersion !== 1 || !object(value.weeks))
       return false;
+    if (
+      value.shoppingWeeks !== undefined &&
+      (!object(value.shoppingWeeks) ||
+        !Object.entries(value.shoppingWeeks).every(([key, edits]) => {
+          try {
+            if (mondayKey(key) !== key) return false;
+          } catch {
+            return false;
+          }
+          return validShoppingEdits(edits);
+        }))
+    )
+      return false;
     return Object.entries(value.weeks).every(([key, week]) => {
       try {
         if (mondayKey(key) !== key) return false;
@@ -30,6 +43,26 @@
         )
       );
     });
+  }
+
+  function validShoppingEdits(edits) {
+    return (
+      object(edits) &&
+      Object.entries(edits).every(
+        ([key, edit]) =>
+          key.length > 0 &&
+          key.length <= 1000 &&
+          key.includes("|") &&
+          object(edit) &&
+          typeof edit.selected === "boolean" &&
+          Number.isFinite(edit.quantity) &&
+          edit.quantity >= 0 &&
+          edit.quantity <= 1e9 &&
+          Number.isFinite(edit.baseline) &&
+          edit.baseline > 0 &&
+          edit.baseline <= 1e9,
+      )
+    );
   }
 
   function validChecks(value) {
@@ -90,6 +123,16 @@
         planner.weeks[key] = clone(week);
         write(PLAN_KEY, planner);
       },
+      shoppingWeek(key) {
+        return clone(planner.shoppingWeeks?.[key] || {});
+      },
+      saveShoppingWeek(key, edits) {
+        if (!validShoppingEdits(edits))
+          throw new Error("Invalid shopping list edits");
+        if (!planner.shoppingWeeks) planner.shoppingWeeks = {};
+        planner.shoppingWeeks[key] = clone(edits);
+        write(PLAN_KEY, planner);
+      },
       isChecked(recipeId, ingredientId) {
         return (
           Object.hasOwn(checks.recipes, recipeId) &&
@@ -122,6 +165,7 @@
     CHECKS_KEY,
     validPlanner,
     validChecks,
+    validShoppingEdits,
     createPersistence,
   });
 })();

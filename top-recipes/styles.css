@@ -1936,3 +1936,320 @@ dialog::backdrop {
   align-items: center;
   flex-shrink: 0;
 }
+
+/* Weekly shopping list and its portrait screenshot pages. */
+.planner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.shopping-dialog {
+  width: 780px;
+}
+.shopping-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.shopping-heading h2 {
+  font-size: 34px;
+  letter-spacing: -1px;
+  line-height: 1.15;
+}
+.shopping-heading p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 10px;
+}
+.shopping-heading .button {
+  flex-shrink: 0;
+}
+.shopping-help {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-top: 22px;
+}
+.shopping-rules {
+  margin: 14px 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.shopping-rules summary {
+  color: var(--olive);
+  cursor: pointer;
+  min-height: 44px;
+  display: list-item;
+  align-content: center;
+}
+.shopping-rules p {
+  margin: 8px 0;
+}
+.shopping-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-block: 1px solid var(--line);
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+#shopping-summary {
+  font-size: 12px;
+  color: var(--muted);
+}
+#shopping-bulk-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.shopping-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 154px;
+  gap: 0 18px;
+  padding: 16px 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+.shopping-check {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 44px;
+  cursor: pointer;
+}
+.shopping-check input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 3px 0 0;
+  accent-color: var(--olive);
+}
+.shopping-copy {
+  display: block;
+  min-width: 0;
+  line-height: 1.5;
+}
+.shopping-copy strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+.shopping-copy small {
+  display: block;
+  font-size: 11px;
+  margin-top: 4px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.shopping-copy .shopping-optional {
+  color: var(--clay);
+}
+.shopping-item.excluded .shopping-copy strong {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.quantity-controls {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 0;
+  align-self: start;
+}
+.quantity-button {
+  border: 1px solid var(--line);
+  background: var(--sage);
+  min-height: 44px;
+  font-size: 22px;
+  border-radius: 6px 0 0 6px;
+}
+.quantity-button:last-of-type {
+  border-radius: 0 6px 6px 0;
+}
+.quantity-button:hover {
+  background: #d6e0ca;
+}
+.quantity-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid var(--line);
+  border-inline: 0;
+  border-radius: 0;
+  background: white;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.quantity-unit {
+  grid-column: 1/-1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 3px;
+}
+.shopping-notes {
+  grid-column: 1/-1;
+  padding-left: 32px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.shopping-notes summary {
+  min-height: 36px;
+  align-content: center;
+  cursor: pointer;
+  width: fit-content;
+}
+.shopping-notes p {
+  padding: 3px 0 5px;
+  font-size: 12px;
+}
+.capture-pages {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.controls-hidden .capture-sheet:focus {
+  outline: none;
+}
+#capture-page-label {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+.capture-shopping {
+  margin-top: 12px;
+}
+.shopping-capture-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr) max-content;
+  gap: 10px;
+  align-items: center;
+  min-height: 56px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 17px;
+  line-height: 1.4;
+  break-inside: avoid;
+}
+.shopping-capture-box {
+  color: var(--olive);
+  font-size: 22px;
+  line-height: 1;
+}
+.shopping-capture-name {
+  overflow-wrap: anywhere;
+}
+.shopping-capture-quantity {
+  text-align: right;
+  font-size: 15px;
+  font-weight: 550;
+  color: var(--olive);
+  max-width: 140px;
+  overflow-wrap: anywhere;
+}
+.fit .shopping-capture-row {
+  min-height: 48px;
+  padding: 6px 0;
+  font-size: 15px;
+}
+.fit .shopping-capture-quantity {
+  font-size: 14px;
+}
+.shopping-capture-warning {
+  font-size: 11px;
+  color: var(--clay);
+  line-height: 1.6;
+  padding-top: 12px;
+}
+@media (max-width: 640px) {
+  .planner-actions {
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .planner-actions .button {
+    width: 118px;
+  }
+  .shopping-dialog {
+    margin: 0;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+  .shopping-dialog .dialog-surface {
+    padding: 22px 18px;
+  }
+  .shopping-heading {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .shopping-heading h2 {
+    font-size: 32px;
+  }
+  .shopping-help {
+    font-size: 14px;
+  }
+  .shopping-item {
+    grid-template-columns: minmax(0, 1fr) 144px;
+    gap: 0 12px;
+  }
+  .shopping-check {
+    gap: 8px;
+  }
+  .shopping-copy strong {
+    font-size: 15px;
+  }
+  .shopping-copy small {
+    font-size: 10px;
+  }
+  .shopping-notes {
+    padding-left: 28px;
+  }
+  .shopping-capture-row {
+    grid-template-columns: 20px minmax(0, 1fr) max-content;
+    gap: 8px;
+    font-size: 15px;
+  }
+  .fit .shopping-capture-row {
+    font-size: 14px;
+  }
+  .shopping-capture-quantity,
+  .fit .shopping-capture-quantity {
+    font-size: 13px;
+    max-width: 100px;
+  }
+  #capture-page-label {
+    font-size: 10px;
+  }
+}
+@media print {
+  .shopping-sheet,
+  .shopping-sheet.fit {
+    break-inside: auto;
+  }
+  .shopping-capture-row,
+  .fit .shopping-capture-row {
+    min-height: 11mm;
+    font-size: 14px;
+  }
+  .shopping-capture-quantity {
+    font-size: 13px;
+  }
+}

@@ -79,7 +79,7 @@ Open details in a side panel on desktop and a full-screen dialog on phones. Show
 
 Ingredients appear as readable quantities with checkboxes. Checking an ingredient means “Already have / bought” and strikes it through; optional ingredients are labelled. Group ingredients by recipe component where provided, such as filling and pastry. Include an Add to week button and a Copy ingredients button that copies a plain-text shopping checklist. If clipboard access fails, show selectable text to copy manually.
 
-Store checked ingredients locally by recipe ID and ingredient ID. Include Reset ingredient checks, and make clear that these checkboxes belong to this recipe's list. This first version shows each recipe's stated batch quantities and yield. A combined weekly shopping list can be added later once portion and leftover rules are defined.
+Store checked ingredients locally by recipe ID and ingredient ID. Include Reset ingredient checks, and make clear that these checkboxes belong to this recipe's list. Recipe details show each recipe's stated batch quantities and yield. The separate weekly shopping list combines ingredients from the plan and has its own per-week selections.
 
 ## Weekly planner
 
@@ -132,6 +132,19 @@ Use a versioned key such as `top-recipes:planner:v1`. Save weeks by their local 
 ```
 
 This JSON illustrates the storage shape, not a preloaded plan. Validate stored data on load. If storage is unavailable, continue in memory and display “This plan will last until you close the page.” If a recipe is removed from the source file, preserve its slot as “Recipe unavailable” with Change and Remove actions. A renamed recipe keeps its plan placements when its ID stays unchanged. Malformed saved data should produce a visible recovery message and an explicit Reset saved plan action, rather than silently discarding it.
+
+## Weekly shopping list
+
+A Shopping list button beside the planner's Screenshot view opens a separate dialog for the selected week. It totals one full recipe batch for every planned meal, including repeated recipes, and states that basis visibly so the user can adjust for portions and leftovers.
+
+- Combine matching ingredients with matching units, converting kilograms to grams and litres to millilitres. Keep different foods and incompatible units on separate lines. Preserve original quantities and preparation notes in a Recipe amounts disclosure.
+- Each row has a tick box, editable numeric quantity and 44 px minus/plus controls, with its unit displayed. All items start selected; untick what is already in the cupboard or unwanted. Label optional-only ingredients.
+- Whole items round up for purchasing. “To taste”, pinches and unspecified amounts start at one pack to check in the cupboard. Zero quantities do not appear in screenshots.
+- Save edits for each local Monday in the existing planner storage as optional `shoppingWeeks` data, preserving old plans and storage keys. Selections persist across changes to the plan; quantity overrides persist only while the calculated total is unchanged.
+- Provide Select all, Untick all and Reset list. Reset list restores calculated quantities and selections for this week without editing the plan or per-recipe checkboxes.
+- Empty plans explain that meals must be added first. An unavailable recipe produces an explicit missing-ingredients message while the remaining ingredients still load.
+- Screenshot view uses the existing portrait capture dialog, showing only selected positive-quantity items, a week/date heading and page number. Paginate to 5–10 rows according to viewport height; keep page boundaries stable when hiding controls. Previous/Next page controls and keyboard arrows browse the pages.
+- Screenshot rows show a clean empty checkbox, ingredient name and quantity. Omit editing controls. Close returns to the still-open shopping list. Printing includes the entire selected list.
 
 ## Screenshot view
 
@@ -188,6 +201,7 @@ top-recipes/
     content.js                Markdown/YAML parsing and validation
     app.js                    Library, dialogs and planner coordination
     recipes.js                Recipe details and shopping checklists
+    shopping.js               Weekly totals, selections and quantity controls
     planner.js                Calendar, placement, move and swap logic
     storage.js                Versioned browser persistence
     capture.js                Screenshot and print presentation
@@ -246,4 +260,5 @@ Optional serving, preparation or substitution notes.
 - Each week retains its own plan after refresh. Renamed, removed and invalid recipe data and unavailable local storage have understandable outcomes.
 - Screenshot view contains all seven days and three meals, the date range and complete starter recipe names. Verify at 390 × 844 and at a smaller phone viewport, with no horizontal clipping.
 - Screenshot controls can be hidden and restored. Returning to edit mode preserves the plan. Print preview uses a single portrait page for the starter content.
+- Shopping list totals match repeated planned batches and compatible unit conversions. Tick choices and quantity overrides survive refresh independently by week. Shopping screenshot pages include every selected positive-quantity item exactly once, and printing includes all pages.
 - Check normal text contrast against WCAG AA and ensure keyboard focus, reduced motion and touch targets remain usable.

@@ -21,6 +21,7 @@
     matchesRecipe,
     validateRecipeData,
     createCapture,
+    createShoppingList,
     parseRecipes,
   } = globalThis.TopRecipes;
 
@@ -51,7 +52,7 @@
     $("#storage-message").textContent =
       issue === "corrupt"
         ? "Saved data could not be read. The original has been kept. You can plan for this session, or reset saved data to start again."
-        : "This plan and your ingredient checks will last until you close the page. Browser storage is unavailable.";
+        : "This plan, shopping list and ingredient checks will last until you close the page. Browser storage is unavailable.";
     $("#save-note").textContent = issue
       ? "Changes are kept for this session only."
       : "Your plan saves automatically in this browser.";
@@ -98,10 +99,20 @@
     notify,
     storageChanged,
   });
+  let shopping;
   const capture = createCapture({
     getWeek: () => week,
     getWeekKey: () => selectedWeek,
     getRecipe: (id) => recipeMap.get(id),
+    getShoppingSnapshot: () => shopping.snapshot(),
+  });
+  shopping = createShoppingList({
+    getWeek: () => week,
+    getWeekKey: () => selectedWeek,
+    getRecipe: (id) => recipeMap.get(id),
+    persistence,
+    storageChanged,
+    openCapture: (trigger) => capture.openShopping(trigger),
   });
 
   function focusSlot(slot) {
@@ -259,6 +270,8 @@
       : "A fresh week, full of possibilities.";
     $("#clear-week").disabled = filled === 0;
     $("#undo-inline").hidden = !undoState;
+    $("#shopping-open").disabled = loadState !== "ready";
+    shopping?.refresh();
   }
 
   function renderLibrary() {
@@ -579,6 +592,9 @@
   });
   $("#screenshot-open").addEventListener("click", (event) =>
     capture.open(event.currentTarget),
+  );
+  $("#shopping-open").addEventListener("click", (event) =>
+    shopping.open(event.currentTarget),
   );
   $("#reset-storage").addEventListener("click", () => {
     persistence.reset();

@@ -18,6 +18,7 @@
     <script defer src="./src/ui.js"></script>
     <script defer src="./src/content.js"></script>
     <script defer src="./src/recipes.js"></script>
+    <script defer src="./src/shopping.js"></script>
     <script defer src="./src/capture.js"></script>
     <script defer src="./src/app.js"></script>
   </head>
@@ -136,13 +137,23 @@
                 This week, sorted<span class="brand-dot">.</span>
               </h2>
             </div>
-            <button
-              id="screenshot-open"
-              class="button button-primary"
-              type="button"
-            >
-              <span aria-hidden="true">▧</span> Screenshot view
-            </button>
+            <div class="planner-actions">
+              <button
+                id="shopping-open"
+                class="button button-outline"
+                type="button"
+                disabled
+              >
+                <span aria-hidden="true">☷</span> Shopping list
+              </button>
+              <button
+                id="screenshot-open"
+                class="button button-primary"
+                type="button"
+              >
+                <span aria-hidden="true">▧</span> Screenshot view
+              </button>
+            </div>
           </div>
           <div class="week-toolbar">
             <div class="week-navigation">
@@ -272,6 +283,91 @@
     </dialog>
 
     <dialog
+      id="shopping-dialog"
+      class="shopping-dialog"
+      aria-labelledby="shopping-title"
+    >
+      <div class="dialog-surface">
+        <div class="dialog-top">
+          <span class="eyebrow">FROM YOUR WEEK, TO YOUR BASKET</span
+          ><button
+            class="icon-button"
+            type="button"
+            data-close="shopping-dialog"
+            aria-label="Close shopping list"
+          >
+            ×
+          </button>
+        </div>
+        <div class="shopping-heading">
+          <div>
+            <h2 id="shopping-title">
+              Your shopping list<span class="brand-dot">.</span>
+            </h2>
+            <p id="shopping-week"></p>
+          </div>
+          <button
+            id="shopping-screenshot"
+            class="button button-primary"
+            type="button"
+          >
+            Screenshot view
+          </button>
+        </div>
+        <p class="shopping-help">
+          Amounts start at one full recipe batch per planned meal. Untick
+          anything you already have or want to skip, then use − and + or type a
+          quantity. Only selected items with a quantity above zero appear in
+          your screenshot.
+        </p>
+        <details class="shopping-rules">
+          <summary>How amounts are worked out</summary>
+          <p>
+            Each planned meal counts as one full recipe batch, using that
+            recipe’s stated servings. Shared ingredients are combined when their
+            units match; grams and kilograms, or millilitres and litres, are
+            converted together. Adjust amounts for your portions and leftovers.
+          </p>
+          <p>
+            Whole items round up. “To taste”, pinches and unspecified amounts
+            start at one pack to check in your cupboard. Different foods and
+            incompatible units stay on separate lines.
+          </p>
+          <p>
+            Your choices and quantities save for this week. If a plan change
+            alters an ingredient total, its calculated quantity refreshes; your
+            tick choices stay the same.
+          </p>
+        </details>
+        <p id="shopping-warning" class="notice" hidden></p>
+        <div class="shopping-toolbar">
+          <p id="shopping-summary" aria-live="polite"></p>
+          <div id="shopping-bulk-actions">
+            <button id="shopping-select-all" type="button" class="text-button">
+              Select all</button
+            ><button
+              id="shopping-clear-selection"
+              type="button"
+              class="text-button"
+            >
+              Untick all</button
+            ><button id="shopping-reset" type="button" class="text-button">
+              Reset list
+            </button>
+          </div>
+        </div>
+        <div id="shopping-items" class="shopping-items"></div>
+        <p
+          id="shopping-status"
+          class="sr-only"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+      </div>
+    </dialog>
+
+    <dialog
       id="capture-dialog"
       class="capture-dialog"
       aria-labelledby="capture-title"
@@ -289,7 +385,23 @@
         ><button id="capture-hide" type="button" class="button button-outline">
           Hide controls
         </button>
-        <p>
+        <div id="capture-pages" class="capture-pages" hidden>
+          <button
+            id="capture-previous-page"
+            class="button button-outline"
+            type="button"
+          >
+            ← Previous page</button
+          ><span id="capture-page-label" aria-live="polite"></span
+          ><button
+            id="capture-next-page"
+            class="button button-outline"
+            type="button"
+          >
+            Next page →
+          </button>
+        </div>
+        <p id="capture-instructions">
           Tap your plan to hide controls. Tap again, press Escape, or use Back
           to restore them.
         </p>
@@ -312,9 +424,12 @@
           role="table"
           aria-label="Weekly meal plan for screenshot"
         ></div>
+        <div id="capture-shopping" class="capture-shopping" hidden></div>
         <div class="capture-footer">
           <span>top recipes.</span
-          ><span>A week of good meals <span aria-hidden="true">✳</span></span>
+          ><span id="capture-footer-label"
+            >A week of good meals <span aria-hidden="true">✳</span></span
+          >
         </div>
       </div>
       <p class="capture-overflow" id="capture-overflow" hidden>

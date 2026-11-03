@@ -1,14 +1,120 @@
 (() => {
-  const { DAYS, MEALS, parseLocalDate, titleCase, el, showDialog } =
-    globalThis.TopRecipes;
+  const {
+    DAYS,
+    MEALS,
+    parseLocalDate,
+    titleCase,
+    el,
+    showDialog,
+    formatShoppingQuantity,
+  } = globalThis.TopRecipes;
 
-  function createCapture({ getWeek, getWeekKey, getRecipe }) {
+  function createCapture({
+    getWeek,
+    getWeekKey,
+    getRecipe,
+    getShoppingSnapshot,
+  }) {
     const dialog = document.querySelector("#capture-dialog");
     const sheet = document.querySelector("#capture-sheet");
     const grid = document.querySelector("#capture-grid");
     const size = document.querySelector("#capture-size");
     let closingFromHistory = false;
     let opener;
+    let mode = "plan";
+    let page = 0;
+    let pageSize = 10;
+    let shoppingSnapshot = { items: [], missingCount: 0 };
+
+    function setPageSize() {
+      pageSize = Math.max(
+        5,
+        Math.min(10, Math.floor((window.innerHeight - 280) / 48)),
+      );
+    }
+
+    function renderShopping(printing = false) {
+      const containerEl = document.querySelector("#capture-shopping");
+      containerEl.replaceChildren();
+      containerEl.setAttribute("role", "list");
+      const totalPages = Math.max(
+        1,
+        Math.ceil(shoppingSnapshot.items.length / pageSize),
+      );
+      page = Math.max(0, Math.min(page, totalPages - 1));
+      const visible = printing
+        ? shoppingSnapshot.items
+        : shoppingSnapshot.items.slice(page * pageSize, (page + 1) * pageSize);
+      visible.forEach((item) => {
+        const rowEl = el("div", "shopping-capture-row");
+        rowEl.setAttribute("role", "listitem");
+        rowEl.dataset.shoppingKey = item.key;
+        const boxEl = el("span", "shopping-capture-box", "□");
+        boxEl.setAttribute("aria-hidden", "true");
+        rowEl.append(
+          boxEl,
+          el("span", "shopping-capture-name", item.name),
+          el(
+            "strong",
+            "shopping-capture-quantity",
+            formatShoppingQuantity(item),
+          ),
+        );
+        containerEl.append(rowEl);
+      });
+      if (!visible.length)
+        containerEl.append(
+          el("p", "empty-message", "No ingredients selected."),
+        );
+      if (shoppingSnapshot.missingCount)
+        containerEl.append(
+          el(
+            "p",
+            "shopping-capture-warning",
+            `Ingredients unavailable for ${shoppingSnapshot.missingCount} planned meal${shoppingSnapshot.missingCount === 1 ? "" : "s"}.`,
+          ),
+        );
+      document.querySelector("#capture-pages").hidden = totalPages <= 1;
+      document.querySelector("#capture-page-label").textContent =
+        `Page ${page + 1} of ${totalPages}`;
+      document.querySelector("#capture-previous-page").disabled = page === 0;
+      document.querySelector("#capture-next-page").disabled =
+        page === totalPages - 1;
+      document.querySelector("#capture-footer-label").textContent = printing
+        ? `${shoppingSnapshot.items.length} shopping items`
+        : `Page ${page + 1} of ${totalPages} · ${shoppingSnapshot.items.length} items`;
+    }
+
+    function renderActive({ printing = false } = {}) {
+      const shoppingMode = mode === "shopping";
+      dialog.classList.toggle("is-shopping", shoppingMode);
+      sheet.classList.toggle("shopping-sheet", shoppingMode);
+      const headingEl = document.querySelector("#capture-title");
+      headingEl.replaceChildren(
+        document.createTextNode(shoppingMode ? "My shopping" : "My weekly"),
+        el("br"),
+        el("em", null, shoppingMode ? "list." : "meal plan."),
+      );
+      sheet.setAttribute(
+        "aria-label",
+        `${shoppingMode ? "Shopping list" : "Weekly meal plan"}. Press Enter to toggle screenshot controls.`,
+      );
+      document.querySelector("#capture-close").textContent = shoppingMode
+        ? "← Back to shopping list"
+        : "← Back to planning";
+      document.querySelector("#capture-shopping").hidden = !shoppingMode;
+      grid.hidden = shoppingMode;
+      document.querySelector("#capture-instructions").textContent = shoppingMode
+        ? "Tap the list to hide controls. Tap again or press Escape to restore them. Use Next page for longer lists."
+        : "Tap your plan to hide controls. Tap again, press Escape, or use Back to restore them.";
+      renderPlan();
+      if (shoppingMode) renderShopping(printing);
+      else {
+        document.querySelector("#capture-pages").hidden = true;
+        document.querySelector("#capture-footer-label").textContent =
+          "A week of good meals ✳";
+      }
+    }
 
     function measure() {
       const controls = dialog.querySelector(".capture-controls");
@@ -84,9 +190,13 @@
       });
     }
 
-    function open(trigger) {
+    function open(trigger, nextMode = "plan") {
       opener = trigger;
-      renderPlan();
+      mode = nextMode;
+      page = 0;
+      setPageSize();
+      if (mode === "shopping") shoppingSnapshot = getShoppingSnapshot();
+      renderActive();
       dialog.classList.remove("controls-hidden");
       sheet.classList.toggle("fit", size.value === "fit");
       showDialog(dialog, trigger);
@@ -124,7 +234,33 @@
         event.preventDefault();
         toggleControls();
       }
+      if (
+        mode === "shopping" &&
+        !event.altKey &&
+        !event.metaKey &&
+        !event.ctrlKey &&
+        ["ArrowLeft", "ArrowRight"].includes(event.key)
+      ) {
+        event.preventDefault();
+        page += event.key === "ArrowRight" ? 1 : -1;
+        renderShopping();
+        measure();
+      }
     });
+    document
+      .querySelector("#capture-previous-page")
+      .addEventListener("click", () => {
+        page--;
+        renderShopping();
+        measure();
+      });
+    document
+      .querySelector("#capture-next-page")
+      .addEventListener("click", () => {
+        page++;
+        renderShopping();
+        measure();
+      });
     document.querySelector("#capture-close").addEventListener("click", close);
     document
       .querySelector("#capture-print")
@@ -139,9 +275,24 @@
       else close();
     });
     window.addEventListener("resize", () => {
+      if (dialog.open) {
+        if (mode === "shopping") {
+          const first = page * pageSize;
+          setPageSize();
+          page = Math.floor(first / pageSize);
+          renderShopping();
+        }
+        measure();
+      }
+    });
+    window.addEventListener("beforeprint", () => {
+      if (!dialog.open) mode = "plan";
+      renderActive({ printing: true });
+    });
+    window.addEventListener("afterprint", () => {
+      renderActive();
       if (dialog.open) measure();
     });
-    window.addEventListener("beforeprint", renderPlan);
     window.addEventListener("popstate", (event) => {
       if (closingFromHistory) {
         closingFromHistory = false;
@@ -159,7 +310,7 @@
         if (opener?.isConnected) opener.focus({ preventScroll: true });
       }
     });
-    return { open };
+    return { open, openShopping: (trigger) => open(trigger, "shopping") };
   }
 
   Object.assign((globalThis.TopRecipes ||= {}), { createCapture });
