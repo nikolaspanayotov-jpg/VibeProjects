@@ -2719,3 +2719,402 @@ dialog::backdrop {
     font-size: 11px;
   }
 }
+
+/* Extra groceries share the same list controls as planned ingredients. */
+.shopping-extra {
+  margin-top: 18px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--sage);
+}
+.shopping-extra > summary {
+  min-height: 52px;
+  padding: 14px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--olive);
+}
+.shopping-extra > p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.shopping-extra-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  margin: 14px 0 18px;
+}
+.shopping-extra-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+}
+.shopping-extra-form .extra-name,
+.shopping-extra-form .extra-aisle,
+.extra-form-actions {
+  grid-column: 1/-1;
+}
+.shopping-extra-form input,
+.shopping-extra-form select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 9px 10px;
+  font-size: 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fffdf8;
+}
+.extra-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.shopping-extra-feedback {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: var(--olive);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.shopping-extra-feedback:has(p:empty):not(:has(button:not([hidden]))) {
+  display: none;
+}
+.shopping-extra-feedback p {
+  padding-top: 12px;
+}
+.shopping-custom-tools {
+  grid-column: 1/-1;
+  padding-left: 32px;
+  display: flex;
+  gap: 22px;
+}
+.shopping-custom-tools button {
+  min-height: 44px;
+}
+.shopping-copy .shopping-extra-label {
+  color: var(--clay);
+}
+.is-shopping-mode .shopping-extra,
+.is-shopping-mode .shopping-custom-tools {
+  display: none;
+}
+#capture-export-status {
+  color: var(--olive);
+  margin-top: -4px;
+}
+
+/* Cooking stays quiet and legible, with the current step given the most space. */
+.cook-dialog {
+  width: 1040px;
+  height: min(900px, calc(100dvh - 40px));
+  background: var(--cream);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.cook-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 26px 32px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.cook-header .eyebrow {
+  font-size: 10px;
+}
+.cook-header h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin: 10px 0 8px;
+  letter-spacing: -0.8px;
+  overflow-wrap: anywhere;
+}
+#cook-yield {
+  font-size: 13px;
+  color: var(--muted);
+}
+.cook-header .icon-button {
+  flex-shrink: 0;
+}
+.cook-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 28px 32px 40px;
+  min-height: calc(100% - 228px);
+}
+.cook-method {
+  min-width: 0;
+  scroll-margin-top: 24px;
+}
+.cook-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.cook-progress p {
+  color: var(--olive);
+  font-size: 13px;
+  font-weight: 600;
+}
+#cook-step-select {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fffdf8;
+  font-size: 16px;
+  max-width: 100%;
+}
+#cook-progress {
+  display: block;
+  width: 100%;
+  height: 6px;
+  border: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--line);
+  accent-color: var(--olive);
+  margin-bottom: 32px;
+}
+#cook-progress::-webkit-progress-bar {
+  background: var(--line);
+}
+#cook-progress::-webkit-progress-value {
+  background: var(--olive);
+}
+#cook-progress::-moz-progress-bar {
+  background: var(--olive);
+}
+#cook-step-heading {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--olive);
+  margin-bottom: 18px;
+}
+.cook-step-text {
+  font:
+    27px/1.7 Georgia,
+    serif;
+  letter-spacing: -0.15px;
+  overflow-wrap: anywhere;
+}
+.cook-step-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 0;
+  margin: 24px 0 12px;
+  font-size: 15px;
+  color: var(--olive);
+  cursor: pointer;
+}
+.cook-step-check input,
+.cook-awake input {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  accent-color: var(--olive);
+}
+.cook-reference {
+  min-width: 0;
+}
+.cook-panel {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 18px;
+  background: #fffdf8;
+}
+.cook-panel > summary,
+.cook-panel > h3 {
+  font:
+    24px/1.4 Georgia,
+    serif;
+  color: var(--olive);
+}
+.cook-panel > summary {
+  min-height: 44px;
+  align-content: center;
+  cursor: pointer;
+}
+#cook-ingredients-help {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+#cook-ingredient-list .ingredient-group {
+  margin-top: 18px;
+}
+#cook-ingredient-list .ingredient-group legend {
+  font-size: 12px;
+}
+#cook-ingredient-list .ingredient-row {
+  font-size: 14px;
+  min-height: 48px;
+}
+.cook-timer-form {
+  display: grid;
+  gap: 12px;
+  margin: 16px 0;
+}
+.cook-timer-form label {
+  display: grid;
+  gap: 7px;
+  font-size: 12px;
+}
+.cook-timer-form input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--cream);
+  font-size: 16px;
+}
+.cook-timer-form > div {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.cook-timer-form > div label {
+  flex: 1;
+  min-width: 0;
+}
+.cook-timer-form button {
+  flex-shrink: 0;
+}
+.cook-timer-list {
+  display: grid;
+  gap: 12px;
+}
+.cook-timer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px;
+  background: var(--sage);
+  border-radius: 8px;
+}
+.cook-timer-label {
+  font-weight: 550;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.cook-timer-time {
+  color: var(--olive);
+  font-size: 27px;
+  font-variant-numeric: tabular-nums;
+}
+.cook-timer-actions {
+  grid-column: 1/-1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.cook-timer-actions button {
+  min-height: 44px;
+}
+.cook-timer-finished {
+  grid-column: 1/-1;
+  font-size: 14px;
+  color: var(--clay);
+  line-height: 1.7;
+}
+.cook-timer.finished {
+  border: 1px solid var(--clay);
+}
+.cook-timer-help {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+.cook-awake {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 13px;
+  color: var(--olive);
+}
+.cook-navigation {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 32px;
+  border-top: 1px solid var(--line);
+  background: var(--cream);
+}
+#cook-completed-count {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .cook-dialog {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: 100dvh;
+    border-radius: 0;
+    border: 0;
+  }
+  .cook-header {
+    padding: 22px 20px 18px;
+  }
+  .cook-layout {
+    display: block;
+    padding: 20px 20px 30px;
+  }
+  .cook-step-text {
+    font-size: 24px;
+    line-height: 1.75;
+  }
+  .cook-reference {
+    margin-top: 28px;
+  }
+  .cook-panel {
+    padding: 16px;
+  }
+  .cook-navigation {
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    flex-wrap: wrap;
+  }
+  .cook-navigation .button {
+    padding-inline: 12px;
+  }
+  #cook-completed-count {
+    order: -1;
+    flex-basis: 100%;
+  }
+  .cook-navigation #cook-next {
+    margin-left: auto;
+  }
+  .shopping-custom-tools {
+    padding-left: 28px;
+  }
+  .capture-controls #capture-save,
+  .capture-controls #capture-share {
+    flex: 1;
+  }
+}

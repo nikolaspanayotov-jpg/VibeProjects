@@ -7,6 +7,8 @@
     showDialog,
     parseLocalDate,
     cookingBatches,
+    SHOPPING_AISLES,
+    EXTRA_UNITS,
   } = globalThis.TopRecipes;
   const round = (value) => Math.round(value * 1000) / 1000;
   const MAX_QUANTITY = 1e9;
@@ -91,13 +93,6 @@
       : base.charAt(0).toUpperCase() + base.slice(1);
   }
 
-  const SHOPPING_AISLES = [
-    "Fruit & vegetables",
-    "Meat & fish",
-    "Dairy & eggs",
-    "Bakery & pastry",
-    "Cupboard & other",
-  ];
   function shoppingAisle(name) {
     const text = name.toLowerCase();
     if (
@@ -253,6 +248,9 @@
       handful: "handfuls",
       sheet: "sheets",
       pack: "packs",
+      bag: "bags",
+      bottle: "bottles",
+      tin: "tins",
     };
     const unit =
       item.quantity === 1 ? item.unit : plurals[item.unit] || item.unit;
@@ -276,11 +274,45 @@
     const statusEl = document.querySelector("#shopping-status");
     let items = [];
     let edits = {};
+    let customItems = [];
+    let editingId = null;
+    let formWeek = null;
+    let removedItem = null;
+    const extraFormEl = document.querySelector("#shopping-extra-form");
+    const extraDetailsEl = document.querySelector("#shopping-extra");
+    const extraStatusEl = document.querySelector("#shopping-extra-status");
+    const extraNameEl = extraFormEl.elements.namedItem("extra-name");
+    const extraQuantityEl = extraFormEl.elements.namedItem("extra-quantity");
+    const extraUnitEl = extraFormEl.elements.namedItem("extra-unit");
+    const extraAisleEl = extraFormEl.elements.namedItem("extra-aisle");
+    for (const unit of EXTRA_UNITS) {
+      const option = el("option", null, unit.label);
+      option.value = unit.id;
+      extraUnitEl.append(option);
+    }
+    const autoAisle = el("option", null, "Choose automatically");
+    autoAisle.value = "";
+    extraAisleEl.append(autoAisle);
+    for (const aisle of SHOPPING_AISLES) {
+      const option = el("option", null, aisle);
+      option.value = aisle;
+      extraAisleEl.append(option);
+    }
     let details = { mealCount: 0, recipeCount: 0, missingCount: 0 };
     let shoppingMode = false;
     let hideBought = false;
 
     function remember(item) {
+      if (item.customId) {
+        const stored = customItems.find((entry) => entry.id === item.customId);
+        if (stored)
+          Object.assign(stored, {
+            quantity: item.quantity,
+            selected: item.selected,
+            bought: item.bought,
+          });
+        return;
+      }
       edits[item.key] = {
         baseline: item.baseline,
         quantity: item.quantity,
@@ -290,7 +322,7 @@
     }
 
     function persist() {
-      persistence.saveShoppingWeek(getWeekKey(), edits);
+      persistence.saveShoppingState(getWeekKey(), edits, customItems);
       storageChanged();
     }
 
@@ -316,6 +348,7 @@
     function renderRow(item) {
       const rowEl = el("div", "shopping-item");
       rowEl.dataset.shoppingKey = item.key;
+      rowEl.classList.toggle("custom-item", !!item.customId);
       const labelEl = el("label", "shopping-check");
       const checkEl = el("input");
       checkEl.type = "checkbox";
@@ -326,6 +359,8 @@
       );
       const copyEl = el("span", "shopping-copy");
       copyEl.append(el("strong", null, item.name));
+      if (item.customId)
+        copyEl.append(el("small", "shopping-extra-label", "Extra item"));
       if (item.optional)
         copyEl.append(el("small", "shopping-optional", "Optional"));
       copyEl.append(el("small", "shopping-source", item.sources.join(" · ")));
@@ -443,7 +478,40 @@
       minusEl.disabled = item.quantity <= 0;
       plusEl.disabled = item.quantity >= MAX_QUANTITY;
       rowEl.classList.toggle("excluded", !item.selected || item.quantity === 0);
-      rowEl.append(labelEl, controlsEl, notesEl, boughtLabel);
+      rowEl.append(labelEl, controlsEl);
+      if (item.notes.length) rowEl.append(notesEl);
+      rowEl.append(boughtLabel);
+      if (item.customId) {
+        const tools = el("div", "shopping-custom-tools");
+        tools.append(
+          button(
+            "Edit item",
+            "text-button",
+            () => editExtra(item.customId),
+            `Edit extra item ${item.name}`,
+          ),
+          button(
+            "Remove",
+            "text-button",
+            () => {
+              removedItem = customItems.find(
+                (entry) => entry.id === item.customId,
+              );
+              customItems = customItems.filter(
+                (entry) => entry.id !== item.customId,
+              );
+              if (editingId === item.customId) resetExtraForm();
+              persist();
+              refresh();
+              extraStatusEl.textContent = `${item.name} removed.`;
+              document.querySelector("#shopping-extra-undo").hidden = false;
+              document.querySelector("#shopping-extra-undo").focus();
+            },
+            `Remove extra item ${item.name}`,
+          ),
+        );
+        rowEl.append(tools);
+      }
       updateVisibility();
       return rowEl;
     }
@@ -466,7 +534,33 @@
         householdSize: getHouseholdSize(),
       });
       edits = persistence.shoppingWeek(getWeekKey());
-      items = applyShoppingEdits(details.items, edits);
+      customItems = persistence.customShoppingWeek(getWeekKey());
+      if (formWeek !== getWeekKey()) {
+        formWeek = getWeekKey();
+        removedItem = null;
+        resetExtraForm();
+        extraStatusEl.textContent = "";
+        document.querySelector("#shopping-extra-undo").hidden = true;
+      }
+      items = [
+        ...applyShoppingEdits(details.items, edits),
+        ...customItems.map((item) => {
+          const step = EXTRA_UNITS.find((unit) => unit.id === item.unit).step;
+          return {
+            ...item,
+            key: `extra:${item.id}|${item.unit}`,
+            customId: item.id,
+            step,
+            baseline: item.quantity || step,
+            pantry: false,
+            optional: false,
+            sources: [],
+            notes: [],
+          };
+        }),
+      ];
+      document.querySelector("#shopping-extra-save").disabled =
+        customItems.length >= 200 && !editingId;
       const date = parseLocalDate(getWeekKey());
       document.querySelector("#shopping-week").textContent =
         `Week of ${date.toLocaleDateString(undefined, { day: "numeric", month: "long", year: "numeric" })}`;
@@ -496,7 +590,7 @@
             "empty-message",
             details.mealCount
               ? "No ingredients are available for these meals yet."
-              : "Plan a few meals first. Their ingredients will appear here automatically.",
+              : "Plan a few meals first, or add your own items above. Recipe ingredients will appear here automatically.",
           ),
         );
       document.querySelector("#shopping-bulk-actions").hidden =
@@ -527,11 +621,115 @@
         refresh();
       });
     document.querySelector("#shopping-reset").addEventListener("click", () => {
-      persistence.saveShoppingWeek(getWeekKey(), {});
+      edits = {};
+      customItems.forEach((item) => {
+        item.selected = true;
+        item.bought = false;
+      });
+      persist();
       storageChanged();
       refresh();
-      statusEl.textContent = "Shopping list reset to the recipe amounts.";
+      statusEl.textContent =
+        "Recipe amounts and shopping choices reset. Extra items have been kept.";
     });
+    function resetExtraForm() {
+      editingId = null;
+      extraFormEl.reset();
+      document.querySelector("#shopping-extra-title").textContent =
+        "Add your own item";
+      document.querySelector("#shopping-extra-save").textContent = "Add item";
+      document.querySelector("#shopping-extra-save").disabled =
+        customItems.length >= 200;
+      document.querySelector("#shopping-extra-cancel").hidden = true;
+    }
+    function editExtra(id) {
+      const item = customItems.find((entry) => entry.id === id);
+      if (!item) return;
+      editingId = id;
+      extraDetailsEl.open = true;
+      extraNameEl.value = item.name;
+      extraQuantityEl.value = item.quantity;
+      extraUnitEl.value = item.unit;
+      extraAisleEl.value = item.aisle;
+      document.querySelector("#shopping-extra-title").textContent =
+        "Edit your item";
+      document.querySelector("#shopping-extra-save").textContent = "Save item";
+      document.querySelector("#shopping-extra-save").disabled = false;
+      document.querySelector("#shopping-extra-cancel").hidden = false;
+      extraNameEl.focus();
+    }
+    extraFormEl.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = extraNameEl.value.trim();
+      const quantity = Number(extraQuantityEl.value);
+      const unit = extraUnitEl.value;
+      if (
+        !name ||
+        name.length > 100 ||
+        !extraQuantityEl.value.trim() ||
+        !Number.isFinite(quantity) ||
+        quantity < 0 ||
+        quantity > MAX_QUANTITY ||
+        !EXTRA_UNITS.some((entry) => entry.id === unit)
+      )
+        return;
+      if (!editingId && customItems.length >= 200) {
+        extraStatusEl.textContent =
+          "You have 200 extra items. Remove one before adding another.";
+        return;
+      }
+      const previous = customItems.find((item) => item.id === editingId);
+      const item = {
+        id:
+          previous?.id ||
+          `extra-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`,
+        name,
+        quantity: round(quantity),
+        unit,
+        aisle: extraAisleEl.value || shoppingAisle(name),
+        selected: previous?.selected ?? true,
+        bought:
+          previous &&
+          previous.name === name &&
+          previous.quantity === round(quantity) &&
+          previous.unit === unit
+            ? previous.bought
+            : false,
+      };
+      if (previous)
+        customItems = customItems.map((entry) =>
+          entry.id === item.id ? item : entry,
+        );
+      else customItems.push(item);
+      persist();
+      resetExtraForm();
+      refresh();
+      extraStatusEl.textContent = `${name} ${previous ? "updated" : "added"}.`;
+      extraNameEl.focus();
+    });
+    document
+      .querySelector("#shopping-extra-cancel")
+      .addEventListener("click", () => {
+        resetExtraForm();
+        extraNameEl.focus();
+      });
+    document
+      .querySelector("#shopping-extra-undo")
+      .addEventListener("click", () => {
+        if (
+          !removedItem ||
+          customItems.some((item) => item.id === removedItem.id) ||
+          customItems.length >= 200
+        )
+          return;
+        customItems.push(removedItem);
+        persist();
+        refresh();
+        removedItem = null;
+        document.querySelector("#shopping-extra-undo").hidden = true;
+        extraStatusEl.textContent = "Extra item restored.";
+        extraDetailsEl.querySelector("summary").focus();
+      });
     captureEl.addEventListener("click", () => openCapture(captureEl));
     document
       .querySelector("#shopping-mode")

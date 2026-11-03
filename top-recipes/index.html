@@ -17,8 +17,10 @@
     <script defer src="./src/storage.js"></script>
     <script defer src="./src/ui.js"></script>
     <script defer src="./src/content.js"></script>
+    <script defer src="./src/cooking.js"></script>
     <script defer src="./src/recipes.js"></script>
     <script defer src="./src/shopping.js"></script>
+    <script defer src="./src/export.js"></script>
     <script defer src="./src/capture.js"></script>
     <script defer src="./src/experience.js"></script>
     <script defer src="./src/app.js"></script>
@@ -468,6 +470,65 @@
             Clear bought marks
           </button>
         </div>
+        <details id="shopping-extra" class="shopping-extra">
+          <summary id="shopping-extra-title">Add your own item</summary>
+          <p>
+            For groceries and everyday essentials beyond your recipes. Extra
+            items stay separate from recipe totals and save for this week.
+          </p>
+          <form id="shopping-extra-form" class="shopping-extra-form">
+            <label class="extra-name"
+              >Item name<input
+                name="extra-name"
+                type="text"
+                placeholder="e.g. Coffee or washing-up liquid"
+                maxlength="100"
+                required
+            /></label>
+            <label
+              >Quantity<input
+                name="extra-quantity"
+                type="number"
+                min="0"
+                max="1000000000"
+                step="0.001"
+                inputmode="decimal"
+                value="1"
+                required
+            /></label>
+            <label>Unit<select name="extra-unit"></select></label>
+            <label class="extra-aisle"
+              >Aisle<select name="extra-aisle"></select
+            ></label>
+            <div class="extra-form-actions">
+              <button
+                id="shopping-extra-save"
+                type="submit"
+                class="button button-primary"
+              >
+                Add item</button
+              ><button
+                id="shopping-extra-cancel"
+                type="button"
+                class="text-button"
+                hidden
+              >
+                Cancel edit
+              </button>
+            </div>
+          </form>
+        </details>
+        <div class="shopping-extra-feedback">
+          <p id="shopping-extra-status" role="status" aria-live="polite"></p>
+          <button
+            id="shopping-extra-undo"
+            type="button"
+            class="text-button"
+            hidden
+          >
+            Undo remove
+          </button>
+        </div>
         <p id="shopping-warning" class="notice" hidden></p>
         <div class="shopping-toolbar">
           <p id="shopping-summary" aria-live="polite"></p>
@@ -496,6 +557,111 @@
       </div>
     </dialog>
 
+    <dialog id="cook-dialog" class="cook-dialog" aria-labelledby="cook-title">
+      <div class="cook-header">
+        <div>
+          <p class="eyebrow">A LITTLE TIME IN THE KITCHEN</p>
+          <h2 id="cook-title"></h2>
+          <p id="cook-yield"></p>
+        </div>
+        <button
+          id="cook-close"
+          type="button"
+          class="icon-button"
+          aria-label="Leave cooking mode and pause timers"
+        >
+          ×
+        </button>
+      </div>
+      <div class="cook-layout">
+        <section class="cook-method" aria-label="Cooking steps">
+          <div class="cook-progress">
+            <p id="cook-step-count"></p>
+            <label class="sr-only" for="cook-step-select">Jump to a step</label
+            ><select id="cook-step-select"></select>
+          </div>
+          <progress
+            id="cook-progress"
+            value="0"
+            max="1"
+            aria-label="Completed cooking steps"
+          ></progress>
+          <h3 id="cook-step-heading" tabindex="-1">Step 1</h3>
+          <p id="cook-step-text" class="cook-step-text"></p>
+          <label class="cook-step-check"
+            ><input id="cook-step-done" type="checkbox" /> I’ve completed this
+            step</label
+          >
+          <p id="cook-complete" class="portion-help" hidden>
+            All steps complete. Enjoy your meal!
+          </p>
+        </section>
+        <aside class="cook-reference" aria-label="Ingredients and timers">
+          <details id="cook-ingredients" class="cook-panel">
+            <summary>Ingredients within reach</summary>
+            <p id="cook-ingredients-help"></p>
+            <div id="cook-ingredient-list"></div>
+          </details>
+          <section class="cook-panel" aria-labelledby="cook-timers-title">
+            <h3 id="cook-timers-title">Kitchen timers</h3>
+            <form id="cook-timer-form" class="cook-timer-form">
+              <label
+                >Timer name<input
+                  id="cook-timer-name"
+                  type="text"
+                  maxlength="50"
+                  placeholder="e.g. Oven or rice"
+              /></label>
+              <div>
+                <label
+                  >Minutes<input
+                    id="cook-timer-minutes"
+                    type="number"
+                    min="0.5"
+                    max="1440"
+                    step="0.5"
+                    value="10"
+                    inputmode="decimal"
+                    required /></label
+                ><button
+                  id="cook-timer-add"
+                  type="submit"
+                  class="button button-outline"
+                >
+                  Start timer
+                </button>
+              </div>
+            </form>
+            <div id="cook-timer-list" class="cook-timer-list"></div>
+            <p class="cook-timer-help">
+              Timers pause when you leave cooking mode. Keep this page open; an
+              alarm appears here when time is up.
+            </p>
+          </section>
+          <label id="cook-awake-label" class="cook-awake" hidden
+            ><input id="cook-awake" type="checkbox" /> Keep screen awake while
+            cooking</label
+          >
+          <p id="cook-awake-status" class="cook-timer-help" role="status"></p>
+        </aside>
+      </div>
+      <p
+        id="cook-status"
+        class="sr-only"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      ></p>
+      <div class="cook-navigation">
+        <button id="cook-previous" type="button" class="button button-outline">
+          ← Previous step</button
+        ><span id="cook-completed-count"></span
+        ><button id="cook-next" type="button" class="button button-primary">
+          Next step →
+        </button>
+      </div>
+    </dialog>
+
     <dialog
       id="capture-dialog"
       class="capture-dialog"
@@ -509,6 +675,21 @@
             <option value="fit">Fit to screen</option>
             <option value="comfortable">Comfortable</option>
           </select></label
+        ><button
+          id="capture-save"
+          type="button"
+          class="button button-primary"
+          disabled
+        >
+          Save image</button
+        ><button
+          id="capture-share"
+          type="button"
+          class="button button-outline"
+          hidden
+          disabled
+        >
+          Share image</button
         ><button id="capture-print" type="button" class="button button-outline">
           Print</button
         ><button id="capture-hide" type="button" class="button button-outline">
@@ -534,6 +715,7 @@
           Tap your plan to hide controls. Tap again, press Escape, or use Back
           to restore them.
         </p>
+        <p id="capture-export-status" role="status" aria-live="polite"></p>
       </div>
       <div
         id="capture-sheet"

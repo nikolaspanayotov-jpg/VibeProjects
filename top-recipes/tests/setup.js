@@ -13,8 +13,10 @@ for (const path of [
   "src/storage.js",
   "src/ui.js",
   "src/content.js",
+  "src/cooking.js",
   "src/recipes.js",
   "src/shopping.js",
+  "src/export.js",
   "src/capture.js",
   "src/experience.js",
 ])

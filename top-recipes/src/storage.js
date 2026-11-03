@@ -4,6 +4,24 @@
 
   const PLAN_KEY = "top-recipes:planner:v1";
   const CHECKS_KEY = "top-recipes:ingredients:v1";
+  const SHOPPING_AISLES = [
+    "Fruit & vegetables",
+    "Meat & fish",
+    "Dairy & eggs",
+    "Bakery & pastry",
+    "Cupboard & other",
+  ];
+  const EXTRA_UNITS = [
+    { id: "item", label: "items", step: 1 },
+    { id: "pack", label: "packs", step: 1 },
+    { id: "bag", label: "bags", step: 1 },
+    { id: "bottle", label: "bottles", step: 1 },
+    { id: "tin", label: "tins", step: 1 },
+    { id: "g", label: "g", step: 25 },
+    { id: "kg", label: "kg", step: 0.25 },
+    { id: "ml", label: "ml", step: 50 },
+    { id: "l", label: "litres", step: 0.25 },
+  ];
   const object = (value) =>
     value !== null && typeof value === "object" && !Array.isArray(value);
   const slug = (value) =>
@@ -64,6 +82,25 @@
         validWeek(template.week) &&
         validSettings(template.settings),
     );
+  const validCustomShopping = (items) =>
+    Array.isArray(items) &&
+    items.length <= 200 &&
+    new Set(items.map((item) => item?.id)).size === items.length &&
+    items.every(
+      (item) =>
+        object(item) &&
+        slug(item.id) &&
+        typeof item.name === "string" &&
+        item.name.trim().length > 0 &&
+        item.name.length <= 100 &&
+        Number.isFinite(item.quantity) &&
+        item.quantity >= 0 &&
+        item.quantity <= 1e9 &&
+        EXTRA_UNITS.some((unit) => unit.id === item.unit) &&
+        SHOPPING_AISLES.includes(item.aisle) &&
+        typeof item.selected === "boolean" &&
+        typeof item.bought === "boolean",
+    );
   function validWeeksOf(value, validate) {
     return (
       object(value) &&
@@ -88,6 +125,11 @@
     )
       return false;
     if (value.templates !== undefined && !validTemplates(value.templates))
+      return false;
+    if (
+      value.customShoppingWeeks !== undefined &&
+      !validWeeksOf(value.customShoppingWeeks, validCustomShopping)
+    )
       return false;
     if (
       value.shoppingWeeks !== undefined &&
@@ -221,6 +263,16 @@
         planner.shoppingWeeks[key] = clone(edits);
         write(PLAN_KEY, planner);
       },
+      customShoppingWeek(key) {
+        return clone(planner.customShoppingWeeks?.[key] || []);
+      },
+      saveShoppingState(key, edits, customItems) {
+        if (!validShoppingEdits(edits) || !validCustomShopping(customItems))
+          throw new Error("Invalid shopping list");
+        (planner.shoppingWeeks ||= {})[key] = clone(edits);
+        (planner.customShoppingWeeks ||= {})[key] = clone(customItems);
+        write(PLAN_KEY, planner);
+      },
       isChecked(recipeId, ingredientId) {
         return (
           Object.hasOwn(checks.recipes, recipeId) &&
@@ -256,5 +308,8 @@
     validShoppingEdits,
     validSettings,
     createPersistence,
+    SHOPPING_AISLES,
+    EXTRA_UNITS,
+    validCustomShopping,
   });
 })();

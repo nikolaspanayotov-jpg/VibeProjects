@@ -174,7 +174,15 @@ The Screenshot view button opens a dedicated, uncluttered view of the selected w
 - Put Close and size controls above the capture area. Tapping the capture area enters a controls-hidden state; Escape, a subsequent tap, or browser Back restores controls. Instructions appear before controls are hidden and must not appear in the captured plan.
 - Include print styles using the same layout on one portrait page, with browser headers and footers disabled by the user if necessary.
 
-Screenshot view is a presentation of saved state, not a separate editable copy. Closing it returns to the same week and planning position. A direct Download PNG action is an optional later enhancement; it is not necessary for ordinary screenshots.
+Screenshot view is a presentation of saved state, not a separate editable copy. Closing it returns to the same week and planning position. Save image now downloads a measured portrait PNG, and Share image opens the native file-sharing sheet when supported. Exports retain the cream palette, serif headings and full wrapped names. Cache the file before the tap, disable controls while preparing, and give a recoverable message if encoding or sharing fails. Share cancellation leaves the PNG ready to save. For a multi-page shopping list, label the download Save this page and explain that Next page prepares the next image. Export all 21 plan slots in one image, with portions and leftovers; never copy editing controls into the image.
+
+## Cooking mode and extra groceries
+
+Start cooking in recipe details opens a separate modal while retaining the recipe beneath it. Give the current step the largest type, with a step count, completion progress, previous/next controls and a direct step selector. Ingredient quantities state the authored recipe yield; component groups and preparation checkboxes are available in a nearby disclosure. Preparation ticks are independent of purchase checkboxes. Use one column on phones and a wider method column with reference panels on desktop, with the step controls kept within reach at the bottom.
+
+Provide up to eight named kitchen timers. Pause/resume, reset and remove are separate actions with 44 px targets. Calculate time from deadlines so a delayed interval does not extend the countdown. Show a clear Time’s up state and announce it once. Closing cooking mode pauses timers; reopening restores session progress, which lasts until refresh. A screen-awake checkbox appears only when supported and releases its lock on close. Keep timers usable when a wake-lock request fails. No notification prompt or background audible alarm is implied.
+
+Add your own item in shopping editing mode is a compact disclosure containing name, quantity, unit and aisle fields. Choose the aisle automatically unless the user selects one. Extras are additional purchases, kept separate from computed recipe ingredients. Reuse quantity controls, selection, Bought marks, aisle grouping and image exports. Provide Edit, Remove and Undo remove. Extras save by week, do not change when household portions change, and are not copied through weekly templates. Reset list preserves their quantities and resets shopping choices. Empty plans can still create a useful shopping list through this form. Hide editing controls in shopping mode.
 
 ## Recipe content and implementation foundation
 
@@ -223,6 +231,8 @@ top-recipes/
     experience.js             Saved weeks and meal portions/leftover controls
     planner.js                Calendar, placement, move and swap logic
     storage.js                Versioned browser persistence
+    cooking.js                Cooking steps, preparation ticks and timers
+    export.js                 Portrait PNG layout, download and native sharing
     capture.js                Screenshot and print presentation
     ui.js                     Shared DOM helpers
   tests/                      Development-only npm tools and checks

@@ -11,6 +11,7 @@
     shoppingAisle,
     slotKey,
     mealServings,
+    createCaptureExporter,
   } = globalThis.TopRecipes;
 
   // Headings use some of the page budget, so an aisle change cannot push rows off screen.
@@ -56,6 +57,66 @@
     let page = 0;
     let pageSize = 10;
     let shoppingSnapshot = { items: [], missingCount: 0 };
+    const exporter = createCaptureExporter({ getModel: exportModel });
+
+    function exportModel() {
+      const common = {
+        mode,
+        weekKey: getWeekKey(),
+        dateLabel: document.querySelector("#capture-dates").textContent,
+      };
+      if (mode === "shopping") {
+        const pages = paginateShoppingItems(shoppingSnapshot.items, pageSize);
+        return {
+          ...common,
+          page,
+          totalPages: pages.length,
+          itemCount: shoppingSnapshot.items.length,
+          missingCount: shoppingSnapshot.missingCount,
+          items: pages[page].map((item) => ({
+            ...item,
+            amount: formatShoppingQuantity(item),
+          })),
+        };
+      }
+      const start = parseLocalDate(getWeekKey());
+      return {
+        ...common,
+        days: DAYS.map((day, index) => {
+          const date = new Date(start);
+          date.setDate(date.getDate() + index);
+          return {
+            label: titleCase(day).slice(0, 3),
+            date: date.toLocaleDateString(undefined, {
+              day: "numeric",
+              month: "short",
+            }),
+            meals: MEALS.map((meal) => {
+              const id = getWeek()[day][meal];
+              const recipe = getRecipe(id);
+              const settings = getMealSettings()[slotKey({ day, meal })] || {};
+              let note = "";
+              if (
+                recipe &&
+                (getHouseholdSize() || settings.servings || settings.leftoverOf)
+              ) {
+                const count = mealServings(
+                  recipe,
+                  settings,
+                  getHouseholdSize(),
+                );
+                note = `${settings.leftoverOf ? "Leftovers · " : ""}${count} ${count === 1 ? "serving" : "servings"}`;
+              }
+              return {
+                meal,
+                name: id ? recipe?.title || "Recipe unavailable" : "—",
+                note,
+              };
+            }),
+          };
+        }),
+      };
+    }
 
     function setPageSize() {
       pageSize = Math.max(
@@ -132,6 +193,7 @@
       document.querySelector("#capture-footer-label").textContent = printing
         ? `${shoppingSnapshot.items.length} shopping items`
         : `Page ${page + 1} of ${totalPages} · ${shoppingSnapshot.items.length} items`;
+      if (!printing && dialog.open) exporter.prepare();
     }
 
     function renderActive({ printing = false } = {}) {
@@ -266,6 +328,7 @@
       showDialog(dialog, trigger);
       history.pushState({ topRecipesCapture: true, controlsHidden: false }, "");
       measure();
+      exporter.prepare();
     }
 
     function toggleControls() {
@@ -280,6 +343,7 @@
     }
 
     function close() {
+      exporter.invalidate();
       if (history.state?.topRecipesCapture) {
         const hidden = history.state.controlsHidden;
         closingFromHistory = true;
@@ -326,6 +390,7 @@
         measure();
       });
     document.querySelector("#capture-close").addEventListener("click", close);
+    dialog.addEventListener("close", exporter.invalidate);
     document
       .querySelector("#capture-print")
       .addEventListener("click", () => window.print());

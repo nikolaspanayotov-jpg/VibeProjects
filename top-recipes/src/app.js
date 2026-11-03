@@ -17,6 +17,7 @@
     showDialog,
     closeOnBackdrop,
     createRecipeViews,
+    createCookingMode,
     recipeIllustration,
     matchesRecipe,
     validateRecipeData,
@@ -191,6 +192,7 @@
   }
 
   const recipeViews = createRecipeViews({
+    cooking: createCookingMode(),
     persistence,
     openPlacement,
     makeDraggable,

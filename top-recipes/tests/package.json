@@ -11,8 +11,9 @@
     "test": "node --test --test-isolation=none"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^0.1.80",
     "happy-dom": "^20.0.0",
-    "marked": "15.0.12",
-    "js-yaml": "4.1.0"
+    "js-yaml": "4.1.0",
+    "marked": "15.0.12"
   }
 }

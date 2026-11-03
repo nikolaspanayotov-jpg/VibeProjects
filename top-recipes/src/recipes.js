@@ -103,6 +103,7 @@
     notify,
     storageChanged,
     favouriteButton,
+    cooking,
   }) {
     const dialog = document.querySelector("#recipe-dialog");
     const container = document.querySelector("#recipe-detail");
@@ -241,6 +242,13 @@
         },
       );
       actions.append(add, copy);
+      if (cooking) {
+        const start = button("Start cooking →", "button button-outline", () =>
+          cooking.open(recipe, start),
+        );
+        start.id = "recipe-start-cooking";
+        actions.prepend(start);
+      }
       const fallback = el("div", "copy-fallback");
       fallback.hidden = true;
       const label = el(
