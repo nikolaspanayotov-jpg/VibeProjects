@@ -1,6 +1,7 @@
 # Level 4 Data Fellowship — KSB answer and evidence guide
 
 Prepared: 2 November 2026.  
+Presentation updated: 3 November 2026 for the implemented study page; source-check dates below remain unchanged.  
 Coverage: K1–K15, S1–S15 and B1–B7.  
 Companion document: [study page design](./design.md).
 
@@ -10,7 +11,7 @@ This is a set of explanations, worked examples and answer-building prompts based
 
 Read an answer, close it, explain the idea in your own words, then check what you missed. Complete the **Make it yours** template using genuine experience. Square-bracket placeholders are deliberately unfinished; they are not facts about your employer or project. Every example involving service requests, tools, numbers or stakeholders below is fictional or illustrative unless explicitly identified as an external source.
 
-Use evidence held in your organisation's approved location. This repository is public: do not replace placeholders here with sensitive workplace information. The future page should keep sanitised personal responses separate from this public answer bank. A model answer, synthetic exercise or self-reflection does not by itself demonstrate a workplace Skill or Behaviour.
+Use evidence held in your organisation's approved location. This repository is public: do not replace placeholders here with sensitive workplace information. The study page keeps sanitised personal responses separate from this public answer bank. A model answer, synthetic exercise or self-reflection does not by itself demonstrate a workplace Skill or Behaviour.
 
 ### Assessment context and source status
 
@@ -612,7 +613,7 @@ xychart-beta
     line [143, 146, 149]
 ```
 
-The first plotted line is actual demand; the second is the forecast. The table supplies exact values and an accessible alternative. In the eventual page, label both series directly and distinguish them with line style as well as colour.
+Actual demand uses the solid line and the forecast uses the dashed line. The table supplies exact values and an accessible alternative. Series labels and different line styles distinguish the results without relying on colour alone.
 
 Root mean squared error is `sqrt(mean((actual − forecast)²))`. Here trend-model RMSE is **sqrt(14/3) = 2.160 requests**, compared with **sqrt(218/3) = 8.524 requests** for the naive baseline. Both metrics use the same three held-out months. This narrow result supports this candidate on this toy split, not a broad performance claim. Repeated model selection needs rolling-origin validation and a separate final test where feasible.
 

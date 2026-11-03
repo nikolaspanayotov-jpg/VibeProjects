@@ -1,8 +1,8 @@
 # Level 4 Data Fellowship — study page design
 
-Status: design specification; the study page is not yet implemented.  
+Status: implemented as a static study page on 3 November 2026. See [verification](./tests/VERIFICATION.md) for checks and limits.  
 Prepared: 2 November 2026.  
-Revised: 2 November 2026, to incorporate the supplied Pass-preparation guide and the complete answer bank.  
+Revised: 3 November 2026, after implementing the answer-led study page.  
 Project folder: `VibeProjects/L4-fellowship/`.  
 Working page title: **Data Fellowship · EPA study desk**.
 
@@ -18,7 +18,7 @@ The page should answer three practical questions each time it opens:
 
 The content baseline is the learner's supplied breakdown: **15 Knowledge items, 15 Skills and 7 Behaviours, totalling 37 KSBs**. Preserve the identifiers K1–K15, S1–S15 and B1–B7 throughout content, questions, evidence and exports. The labels below are study summaries of that breakdown, not quotations from an official standard.
 
-The current deliverables are this design and [solutions.md](./solutions.md), which contains an answer guide, personalisation template, evidence guidance, coverage check and follow-up question for every KSB. The proposed page, interactive exercises, persistence and exports described below are future implementation work.
+The delivered page is [index.html](./index.html), with the full answer bank in [curriculum.js](./curriculum.js). [solutions.md](./solutions.md) remains the canonical answer guide, with a personalisation template, evidence guidance, coverage check and follow-up for every KSB. The page includes study views, practice, evidence references, synthetic exercises, browser persistence and backup/restore. This document retains the design rationale; implementation checks and limits are recorded in [tests/VERIFICATION.md](./tests/VERIFICATION.md).
 
 ### Assessment assumptions
 
@@ -502,13 +502,13 @@ Version changes to curriculum content explicitly. Preserve IDs, question links a
 - Make assessment and source uncertainties visible and avoid invented personal experience or progress.
 - Link all 37 design-map rows to the matching stable solution anchor. Incorporate the supplied specific targets, especially S12's two-stakeholder preparation and S13's evaluated visual forecast plus broader mining/modelling scope.
 
-### Stage B: minimum useful page — future work
+### Stage B: minimum useful page — implemented
 
 Implement the five sections, all answer guides from `solutions.md`, the theme map, questions and follow-ups, personal response/self-review forms, sanitised evidence references, review scheduling, local persistence and backup/restore. Preserve the complete content and caveats from the answer bank. Publish new practical tasks only when written and checked; an empty exercise template must not appear complete.
 
-### Stage C: deeper learning material — future work
+### Stage C: further learning material — ongoing content work
 
-Expand the current worked examples, add the full synthetic exercise pack, develop additional scenario questions, complete outstanding source checks and incorporate confirmed provider-specific assessment requirements. Add further features only when they solve a demonstrated study need.
+The implemented practical studio includes six tasks, worked approaches, self-checks and four downloadable synthetic datasets. Further work can expand examples and scenario questions, complete outstanding source checks and incorporate confirmed provider-specific assessment requirements. Add features only when they solve a demonstrated study need.
 
 ### Functional acceptance for the eventual page
 
@@ -531,6 +531,16 @@ Expand the current worked examples, add the full synthetic exercise pack, develo
 
 ### Verification plan
 
-For these documents, check the complete KSB ID set in both files, theme coverage, all 37 design-to-solution anchors, all repeated answer blocks and the assessment-route map. Independently recalculate the synthetic descriptive statistics, t-test and forecast/baseline metrics and run the teaching SQL against small in-memory fixtures. Review the supplied topic details against the answers. No application or browser behaviour is being claimed at the documentation stage.
+For these documents, check the complete KSB ID set in both files, theme coverage, all 37 design-to-solution anchors, all repeated answer blocks and the assessment-route map. Independently recalculate the synthetic descriptive statistics, t-test and forecast/baseline metrics and run the teaching SQL against small in-memory fixtures. Review the supplied topic details against the answers. The implemented application has now been exercised in a browser; see the verification record for the actual checks and their limits.
 
 When implementing, exercise the actual study-to-review flow, evidence linking and backup restore. Check local-date scheduling across a timezone boundary, direct hash navigation, corrupt storage, quota failure and import conflicts. Inspect the page at phone and desktop sizes, test keyboard focus and read real screenshots. Use a focused browser smoke check for the larger application, following the repository guidance, and record only checks actually performed.
+
+## 17. Implementation record — 3 November 2026
+
+The page is implemented in `index.html`, with the full authored curriculum in a relative `curriculum.js` file. The split keeps the 37 long answer records separate while preserving direct file opening and the build-free application. There is no runtime Markdown dependency, backend, login, required external service or analytics tracking.
+
+Delivered features include all five main sections; six themes and 37-topic index; complete answer guides and personal responses; coverage self-review; S12/S13 worksheets; local-date recall scheduling; evidence rationales and draft recovery; quick, follow-up, mixed, project and weak-topic practice; optional timer and resumable sessions; weekly plan; conditional assessment-route filters; synthetic studio downloads; accessible forecast; JSON backup/restore with per-record conflict choices; Markdown summary and print styles.
+
+The storage key remains `l4-fellowship.v1`. Corrupt storage is preserved, failed writes retain temporary state, and changes from another tab disable stale writes. Public source content remains separate from browser-only personal state.
+
+See [README.md](./README.md) for running the page, [AGENTS.md](./AGENTS.md) for maintenance invariants and [tests/VERIFICATION.md](./tests/VERIFICATION.md) for executed checks. The earlier proposed folder layout is a roadmap; current files are `index.html`, `curriculum.js`, `solutions.md`, `design.md`, `README.md`, `AGENTS.md` and the focused test/authoring utilities under `tests/`.
