@@ -544,3 +544,23 @@ Delivered features include all five main sections; six themes and 37-topic index
 The storage key remains `l4-fellowship.v1`. Corrupt storage is preserved, failed writes retain temporary state, and changes from another tab disable stale writes. Public source content remains separate from browser-only personal state.
 
 See [README.md](./README.md) for running the page, [AGENTS.md](./AGENTS.md) for maintenance invariants and [tests/VERIFICATION.md](./tests/VERIFICATION.md) for executed checks. The earlier proposed folder layout is a roadmap; current files are `index.html`, `curriculum.js`, `solutions.md`, `design.md`, `README.md`, `AGENTS.md` and the focused test/authoring utilities under `tests/`.
+
+## 18. Guided study, worked project and readiness — implemented 3 November 2026
+
+All three improvement ideas are implemented within the existing static page and visual system.
+
+### Guided lessons
+
+Every KSB now starts with a concise “Explain it in 60 seconds” explanation, a fictional worked example, a common mistake and a probing question. These blocks live in `solutions.md` alongside the full original guide. Definitions/calculations remain available in an expandable section. Learn / Worked example / My answer / Practise controls open, scroll and focus the appropriate content; on phones these controls remain available while reading. The personal response is not prefilled with model content.
+
+### Complete fictional project
+
+The Worked project navigation opens six lifecycle/reflection stages with eight artefacts: brief, handling/architecture note, quality/SQL log, statistics, forecasting/pattern mining, validation, stakeholder communication and reflection. `worked-project.md` is the source. Each artefact has explicit KSB rationales, and the complete map covers all 37 IDs. Interactive comparisons show the flawed 357-row join versus the validated 300-row grain. The dashboard switches between request measures and coded feedback, with exact-value alternatives. The portfolio and approved fictional lookup can be downloaded. All examples, roles, approvals and feedback remain clearly fictional and do not update personal completion.
+
+### Readiness and useful next actions
+
+A separate Readiness view shows recall, personal examples and evidence for every KSB, with category/gap filters. The next three suggestions also appear on Today and open a matching short explanation, probing question, personal response or evidence form. Recommendations prioritise due/weak recall, then meaningful example/evidence gaps; they are not assessment grades. Confidence remains separate.
+
+Personal-example status uses an explicit `exampleConfirmed` self-check alongside a nonempty response. A draft alone is not sufficient, and editing/replacing a response clears the self-check. The additive field defaults to false when older version-1 progress loads. The `l4-fellowship.v1` key, existing notes, evidence and settings are preserved. Probing sessions add a supported question type without removing earlier ones.
+
+The checked-in curriculum contains both Markdown sources and their hashes, so all features work from disk without runtime Markdown fetches. The relative script URL carries a release suffix to avoid combining the new application with cached older content. Both browser suites, actual case SQL and responsive screenshots were verified; see the updated verification record.

@@ -65,7 +65,8 @@ with sync_playwright() as p:
         expect(page.locator('h1')).to_have_text(k['title'])
         assert page.locator('[data-coverage]').count()==k['targets']
         expect(page.locator('#my-response')).to_be_visible()
-        assert len(page.locator('.reading-panel > .prose').inner_text())>200
+        assert len(page.locator('.full-answer').text_content())>200
+        assert len(page.locator('.quick-answer').inner_text().split())>=35
     checks.append('All 37 complete lessons, response forms, source links and target checklists')
 
     go('ksb-k8');expect(page.locator('#my-response')).to_be_visible()
@@ -235,8 +236,9 @@ with sync_playwright() as p:
             assert not page.evaluate('document.documentElement.scrollWidth > innerWidth'),(width,route_name)
         if width==390:
             go('today');page.screenshot(path=str(OUTPUT/'today-mobile.png'),full_page=True)
-            go('ksb-s13');page.screenshot(path=str(OUTPUT/'forecast-mobile.png'),full_page=True)
+            go('ksb-s13');page.locator('#lesson-full-guide > summary').click();page.screenshot(path=str(OUTPUT/'forecast-mobile.png'),full_page=True)
     page.set_viewport_size({'width':1440,'height':1000});go('ksb-s13')
+    page.locator('#lesson-full-guide').evaluate('(el)=>el.open=true')
     page.screenshot(path=str(OUTPUT/'forecast-desktop.png'),full_page=True)
     keyboard_page=context.new_page();keyboard_page.goto(args.url)
     keyboard_page.keyboard.press('Tab')

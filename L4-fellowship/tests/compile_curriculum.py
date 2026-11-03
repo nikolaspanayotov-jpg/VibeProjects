@@ -12,6 +12,7 @@ import markdown
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = (ROOT / 'solutions.md').read_text()
 DESIGN = (ROOT / 'design.md').read_text()
+PROJECT_SOURCE = (ROOT / 'worked-project.md').read_text()
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -77,21 +78,52 @@ for match in re.finditer(r'^### ([KSB]\d+) — ([^\n]+)\n(.*?)(?=^<a id="ksb-|^<
     ksb,title,body=match.groups()
     body=re.split(r'^## ',body,flags=re.M)[0].strip()
     guide,remaining=body.split('**Make it yours.**',1)
+    short_blocks,guide=guide.split('**Answer guide.**',1)
+    quick,short_blocks=short_blocks.split('**Worked example.**',1)
+    example,short_blocks=short_blocks.split('**Common mistake.**',1)
+    mistake,probe=short_blocks.split('**Probe further.**',1)
+    quick=quick.split('**Explain it in 60 seconds.**',1)[1]
     template,remaining=remaining.split('**Evidence to reference.**',1)
     evidence,remaining=remaining.split('**Coverage check.**',1)
     coverage,followup=remaining.split('**Follow-up.**',1)
     theme=next(i for i,(_,_,ids) in enumerate(THEMES) if ksb in ids.split())
     records.append(dict(id=ksb,title=title,category=ksb[0],theme=theme,
-        guide=html(guide.replace('**Answer guide.**','',1)),template=html(template),
+        guide=html(guide),template=html(template),
+        quick=html(quick),example=html(example),mistake=html(mistake),probe=probe.strip(),
         evidence=html(evidence),coverage=coverage.strip(),targets=TARGETS[ksb],
         followup=followup.strip(),question=questions[ksb],searchText=body,
         sourceAnchor='ksb-'+ksb.lower(),revision='2026-11-03',
         route=1 if ksb in 'K3 K4 K8 K9 K11 K12 S1 S2 S3 S4 S6 S7 S8 S12 S15 B3 B4'.split() else 2))
 
 assert len(records)==37 and set(TARGETS)=={x['id'] for x in records}
+stages=[]
+mapping={item['id']:[] for item in records}
+for stage_match in re.finditer(r'^## (Planning|Preparation|Analysis|Validation|Communication|Reflection)\n(.*?)(?=^## |\Z)',PROJECT_SOURCE,re.M|re.S):
+    name,body=stage_match.groups()
+    stage_id=name.lower()
+    artifacts=[]
+    for artifact_match in re.finditer(r'^### (P\d+) — ([^\n]+)\n(.*?)(?=^### |\Z)',body,re.M|re.S):
+        artifact_id,title,text=artifact_match.groups()
+        purpose,text=text.split('**Artefact.**',1)
+        content,annotations=text.split('**KSB mapping.**',1)
+        links=[]
+        for ksb,rationale in re.findall(r'^\| ([KSB]\d+) \| (.*?) \|$',annotations,re.M):
+            assert ksb in mapping
+            links.append(dict(id=ksb,rationale=rationale))
+            mapping[ksb].append(dict(stage=stage_id,artifact=artifact_id,rationale=rationale))
+        assert links, artifact_id
+        artifacts.append(dict(id=artifact_id,title=title,purpose=purpose.replace('**Purpose.**','').strip(),body=html(content),links=links))
+    stages.append(dict(id=stage_id,title=name,summary=html(body.split('### ',1)[0]),artifacts=artifacts))
+assert len(stages)==6 and sum(len(s['artifacts']) for s in stages)==8
+assert all(mapping.values()),[ksb for ksb,links in mapping.items() if not links]
+project=dict(title='A fictional service-capacity briefing',
+    overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
+    stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
+    sourceSha256=hashlib.sha256(PROJECT_SOURCE.encode()).hexdigest())
 data=dict(revision='2026-11-03',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
+          project=project,
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
           sources=html(SOURCE.split('## Reference register',1)[1]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled 37 complete answer records into curriculum.js')
+print('Compiled 37 guided lessons and six worked-project stages into curriculum.js')

@@ -29,3 +29,18 @@ JavaScript syntax checks passed for the application and curriculum. The curricul
 Desktop and mobile screenshots were inspected for hierarchy, legibility, reading surfaces, index layout and overflow. Test output and screenshots are saved under `/tmp/l4-qa` during this session and are not application data or committed assets.
 
 This is focused browser verification, not a complete WCAG conformance audit or cross-browser certification. Provider-specific assessment requirements and detailed current-law/source verification remain as described in `solutions.md`. No real workplace evidence, model result or stakeholder feedback is asserted by the synthetic examples. Hosted-page offline reload and cloud synchronisation are not implemented; direct file opening and JSON transfer are supported.
+
+## Guided lessons, worked project and readiness — 3 November 2026
+
+Both the existing smoke check and `browser_enhancements.py` passed after the improvements. No page errors were observed. Enhancement screenshots/results are kept under `/tmp/l4-enhancements-qa`; the regression output is under `/tmp/l4-regression-qa` in this session.
+
+- All 37 KSBs contain the short explanation, worked example, common mistake and probing question, while retaining the complete original guide and evidence prompts.
+- Mobile Learn / Worked example / My answer / Practise jumps open and focus the correct content. Detailed guidance remains expandable, and sticky navigation does not cover the response field.
+- Genuine-personal-example confirmation persists, clears on edits and stays separate from evidence and confidence. A legacy v1 record retains its response, confidence, gap note and settings while defaulting the new confirmation to false.
+- The readiness matrix filters correctly. A seeded combination of partial recall, a draft example and missing evidence produces the expected three distinct actions and routes each to the matching KSB. User-entered markup stays plain text.
+- Probing practice questions use their own question type, preserve responses across pause/reload and remain compatible with backup validation.
+- The worked project has six navigable stages, eight annotated artefacts, links covering all 37 KSBs and a downloadable Markdown portfolio. Its approved example lookup downloads five unique reference rows.
+- The portfolio's four SQL queries execute against the actual downloaded fixtures: duplicate S2 count two, flawed join 357 rows, approved join 300 rows, and missing/unmatched counts four/eight.
+- The dashboard derives 300 requests, 270 completed, 30 open and median eight days from the same fixture generator as the CSV downloads. Service counts reconcile to 300. Feedback totals are 42 theme assignments across 36 comments, with explicit multiple-theme and sampling caveats.
+- Project navigation/downloads do not create personal evidence, mark learning complete or copy fictional experience into a personal response. “Write my own example” opens the relevant empty/previously saved response without filling it from the case.
+- New views reflow without page overflow at 320, 390, 768 and 1280px; enlarged reading text, keyboard jumps and direct file opening also work. Phone/desktop screenshots were inspected for the short lesson, readiness and project layouts.
