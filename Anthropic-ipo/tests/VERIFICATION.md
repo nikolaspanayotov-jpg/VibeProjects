@@ -26,11 +26,11 @@ No current offer price, share quantities, date, run-rate revenue or share-price 
 
 ### November publication boundary
 
-The existing public GitHub Pages route is https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/ and is deployed through the repository's normal `main` flow. Publication verification is recorded after the GitHub update.
+The updated public page is live at https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/ through the repository's normal `main` deployment flow. Implementation commit: `e134aee938a0810b208be51f3dde89ef8d4d2629`. At 23:35:37 UTC on 3 November, the deployed URL returned HTTP 200 and 325,368 bytes with SHA-256 `da9f13df2b5c19263d1fe9ac890bec4ee104ad81956fb1959e49d3186fb6f29e`, exactly matching the validated canonical HTML. GitHub's `main` file blob was independently checked as `a534388bc87e5488e5f668ae2142d57fe1221342`. A cache-busting revision query was used for this verification; there were no authentication or audience changes.
 
 The private Sites mirror has **not** been refreshed. Automatic approval review rejected transfer of a live repository bearer token through terminal input because of secret-exposure risk. No token was delivered and the input-waiting helper was interrupted. A read-only ordinary-Git probe confirmed no protected credential was available. Native Sites save/deploy requires a pushed matching source commit, so it was not called with a stale commit or mismatched archive. The updated private export is prepared locally, awaiting a supported protected credential connection; the earlier owner-only audience is unchanged.
 
-Prepared private-export commit: `27d0cf6f9d7976386c94a17000f39e2b81b0107a`, based on the earlier `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`. Matching archive: `/workspace/sites/anthropic-ipo-briefing-november-prepared.tar.gz`. This is a local preparation record, not proof of a push or deployment. The export matches the canonical hash above. The public GitHub Pages version is verified separately after its normal repository deployment.
+Prepared private-export commit: `27d0cf6f9d7976386c94a17000f39e2b81b0107a`, based on the earlier `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`. Matching archive: `/workspace/sites/anthropic-ipo-briefing-november-prepared.tar.gz`. This is a local preparation record, not proof of a push or deployment. The export matches the canonical hash above. The public GitHub Pages version was independently verified as recorded above.
 
 Verification limits remain Chromium-only coverage, no screen-reader session, blocked direct-file access and a bounded increased-text check. The source refresh covered the selected amendment, filing register and material page inputs; it is not an exhaustive legal or real-time market audit.
 
