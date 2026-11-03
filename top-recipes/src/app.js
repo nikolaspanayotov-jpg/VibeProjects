@@ -23,6 +23,13 @@
     createCapture,
     createShoppingList,
     parseRecipes,
+    clone,
+    slotKey,
+    cleanMealSettings,
+    moveMealSettings,
+    replaceMealSettings,
+    mealServings,
+    createPlanTools,
   } = globalThis.TopRecipes;
 
   const $ = (selector) => document.querySelector(selector);
@@ -35,6 +42,11 @@
   const persistence = createPersistence(localStorage);
   let selectedWeek = mondayKey();
   let week = persistence.week(selectedWeek);
+  let mealSettings = cleanMealSettings(
+    week,
+    persistence.mealSettings(selectedWeek),
+  );
+  let preferences = persistence.preferences();
   let undoState = null;
   let recipes = [];
   let recipeMap = new Map();
@@ -66,6 +78,7 @@
       : "Show recipes";
     libraryEl.classList.toggle("library-expanded", expanded);
     $(".workspace").classList.toggle("recipes-collapsed", !expanded);
+    setMobileTab(expanded ? "recipes" : "plan");
     if (!expanded) {
       clearDrag();
       if (focusInContent && !goToPlan)
@@ -81,6 +94,53 @@
           } else libraryEl.scrollIntoView({ block: "start", behavior: "auto" });
         });
     }
+  }
+
+  function setMobileTab(tab) {
+    document.querySelectorAll(".mobile-nav [data-tab]").forEach((control) => {
+      if (control.dataset.tab === tab)
+        control.setAttribute("aria-current", "page");
+      else control.removeAttribute("aria-current");
+    });
+  }
+
+  function savePreferences(next) {
+    preferences = next;
+    persistence.savePreferences(preferences);
+    storageChanged();
+  }
+
+  function favouriteButton(recipe, onChange) {
+    const control = button("", "favourite-button", () => {
+      const pinned = preferences.favourites.includes(recipe.id);
+      savePreferences({
+        ...preferences,
+        favourites: pinned
+          ? preferences.favourites.filter((id) => id !== recipe.id)
+          : [...preferences.favourites, recipe.id],
+      });
+      syncFavourites();
+      if (onChange) onChange();
+    });
+    control.dataset.favourite = recipe.id;
+    updateFavourite(control);
+    return control;
+  }
+
+  function updateFavourite(control) {
+    const id = control.dataset.favourite;
+    const pinned = preferences.favourites.includes(id);
+    control.textContent = pinned ? "★" : "☆";
+    control.setAttribute("aria-pressed", String(pinned));
+    control.setAttribute(
+      "aria-label",
+      `${pinned ? "Unpin" : "Pin"} ${recipeMap.get(id)?.title || "recipe"}`,
+    );
+    control.title = pinned ? "Unpin favourite" : "Pin favourite";
+  }
+
+  function syncFavourites() {
+    document.querySelectorAll("[data-favourite]").forEach(updateFavourite);
   }
 
   function storageChanged() {
@@ -136,6 +196,7 @@
     makeDraggable,
     notify,
     storageChanged,
+    favouriteButton,
   });
   let shopping;
   const capture = createCapture({
@@ -143,6 +204,8 @@
     getWeekKey: () => selectedWeek,
     getRecipe: (id) => recipeMap.get(id),
     getShoppingSnapshot: () => shopping.snapshot(),
+    getMealSettings: () => mealSettings,
+    getHouseholdSize: () => preferences.householdSize,
   });
   shopping = createShoppingList({
     getWeek: () => week,
@@ -151,6 +214,21 @@
     persistence,
     storageChanged,
     openCapture: (trigger) => capture.openShopping(trigger),
+    getMealSettings: () => mealSettings,
+    getHouseholdSize: () => preferences.householdSize,
+  });
+  const planTools = createPlanTools({
+    getWeek: () => week,
+    getSettings: () => mealSettings,
+    getWeekKey: () => selectedWeek,
+    getRecipe: (id) => recipeMap.get(id),
+    getPreferences: () => preferences,
+    persistence,
+    changeWeek,
+    pickerShell,
+    closePicker: () => picker.close(),
+    notify,
+    storageChanged,
   });
 
   function focusSlot(slot) {
@@ -162,11 +240,47 @@
     });
   }
 
-  function changeWeek(nextWeek, message, target) {
-    if (JSON.stringify(nextWeek) === JSON.stringify(week)) return;
-    undoState = week;
+  function changeWeek(
+    nextWeek,
+    message,
+    target,
+    nextSettings = replaceMealSettings(week, nextWeek, mealSettings),
+  ) {
+    if (
+      JSON.stringify(nextWeek) === JSON.stringify(week) &&
+      JSON.stringify(nextSettings) === JSON.stringify(mealSettings)
+    )
+      return;
+    undoState = { week, mealSettings };
+    const unlinked = DAYS.some((day) =>
+      MEALS.some(
+        (meal) =>
+          nextWeek[day][meal] &&
+          nextWeek[day][meal] === week[day][meal] &&
+          mealSettings[slotKey({ day, meal })]?.leftoverOf &&
+          !nextSettings[slotKey({ day, meal })]?.leftoverOf,
+      ),
+    );
+    if (unlinked)
+      message +=
+        " Affected leftover meals now cook fresh; check their portions.";
+    const added = DAYS.flatMap((day) =>
+      MEALS.filter(
+        (meal) =>
+          nextWeek[day][meal] && nextWeek[day][meal] !== week[day][meal],
+      ).map((meal) => nextWeek[day][meal]),
+    );
     week = nextWeek;
-    persistence.saveWeek(selectedWeek, week);
+    mealSettings = nextSettings;
+    persistence.savePlan(selectedWeek, week, mealSettings);
+    if (added.length)
+      savePreferences({
+        ...preferences,
+        recent: [...new Set([...added.reverse(), ...preferences.recent])].slice(
+          0,
+          12,
+        ),
+      });
     renderPlanner();
     storageChanged();
     notify(message);
@@ -184,6 +298,7 @@
       `${shortDate(start)} — ${shortDate(end)}, ${end.getFullYear()}`;
     $("#week-date").value = selectedWeek;
     $("#current-week").disabled = selectedWeek === mondayKey();
+    $("#household-size").value = preferences.householdSize || "";
     const today = dateKey(new Date());
     DAYS.forEach((day, index) => {
       const date = new Date(start);
@@ -256,6 +371,28 @@
           );
           tools.append(handle, more);
           slot.append(title, tools);
+          const settings = mealSettings[slotKey(target)] || {};
+          if (
+            recipe &&
+            (preferences.householdSize ||
+              settings.servings ||
+              settings.leftoverOf)
+          ) {
+            const servings = mealServings(
+              recipe,
+              settings,
+              preferences.householdSize,
+            );
+            slot.insertBefore(
+              el(
+                "span",
+                "slot-portions",
+                `${settings.leftoverOf ? "Leftovers · " : ""}${servings} ${servings === 1 ? "serving" : "servings"}`,
+              ),
+              tools,
+            );
+          }
+          slot.classList.toggle("is-leftover", !!settings.leftoverOf);
         } else {
           const add = button(
             "",
@@ -288,6 +425,12 @@
               moveMeal(week, payload.source, target),
               `${recipeMap.get(payload.recipeId)?.title || "Meal"} moved to ${slotLabel(target)}${recipeId ? "; meals swapped" : ""}.`,
               target,
+              moveMealSettings(
+                moveMeal(week, payload.source, target),
+                mealSettings,
+                payload.source,
+                target,
+              ),
             );
           else if (recipeMap.has(payload.recipeId))
             changeWeek(
@@ -309,6 +452,8 @@
     $("#clear-week").disabled = filled === 0;
     $("#undo-inline").hidden = !undoState;
     $("#shopping-open").disabled = loadState !== "ready";
+    $("#mobile-shopping").disabled = loadState !== "ready";
+    $("#templates-open").disabled = loadState !== "ready";
     shopping?.refresh();
   }
 
@@ -404,24 +549,73 @@
     const content = pickerShell(`What’s for ${slotLabel(target)}?`, opener);
     const search = el("input");
     search.type = "search";
-    search.placeholder = "Search your favourites…";
+    search.placeholder = "Search by dish or ingredient…";
     search.setAttribute("aria-label", "Search recipes for this meal");
     const field = el("label", "search-field");
     field.append(search);
+    const filters = el("div", "picker-filters");
+    filters.setAttribute("role", "group");
+    filters.setAttribute("aria-label", "Recipe shortcuts");
+    let shortcut = "suggested";
+    const count = el("p", "picker-count");
+    count.setAttribute("role", "status");
     const list = el("div", "picker-list");
-    list.setAttribute("aria-live", "polite");
-    const update = () => {
+    const modes = [
+      ["suggested", `For ${target.meal}`],
+      ["all", "All recipes"],
+      ["favourites", "★ Pinned"],
+      ["recent", "Recent"],
+    ];
+    for (const [value, label] of modes) {
+      const control = button(label, "picker-filter", () => {
+        shortcut = value;
+        update();
+      });
+      control.dataset.shortcut = value;
+      filters.append(control);
+    }
+    function update() {
+      filters
+        .querySelectorAll("button")
+        .forEach((control) =>
+          control.setAttribute(
+            "aria-pressed",
+            String(control.dataset.shortcut === shortcut),
+          ),
+        );
       list.replaceChildren();
-      const visible = recipes.filter((recipe) =>
-        matchesRecipe(recipe, search.value),
+      // Searching always looks across the collection; meal suitability still ranks first.
+      let visible = recipes.filter(
+        (recipe) =>
+          matchesRecipe(recipe, search.value) &&
+          (shortcut !== "favourites" ||
+            preferences.favourites.includes(recipe.id)) &&
+          (shortcut !== "recent" || preferences.recent.includes(recipe.id)) &&
+          (shortcut !== "suggested" ||
+            !!search.value.trim() ||
+            recipe.mealTypes.includes(target.meal)),
       );
+      visible.sort((a, b) => {
+        if (shortcut === "recent")
+          return (
+            preferences.recent.indexOf(a.id) - preferences.recent.indexOf(b.id)
+          );
+        return (
+          Number(b.mealTypes.includes(target.meal)) -
+            Number(a.mealTypes.includes(target.meal)) ||
+          Number(preferences.favourites.includes(b.id)) -
+            Number(preferences.favourites.includes(a.id)) ||
+          a.title.localeCompare(b.title)
+        );
+      });
+      count.textContent = `${visible.length} recipe${visible.length === 1 ? "" : "s"}${search.value.trim() ? " matching your search" : ""}`;
       if (loadState !== "ready") {
         list.append(
           el(
             "p",
             "picker-context",
             loadState === "loading"
-              ? "The recipes are still loading. Close this picker and try again in a moment."
+              ? "The recipes are still loading. Try again in a moment."
               : "The recipes could not be loaded.",
           ),
         );
@@ -432,16 +626,21 @@
               update();
             }),
           );
-      } else if (!visible.length)
+      } else if (!visible.length) {
         list.append(
           el(
             "p",
             "picker-context",
-            "No recipes found. Try another ingredient or name.",
+            shortcut === "favourites"
+              ? "Tap ☆ beside a recipe to pin it here."
+              : shortcut === "recent"
+                ? "Meals you add to your plan will appear here."
+                : "No recipes found. Try another name, ingredient or All recipes.",
           ),
         );
-      else
+      } else
         visible.forEach((recipe) => {
+          const row = el("div", "picker-recipe-row");
           const choice = button(
             "",
             "picker-recipe",
@@ -455,18 +654,34 @@
             },
             `Choose ${recipe.title} for ${slotLabel(target)}`,
           );
-          const image = recipeIllustration(recipe, undefined, "lazy");
           const text = el("span");
           text.append(
             el("strong", null, recipe.title),
-            el("small", null, recipe.mealTypes.map(titleCase).join(" / ")),
+            el(
+              "small",
+              null,
+              `${recipe.mealTypes.map(titleCase).join(" / ")} · ${recipe.servings} recipe servings`,
+            ),
           );
-          choice.append(image, text, el("span", null, "+"));
-          list.append(choice);
+          choice.append(
+            recipeIllustration(recipe, undefined, "lazy"),
+            text,
+            el("span", null, "+"),
+          );
+          row.append(
+            choice,
+            favouriteButton(recipe, () => {
+              if (shortcut === "favourites") {
+                update();
+                filters.querySelector('[data-shortcut="favourites"]').focus();
+              }
+            }),
+          );
+          list.append(row);
         });
-    };
+    }
     search.addEventListener("input", update);
-    content.append(field, list);
+    content.append(field, filters, count, list);
     update();
     search.focus();
   }
@@ -527,6 +742,9 @@
         next,
         `${title} ${source ? "moved" : "added"} to ${slotLabel(target)}${source && wasOccupied ? "; meals swapped" : ""}.`,
         target,
+        source
+          ? moveMealSettings(next, mealSettings, source, target)
+          : replaceMealSettings(week, next, mealSettings),
       );
     });
   }
@@ -541,6 +759,9 @@
     );
     if (recipe)
       actions.append(
+        button("Portions & leftovers", "button button-outline", () =>
+          planTools.openPortions(target, opener),
+        ),
         button("View recipe & ingredients ↗", "button button-outline", () => {
           picker.close();
           recipeViews.open(recipe, opener);
@@ -568,6 +789,10 @@
   function navigateWeek(key) {
     selectedWeek = mondayKey(key);
     week = persistence.week(selectedWeek);
+    mealSettings = cleanMealSettings(
+      week,
+      persistence.mealSettings(selectedWeek),
+    );
     undoState = null;
     clearDrag();
     renderPlanner();
@@ -646,9 +871,10 @@
   );
   function undoLastChange() {
     if (!undoState) return;
-    week = undoState;
+    week = undoState.week;
+    mealSettings = undoState.mealSettings;
     undoState = null;
-    persistence.saveWeek(selectedWeek, week);
+    persistence.savePlan(selectedWeek, week, mealSettings);
     renderPlanner();
     storageChanged();
     notify("Last change undone.");
@@ -665,13 +891,45 @@
   $("#shopping-open").addEventListener("click", (event) =>
     shopping.open(event.currentTarget),
   );
+  $("#copy-last-week").addEventListener("click", planTools.copyLastWeek);
+  $("#templates-open").addEventListener("click", (event) =>
+    planTools.openTemplates(event.currentTarget),
+  );
+  $("#household-size").addEventListener("change", (event) => {
+    savePreferences({
+      ...preferences,
+      householdSize: event.target.value ? Number(event.target.value) : null,
+    });
+    renderPlanner();
+    notify(
+      "Household portions updated. Shopping amounts have been recalculated; individual meal overrides stay as you set them.",
+    );
+  });
+  $("#mobile-plan").addEventListener("click", () => {
+    setLibraryExpanded(false, { user: true, goToPlan: true });
+  });
+  $("#mobile-recipes").addEventListener("click", () => {
+    setLibraryExpanded(true, { user: true });
+    libraryToggleEl.focus({ preventScroll: true });
+    libraryEl.scrollIntoView({ block: "start", behavior: "auto" });
+  });
+  $("#mobile-shopping").addEventListener("click", (event) => {
+    shopping.open(event.currentTarget);
+    setMobileTab("shopping");
+  });
+  $("#shopping-dialog").addEventListener("close", () =>
+    setMobileTab(libraryExpanded ? "recipes" : "plan"),
+  );
   $("#reset-storage").addEventListener("click", () => {
     persistence.reset();
     week = persistence.week(selectedWeek);
+    mealSettings = {};
+    preferences = persistence.preferences();
     undoState = null;
     storageChanged();
     renderPlanner();
     recipeViews.refresh();
+    syncFavourites();
     notify("Saved data reset. Ready for a fresh week.");
   });
   document

@@ -140,7 +140,7 @@ This JSON illustrates the storage shape, not a preloaded plan. Validate stored d
 
 ## Weekly shopping list
 
-A Shopping list button beside the planner's Screenshot view opens a separate dialog for the selected week. It totals one full recipe batch for every planned meal, including repeated recipes, and states that basis visibly so the user can adjust for portions and leftovers.
+A Shopping list button beside the planner's Screenshot view opens a separate dialog for the selected week. It scales recipes to household and individual meal portions, combines linked leftover servings into the source cooking batch, and groups ingredients by grocery aisle. Without a household setting, existing plans keep the authored recipe servings.
 
 - Combine matching ingredients with matching units, converting kilograms to grams and litres to millilitres. Keep different foods and incompatible units on separate lines. Preserve original quantities and preparation notes in a Recipe amounts disclosure.
 - Each row has a tick box, editable numeric quantity and 44 px minus/plus controls, with its unit displayed. All items start selected; untick what is already in the cupboard or unwanted. Label optional-only ingredients.
@@ -148,8 +148,18 @@ A Shopping list button beside the planner's Screenshot view opens a separate dia
 - Save edits for each local Monday in the existing planner storage as optional `shoppingWeeks` data, preserving old plans and storage keys. Selections persist across changes to the plan; quantity overrides persist only while the calculated total is unchanged.
 - Provide Select all, Untick all and Reset list. Reset list restores calculated quantities and selections for this week without editing the plan or per-recipe checkboxes.
 - Empty plans explain that meals must be added first. An unavailable recipe produces an explicit missing-ingredients message while the remaining ingredients still load.
-- Screenshot view uses the existing portrait capture dialog, showing only selected positive-quantity items, a week/date heading and page number. Paginate to 5–10 rows according to viewport height; keep page boundaries stable when hiding controls. Previous/Next page controls and keyboard arrows browse the pages.
-- Screenshot rows show a clean empty checkbox, ingredient name and quantity. Omit editing controls. Close returns to the still-open shopping list. Printing includes the entire selected list.
+- Screenshot view uses the existing portrait capture dialog, showing only selected positive-quantity items, a week/date heading and page number. Use a viewport-based budget of 5–10 row heights, reserving space for aisle headings; keep page boundaries stable when hiding controls. Previous/Next page controls and keyboard arrows browse the pages.
+- Screenshot rows show an empty or bought checkbox, ingredient name and quantity, under aisle headings. Omit editing controls. Close returns to the still-open shopping list. Printing includes the entire selected list.
+
+## Faster planning and shopping
+
+- On screens up to 960 px, fix a three-button navigation bar to the bottom: Weekly plan, Recipes and Shopping list. Reserve bottom safe-area space and keep notifications above the bar. Navigation is hidden in dialogs, captures and print. Recipes opens and focuses the collection; Weekly plan collapses it and returns to the planner.
+- The visual meal picker initially shows suitable meal types, with All recipes, Pinned and Recent shortcuts. Search spans the collection while ranking suitable recipes first. Use separate 44 px star buttons to pin recipes without selecting them. Keep pins and the last 12 placed recipes in the existing browser storage.
+- Place Copy last week and Saved weeks beside the week controls. Save a named snapshot of meals, portions and leftover links; applying replaces the current week with Undo. Shopping overrides and bought marks are never copied. Limit saved weeks to 50. Empty previous weeks leave the current plan intact and explain why.
+- Cooking for sets a household size once, with Recipe servings as the compatibility default. Each meal can use the default or a specific serving count. A later meal can link to an earlier fresh slot of the same dish. Show a live total-to-cook preview: two servings now plus two leftover servings means four servings in the original batch. Display portions and a written Leftovers label in both the grid and capture.
+- Carry portions and leftover links when meals move or swap. If a source is removed, replaced, or moved later than its leftovers, make remaining affected meals fresh cooking and announce the change. Replacing a dish resets that slot’s individual settings. Undo restores settings alongside recipe placements.
+- Organise groceries into Fruit & vegetables, Meat & fish, Dairy & eggs, Bakery & pastry, and Cupboard & other. Unknown ingredients stay in the final group. Keep source recipes and authored amounts available in editing mode.
+- Start shopping switches to large Bought checkboxes with progress and Hide bought items. Edit list restores inclusion ticks and quantity controls. Include and Bought are independent. Changed calculated totals clear bought marks; Reset list clears all shopping edits for that week. Screenshots retain all selected items with bought marks, grouped by aisle, even when the shopping view hides bought items. Keep page boundaries stable while controls are hidden, and print the complete selected list.
 
 ## Screenshot view
 
@@ -183,7 +193,7 @@ The metadata contract is:
 | `prep_minutes`, `cook_minutes`, `wait_minutes` | Non-negative whole numbers; display total as their sum |
 | `tags` | A YAML list, which may be empty |
 
-The recipe title comes from its level-two heading. Every ingredient row has a unique, stable ID within that recipe, a display quantity, an ingredient name and a component group. Quantities are readable strings, such as `40 g` or `To taste`. Recipe details preserve these strings; weekly shopping totals combine compatible amounts, with portion adjustments left to the user.
+The recipe title comes from its level-two heading. Every ingredient row has a unique, stable ID within that recipe, a display quantity, an ingredient name and a component group. Quantities are readable strings, such as `40 g` or `To taste`. Recipe details preserve these strings; weekly shopping totals combine compatible amounts, scaled to household and individual meal portions. Linked leftovers contribute to the earlier cooking batch.
 
 Image assignments live in the same recipe metadata and are shared by cards, detail panels and meal pickers. New recipes need no hard-coded image mapping in JavaScript. If an image is omitted or fails to load, show a neutral place setting. Never substitute a picture of another dish based on breakfast, lunch or dinner. Load list thumbnails lazily to keep mobile browsing light.
 
@@ -209,7 +219,8 @@ top-recipes/
     content.js                Markdown/YAML parsing and validation
     app.js                    Library, dialogs and planner coordination
     recipes.js                Recipe details and shopping checklists
-    shopping.js               Weekly totals, selections and quantity controls
+    shopping.js               Scaled totals, aisles, selections and bought marks
+    experience.js             Saved weeks and meal portions/leftover controls
     planner.js                Calendar, placement, move and swap logic
     storage.js                Versioned browser persistence
     capture.js                Screenshot and print presentation
@@ -270,5 +281,5 @@ Optional serving, preparation or substitution notes.
 - Each week retains its own plan after refresh. Renamed, removed and invalid recipe data and unavailable local storage have understandable outcomes.
 - Screenshot view contains all seven days and three meals, the date range and complete starter recipe names. Verify at 390 × 844 and at a smaller phone viewport, with no horizontal clipping.
 - Screenshot controls can be hidden and restored. Returning to edit mode preserves the plan. Print preview uses a single portrait page for the starter content.
-- Shopping list totals match repeated planned batches and compatible unit conversions. Tick choices and quantity overrides survive refresh independently by week. Shopping screenshot pages include every selected positive-quantity item exactly once, and printing includes all pages.
+- Shopping list totals match scaled portions, linked leftovers and compatible unit conversions. Copy/apply include meal settings and support Undo. Pins, recent meals, saved weeks and bought marks survive reload without rewriting legacy data on page load. Tick choices and quantity overrides survive refresh independently by week. Shopping screenshot pages include every selected positive-quantity item exactly once, and printing includes all pages.
 - Check normal text contrast against WCAG AA and ensure keyboard focus, reduced motion and touch targets remain usable.

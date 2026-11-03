@@ -1,5 +1,6 @@
 (() => {
-  const { DAYS, MEALS, emptyWeek, mondayKey, clone } = globalThis.TopRecipes;
+  const { DAYS, MEALS, emptyWeek, mondayKey, clone, slotFromKey } =
+    globalThis.TopRecipes;
 
   const PLAN_KEY = "top-recipes:planner:v1";
   const CHECKS_KEY = "top-recipes:ingredients:v1";
@@ -8,8 +9,85 @@
   const slug = (value) =>
     typeof value === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value);
 
+  const validWeek = (week) =>
+    object(week) &&
+    Object.keys(week).length === DAYS.length &&
+    DAYS.every(
+      (day) =>
+        object(week[day]) &&
+        Object.keys(week[day]).length === MEALS.length &&
+        MEALS.every(
+          (meal) => week[day][meal] === null || slug(week[day][meal]),
+        ),
+    );
+  const validSettings = (settings) =>
+    object(settings) &&
+    Object.entries(settings).every(
+      ([key, value]) =>
+        slotFromKey(key) &&
+        object(value) &&
+        (value.servings === undefined ||
+          (Number.isInteger(value.servings) &&
+            value.servings >= 1 &&
+            value.servings <= 100)) &&
+        (value.leftoverOf === undefined || !!slotFromKey(value.leftoverOf)),
+    );
+  const defaultPreferences = () => ({
+    householdSize: null,
+    favourites: [],
+    recent: [],
+  });
+  const validPreferences = (value) =>
+    object(value) &&
+    (value.householdSize === null ||
+      (Number.isInteger(value.householdSize) &&
+        value.householdSize >= 1 &&
+        value.householdSize <= 24)) &&
+    [value.favourites, value.recent].every(
+      (ids) =>
+        Array.isArray(ids) &&
+        ids.length <= 1000 &&
+        ids.every(slug) &&
+        new Set(ids).size === ids.length,
+    );
+  const validTemplates = (value) =>
+    Array.isArray(value) &&
+    value.length <= 50 &&
+    new Set(value.map((template) => template?.id)).size === value.length &&
+    value.every(
+      (template) =>
+        object(template) &&
+        slug(template.id) &&
+        typeof template.title === "string" &&
+        template.title.trim().length > 0 &&
+        template.title.length <= 80 &&
+        validWeek(template.week) &&
+        validSettings(template.settings),
+    );
+  function validWeeksOf(value, validate) {
+    return (
+      object(value) &&
+      Object.entries(value).every(([key, entry]) => {
+        try {
+          return mondayKey(key) === key && validate(entry);
+        } catch {
+          return false;
+        }
+      })
+    );
+  }
+
   function validPlanner(value) {
     if (!object(value) || value.schemaVersion !== 1 || !object(value.weeks))
+      return false;
+    if (value.preferences !== undefined && !validPreferences(value.preferences))
+      return false;
+    if (
+      value.mealSettings !== undefined &&
+      !validWeeksOf(value.mealSettings, validSettings)
+    )
+      return false;
+    if (value.templates !== undefined && !validTemplates(value.templates))
       return false;
     if (
       value.shoppingWeeks !== undefined &&
@@ -24,25 +102,7 @@
         }))
     )
       return false;
-    return Object.entries(value.weeks).every(([key, week]) => {
-      try {
-        if (mondayKey(key) !== key) return false;
-      } catch {
-        return false;
-      }
-      return (
-        object(week) &&
-        Object.keys(week).length === DAYS.length &&
-        DAYS.every(
-          (day) =>
-            object(week[day]) &&
-            Object.keys(week[day]).length === MEALS.length &&
-            MEALS.every(
-              (meal) => week[day][meal] === null || slug(week[day][meal]),
-            ),
-        )
-      );
-    });
+    return validWeeksOf(value.weeks, validWeek);
   }
 
   function validShoppingEdits(edits) {
@@ -55,6 +115,7 @@
           key.includes("|") &&
           object(edit) &&
           typeof edit.selected === "boolean" &&
+          (edit.bought === undefined || typeof edit.bought === "boolean") &&
           Number.isFinite(edit.quantity) &&
           edit.quantity >= 0 &&
           edit.quantity <= 1e9 &&
@@ -123,6 +184,33 @@
         planner.weeks[key] = clone(week);
         write(PLAN_KEY, planner);
       },
+      mealSettings(key) {
+        return clone(planner.mealSettings?.[key] || {});
+      },
+      savePlan(key, week, settings) {
+        if (!validWeek(week) || !validSettings(settings))
+          throw new Error("Invalid plan");
+        planner.weeks[key] = clone(week);
+        (planner.mealSettings ||= {})[key] = clone(settings);
+        write(PLAN_KEY, planner);
+      },
+      preferences() {
+        return clone(planner.preferences || defaultPreferences());
+      },
+      savePreferences(preferences) {
+        if (!validPreferences(preferences))
+          throw new Error("Invalid preferences");
+        planner.preferences = clone(preferences);
+        write(PLAN_KEY, planner);
+      },
+      templates() {
+        return clone(planner.templates || []);
+      },
+      saveTemplates(templates) {
+        if (!validTemplates(templates)) throw new Error("Invalid templates");
+        planner.templates = clone(templates);
+        write(PLAN_KEY, planner);
+      },
       shoppingWeek(key) {
         return clone(planner.shoppingWeeks?.[key] || {});
       },
@@ -166,6 +254,7 @@
     validPlanner,
     validChecks,
     validShoppingEdits,
+    validSettings,
     createPersistence,
   });
 })();

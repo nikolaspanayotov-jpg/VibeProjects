@@ -153,6 +153,7 @@ test("quantity edits persist for unchanged totals, while plan changes refresh am
     baseline: 450,
     quantity: 600,
     selected: false,
+    bought: false,
   });
   const changed = applyShoppingEdits(
     [{ ...original[0], quantity: 550 }],

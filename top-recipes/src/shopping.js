@@ -1,6 +1,13 @@
 (() => {
-  const { DAYS, MEALS, el, button, showDialog, parseLocalDate } =
-    globalThis.TopRecipes;
+  const {
+    DAYS,
+    MEALS,
+    el,
+    button,
+    showDialog,
+    parseLocalDate,
+    cookingBatches,
+  } = globalThis.TopRecipes;
   const round = (value) => Math.round(value * 1000) / 1000;
   const MAX_QUANTITY = 1e9;
 
@@ -84,7 +91,67 @@
       : base.charAt(0).toUpperCase() + base.slice(1);
   }
 
-  function buildShoppingList(week, getRecipe) {
+  const SHOPPING_AISLES = [
+    "Fruit & vegetables",
+    "Meat & fish",
+    "Dairy & eggs",
+    "Bakery & pastry",
+    "Cupboard & other",
+  ];
+  function shoppingAisle(name) {
+    const text = name.toLowerCase();
+    if (
+      /fresh.*(?:parsley|dill|thyme|basil|coriander|mint|rosemary|herbs)/.test(
+        text,
+      )
+    )
+      return SHOPPING_AISLES[0];
+    if (
+      /stock|tinned|canned|passata|purée|puree|paste|coconut milk|dried|powder|granules|spice|paprika|cinnamon|oregano|thyme|bay lea|parsley|dill|cumin|nutmeg|black pepper/.test(
+        text,
+      )
+    )
+      return SHOPPING_AISLES[4];
+    if (
+      /chicken|turkey|beef|pork|lamb|sausage|salmon|tuna|bacon|ham\b|meat/.test(
+        text,
+      )
+    )
+      return SHOPPING_AISLES[1];
+    if (
+      /milk|yogh?urt|butter|cream|cheese|feta|mozzarella|parmesan|eggs?\b/.test(
+        text,
+      )
+    )
+      return SHOPPING_AISLES[2];
+    if (/bread|pastry|filo|phyllo|pizza base|tortilla|wrap/.test(text))
+      return SHOPPING_AISLES[3];
+    if (
+      /potato|leek|onion|garlic|carrot|pepper|tomato|mushroom|aubergine|eggplant|courgette|zucchini|spinach|cabbage|celery|peas\b|broccoli|lemon|lime|berries|berry|apple|banana|pineapple|vegetables|salad/.test(
+        text,
+      )
+    )
+      return SHOPPING_AISLES[0];
+    return SHOPPING_AISLES[4];
+  }
+
+  function groupShoppingItems(items) {
+    return SHOPPING_AISLES.map((aisle) => ({
+      aisle,
+      items: items
+        .filter((item) => (item.aisle || shoppingAisle(item.name)) === aisle)
+        .sort(
+          (a, b) =>
+            a.name.localeCompare(b.name) || a.unit.localeCompare(b.unit),
+        ),
+    })).filter((group) => group.items.length);
+  }
+
+  function buildShoppingList(
+    week,
+    getRecipe,
+    { mealSettings = {}, householdSize = null } = {},
+  ) {
     const combined = new Map();
     const recipeIds = new Set();
     let mealCount = 0;
@@ -100,48 +167,65 @@
           continue;
         }
         recipeIds.add(id);
-        for (const ingredient of recipe.ingredients) {
-          const amount = parseShoppingQuantity(ingredient.quantity);
-          const name = shoppingName(ingredient);
-          const key = `${encodeURIComponent(name.normalize("NFKC").toLowerCase())}|${amount.unit}`;
-          const optional = /\(optional\)/i.test(ingredient.name);
-          let item = combined.get(key);
-          if (!item) {
-            item = {
-              key,
-              name,
-              quantity: 0,
-              unit: amount.unit,
-              step: amount.step,
-              pantry: amount.pantry,
-              optional: true,
-              sources: new Set(),
-              notes: new Set(),
-            };
-            combined.set(key, item);
-          }
-          item.quantity = amount.pantry
-            ? 1
-            : round(item.quantity + amount.quantity);
-          item.optional = item.optional && optional;
-          item.sources.add(recipe.title);
-          item.notes.add(
-            `${ingredient.quantity} ${ingredient.name.replace(/\s*\(optional\)/gi, "")}`,
-          );
-        }
       }
+    const batches = cookingBatches(
+      week,
+      getRecipe,
+      mealSettings,
+      householdSize,
+    );
+    for (const { recipe, factor } of batches) {
+      for (const ingredient of recipe.ingredients) {
+        const amount = parseShoppingQuantity(ingredient.quantity);
+        const name = shoppingName(ingredient);
+        const key = `${encodeURIComponent(name.normalize("NFKC").toLowerCase())}|${amount.unit}`;
+        const optional = /\(optional\)/i.test(ingredient.name);
+        let item = combined.get(key);
+        if (!item) {
+          item = {
+            key,
+            name,
+            quantity: 0,
+            unit: amount.unit,
+            step: amount.step,
+            pantry: amount.pantry,
+            optional: true,
+            aisle: shoppingAisle(name),
+            sources: new Set(),
+            notes: new Set(),
+          };
+          combined.set(key, item);
+        }
+        item.quantity = amount.pantry
+          ? 1
+          : item.quantity + amount.quantity * factor;
+        item.optional = item.optional && optional;
+        item.sources.add(recipe.title);
+        item.notes.add(
+          `${ingredient.quantity} ${ingredient.name.replace(/\s*\(optional\)/gi, "")} (recipe amount; cooking ×${round(factor)})`,
+        );
+      }
+    }
     const items = [...combined.values()]
       .map((item) => ({
         ...item,
         quantity:
-          item.unit === "item" ? Math.ceil(item.quantity) : item.quantity,
+          item.unit === "item"
+            ? Math.ceil(round(item.quantity))
+            : round(item.quantity),
         sources: [...item.sources],
         notes: [...item.notes],
       }))
       .sort(
         (a, b) => a.name.localeCompare(b.name) || a.unit.localeCompare(b.unit),
       );
-    return { items, mealCount, recipeCount: recipeIds.size, missingCount };
+    return {
+      items,
+      mealCount,
+      recipeCount: recipeIds.size,
+      missingCount,
+      batchCount: batches.length,
+    };
   }
 
   function applyShoppingEdits(items, edits) {
@@ -153,6 +237,7 @@
         quantity:
           edit?.baseline === item.quantity ? edit.quantity : item.quantity,
         selected: edit ? edit.selected : true,
+        bought: edit?.baseline === item.quantity ? !!edit.bought : false,
       };
     });
   }
@@ -181,6 +266,8 @@
     persistence,
     storageChanged,
     openCapture,
+    getMealSettings = () => ({}),
+    getHouseholdSize = () => null,
   }) {
     const dialogEl = document.querySelector("#shopping-dialog");
     const listEl = document.querySelector("#shopping-items");
@@ -190,12 +277,15 @@
     let items = [];
     let edits = {};
     let details = { mealCount: 0, recipeCount: 0, missingCount: 0 };
+    let shoppingMode = false;
+    let hideBought = false;
 
     function remember(item) {
       edits[item.key] = {
         baseline: item.baseline,
         quantity: item.quantity,
         selected: item.selected,
+        bought: item.bought,
       };
     }
 
@@ -214,6 +304,12 @@
         (item) => item.selected && item.quantity > 0,
       ).length;
       summaryEl.textContent = `${selected} of ${items.length} items selected · ${details.mealCount} planned meal${details.mealCount === 1 ? "" : "s"}`;
+      if (shoppingMode) {
+        const bought = items.filter(
+          (item) => item.selected && item.quantity > 0 && item.bought,
+        ).length;
+        summaryEl.textContent = `${bought} of ${selected} bought · ${selected - bought} left to find`;
+      }
       captureEl.disabled = selected === 0;
     }
 
@@ -237,6 +333,44 @@
       notesEl.append(el("summary", null, "Recipe amounts"));
       item.notes.forEach((note) => notesEl.append(el("p", null, note)));
       labelEl.append(checkEl, copyEl);
+      const boughtLabel = el("label", "shopping-bought-check");
+      const boughtCheck = el("input");
+      boughtCheck.type = "checkbox";
+      boughtCheck.checked = item.bought;
+      boughtCheck.setAttribute("aria-label", `Bought ${item.name}`);
+      const boughtCopy = el("span");
+      boughtCopy.append(
+        el("strong", null, item.name),
+        el("small", null, formatShoppingQuantity(item)),
+      );
+      boughtLabel.append(boughtCheck, boughtCopy);
+      function updateVisibility() {
+        rowEl.classList.toggle("bought", item.bought);
+        rowEl.hidden =
+          shoppingMode &&
+          (!item.selected || item.quantity <= 0 || (hideBought && item.bought));
+      }
+      boughtCheck.addEventListener("change", () => {
+        item.bought = boughtCheck.checked;
+        save(item);
+        // Focus the next visible item when a bought row disappears.
+        if (hideBought && item.bought) {
+          const checks = [
+            ...listEl.querySelectorAll(
+              ".shopping-item:not([hidden]) .shopping-bought-check input",
+            ),
+          ];
+          const index = checks.indexOf(boughtCheck);
+          (
+            checks[index + 1] ||
+            checks[index - 1] ||
+            document.querySelector("#shopping-hide-bought")
+          ).focus();
+        }
+        updateVisibility();
+        updateGroups();
+        summary();
+      });
       const controlsEl = el("div", "quantity-controls");
       const inputEl = el("input", "quantity-input");
       inputEl.type = "number";
@@ -262,6 +396,11 @@
       };
       const change = (value) => {
         item.quantity = round(Math.min(MAX_QUANTITY, Math.max(0, value)));
+        item.bought = false;
+        boughtCheck.checked = false;
+        boughtCopy.querySelector("small").textContent =
+          formatShoppingQuantity(item);
+        updateVisibility();
         update();
         statusEl.textContent = `${item.name}: ${formatShoppingQuantity(item)}.`;
       };
@@ -304,13 +443,28 @@
       minusEl.disabled = item.quantity <= 0;
       plusEl.disabled = item.quantity >= MAX_QUANTITY;
       rowEl.classList.toggle("excluded", !item.selected || item.quantity === 0);
-      rowEl.append(labelEl, controlsEl, notesEl);
+      rowEl.append(labelEl, controlsEl, notesEl, boughtLabel);
+      updateVisibility();
       return rowEl;
+    }
+
+    function updateGroups() {
+      listEl.querySelectorAll(".shopping-aisle").forEach((group) => {
+        group.hidden = !group.querySelector(".shopping-item:not([hidden])");
+      });
+      const empty = listEl.querySelector(".shopping-all-bought");
+      if (empty)
+        empty.hidden =
+          !shoppingMode ||
+          !!listEl.querySelector(".shopping-item:not([hidden])");
     }
 
     function refresh() {
       if (!dialogEl.open) return;
-      details = buildShoppingList(getWeek(), getRecipe);
+      details = buildShoppingList(getWeek(), getRecipe, {
+        mealSettings: getMealSettings(),
+        householdSize: getHouseholdSize(),
+      });
       edits = persistence.shoppingWeek(getWeekKey());
       items = applyShoppingEdits(details.items, edits);
       const date = parseLocalDate(getWeekKey());
@@ -319,7 +473,22 @@
       const warningEl = document.querySelector("#shopping-warning");
       warningEl.hidden = details.missingCount === 0;
       warningEl.textContent = `Ingredients are unavailable for ${details.missingCount} planned meal${details.missingCount === 1 ? "" : "s"}. Change those recipes in your plan to complete the list.`;
-      listEl.replaceChildren(...items.map(renderRow));
+      listEl.replaceChildren();
+      for (const { aisle, items: grouped } of groupShoppingItems(items)) {
+        const section = el("section", "shopping-aisle");
+        const heading = el("h3", null, aisle);
+        section.append(heading, ...grouped.map(renderRow));
+        listEl.append(section);
+      }
+      if (items.length)
+        listEl.append(
+          el(
+            "p",
+            "shopping-all-bought empty-message",
+            "Nothing left to find. Untick Hide bought items to review your list, or return to Edit list to choose items.",
+          ),
+        );
+      updateGroups();
       if (!items.length)
         listEl.append(
           el(
@@ -331,7 +500,7 @@
           ),
         );
       document.querySelector("#shopping-bulk-actions").hidden =
-        items.length === 0;
+        shoppingMode || items.length === 0;
       statusEl.textContent = "";
       summary();
     }
@@ -364,6 +533,39 @@
       statusEl.textContent = "Shopping list reset to the recipe amounts.";
     });
     captureEl.addEventListener("click", () => openCapture(captureEl));
+    document
+      .querySelector("#shopping-mode")
+      .addEventListener("click", (event) => {
+        shoppingMode = !shoppingMode;
+        dialogEl.classList.toggle("is-shopping-mode", shoppingMode);
+        event.currentTarget.setAttribute("aria-pressed", String(shoppingMode));
+        event.currentTarget.textContent = shoppingMode
+          ? "Edit list"
+          : "Start shopping";
+        document.querySelector("#shopping-hide-bought-label").hidden =
+          !shoppingMode;
+        document.querySelector("#shopping-unbuy-all").hidden = !shoppingMode;
+        document.querySelector("#shopping-bulk-actions").hidden =
+          shoppingMode || items.length === 0;
+        refresh();
+      });
+    document
+      .querySelector("#shopping-hide-bought")
+      .addEventListener("change", (event) => {
+        hideBought = event.target.checked;
+        refresh();
+      });
+    document
+      .querySelector("#shopping-unbuy-all")
+      .addEventListener("click", () => {
+        items.forEach((item) => {
+          item.bought = false;
+          remember(item);
+        });
+        persist();
+        refresh();
+        statusEl.textContent = "Bought marks cleared for this week.";
+      });
     return {
       open(trigger) {
         showDialog(dialogEl, trigger);
@@ -390,5 +592,8 @@
     applyShoppingEdits,
     formatShoppingQuantity,
     createShoppingList,
+    SHOPPING_AISLES,
+    shoppingAisle,
+    groupShoppingItems,
   });
 })();

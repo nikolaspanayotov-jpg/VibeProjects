@@ -7,13 +7,44 @@
     el,
     showDialog,
     formatShoppingQuantity,
+    groupShoppingItems,
+    shoppingAisle,
+    slotKey,
+    mealServings,
   } = globalThis.TopRecipes;
+
+  // Headings use some of the page budget, so an aisle change cannot push rows off screen.
+  function paginateShoppingItems(items, budget) {
+    const pages = [];
+    let current = [];
+    let used = 0;
+    let lastAisle = null;
+    for (const { aisle, items: grouped } of groupShoppingItems(items)) {
+      for (const item of grouped) {
+        let cost = 1 + (lastAisle === aisle ? 0 : 0.65);
+        if (current.length && used + cost > budget) {
+          pages.push(current);
+          current = [];
+          used = 0;
+          lastAisle = null;
+          cost = 1.65;
+        }
+        current.push({ ...item, aisle });
+        used += cost;
+        lastAisle = aisle;
+      }
+    }
+    if (current.length) pages.push(current);
+    return pages.length ? pages : [[]];
+  }
 
   function createCapture({
     getWeek,
     getWeekKey,
     getRecipe,
     getShoppingSnapshot,
+    getMealSettings = () => ({}),
+    getHouseholdSize = () => null,
   }) {
     const dialog = document.querySelector("#capture-dialog");
     const sheet = document.querySelector("#capture-sheet");
@@ -37,20 +68,38 @@
       const containerEl = document.querySelector("#capture-shopping");
       containerEl.replaceChildren();
       containerEl.setAttribute("role", "list");
-      const totalPages = Math.max(
-        1,
-        Math.ceil(shoppingSnapshot.items.length / pageSize),
-      );
+      const pages = paginateShoppingItems(shoppingSnapshot.items, pageSize);
+      const totalPages = pages.length;
       page = Math.max(0, Math.min(page, totalPages - 1));
       const visible = printing
-        ? shoppingSnapshot.items
-        : shoppingSnapshot.items.slice(page * pageSize, (page + 1) * pageSize);
+        ? groupShoppingItems(shoppingSnapshot.items).flatMap(
+            (group) => group.items,
+          )
+        : pages[page];
+      let lastAisle;
       visible.forEach((item) => {
+        const aisle = item.aisle || shoppingAisle(item.name);
+        if (aisle !== lastAisle) {
+          const heading = el("div", "shopping-capture-aisle", aisle);
+          heading.setAttribute("role", "presentation");
+          containerEl.append(heading);
+          lastAisle = aisle;
+        }
         const rowEl = el("div", "shopping-capture-row");
         rowEl.setAttribute("role", "listitem");
         rowEl.dataset.shoppingKey = item.key;
-        const boxEl = el("span", "shopping-capture-box", "□");
+        const boxEl = el(
+          "span",
+          "shopping-capture-box",
+          item.bought ? "☑" : "□",
+        );
         boxEl.setAttribute("aria-hidden", "true");
+        rowEl.classList.toggle("bought", !!item.bought);
+        if (item.bought)
+          rowEl.setAttribute(
+            "aria-label",
+            `${item.name}, bought, ${formatShoppingQuantity(item)}`,
+          );
         rowEl.append(
           boxEl,
           el("span", "shopping-capture-name", item.name),
@@ -184,6 +233,21 @@
             id ? getRecipe(id)?.title || "Recipe unavailable" : "—",
           );
           cell.setAttribute("role", "cell");
+          const settings = getMealSettings()[slotKey({ day, meal })] || {};
+          const recipe = getRecipe(id);
+          if (
+            recipe &&
+            (getHouseholdSize() || settings.servings || settings.leftoverOf)
+          ) {
+            const servings = mealServings(recipe, settings, getHouseholdSize());
+            cell.append(
+              el(
+                "small",
+                "capture-portions",
+                `${settings.leftoverOf ? "Leftovers · " : ""}${servings} ${servings === 1 ? "serving" : "servings"}`,
+              ),
+            );
+          }
           row.append(cell);
         });
         grid.append(row);
@@ -313,5 +377,8 @@
     return { open, openShopping: (trigger) => open(trigger, "shopping") };
   }
 
-  Object.assign((globalThis.TopRecipes ||= {}), { createCapture });
+  Object.assign((globalThis.TopRecipes ||= {}), {
+    createCapture,
+    paginateShoppingItems,
+  });
 })();

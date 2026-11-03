@@ -20,6 +20,7 @@
     <script defer src="./src/recipes.js"></script>
     <script defer src="./src/shopping.js"></script>
     <script defer src="./src/capture.js"></script>
+    <script defer src="./src/experience.js"></script>
     <script defer src="./src/app.js"></script>
   </head>
   <body>
@@ -232,6 +233,51 @@
               /></label>
             </div>
           </div>
+          <div class="plan-shortcuts" aria-label="Planning shortcuts">
+            <label class="household-control"
+              >Cooking for
+              <select id="household-size" aria-label="Household size">
+                <option value="">Recipe servings</option>
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+                <option value="6">6 people</option>
+                <option value="7">7 people</option>
+                <option value="8">8 people</option>
+                <option value="9">9 people</option>
+                <option value="10">10 people</option>
+                <option value="11">11 people</option>
+                <option value="12">12 people</option>
+                <option value="13">13 people</option>
+                <option value="14">14 people</option>
+                <option value="15">15 people</option>
+                <option value="16">16 people</option>
+                <option value="17">17 people</option>
+                <option value="18">18 people</option>
+                <option value="19">19 people</option>
+                <option value="20">20 people</option>
+                <option value="21">21 people</option>
+                <option value="22">22 people</option>
+                <option value="23">23 people</option>
+                <option value="24">24 people</option>
+              </select>
+            </label>
+            <div class="plan-shortcut-actions">
+              <button id="copy-last-week" class="text-button" type="button">
+                Copy last week
+              </button>
+              <button
+                id="templates-open"
+                class="text-button"
+                type="button"
+                disabled
+              >
+                Saved weeks ↗
+              </button>
+            </div>
+          </div>
           <p class="planner-tip">
             <span aria-hidden="true">⠿</span> Drag a favourite into your week,
             or tap any space to add a meal.
@@ -271,6 +317,22 @@
       <span>Good food. A little forethought.</span
       ><span>Made for the everyday <span aria-hidden="true">✳</span></span>
     </footer>
+    <nav class="mobile-nav" aria-label="Quick navigation">
+      <button
+        id="mobile-plan"
+        type="button"
+        data-tab="plan"
+        aria-current="page"
+      >
+        <span aria-hidden="true">▦</span>Weekly plan
+      </button>
+      <button id="mobile-recipes" type="button" data-tab="recipes">
+        <span aria-hidden="true">▤</span>Recipes
+      </button>
+      <button id="mobile-shopping" type="button" data-tab="shopping" disabled>
+        <span aria-hidden="true">☷</span>Shopping list
+      </button>
+    </nav>
     <div id="toast" class="toast" hidden>
       <p id="status" role="status" aria-live="polite" aria-atomic="true"></p>
       <button id="undo" type="button" hidden>Undo</button
@@ -358,18 +420,20 @@
           </button>
         </div>
         <p class="shopping-help">
-          Amounts start at one full recipe batch per planned meal. Untick
-          anything you already have or want to skip, then use − and + or type a
-          quantity. Only selected items with a quantity above zero appear in
-          your screenshot.
+          Amounts follow your household size, meal portions and linked
+          leftovers. Untick anything you already have or want to skip, then use
+          − and + or type a quantity. Only selected items with a quantity above
+          zero appear in your screenshot.
         </p>
         <details class="shopping-rules">
           <summary>How amounts are worked out</summary>
           <p>
-            Each planned meal counts as one full recipe batch, using that
-            recipe’s stated servings. Shared ingredients are combined when their
-            units match; grams and kilograms, or millilitres and litres, are
-            converted together. Adjust amounts for your portions and leftovers.
+            Choose your household size beside the plan, or keep the recipe’s
+            stated servings. Use a meal’s options to change its portions or link
+            leftovers to an earlier cooking. Leftover servings are added to that
+            original batch. Shared ingredients are combined when their units
+            match; grams and kilograms, or millilitres and litres, are converted
+            together.
           </p>
           <p>
             Whole items round up. “To taste”, pinches and unspecified amounts
@@ -382,6 +446,28 @@
             tick choices stay the same.
           </p>
         </details>
+        <div class="shopping-mode-bar">
+          <button
+            id="shopping-mode"
+            type="button"
+            class="button button-outline"
+            aria-pressed="false"
+          >
+            Start shopping
+          </button>
+          <label id="shopping-hide-bought-label" hidden
+            ><input id="shopping-hide-bought" type="checkbox" /> Hide bought
+            items</label
+          >
+          <button
+            id="shopping-unbuy-all"
+            type="button"
+            class="text-button"
+            hidden
+          >
+            Clear bought marks
+          </button>
+        </div>
         <p id="shopping-warning" class="notice" hidden></p>
         <div class="shopping-toolbar">
           <p id="shopping-summary" aria-live="polite"></p>

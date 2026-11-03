@@ -102,6 +102,7 @@
     makeDraggable,
     notify,
     storageChanged,
+    favouriteButton,
   }) {
     const dialog = document.querySelector("#recipe-dialog");
     const container = document.querySelector("#recipe-detail");
@@ -158,6 +159,7 @@
         `Add ${recipe.title} to your week`,
       );
       bottom.append(view, handle, add);
+      if (favouriteButton) bottom.insertBefore(favouriteButton(recipe), handle);
       article.append(
         main,
         el("p", "recipe-card-description", recipe.description),

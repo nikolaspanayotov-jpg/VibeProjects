@@ -2336,3 +2336,386 @@ dialog::backdrop {
     font-size: 13px;
   }
 }
+
+/* A small set of shortcuts, kept close to the week they affect. */
+.plan-shortcuts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.household-control {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.household-control select {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fffdf8;
+  color: var(--olive);
+}
+.plan-shortcut-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+.plan-shortcut-actions button {
+  min-height: 44px;
+}
+.slot-portions {
+  display: block;
+  padding: 0 8px 5px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--olive);
+  overflow-wrap: anywhere;
+}
+.slot.is-leftover {
+  border-style: dashed;
+}
+.capture-cell .capture-portions {
+  display: block;
+  margin-top: 4px;
+  font:
+    9px/1.4 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--olive);
+}
+.favourite-button {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 8px;
+  color: var(--olive);
+  font-size: 24px;
+  line-height: 1;
+  align-self: center;
+}
+.favourite-button:hover {
+  background: var(--sage);
+}
+.favourite-button[aria-pressed="true"] {
+  color: var(--clay);
+}
+.picker-recipe-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.picker-recipe-row .picker-recipe {
+  flex: 1;
+  min-width: 0;
+}
+.picker-recipe-row .picker-recipe > span:not(:last-child) {
+  min-width: 0;
+}
+.picker-recipe-row .picker-recipe img {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+}
+.picker-recipe-row .picker-recipe strong {
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+.picker-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+.picker-filter {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  font-size: 12px;
+  color: var(--olive);
+}
+.picker-filter[aria-pressed="true"] {
+  background: var(--olive);
+  color: var(--cream);
+  border-color: var(--olive);
+}
+.picker-count {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.template-form,
+.portion-form {
+  display: grid;
+  gap: 16px;
+}
+.template-form > label,
+.portion-form > label:not(.default-portions) {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.template-form input,
+.portion-form input[type="number"],
+.portion-form select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fffdf8;
+  font-size: 16px;
+}
+.portion-form input:disabled {
+  color: var(--muted);
+  background: var(--sage);
+}
+.default-portions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+}
+.default-portions input {
+  accent-color: var(--olive);
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.portion-help {
+  padding: 14px;
+  background: var(--sage);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--olive);
+}
+.template-status {
+  color: var(--olive);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+.template-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+.template-list h3 {
+  font-size: 24px;
+}
+.template-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.template-row > div {
+  flex: 1 0 100%;
+  min-width: 0;
+}
+.template-row strong {
+  display: block;
+  font:
+    21px/1.4 Georgia,
+    serif;
+  overflow-wrap: anywhere;
+}
+.template-row small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Editing a list and checking a basket have separate checkbox meanings. */
+.shopping-mode-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin: 20px 0 8px;
+}
+.shopping-mode-bar label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 13px;
+}
+.shopping-mode-bar input,
+.shopping-bought-check input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--olive);
+  flex-shrink: 0;
+}
+.shopping-aisle {
+  margin-top: 20px;
+}
+.shopping-aisle h3 {
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--olive);
+  color: var(--olive);
+}
+.shopping-bought-check {
+  display: none;
+}
+.is-shopping-mode .shopping-item {
+  display: block;
+  padding: 0;
+}
+.is-shopping-mode .shopping-check,
+.is-shopping-mode .quantity-controls,
+.is-shopping-mode .shopping-notes,
+.is-shopping-mode .shopping-help,
+.is-shopping-mode .shopping-rules {
+  display: none;
+}
+.is-shopping-mode .shopping-bought-check {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  min-height: 76px;
+  padding: 12px 4px;
+  cursor: pointer;
+}
+.shopping-bought-check span {
+  min-width: 0;
+}
+.shopping-bought-check strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+.shopping-bought-check small {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.shopping-item.bought .shopping-bought-check strong {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.shopping-capture-aisle {
+  padding: 14px 0 6px;
+  color: var(--olive);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  break-after: avoid;
+}
+.shopping-capture-row.bought .shopping-capture-name {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+.mobile-nav {
+  display: none;
+}
+@media (max-width: 960px) {
+  body {
+    padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-nav {
+    position: fixed;
+    z-index: 8;
+    inset: auto 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 4px;
+    padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px));
+    background: var(--cream);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 22px #252a2409;
+  }
+  .mobile-nav button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 58px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .mobile-nav button span {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .mobile-nav button[aria-current="page"] {
+    background: var(--sage);
+    color: var(--olive);
+    font-weight: 650;
+  }
+  body:has(dialog[open]) .mobile-nav {
+    display: none;
+  }
+  .toast {
+    bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (max-width: 640px) {
+  .plan-shortcuts {
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .household-control {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+  .household-control select {
+    font-size: 16px;
+  }
+  .plan-shortcut-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .slot-portions {
+    font-size: 9px;
+    padding-inline: 6px;
+  }
+  .capture-cell .capture-portions {
+    font-size: 8px;
+  }
+  .recipe-card-bottom {
+    gap: 2px;
+  }
+  .shopping-capture-aisle {
+    font-size: 10px;
+    padding-top: 10px;
+  }
+}
+@media print {
+  body {
+    padding-bottom: 0;
+  }
+  .mobile-nav {
+    display: none !important;
+  }
+  .shopping-capture-aisle {
+    color: #000;
+    font-size: 11px;
+  }
+}

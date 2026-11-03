@@ -16,6 +16,7 @@ for (const path of [
   "src/recipes.js",
   "src/shopping.js",
   "src/capture.js",
+  "src/experience.js",
 ])
   await runScript(path);
 export const api = globalThis.TopRecipes;
