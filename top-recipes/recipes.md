@@ -144,3 +144,400 @@ A comforting baked dish of roasted aubergine, a warmly spiced lamb and tomato sa
 - The cooking estimate assumes the aubergine, meat sauce and béchamel are prepared in parallel, as described. Allow longer if making each component one after another.
 - Beef mince can replace lamb if preferred.
 - Contains wheat/gluten, milk and egg in the suggested ingredients.
+
+## Chicken with rice
+
+```yaml
+id: chicken-with-rice
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 15
+cook_minutes: 50
+wait_minutes: 5
+tags: [one-pot, family-favourite, oven-baked]
+```
+
+Golden chicken thighs baked with fluffy rice, onion and a gently seasoned stock. A comforting meal from one dish.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| chicken | 600 g | Boneless, skinless chicken thighs | Main |
+| rice | 300 g | Long-grain white rice, rinsed | Main |
+| onion | 1 large | Onion, finely chopped | Main |
+| garlic | 2 cloves | Garlic, finely chopped | Main |
+| olive-oil | 2 tbsp | Olive oil | Main |
+| chicken-stock | 700 ml | Hot chicken stock | Main |
+| paprika | 1 tsp | Sweet paprika | Seasoning |
+| thyme | 1 tsp | Dried thyme | Seasoning |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+| parsley | 1 small handful | Fresh parsley, chopped (optional) | To finish |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan. Season the chicken with the paprika, thyme and a little salt and pepper.
+2. Heat the oil in a large ovenproof casserole over medium-high heat. Brown the chicken for 6–8 minutes, then lift onto a plate.
+3. Lower the heat and cook the onion in the same casserole for about 5 minutes. Add the garlic for 1 minute, then stir in the rinsed rice.
+4. Pour in the hot stock, stir and bring to a simmer. Place the chicken on top and cover tightly with a lid or foil.
+5. Bake for about 30 minutes, then uncover and cook for another 5–10 minutes, until the rice is tender, the liquid is absorbed and the chicken reaches 75°C in the centre. Add a splash of hot water if the rice needs longer.
+6. Rest, covered, for 5 minutes. Fluff the rice around the chicken and scatter with parsley if using.
+
+### Notes
+
+- This version uses white rice; brown rice needs more liquid and a longer cooking time.
+
+## Cottage pie
+
+```yaml
+id: cottage-pie
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 20
+cook_minutes: 65
+wait_minutes: 10
+tags: [comfort-food, family-favourite, batch-cooking]
+```
+
+A rich beef and vegetable filling under a golden layer of buttery mashed potato. A familiar favourite for a cosy evening.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| beef-mince | 500 g | Beef mince | Filling |
+| onion | 1 large | Onion, finely chopped | Filling |
+| carrots | 2 medium | Carrots, diced | Filling |
+| garlic | 2 cloves | Garlic, finely chopped | Filling |
+| olive-oil | 1 tbsp | Olive oil | Filling |
+| tomato-puree | 2 tbsp | Tomato purée | Filling |
+| beef-stock | 300 ml | Beef stock | Filling |
+| worcestershire-sauce | 1 tbsp | Worcestershire sauce | Filling |
+| thyme | 1 tsp | Dried thyme | Filling |
+| peas | 100 g | Frozen peas | Filling |
+| potatoes | 1 kg | Floury potatoes, peeled and cut into chunks | Mash |
+| butter | 40 g | Butter | Mash |
+| milk | 100 ml | Milk | Mash |
+| cheddar | 50 g | Cheddar, grated (optional) | Topping |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan. Heat the oil in a large pan and soften the onion and carrots for 8–10 minutes.
+2. Add the garlic and beef mince. Cook for about 8 minutes, breaking up the mince, until browned.
+3. Stir in the tomato purée, stock, Worcestershire sauce and thyme. Simmer uncovered for about 20 minutes until the filling is thick, then stir in the peas and season.
+4. Meanwhile, put the potatoes in a pan of cold salted water. Bring to the boil and simmer for 15–20 minutes until tender. Drain, let the steam escape, then mash with the butter and milk.
+5. Spoon the beef filling into a roughly 24 cm baking dish. Spread the mash over it, roughen with a fork and scatter with the Cheddar if using.
+6. Bake for about 25 minutes until golden on top and bubbling around the edges. Rest for 10 minutes before serving.
+
+### Notes
+
+- The cooking estimate assumes the potatoes cook while the filling simmers.
+- Cottage pie uses beef; lamb mince makes a shepherd's pie variation.
+
+## Lasagna
+
+```yaml
+id: lasagna
+meal_types: [dinner, lunch]
+servings: 6
+prep_minutes: 25
+cook_minutes: 80
+wait_minutes: 15
+tags: [comfort-food, pasta, batch-cooking]
+```
+
+Layers of beef and tomato sauce, pasta and creamy béchamel, baked until golden. A generous dish for sharing.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| beef-mince | 500 g | Beef mince | Meat sauce |
+| onion | 1 large | Onion, finely chopped | Meat sauce |
+| carrot | 1 medium | Carrot, finely diced | Meat sauce |
+| garlic | 2 cloves | Garlic, finely chopped | Meat sauce |
+| olive-oil | 1 tbsp | Olive oil | Meat sauce |
+| chopped-tomatoes | 800 g | Tinned chopped tomatoes | Meat sauce |
+| tomato-puree | 2 tbsp | Tomato purée | Meat sauce |
+| oregano | 1 tsp | Dried oregano | Meat sauce |
+| butter | 50 g | Butter | Béchamel |
+| flour | 50 g | Plain flour | Béchamel |
+| milk | 600 ml | Milk | Béchamel |
+| nutmeg | 1 pinch | Ground nutmeg | Béchamel |
+| lasagna-sheets | 250 g | Dried lasagna sheets that need no precooking | Layers |
+| parmesan | 75 g | Parmesan, finely grated | Layers |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oil in a large pan. Soften the onion and carrot for about 8 minutes, add the garlic for 1 minute, then add the mince. Cook for about 8 minutes until browned.
+2. Stir in the tomato purée, tomatoes and oregano. Simmer for 20–25 minutes until thick but still spoonable. Season to taste.
+3. While the meat sauce simmers, melt the butter in a saucepan. Stir in the flour and cook for 1–2 minutes. Gradually whisk in the milk and cook for about 8 minutes until smooth and thick. Add the nutmeg and a little seasoning.
+4. Heat the oven to 200°C, or 180°C fan. Spread a little meat sauce in a roughly 30 × 20 cm baking dish. Add a layer of pasta, then meat sauce and béchamel. Repeat, finishing with béchamel, and scatter Parmesan between layers and over the top.
+5. Bake for 35–40 minutes, or according to the pasta packet, until the sheets are tender, the centre is piping hot and the top is golden. Cover loosely with foil if it browns before the pasta is ready.
+6. Rest for 15 minutes before slicing.
+
+### Notes
+
+- Keep enough sauce around every pasta sheet so it can soften as the lasagna bakes.
+- The cooking estimate assumes the béchamel is prepared while the meat sauce simmers.
+
+## Spaghetti bolognese
+
+```yaml
+id: spaghetti-bolognese
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 15
+cook_minutes: 45
+wait_minutes: 0
+tags: [pasta, family-favourite, bolognaise, bolonaise]
+```
+
+Spaghetti with a rich beef, tomato and vegetable sauce. An easy favourite for a generous midweek supper.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| beef-mince | 500 g | Beef mince | Sauce |
+| onion | 1 large | Onion, finely chopped | Sauce |
+| carrot | 1 medium | Carrot, finely diced | Sauce |
+| celery | 1 stick | Celery, finely diced | Sauce |
+| garlic | 2 cloves | Garlic, finely chopped | Sauce |
+| olive-oil | 1 tbsp | Olive oil | Sauce |
+| chopped-tomatoes | 800 g | Tinned chopped tomatoes | Sauce |
+| tomato-puree | 2 tbsp | Tomato purée | Sauce |
+| beef-stock | 150 ml | Beef stock | Sauce |
+| oregano | 1 tsp | Dried oregano | Sauce |
+| spaghetti | 400 g | Dried spaghetti | To serve |
+| parmesan | 40 g | Parmesan, finely grated (optional) | To serve |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oil in a large pan over medium heat. Soften the onion, carrot and celery for 8–10 minutes, then add the garlic for 1 minute.
+2. Add the mince and cook for about 8 minutes until browned, breaking it up with a spoon.
+3. Stir in the tomato purée, tomatoes, stock and oregano. Simmer uncovered for about 25 minutes, stirring occasionally, until rich and thick. Season to taste.
+4. Towards the end of cooking, boil the spaghetti in salted water according to the packet. Reserve a mug of cooking water before draining.
+5. Toss the spaghetti with the sauce, adding a splash of pasta water to loosen if needed. Serve with Parmesan if using.
+
+### Notes
+
+- The sauce can simmer longer over a low heat; add a splash of water if it becomes too thick.
+
+## Sausages
+
+```yaml
+id: sausages
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 10
+cook_minutes: 35
+wait_minutes: 0
+tags: [easy, oven-baked, family-favourite]
+```
+
+Golden oven-baked sausages with softened onions and thyme. Simple, comforting and easy to pair with your favourite sides.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| sausages | 8, about 600 g | Pork sausages | Main |
+| onions | 2 large | Onions, cut into wedges | Main |
+| olive-oil | 1 tbsp | Olive oil | Main |
+| thyme | 1 tsp | Dried thyme | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan.
+2. Toss the onion wedges with the oil, thyme and black pepper in a roasting tin. Arrange the sausages on top in a single layer.
+3. Roast for 30–35 minutes, turning the sausages and stirring the onions halfway through. Follow the sausage packet's cooking instructions and check the centre reaches 75°C.
+4. Serve with the roasted onions and any sides you like.
+
+### Notes
+
+- Mashed potatoes, bread or vegetables are serving ideas and are not included in the ingredient quantities above.
+- Cooking time varies with the size and type of sausage.
+
+## Salmon
+
+```yaml
+id: salmon
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 10
+cook_minutes: 15
+wait_minutes: 0
+tags: [fish, quick, oven-baked]
+```
+
+Tender baked salmon with lemon, garlic and dill. A fresh, simple option for a quick lunch or dinner.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| salmon-fillets | 4, about 140 g each | Salmon fillets | Main |
+| olive-oil | 1 tbsp | Olive oil | Main |
+| lemon | 1 | Lemon, half juiced and half sliced | Main |
+| garlic | 1 clove | Garlic, finely chopped | Seasoning |
+| dill | 1 small handful | Fresh dill, chopped | Seasoning |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan. Line a baking tray with baking paper and place the salmon on it, skin-side down if it has skin.
+2. Mix the oil, lemon juice, garlic and half the dill. Spoon over the fish and season lightly with salt and pepper. Lay the lemon slices on top.
+3. Bake for 12–15 minutes, depending on thickness, until the salmon flakes easily and reaches 63°C in the centre.
+4. Scatter over the remaining dill and serve.
+
+### Notes
+
+- Rice, potatoes or a salad make good sides; they are not included in the ingredient quantities above.
+
+## Chicken soup
+
+```yaml
+id: chicken-soup
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 15
+cook_minutes: 35
+wait_minutes: 0
+tags: [soup, comfort-food, one-pot]
+```
+
+A warming chicken soup with carrots, celery and rice, finished with parsley and a squeeze of lemon.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| chicken | 400 g | Boneless, skinless chicken thighs | Soup |
+| onion | 1 medium | Onion, finely chopped | Soup |
+| carrots | 2 medium | Carrots, diced | Soup |
+| celery | 2 sticks | Celery, diced | Soup |
+| garlic | 2 cloves | Garlic, finely chopped | Soup |
+| olive-oil | 1 tbsp | Olive oil | Soup |
+| chicken-stock | 1.5 litres | Chicken stock | Soup |
+| rice | 75 g | Long-grain white rice, rinsed | Soup |
+| bay-leaf | 1 | Bay leaf | Seasoning |
+| parsley | 1 small handful | Fresh parsley, chopped | To finish |
+| lemon | Half | Lemon, juiced | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oil in a large saucepan. Soften the onion, carrots and celery over medium heat for 8–10 minutes. Add the garlic for 1 minute.
+2. Pour in the stock, add the chicken and bay leaf, and bring to a gentle simmer.
+3. Add the rice and simmer for 20–25 minutes, until the vegetables and rice are tender and the chicken reaches 75°C in the centre.
+4. Lift the chicken onto a plate, shred with two forks and return it to the soup. Remove the bay leaf.
+5. Stir in the parsley and lemon juice, season to taste and serve. Add a little hot water if you prefer a lighter broth.
+
+### Notes
+
+- The rice absorbs broth as the soup stands; add extra water or stock when reheating.
+
+## Meatballs soup
+
+```yaml
+id: meatballs-soup
+meal_types: [lunch, dinner]
+servings: 4
+prep_minutes: 25
+cook_minutes: 35
+wait_minutes: 0
+tags: [soup, comfort-food, supa-topcheta]
+```
+
+Small, tender meatballs simmered in a vegetable and rice broth, with parsley and lemon to finish.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| mince | 400 g | Beef and pork mince | Meatballs |
+| grated-onion | Half a medium | Onion, finely grated | Meatballs |
+| egg | 1 | Egg | Meatballs |
+| breadcrumbs | 30 g | Dried breadcrumbs | Meatballs |
+| oregano | 1 tsp | Dried oregano | Meatballs |
+| chopped-onion | Half a medium | Onion, finely chopped | Soup |
+| carrots | 2 medium | Carrots, diced | Soup |
+| celery | 1 stick | Celery, diced | Soup |
+| olive-oil | 1 tbsp | Olive oil | Soup |
+| stock | 1.5 litres | Chicken or vegetable stock | Soup |
+| rice | 60 g | Long-grain white rice, rinsed | Soup |
+| parsley | 1 small handful | Fresh parsley, chopped | To finish |
+| lemon | Half | Lemon, juiced | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Mix the mince with the grated onion, egg, breadcrumbs, oregano and a little salt and pepper. With damp hands, roll into small meatballs about 2 cm across.
+2. Heat the oil in a large saucepan. Soften the chopped onion, carrots and celery for about 8 minutes.
+3. Add the stock and bring to a gentle simmer. Lower the meatballs into the broth one at a time, then add the rice.
+4. Simmer gently for 20–25 minutes, stirring carefully so the meatballs keep their shape, until the rice is tender and the meatballs reach 75°C in the centre.
+5. Stir in the parsley and lemon juice. Taste, adjust the seasoning and serve.
+
+### Notes
+
+- The two onion entries together use one medium onion, split between the meatballs and broth.
+- This is a clear-broth starter version; it does not include a yoghurt-and-egg thickening mixture.
+
+## Filled peppers
+
+```yaml
+id: filled-peppers
+meal_types: [dinner, lunch]
+servings: 4
+prep_minutes: 25
+cook_minutes: 70
+wait_minutes: 5
+tags: [stuffed-peppers, oven-baked, family-favourite]
+```
+
+Sweet peppers filled with seasoned beef and rice, baked in a tomato sauce until tender.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| peppers | 4 large | Bell peppers | Main |
+| beef-mince | 400 g | Beef mince | Filling |
+| rice | 150 g | Long-grain white rice, rinsed | Filling |
+| onion | 1 medium | Onion, finely chopped | Filling |
+| garlic | 2 cloves | Garlic, finely chopped | Filling |
+| olive-oil | 1 tbsp | Olive oil | Filling |
+| paprika | 1 tsp | Sweet paprika | Filling |
+| oregano | 1 tsp | Dried oregano | Filling |
+| chopped-tomatoes | 400 g | Tinned chopped tomatoes, divided | Filling and sauce |
+| stock | 200 ml | Beef or vegetable stock | Sauce |
+| parsley | 1 small handful | Fresh parsley, chopped | To finish |
+| salt | To taste | Salt | Seasoning |
+| black-pepper | To taste | Ground black pepper | Seasoning |
+
+### Method
+
+1. Heat the oven to 200°C, or 180°C fan. Cook the rice in boiling water according to the packet, then drain.
+2. Meanwhile, slice the tops off the peppers and remove the seeds and white membranes. Keep the tops as lids.
+3. Heat the oil in a frying pan. Soften the onion for about 5 minutes, add the garlic for 1 minute, then add the mince. Cook for about 8 minutes until browned.
+4. Stir in the paprika, oregano and half the tomatoes. Simmer for 5 minutes, then fold in the cooked rice and half the parsley. Season to taste.
+5. Mix the remaining tomatoes and the stock in a deep baking dish. Stand the peppers in it, spoon the filling into them and replace their tops. Cover the dish tightly with foil.
+6. Bake for 35 minutes, then remove the foil and bake for another 10–15 minutes, until the peppers are tender and the filling is piping hot.
+7. Rest for 5 minutes, then spoon over the tomato sauce and scatter with the remaining parsley.
+
+### Notes
+
+- The rice is cooked before stuffing, so the filling can be spooned into the peppers without leaving room for rice to expand.
+- Use a baking dish that holds the peppers upright and fairly snugly.

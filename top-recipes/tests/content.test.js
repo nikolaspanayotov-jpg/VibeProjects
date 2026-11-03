@@ -13,12 +13,16 @@ test("compiles the authored recipes, preserving quantities, components and timin
   const recipes = parseRecipes(markdown);
   assert.deepEqual(
     recipes.map((recipe) => recipe.id),
-    ["overnight-oats", "chicken-and-leek-pie", "moussaka"],
+    [
+      "overnight-oats", "chicken-and-leek-pie", "moussaka",
+      "chicken-with-rice", "cottage-pie", "lasagna", "spaghetti-bolognese",
+      "sausages", "salmon", "chicken-soup", "meatballs-soup", "filled-peppers",
+    ],
   );
   assert.equal(recipes[0].waitMinutes, 480);
   assert.equal(recipes[0].ingredients[0].quantity, "40 g");
   assert.deepEqual(
-    recipes.map((recipe) => recipe.ingredients.length),
+    recipes.slice(0, 3).map((recipe) => recipe.ingredients.length),
     [6, 14, 17],
   );
   assert.equal(recipes[1].ingredients.at(-1).group, "Pastry lid");
@@ -26,7 +30,7 @@ test("compiles the authored recipes, preserving quantities, components and timin
   assert.ok(recipes[0].description.startsWith("Creamy oats"));
 });
 
-test("adding a recipe section automatically creates a fourth data record", () => {
+test("adding a recipe section automatically creates an additional data record", () => {
   const oats = markdown.slice(
     markdown.indexOf("## Overnight oats"),
     markdown.indexOf("## Chicken and leek pie"),
@@ -35,9 +39,9 @@ test("adding a recipe section automatically creates a fourth data record", () =>
     .replace("## Overnight oats", "## Berry breakfast")
     .replace("id: overnight-oats", "id: berry-breakfast");
   const recipes = parseRecipes(`${markdown}\n${extra}`);
-  assert.equal(recipes.length, 4);
-  assert.equal(recipes[3].title, "Berry breakfast");
-  assert.equal(recipes[3].id, "berry-breakfast");
+  assert.equal(recipes.length, parseRecipes(markdown).length + 1);
+  assert.equal(recipes.at(-1).title, "Berry breakfast");
+  assert.equal(recipes.at(-1).id, "berry-breakfast");
 });
 
 test("content errors identify the affected recipe and field", async (t) => {

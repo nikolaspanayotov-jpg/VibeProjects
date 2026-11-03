@@ -75,7 +75,7 @@ test("the page supports a complete recipe-to-week workflow through DOM controls"
     JSON.parse(browser.localStorage.getItem(PLAN_KEY)).weeks[mondayKey()];
   try {
     await t.test("loads all recipe cards and exactly 21 empty slots", () => {
-      assert.equal(all(".recipe-card").length, 3);
+      assert.equal(all(".recipe-card").length, recipes.length);
       assert.equal(all(".slot").length, 21);
       assert.equal(all(".slot-empty").length, 21);
       assert.equal($("#clear-week").disabled, true);
@@ -90,7 +90,7 @@ test("the page supports a complete recipe-to-week workflow through DOM controls"
         input($("#recipe-search"), "no-such-dish");
         assert.match($("#recipe-list").textContent, /No recipes found/);
         $("#recipe-list .text-button").click();
-        assert.equal(all(".recipe-card").length, 3);
+        assert.equal(all(".recipe-card").length, recipes.length);
         $('[data-filter="lunch"]').click();
         assert.equal($(".recipe-title").textContent, "Chicken and leek pie");
         assert.equal(
@@ -204,7 +204,7 @@ test("the page supports a complete recipe-to-week workflow through DOM controls"
         drag(slot("tuesday", "dinner"), "drop");
         await settle();
         assert.equal(savedWeek().tuesday.dinner, "moussaka");
-        assert.equal(all(".recipe-card").length, 3);
+        assert.equal(all(".recipe-card").length, recipes.length);
         drag(
           slot("tuesday", "dinner").querySelector(".drag-handle"),
           "dragstart",
@@ -295,7 +295,7 @@ test("a failed recipe request can retry without losing a previously saved meal",
     ui.recover();
     ui.$("#recipe-list .text-button").click();
     await settle();
-    assert.equal(ui.all(".recipe-card").length, 3);
+    assert.equal(ui.all(".recipe-card").length, recipes.length);
     assert.equal(
       ui.$('.slot[data-day="sunday"][data-meal="dinner"] .planned-title')
         .textContent,
@@ -317,7 +317,7 @@ test('opening from disk can load the Markdown collection through the local file 
     input.files = transfer.files;
     input.dispatchEvent(new ui.browser.Event('change', { bubbles: true }));
     await settle();
-    assert.equal(ui.all('.recipe-card').length, 3);
+    assert.equal(ui.all('.recipe-card').length, recipes.length);
     assert.equal(ui.all('.slot').length, 21);
   } finally { await settle(); ui.close(); }
 });
