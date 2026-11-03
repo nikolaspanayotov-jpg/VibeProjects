@@ -541,3 +541,82 @@ Sweet peppers filled with seasoned beef and rice, baked in a tomato sauce until 
 
 - The rice is cooked before stuffing, so the filling can be spooned into the peppers without leaving room for rice to expand.
 - Use a baking dish that holds the peppers upright and fairly snugly.
+
+## Pancakes
+
+```yaml
+id: pancakes
+meal_types: [breakfast]
+servings: 4
+prep_minutes: 10
+cook_minutes: 20
+wait_minutes: 0
+tags: [vegetarian, family-favourite, quick]
+```
+
+Soft, fluffy pancakes for a relaxed breakfast. Serve with fresh fruit and a little honey or maple syrup.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| flour | 200 g | Self-raising flour | Batter |
+| sugar | 1 tbsp | Caster sugar | Batter |
+| salt | 1 pinch | Salt | Batter |
+| egg | 1 large | Egg | Batter |
+| milk | 250 ml | Milk | Batter |
+| butter | 25 g | Butter, melted, plus a little extra for the pan | Batter and cooking |
+| berries | 150 g | Fresh berries (optional) | To serve |
+| syrup | 2 tbsp | Honey or maple syrup (optional) | To serve |
+
+### Method
+
+1. Mix the flour, sugar and salt in a bowl. In a jug, whisk the egg, milk and melted butter together.
+2. Pour the wet ingredients into the flour mixture and whisk briefly until combined. A few small lumps are fine; avoid overmixing.
+3. Heat a non-stick frying pan over medium heat and brush with a little butter. Add small ladlefuls of batter, leaving space between them.
+4. Cook for about 2 minutes until bubbles appear on top and the edges begin to set. Flip and cook for another 1–2 minutes until golden and cooked through. Repeat with the remaining batter, adjusting the heat if they brown too quickly.
+5. Serve warm with the berries and honey or maple syrup if using.
+
+### Notes
+
+- This quantity makes about 12 small pancakes, or 3 per serving.
+
+## Macaroni bake
+
+```yaml
+id: macaroni-bake
+meal_types: [breakfast]
+servings: 4
+prep_minutes: 10
+cook_minutes: 45
+wait_minutes: 10
+tags: [vegetarian, sweet, oven-baked, make-ahead]
+```
+
+A gently sweet breakfast bake of macaroni, milk and eggs, with a golden top and a little vanilla. An optional sprinkle of feta adds a salty contrast.
+
+### Ingredients
+
+| ID | Quantity | Ingredient | Group |
+| --- | --- | --- | --- |
+| macaroni | 250 g | Dried macaroni | Pasta |
+| butter | 20 g | Butter, divided between the dish and pasta | Pasta and dish |
+| milk | 500 ml | Milk | Custard |
+| eggs | 3 large | Eggs | Custard |
+| sugar | 60 g | Caster sugar, divided | Custard and topping |
+| vanilla | 1 tsp | Vanilla extract | Custard |
+| salt | 1 pinch | Salt | Custard |
+| feta | 100 g | Feta, crumbled (optional) | Filling |
+
+### Method
+
+1. Heat the oven to 190°C, or 170°C fan. Grease a roughly 25 × 20 cm baking dish with a little of the butter.
+2. Boil the macaroni for about 2 minutes less than the packet instructions, so it is still slightly firm. Drain, toss with the remaining butter and spread in the baking dish. Mix in the feta if using.
+3. Whisk the eggs, milk, 50 g of the sugar, vanilla and salt together. Pour over the macaroni and gently stir so the custard reaches all the pasta.
+4. Sprinkle the remaining 10 g of sugar over the top. Bake for 30–35 minutes until golden and the custard is set in the centre; allow a little longer if needed.
+5. Rest for 10 minutes before cutting into portions. Serve warm.
+
+### Notes
+
+- This starter version is a sweet breakfast macaroni bake, rather than a savoury cheese pasta bake.
+- The feta is optional; leave it out for a milder, sweeter version.

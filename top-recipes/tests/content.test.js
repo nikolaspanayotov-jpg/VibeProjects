@@ -17,6 +17,7 @@ test("compiles the authored recipes, preserving quantities, components and timin
       "overnight-oats", "chicken-and-leek-pie", "moussaka",
       "chicken-with-rice", "cottage-pie", "lasagna", "spaghetti-bolognese",
       "sausages", "salmon", "chicken-soup", "meatballs-soup", "filled-peppers",
+      "pancakes", "macaroni-bake",
     ],
   );
   assert.equal(recipes[0].waitMinutes, 480);
@@ -28,6 +29,10 @@ test("compiles the authored recipes, preserving quantities, components and timin
   assert.equal(recipes[1].ingredients.at(-1).group, "Pastry lid");
   assert.equal(recipes[2].method.length, 7);
   assert.ok(recipes[0].description.startsWith("Creamy oats"));
+  assert.deepEqual(
+    recipes.filter(recipe => recipe.mealTypes.includes("breakfast")).map(recipe => recipe.id),
+    ["overnight-oats", "pancakes", "macaroni-bake"],
+  );
 });
 
 test("adding a recipe section automatically creates an additional data record", () => {
