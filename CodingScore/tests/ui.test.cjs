@@ -56,14 +56,14 @@ function app({saved=null,denyStorage=false}={}) {
   document.activeElement=new Element('body');
   const context=vm.createContext({document,Date:Clock,URL,Blob,Intl,console,crypto:{randomUUID:()=>`id-${Math.random().toString(36).slice(2)}`},navigator:{clipboard:{writeText:async()=>{}}},setTimeout:fn=>{fn();return 1;},setInterval:()=>1,localStorage:{getItem:key=>{if(denyStorage)throw Error('denied');return store.get(key)??null;},setItem:(key,value)=>{if(denyStorage)throw Error('denied');store.set(key,value);}}});
   vm.runInContext(script,context);
-  return {get:id=>elements.get(id),state:()=>JSON.parse(store.get('codingScore.v1')||'null'),store,downloads,
+  return {get:id=>elements.get(id),state:()=>JSON.parse(store.get('codingScore.v1')||'null'),store,downloads,active:()=>document.activeElement,
     click(action,data={}){const target=new Element('button');target.dataset={action,...data};for(const handler of documentHandlers.click||[])handler({target});},
     submit:id=>elements.get(id).emit('submit'),change:id=>elements.get(id).emit('change'),
     advance:ms=>{clock+=ms;},blank:()=>vm.runInContext('Core.blank()',context)};
 }
 function log(a,note='Codex helped me fix a script.',extra={}){
   a.click('log');a.get('entryNote').value=note;
-  for(const [id,value] of Object.entries(extra)){if(id==='entryUseful')a.get(id).checked=value;else a.get(id).value=value;}
+  for(const [id,value] of Object.entries(extra)){if(['entryUseful','entryStepComplete'].includes(id))a.get(id).checked=value;else a.get(id).value=value;}
   a.submit('entryForm');
 }
 
@@ -124,4 +124,80 @@ test('import validates first, previews replacement, and changes nothing until co
 });
 test('clear-data requires confirmation and resets personal state',()=>{
   const a=app();log(a);a.click('clear-data');assert.equal(a.state().entries.length,1);a.get('confirmButton').emit('click');assert.equal(a.state().entries.length,0);assert.equal(a.get('xpTotal').textContent,'0 XP');
+});
+function createQuest(a,title='A useful project') {
+  a.click('new-quest');a.get('questName').value=title;a.get('questGoal').value='A small working improvement';a.submit('questForm');return a.state().quests.at(-1);
+}
+function createWorkflow(a,title='A useful shortcut') {
+  a.click('new-workflow');a.get('workflowName').value=title;a.get('workflowKind').value='Review';a.get('workflowPrompt').value='Review [paste change] for edge cases.';a.get('workflowResult').value='Found a missing boundary check';a.submit('workflowForm');return a.state().workflows.at(-1);
+}
+test('old browser data migrates without losing XP and gains the new sections',()=>{
+  const first=app();log(first);const old=first.state();old.version=1;delete old.quests;delete old.workflows;delete old.challenges;
+  for(const e of old.entries)for(const key of ['minutesSaved','before','after','prompt','questId','questStepId','stepComplete','workflowId','workflowTitle'])delete e[key];
+  const upgraded=app({saved:JSON.stringify(old)});assert.equal(upgraded.get('xpTotal').textContent,'25 XP');assert.match(upgraded.get('workshopCount').textContent,/1 \/ 7/);assert.match(upgraded.get('workflowList').innerHTML,/good prompt/);
+  createQuest(upgraded);assert.equal(upgraded.state().version,2);assert.equal(upgraded.state().entries.length,1);
+});
+test('quest creation adds no XP and actual log handlers complete only explicitly marked steps',()=>{
+  const a=app(),q=createQuest(a);assert.equal(a.get('xpTotal').textContent,'0 XP');assert.equal(q.steps.length,4);
+  a.click('quest-step',{id:q.id,step:q.steps[0].id});a.get('entryNote').value='Investigated the problem';a.submit('entryForm');assert.equal(a.state().entries[0].stepComplete,false);assert.match(a.get('questList').innerHTML,/0 \/ 4 steps/);
+  for(let i=0;i<4;i++){a.click('quest-step',{id:q.id,step:q.steps[i].id});a.get('entryNote').value=`Completed step ${i}`;a.get('entryStepComplete').checked=true;a.submit('entryForm');}
+  a.get('questFilter').value='complete';a.change('questFilter');assert.match(a.get('questList').innerHTML,/Quest complete/);assert.match(a.get('workshopItems').innerHTML,/Tools/);assert.equal(a.state().entries.filter(e=>e.stepComplete).length,4);
+});
+test('quest editing preserves step IDs, archiving preserves linked work, and empty deletion confirms',()=>{
+  const a=app(),q=createQuest(a);a.click('edit-quest',{id:q.id});a.get('questStep1').value='Understand the inputs';a.get('questArchived').checked=true;a.submit('questForm');assert.equal(a.state().quests[0].steps[0].id,q.steps[0].id);assert.equal(a.state().quests[0].archived,true);
+  a.get('questFilter').value='archived';a.change('questFilter');assert.match(a.get('questList').innerHTML,/Understand the inputs/);
+  a.click('delete-quest',{id:q.id});assert.equal(a.state().quests.length,1);a.get('confirmButton').emit('click');assert.equal(a.state().quests.length,0);
+  const second=createQuest(a);a.click('log-quest',{id:second.id});a.get('entryNote').value='Real linked work';a.submit('entryForm');a.click('delete-quest',{id:second.id});assert.equal(a.state().quests.length,1);assert.match(a.get('toastText').textContent,/Archive/);
+});
+test('editing a completed quest log to unfinished removes derived completion',()=>{
+  const a=app(),q=createQuest(a);
+  for(const step of q.steps){a.click('quest-step',{id:q.id,step:step.id});a.get('entryNote').value='Completed work';a.get('entryStepComplete').checked=true;a.submit('entryForm');}
+  const entry=a.state().entries[0];a.click('edit-entry',{id:entry.id});a.get('entryStepComplete').checked=false;a.submit('entryForm');a.get('questFilter').value='active';a.change('questFilter');assert.match(a.get('questList').innerHTML,/3 \/ 4 steps/);
+});
+test('a personal challenge is accepted once and completes from a matching useful result',()=>{
+  const a=app(),id='2026-11-02-Automate';a.click('accept-challenge',{id});a.click('accept-challenge',{id});assert.equal(a.state().challenges.length,1);assert.equal(a.get('xpTotal').textContent,'0 XP');
+  a.click('log-challenge',{id});assert.equal(a.get('entryCategory').value,'Automate');a.get('entryNote').value='Automated a small repeated task';a.get('entryUseful').checked=true;a.submit('entryForm');assert.match(a.get('challengeCount').textContent,/1 challenge completed/);assert.equal(a.get('xpTotal').textContent,'25 XP');
+});
+test('variety challenge counts different categories rather than repeated same-category logs',()=>{
+  const a=app();a.click('accept-challenge',{id:'2026-11-02-variety'});log(a,'First', {entryCategory:'Build'});log(a,'Second',{entryCategory:'Build'});assert.match(a.get('challengeCount').textContent,/0 challenges/);
+  log(a,'A review',{entryCategory:'Review'});log(a,'Learned a function',{entryCategory:'Learn'});assert.match(a.get('challengeCount').textContent,/1 challenge/);
+});
+test('payoff and prompt fields persist through edit/reload, remain searchable, and never multiply XP',()=>{
+  const a=app();log(a,'A real task',{entryBefore:'Manual spreadsheet work',entryAfter:'One script generates the report',entrySaved:'45',entryPrompt:'Help me automate [sample rows].'});
+  assert.equal(a.get('xpTotal').textContent,'25 XP');assert.equal(a.state().entries[0].minutesSaved,45);assert.match(a.get('payoffSummary').textContent,/45 estimated minutes/);assert.match(a.get('journalList').innerHTML,/Before and after/);
+  const id=a.state().entries[0].id;a.click('edit-entry',{id});assert.equal(a.get('entrySaved').value,45);a.get('entryNote').value='A corrected task note';a.submit('entryForm');assert.equal(a.state().entries[0].before,'Manual spreadsheet work');
+  a.get('journalSearch').value='spreadsheet';a.get('journalSearch').emit('input');assert.match(a.get('journalList').innerHTML,/corrected task/);
+  const reloaded=app({saved:a.store.get('codingScore.v1')});assert.equal(reloaded.state().entries[0].prompt,'Help me automate [sample rows].');assert.match(reloaded.get('recapMetrics').innerHTML,/45/);
+});
+test('invalid payoff estimates preserve the current scorebook and form input',()=>{
+  const a=app();log(a,'Valid');const original=a.store.get('codingScore.v1');log(a,'Bad estimate',{entrySaved:'-10'});assert.match(a.get('entryError').textContent,/estimated minutes/);assert.equal(a.store.get('codingScore.v1'),original);assert.equal(a.get('entryNote').value,'Bad estimate');
+});
+test('weekly recap navigation, summary, and vector fallback export work without changing scores',()=>{
+  const a=app();log(a,'A useful result',{entrySaved:'15',entryUseful:true});assert.equal(a.get('recapStatus').textContent,'Week so far');assert.match(a.get('recapMetrics').innerHTML,/15/);
+  a.click('recap-previous');assert.equal(a.get('recapStatus').textContent,'Full week');assert.match(a.get('recapHighlight').innerHTML,/next small win/);a.click('recap-current');a.click('export-recap');assert.equal(a.downloads.at(-1),'CodingScore-week-2026-11-02.svg');assert.equal(a.get('xpTotal').textContent,'25 XP');
+});
+test('workshop controls expose unlock rules and return focus after replacing the illustration',()=>{
+  const a=app();a.click('workshop-item',{id:'plant'});assert.match(a.get('workshopItemInfo').textContent,/7 different dates/);assert.equal(a.active().id,'workshop-item-plant');
+  log(a);assert.match(a.get('workshopCount').textContent,/1 \/ 7 unlocked/);assert.match(a.get('workshopScene').innerHTML,/room-item unlocked/);
+});
+test('workflow library supports save, favorite, filters, and actual reuse logging',()=>{
+  const a=app(),w=createWorkflow(a);assert.equal(a.get('xpTotal').textContent,'0 XP');a.click('favorite-workflow',{id:w.id});assert.equal(a.state().workflows[0].favorite,true);
+  a.get('workflowSearch').value='boundary';a.get('workflowSearch').emit('input');assert.match(a.get('workflowList').innerHTML,/useful shortcut/);
+  a.get('workflowCategory').value='Build';a.change('workflowCategory');assert.match(a.get('workflowList').innerHTML,/No matching/);a.click('clear-workflow-filters');
+  a.click('log-workflow',{id:w.id});assert.equal(a.get('entryCategory').value,'Review');assert.equal(a.get('entryPrompt').value,w.prompt);a.get('entryNote').value='Used the saved review prompt';a.submit('entryForm');assert.equal(a.state().entries[0].workflowId,w.id);assert.match(a.get('workflowList').innerHTML,/1 actual reuse logged/);assert.match(a.get('recapDiscovery').textContent,/1 saved workflow/);
+});
+test('saving a workflow from a use prefills the actual prompt, outcome, and context',()=>{
+  const a=app();log(a,'Simplified a report',{entryPrompt:'Make [report] simpler.',entryOutcome:'A shorter report',entryBefore:'Too much manual editing'});const id=a.state().entries[0].id;
+  a.click('save-entry-workflow',{id});assert.equal(a.get('workflowPrompt').value,'Make [report] simpler.');assert.equal(a.get('workflowResult').value,'A shorter report');a.submit('workflowForm');assert.equal(a.state().workflows[0].sourceEntryId,id);assert.equal(a.get('xpTotal').textContent,'25 XP');
+});
+test('deleting a workflow keeps historical reuse, prompt, title, and score, including after editing',()=>{
+  const a=app(),w=createWorkflow(a);a.click('log-workflow',{id:w.id});a.get('entryNote').value='Used this prompt';a.submit('entryForm');const entry=a.state().entries[0],xp=a.get('xpTotal').textContent;
+  a.click('delete-workflow',{id:w.id});assert.equal(a.state().workflows.length,1);a.get('confirmButton').emit('click');assert.equal(a.state().workflows.length,0);assert.equal(a.state().entries[0].workflowId,w.id);assert.equal(a.state().entries[0].workflowTitle,w.title);assert.equal(a.get('xpTotal').textContent,xp);
+  a.click('edit-entry',{id:entry.id});a.submit('entryForm');assert.equal(a.state().entries[0].prompt,w.prompt);assert.match(a.get('journalList').innerHTML,/removed from library/);
+});
+test('new workflow and quest surfaces escape user text, and backups round trip all additions',async()=>{
+  const a=app(),q=createQuest(a,'<img onerror=alert(1)>');createWorkflow(a,'<script>unsafe()</script>');assert.match(a.get('questList').innerHTML,/&lt;img/);assert.match(a.get('workflowList').innerHTML,/&lt;script&gt;/);assert.doesNotMatch(a.get('workflowList').innerHTML,/<script>/);
+  a.click('accept-challenge',{id:'2026-11-02-Automate'});a.click('log-quest',{id:q.id});a.get('entryNote').value='Real work';a.get('entrySaved').value='10';a.submit('entryForm');const saved=a.store.get('codingScore.v1'),restored=app({saved});assert.equal(restored.state().quests.length,1);assert.equal(restored.state().workflows.length,1);assert.equal(restored.state().challenges.length,1);assert.equal(restored.state().entries[0].minutesSaved,10);
+  restored.click('clear-data');restored.get('confirmButton').emit('click');assert.equal(restored.state().quests.length,0);assert.equal(restored.state().workflows.length,0);assert.equal(restored.state().challenges.length,0);
+  restored.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await restored.get('backupFile').listeners.change[0]({target:restored.get('backupFile')});assert.match(restored.get('confirmText').textContent,/1 quests, 1 workflows, and 1 challenges/);restored.get('confirmButton').emit('click');assert.equal(restored.state().quests.length,1);assert.equal(restored.state().workflows.length,1);assert.equal(restored.state().challenges.length,1);assert.equal(restored.state().entries[0].minutesSaved,10);
 });

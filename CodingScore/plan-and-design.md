@@ -326,3 +326,7 @@ Use meaningful scoring/date checks for duplicate same-day entries, a missed day,
 - **Design critique:** replaced the default dashboard-card hero with the interactive seven-day track. Kept the meters and journal simple so the track remains the distinctive element. The palette, typography, and motion support a personal scorebook rather than a generic analytics page.
 
 Defaults chosen for the first build: XP values above, five active days as the calendar-week target, no streak freezes, browser-local storage, manual quota readings, and no live integrations. Actual plan-specific quota behavior remains user-configurable through observed readings and explicit period dates.
+
+## 13. Implemented extensions
+
+The next iteration adds project quests, weekly highlight recaps with downloadable cards, a milestone-driven illustrated workshop, personal weekly challenges, optional before/after and estimated time-saved notes, and a reusable workflow library. See [README.md](./README.md) for each interaction and [verification notes](./tests/verification.md) for coverage and remaining browser QA. These additions preserve the original XP rules and storage key. JSON version 1 migrates to version 2; rewards and summaries continue to derive from actual dated records.
