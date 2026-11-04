@@ -1,7 +1,7 @@
 # CodingScore — plan and design
 
 Date: 2026-11-04  
-Status: Initial design proposal; implementation has not started.  
+Status: Implemented as a static page; see [README.md](./README.md) and [verification notes](./tests/verification.md) for usage and validation limits.  
 Location: `VibeProjects/CodingScore/`
 
 ## 1. Purpose
