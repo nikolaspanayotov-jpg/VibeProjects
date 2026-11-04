@@ -186,3 +186,49 @@ test('recap export escapes user text and stays a self-contained bounded SVG',()=
   const state=stateWith([entry(TODAY,{outcome:'<script>alert("x")</script> & a useful result',minutesSaved:20})]),svg=core.recapSvg(core.weeklyRecap(state,TODAY));
   assert.match(svg,/width="1080" height="1350"/);assert.doesNotMatch(svg,/<script>/);assert.match(svg,/&lt;script&gt;/);assert.match(svg,/my estimate/);assert.doesNotMatch(svg,/<foreignObject|<image|<script\b/);assert.ok(svg.endsWith('</svg>'));
 });
+test('old quests receive a safe default emblem and every selectable emblem round trips',()=>{
+  const state=core.blank();state.quests=[quest()];assert.equal(core.validate(state).quests[0].emblem,'compass');
+  for(const emblem of core.EMBLEMS){state.quests[0].emblem=emblem;assert.equal(core.validate(JSON.parse(JSON.stringify(state))).quests[0].emblem,emblem);}
+  state.quests[0].emblem='<img onerror=alert(1)>';assert.throws(()=>core.validate(state),/six quest emblems/);
+});
+test('locked quest reward reports actual partial steps rather than zero completed projects',()=>{
+  const state=core.blank(),q=quest();state.quests=[q];state.entries=[0,1,2].map(i=>entry(TODAY,{questId:q.id,questStepId:'step'+i,stepComplete:true}));
+  const badge=core.badges(state).find(b=>b.id==='quest');assert.equal(badge.earned,false);assert.equal(badge.progress,.75);assert.match(badge.progressText,/3 of 4/);
+});
+test('achievement details identify the actual first use and first completed streak dates',()=>{
+  const first=core.addDays(TODAY,-4),state=stateWith(Array.from({length:5},(_,i)=>entry(core.addDays(first,i))));
+  assert.equal(core.achievementDetails(state,'first').earnedOn,first);const streak=core.achievementDetails(state,'streak3');assert.equal(streak.earnedOn,core.addDays(first,2));assert.match(streak.proof,/3 consecutive local dates/);
+  const locked=core.achievementDetails(state,'streak7');assert.equal(locked.earnedOn,null);assert.equal(locked.earned,false);assert.match(locked.progressText,/5 of 7/);assert.equal(core.achievementDetails(state,'unknown'),null);
+});
+test('result and category achievements use the first date the requirement was met',()=>{
+  const first=core.addDays(TODAY,-5),state=stateWith(Array.from({length:12},(_,i)=>entry(core.addDays(first,Math.floor(i/2)),{category:core.CATEGORIES[i%6]})));
+  assert.equal(core.achievementDetails(state,'wins').earnedOn,core.addDays(first,4));assert.equal(core.achievementDetails(state,'variety').earnedOn,core.addDays(first,2));
+  state.entries[2].category='Automate';state.entries[2].useful=true;assert.equal(core.achievementDetails(state,'automation').earnedOn,core.addDays(first,1));
+});
+test('project badge date follows the last first-completed step and corrections revoke it',()=>{
+  const state=core.blank(),q=quest(),first=core.addDays(TODAY,-5);state.quests=[q];state.entries=[0,1,2,3].map(i=>entry(core.addDays(first,i),{questId:q.id,questStepId:'step'+i,stepComplete:true}));state.entries.push(entry(TODAY,{questId:q.id,questStepId:'step0',stepComplete:true}));
+  const earned=core.achievementDetails(state,'quest');assert.equal(earned.earnedOn,core.addDays(first,3));assert.match(earned.proof,/Automate a report/);
+  state.entries=state.entries.filter(e=>e.questStepId!=='step2');assert.equal(core.achievementDetails(state,'quest').earnedOn,null);
+});
+test('challenge and removed-workflow details retain evidence from actual dated activity',()=>{
+  const start=core.weekStart(TODAY),state=stateWith([entry(start,{category:'Automate',useful:true,workflowId:'removed',workflowTitle:'My good shortcut'})]);
+  state.challenges=[{id:'challenge',title:'Try an automation',kind:'category',category:'Automate',target:1,weekStart:start,createdAt:new Date().toISOString()}];
+  assert.equal(core.achievementDetails(state,'challenge').earnedOn,start);assert.match(core.achievementDetails(state,'challenge').proof,/Try an automation/);assert.match(core.achievementDetails(state,'workflow').proof,/My good shortcut/);
+});
+test('daily focus chooses an unfinished active project and the nearest partial reward',()=>{
+  const q=quest(),other={...quest(),id:'archived',archived:true,updatedAt:new Date().toISOString()},state=core.blank();state.quests=[other,q];state.entries=[0,1,2].map(i=>entry(TODAY,{questId:q.id,questStepId:'step'+i,stepComplete:true}));
+  const focus=core.dailyFocus(state);assert.equal(focus.quest.id,q.id);assert.equal(focus.nextAchievement.id,'quest');assert.equal(focus.nextAchievement.progress,.75);
+  state.entries.push(entry(TODAY,{questId:q.id,questStepId:'step3',stepComplete:true}));assert.equal(core.dailyFocus(state).quest,null);
+});
+test('illustrations are distinct, self-contained, and reject untrusted artwork keys',()=>{
+  const art=vm.runInContext('Art',context),emblems=core.EMBLEMS.map(key=>art.emblem(key)),badges=core.badges(core.blank()).map(b=>art.badge(b.id));
+  assert.equal(new Set(emblems).size,6);assert.equal(new Set(badges).size,12);for(const svg of [...emblems,...badges]){assert.match(svg,/viewBox="0 0 96 96"/);assert.doesNotMatch(svg,/<script|<image|<foreignObject/);assert.ok(svg.endsWith('</svg>'));}
+  assert.equal(art.emblem('<script>'),art.emblem('compass'));assert.equal(art.badge('invalid'),art.badge('first'));
+});
+test('a complete collection has no invented next reward and every earned badge has a real date',()=>{
+  const state=core.blank(),q=quest(),start=core.addDays(TODAY,-99);state.quests=[q];
+  state.entries=Array.from({length:100},(_,i)=>entry(core.addDays(start,i),{category:core.CATEGORIES[i%6],useful:true,workflowId:i===0?'old-workflow':null,workflowTitle:i===0?'A good old workflow':'',questId:i>=96?q.id:null,questStepId:i>=96?'step'+(i-96):null,stepComplete:i>=96}));
+  const recent=state.entries.find(e=>e.localDate>=core.weekStart(TODAY));state.challenges=[{id:'complete-challenge',title:'A useful result this week',kind:'category',category:recent.category,target:1,weekStart:core.weekStart(TODAY),createdAt:new Date().toISOString()}];
+  assert.equal(core.badges(state).every(b=>b.earned),true);assert.equal(core.dailyFocus(state).nextAchievement,null);
+  for(const badge of core.badges(state))assert.ok(core.parseDate(core.achievementDetails(state,badge.id).earnedOn),badge.id);
+});

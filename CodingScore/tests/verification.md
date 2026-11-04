@@ -19,6 +19,12 @@ Additional coverage includes v1-to-v2 migration without changed scores, four-ste
 
 Representative recap SVG exports and locked/unlocked workshop illustrations were generated from the actual rendering functions and rasterized with installed SVG renderers. The exported recap and workshop artwork were visually inspected. These are asset checks, not a review of the full page's browser layout. The native browser PNG conversion path still requires browser verification; its self-contained SVG output and fallback download are covered.
 
+## Illustrated quest and achievement update
+
+The suite now includes **35 core cases and 35 UI handler cases (70 total)**. The added checks cover safe quest-emblem defaults and round trips, invalid artwork keys, partial-quest reward progress, accurate first-earned dates for streaks/results/categories/projects/challenges/workflows, corrections that revoke rewards, daily focus selection, the fully completed collection, selectable emblem focus, step-path connections, locked previews, earned details and day links, collection filters, and disabled celebrations.
+
+All six quest emblems, twelve achievement images, and four step illustrations were rendered from the actual `Art` module into a contact sheet. The nested SVG parsed as XML and was rasterized with Inkscape; the rendered artwork was visually inspected for legibility, clipping, and consistency with the workshop palette. JavaScript syntax and the static HTML audit pass. This does not establish full-page browser rendering, native focus trapping, or animation behavior.
+
 ## Browser verification limit
 
 The supported browser-preview tool was unavailable in this environment. No screenshots, visual viewport review, browser console inspection, native form-validation exercise, focus-trap assessment, or accessibility audit is claimed. The UI handler suite uses a DOM adapter; it cannot establish these properties.
