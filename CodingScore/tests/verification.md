@@ -38,3 +38,13 @@ Browser-native canvas PNG export, 3D card flipping, actual responsive page layou
 The supported browser-preview tool was unavailable in this environment. No screenshots, visual viewport review, browser console inspection, native form-validation exercise, focus-trap assessment, or accessibility audit is claimed. The UI handler suite uses a DOM adapter; it cannot establish these properties.
 
 Before describing the app as visually/browser verified, open it at 390px and desktop, inspect 320px and 200% zoom, use long journal notes, complete logging and import/export, tab through dialogs and chart points, test Escape/focus return, and check reduced-motion behavior and console errors. The responsive styles, native dialogs, labels, escaped rendering, and text/table alternatives are implemented but require that browser review.
+
+## Personal home and eight-feature update
+
+The suite now has **55 core cases and 68 UI handler cases (123 total)**. Core cases pass in UTC and America/New_York; UI cases use UTC. The static audit passes with 360 unique IDs, and the complete extracted script passes `node --check`.
+
+New coverage includes optional personal-data migration with identical XP; companion and decoration allowlists; duplicate pack and unsafe-link rejection; accepted packs with distinct useful tasks and category checks; capsule completion, correction, archiving/restoration; prompt versions, observations, actual-use links and originating workflow reuse; record dates and supporting work; personal gift eligibility, claim facts after corrections, and removal confirmation; earned-only decoration placement and frame focus; Today/Explore and workshop-lamp navigation; escaped personal content; and confirmed import/clear of all new source collections.
+
+The DOM adapter now tracks CSS classes and section-anchor click handlers to exercise view state; it still does not compute layout or browser focus semantics. All three companions × three expressions, six decoration drawings, and both gift states were generated from the actual `Art` functions, parsed as XML, rasterized with Inkscape, and visually inspected. Fixtures remain outside the app and do not seed user progress.
+
+Full-page 390px/desktop screenshots, browser console review, native focus/validation, canvas PNG conversion, and animation review remain unavailable through the supported preview route. No full browser QA or accessibility audit is claimed.

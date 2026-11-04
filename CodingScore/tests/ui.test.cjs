@@ -16,17 +16,18 @@ function app({saved=null,denyStorage=false,reducedMotion=false}={}) {
   class Clock extends Date {constructor(...args){super(...(args.length?args:[clock]));}static now(){return clock;}}
   class Element {
     constructor(tag='',attributes=''){
-      this.tagName=tag.toUpperCase();this.id=attr(attributes,'id');this.value=attr(attributes,'value');this.defaultValue=this.value;this.checked=false;this.hidden=false;this.open=false;this.dataset={};this.style={};this.attributes={};this.listeners={};this._html='';this.textContent='';this.classList={add(){},remove(){},toggle(){}};
+      this.tagName=tag.toUpperCase();this.id=attr(attributes,'id');this.value=attr(attributes,'value');this.defaultValue=this.value;this.checked=false;this.hidden=false;this.open=false;this.dataset={};this.style={};this.attributes={};this.listeners={};this._html='';this.textContent='';const classes=new Set(attr(attributes,'class').split(/\s+/).filter(Boolean));this.classList={add(...values){values.forEach(v=>classes.add(v));},remove(...values){values.forEach(v=>classes.delete(v));},toggle(value,force){const add=force===undefined?!classes.has(value):force;if(add)classes.add(value);else classes.delete(value);return add;},contains:value=>classes.has(value)};
       for(const match of attributes.matchAll(/data-([\w-]+)="([^"]*)"/g))this.dataset[match[1].replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=match[2];
     }
     set innerHTML(value){this._html=value;parse(value);}
     get innerHTML(){return this._html;}
     setAttribute(name,value){this.attributes[name]=String(value);}
     removeAttribute(name){delete this.attributes[name];}
+    getAttribute(name){return this.attributes[name]??null;}
     addEventListener(name,handler){(this.listeners[name]??=[]).push(handler);}
     emit(name,event={}){for(const h of this.listeners[name]||[])h({target:this,preventDefault(){},...event});}
     querySelector(){return this.span??=new Element('span');}
-    closest(selector){if(selector==='[data-action]'&&this.dataset.action)return this;const match=selector.match(/^\[data-action="([^"]+)"\]$/);if(match&&this.dataset.action===match[1])return this;if(selector==='[data-close]')return null;if(selector==='dialog'&&this.tagName==='DIALOG')return this;return null;}
+    closest(selector){if(selector==='a[href^="#"]'&&this.tagName==='A'&&this.attributes.href?.startsWith('#'))return this;if(selector==='[data-action]'&&this.dataset.action)return this;const match=selector.match(/^\[data-action="([^"]+)"\]$/);if(match&&this.dataset.action===match[1])return this;if(selector==='[data-close]')return null;if(selector==='dialog'&&this.tagName==='DIALOG')return this;return null;}
     focus(){document.activeElement=this;}
     showModal(){this.open=true;this.focus();}
     close(){this.open=false;this.emit('close');}
@@ -58,6 +59,7 @@ function app({saved=null,denyStorage=false,reducedMotion=false}={}) {
   vm.runInContext(script,context);
   return {get:id=>elements.get(id),state:()=>JSON.parse(store.get('codingScore.v1')||'null'),store,downloads,active:()=>document.activeElement,
     click(action,data={}){const target=new Element('button');target.dataset={action,...data};for(const handler of documentHandlers.click||[])handler({target});},
+    anchor(id){const target=new Element('a');target.attributes.href='#'+id;for(const handler of documentHandlers.click||[])handler({target});},
     submit:id=>elements.get(id).emit('submit'),change:id=>elements.get(id).emit('change'),
     advance:ms=>{clock+=ms;},tick:delay=>{for(const timer of [...intervals.values()])if(timer.delay===delay)timer.fn();},timers:delay=>[...intervals.values()].filter(t=>t.delay===delay).length,key(action,data={},tag='g',key='Enter'){let prevented=false;const target=new Element(tag);target.dataset={action,...data};for(const handler of documentHandlers.keydown||[])handler({target,key,preventDefault(){prevented=true;}});return prevented;},hide(){document.hidden=true;for(const handler of documentHandlers.visibilitychange||[])handler({});},blank:()=>vm.runInContext('Core.blank()',context)};
 }
@@ -293,4 +295,70 @@ test('reduced motion uses manual replay and empty weeks never create fake events
 test('expanded backup retains pinned achievements and clearing removes the showcase preferences',async()=>{
   const a=app();log(a);a.click('pin-achievement',{id:'first'});const saved=a.store.get('codingScore.v1');a.click('clear-data');a.get('confirmButton').emit('click');assert.equal(a.state().settings.pinnedAchievements.length,0);
   a.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await a.get('backupFile').listeners.change[0]({target:a.get('backupFile')});a.get('confirmButton').emit('click');assert.equal(a.state().settings.pinnedAchievements[0],'first');assert.match(a.get('badgeShowcase').innerHTML,/First little win/);
+});
+
+function saveCapsule(a){a.click('new-capsule');a.get('capsuleAction').value='Finish the report';a.get('capsuleContext').value='Input rows match';a.get('capsulePrompt').value='Check the output';a.get('capsuleReference').value='https://example.org/report';a.get('capsuleCategory').value='Review';a.submit('capsuleForm');return a.state().personal.capsules.at(-1).id;}
+function saveExperiment(a){a.click('new-experiment');a.get('experimentName').value='Sharper code review';a.get('experimentCategory').value='Review';a.get('experimentPrompt').value='Review this function';a.submit('experimentForm');return a.state().personal.experiments.at(-1);}
+function saveGift(a,kind='days',target='1'){a.click('new-gift');a.get('giftName').value='Buy a book';a.get('giftKind').value=kind;a.change('giftKind');a.get('giftTarget').value=target;a.submit('giftForm');return a.state().personal.rewards.at(-1).id;}
+test('Today and Explore toggles keep their selected state across source changes',()=>{
+  const a=app();assert.equal(a.get('viewToday').attributes['aria-pressed'],'true');a.click('view',{id:'explore'});assert.equal(a.get('viewExplore').attributes['aria-pressed'],'true');log(a);assert.equal(a.get('viewExplore').attributes['aria-pressed'],'true');a.click('view',{id:'today'});assert.equal(a.get('viewToday').attributes['aria-pressed'],'true');assert.match(a.get('exploreTiles').innerHTML,/#lab/);
+});
+test('companions and suggested tasks are cosmetic and persist without XP',()=>{
+  const a=app();a.click('choose-companion',{id:'sprig'});assert.equal(a.state().personal.companion,'sprig');assert.equal(a.get('xpTotal').textContent,'0 XP');a.click('companion-idea');assert.equal(a.get('dailyIdeas').open,true);assert.equal(a.state().entries.length,0);const reload=app({saved:a.store.get('codingScore.v1')});assert.equal(reload.state().personal.companion,'sprig');a.click('choose-companion',{id:'none'});assert.equal(a.get('companionAvatar').hidden,true);
+});
+test('capsules save a next action without logging it and complete only through a checked actual use',()=>{
+  const a=app(),id=saveCapsule(a);assert.equal(a.get('xpTotal').textContent,'0 XP');assert.match(a.get('capsuleHome').innerHTML,/Finish the report/);a.click('resume-capsule',{id});assert.equal(a.state().entries.length,0);
+  a.click('complete-capsule',{id});assert.equal(a.get('entryNote').value,'');assert.equal(a.get('entryCategory').value,'Review');assert.equal(a.get('entryPrompt').value,'Check the output');a.get('entryNote').value='Codex checked the report';a.get('entryCapsuleComplete').checked=true;a.get('entryOutcome').value='Every row is accounted for';a.submit('entryForm');
+  assert.equal(a.state().entries[0].capsuleId,id);assert.match(a.get('capsuleList').innerHTML,/Every row is accounted for/);assert.doesNotMatch(a.get('capsuleHome').innerHTML,/<strong>Finish the report/);assert.match(a.get('journalList').innerHTML,/Next action: Finish the report/);
+});
+test('correcting a capsule completion returns its next action to Today',()=>{
+  const a=app(),id=saveCapsule(a);a.click('complete-capsule',{id});a.get('entryNote').value='A first attempt';a.get('entryCapsuleComplete').checked=true;a.submit('entryForm');const eid=a.state().entries[0].id;a.click('edit-entry',{id:eid});assert.equal(a.get('entryCapsuleComplete').checked,true);a.get('entryCapsuleComplete').checked=false;a.submit('entryForm');assert.match(a.get('capsuleHome').innerHTML,/Finish the report/);assert.equal(a.state().entries[0].capsuleComplete,false);
+});
+test('capsules can be put aside and restored, and unsafe references preserve the open form',()=>{
+  const a=app(),id=saveCapsule(a);a.click('archive-capsule',{id});assert.equal(a.state().personal.capsules[0].archived,true);a.click('archive-capsule',{id});assert.equal(a.state().personal.capsules[0].archived,false);a.click('new-capsule');a.get('capsuleAction').value='Unsafe';a.get('capsuleReference').value='javascript:alert(1)';a.submit('capsuleForm');assert.equal(a.state().personal.capsules.length,1);assert.match(a.get('capsuleError').textContent,/http/);
+});
+test('mission packs accept once and stamps require useful linked work in the matching category',()=>{
+  const a=app();a.click('accept-pack',{id:'detective'});a.click('accept-pack',{id:'detective'});assert.equal(a.state().personal.packs.length,1);assert.equal(a.get('xpTotal').textContent,'0 XP');a.click('pack-task',{id:'detective',task:'trace'});assert.equal(a.get('entryCategory').value,'Debug');a.get('entryNote').value='Traced the failure';a.submit('entryForm');assert.match(a.get('packList').innerHTML,/0 \/ 3 useful/);const eid=a.state().entries[0].id;a.click('edit-entry',{id:eid});a.get('entryUseful').checked=true;a.submit('entryForm');assert.match(a.get('packList').innerHTML,/1 \/ 3 useful/);a.click('edit-entry',{id:eid});a.get('entryCategory').value='Build';a.submit('entryForm');assert.match(a.get('packList').innerHTML,/0 \/ 3 useful/);
+});
+test('prompt lab versions copy without logging and actual uses keep the exact chosen prompt',()=>{
+  const a=app(),x=saveExperiment(a);assert.equal(a.get('xpTotal').textContent,'0 XP');a.click('add-version',{id:x.id});a.get('experimentPrompt').value='Check boundary inputs explicitly';a.submit('experimentForm');const versions=a.state().personal.experiments[0].versions;assert.equal(versions.length,2);assert.equal(versions[0].prompt,'Review this function');a.click('copy-version',{id:x.id,version:versions[1].id});assert.equal(a.state().entries.length,0);a.click('log-version',{id:x.id,version:versions[0].id});assert.equal(a.get('entryPrompt').value,'Review this function');a.get('entryNote').value='Reviewed the parser';a.submit('entryForm');assert.equal(a.state().entries[0].experimentVersion,versions[0].id);a.click('experiment-detail',{id:x.id});assert.match(a.get('experimentVersions').innerHTML,/1 actual uses/);
+});
+test('prompt observations remain distinct from actual-use counts',()=>{
+  const a=app(),x=saveExperiment(a),v=x.versions[0];a.click('observe-version',{id:x.id,version:v.id});a.get('versionResult').value='The instructions are clearer';a.get('versionVerdict').value='Keep this version';a.submit('versionForm');assert.equal(a.state().personal.experiments[0].versions[0].verdict,'Keep this version');assert.match(a.get('experimentVersions').innerHTML,/0 actual uses/);assert.equal(a.state().entries.length,0);
+});
+test('a saved workflow starts an experiment and version use also records actual workflow reuse',()=>{
+  const a=app();a.click('new-workflow');a.get('workflowName').value='Review parser';a.get('workflowPrompt').value='Check every boundary';a.submit('workflowForm');const w=a.state().workflows[0];a.click('experiment-workflow',{id:w.id});assert.equal(a.get('experimentPrompt').value,w.prompt);a.submit('experimentForm');const x=a.state().personal.experiments[0];a.click('log-version',{id:x.id,version:x.versions[0].id});a.get('entryNote').value='Checked a parser boundary';a.submit('entryForm');assert.equal(a.state().entries[0].workflowId,w.id);assert.equal(a.state().entries[0].experimentId,x.id);
+});
+test('personal records show the source work and reset after deletion',()=>{
+  const a=app();a.click('record-detail',{id:'streak'});assert.match(a.get('recordProof').textContent,/0 consecutive/);log(a,'Fixed the parser');a.click('record-detail',{id:'streak'});assert.match(a.get('recordEvidence').innerHTML,/Fixed the parser/);a.click('delete-entry',{id:a.state().entries[0].id});a.click('record-detail',{id:'streak'});assert.match(a.get('recordProof').textContent,/0 consecutive/);
+});
+test('personal gifts stay wrapped until earned and claiming does not add points',()=>{
+  const a=app(),id=saveGift(a);a.click('claim-gift',{id});assert.equal(a.state().personal.rewards[0].claimedAt,null);log(a);const xp=a.get('xpTotal').textContent;assert.match(a.get('giftList').innerHTML,/Unwrapped/);a.click('claim-gift',{id});assert.ok(a.state().personal.rewards[0].claimedAt);assert.equal(a.get('xpTotal').textContent,xp);a.click('delete-entry',{id:a.state().entries[0].id});assert.match(a.get('giftList').innerHTML,/milestone changed after an edit/);
+});
+test('personal rewards can be removed through confirmation',()=>{
+  const a=app(),id=saveGift(a);a.click('delete-gift',{id});assert.equal(a.state().personal.rewards.length,1);a.get('confirmButton').emit('click');assert.equal(a.state().personal.rewards.length,0);
+});
+test('locked decorations cannot be placed and earned decorations survive reload and correction',()=>{
+  const a=app();a.click('decorate');a.get('decorSlot').value='wall';a.click('place-decor',{id:'sprout'});assert.equal(a.state(),null);log(a);a.click('place-decor',{id:'sprout'});assert.equal(a.state().personal.decor.wall,'sprout');assert.match(a.get('workshopDecor').innerHTML,/placed-decor wall/);const reloaded=app({saved:a.store.get('codingScore.v1')});assert.match(reloaded.get('workshopDecor').innerHTML,/placed-decor wall/);a.click('delete-entry',{id:a.state().entries[0].id});assert.equal(a.state().personal.decor.wall,'sprout');assert.equal(a.get('workshopDecor').innerHTML,'');
+});
+test('new personal content is escaped in every generated card and dialog',()=>{
+  const a=app();a.click('new-capsule');a.get('capsuleAction').value='<img src=x onerror=bad()>';a.submit('capsuleForm');assert.match(a.get('capsuleHome').innerHTML,/&lt;img/);assert.doesNotMatch(a.get('capsuleList').innerHTML,/<img/);a.click('new-experiment');a.get('experimentName').value='<img src=x>';a.get('experimentPrompt').value='<script>bad()</script>';a.submit('experimentForm');assert.match(a.get('experimentList').innerHTML,/&lt;img/);assert.match(a.get('experimentVersions').innerHTML,/&lt;script/);a.click('new-gift');a.get('giftName').value='<img src=x>';a.submit('giftForm');assert.match(a.get('giftList').innerHTML,/&lt;img/);
+});
+test('JSON backup includes personal features and clear removes them all',()=>{
+  const a=app();saveCapsule(a);saveExperiment(a);saveGift(a);a.click('choose-companion',{id:'bolt'});a.click('accept-pack',{id:'docs'});a.click('export');assert.match(a.downloads.at(-1),/CodingScore/);const b=app({saved:a.store.get('codingScore.v1')});assert.equal(b.state().personal.capsules.length,1);assert.equal(b.state().personal.experiments.length,1);assert.equal(b.state().personal.rewards.length,1);assert.equal(b.state().personal.packs.length,1);b.click('clear-data');b.get('confirmButton').emit('click');assert.equal(b.state().personal.capsules.length,0);assert.equal(b.state().personal.experiments.length,0);assert.equal(b.state().personal.rewards.length,0);assert.equal(b.state().personal.companion,'orbit');
+});
+test('all three mission stamps earn a patch and unwrap a linked pack reward',()=>{
+  const a=app();a.click('accept-pack',{id:'docs'});a.click('new-gift');a.get('giftName').value='A good book';a.get('giftKind').value='pack';a.change('giftKind');a.get('giftSource').value='docs';a.submit('giftForm');
+  for(const task of ['understand','explain','review']){a.click('pack-task',{id:'docs',task});a.get('entryNote').value='Used Codex on this real task';a.get('entryUseful').checked=true;a.submit('entryForm');}
+  assert.match(a.get('packList').innerHTML,/✓ Patch earned/);assert.match(a.get('giftList').innerHTML,/Unwrapped/);a.click('delete-entry',{id:a.state().entries[0].id});assert.doesNotMatch(a.get('giftList').innerHTML,/Unwrapped/);
+});
+test('expanded import previews personal collections and restores links only after confirmation',async()=>{
+  const source=app(),id=saveCapsule(source);saveExperiment(source);saveGift(source);source.click('complete-capsule',{id});source.get('entryNote').value='Finished the report';source.get('entryCapsuleComplete').checked=true;source.submit('entryForm');const saved=source.store.get('codingScore.v1'),a=app();
+  a.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await a.get('backupFile').listeners.change[0]({target:a.get('backupFile')});assert.equal(a.state(),null);assert.match(a.get('confirmText').textContent,/1 capsules, 1 experiments, and 1 personal rewards/);a.get('confirmButton').emit('click');assert.equal(a.state().entries[0].capsuleId,id);assert.match(a.get('capsuleList').innerHTML,/Finished the report/);
+});
+test('earned decoration and frame choices retain their focus after redraw',()=>{
+  const a=app();for(const date of ['2026-11-02','2026-11-03','2026-11-04'])log(a,'A real use',{entryDate:date,entryTime:''});a.click('decorate');a.click('frame',{id:'peach'});assert.equal(a.active().id,'frame-choice-peach');a.click('place-decor',{id:'poster'});assert.equal(a.active().id,'decor-choice-poster');assert.equal(a.state().personal.decor.wall,'poster');
+});
+test('section anchors open Explore while the workshop lamp returns to visible Today ideas',()=>{
+  const a=app();assert.equal(a.get('main').classList.contains('view-today'),true);a.anchor('achievements');assert.equal(a.get('main').classList.contains('view-explore'),true);a.click('workshop-open',{id:'lamp'});assert.equal(a.get('main').classList.contains('view-today'),true);assert.equal(a.get('dailyIdeas').open,true);a.anchor('lab');assert.equal(a.get('main').classList.contains('view-explore'),true);a.anchor('today');assert.equal(a.get('main').classList.contains('view-today'),true);
 });
