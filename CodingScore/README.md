@@ -32,6 +32,17 @@ Then visit `http://localhost:8000/`. The live page is [CodingScore](https://niko
 
 Creating quests, accepting challenges, saving/copying prompts, and downloading recaps do not create an active day or award XP. Quest, challenge, and workshop rewards derive from source records and recalculate when history changes.
 
+## Illustrated quests and rewards
+
+- Choose a rocket, robot, toolbox, compass, bug, or lightbulb emblem when creating or editing a quest. Existing quests receive the compass emblem automatically; step IDs and progress stay intact.
+- Follow illustrated Investigate/Build/Test/Finish markers with explicit step status. Connected completed neighbors show the journey. The path becomes vertical on narrow screens so its order stays clear.
+- Browse twelve collectible achievement illustrations. Streak artwork grows from a spark to a flame, campfire, sun, and starburst. Locked rewards retain a faded preview of their actual art, a progress ring, and the requirement.
+- Filter the collection by All, Earned, or Next. Select any badge for details. Earned badges show the first qualifying local date and explain the source work; **Revisit that day** opens the actual daily record. Correcting history recalculates this evidence.
+- New unlocks can briefly stamp into place with a glint, respecting the celebration preference and reduced-motion setting. Previously earned badges do not animate on every visit.
+- The Today area features an unfinished active quest and the closest unfinished achievement beside daily logging. Saved next-task notes and prompt suggestions remain available under **Saved next task and prompt ideas**. The full reward collection stays in Progress.
+
+All artwork is self-contained inline SVG, using the existing blue/peach/navy visual language. No image requests or dependencies are needed. Quest emblems are included in normal backup/export. The JSON format remains version 2, and the storage key and XP rules are unchanged.
+
 ## Your data
 
 All personal records stay in browser storage under **`codingScore.v1`**. The current JSON format is version 2; existing version 1 data/backups migrate without changing their original records or scores. The storage key is unchanged. This is manual tracking, not a connection to your Codex usage. Fonts load from Google Fonts when available; system fonts work offline. No application data is sent to a server.

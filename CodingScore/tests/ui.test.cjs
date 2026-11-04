@@ -201,3 +201,33 @@ test('new workflow and quest surfaces escape user text, and backups round trip a
   restored.click('clear-data');restored.get('confirmButton').emit('click');assert.equal(restored.state().quests.length,0);assert.equal(restored.state().workflows.length,0);assert.equal(restored.state().challenges.length,0);
   restored.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await restored.get('backupFile').listeners.change[0]({target:restored.get('backupFile')});assert.match(restored.get('confirmText').textContent,/1 quests, 1 workflows, and 1 challenges/);restored.get('confirmButton').emit('click');assert.equal(restored.state().quests.length,1);assert.equal(restored.state().workflows.length,1);assert.equal(restored.state().challenges.length,1);assert.equal(restored.state().entries[0].minutesSaved,10);
 });
+test('selecting a quest emblem preserves it across save, edit, and backup reload',()=>{
+  const a=app();a.click('new-quest');assert.equal(a.get('questEmblem').value,'compass');a.click('quest-emblem',{id:'robot'});assert.equal(a.active().id,'quest-emblem-robot');a.get('questName').value='A robot helper';a.submit('questForm');const q=a.state().quests[0];assert.equal(q.emblem,'robot');assert.match(a.get('questList').innerHTML,/quest-emblem/);
+  a.click('edit-quest',{id:q.id});assert.equal(a.get('questEmblem').value,'robot');a.get('questName').value='A better robot helper';a.submit('questForm');const restored=app({saved:a.store.get('codingScore.v1')});restored.click('edit-quest',{id:q.id});assert.equal(restored.get('questEmblem').value,'robot');assert.equal(restored.get('xpTotal').textContent,'0 XP');
+});
+test('quest paths show illustrated steps, textual status, and only connect completed neighbors',()=>{
+  const a=app(),q=createQuest(a);assert.match(a.get('questList').innerHTML,/Quest journey/);assert.match(a.get('questList').innerHTML,/Your next step/);assert.match(a.get('questList').innerHTML,/Step 1 of 4/);
+  a.click('quest-step',{id:q.id,step:q.steps[0].id});a.get('entryNote').value='Finished investigating';a.get('entryStepComplete').checked=true;a.submit('entryForm');assert.doesNotMatch(a.get('questList').innerHTML,/class="complete connected"/);
+  a.click('quest-step',{id:q.id,step:q.steps[1].id});a.get('entryNote').value='Finished building';a.get('entryStepComplete').checked=true;a.submit('entryForm');assert.match(a.get('questList').innerHTML,/class="complete connected"/);assert.match(a.get('questList').innerHTML,/step-check/);
+});
+test('locked achievements retain their reward artwork, requirements, and real progress',()=>{
+  const a=app();assert.match(a.get('badgeShelf').innerHTML,/badge-illustration/);assert.match(a.get('badgeShelf').innerHTML,/achievement-ring/);assert.match(a.get('badgeShelf').innerHTML,/Locked · preview reward/);a.click('achievement',{id:'streak7'});assert.equal(a.get('achievementDialog').open,true);assert.equal(a.get('achievementRequirement').textContent,'Use Codex 7 days in a row');assert.match(a.get('achievementDetailProgress').textContent,/0 of 7/);assert.equal(a.get('achievementDayButton').hidden,true);
+});
+test('earned achievement details explain the date and let users revisit its actual day',()=>{
+  const a=app();log(a,'Fixed a real issue');assert.equal(a.get('celebrationView').dataset.id,'first');a.click('achievement',{id:'first'});assert.match(a.get('achievementEarnedDate').textContent,/2026/);assert.match(a.get('achievementProof').textContent,/Fixed a real issue/);assert.equal(a.get('achievementDayButton').hidden,false);
+  a.click('achievement-day',{date:a.get('achievementDayButton').dataset.date});assert.equal(a.get('achievementDialog').open,false);assert.equal(a.get('dayDialog').open,true);assert.match(a.get('dayRecords').innerHTML,/Fixed a real issue/);
+});
+test('achievement collection filters are keyboard-focusable and preserve scores',()=>{
+  const a=app();a.click('achievement-filter',{filter:'earned'});assert.match(a.get('badgeShelf').innerHTML,/first collectible/);assert.equal(a.active().id,'achievement-filter-earned');log(a);a.click('achievement-filter',{filter:'earned'});assert.match(a.get('badgeShelf').innerHTML,/First little win/);assert.doesNotMatch(a.get('badgeShelf').innerHTML,/7-day streak/);
+  a.click('achievement-filter',{filter:'next'});assert.doesNotMatch(a.get('badgeShelf').innerHTML,/First little win/);assert.equal(a.get('xpTotal').textContent,'25 XP');
+});
+test('daily focus follows the active quest and moves on when that quest is completed',()=>{
+  const a=app();assert.match(a.get('focusQuest').innerHTML,/Pick a project/);const q=createQuest(a,'My current adventure');assert.match(a.get('focusQuest').innerHTML,/My current adventure/);assert.match(a.get('focusAchievement').innerHTML,/Next reward/);
+  for(const step of q.steps){a.click('quest-step',{id:q.id,step:step.id});a.get('entryNote').value='Useful quest work';a.get('entryStepComplete').checked=true;a.submit('entryForm');}assert.match(a.get('focusQuest').innerHTML,/Pick a project/);
+});
+test('badge dates and earned-state details recalculate after deletion',()=>{
+  const a=app();log(a);const id=a.state().entries[0].id;a.click('delete-entry',{id});a.click('achievement',{id:'first'});assert.equal(a.get('achievementDetailStatus').textContent,'A reward to work toward');assert.equal(a.get('achievementDayButton').hidden,true);assert.doesNotMatch(a.get('achievementEarnedDate').textContent,/Earned on/);
+});
+test('turning off celebrations still earns illustrated rewards without an unlock banner',()=>{
+  const a=app();a.get('celebrationsToggle').checked=false;a.change('celebrationsToggle');log(a);assert.equal(a.get('celebration').hidden,true);assert.match(a.get('badgeShelf').innerHTML,/Earned · view your story/);assert.equal(a.get('xpTotal').textContent,'25 XP');
+});

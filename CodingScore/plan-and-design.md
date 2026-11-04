@@ -330,3 +330,9 @@ Defaults chosen for the first build: XP values above, five active days as the ca
 ## 13. Implemented extensions
 
 The next iteration adds project quests, weekly highlight recaps with downloadable cards, a milestone-driven illustrated workshop, personal weekly challenges, optional before/after and estimated time-saved notes, and a reusable workflow library. See [README.md](./README.md) for each interaction and [verification notes](./tests/verification.md) for coverage and remaining browser QA. These additions preserve the original XP rules and storage key. JSON version 1 migrates to version 2; rewards and summaries continue to derive from actual dated records.
+
+## 14. Illustrated quest and achievement direction
+
+Carry the workshop's navy outlines and blue/peach fills into selectable quest emblems, a four-illustration step journey, category emblems, and twelve collectible reward designs. Locked achievements retain their real art with a progress ring and readable requirement. Earned badges gain a raised border and optional brief stamp/glint on first unlock. A selectable detail view explains when and how each earned reward qualified, using derived local dates from source records.
+
+Give Today a compact focus panel for the active unfinished quest and closest reward, while keeping the main logging action prominent. Place saved tasks and prompt ideas in an expandable panel below; keep the complete reward collection in Progress with All/Earned/Next filters. Preserve the current fonts, palette, storage key, scores, and quest-step identities. The new emblem field is optional for old backups and uses a safe default.
