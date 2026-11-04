@@ -77,3 +77,18 @@ python3 tests/static_audit.py
 The first suite checks the real inline scoring/date engine. The second command repeats those checks across a daylight-saving timezone. The UI suite runs the complete inline script against a small DOM adapter to exercise its actual event handlers, storage, and backup flows. It does not simulate browser layout or native focus/validation behavior.
 
 See [verification.md](./tests/verification.md) for the checks completed and browser QA still outstanding. The initial brief is [plan-and-design.md](./plan-and-design.md).
+
+### A daily home that feels like yours
+
+Use **Today** for logging, your current quest, a continuation capsule, and a small robot companion. Choose Orbit, Sprig, or Bolt, or hide the character. **Explore** opens an illustrated directory to the collections and tools, including all existing progress views. Direct section links still work.
+
+- Save your **next action** with context, a starter prompt, and an optional link. Copy it into Codex to resume. Log what actually happened and check completion to reveal the result beside your intention. Put aside or restore saved actions whenever priorities change.
+- Accept one of three **mission packs**: Automate the Boring Stuff, Bug Detective, or Documentation Hero. Complete three distinct tasks with linked useful results in the matching categories to earn a patch.
+- In the **prompt lab**, keep original and improved versions, copy the one you want, log its actual use, and compare your observations. Start an experiment from a saved workflow’s Experiment button. Copying or writing observations does not count as use.
+- Visit the **personal records shelf** for medals backed by your streak, calendar-month activity, actual workflow reuse, and completed quests. Select a medal to see its evidence.
+- Choose **personal rewards** such as a book or coffee for an active-day target, streak, project, or mission pack. A gift unwraps when you reach its milestone; mark it claimed when you treat yourself. The app makes no purchase.
+- In Progress, choose **Decorate your workshop** to place earned artwork on the wall, desk, or floor and choose an earned showcase frame. Decorations unlock through the existing achievements.
+
+History corrections recalculate capsules, patches, medals, and reward eligibility. A previously claimed reward remains a recorded claim if a correction changes the milestone. Decoration choices stay saved but their art appears only while the unlock requirement is met.
+
+These features stay in the same local scorebook and JSON backup: optional `personal` collections and settings plus optional entry links. Existing backups load with safe defaults. Scores, streak rules, and quota accounting use the same rules as before; planning, decorating, choosing companions, and copying prompts add no XP.

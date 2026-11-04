@@ -277,3 +277,50 @@ test('individual badge cards are available only for earned rewards and escape th
   assert.equal(art.badgeCard(core.achievementDetails(state,'streak100')),null);const card=art.badgeCard(core.achievementDetails(state,'first'));
   assert.match(card,/width="1080" height="1080"/);assert.match(card,/&lt;script&gt;/);assert.doesNotMatch(card,/<script|<foreignObject|<image/);assert.match(card,new RegExp(TODAY));
 });
+
+test('older backups gain optional personal collections without changing XP',()=>{
+  const original=stateWith([entry(TODAY)]);delete original.personal;const loaded=core.validate(original);
+  assert.equal(loaded.personal.companion,'orbit');assert.equal(loaded.personal.capsules.length,0);assert.equal(loaded.personal.decor.frame,'plain');assert.equal(core.calculate(loaded).total,core.calculate(original).total);
+});
+test('personal collections round-trip and cosmetic settings do not earn an active day',()=>{
+  const s=core.blank();s.personal.companion='sprig';s.personal.decor.wall='poster';s.personal.decor.frame='peach';s.personal.packs.push({id:'docs',createdAt:s.createdAt});const loaded=core.validate(JSON.parse(JSON.stringify(s)));
+  assert.equal(loaded.personal.decor.wall,'poster');assert.equal(loaded.personal.packs[0].id,'docs');assert.equal(core.calculate(loaded).activeDays,0);assert.equal(core.calculate(loaded).total,0);
+});
+test('personal validation rejects unknown art, duplicate packs, unsafe links and malformed collections',()=>{
+  for(const mutate of [s=>s.personal.companion='alien',s=>s.personal.decor.wall='evil',s=>s.personal.decor.frame='evil',s=>s.personal.packs=[{id:'docs',createdAt:s.createdAt},{id:'docs',createdAt:s.createdAt}],s=>s.personal.rewards={},s=>s.personal.capsules=[{id:'c',action:'Go',category:'Build',reference:'javascript:alert(1)',createdAt:s.createdAt}]]){const s=core.blank();mutate(s);assert.throws(()=>core.validate(s));}
+});
+test('mission packs need acceptance and useful work linked to each distinct matching task',()=>{
+  const s=core.blank();s.personal.packs.push({id:'detective',createdAt:s.createdAt});
+  const work=(task,category,useful=true)=>entry(TODAY,{packId:'detective',packTaskId:task,category,useful});
+  s.entries.push(work('trace','Debug'),work('trace','Debug'),work('fix','Debug'),work('verify','Review',false));
+  assert.equal(core.packProgress(s,'detective').completed,1);s.entries.push(work('fix','Build'),work('verify','Review'));assert.equal(core.packProgress(s,'detective').complete,true);
+  s.entries=s.entries.filter(e=>e.packTaskId!=='fix');assert.equal(core.packProgress(s,'detective').complete,false);
+  s.personal.packs=[];assert.equal(core.packProgress(s,'detective').completed,0);
+});
+test('unaccepted packs and dangling personal entry links are rejected before import',()=>{
+  for(const extra of [{capsuleId:'missing'},{capsuleComplete:true},{packId:'docs',packTaskId:'explain'},{experimentId:'missing',experimentVersion:'v1'},{experimentVersion:'v1'}])assert.throws(()=>core.validate(stateWith([entry(TODAY,extra)])));
+});
+test('capsule completion follows actual linked work and reverses on correction',()=>{
+  const s=core.blank(),c={id:'c',action:'Finish the report',context:'Rows now match',prompt:'Check this report',reference:'https://example.org',category:'Review',archived:false,createdAt:s.createdAt};s.personal.capsules.push(c);
+  assert.equal(core.capsuleProgress(s,c).complete,false);s.entries.push(entry(TODAY,{capsuleId:'c',capsuleComplete:false}));assert.equal(core.capsuleProgress(s,c).complete,false);s.entries[0].capsuleComplete=true;assert.equal(core.capsuleProgress(s,c).entry.id,s.entries[0].id);assert.equal(core.validate(s).entries[0].capsuleId,'c');s.entries=[];assert.equal(core.capsuleProgress(s,c).complete,false);
+});
+test('experiment versions preserve prompts and observations with actual-use references',()=>{
+  const s=core.blank();s.personal.experiments.push({id:'x',title:'A better review',category:'Review',workflowId:null,createdAt:s.createdAt,versions:[{id:'v1',prompt:'Review edge cases',result:'Clearer',verdict:'Keep',createdAt:s.createdAt},{id:'v2',prompt:'Review this exact input',createdAt:s.createdAt}]});
+  s.entries.push(entry(TODAY,{experimentId:'x',experimentVersion:'v1'}));const loaded=core.validate(s);assert.equal(loaded.personal.experiments[0].versions.length,2);assert.equal(loaded.personal.experiments[0].versions[1].result,'');assert.equal(loaded.entries[0].experimentVersion,'v1');s.personal.experiments[0].versions[1].id='v1';assert.throws(()=>core.validate(s));
+});
+test('personal records derive calendar days, consistent months, and real workflow reuses',()=>{
+  const s=stateWith([entry('2026-09-29',{workflowId:'w',workflowTitle:'Sorter'}),entry('2026-09-30',{workflowId:'w',workflowTitle:'Sorter'}),entry('2026-09-30'),entry('2026-10-02')]),records=core.personalRecords(s);
+  assert.equal(records.find(r=>r.id==='streak').value,2);assert.equal(records.find(r=>r.id==='streak').date,'2026-09-30');assert.equal(records.find(r=>r.id==='month').value,2);assert.match(records.find(r=>r.id==='month').proof,/2026-09/);assert.equal(records.find(r=>r.id==='workflow').value,2);
+});
+test('personal gifts unlock from existing milestones and retain claim facts after historical edits',()=>{
+  const s=stateWith([entry(TODAY)]),reward={id:'r',title:'A book',kind:'days',target:1,sourceId:null,claimedAt:null,createdAt:s.createdAt};s.personal.rewards.push(reward);assert.equal(core.personalReward(s,reward).eligible,true);reward.claimedAt=s.createdAt;s.entries=[];
+  const loaded=core.validate(s),progress=core.personalReward(loaded,loaded.personal.rewards[0]);assert.equal(progress.eligible,false);assert.equal(progress.claimed,true);assert.equal(core.calculate(loaded).total,0);
+});
+test('companion welcomes returning users and celebrates only real daily work',()=>{
+  const s=core.blank();assert.equal(core.companionMood(s,TODAY).id,'ready');s.entries.push(entry(core.addDays(TODAY,-3)));assert.equal(core.companionMood(s,TODAY).id,'welcome');s.entries.push(entry(TODAY));assert.equal(core.companionMood(s,TODAY).id,'celebrate');
+});
+test('project and pack gifts require complete distinct source steps, and streak gifts use the best run',()=>{
+  const s=core.blank(),q={id:'q',title:'Report',goal:'',emblem:'robot',archived:false,createdAt:s.createdAt,updatedAt:s.createdAt,steps:[0,1,2,3].map(i=>({id:'s'+i,title:'Step '+i}))};s.quests.push(q);s.personal.packs.push({id:'docs',createdAt:s.createdAt});
+  const reward=(kind,target,sourceId)=>({kind,target,sourceId});assert.equal(core.personalReward(s,reward('quest',4,'q')).eligible,false);q.steps.forEach(step=>s.entries.push(entry(TODAY,{questId:'q',questStepId:step.id,stepComplete:true})));assert.equal(core.personalReward(s,reward('quest',4,'q')).eligible,true);
+  for(const [task,category] of core.PACKS.find(p=>p.id==='docs').tasks)s.entries.push(entry(TODAY,{packId:'docs',packTaskId:task,category}));assert.equal(core.personalReward(s,reward('pack',3,'docs')).eligible,true);assert.equal(core.personalReward(s,reward('streak',2,null)).eligible,false);s.entries.push(entry(core.addDays(TODAY,-1)));assert.equal(core.personalReward(s,reward('streak',2,null)).eligible,true);
+});
