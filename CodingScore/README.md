@@ -43,6 +43,18 @@ Creating quests, accepting challenges, saving/copying prompts, and downloading r
 
 All artwork is self-contained inline SVG, using the existing blue/peach/navy visual language. No image requests or dependencies are needed. Quest emblems are included in normal backup/export. The JSON format remains version 2, and the storage key and XP rules are unchanged.
 
+## Explore your work
+
+- **Clickable workshop:** The desk opens your active quest, books lead to workflows, the trophy visits earned achievements, the plant opens activity history, the lamp opens task cards, tools lead to projects, and the window opens the practice map. Objects have mouse/touch targets and keyboard controls. Locked decorations never prevent access to features; the item buttons still explain unlock requirements.
+- **Win cards:** Useful results and before/after notes become flippable cards. See the task on one side and the actual recorded result on the other, including optional estimated savings. Filter by category, browse three cards at a time, and open the full daily record. Missing outcomes remain explicitly missing.
+- **Growing quest stories:** Each of the six emblems has five illustrated stages, from a faint blueprint to a complete scene. Distinct completed steps advance the artwork. Select a quest illustration for the larger story, its step status, logging, and precisely filtered linked work. A newly completed quest can show a dismissible celebration; historical corrections recalculate the scene.
+- **Personal badge showcase:** Open an earned badge and pin it near the top of Today. You can keep up to three favorites, unpin them, and download individual achievement cards as PNG with SVG fallback. Cards include the real earned date and recorded story and are never shared automatically. If a correction removes the earning condition, a previous pin remains visibly locked until the work qualifies again or you unpin it.
+- **Practice islands:** Explore six illustrated routes for Build, Debug, Review, Automate, Learn, and Plan. Each shows actual uses, useful results, distinct dates, recent work, prompt ideas, and 1/5/15/30-use milestones. These describe practice, not a skill assessment. You can log a category use or browse its journal records directly.
+- **Task deck:** Open **Saved next task and prompt ideas**, flip a bug/robot/lightbulb card, and copy its full starter prompt. Draw more cards or filter the category. The logging control starts an empty use record with the matching category; it never invents or saves an activity for you.
+- **Weekly replay:** Choose a week in the recap and select **Replay my week**. Browse actual daily work, first completed quest steps, project completions, first-earned badges, and workshop unlocks in local-date order. Play, pause, restart, seek, or step manually. Playback stops on close, hidden tabs, source changes, and the final moment. Reduced-motion preference uses manual navigation. Empty weeks show no invented events.
+
+The only new saved preference is `settings.pinnedAchievements`; older backups default to an empty list. Card flips, map navigation, replay controls, and task draws are temporary interface state. None of these interactions award XP, consume Codex quota, or create active days.
+
 ## Your data
 
 All personal records stay in browser storage under **`codingScore.v1`**. The current JSON format is version 2; existing version 1 data/backups migrate without changing their original records or scores. The storage key is unchanged. This is manual tracking, not a connection to your Codex usage. Fonts load from Google Fonts when available; system fonts work offline. No application data is sent to a server.

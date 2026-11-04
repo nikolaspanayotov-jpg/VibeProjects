@@ -30,6 +30,11 @@ CodingScore is a personal, browser-local scorebook for daily Codex use. The app 
 - Workshop objects are derived cosmetic rewards. Keep text requirements and accessible item buttons alongside the illustration. Preserve keyboard focus when redrawing the selected item.
 - `quest.emblem` is optional in older v2 backups and normalizes to `compass`. Restrict it to the six `Core.EMBLEMS` values. Preserve it through editing/import/export without changing quest or step IDs.
 - Badge progress includes partial project steps. `Core.achievementDetails` derives the first qualifying local date and its evidence; never invent or persist a separate earned timestamp. `Core.dailyFocus` chooses an active unfinished quest and the closest unfinished achievement, with a complete-collection fallback.
+- `settings.pinnedAchievements` is an optional list of at most three unique `Core.BADGE_IDS`. Older backups default to `[]`. New pins must be earned; corrected historical pins remain as visibly locked preferences rather than corrupting saved data. Include pins in backup/restore and clearing.
+- `Core.winCards`, `skillMap`, `questMoments`, and `weekReplay` derive the new exploration views from source records. Never reward card flipping, object navigation, prompt copying, pinning, or replay watching with XP or an active day.
+- Quest stories use 0–4 distinct completed steps, not entry counts. `Art.questScene` supports all six emblems; completion feedback appears only for a newly completed project after a real qualifying change and obeys celebration/reduced-motion preferences.
+- Replays include actual work and the first qualifying date of steps, achievements, completed projects, and workshop unlocks, grouped by local date. Do not duplicate unlocks for repeated logs. The optional replay interval must stop on pause, close, hidden tabs, data changes, and the final event; reduced motion disables autoplay.
+- Saved badge images require an earned badge with a derived date. `Art.badgeCard` escapes user evidence into a standalone SVG and returns `null` for unearned rewards. Browser PNG generation is local, with SVG fallback. Never send exported cards to others automatically.
 - Validate imported records completely before changing current state. Confirm replacement/clearing, offer backup, escape all user content in generated markup, and allow only HTTP(S) reference URLs.
 
 ## Design
@@ -46,6 +51,12 @@ Achievements are native buttons with All/Earned/Next filters and a native detail
 
 The Today layout places daily focus beside logging, with ideas/next-task content in an expandable panel below. Keep the logging action prominent on mobile. Restore focus after rebuilding emblem choices and collection filters. The artwork contact sheet was visually inspected; full browser layout remains an explicitly unverified environment limitation.
 
+Workshop objects are SVG buttons with generous transparent hit areas and visible focus outlines. Preserve the named button alternatives and requirement controls. Keep hit areas clear of neighboring objects; the desk target starts below the wall window. Practice islands are native buttons. Flip cards are native toggle buttons with back-face styling and matching `aria-pressed`/`aria-hidden` state; update them in place so transitions and keyboard focus survive. No interactive controls are nested inside flip buttons.
+
+The win gallery shows three records per page. The task deck scrolls inside its own container on narrow screens; the page must not gain horizontal overflow. Saved source data is separate from temporary flip/page/deck/replay state. Quest journal links use an explicit, visible scope chip that users can clear. Any source change refreshes the exploration views and stops replay playback.
+
 ## Validation
 
 Run the commands in README after scoring, persistence, date, or interaction changes. Include browser QA for rendering/focus changes when available. Keep verification notes accurate; do not describe the DOM adapter as browser or accessibility testing.
+
+The UI test adapter now includes controllable intervals, reduced-motion settings, SVG keyboard events, and document visibility. Use these to check replay cleanup and navigation deterministically. SVG scene sheets and badge-card output have been XML-validated and rasterized for visual inspection; this does not replace full browser layout, 3D flip, focus, or animation testing.
