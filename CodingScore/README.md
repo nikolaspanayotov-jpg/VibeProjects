@@ -8,7 +8,7 @@ Open `index.html` in a modern browser. No installation, account, build step, or 
 python3 -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/`. The app's GitHub Pages path, after this branch is merged and Pages deploys, is `/VibeProjects/CodingScore/` on the repository's default GitHub Pages host. A custom domain can change the prefix; the project folder's case must be preserved.
+Then visit `http://localhost:8000/`. The live page is [CodingScore](https://nikolaspanayotov-jpg.github.io/VibeProjects/CodingScore/). Preserve the project folder's case in the URL.
 
 ## What you can do
 
@@ -21,9 +21,20 @@ Then visit `http://localhost:8000/`. The app's GitHub Pages path, after this bra
 - Save the next task or copy a practical starter prompt. Planning alone does not create an active day.
 - Filter the journal, delete a use with undo, change your weekly target, and export/import your whole scorebook.
 
+## More ways to make progress
+
+- **Project quests:** Create a project with four named steps, defaulting to Investigate, Build, Test, and Finish. Log actual Codex work against a step; explicitly mark it complete when ready. All four completed steps earn a quest badge and workshop tools. Edit labels without losing links, archive old projects, and filter active/completed/archived quests. Delete an empty quest after confirmation.
+- **Weekly highlight reel:** Pick a date to review its Monday–Sunday week. See active days, XP, useful results, estimated minutes saved, a highlighted result, and first-time categories/workflow uses. A current-week recap compares the same elapsed weekdays with the previous week. Download a shareable PNG card, with SVG fallback, or copy the text summary. Cards stay local until you choose where to share them.
+- **A growing workshop:** Seven illustrated items unlock from real milestones: 1/3/7/14/30 active dates, the first completed project quest, and a seven-day consecutive streak. Select an item to see its requirement and progress. Everything is cosmetic; nothing costs XP.
+- **Personal challenges:** Each calendar week suggests two historically less-used task categories and a three-category variety challenge. Accept a challenge, then earn its stamp through logged work. Category challenges require a useful result. Suggestions use activity before the week so they remain stable as you log new work. Previous challenges stay visible in their history.
+- **Practical payoff:** Add optional before/after notes and estimated minutes saved to any use. See them in the journal, weekly recap, and lifetime payoff summary. Missing estimates stay unrecorded; zero is a valid estimate. Estimates are self-reported, can overlap, and do not affect XP.
+- **Workflow library:** Save a successful prompt from a journal entry or create a workflow directly. Keep its result, context, category, and favorite status. Search/filter it, copy the prompt, and log its actual reuse. Deleting a template preserves its historical uses, saved prompts, title snapshots, XP, and reuse badge.
+
+Creating quests, accepting challenges, saving/copying prompts, and downloading recaps do not create an active day or award XP. Quest, challenge, and workshop rewards derive from source records and recalculate when history changes.
+
 ## Your data
 
-All personal records stay in browser storage under **`codingScore.v1`**. This is manual tracking, not a connection to your Codex usage. Fonts load from Google Fonts when available; system fonts work offline. No application data is sent to a server.
+All personal records stay in browser storage under **`codingScore.v1`**. The current JSON format is version 2; existing version 1 data/backups migrate without changing their original records or scores. The storage key is unchanged. This is manual tracking, not a connection to your Codex usage. Fonts load from Google Fonts when available; system fonts work offline. No application data is sent to a server.
 
 Export a JSON backup in Settings before clearing browser data or switching devices. Import validates the backup, previews its contents, and asks before replacing current records. Unreadable stored data is preserved for download; blocked/full storage falls back to memory with a visible notice. File URLs and different hosts may have separate storage, so export before moving to a hosted copy.
 
