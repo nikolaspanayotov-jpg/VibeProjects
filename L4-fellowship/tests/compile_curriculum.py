@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCE = (ROOT / 'solutions.md').read_text()
 DESIGN = (ROOT / 'design.md').read_text()
 PROJECT_SOURCE = (ROOT / 'worked-project.md').read_text()
+ACTIVITY_SOURCE = (ROOT / 'learning-activities.json').read_text()
+ACTIVITIES = json.loads(ACTIVITY_SOURCE)
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -116,14 +118,47 @@ for stage_match in re.finditer(r'^## (Planning|Preparation|Analysis|Validation|C
     stages.append(dict(id=stage_id,title=name,summary=html(body.split('### ',1)[0]),artifacts=artifacts))
 assert len(stages)==6 and sum(len(s['artifacts']) for s in stages)==8
 assert all(mapping.values()),[ksb for ksb,links in mapping.items() if not links]
+quiz=[]
+for match in re.finditer(r'^### (Q\d+) — ([^\n]+)\n(.*?)(?=^### Q\d+|\Z)',SOURCE.split('<a id="quiz-answer-key"></a>',1)[1],re.M|re.S):
+    qid,statement,body=match.groups()
+    ksbs=re.findall(r'\b[KSB]\d+\b',body.split('**Answer.**',1)[0])
+    answer=re.search(r'\*\*Answer\.\*\* (True|False)',body)[1]=='True'
+    explanation=body.split('**Explanation.**',1)[1].strip()
+    assert ksbs and all(ksb in mapping for ksb in ksbs)
+    quiz.append(dict(id=qid,statement=statement,ksbs=ksbs,answer=answer,explanation=explanation,
+                     theme=next(item['theme'] for item in records if item['id']==ksbs[0])))
+assert len(quiz)==30 and {q['id'] for q in quiz}=={f'Q{i:02}' for i in range(1,31)}
+assert {ksb for question in quiz for ksb in question['ksbs']}==set(mapping)
+ACTIVITIES['quiz']=quiz
+assert len(ACTIVITIES['labs'])==3 and len(ACTIVITIES['scenarios'])==3
+for scenario in ACTIVITIES['scenarios']:
+    nodes={node['id']:node for node in scenario['nodes']}
+    assert len(nodes)==len(scenario['nodes']) and scenario['start'] in nodes
+    visited=set()
+    def walk(node_id,path):
+        assert node_id not in path, 'Scenario cycle: '+scenario['id']
+        node=nodes[node_id];visited.add(node_id)
+        assert node['kind'] in ('decision','outcome')
+        if node['kind']=='decision':
+            assert len(path)<8, 'Scenario exceeds the saved-route limit'
+            choices=node['choices'];assert len(choices)>=2 and len({c['id'] for c in choices})==len(choices)
+            for choice in choices:
+                assert choice['next'] in nodes and choice['feedback']
+                walk(choice['next'],path+[node_id])
+        else:
+            assert not node.get('choices')
+    walk(scenario['start'],[])
+    assert visited==set(nodes),'Unreachable scenario nodes'
+    assert all(ksb in mapping for ksb in scenario['ksbs'])
 project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
     stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
     sourceSha256=hashlib.sha256(PROJECT_SOURCE.encode()).hexdigest())
-data=dict(revision='2026-11-03',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
+data=dict(revision='2026-11-04',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
           project=project,
+          activities=ACTIVITIES,activitySha256=hashlib.sha256(ACTIVITY_SOURCE.encode()).hexdigest(),
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
-          sources=html(SOURCE.split('## Reference register',1)[1]))
+          sources=html(SOURCE.split('## Reference register',1)[1].split('<a id="quiz-answer-key">',1)[0]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled 37 guided lessons and six worked-project stages into curriculum.js')
+print('Compiled guided lessons, worked project, three labs, three scenarios and 30 misconception questions.')

@@ -18,6 +18,9 @@ Then open `http://127.0.0.1:8000/`. The same relative paths work under the GitHu
 - Search and combined filters; learning, confidence, recall and evidence tracked separately; local-date review scheduling.
 - Evidence references with per-KSB rationales, review notes, editable reflections, draft recovery and deletion undo.
 - Quick recall, follow-ups, probing questions, project walkthroughs, weak-topic review and mixed discussion, with answer reveal, an optional timer and resumable sessions.
+- Three interactive analysis labs under Practice: outliers/missing values, joins/unions and forecast windows/baselines. Controls change the actual calculations and exact-value tables using synthetic data.
+- Three branching workplace scenarios with required justifications, consequences, alternative routes, saved drafts and reflection prompts.
+- Thirty misconception questions with explanations after submission, a previously-missed queue, review dates and resumable question sets. Question results stay separate from KSB recall and evidence.
 - S12 stakeholder worksheets, an S13 forecast/mining worksheet and an accessible synthetic forecast plot/table.
 - Six practical exercises and four downloadable synthetic CSV datasets with data dictionaries, worked approaches and self-checks.
 - A weekly study plan, optional assessment settings, conditional AP03 route filters, JSON backup/restore, a Markdown study summary and print styles.
@@ -32,7 +35,11 @@ Use sanitised reflections and approved reference IDs. This public repository and
 
 ## Files and content maintenance
 
-`solutions.md` is the canonical public answer bank, including the new short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains both sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. No runtime Markdown parser, external fonts, chart library or analytics service is used.
+`solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. No runtime Markdown parser, external fonts, chart library or analytics service is used.
+
+`solutions.md` also contains the human-readable misconception answer key. `learning-activities.json` is the authored lab/scenario source; the compiler validates its decision graphs and embeds it with the questions into the same local curriculum file. Learning tools are available at `#labs`, `#scenarios` and `#quiz`, with focused links such as `#labs-forecast`.
+
+Lab assumptions, scenario routes and quiz records use an additive `learningTools` section inside the existing version-1 backup. Older progress remains readable. Merge keeps existing conflicting tool records unless you choose otherwise; replacement still requires confirmation. Wrong quiz answers are suggested for the following day, correct answers for seven days, or fourteen after consecutive correct responses. These are study defaults, not assessment rules.
 
 When changing the answer bank, the optional authoring utility regenerates the checked-in curriculum:
 
@@ -52,6 +59,7 @@ python3 -m pip install playwright
 python3 -m playwright install chromium
 python3 tests/browser_smoke.py --url http://127.0.0.1:8000/ --output /tmp/l4-qa
 python3 tests/browser_enhancements.py --url http://127.0.0.1:8000/ --output /tmp/l4-enhancements-qa
+python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-learning-tools-qa
 ```
 
 The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit, and offline reload of a hosted page is not promised. Direct file opening works with both application files present.

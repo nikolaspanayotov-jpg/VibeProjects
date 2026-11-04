@@ -564,3 +564,23 @@ A separate Readiness view shows recall, personal examples and evidence for every
 Personal-example status uses an explicit `exampleConfirmed` self-check alongside a nonempty response. A draft alone is not sufficient, and editing/replacing a response clears the self-check. The additive field defaults to false when older version-1 progress loads. The `l4-fellowship.v1` key, existing notes, evidence and settings are preserved. Probing sessions add a supported question type without removing earlier ones.
 
 The checked-in curriculum contains both Markdown sources and their hashes, so all features work from disk without runtime Markdown fetches. The relative script URL carries a release suffix to avoid combining the new application with cached older content. Both browser suites, actual case SQL and responsive screenshots were verified; see the updated verification record.
+
+## 19. Selected practice improvements — implemented 4 November 2026
+
+The three requested additions are grouped under Practice, using Discussion / Analysis labs / Workplace scenarios / Misconception quiz navigation. Existing page routes and personal progress remain available.
+
+### Interactive analysis labs
+
+Three synthetic labs let the learner change an assumption and see actual calculations update. The statistics lab distinguishes observed, imputed and deliberately excluded durations, comparing the mean, median and included count. The join lab displays inputs and outputs for four joins plus UNION/UNION ALL, with duplicate-key control and count/measure reconciliation. The forecast lab changes the initial training window, candidate method and horizon; it reports both candidate and naive errors on the same available held-out actuals, keeping unknown future projections out of RMSE. Each lab has linked KSBs, explicit assumptions, an exact-value table and a reflection prompt. The labs need no external libraries or runtime service.
+
+### Branching workplace scenarios
+
+The three fictional cases concern an unreliable extract, conflicting requirements and an urgent scope change. A decision requires an approach and a justification before consequences are shown. Choices lead to different authored nodes, including conditional, defensible alternatives and routes with unresolved risk. Saved trails are replayed against the graph; imported transitions cannot supply their own outcome. Drafts and completed routes survive reload. Replay explicitly replaces only that case. Discussion follow-ups remain available, without copying fictional experience into personal evidence.
+
+### Misconception questions
+
+Thirty True/False statements cover common misunderstandings across all KSB identifiers, with explanations in the canonical `solutions.md` answer-key appendix. The learner can add reasoning, then reveal the answer and its explanation. Related KSB links provide deeper guidance. Question sets can be paused and resumed; repeated reveal/reload does not create extra attempts. Previously missed and due queues support later review. Incorrect answers suggest one day, correct answers seven days and consecutive correct answers fourteen days. These are transparent study defaults, not assessment rules.
+
+Question results remain separate from KSB recall and evidence. The activity records use an additive `learningTools` section within `l4-fellowship.v1`, with defaults for older backups, strict import validation and conflict-aware merging. Existing notes, worksheets, evidence and sessions remain compatible. Public-source revision is 4 November; unchanged KSB checklist revisions are retained so personal coverage is not reset merely because practice tools were added.
+
+The compiler embeds the authored lab/scenario JSON and the Markdown question bank alongside the existing curriculum. All three source hashes are checked. The three browser suites and focused numerical/SQL checks were run, and phone/desktop layouts were inspected; see the verification record for scope and limits.

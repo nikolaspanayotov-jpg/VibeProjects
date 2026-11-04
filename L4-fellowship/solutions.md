@@ -1120,3 +1120,248 @@ Sources were consulted on **2 November 2026**. Links support the specific princi
 | [Hyndman and Athanasopoulos: Forecasting, Principles and Practice, chapter 5](https://otexts.com/fpp3/toolbox.html) | Authors' textbook page consulted for forecast workflow, time-based evaluation, baselines and RMSE; toy data and results here are independently constructed |
 
 The supplied preparation targets are preserved, with technical clarifications: the full first GDPR principle; overlapping dataset types; organisational classification rather than universal low/medium/high labels; unions versus joins; pseudonymisation versus anonymisation; uncertainty in statistics and forecasting; and a separate mining/modelling example alongside forecast preparation. None of these explanations substitutes for verified organisational rules or genuine performed work.
+
+<a id="quiz-answer-key"></a>
+## Misconception quiz answer key
+
+Added 4 November 2026. These are authored revision questions, not official assessment questions. The page reveals the explanation after an answer; a quiz result does not demonstrate a workplace Skill or Behaviour. Missed questions can be reviewed again without changing personal KSB evidence or recall records.
+
+### Q01 — A left join always preserves the number of rows in the left table.
+
+**KSBs.** K10, S8
+
+**Answer.** False
+
+**Explanation.** A left join retains left-side records, but one record can match several right-side rows. A repeated lookup key can therefore multiply the result. Define grain, check expected cardinality and reconcile counts and measures. The fictional project shows 300 requests becoming 357 joined rows.
+
+### Q02 — If a dataset is publicly accessible, it can always be reused without checking a licence or other restrictions.
+
+**KSBs.** K4, K15
+
+**Answer.** False
+
+**Explanation.** Public availability is different from open reuse rights. Check licensing, purpose, personal information, provenance and other relevant restrictions. Administrative or research data can be public, open or restricted depending on the release; these labels are not interchangeable security levels.
+
+### Q03 — A structured table can contain an unstructured free-text field.
+
+**KSBs.** K5, S4
+
+**Answer.** True
+
+**Explanation.** Rows and named columns provide a structure, but a comment's meaning can remain free form. Analysing that field may require thematic coding or another justified extraction method. Putting comments in a spreadsheet does not make their meaning fully structured.
+
+### Q04 — Consent is the only possible lawful basis for using personal data.
+
+**KSBs.** K1, S1
+
+**Answer.** False
+
+**Explanation.** Consent is not the only possible lawful basis. The appropriate basis depends on the purpose, relationship and applicable rules, and must be established through the responsible organisational process. Neither a public-service purpose nor system access alone establishes permission for every use. Consult current guidance for a real decision.
+
+### Q05 — Pseudonymised data can still be personal data that requires protection.
+
+**KSBs.** K1, K15, S3
+
+**Answer.** True
+
+**Explanation.** Replacing direct identifiers does not necessarily prevent re-identification, particularly when a lookup or other identifying information exists. Assess the residual risk, separate and control any mapping, and follow the actual handling rules. Pseudonymisation and anonymisation are different claims.
+
+### Q06 — If every expected field is populated, the data must be accurate.
+
+**KSBs.** K8, S6
+
+**Answer.** False
+
+**Explanation.** Completeness asks whether expected data is present; accuracy asks whether it represents reality. A fully populated date can be wrong, or refer to the wrong event. Check the dimensions relevant to the intended decision rather than using one quality measure as proof of all others.
+
+### Q07 — Replacing every missing numerical value with zero is a safe default.
+
+**KSBs.** K8, S6, S10
+
+**Answer.** False
+
+**Explanation.** Zero is an observed value, not a universal substitute for unknown, not applicable or not yet completed. Filling a missing duration with zero changes denominators, averages and distributions. Investigate why data is missing, choose a justified treatment and explain remaining uncertainty. The statistics lab makes this distortion visible.
+
+### Q08 — An outlier can be a genuine observation rather than an error.
+
+**KSBs.** K8, K13, S6
+
+**Answer.** True
+
+**Explanation.** Unusual values may reflect genuine events, collection problems or a different population. Investigate their meaning and influence before deciding on treatment. Removing an observation simply because it changes a chart or test result can bias the analysis. Keep the rationale and transformation trail.
+
+### Q09 — UNION ALL appends compatible result rows and retains duplicates.
+
+**KSBs.** K10, S8
+
+**Answer.** True
+
+**Explanation.** UNION ALL appends rows from compatible queries without removing duplicates. UNION removes duplicate result rows. These are set operations, not joins; joins combine matching records according to a relationship. Check compatible columns, data types and whether repeated records are meaningful.
+
+### Q10 — Normalisation can reduce avoidable duplication and update anomalies in relational data.
+
+**KSBs.** K6
+
+**Answer.** True
+
+**Explanation.** Normalisation structures relationships to reduce certain duplication and consistency problems. It is not the whole maintenance process and is not always the best analytical presentation. Reporting models may deliberately denormalise when the trade-off is justified and the data remains governed.
+
+### Q11 — A data warehouse and a data lake are interchangeable names for the same architecture.
+
+**KSBs.** K6, K12, S9
+
+**Answer.** False
+
+**Explanation.** A warehouse commonly integrates data for analysis; a lake commonly stores varied raw and processed formats. Actual platforms can combine patterns, but the concepts are not identical. Explain your real sources, transformations, metadata, permissions and consumers rather than assuming a particular technology from a label.
+
+### Q12 — Tool selection should consider infrastructure, reproducibility, support and the analytical requirement.
+
+**KSBs.** K11, S9, S15
+
+**Answer.** True
+
+**Explanation.** The most suitable tool depends on capability, scale, access, security, accessibility, cost, team skills and maintainability. Familiarity is relevant but insufficient on its own. Explain the realistic alternatives, apply the selected workflow and check whether it met the actual requirements.
+
+### Q13 — A useful requirement connects an output to a decision and an acceptance check.
+
+**KSBs.** K9, S7
+
+**Answer.** True
+
+**Explanation.** A chart request alone leaves definitions, scope and success unclear. Establish the decision, users, population, units, timing and constraints, then agree how the result will be checked. This makes it possible to trace needs into methods, deliverables and proportionate change control.
+
+### Q14 — Validation or stakeholder feedback can require revisiting an earlier analysis-lifecycle stage.
+
+**KSBs.** K3, S2
+
+**Answer.** True
+
+**Explanation.** The stages provide a useful order but the work is iterative. A failed reconciliation can send you back to preparation; changed requirements can alter planning. Explain why you revisited a stage and how you checked the revised output, rather than treating iteration as an omission or failure.
+
+### Q15 — User experience in analytics is only about choosing an attractive colour palette.
+
+**KSBs.** K7, S5
+
+**Answer.** False
+
+**Explanation.** UX concerns whether users can understand and use the output for their task. Definitions, hierarchy, interactions, labels, accessibility and evaluation all matter. Domain context can change the calculation itself, such as separating open cases from completed-case waiting time. Colour is one design decision within that larger task.
+
+### Q16 — A p-value above 0.05 proves that there is no difference between the populations.
+
+**KSBs.** K13, S10
+
+**Answer.** False
+
+**Explanation.** A non-significant result does not prove equality. The data may be too limited or noisy to distinguish an effect under the test and its assumptions. Report the estimated effect, interval, design limitations and practical implications. The guide's two-day sample difference is inconclusive at alpha 0.05.
+
+### Q17 — A p-value is calculated under the null hypothesis and the model assumptions.
+
+**KSBs.** K13, S10
+
+**Answer.** True
+
+**Explanation.** It describes the probability, under those conditions, of a test statistic at least as extreme as the observed statistic. It is not the probability that the null hypothesis is true. Interpretation also needs the design, assumptions, effect size, uncertainty and the decision context.
+
+### Q18 — Statistical significance guarantees that a result is operationally important.
+
+**KSBs.** K13, S10
+
+**Answer.** False
+
+**Explanation.** A small effect can be statistically detectable without mattering to the decision, while an important effect may be uncertain in a small sample. Assess the effect, confidence interval, costs and context. Do not reduce practical judgement to whether a threshold was crossed.
+
+### Q19 — A useful predictive association does not by itself establish causation.
+
+**KSBs.** K14, S11
+
+**Answer.** True
+
+**Explanation.** A model can exploit an association while confounding, selection or other mechanisms explain it. Prediction asks about unknown outcomes; a causal claim about an intervention needs suitable evidence and design. Explain the limits before recommending an action or claiming a benefit.
+
+### Q20 — A model that fits the training data well has proved it will forecast future observations accurately.
+
+**KSBs.** K14, S11, S13
+
+**Answer.** False
+
+**Explanation.** Training fit measures behaviour on data used for estimation and can reward overfitting. Evaluate genuinely later or unseen observations, compare a relevant baseline and check the intended horizon. A small teaching holdout supports only a limited comparison, not a broad performance claim.
+
+### Q21 — Randomly shuffling past and future observations is always an appropriate way to evaluate a time-series forecast.
+
+**KSBs.** S11, S13
+
+**Answer.** False
+
+**Explanation.** Forecast evaluation should represent the information available at prediction time. Mixing later observations into training can leak future information and overstate performance. Use a time-ordered split or suitable rolling-origin evaluation and compare methods on the same evaluation observations.
+
+### Q22 — A simple naive forecast can be a useful baseline for evaluating a more complex candidate.
+
+**KSBs.** K14, S13
+
+**Answer.** True
+
+**Explanation.** A baseline makes added value assessable. The last observed value is one simple option; seasonal data may require a suitable seasonal baseline. Compare like-for-like horizons and observations using appropriate error metrics. Complexity alone is not evidence of improvement.
+
+### Q23 — Theme assignments can exceed the number of comments when one comment receives several themes.
+
+**KSBs.** S14
+
+**Answer.** True
+
+**Explanation.** Multi-label coding allows a comment to discuss several issues. Explain coding rules, denominator and overlap so users do not interpret assignments as independent people or mutually exclusive categories. The fictional example has 42 assignments across 36 comments and makes no representative-satisfaction claim.
+
+### Q24 — A field containing numeric codes can still represent qualitative categories.
+
+**KSBs.** K5, S14
+
+**Answer.** True
+
+**Explanation.** The meaning of the variable determines its analytical type, not just its storage format. Codes such as 1, 2 and 3 can identify service categories rather than measured quantities. Calculating their mean may therefore be meaningless; use the appropriate category definitions and representations.
+
+### Q25 — Using identical technical detail and terminology for every stakeholder is always the clearest approach.
+
+**KSBs.** K7, S12
+
+**Answer.** False
+
+**Explanation.** Adapt language, channel, detail and emphasis to the audience and situation while keeping the factual conclusion consistent. A manager may need a decision and caveats; a technical reviewer may need grain, code and checks. Verify understanding and show how collaboration affected the output.
+
+### Q26 — One evidence reference can support several KSBs, but each link needs a clear rationale.
+
+**KSBs.** S2, S7, S12
+
+**Answer.** True
+
+**Explanation.** A single artefact may illuminate several parts of the work, but the connection is not automatic. Identify the specific action, section or result that supports each KSB and distinguish your contribution. A study-page link or self-check does not establish assessor approval; follow the applicable provider requirements.
+
+### Q27 — A root-cause solution needs a reasoned prevention mechanism and follow-up checks, not only a repaired output.
+
+**KSBs.** S6, B4, B5
+
+**Answer.** True
+
+**Explanation.** A corrected file can treat the symptom while the source process remains broken. Establish the cause with evidence, assign an authorised control and owner, then check later operation. A proposed validation gate is a plan until it has been implemented and evaluated.
+
+### Q28 — Having permission to access a system authorises every possible use of the information it contains.
+
+**KSBs.** K1, K2, S1, B1
+
+**Answer.** False
+
+**Explanation.** Access permission does not remove purpose, legal, ethical or organisational restrictions. Check the intended use, authority, necessary fields, sharing and retention requirements. Follow the actual policy and escalation route when a request is unclear or extends beyond the approved purpose.
+
+### Q29 — A material change in project scope should prompt a proportionate review of requirements, risks and stakeholder expectations.
+
+**KSBs.** K9, S7, B2, B3, B7
+
+**Answer.** True
+
+**Explanation.** Reassess what changed, what remains essential and how scope, quality, timing and responsibilities interact. Agree a revised plan and communicate limitations. Small operational adjustments and broader contextual shifts can need different responses; neither justifies silently discarding essential controls.
+
+### Q30 — Learning from an unsuccessful analytical method can be part of a constructive, resilient response.
+
+**KSBs.** S10, B6
+
+**Answer.** True
+
+**Explanation.** An honest result can reveal assumptions, data or methods that need improvement. Explain the challenge, your response, support used, the outcome and a specific subsequent change in practice. Do not relabel an inconclusive test or a weak model as a success to make the account look better.

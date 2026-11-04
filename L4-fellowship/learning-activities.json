@@ -1,0 +1,143 @@
+{
+  "revision": "2026-11-04",
+  "notice": "Authored practice using fictional situations and synthetic values. Tool results do not complete workplace evidence or establish an assessment grade.",
+  "labs": [
+    {
+      "id": "statistics",
+      "title": "Outliers and missing values",
+      "intro": "Change one observed duration and the treatment of one missing value. Compare the population counted, the mean and the median before drawing a conclusion.",
+      "ksbs": ["K8", "K13", "S6", "S10"],
+      "prompt": "Predict which measure will change most, then adjust the controls.",
+      "limits": "The missing value has no known duration. Excluding it describes observed cases only; filling it with zero or a median is an assumption, not a recovered fact. The extreme value is observed in this toy example and is not automatically an error.",
+      "reflect": "Which treatment would be defensible for an actual decision, and what would you check about missingness first?"
+    },
+    {
+      "id": "joins",
+      "title": "Keys, joins and record grain",
+      "intro": "Join a four-request table to a small service lookup. Change the join and the uniqueness of the lookup key, then reconcile source requests, matched combinations and output rows.",
+      "ksbs": ["K10", "S4", "S8"],
+      "prompt": "Before running the join, predict what happens to the two requests for service A.",
+      "limits": "The duplicate labels conflict. Turning the duplicate off is a teaching control, not permission to select an arbitrary value in real work. The UNION example appends compatible request rows; it does not attach lookup attributes.",
+      "reflect": "Which records disappear or multiply, and how would that affect a count or a sum?"
+    },
+    {
+      "id": "forecast",
+      "title": "Forecast windows and baselines",
+      "intro": "Fit a simple candidate using only the selected initial months of the synthetic 2025 series. Change the training window, method and horizon, and compare errors only where later actual observations exist.",
+      "ksbs": ["K13", "K14", "S11", "S13"],
+      "prompt": "Predict whether a longer training window or a more complex-looking model must improve held-out performance.",
+      "limits": "The 12-point series is constructed for teaching. Evaluation uses available observations strictly after the training cutoff. Projections beyond December 2025 have no actual values here and do not enter RMSE. No calibrated prediction interval or annual-seasonality claim is made.",
+      "reflect": "What further evaluation and uncertainty information would you need before using this forecast operationally?"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "quality-deadline",
+      "title": "An unreliable extract before a briefing",
+      "intro": "A fictional service manager needs a briefing this afternoon. Your latest join produces more rows than the source, and the lookup contains conflicting labels. You must decide what can be used responsibly.",
+      "ksbs": ["K8", "K10", "S6", "S8", "S12", "B2", "B4", "B5"],
+      "start": "start",
+      "reflection": ["Which figures could the manager safely act on?", "What authority and checks would be needed for your correction?", "How would you prevent the same issue at the next refresh?"],
+      "nodes": [
+        {
+          "id": "start", "kind": "decision",
+          "title": "The count has increased after the join",
+          "text": "The source has 300 requests. The output has 357 rows. You have not established which lookup label is authoritative. What do you do first?",
+          "choices": [
+            {"id": "pause", "label": "Pause the affected figures, explain the risk and seek source-owner input", "next": "owner", "feedback": "This route makes the uncertainty visible before a decision is based on inflated counts. It still needs a plan for what can be delivered safely."},
+            {"id": "drop", "label": "Keep the first lookup row for each key and send the result", "next": "disagreement", "feedback": "A smaller output is not proof that the chosen label is correct. The rule and its authority have not been established."},
+            {"id": "footnote", "label": "Send the full output with a short quality footnote", "next": "briefing", "feedback": "Disclosure of a limitation does not repair inflated figures. Consider what the audience could reasonably infer or act on."}
+          ]
+        },
+        {
+          "id": "owner", "kind": "decision",
+          "title": "The source owner can help, but time is short",
+          "text": "The manager can accept a narrower briefing if it is useful and clearly bounded. The source owner may also be able to supply an approved lookup before the meeting. Choose a delivery approach.",
+          "choices": [
+            {"id": "limited", "label": "Agree a briefing using independently validated measures and explicit exclusions", "next": "limited", "feedback": "A bounded output can be defensible if the measures genuinely remain valid and the decision owner understands and accepts the limitations."},
+            {"id": "rebuild", "label": "Use a confirmed authoritative lookup, rerun the transformation and reconcile before delivery", "next": "checked", "feedback": "A verified correction can support the fuller output, provided there is time for validation and communication of remaining exceptions."}
+          ]
+        },
+        {
+          "id": "disagreement", "kind": "decision",
+          "title": "The first-row rule changes when the file order changes",
+          "text": "A colleague sorts the same lookup differently and gets another label. How do you respond?",
+          "choices": [
+            {"id": "confirm", "label": "Withdraw the unsupported rule and obtain an authoritative decision", "next": "owner", "feedback": "This route acknowledges that deterministic ordering alone cannot establish meaning and returns to a governed correction."},
+            {"id": "sort", "label": "Fix the sort order and treat the first label as correct", "next": "unresolved", "feedback": "A repeatable arbitrary choice remains arbitrary. Reproducibility and semantic validity are different checks."}
+          ]
+        },
+        {
+          "id": "briefing", "kind": "decision",
+          "title": "The manager asks whether the apparent demand increase is real",
+          "text": "The manager is about to use the output to discuss staffing. You still know the join can multiply requests.",
+          "choices": [
+            {"id": "correct", "label": "Correct the interpretation and agree a validated or narrower replacement", "next": "owner", "feedback": "The route prioritises the meaning of the figures and a usable alternative, rather than relying on a caveat to prevent misunderstanding."},
+            {"id": "continue", "label": "Present the increase as demand and rely on the footnote", "next": "unresolved", "feedback": "This risks confusing a join artefact with actual demand. A footnote cannot justify a conclusion the data does not support."}
+          ]
+        },
+        {"id": "limited", "kind": "outcome", "title": "A bounded briefing", "text": "This route can preserve usefulness without presenting unvalidated measures. Record the accepted scope, excluded claims, owner and follow-up date. The trade-off is reduced coverage and a later update; confirm that the remaining output still supports the intended decision."},
+        {"id": "checked", "kind": "outcome", "title": "A correction with validation", "text": "This route can support a fuller briefing if the reference decision is authoritative and the reworked output is checked. Reconcile counts and measures, retain missing/unmatched-key information and document the correction. Add a proportionate recurrence control; do not claim it works on future loads before checking."},
+        {"id": "unresolved", "kind": "outcome", "title": "The meaning of the result is still unsupported", "text": "The route leaves a quality problem that could influence a decision. Explain why the chosen shortcut did not establish the true values or preserve the analytical grain. Reconsider escalation, an authoritative correction or a narrower output; there is no official grade attached to this exercise."}
+      ]
+    },
+    {
+      "id": "conflicting-requirements",
+      "title": "Two stakeholders want different measures",
+      "intro": "A fictional manager asks for requests received per week. A performance colleague asks for completed-case waiting time. Both call their request 'service performance', and the draft chart mixes populations.",
+      "ksbs": ["K7", "K9", "S5", "S7", "S12", "B3", "B4"],
+      "start": "start",
+      "reflection": ["Which decision does each measure support?", "How would you define populations, dates and units so users can compare appropriately?", "What would you record as an acceptance check and how would you resolve a later change?"],
+      "nodes": [
+        {"id": "start", "kind": "decision", "title": "One phrase, two decision needs", "text": "The stakeholders disagree about which single number belongs at the top. Choose how to clarify the request.", "choices": [
+          {"id": "align", "label": "Clarify each decision and agree definitions with both stakeholders", "next": "definitions", "feedback": "This route investigates the need behind the requested chart rather than assuming a shared phrase means a shared measure."},
+          {"id": "power", "label": "Use only the most senior stakeholder's preferred number", "next": "excluded", "feedback": "Authority matters, but this route has not checked the needs of another relevant user or the implications of excluding them."},
+          {"id": "both", "label": "Display both numbers with the same short label", "next": "labels", "feedback": "Providing more numbers does not resolve differences in population, date basis or interpretation."}
+        ]},
+        {"id": "definitions", "kind": "decision", "title": "The questions are different but both useful", "text": "Received demand and completed-case duration describe different things. How will you reflect that in the deliverable?", "choices": [
+          {"id": "distinct", "label": "Show clearly separated measures with agreed definitions, filters and acceptance checks", "next": "agreed", "feedback": "This route retains the distinct decision needs and makes interpretation testable."},
+          {"id": "priority", "label": "Agree one priority measure and explicitly defer the other requirement", "next": "tradeoff", "feedback": "Prioritisation can be defensible when it is an informed scope decision, with exclusions and stakeholder expectations made explicit."}
+        ]},
+        {"id": "excluded", "kind": "decision", "title": "The excluded user cannot answer their question", "text": "The performance colleague points out that the selected number does not describe completed-case waits. What next?", "choices": [
+          {"id": "include", "label": "Revisit the requirements and involve the affected roles", "next": "definitions", "feedback": "This route addresses the missed decision need and makes the effect of the earlier choice visible."},
+          {"id": "ignore", "label": "Keep the output unchanged because the senior stakeholder chose it", "next": "ambiguous", "feedback": "The deliverable may have an owner, but its scope and usefulness for affected users remain insufficiently resolved."}
+        ]},
+        {"id": "labels", "kind": "decision", "title": "A reader compares two incompatible denominators", "text": "The reader thinks one number is a trend in the other. How will you correct that?", "choices": [
+          {"id": "clarify", "label": "Separate the views and state population, dates, units and limitations", "next": "agreed", "feedback": "This route treats labels and domain definitions as part of analytical validity, not decoration."},
+          {"id": "leave", "label": "Leave the chart and rely on readers to infer the difference", "next": "ambiguous", "feedback": "The risk is a plausible but unsupported interpretation. Clear definitions and user evaluation are needed."}
+        ]},
+        {"id": "agreed", "kind": "outcome", "title": "A deliverable with clear definitions", "text": "The route supports distinct decisions using separated, labelled measures. Validate each population and transformation, test the output with the intended users and record how feedback changes it. Clear labels do not substitute for correct calculations."},
+        {"id": "tradeoff", "kind": "outcome", "title": "An explicit scope trade-off", "text": "The route may be defensible if the decision owner and affected stakeholders understand what is deferred, why, and when it will be revisited. Record the acceptance checks and remaining limitation rather than implying the single measure answers every question."},
+        {"id": "ambiguous", "kind": "outcome", "title": "The decision need remains unresolved", "text": "This route leaves a requirement or interpretation gap. Explain whose decision cannot be supported and how you would clarify scope, definitions and expectations. Revisit the request rather than treating seniority or visual completeness as proof of usefulness."}
+      ]
+    },
+    {
+      "id": "scope-change", "title": "An urgent change in direction",
+      "intro": "A fictional historical review becomes an urgent capacity question. The deadline is unchanged and the available demand series is short. Decide how to adapt without overstating the evidence.",
+      "ksbs": ["K3", "K9", "K14", "S7", "S11", "S13", "B2", "B6", "B7"],
+      "start": "start", "reflection": ["What changed in scope, methods and responsibilities?", "Which checks and limitations remain essential under time pressure?", "What would you tell the decision owner about short histories and uncertain forecasts?"],
+      "nodes": [
+        {"id": "start", "kind": "decision", "title": "The question changes but the deadline does not", "text": "You must respond to the new priority, but a dependable operational forecast is not automatically available. Choose an approach.", "choices": [
+          {"id": "phase", "label": "Agree a phased scope, explicit assumptions and a defensible minimum output", "next": "phased", "feedback": "This route makes the effect of the new question visible and preserves a discussion of quality, time and usefulness."},
+          {"id": "absorb", "label": "Accept every new request without changing scope or timing", "next": "overload", "feedback": "This route postpones the trade-off instead of resolving it. Consider which controls or claims could be squeezed by the unchanged deadline."},
+          {"id": "refuse", "label": "Continue only the old plan until the new priority is discussed", "next": "oldplan", "feedback": "Keeping an agreed plan can protect delivery, but the new decision need still requires an explicit conversation and ownership."}
+        ]},
+        {"id": "phased", "kind": "decision", "title": "The demand history is short", "text": "You cannot establish annual seasonality from the available history. What can the initial analytical output responsibly contain?", "choices": [
+          {"id": "baseline", "label": "A transparent candidate and baseline comparison, with short-history limits and conditional advice", "next": "transparent", "feedback": "This route separates a bounded analytical illustration from a claim of dependable operational performance."},
+          {"id": "complex", "label": "A complex model presented as a reliable seasonal forecast", "next": "risky", "feedback": "Model complexity cannot supply missing evidence about seasonality or guarantee future performance."}
+        ]},
+        {"id": "overload", "kind": "decision", "title": "Validation is being squeezed", "text": "A colleague suggests omitting the baseline and reconciliation to fit the expanded scope. How do you respond?", "choices": [
+          {"id": "reset", "label": "Make the trade-off explicit and agree a smaller validated delivery", "next": "phased", "feedback": "This route renegotiates the work rather than silently dropping checks that support the conclusion."},
+          {"id": "skip", "label": "Skip those checks and treat training fit as enough", "next": "risky", "feedback": "The route risks presenting an unevaluated forecast and leaving data-quality problems undetected."}
+        ]},
+        {"id": "oldplan", "kind": "decision", "title": "The decision owner asks for a revised commitment", "text": "The team needs a clear account of what can be delivered and what needs more time. Choose how to set expectations.", "choices": [
+          {"id": "adapt", "label": "Discuss the changed need and agree a bounded revised plan", "next": "phased", "feedback": "This route adapts the plan with the responsible roles and makes the consequences explicit."},
+          {"id": "defer", "label": "Agree with the decision owner that the forecast is deferred while the validated historical output is delivered", "next": "deferred", "feedback": "Deferral can be a defensible decision when authority, scope and the unmet need are explicit, rather than silently refusing the change."}
+        ]},
+        {"id": "transparent", "kind": "outcome", "title": "A bounded revised plan", "text": "This route can provide a transparent comparison and conditional recommendation while acknowledging what the short history cannot establish. Keep training and evaluation windows separate, document assumptions and agree further evaluation before operational use. Reflect on what changed and how stakeholders were involved."},
+        {"id": "deferred", "kind": "outcome", "title": "An agreed deferral", "text": "This route preserves a validated deliverable and makes the remaining decision gap visible. Record who agreed the deferral, why the forecast needs more evidence and the next action or date. Deferral is not the same as claiming the revised question has been answered."},
+        {"id": "risky", "kind": "outcome", "title": "The forecast claim exceeds its support", "text": "This route risks replacing validation with confidence or complexity. Explain how leakage, short histories, omitted baselines or uncontrolled scope could affect the conclusion. Reconsider a narrower output, explicit deferral or further evaluation. An exercise outcome is feedback for learning, not an EPA grade."}
+      ]
+    }
+  ]
+}

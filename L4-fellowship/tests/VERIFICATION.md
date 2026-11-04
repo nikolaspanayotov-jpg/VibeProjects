@@ -44,3 +44,18 @@ Both the existing smoke check and `browser_enhancements.py` passed after the imp
 - The dashboard derives 300 requests, 270 completed, 30 open and median eight days from the same fixture generator as the CSV downloads. Service counts reconcile to 300. Feedback totals are 42 theme assignments across 36 comments, with explicit multiple-theme and sampling caveats.
 - Project navigation/downloads do not create personal evidence, mark learning complete or copy fictional experience into a personal response. “Write my own example” opens the relevant empty/previously saved response without filling it from the case.
 - New views reflow without page overflow at 320, 390, 768 and 1280px; enlarged reading text, keyboard jumps and direct file opening also work. Phone/desktop screenshots were inspected for the short lesson, readiness and project layouts.
+
+## Analysis labs, branching scenarios and misconception quizzes — 4 November 2026
+
+The existing smoke and guided-study checks passed with the new tools. The focused `browser_learning_tools.py` check also passed; its results and screenshots are under `/tmp/l4-learning-tools-qa` for this session. These are Chromium checks, not a complete accessibility or cross-browser certification.
+
+- The statistics lab's outlier, observed-value exclusion and three missing-value treatments agree with independent Python mean/median calculations. Keyboard range interaction, reload persistence and lab-only reset were exercised.
+- All four join types, with and without a duplicate lookup key, agree with actual SQLite output counts, distinct request IDs and sums. UNION/UNION ALL retain their different duplicate semantics and use compatible request tables.
+- Twenty-four forecast configurations agree with independent regressions and RMSE calculations. Only available post-training observations enter error; beyond-history projections stay separate. Narrow-screen axis labels were simplified after visual inspection found an overlap; the check asserts visible month-label bounds do not overlap.
+- All three scenarios follow their authored decision graphs. The check exercises risky and defensible routes, validates nonempty justifications, recovers drafts/outcomes through reload and verifies that imported paths cannot invent transitions. Restart affects one scenario only.
+- The 30-question bank covers all KSB identifiers as conceptual revision material. Feedback is hidden until submission, recorded once through reload, and includes an explanation. The previously-missed and due queues, next-day incorrect review, correct-answer spacing and paused-set recovery were exercised.
+- Lab, scenario and quiz work does not modify KSB recall, learning, confidence, personal-example confirmation or evidence automatically.
+- JSON backups include new tool progress and unfinished sets. Merge preserves conflicting current settings and adds new records; old v1 imports preserve newer tool work. Invalid identifiers (including prototype-like keys), values and graph paths are rejected without changing state. Explicit replacement restores the complete tool state.
+- New views reflow at 320, 390, 768 and 1280px, with enlarged reading text and direct file opening supported. Phone and desktop screenshots were inspected for lab results, question feedback and scenario choices. No JavaScript page errors were observed.
+
+Question answers are canonical in the `solutions.md` appendix. The compiler validates 30 stable question IDs, KSB coverage, scenario reachability, acyclic paths, the saved-route length limit and the third authored-source hash. The question counts are practice information, not an EPA Pass prediction or verified workplace competence.

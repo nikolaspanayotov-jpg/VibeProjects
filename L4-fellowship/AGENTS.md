@@ -12,6 +12,8 @@ Open `index.html` directly, or run `python3 -m http.server 8000 --bind 127.0.0.1
 - `design.md`: specification and implementation record. `README.md`: running and user data guidance.
 - `tests/browser_smoke.py`: meaningful end-to-end flows, persistence, imports, dataset reconciliation, responsive layouts and failure states. Screenshots/results go to a temporary directory.
 - `tests/browser_enhancements.py`: guided navigation, readiness actions, v1 compatibility, project annotations, portfolio downloads and actual SQL executed against the downloadable fixtures.
+- `learning-activities.json`: authored assumptions/prompts for three labs and the three scenario decision graphs. The 30 misconception questions and explanations are canonical in the answer-key appendix of `solutions.md`. The compiler validates question coverage, graph reachability/cycles and links, then embeds all activity data into `curriculum.js` with its third source hash.
+- `tests/browser_learning_tools.py`: independent Python statistics/regression and SQLite join checks; scenario branching and persistence; quiz dates/resume; new backup validation/merge; responsive checks.
 
 ## State and invariants
 
@@ -27,6 +29,14 @@ The additive `exampleConfirmed` boolean defaults to false for older v1 records; 
 
 The example dashboard derives its values from `datasetRows`, the same generator as the CSV downloads. Preserve its independent monthly-series caveat. SQL in the fictional portfolio must reconcile with the fixtures and the explicitly approved example lookup. Never resolve real conflicting values by assuming the fictional approval applies.
 
+The new practice routes are `#labs`, `#labs-statistics`, `#labs-joins`, `#labs-forecast`, `#scenarios`, the three `#scenarios-<id>` routes, and `#quiz`. They remain children of Practice in the main navigation. There is no audio capture or personal-portfolio authoring feature in this change.
+
+`learningTools` is an additive v1 state section: lab assumptions, per-scenario trails/drafts, per-question quiz counters/review dates and an independent unfinished quiz set. Missing sections in older backups receive empty defaults without changing other progress. Preserve question IDs Q01–Q30 and scenario/node/choice IDs; graph changes that invalidate stored trails require a migration. Validate imported paths by replaying the authored graph and validate question IDs with own-property checks. Never trust an imported outcome, score or graph transition.
+
+Quiz checks do not update KSB recall, learning, confidence, personal-example confirmation or evidence. A wrong answer schedules one day; a correct answer seven days, then fourteen after consecutive correct responses. Recorded feedback is idempotent through reload. Scenario routes require a choice and justification; replay explicitly replaces only that scenario's current route. Do not silently overwrite another unfinished exercise. Every activity record belongs in JSON backup/restore and must retain conflict-safe merging.
+
+Lab results must come from the actual controls: statistics distinguishes observed/imputed/excluded data; join modes preserve cardinality and NULL semantics; UNION compares compatible rows; forecast fitting uses only the selected initial months and RMSE uses only later known actuals. Future projections must not enter error metrics. These are synthetic learning examples, not operational forecasts.
+
 Imported and user-entered text is untrusted. Escape it before inserting into HTML; never execute imported Markdown, HTML, code or URLs. Curriculum HTML is trusted authored content, generated from the public source. No sensitive workplace material or personal browser data belongs in commits. Tests use clearly synthetic data only.
 
 ## Design and interaction
@@ -37,4 +47,4 @@ Check 390px and 320px first, then tablet and desktop. Use semantic controls, vis
 
 ## Checks
 
-After code changes, run JavaScript syntax checks and both browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 complete guided records, all project mappings and both source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
+After code changes, run JavaScript syntax checks and all three browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all three source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
