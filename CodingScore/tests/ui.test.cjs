@@ -9,8 +9,8 @@ const html = fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
 const script = html.match(/<script>([\s\S]+)<\/script>/)[1];
 const attr = (text,name) => text.match(new RegExp(`(?:^|\\s)${name}="([^"]*)"`))?.[1] ?? '';
 
-function app({saved=null,denyStorage=false}={}) {
-  const elements=new Map(),store=new Map(),documentHandlers={},downloads=[];
+function app({saved=null,denyStorage=false,reducedMotion=false}={}) {
+  const elements=new Map(),store=new Map(),documentHandlers={},downloads=[],intervals=new Map();let timerSequence=0;
   if(saved!==null)store.set('codingScore.v1',saved);
   let clock=Date.parse('2026-11-04T12:00:30Z'),document;
   class Clock extends Date {constructor(...args){super(...(args.length?args:[clock]));}static now(){return clock;}}
@@ -26,7 +26,7 @@ function app({saved=null,denyStorage=false}={}) {
     addEventListener(name,handler){(this.listeners[name]??=[]).push(handler);}
     emit(name,event={}){for(const h of this.listeners[name]||[])h({target:this,preventDefault(){},...event});}
     querySelector(){return this.span??=new Element('span');}
-    closest(selector){if(selector==='[data-action]'&&this.dataset.action)return this;if(selector==='[data-close]')return null;if(selector==='dialog'&&this.tagName==='DIALOG')return this;return null;}
+    closest(selector){if(selector==='[data-action]'&&this.dataset.action)return this;const match=selector.match(/^\[data-action="([^"]+)"\]$/);if(match&&this.dataset.action===match[1])return this;if(selector==='[data-close]')return null;if(selector==='dialog'&&this.tagName==='DIALOG')return this;return null;}
     focus(){document.activeElement=this;}
     showModal(){this.open=true;this.focus();}
     close(){this.open=false;this.emit('close');}
@@ -52,14 +52,14 @@ function app({saved=null,denyStorage=false}={}) {
     querySelectorAll:selector=>selector==='dialog'?[...elements.values()].filter(e=>e.tagName==='DIALOG'):[],
     querySelector:selector=>selector==='dialog[open]'?[...elements.values()].find(e=>e.open)||null:null,
     addEventListener:(name,handler)=>(documentHandlers[name]??=[]).push(handler),
-    createElement:tag=>new Element(tag)};
+    createElement:tag=>new Element(tag),hidden:false};
   document.activeElement=new Element('body');
-  const context=vm.createContext({document,Date:Clock,URL,Blob,Intl,console,crypto:{randomUUID:()=>`id-${Math.random().toString(36).slice(2)}`},navigator:{clipboard:{writeText:async()=>{}}},setTimeout:fn=>{fn();return 1;},setInterval:()=>1,localStorage:{getItem:key=>{if(denyStorage)throw Error('denied');return store.get(key)??null;},setItem:(key,value)=>{if(denyStorage)throw Error('denied');store.set(key,value);}}});
+  const context=vm.createContext({document,Date:Clock,URL,Blob,Intl,console,crypto:{randomUUID:()=>`id-${Math.random().toString(36).slice(2)}`},navigator:{clipboard:{writeText:async()=>{}}},setTimeout:fn=>{fn();return 1;},setInterval:(fn,delay)=>{const id=++timerSequence;intervals.set(id,{fn,delay});return id;},clearInterval:id=>intervals.delete(id),matchMedia:()=>({matches:reducedMotion}),localStorage:{getItem:key=>{if(denyStorage)throw Error('denied');return store.get(key)??null;},setItem:(key,value)=>{if(denyStorage)throw Error('denied');store.set(key,value);}}});
   vm.runInContext(script,context);
   return {get:id=>elements.get(id),state:()=>JSON.parse(store.get('codingScore.v1')||'null'),store,downloads,active:()=>document.activeElement,
     click(action,data={}){const target=new Element('button');target.dataset={action,...data};for(const handler of documentHandlers.click||[])handler({target});},
     submit:id=>elements.get(id).emit('submit'),change:id=>elements.get(id).emit('change'),
-    advance:ms=>{clock+=ms;},blank:()=>vm.runInContext('Core.blank()',context)};
+    advance:ms=>{clock+=ms;},tick:delay=>{for(const timer of [...intervals.values()])if(timer.delay===delay)timer.fn();},timers:delay=>[...intervals.values()].filter(t=>t.delay===delay).length,key(action,data={},tag='g',key='Enter'){let prevented=false;const target=new Element(tag);target.dataset={action,...data};for(const handler of documentHandlers.keydown||[])handler({target,key,preventDefault(){prevented=true;}});return prevented;},hide(){document.hidden=true;for(const handler of documentHandlers.visibilitychange||[])handler({});},blank:()=>vm.runInContext('Core.blank()',context)};
 }
 function log(a,note='Codex helped me fix a script.',extra={}){
   a.click('log');a.get('entryNote').value=note;
@@ -202,7 +202,7 @@ test('new workflow and quest surfaces escape user text, and backups round trip a
   restored.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await restored.get('backupFile').listeners.change[0]({target:restored.get('backupFile')});assert.match(restored.get('confirmText').textContent,/1 quests, 1 workflows, and 1 challenges/);restored.get('confirmButton').emit('click');assert.equal(restored.state().quests.length,1);assert.equal(restored.state().workflows.length,1);assert.equal(restored.state().challenges.length,1);assert.equal(restored.state().entries[0].minutesSaved,10);
 });
 test('selecting a quest emblem preserves it across save, edit, and backup reload',()=>{
-  const a=app();a.click('new-quest');assert.equal(a.get('questEmblem').value,'compass');a.click('quest-emblem',{id:'robot'});assert.equal(a.active().id,'quest-emblem-robot');a.get('questName').value='A robot helper';a.submit('questForm');const q=a.state().quests[0];assert.equal(q.emblem,'robot');assert.match(a.get('questList').innerHTML,/quest-emblem/);
+  const a=app();a.click('new-quest');assert.equal(a.get('questEmblem').value,'compass');a.click('quest-emblem',{id:'robot'});assert.equal(a.active().id,'quest-emblem-robot');a.get('questName').value='A robot helper';a.submit('questForm');const q=a.state().quests[0];assert.equal(q.emblem,'robot');assert.match(a.get('questList').innerHTML,/Robot adventure/);
   a.click('edit-quest',{id:q.id});assert.equal(a.get('questEmblem').value,'robot');a.get('questName').value='A better robot helper';a.submit('questForm');const restored=app({saved:a.store.get('codingScore.v1')});restored.click('edit-quest',{id:q.id});assert.equal(restored.get('questEmblem').value,'robot');assert.equal(restored.get('xpTotal').textContent,'0 XP');
 });
 test('quest paths show illustrated steps, textual status, and only connect completed neighbors',()=>{
@@ -230,4 +230,67 @@ test('badge dates and earned-state details recalculate after deletion',()=>{
 });
 test('turning off celebrations still earns illustrated rewards without an unlock banner',()=>{
   const a=app();a.get('celebrationsToggle').checked=false;a.change('celebrationsToggle');log(a);assert.equal(a.get('celebration').hidden,true);assert.match(a.get('badgeShelf').innerHTML,/Earned · view your story/);assert.equal(a.get('xpTotal').textContent,'25 XP');
+});
+test('workshop objects expose keyboard shortcuts to actual features even before decoration unlocks',()=>{
+  const a=app();assert.equal((a.get('workshopScene').innerHTML.match(/data-action="workshop-open"/g)||[]).length,7);a.click('workshop-open',{id:'books'});assert.equal(a.active().id,'workflowSearch');
+  a.click('workshop-open',{id:'plant'});assert.equal(a.active().id,'calendar');a.click('workshop-open',{id:'lamp'});assert.equal(a.get('dailyIdeas').open,true);assert.equal(a.active().id,'taskShuffle');
+  a.key('workshop-open',{id:'window'},'g','Enter');assert.equal(a.active().id,'skill-island-Build');a.click('workshop-open',{id:'desk'});assert.equal(a.get('questDialog').open,true);assert.equal(a.get('xpTotal').textContent,'0 XP');
+});
+test('the desk opens the active quest story and its log control links actual work',()=>{
+  const a=app(),q=createQuest(a);a.click('workshop-open',{id:'desk'});assert.equal(a.get('questStoryDialog').open,true);assert.match(a.get('questStoryArt').innerHTML,/data-stage="0"/);
+  a.click('story-log',{id:q.id});assert.equal(a.get('questStoryDialog').open,false);assert.equal(a.get('entryQuest').value,q.id);a.get('entryNote').value='Real project progress';a.get('entryStepComplete').checked=true;a.submit('entryForm');assert.match(a.get('questList').innerHTML,/data-stage="1"/);
+});
+test('win cards flip in place, preserve missing outcomes honestly, and open their real day',()=>{
+  const a=app();log(a,'A useful question',{entryUseful:true,entryBefore:'Manual cleanup',entryAfter:'A repeatable script',entrySaved:'15'});const id=a.state().entries[0].id,xp=a.get('xpTotal').textContent;
+  assert.match(a.get('winGallery').innerHTML,/Manual cleanup/);assert.match(a.get('winGallery').innerHTML,/A repeatable script/);a.click('flip-win',{id});assert.equal(a.get('win-card-'+id).attributes['aria-pressed'],'true');a.click('flip-win',{id});assert.equal(a.get('win-card-'+id).attributes['aria-pressed'],'false');assert.equal(a.get('xpTotal').textContent,xp);a.click('win-entry',{id});assert.equal(a.get('dayDialog').open,true);
+  a.get('dayDialog').close();log(a,'Still in progress',{entryBefore:'A complex function'});assert.match(a.get('winGallery').innerHTML,/Add an after note/);
+});
+test('win gallery category filters and paging are backed by actual journal records',()=>{
+  const a=app();for(let i=0;i<7;i++)log(a,'Useful task '+i,{entryUseful:true,entryCategory:i===6?'Review':'Build'});assert.match(a.get('winGalleryCount').textContent,/1–3 of 7/);a.click('win-page',{direction:'1'});assert.match(a.get('winGalleryCount').textContent,/4–6 of 7/);a.click('win-page',{direction:'1'});assert.match(a.get('winGalleryCount').textContent,/7–7 of 7/);assert.equal(a.get('winNext').disabled,true);
+  a.get('winCategory').value='Review';a.change('winCategory');assert.match(a.get('winGalleryCount').textContent,/1–1 of 1/);a.get('winCategory').value='Learn';a.change('winCategory');assert.match(a.get('winGallery').innerHTML,/Your next win/);
+});
+test('task deck cards reveal prompts, shuffle, and prefill logging without awarding XP',()=>{
+  const a=app();assert.match(a.get('taskDeck').innerHTML,/Debug/);assert.equal(a.get('task-copy-1').disabled,true);a.click('flip-task',{id:'1'});assert.equal(a.get('task-copy-1').disabled,false);assert.equal(a.get('task-card-1').attributes['aria-pressed'],'true');a.click('copy-task',{id:'1'});assert.equal(a.state(),null);
+  a.click('log-task',{id:'1'});assert.equal(a.get('entryCategory').value,'Debug');assert.equal(a.get('entryNote').value,'');a.get('entryDialog').close();a.click('shuffle-tasks');assert.match(a.get('taskDeck').innerHTML,/Plan/);assert.equal(a.get('xpTotal').textContent,'0 XP');
+  a.get('ideaCategory').value='Plan';a.change('ideaCategory');assert.equal(a.get('taskShuffle').disabled,true);assert.match(a.get('taskDeck').innerHTML,/first step/);
+});
+test('showcase allows three earned pins, prevents unearned pins, and survives reload and historical correction',()=>{
+  const a=app();a.click('pin-achievement',{id:'streak100'});assert.equal(a.state(),null);
+  const w=createWorkflow(a);a.click('log-workflow',{id:w.id});a.get('entryCategory').value='Automate';a.get('entryNote').value='Reused a useful automation';a.get('entryUseful').checked=true;a.submit('entryForm');
+  for(const id of ['first','automation','workflow'])a.click('pin-achievement',{id});assert.equal(a.state().settings.pinnedAchievements.length,3);assert.match(a.get('badgeShowcase').innerHTML,/A shortcut worth keeping/);
+  const restored=app({saved:a.store.get('codingScore.v1')});assert.equal(restored.state().settings.pinnedAchievements.length,3);const entry=restored.state().entries[0];restored.click('delete-entry',{id:entry.id});assert.match(restored.get('badgeShowcase').innerHTML,/Requirement no longer met/);restored.click('pin-achievement',{id:'first'});assert.equal(restored.state().settings.pinnedAchievements.length,2);
+});
+test('showcase refuses a fourth earned badge until another favorite is unpinned',()=>{
+  const a=app();log(a,'Earlier use',{entryDate:'2026-11-02',entryTime:'',entryUseful:true,entryCategory:'Automate'});log(a,'Yesterday',{entryDate:'2026-11-03',entryTime:''});log(a,'Today');
+  for(const id of ['first','automation','streak3'])a.click('pin-achievement',{id});assert.equal(a.state().settings.pinnedAchievements.length,3);
+  const w=createWorkflow(a);a.click('log-workflow',{id:w.id});a.get('entryNote').value='A real workflow reuse';a.submit('entryForm');a.click('pin-achievement',{id:'workflow'});assert.equal(a.state().settings.pinnedAchievements.length,3);assert.match(a.get('toastText').textContent,/three favorites/);
+});
+test('badge export uses the actual earned date and leaves source records unchanged',()=>{
+  const a=app();a.click('export-badge',{id:'streak7'});assert.equal(a.downloads.length,0);log(a);const original=a.store.get('codingScore.v1');a.click('export-badge',{id:'first'});assert.equal(a.downloads.at(-1),'CodingScore-first-2026-11-04.svg');assert.equal(a.store.get('codingScore.v1'),original);
+});
+test('practice islands show real results, lead to category logs, and filter the journal',()=>{
+  const a=app();log(a,'Reviewed a function',{entryCategory:'Review',entryUseful:true});a.click('skill',{category:'Review'});assert.equal(a.get('skillDialog').open,true);assert.match(a.get('skillRecent').innerHTML,/Reviewed a function/);assert.match(a.get('skillMetrics').innerHTML,/useful results/);
+  a.click('skill-journal',{category:'Review'});assert.equal(a.get('journalCategory').value,'Review');assert.equal(a.active().id,'journalSearch');a.click('skill',{category:'Learn'});a.click('skill-log',{category:'Learn'});assert.equal(a.get('entryCategory').value,'Learn');assert.equal(a.get('entryNote').value,'');
+});
+test('quest scenes complete once after actual work and linked journal views remain precise',()=>{
+  const a=app(),q=createQuest(a);log(a,'Unrelated work');for(const step of q.steps){a.click('quest-step',{id:q.id,step:step.id});a.get('entryNote').value='Linked quest work';a.get('entryStepComplete').checked=true;a.submit('entryForm');}
+  assert.equal(a.get('questCompletion').hidden,false);assert.match(a.get('questCompletionArt').innerHTML,/data-stage="4"/);a.click('quest-journal',{id:q.id});assert.equal(a.get('journalScope').hidden,false);assert.doesNotMatch(a.get('journalList').innerHTML,/Unrelated work/);a.click('clear-filters');assert.match(a.get('journalList').innerHTML,/Unrelated work/);
+  a.click('dismiss-quest-completion');assert.equal(a.get('questCompletion').hidden,true);log(a,'Another useful use');assert.equal(a.get('questCompletion').hidden,true);
+});
+test('replay supports pause, seeking, manual steps, and returns to the actual day without changing XP',()=>{
+  const a=app();log(a,'A real win',{entryUseful:true});const original=a.store.get('codingScore.v1');a.click('open-replay');assert.equal(a.get('replayDialog').open,true);assert.match(a.get('replayPosition').textContent,/Moment 1 of/);a.click('replay-play');assert.equal(a.timers(2500),1);a.tick(2500);assert.equal(Number(a.get('replaySeek').value),1);
+  a.click('replay-play');assert.equal(a.timers(2500),0);a.get('replaySeek').value='0';a.get('replaySeek').emit('input');assert.equal(Number(a.get('replaySeek').value),0);a.click('replay-next');assert.equal(Number(a.get('replaySeek').value),1);a.click('replay-day',{date:a.get('replayDay').dataset.date});assert.equal(a.get('replayDialog').open,false);assert.equal(a.get('dayDialog').open,true);assert.equal(a.store.get('codingScore.v1'),original);
+});
+test('replay timers stop on close, hidden tabs, data edits, and the final event',()=>{
+  const a=app();log(a);a.click('open-replay');a.click('replay-play');a.get('replayDialog').close();assert.equal(a.timers(2500),0);
+  a.click('open-replay');a.click('replay-play');a.hide();assert.equal(a.timers(2500),0);a.click('replay-play');log(a,'A new actual use');assert.equal(a.timers(2500),0);
+  a.click('open-replay');a.click('replay-play');for(let i=0;i<30&&a.timers(2500);i++)a.tick(2500);assert.equal(a.timers(2500),0);assert.equal(a.get('replayNext').disabled,true);
+});
+test('reduced motion uses manual replay and empty weeks never create fake events',()=>{
+  const empty=app();empty.click('open-replay');assert.match(empty.get('replayStage').innerHTML,/No actual work/);assert.equal(empty.get('replayPlay').disabled,true);assert.equal(empty.get('replayDay').disabled,true);
+  const a=app({reducedMotion:true});log(a);a.click('open-replay');assert.equal(a.get('replayPlay').disabled,true);a.click('replay-play');assert.equal(a.timers(2500),0);a.click('replay-next');assert.equal(Number(a.get('replaySeek').value),1);assert.match(a.get('replayMotionNote').textContent,/Reduced motion/);
+});
+test('expanded backup retains pinned achievements and clearing removes the showcase preferences',async()=>{
+  const a=app();log(a);a.click('pin-achievement',{id:'first'});const saved=a.store.get('codingScore.v1');a.click('clear-data');a.get('confirmButton').emit('click');assert.equal(a.state().settings.pinnedAchievements.length,0);
+  a.get('backupFile').files=[{size:saved.length,text:async()=>saved}];await a.get('backupFile').listeners.change[0]({target:a.get('backupFile')});a.get('confirmButton').emit('click');assert.equal(a.state().settings.pinnedAchievements[0],'first');assert.match(a.get('badgeShowcase').innerHTML,/First little win/);
 });

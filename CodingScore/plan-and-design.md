@@ -336,3 +336,9 @@ The next iteration adds project quests, weekly highlight recaps with downloadabl
 Carry the workshop's navy outlines and blue/peach fills into selectable quest emblems, a four-illustration step journey, category emblems, and twelve collectible reward designs. Locked achievements retain their real art with a progress ring and readable requirement. Earned badges gain a raised border and optional brief stamp/glint on first unlock. A selectable detail view explains when and how each earned reward qualified, using derived local dates from source records.
 
 Give Today a compact focus panel for the active unfinished quest and closest reward, while keeping the main logging action prominent. Place saved tasks and prompt ideas in an expandable panel below; keep the complete reward collection in Progress with All/Earned/Next filters. Preserve the current fonts, palette, storage key, scores, and quest-step identities. The new emblem field is optional for old backups and uses a safe default.
+
+## 15. Explore the artwork and the work behind it
+
+Make the existing workshop an accessible navigation surface. Add actual before/after win cards, evolving five-stage illustrations for every quest emblem, three favorite badge slots with local achievement-card downloads, a six-island practice map, flippable task prompts, and a manually started weekly replay. These views reuse actual records and their first qualifying local dates. They do not create new scoring rules, live telemetry, or automatic sharing.
+
+Pin preferences extend the existing v2 settings and default safely for older backups. All other exploration state is temporary. Empty views invite actual work; missing results remain missing; reduced motion preserves manual controls. See README for the final interactions and the verification notes for automated coverage and the remaining browser review.

@@ -25,6 +25,14 @@ The suite now includes **35 core cases and 35 UI handler cases (70 total)**. The
 
 All six quest emblems, twelve achievement images, and four step illustrations were rendered from the actual `Art` module into a contact sheet. The nested SVG parsed as XML and was rasterized with Inkscape; the rendered artwork was visually inspected for legibility, clipping, and consistency with the workshop palette. JavaScript syntax and the static HTML audit pass. This does not establish full-page browser rendering, native focus trapping, or animation behavior.
 
+## Seven exploration features
+
+The suite now has **44 core cases and 49 UI handler cases (93 total)**. Core checks pass in UTC and America/New_York; the UI suite uses UTC. New checks cover optional pin migration/limits and history corrections; category-filtered win cards and paging; practice counts and milestones; first-completion quest dates; dated replay events and boundaries; all six evolving scene themes; escaped, earned-only badge exports; keyboard/mouse workshop navigation; task deck reveal/copy/log behavior; precise quest/category journal filters; showcase restoration; source-driven completion feedback; and replay pause/seek/end/close/visibility/data-change cleanup. Reduced motion and empty replays are covered with the deterministic timer adapter.
+
+All 30 quest-scene stages (six themes × five states), a sample earned-badge card, and practice-island artwork were generated from the actual `Art` functions, parsed as XML, rasterized with Inkscape, and visually inspected. These are synthetic QA fixtures, not seeded user progress. The full application remains empty until the user records work.
+
+Browser-native canvas PNG export, 3D card flipping, actual responsive page layout, SVG focus visuals, and modal/keyboard behavior still require a browser review. The supported browser preview route remains unavailable; no full-page browser verification is claimed.
+
 ## Browser verification limit
 
 The supported browser-preview tool was unavailable in this environment. No screenshots, visual viewport review, browser console inspection, native form-validation exercise, focus-trap assessment, or accessibility audit is claimed. The UI handler suite uses a DOM adapter; it cannot establish these properties.

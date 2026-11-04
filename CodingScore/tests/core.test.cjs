@@ -232,3 +232,48 @@ test('a complete collection has no invented next reward and every earned badge h
   assert.equal(core.badges(state).every(b=>b.earned),true);assert.equal(core.dailyFocus(state).nextAchievement,null);
   for(const badge of core.badges(state))assert.ok(core.parseDate(core.achievementDetails(state,badge.id).earnedOn),badge.id);
 });
+test('old settings gain empty showcase pins and valid pins survive backup migration',()=>{
+  const state=stateWith([entry(TODAY)]);delete state.settings.pinnedAchievements;
+  assert.equal(core.validate(state).settings.pinnedAchievements.length,0);
+  state.settings.pinnedAchievements=['first','wins','quest'];assert.equal(core.validate(JSON.parse(JSON.stringify(state))).settings.pinnedAchievements.join(','),'first,wins,quest');
+  for(const pins of [['first','first'],['first','wins','quest','workflow'],['unknown'],'first']){const bad={...state,settings:{...state.settings,pinnedAchievements:pins}};assert.throws(()=>core.validate(bad),/three different known achievements/);}
+});
+test('historical corrections preserve a pin preference while its earned state becomes locked',()=>{
+  const state=core.blank();state.settings.pinnedAchievements=['first'];const restored=core.validate(state);assert.equal(restored.settings.pinnedAchievements[0],'first');assert.equal(core.badges(restored).find(b=>b.id==='first').earned,false);
+});
+test('win cards use actual outcome metadata, category filters, and reverse local dates',()=>{
+  const state=stateWith([entry(TODAY,{useful:false,outcome:'',before:'',after:''}),entry(core.addDays(TODAY,-1),{category:'Review',useful:false,outcome:'',before:'A slow manual step'}),entry(TODAY,{category:'Automate',useful:true})]);
+  const cards=core.winCards(state);assert.equal(cards.length,2);assert.equal(cards[0].category,'Automate');assert.equal(core.winCards(state,'Review').length,1);assert.equal(core.winCards(state,'Learn').length,0);
+});
+test('practice islands count real uses, useful outcomes, and distinct dates at the 1/5/15/30 milestones',()=>{
+  const state=stateWith(Array.from({length:15},(_,i)=>entry(core.addDays(TODAY,-(i%3)),{category:'Review',useful:i<4})));
+  const review=core.skillMap(state).find(s=>s.category==='Review'),empty=core.skillMap(state).find(s=>s.category==='Learn');
+  assert.equal(review.uses,15);assert.equal(review.wins,4);assert.equal(review.days,3);assert.equal(review.level,3);assert.equal(review.next,30);assert.equal(review.progress,0);assert.equal(empty.level,0);assert.equal(empty.next,1);
+  state.entries.push(...Array.from({length:15},()=>entry(TODAY,{category:'Review'})));assert.equal(core.skillMap(state).find(s=>s.category==='Review').next,null);
+});
+test('quest moments use first step completion dates and do not duplicate repeated logs',()=>{
+  const state=core.blank(),q=quest(),start=core.addDays(TODAY,-3);state.quests=[q];state.entries=q.steps.map((s,i)=>entry(core.addDays(start,i),{questId:q.id,questStepId:s.id,stepComplete:true}));state.entries.push(entry(TODAY,{questId:q.id,questStepId:q.steps[0].id,stepComplete:true}));
+  const moments=core.questMoments(state,q);assert.equal(moments.steps[0].date,start);assert.equal(moments.completeOn,TODAY);
+  state.entries=state.entries.filter(e=>e.questStepId!==q.steps[2].id);assert.equal(core.questMoments(state,q).completeOn,null);
+});
+test('weekly replay includes actual work, quest steps, first-earned badges, and workshop unlocks in date order',()=>{
+  const start=core.weekStart(TODAY),state=core.blank(),q=quest();state.quests=[q];state.entries=Array.from({length:7},(_,i)=>entry(core.addDays(start,i-6),{category:'Automate',questId:i>=3?q.id:null,questStepId:i>=3?q.steps[i-3].id:null,stepComplete:i>=3}));
+  const replay=core.weekReplay(state,TODAY,TODAY);assert.equal(replay.start,start);assert.equal(replay.events.some(e=>e.type==='day'),true);assert.equal(replay.events.some(e=>e.type==='step'),true);assert.equal(replay.events.some(e=>e.type==='quest'),true);assert.equal(replay.events.some(e=>e.type==='badge'&&e.badgeId==='quest'),true);assert.equal(replay.events.some(e=>e.type==='workshop'&&e.itemId==='tools'),true);
+  replay.events.forEach(e=>assert.ok(e.date>=start&&e.date<=TODAY));for(let i=1;i<replay.events.length;i++)assert.ok(replay.events[i].date>=replay.events[i-1].date);
+});
+test('replays include first unlocks once, respect week boundaries, and remove corrected milestones',()=>{
+  const start=core.weekStart(TODAY),state=stateWith([entry(core.addDays(start,-1)),entry(start),entry(start)]);
+  const replay=core.weekReplay(state,TODAY);assert.equal(replay.events.some(e=>e.badgeId==='first'),false);assert.equal(replay.events.some(e=>e.itemId==='desk'),false);assert.equal(replay.events.filter(e=>e.type==='day').length,1);
+  state.entries.push(entry(core.addDays(start,7)));assert.equal(core.weekReplay(state,TODAY).events.some(e=>e.date===core.addDays(start,7)),false);
+  assert.equal(core.weekReplay(core.blank(),TODAY).events.length,0);
+});
+test('quest scenes progress across all six themes without changing source records',()=>{
+  const art=vm.runInContext('Art',context),state=stateWith([entry(TODAY)]),before=JSON.stringify(state);
+  for(const emblem of core.EMBLEMS){const versions=[0,1,2,3,4].map(n=>art.questScene(emblem,n));assert.equal(new Set(versions).size,5);assert.match(versions[0],/data-stage="0"/);assert.match(versions[4],/data-stage="4"/);assert.doesNotMatch(versions[4],/<script|<image|<foreignObject/);}
+  assert.equal(art.questScene('<script>',99),art.questScene('compass',4));assert.equal(JSON.stringify(state),before);
+});
+test('individual badge cards are available only for earned rewards and escape their evidence',()=>{
+  const art=vm.runInContext('Art',context),state=stateWith([entry(TODAY,{note:'Fixed <script>alert(1)</script> & checked the output'})]);
+  assert.equal(art.badgeCard(core.achievementDetails(state,'streak100')),null);const card=art.badgeCard(core.achievementDetails(state,'first'));
+  assert.match(card,/width="1080" height="1080"/);assert.match(card,/&lt;script&gt;/);assert.doesNotMatch(card,/<script|<foreignObject|<image/);assert.match(card,new RegExp(TODAY));
+});
