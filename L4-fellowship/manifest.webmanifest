@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "Data Fellowship study desk",
+  "short_name": "L4 study",
+  "description": "Level 4 Data Analyst study, reasoning and EPA preparation.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F2F5F8",
+  "theme_color": "#174EA6",
+  "lang": "en-GB",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

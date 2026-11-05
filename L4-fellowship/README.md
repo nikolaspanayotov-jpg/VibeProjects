@@ -28,9 +28,15 @@ Then open `http://127.0.0.1:8000/`. The same relative paths work under the GitHu
 - An answer workshop for all 37 KSBs: three annotated example structures, independent drafts and six self-review checks.
 - A private organisation notebook for policy references, tools, architecture and stakeholder context, displayed in related lessons.
 - Nine interactive KSB connections covering all 37 topics, with combined discussion prompts and your matching evidence rationales.
+- A statistical uncertainty lab with computed intervals, p-values, practical thresholds and 100 simulated samples.
+- Confidence-versus-accuracy review using optional pre-feedback quiz ratings.
+- Three “what changes if…?” cases, a two-audience briefing studio and evidence retrieval rehearsal for every KSB.
+- An installable offline page with verified matching releases and a reminder of your last JSON backup download request.
 - A weekly study plan, optional assessment settings, conditional AP03 route filters, JSON backup/restore, a Markdown study summary and print styles.
 
 New tools open at `#repairs`, `#methods`, `#workshop`, `#organisation` and `#connections`. Focused links include `#repairs-duplicate-join`, `#methods-paired-change`, `#workshop-k8`, `#organisation-policies` and `#connections-quality`.
+
+Further activities open at `#uncertainty`, `#calibration`, `#changes`, `#briefing` and `#retrieval`. Use `#offline` for offline readiness, updates and home-screen installation instructions.
 
 ## Personal progress
 
@@ -40,6 +46,12 @@ When storage fails, the page retains an exportable in-memory session. Corrupt sa
 
 Use sanitised reflections and approved reference IDs. This public repository and browser storage are not approved storage for sensitive workplace evidence. Keep original material in its authorised location. Model answers, synthetic tasks and self-recorded coverage do not constitute assessor approval or a guaranteed Pass. Confirm your applicable assessment plan with the provider.
 
+## Offline study
+
+On the hosted HTTPS page, open **Plan and sources → Offline and installation** and wait for offline availability to be confirmed before disconnecting. The browser can then reload the app, lessons, activities and public source guides without a network. External reference websites still need a connection. Use the browser’s install or home-screen option when available. Browser storage and cached files can be cleared or evicted; keep JSON backups separately. Installation does not sync progress across devices.
+
+An update waits for you to apply it or close older tabs. The app saves before reloading. Temporary-memory sessions must be exported before a reload; a failed or mismatched update retains the previous complete copy. Direct file opening remains available without service-worker installation.
+
 ## Files and content maintenance
 
 `solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. No runtime Markdown parser, external fonts, chart library or analytics service is used.
@@ -48,6 +60,8 @@ Use sanitised reflections and approved reference IDs. This public repository and
 
 `reasoning-activities.json` is the canonical authored source for the five further tools. It is compiled into the same curriculum, validated for KSB/choice links and covered by `reasoningSha256`. The additive `studyTools` section holds each exercise, workshop draft, organisation note and connected explanation. Backups include these records; merge retains conflicting current work by default. The workshop only copies a draft into a KSB response when you choose that action, and confirms replacement of an existing different answer.
 
+`rehearsal-activities.json` provides the changed cases and audience-specific briefing examples, with `rehearsalSha256` in the curriculum. The additive `rehearsal` state stores uncertainty controls, latest rated quiz comparisons, case/briefing/retrieval drafts and the backup request date. Ratings and rehearsal outcomes do not change KSB competence or evidence.
+
 Lab assumptions, scenario routes and quiz records use an additive `learningTools` section inside the existing version-1 backup. Older progress remains readable. Merge keeps existing conflicting tool records unless you choose otherwise; replacement still requires confirmation. Wrong quiz answers are suggested for the following day, correct answers for seven days, or fourteen after consecutive correct responses. These are study defaults, not assessment rules.
 
 When changing the answer bank, the optional authoring utility regenerates the checked-in curriculum:
@@ -55,9 +69,10 @@ When changing the answer bank, the optional authoring utility regenerates the ch
 ```bash
 python3 -m pip install Markdown
 python3 tests/compile_curriculum.py
+python3 tests/build_offline.py
 ```
 
-This utility is for maintainers; the shipped page runs directly without it. Preserve the KSB identifiers, solution anchors, project path and storage key.
+This utility is for maintainers; the shipped page runs directly without it. Preserve the KSB identifiers, solution anchors, project path and storage key. Re-run `tests/build_offline.py` after changing any cached public file, including `design.md`, and commit the generated `sw.js` with those files. Its SHA-256 checks prevent mixed releases from activating. `manifest.webmanifest` and the PNG icons are relative to this project.
 
 ## Verification
 
@@ -70,6 +85,9 @@ python3 tests/browser_smoke.py --url http://127.0.0.1:8000/ --output /tmp/l4-qa
 python3 tests/browser_enhancements.py --url http://127.0.0.1:8000/ --output /tmp/l4-enhancements-qa
 python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-learning-tools-qa
 python3 tests/browser_reasoning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-reasoning-qa
+python3 tests/browser_rehearsal.py --url http://127.0.0.1:8000/ --output /tmp/l4-rehearsal-qa
 ```
 
-The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit, and offline reload of a hosted page is not promised. Direct file opening works with both application files present.
+The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. Direct file opening works with `index.html` and `curriculum.js` present.
+
+For the offline lifecycle check, start another localhost server rooted at a disposable `/tmp/l4-pwa-fixture` directory on port 8001, then run `python3 tests/browser_offline.py`. The test creates its `L4-fellowship/` fixture there, modifies only that copy to simulate releases and tests actual offline reloads. Native OS install dialogs are not covered by headless tests.

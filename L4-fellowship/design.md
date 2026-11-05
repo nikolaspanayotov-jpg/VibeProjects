@@ -628,3 +628,47 @@ All five further improvements are implemented within the existing build-free stu
 The additive top-level `studyTools` object in the unchanged `l4-fellowship.v1` state holds `repairs`, `methods`, `workshops`, `organisation` and `connections` dictionaries. Older v1 data receives empty dictionaries. Imports validate known identifiers, choices, booleans, text limits, real calendar dates, self-check IDs and complete responses before revealed feedback. Explanations and notes are escaped at every HTML boundary. Every record is included in JSON backup/restore and the Markdown summary; merge conflicts are resolved per record with the current record retained by default. Missing sections in an old backup do not erase new work during merge.
 
 The new browser check exercises the actual correction/method flows, draft persistence, intentional answer replacement, notebook integration, evidence connections, export/import conflicts, malformed imports, direct file opening, keyboard controls and responsive layouts. All existing browser checks remain required.
+
+## 21. Uncertainty, transfer, communication and offline study — 5 November 2026
+
+The six further additions use the existing visual system and static application. Desktop Practice navigation includes each activity; at phone widths a labelled native activity selector keeps the menu compact. Offline and installation settings live under Plan and sources. Existing URLs, personal progress and version-1 backups remain supported.
+
+### Statistical uncertainty lab
+
+`#uncertainty` varies sample size per group (10–500), known equal population standard deviation (1–30 days), estimated reduction (−10 to 10 days), confidence level (90/95/99%) and a smallest useful reduction (0–20 days). It computes a standard error, a two-sided normal interval and a two-sided p-value for a zero difference. This is explicitly a teaching model of two independent normal populations with known equal variability; real analyses may require estimated standard errors, t methods or other designs. Statistical significance and the practical threshold are explained separately.
+
+The lab also generates 100 reproducible sample estimates around a declared simulation truth using a seeded generator. Each interval uses the chosen confidence procedure. The first 20 appear in a labelled plot; a table provides all 100 estimates, endpoints and coverage checks. The learner can generate another set. It explains that coverage is a property of repeated sampling, not a posterior probability for a fixed parameter. Settings and seed persist. Calculations are checked against independent Python NormalDist/erfc values, and the interval table independently reconciles its coverage count.
+
+### Confidence and accuracy
+
+The misconception quiz now offers an optional certainty rating before feedback: Unsure, Fairly confident or Very confident. Unfinished ratings survive reload. Submission records the choice, rating and local date once; feedback does not offer a retrospective rating control. `#calibration` shows accuracy within each confidence group and filters confident mistakes, correct-but-unsure answers and the other groups. Each question contributes its latest *rated* attempt only; unrated attempts do not invent ratings or replace that comparison. Revisit protects an existing unfinished quiz. These records remain separate from KSB confidence, recall, evidence and competence.
+
+### What changes if…?
+
+`#changes` and three focused cases compare an original plan with one changed condition: independent samples become paired, a unique lookup gains conflicts, or a new policy could break the forecast's historical assumptions. A choice and explanation are required before feedback. The feedback identifies which assumptions need revisiting, what can remain and a further question. Drafts and review state save independently; editing hides previous feedback.
+
+### Stakeholder briefing studio
+
+`#briefing` provides two synthetic scenarios (monthly demand and missing completion dates) plus a blank option for sanitised personal findings. Senior decision-maker and technical-colleague audiences have separate drafts and specific guidance. Each draft contains question, finding, uncertainty, action and an optional approved reference. Fictional examples demonstrate how to adapt detail while preserving facts and limitations. A live escaped preview and Markdown download use the learner's actual words. Changing audience never silently rewrites or copies a draft. The other audience's saved version can be inspected for comparison.
+
+### Evidence retrieval rehearsal
+
+`#retrieval` and `#retrieval-k8` (or any valid KSB) use the existing authored discussion questions. The learner selects one saved evidence reference, with references already linked to the question sorted first, then explains support, personal contribution and limitations. Only after submission does the tool display the reference's current mapping rationale and review prompts. The alternative is an explicit evidence gap and next action. Rehearsal does not change evidence status, KSB responses or recall. If an evidence record is deleted or absent after import, explanations remain and the UI requests another reference or a gap before a new submission.
+
+### Installable offline page and backups
+
+`manifest.webmanifest`, 192/512 PNG icons and `sw.js` support browser installation at the existing project URL. Registration uses the project-relative scope only. `#offline` reports readiness, connection, offline release identifier and available updates; the browser-specific install prompt is used when offered, with manual home-screen instructions otherwise. Direct file opening remains supported and does not attempt service-worker registration.
+
+The authoring utility `tests/build_offline.py` hashes the public application, embedded curriculum, source guides, authored JSON, manifest and icons into a release. Installation fetches and verifies the entire release before writing the cache. A mismatched or incomplete deployment cannot become the active offline copy. Navigation and versioned curriculum are served from the matching active cache, so a network HTML response cannot be mixed with an older curriculum. Older caches are retained to serve existing tabs' versioned curriculum; only caches within this project's namespace are consulted. Personal records and backups are never placed in the service-worker cache.
+
+A new worker waits until the learner chooses Save and apply update or closes the older clients. The action saves first and reloads only the initiating tab after activation. If storage is unavailable or another-tab protection is active, reload is blocked and the session remains exportable. Offline-cache availability is confirmed before promising offline study; external references require a network connection, and browser eviction can remove cached files. Installation does not sync devices.
+
+The Today page places a backup reminder after the primary study action. It and the offline/settings views show the last recorded JSON download request and suggest a weekly backup. The date records requesting the download, not proof that the browser or user retained the file. The JSON file includes the date and all new records.
+
+### Sources, state and checks
+
+`rehearsal-activities.json` is the authored changed-case and briefing source. The compiler validates identifiers, KSB mappings, choice feedback and four-part audience examples, embeds it as `C.rehearsal` and records `rehearsalSha256` as the fifth source hash. Existing core answers remain in `solutions.md`.
+
+The additive `rehearsal` state section contains uncertainty settings/seed, per-question calibration records, per-case change responses, per-scenario/audience briefing drafts, per-KSB retrieval records and `lastBackupOn`. An optional certainty field extends unfinished quiz sessions. Missing fields in old v1 backups receive defaults. Import validates ranges, identifiers, flags, bounded text, choices and dates; feedback requires a complete explanation or explicit gap. Removed evidence IDs are retained as dangling references for recovery. Merge conflicts are handled per record with current data retained by default. All records appear in the Markdown summary and JSON backup.
+
+Two new browser suites cover the activities and the service-worker lifecycle, alongside the four existing suites. Offline tests use a disposable project subpath and actual network disconnection. They exercise a rejected mismatched release, waiting activation, saving failure, temporary-session export/restore and persistence through update/reload. Native OS installation UI is browser-specific and is not asserted by headless tests.

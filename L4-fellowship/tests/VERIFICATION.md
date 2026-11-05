@@ -83,3 +83,36 @@ Notebook summaries, approved reference strings and manual verification dates per
 Synthetic records round-trip in JSON and the Markdown summary. Conflicts keep current records unless imported records are chosen. Old v1 backups retain the new sections on merge. Unknown/prototype-like IDs, invented choices, incomplete revealed responses, duplicate self-checks and impossible dates are rejected without changing saved state. The original three suites also passed their existing recovery, cross-device restore, lifecycle, data reconciliation and legacy compatibility checks.
 
 All new views were checked at 320, 390, 768 and 1280 pixels, with enlarged text, keyboard radio selection and direct file opening. No page errors were recorded. Desktop connections and correction feedback, the mobile connection flow and the mobile answer workshop were visually inspected. Test screenshots, downloads and synthetic personal progress stay outside the repository. These browser checks are not a full accessibility conformance audit.
+
+## 5 November 2026 — six further additions and offline lifecycle
+
+All six browser suites passed on the final application in headless Chromium with Playwright 1.64.1. JavaScript syntax checks passed for the inline application, curriculum and service worker. Five content hashes, 37 KSB records, 30 quiz IDs and every precached public-asset hash were independently verified.
+
+The four established suites passed again with outputs in `/tmp/l4-final-core`, `/tmp/l4-final-guided`, `/tmp/l4-final-learning` and `/tmp/l4-final-reasoning`. They retain the earlier coverage of storage failure, corrupt-data recovery, legacy backups, evidence status, numerical fixtures and guided study. The initial keyboard check caught the backup reminder preceding the primary study action; the reminder was moved below that action and the final check passed.
+
+New commands (alongside the four existing suite commands):
+
+```bash
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_rehearsal.py --url http://127.0.0.1:8000/ --output /tmp/l4-final-rehearsal
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_offline.py --url http://127.0.0.1:8001/L4-fellowship/ --fixture /tmp/l4-pwa-fixture/L4-fellowship --output /tmp/l4-offline-qa
+```
+
+The offline suite used a second localhost server rooted at `/tmp/l4-pwa-fixture`; it only changed its copied fixture to simulate releases. The test accounts for SimpleHTTPServer's whole-second Last-Modified validation when changing worker files. This fixture timing adjustment does not weaken the production SHA-256 asset checks.
+
+Activity results:
+
+- Eight combinations of n, known standard deviation, difference and confidence level matched independent Python `NormalDist` intervals and `math.erfc` p-values. All 100 interval rows reconciled with their displayed coverage and width; settings and simulation seed persisted.
+- Confidence ratings survived unfinished quizzes, were recorded once before feedback and did not change KSB states. Unrated attempts were excluded; revisiting a question preserved an unfinished quiz.
+- All three changed-condition cases required a choice/reason, explained changed versus retained assumptions and retained drafts/review state.
+- Briefing drafts remained separate by scenario/audience, displayed tailored examples, escaped untrusted preview text and downloaded the actual draft and reference.
+- Evidence rehearsal required support, contribution and limits, displayed saved rationales after review, supported explicit gaps and preserved explanations when an evidence reference was removed.
+- New state round-tripped through JSON; conflicting imports retained current records by default; older v1 data retained new records during merge. Invalid IDs, confidence labels and numerical controls were rejected without mutation.
+
+Offline results:
+
+- Manifest scope/start URL and 192/512 PNG dimensions were checked. Registration and all cached URLs stayed under the project subpath; the cache contained only public assets.
+- Actual offline reloads succeeded across lessons and new activities, public source guides were fetchable offline and edits survived disconnection/reload.
+- A deliberately mismatched HTML/curriculum release failed installation. The previous complete copy and progress remained available.
+- A valid release waited for explicit application. Simulated storage failure blocked reload; the temporary draft could be exported and restored, then survived activation and another offline reload.
+
+New views were checked at 320, 390, 768 and 1280 pixels, with mobile activity selection, enlarged text and direct file opening. No page errors were recorded. Desktop briefing/statistics views and mobile statistics/offline views were visually inspected; the interval plot's mobile labels were enlarged and spaced for legibility. Screenshots and synthetic backups remain under `/tmp`. Headless Chromium does not test native OS installation dialogs, and these checks are not a complete WCAG conformance audit.

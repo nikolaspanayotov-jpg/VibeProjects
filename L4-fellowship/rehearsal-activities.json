@@ -1,0 +1,189 @@
+{
+  "changes": [
+    {
+      "id": "paired",
+      "title": "The observations become paired",
+      "ksbs": [
+        "K13",
+        "S10",
+        "B4"
+      ],
+      "before": "You compare mean handling times for two independent groups of 30 teams. A Welch independent-samples t-test is your starting point.",
+      "change": "You learn that the two lists are actually the same 30 teams, measured before and after a change.",
+      "choices": [
+        {
+          "id": "retain",
+          "label": "Keep the independent-samples analysis unchanged.",
+          "feedback": "This ignores the matching. The observations in the two lists are related."
+        },
+        {
+          "id": "paired",
+          "label": "Analyse within-team differences and revisit the assumptions.",
+          "feedback": "The pairing changes the sampling design. A paired t-test may fit the mean-difference question after checking the differences."
+        },
+        {
+          "id": "correlation",
+          "label": "Replace the comparison with correlation only.",
+          "feedback": "A strong before/after association does not establish a mean improvement."
+        }
+      ],
+      "answer": "paired",
+      "explanation": "Verify the pair identifiers and investigate missing pairs. Examine the distribution and outliers of the team-level differences and independence between teams. A paired t-test addresses whether the mean difference is zero; report the estimated change and interval. Consider a suitable alternative if its assumptions do not fit. Matching alone does not establish that the intervention caused the change.",
+      "unchanged": "The business question and units can stay the same. The independent-sample assumption and standard-error calculation cannot.",
+      "followup": "What would you do if six teams had no valid after measurement?"
+    },
+    {
+      "id": "lookup",
+      "title": "A previously unique lookup gains duplicates",
+      "ksbs": [
+        "K10",
+        "S8",
+        "B5"
+      ],
+      "before": "A left join preserves all request rows. The service lookup has one approved row per service code and the totals reconcile.",
+      "change": "The next lookup refresh has two different active labels for one service code. The request data is unchanged.",
+      "choices": [
+        {
+          "id": "distinct",
+          "label": "Apply DISTINCT to the final output and continue.",
+          "feedback": "This can hide the symptom or discard legitimate equal records. It does not resolve conflicting labels."
+        },
+        {
+          "id": "resolve",
+          "label": "Investigate the mapping, obtain an approved resolution and rerun cardinality checks.",
+          "feedback": "The join type may still fit, but the previously validated relationship no longer holds."
+        },
+        {
+          "id": "inner",
+          "label": "Use an inner join instead.",
+          "feedback": "Both duplicate lookup records still match. Inner versus left does not fix a non-unique key."
+        }
+      ],
+      "answer": "resolve",
+      "explanation": "Identify the conflicting key and its downstream rows. Check whether time-effective versions or a compound key were intended; confirm the correct grain with the owner. Do not choose an arbitrary first value. After an authorised resolution, reconcile row counts, distinct request IDs, aggregates and unmatched keys. Add a uniqueness or effective-date check before future joins.",
+      "unchanged": "Retaining all requests may still require a left join. What changes is the trust in the lookup key and the work needed before using it.",
+      "followup": "How would the solution differ if both labels were valid in different date periods?"
+    },
+    {
+      "id": "policy",
+      "title": "A policy changes the demand pattern",
+      "ksbs": [
+        "K14",
+        "S13",
+        "B6",
+        "B7"
+      ],
+      "before": "A forecasting model is evaluated with rolling time windows on five years of monthly demand. It performs better than a seasonal-naive baseline.",
+      "change": "A new eligibility policy starts next month and could change both the number and type of requests. No post-policy actuals exist yet.",
+      "choices": [
+        {
+          "id": "retain",
+          "label": "Publish the historical forecast as a dependable policy forecast.",
+          "feedback": "Past accuracy does not establish performance after a structural change."
+        },
+        {
+          "id": "adjust",
+          "label": "Explain the break, compare justified scenarios and plan monitoring.",
+          "feedback": "A conditional baseline and explicit assumptions are more defensible than claiming the model has learned a policy that has not occurred."
+        },
+        {
+          "id": "erase",
+          "label": "Discard the history and invent a new point estimate.",
+          "feedback": "Losing useful context and inventing a precise estimate does not solve the uncertainty."
+        }
+      ],
+      "answer": "adjust",
+      "explanation": "Clarify the policy mechanism with the owner. Keep a labelled no-change baseline and develop documented scenarios with plausible assumptions; scenarios are not automatically probabilistic intervals. State that the historical model has not been validated under the new policy. Agree a monitoring/retraining plan, collect post-change actuals and compare models when enough relevant evidence exists.",
+      "unchanged": "The forecasting horizon, decision and error measures may remain useful. Assumptions about stability, training relevance and uncertainty need another review.",
+      "followup": "Which early indicators would make you revise a scenario before a full month of outcomes is available?"
+    }
+  ],
+  "briefings": [
+    {
+      "id": "capacity",
+      "title": "Synthetic service demand",
+      "ksbs": [
+        "K7",
+        "S12",
+        "S14"
+      ],
+      "question": "How should the service lead respond to the recent increase in requests?",
+      "facts": [
+        "April received 100 requests and May 110: an increase of 10 requests, or 10%.",
+        "The counts use the same service definition and complete monthly extracts.",
+        "Two months do not establish a trend, seasonal pattern or cause. Staffing capacity and request complexity have not been measured."
+      ],
+      "examples": {
+        "lead": {
+          "question": "Does May demand justify a staffing decision?",
+          "finding": "May received 110 requests, 10 more than April (+10%).",
+          "uncertainty": "Two months alone do not establish sustained growth, and we have not assessed request complexity or spare capacity.",
+          "action": "Review capacity and a longer history before changing staffing; monitor the next monthly extract."
+        },
+        "technical": {
+          "question": "Can the month-to-month comparison support a capacity recommendation?",
+          "finding": "Under the same service definition, monthly counts rose from 100 to 110; (110−100)/100 = 10%.",
+          "uncertainty": "Extracts are complete, but there are only two time points and no adjustment for working days or case mix. No causal or forecasting claim is supported.",
+          "action": "Validate comparable exposure periods and analyse a longer series with case mix and capacity before modelling staffing needs."
+        }
+      }
+    },
+    {
+      "id": "quality",
+      "title": "Synthetic missing completion dates",
+      "ksbs": [
+        "K8",
+        "S6",
+        "S12",
+        "S14"
+      ],
+      "question": "Can the completion-time dashboard be used in the briefing?",
+      "facts": [
+        "A synthetic extract contains 200 completed requests; 20 lack a completion date (10%).",
+        "The reported median of 6 days was calculated from the remaining 180 records.",
+        "No investigation has established whether missing dates are related to longer waits."
+      ],
+      "examples": {
+        "lead": {
+          "question": "Can we rely on the reported median completion time?",
+          "finding": "The median is 6 days among 180 records with usable dates; 20 of 200 records were excluded.",
+          "uncertainty": "The excluded 10% may differ from the rest, so this is not yet a dependable summary of all completed requests.",
+          "action": "Label the coverage, ask the data owner to investigate missing dates and revisit the briefing after validation."
+        },
+        "technical": {
+          "question": "How does missingness affect the completion-time estimate?",
+          "finding": "Complete-case median = 6 days, n=180; completion dates are missing for 20/200 completed records.",
+          "uncertainty": "The missingness mechanism is unknown. Complete-case analysis can be biased if missing dates relate to duration; filling them with zero would change the meaning.",
+          "action": "Profile missingness by source and service, investigate with the owner, and assess a justified sensitivity analysis before finalising the statistic."
+        }
+      }
+    },
+    {
+      "id": "own",
+      "title": "My own sanitised findings",
+      "ksbs": [
+        "S12",
+        "S14"
+      ],
+      "question": "Use your own approved findings and reference IDs.",
+      "facts": [
+        "State the population, period, units and denominator for any figures.",
+        "Separate observed findings from assumptions, forecasts and recommendations.",
+        "Use sanitised summaries; keep original workplace data in approved storage."
+      ],
+      "examples": {}
+    }
+  ],
+  "audiences": [
+    {
+      "id": "lead",
+      "label": "Senior decision-maker",
+      "guidance": "Lead with the decision and the important finding. Explain uncertainty in plain language and end with a proportionate action."
+    },
+    {
+      "id": "technical",
+      "label": "Technical colleague",
+      "guidance": "Include definitions, denominators, method and validation details. State assumptions, limitations and the next analytical check."
+    }
+  ]
+}

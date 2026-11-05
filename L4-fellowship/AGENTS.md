@@ -47,7 +47,7 @@ Check 390px and 320px first, then tablet and desktop. Use semantic controls, vis
 
 ## Checks
 
-After code changes, run JavaScript syntax checks and all four browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all four source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
+After code changes, run JavaScript syntax checks and all six browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all five source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
 
 ## Further reasoning tools
 
@@ -60,3 +60,15 @@ The routes are `#repairs`, `#methods`, `#workshop`, `#organisation`, `#connectio
 Workshop drafts are distinct from KSB responses. Editing clears workshop self-checks. Copying into an existing different KSB response needs explicit in-app confirmation and clears `exampleConfirmed`; it must not set recall, coverage or evidence. Notebook notes are local personal data, never public curriculum. Their verification date is entered by the learner. Connection evidence comes from actual saved per-KSB mappings.
 
 Run `tests/browser_reasoning_tools.py` alongside the three existing suites. It checks explanation gating, all ten correction/method cases, notebook escaping, workshop replacement, connected evidence, state validation/merge, direct file opening, mobile layout and keyboard selection. Inspect desktop and mobile screenshots; record only completed checks.
+
+## Rehearsal and offline release
+
+`rehearsal-activities.json` supplies three changed-assumption cases and two synthetic/one personal briefing scenarios for two audiences. The compiler validates and embeds them in `C.rehearsal` with the fifth source hash, `rehearsalSha256`. Routes: `#uncertainty`, `#calibration`, `#changes[-<id>]`, `#briefing`, `#retrieval[-<ksb>]` and `#offline`. Keep phone Practice navigation as a labelled native selector.
+
+The additive `rehearsal` state stores bounded uncertainty controls and seed, latest rated comparisons per quiz question, changed-case responses, scenario/audience briefing drafts, per-KSB retrieval records and `lastBackupOn`. Missing old-v1 fields receive defaults. Quiz certainty is recorded before feedback and is optional; unrated answers do not invent ratings. Do not overwrite another quiz when revisiting calibration. The new records require conflict-safe merge, exports and strict input validation. Deleted evidence references remain recoverable as dangling IDs; never delete their rehearsal explanations or mark evidence complete automatically. The backup date records requesting a JSON download, not guaranteed file retention.
+
+The uncertainty lab deliberately assumes independent normal populations with equal known standard deviations and equal per-group n. Use SE = sigma*sqrt(2/n), matching normal critical values and two-sided p-values. Do not label this as a general-purpose t-test. Distinguish statistical thresholds, practical thresholds and repeated-sampling coverage. Validate formulas independently and reconcile all 100 interval rows.
+
+The PWA uses `manifest.webmanifest`, two PNG icons and generated `sw.js`, scoped to this folder. After any cached asset changes, run `python3 tests/build_offline.py` last. Its hashes must match the files committed in the same release. Worker installation validates all public files before caching; a failed/mixed release must never replace a working one. Keep navigation and versioned curriculum paired. Do not force a waiting update or automatically reload other tabs. Save before explicit application and block reload if storage is unsafe; temporary sessions remain exportable. Never cache personal records, backups or another project's files. Retain prior versioned caches for older open tabs.
+
+Run `tests/browser_rehearsal.py` and `tests/browser_offline.py` as well as the four existing browser suites. The offline test requires a localhost server on port 8001 rooted at its disposable fixture parent. It copies public files into that fixture and simulates valid/invalid updates there; never run release-mutation tests against the user's project files. Verify real offline reloads, scoped caching, failure recovery and persistence. Native OS installation UI is not covered by headless Chromium.

@@ -17,6 +17,8 @@ ACTIVITY_SOURCE = (ROOT / 'learning-activities.json').read_text()
 ACTIVITIES = json.loads(ACTIVITY_SOURCE)
 REASONING_SOURCE = (ROOT / 'reasoning-activities.json').read_text()
 REASONING = json.loads(REASONING_SOURCE)
+REHEARSAL_SOURCE = (ROOT / 'rehearsal-activities.json').read_text()
+REHEARSAL = json.loads(REHEARSAL_SOURCE)
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -170,6 +172,20 @@ assert len(set(check_ids))==len(check_ids)==6
 for example in REASONING['workshops']:
     assert all(k in mapping for k in example['ksbs'])
     assert [x['check'] for x in example['parts']]==check_ids
+assert len(REHEARSAL['changes'])==3 and len(REHEARSAL['briefings'])==3
+for kind in ('changes','briefings','audiences'):
+    assert len({x['id'] for x in REHEARSAL[kind]})==len(REHEARSAL[kind])
+    assert all(re.fullmatch(r'[a-z][a-z0-9-]*',x['id']) for x in REHEARSAL[kind])
+for case in REHEARSAL['changes']:
+    assert all(k in mapping for k in case['ksbs'])
+    assert case['answer'] in [c['id'] for c in case['choices']]
+    assert len({c['id'] for c in case['choices']})==len(case['choices'])
+    assert all(c['feedback'] for c in case['choices'])
+for case in REHEARSAL['briefings']:
+    assert all(k in mapping for k in case['ksbs'])
+    assert all(a in {x['id'] for x in REHEARSAL['audiences']} for a in case['examples'])
+    for example in case['examples'].values():
+        assert set(example)=={'question','finding','uncertainty','action'} and all(example.values())
 project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
     stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
@@ -177,9 +193,10 @@ project=dict(title='A fictional service-capacity briefing',
 data=dict(revision='2026-11-05',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
           project=project,
+          rehearsal=REHEARSAL,rehearsalSha256=hashlib.sha256(REHEARSAL_SOURCE.encode()).hexdigest(),
           reasoning=REASONING,reasoningSha256=hashlib.sha256(REASONING_SOURCE.encode()).hexdigest(),
           activities=ACTIVITIES,activitySha256=hashlib.sha256(ACTIVITY_SOURCE.encode()).hexdigest(),
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
           sources=html(SOURCE.split('## Reference register',1)[1].split('<a id="quiz-answer-key">',1)[0]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled 37 lessons, worked project, labs/scenarios/quiz and five reasoning/context tools.')
+print('Compiled 37 lessons, worked project, all activities and five verified content sources.')
