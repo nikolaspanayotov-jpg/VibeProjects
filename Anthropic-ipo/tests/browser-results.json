@@ -32,6 +32,18 @@
     "result": "passed"
   },
   {
+    "check": "Retail access keeps six filed platform groups, legal entities, dates and unresolved allocation requirements explicit",
+    "result": "passed"
+  },
+  {
+    "check": "IPO allocation and market purchases remain distinct; retail price implications are conditional analysis",
+    "result": "passed"
+  },
+  {
+    "check": "Bidirectional retail/SpaceX entry links work and clear the sticky header",
+    "result": "passed"
+  },
+  {
     "check": "Compute ratios, percentage-point change, growth and bar scale reconcile to the financial dataset",
     "result": "passed"
   },
@@ -100,7 +112,7 @@
     "result": "passed"
   },
   {
-    "check": "All 26 current/historical source previews retain provenance, claim types, dates and original links",
+    "check": "All 28 source previews preserve provenance and distinguish retail filing, report and register-check dates",
     "result": "passed"
   },
   {
@@ -156,6 +168,10 @@
     "result": "passed"
   },
   {
+    "check": "320px expanded retail names table reflow",
+    "result": "passed"
+  },
+  {
     "check": "768px default reflow",
     "result": "passed"
   },
@@ -168,6 +184,10 @@
     "result": "passed"
   },
   {
+    "check": "768px expanded retail names table reflow",
+    "result": "passed"
+  },
+  {
     "check": "1440px default reflow",
     "result": "passed"
   },
@@ -177,6 +197,10 @@
   },
   {
     "check": "1440px expanded table reflow",
+    "result": "passed"
+  },
+  {
+    "check": "1440px expanded retail names table reflow",
     "result": "passed"
   },
   {
@@ -193,6 +217,14 @@
   },
   {
     "check": "All five additions retain complete static evidence and calculations without JavaScript",
+    "result": "passed"
+  },
+  {
+    "check": "390px no-JavaScript expanded retail names reflow",
+    "result": "passed"
+  },
+  {
+    "check": "Retail facts, conditions and both entry-route links remain complete without JavaScript",
     "result": "passed"
   },
   {

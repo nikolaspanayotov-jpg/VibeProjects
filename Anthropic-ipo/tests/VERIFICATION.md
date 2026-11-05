@@ -1,3 +1,43 @@
+# Retail-access implementation verification — 5 November 2026
+
+All five approved integration points are implemented. Evidence and scope are in [retail-access-update-2026-11-05.md](../retail-access-update-2026-11-05.md). The latest reviewed filing remains the 2 November amendment; the retail report is dated 4 November and the register/passage check is 5 November. This is not a new pricing announcement.
+
+## Current result
+
+The Before pricing section now distinguishes prospective broker distribution from final terms and individual access. Six platform groups remain visible; full names from the prospectus use an optional native table. Eligibility, application availability, deadlines and allocation outcomes require platform confirmation. Final price and retail share count/percentage remain unresolved. No broker account minimum or allocation percentage was invented.
+
+Ordinary links connect the access section and the historical SpaceX entry-price comparison in both directions. The two entry routes distinguish a requested IPO allocation from a later market execution. Possible demand/volatility effects are labeled as analysis and do not establish price direction. The change summary and 28 local source previews distinguish filing, reporting and check dates.
+
+## Checks actually run
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8805/ python tests/browser_smoke.py
+```
+
+**66 browser checks passed; one direct-file check remains unverified because administrator policy blocks file URLs.** The [current results](browser-results.json) cover the six platform groups/full names, allocation and eligibility qualifications, two-way native links, source types/dates, all 28 previews and the existing reading/financial controls. Expanded broker-table reflow passed at 320, 390, 768 and 1440 CSS pixels, including the 390px no-JavaScript path. The source link fallbacks and native disclosure remain usable without JavaScript. No page/console errors or runtime third-party requests were observed.
+
+Inline JavaScript passed `node --check`. The `ledger-data`, `entry-return-data` and `commitment-data` JSON values were compared with the previous page and are unchanged. Original research and historical SpaceX dates remain intact.
+
+Actual captures inspected: `retail-mobile-top.png`, `retail-mobile-brokers.png`, `retail-mobile-analysis.png` and `retail-desktop-full.png` in `tests/screenshots/`. The review moved long prospectus names into a native disclosure while keeping the six platforms and material conditions visible. Print expands the full table and avoids repeating the platform tiles. A heading near a page break was kept with its entry-route descriptions. After these print-only changes, both PDFs and affected text/pagination checks were repeated; no broad extra test run was claimed.
+
+Final print output contains **33 A4 pages with JavaScript and 32 without it**. Text extraction retains all platform names, conditional access, the two routes, market-effect qualifications and original source URLs. Retail status/table and route pages were visually inspected. Generated PDFs and screenshots remain local and ignored.
+
+Validated HTML SHA-256: `5788e82231391da6f0764a2b776059c06be20d56541ad77ba5e4e2927e1a086e`.
+
+## Publication boundary
+
+Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/main/Anthropic-ipo
+
+Existing public page: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
+
+The exact served page is verified after the normal main-branch publication and recorded below. Changes are confined to this project.
+
+The private Sites mirror retains its earlier publication. The previously recorded automatic approval-review rejection of its live credential transfer remains unresolved; no substitute credential-transfer route or private deployment was attempted for this update, and no audience was changed.
+
+Primary retail facts and the report were read through the web connector. The direct executor SEC download returned a proxy 403 and was not retried through a substitute proxy/host; no raw archive was claimed. The register and selected passage support the dated facts used here. Coverage remains Chromium-only, with no screen-reader session or exhaustive independent legal/platform-eligibility audit. This work does not refresh SpaceX market data.
+
+---
+
 # Reading and commercial-evidence verification — 5 November 2026
 
 The five approved improvements are implemented in the standalone page. Research remains explicitly checked through **4 November 2026**; this implementation and verification completed after midnight on 5 November. Scope, primary sources and formulas are in [content-and-reading-update-2026-11-04.md](../content-and-reading-update-2026-11-04.md). The original research files and historical SpaceX cutoff are preserved.

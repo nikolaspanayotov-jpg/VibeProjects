@@ -81,7 +81,7 @@ with sync_playwright() as p:
     record("Nine-month financial measures, September liquidity and non-cash/investing qualifications")
 
     expect(page.locator(".status-list")).to_contain_text("2 November 2026")
-    expect(page.locator(".status-list")).to_contain_text("4 November 2026")
+    expect(page.locator(".status-list")).to_contain_text("5 November 2026")
     page.locator("#filing-history > summary").click()
     expect(page.locator("#filing-history li")).to_have_count(2)
     expect(page.locator("#filing-history")).to_contain_text("26 October 2026")
@@ -89,9 +89,9 @@ with sync_playwright() as p:
     expect(page.locator('.comparison .historical-label')).to_contain_text("January–June 2026 for both")
     record("Latest amendment/check dates, original filing history and historical matched comparison")
 
-    expect(page.locator("#what-changed")).to_contain_text("4 November 2026")
+    expect(page.locator("#what-changed")).to_contain_text("5 November 2026")
     expect(page.locator("#what-changed .update-grid > div")).to_have_count(3)
-    expect(page.locator("#what-changed")).to_contain_text("27 October government agreement")
+    expect(page.locator("#what-changed")).to_contain_text("4 November coverage highlights the 2 November filing")
     expect(page.locator("#what-changed")).to_contain_text("Still unresolved")
     for link in page.locator('#what-changed a:not(.source-link)').all():
         link.click()
@@ -99,6 +99,40 @@ with sync_playwright() as p:
         target = page.locator(link.get_attribute("href"))
         assert target.bounding_box()["y"] >= page.locator(".masthead").bounding_box()["height"]
     record("Returning-reader changes distinguish filing, added context and unresolved terms; onward links work")
+
+    retail = page.locator("#retail-access")
+    expect(retail).to_contain_text("An allocation in the offering would use the final IPO price")
+    expect(retail).to_contain_text("does not guarantee")
+    expect(retail).to_contain_text("request deadlines and allocation rules require current platform confirmation")
+    expect(retail).to_contain_text("retail share count or percentage remain unspecified")
+    assert retail.locator(".retail-dates time").evaluate_all("es=>es.map(e=>e.dateTime)") == [
+        "2026-11-02", "2026-11-04", "2026-11-05"
+    ]
+    assert retail.locator(".retail-table tbody th").all_text_contents() == [
+        "Schwab", "Fidelity", "Robinhood", "Trade-PMR", "SoFi", "E*TRADE"
+    ]
+    assert retail.locator(".retail-platforms li").all_text_contents() == [
+        "Schwab", "Fidelity", "Robinhood", "Trade-PMR", "SoFi", "E*TRADE"
+    ]
+    expect(page.locator("#retail-broker-details")).not_to_have_attribute("open", "")
+    expect(retail.locator(".retail-table")).to_contain_text("National Financial Services LLC")
+    expect(retail.locator(".retail-table")).to_contain_text("Trade-PMR, Inc.")
+    expect(retail).to_contain_text("availability depends on investor location")
+    record("Retail access keeps six filed platform groups, legal entities, dates and unresolved allocation requirements explicit")
+
+    expect(retail.locator(".retail-paths li")).to_have_count(2)
+    expect(retail).to_contain_text("fewer shares than sought, or none")
+    expect(retail.locator("#retail-market-effects")).to_contain_text("Analysis")
+    expect(retail.locator("#retail-market-effects")).to_contain_text("Potential tailwind")
+    expect(retail.locator("#retail-market-effects")).to_contain_text("Potential headwind")
+    expect(retail.locator("#retail-market-effects")).to_contain_text("does not establish the price direction")
+    record("IPO allocation and market purchases remain distinct; retail price implications are conditional analysis")
+
+    for origin, target in [("#retail-access", "#entry-comparison"), ("#entry-comparison", "#retail-access")]:
+        page.locator(f'{origin} a[href="{target}"]').click()
+        assert page.evaluate("location.hash") == target
+        assert page.locator(target).bounding_box()["y"] >= page.locator(".masthead").bounding_box()["height"]
+    record("Bidirectional retail/SpaceX entry links work and clear the sticky header")
 
     ledger = json.loads(page.locator("#ledger-data").text_content())
     ratios = []
@@ -332,12 +366,14 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 26
+    assert len(metadata) == 28
     assert metadata["source-a-gsa"]["kind"] == "Company announcement"
     assert metadata["source-a-science"]["kind"] == "Company research"
     assert metadata["source-a-event"]["date"] == "2026-11-10"
-    assert metadata["source-a-register"]["date"] == "2026-11-04"
-    record("All 26 current/historical source previews retain provenance, claim types, dates and original links")
+    assert metadata["source-a-register"]["date"] == "2026-11-05"
+    assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-02"
+    assert metadata["source-retail-barrons"]["kind"] == "Third-party report" and metadata["source-retail-barrons"]["date"] == "2026-11-04"
+    record("All 28 source previews preserve provenance and distinguish retail filing, report and register-check dates")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 
@@ -440,6 +476,13 @@ with sync_playwright() as p:
     for module_id in ["adoption-government", "adoption-enterprise", "adoption-science"]:
         go_section(page, module_id)
         page.screenshot(path=str(OUTPUT / f"nov4-mobile-{module_id}.png"))
+    go_section(page, "retail-access")
+    page.screenshot(path=str(OUTPUT / "retail-mobile-top.png"))
+    page.locator("#retail-broker-details > summary").click()
+    page.locator(".retail-brokers").screenshot(path=str(OUTPUT / "retail-mobile-brokers.png"))
+    page.locator("#retail-broker-details > summary").click()
+    go_section(page, "retail-market-effects")
+    page.screenshot(path=str(OUTPUT / "retail-mobile-analysis.png"))
     page.locator('a[data-term="economic-shares"]').click()
     page.screenshot(path=str(OUTPUT / "r2-mobile-definition.png"))
     page.locator("#term-preview-close").click()
@@ -457,6 +500,9 @@ with sync_playwright() as p:
         page.locator("#exact-figures > summary").click()
         no_overflow(page, f"{width}px expanded table reflow")
         page.locator("#exact-figures > summary").click()
+        page.locator("#retail-broker-details > summary").click()
+        no_overflow(page, f"{width}px expanded retail names table reflow")
+        page.locator("#retail-broker-details > summary").click()
     page.evaluate("scrollTo(0,0)")
     page.wait_for_timeout(100)
     page.screenshot(path=str(OUTPUT / "desktop-top.png"))
@@ -469,6 +515,7 @@ with sync_playwright() as p:
         page.screenshot(path=str(OUTPUT / f"r2-desktop-{section_id}.png"))
     for module_id in ["what-changed", "compute-trend", "commercial-evidence", "ownership-map", "entry-comparison"]:
         page.locator(f"#{module_id}").screenshot(path=str(OUTPUT / f"nov4-desktop-{module_id}.png"))
+    page.locator("#retail-access").screenshot(path=str(OUTPUT / "retail-desktop-full.png"))
     go_section(page, "drivers")
     page.screenshot(path=str(OUTPUT / "desktop-drivers.png"))
     page.locator('#drivers a[href="#source-a-mda"]').first.click()
@@ -510,6 +557,19 @@ with sync_playwright() as p:
     expect(nojs.locator("#ownership-map .ownership-lanes > li")).to_have_count(3)
     expect(nojs.locator("#what-changed")).to_be_visible()
     record("All five additions retain complete static evidence and calculations without JavaScript")
+    expect(nojs.locator(".retail-table tbody tr")).to_have_count(6)
+    expect(nojs.locator(".retail-platforms li")).to_have_count(6)
+    nojs.locator("#retail-broker-details > summary").click()
+    expect(nojs.locator(".retail-table")).to_be_visible()
+    no_overflow(nojs, "390px no-JavaScript expanded retail names reflow")
+    nojs.locator("#retail-broker-details > summary").click()
+    expect(nojs.locator("#retail-access")).to_contain_text("does not guarantee")
+    expect(nojs.locator("#retail-access")).to_contain_text("current platform confirmation")
+    nojs.locator('#retail-access a[href="#entry-comparison"]').click()
+    assert nojs.evaluate("location.hash") == "#entry-comparison"
+    nojs.locator('#entry-comparison a[href="#retail-access"]').click()
+    assert nojs.evaluate("location.hash") == "#retail-access"
+    record("Retail facts, conditions and both entry-route links remain complete without JavaScript")
     expect(nojs.locator(".dilution-controls")).not_to_be_visible()
     expect(nojs.locator("#dilution-result")).to_have_text("−4.0%")
     expect(nojs.locator("#dilution-formula")).to_contain_text("120 ÷ 125")

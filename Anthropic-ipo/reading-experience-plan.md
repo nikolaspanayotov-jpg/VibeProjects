@@ -43,3 +43,7 @@ Use the 2 November S-1/A, checked 3 November, to update status/history, default 
 ## Approved 4 November reading and commercial-evidence update
 
 Implement the returning-reader change summary, Q2–Q3 compute/revenue trend, three commercial-evidence scorecards, ownership/control/tradability diagram and SpaceX entry-price comparison against one historical endpoint. Integrate the 4 November company research, 27 October government announcement and scheduled 10 November product event with explicit source types, limitations and dates. Scope, formulas, design and acceptance criteria are in `content-and-reading-update-2026-11-04.md`. Preserve earlier tools and the historical SpaceX cutoff. Record actual validation and publication in `tests/VERIFICATION.md`.
+
+## Approved 5 November retail-access integration
+
+Add a compact Before pricing section with the six platform groups named in the 2 November amendment, explicit unresolved pricing/allocation/eligibility/deadline terms, ordinary links to and from the SpaceX entry-price example, and conditional market effects labeled as analysis. The change summary and sources distinguish 4 November reporting, 2 November disclosure and the 5 November check. Evidence and acceptance criteria are in `retail-access-update-2026-11-05.md`. Preserve the prior commercial research dates and all historical financial/SpaceX views.

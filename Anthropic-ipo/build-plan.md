@@ -177,5 +177,9 @@ Repository references: [root instructions][repo-rules], [Frontend Design skill][
 
 The returning-reader change summary, compute/revenue trend, commercial-evidence scorecards, ownership diagram and dated SpaceX entry-return comparison are implemented. The original research and earlier reading tools are preserved. `content-and-reading-update-2026-11-04.md` records evidence, formulas and acceptance criteria; `tests/VERIFICATION.md` records actual responsive, interaction, source, fallback and print checks plus publication status.
 
+## 5 November retail-access extension
+
+Implement the approved access module, unresolved-term qualifications, bidirectional SpaceX comparison links, conditional market effects and dated change/source updates. `retail-access-update-2026-11-05.md` records the primary passage, report and platform names. Use `tests/VERIFICATION.md` for actual evidence and publication; do not turn named broker participation into a promised individual allocation.
+
 [repo-rules]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/AGENTS.md
 [skill]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/.agents/skills/frontend-design/SKILL.md
