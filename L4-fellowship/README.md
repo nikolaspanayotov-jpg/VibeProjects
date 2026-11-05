@@ -2,7 +2,7 @@
 
 A personal study page for the Level 4 Data Analyst apprenticeship, covering all 37 Knowledge, Skills and Behaviours.
 
-Open `index.html` in a browser, keeping `curriculum.js` beside it. There is no installation, build step, account or backend. For a local server, run from this folder:
+Open `index.html` in a browser, keeping `curriculum.js` and `gamification.js` beside it. There is no installation, build step, account or backend. For a local server, run from this folder:
 
 ```bash
 python3 -m http.server 8000 --bind 127.0.0.1
@@ -32,11 +32,25 @@ Then open `http://127.0.0.1:8000/`. The same relative paths work under the GitHu
 - Confidence-versus-accuracy review using optional pre-feedback quiz ratings.
 - Three “what changes if…?” cases, a two-audience briefing studio and evidence retrieval rehearsal for every KSB.
 - An installable offline page with verified matching releases and a reminder of your last JSON backup download request.
+- A three-block daily mission board: Recall, Apply and Explain, with 20 XP each and a 40 XP daily trio bonus.
+- Local-date study/trio streaks, configurable three-window check-ins, eleven illustrated badges and a growing clickable study desk.
+- Three weekly quest packs, an optional mixed rehearsal, dated completion history, weekly replay and local recap/card downloads.
+- Downloadable calendar reminders for three daily practice visits; completed practice and rewards are included in normal backups.
 - A weekly study plan, optional assessment settings, conditional AP03 route filters, JSON backup/restore, a Markdown study summary and print styles.
 
 New tools open at `#repairs`, `#methods`, `#workshop`, `#organisation` and `#connections`. Focused links include `#repairs-duplicate-join`, `#methods-paired-change`, `#workshop-k8`, `#organisation-policies` and `#connections-quality`.
 
 Further activities open at `#uncertainty`, `#calibration`, `#changes`, `#briefing` and `#retrieval`. Use `#offline` for offline readiness, updates and home-screen installation instructions.
+
+Practice rewards open at `#habits`, `#rewards` and `#quests`. Use `#habit-settings` for check-in windows, reminder times, calendar download and the celebration preference.
+
+## Daily practice
+
+Start a suggested mission on Today. Recall outcomes and five-question quiz reviews record their completion automatically. For labs, scenarios, challenges and writing tasks, choose **Track this activity**, work through it, then **Finish practice block** with a reflection and self-review. This awards practice XP and leaves KSB/evidence status separate.
+
+Daily XP is capped at 100. More practice still contributes to history, check-ins and relevant badges. A three-check-in date requires completed blocks in three chosen windows; a daily trio requires the three block types. Schedules apply to future completions. Badges link to their qualifying practice records. Existing answers are retained; dated habit history begins with newly completed blocks.
+
+The calendar download creates three local-time daily events with alarms for 90 days. Import the .ics file into your calendar; the website does not send background alerts. Badge and weekly cards are local SVG downloads, with a Markdown recap available too.
 
 ## Personal progress
 
@@ -54,7 +68,7 @@ An update waits for you to apply it or close older tabs. The app saves before re
 
 ## Files and content maintenance
 
-`solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. No runtime Markdown parser, external fonts, chart library or analytics service is used.
+`solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. `gamification.js` provides the independent date/scoring functions, badge definitions and SVG artwork; it is a required relative script, with no package or runtime service. No runtime Markdown parser, external fonts, chart library or analytics service is used.
 
 `solutions.md` also contains the human-readable misconception answer key. `learning-activities.json` is the authored lab/scenario source; the compiler validates its decision graphs and embeds it with the questions into the same local curriculum file. Learning tools are available at `#labs`, `#scenarios` and `#quiz`, with focused links such as `#labs-forecast`.
 
@@ -74,6 +88,8 @@ python3 tests/build_offline.py
 
 This utility is for maintainers; the shipped page runs directly without it. Preserve the KSB identifiers, solution anchors, project path and storage key. Re-run `tests/build_offline.py` after changing any cached public file, including `design.md`, and commit the generated `sw.js` with those files. Its SHA-256 checks prevent mixed releases from activating. `manifest.webmanifest` and the PNG icons are relative to this project.
 
+The additive `game` section holds dated completion records, schedule/preferences, one tracked block and removed record IDs. XP, streaks, badges and quests recalculate from that history. Imports validate known activities, timestamps/local dates and recorded window boundaries, merge identical IDs once, and retain conflicting current records by default. Removed IDs prevent deleted practice from returning through an older merged backup.
+
 ## Verification
 
 See [the verification record](./tests/VERIFICATION.md). The browser smoke check exercises the main user flows, storage recovery, imports and responsive layouts. To run it with Playwright installed and a local server running:
@@ -86,8 +102,10 @@ python3 tests/browser_enhancements.py --url http://127.0.0.1:8000/ --output /tmp
 python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-learning-tools-qa
 python3 tests/browser_reasoning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-reasoning-qa
 python3 tests/browser_rehearsal.py --url http://127.0.0.1:8000/ --output /tmp/l4-rehearsal-qa
+python3 tests/browser_gamification.py --url http://127.0.0.1:8000/ --output /tmp/l4-gamification-qa
+node tests/gamification_core.cjs
 ```
 
-The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. Direct file opening works with `index.html` and `curriculum.js` present.
+The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. Direct file opening works with `index.html`, `curriculum.js` and `gamification.js` present.
 
 For the offline lifecycle check, start another localhost server rooted at a disposable `/tmp/l4-pwa-fixture` directory on port 8001, then run `python3 tests/browser_offline.py`. The test creates its `L4-fellowship/` fixture there, modifies only that copy to simulate releases and tests actual offline reloads. Native OS install dialogs are not covered by headless tests.

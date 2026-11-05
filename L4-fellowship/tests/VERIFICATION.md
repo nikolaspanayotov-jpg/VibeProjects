@@ -116,3 +116,38 @@ Offline results:
 - A valid release waited for explicit application. Simulated storage failure blocked reload; the temporary draft could be exported and restored, then survived activation and another offline reload.
 
 New views were checked at 320, 390, 768 and 1280 pixels, with mobile activity selection, enlarged text and direct file opening. No page errors were recorded. Desktop briefing/statistics views and mobile statistics/offline views were visually inspected; the interval plot's mobile labels were enlarged and spaced for legibility. Screenshots and synthetic backups remain under `/tmp`. Headless Chromium does not test native OS installation dialogs, and these checks are not a complete WCAG conformance audit.
+
+## 5 November 2026 — daily missions, dated rewards and quest history
+
+All seven browser suites passed on the release application, plus `node tests/gamification_core.cjs`. JavaScript syntax checks passed for the inline app, `gamification.js`, curriculum and service worker. The five curriculum source hashes, 37 KSB records, 30 misconception IDs and all 12 cached public-asset hashes were verified. The new reward helper is included in the atomic offline release.
+
+Release commands used:
+
+```bash
+node tests/gamification_core.cjs
+node --check /tmp/habit-app.js
+node --check gamification.js
+node --check curriculum.js
+node --check sw.js
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_smoke.py --output /tmp/l4-habit-release-core
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_enhancements.py --output /tmp/l4-habit-release-guided
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_learning_tools.py --output /tmp/l4-habit-release-learning
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_reasoning_tools.py --output /tmp/l4-habit-release-reasoning
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_rehearsal.py --output /tmp/l4-habit-release-rehearsal
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_gamification.py --output /tmp/l4-habit-release-game
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_offline.py --output /tmp/l4-habit-release-offline
+```
+
+`/tmp/habit-app.js` was extracted from the shipped inline script. The app suites used the project-local server on port 8000; the offline lifecycle suite used the disposable project-subpath fixture on port 8001. All test dates, reflections, backups and screenshots are synthetic and remain outside the project.
+
+Pure calculations covered: 20/20/20 plus 40 daily XP and its cap; first qualifying badge dates; quest receipts; removal recalculation; current/best streaks across gaps; local dates and both sides of a DST fallback; exact time-window boundaries; supporting quiz-review prerequisites; same-day versus later-day mistake recovery; explicit 37-topic coverage; two audiences for the same scenario; and three linked discussion attempts.
+
+The new browser suite completed real Recall, Apply and Explain tasks at three controlled local times, earning exactly 100 XP and the quality quest. It verified that unfinished reflections survive reload, a block cannot finish before interaction/source completion, and application/evidence-gap practice leaves KSB/evidence state separate. Further practice respected the daily cap. Badges showed their qualifying day, pinned correctly and exported local SVG cards; the desk's lamp unlocked. Selecting another quest changed actual mission suggestions.
+
+Five reviewed quiz questions created one supported block; reloading did not duplicate records. The optional mixed rehearsal recorded three distinct K/S/B attempts and its cosmetic milestone. Time settings rejected invalid boundaries, retained historical window assignments and exported three 90-day calendar recurrences with alarms, stable IDs, floating local times and RFC-style folded lines of at most 75 bytes. The structural calendar checks do not assert delivery by an external calendar application.
+
+Removal/undo recalculated XP and badges. Merging an older backup preserved removal IDs, identical imports did not duplicate rewards, and conflicting practice records required explicit imported-record selection. Older v1 data retained the new history during merge. Duplicate IDs, unknown/prototype-like types, invalid dates/offsets/windows, invalid schedules and unsupported tracked contexts were rejected without mutation. Full reward history round-tripped into a fresh browser context.
+
+Weekly replay used actual records. Normal-motion playback advanced and paused when the document became hidden; reduced motion retained manual controls. Markdown recaps and SVG weekly cards reconciled with the recorded week. All new routes reflowed at 320, 390, 768 and 1280 pixels, enlarged text fit, and direct file opening loaded the required helper without page errors. Desktop reward/mission views and mobile missions/quest paths were visually inspected. The initial regression run exposed a hidden Resume practice button in the collapsed broader study plan; unfinished sessions now open that section and both existing resume checks passed.
+
+The offline suite additionally earned a new practice record while disconnected and verified that the same game events survived temporary-memory recovery, verified service-worker activation and offline reload. It retained its checks for project scope, public-only caches and rejection of mismatched releases. These checks are not a complete accessibility audit and do not cover native OS installation dialogs or calendar alert delivery.

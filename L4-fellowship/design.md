@@ -672,3 +672,43 @@ The Today page places a backup reminder after the primary study action. It and t
 The additive `rehearsal` state section contains uncertainty settings/seed, per-question calibration records, per-case change responses, per-scenario/audience briefing drafts, per-KSB retrieval records and `lastBackupOn`. An optional certainty field extends unfinished quiz sessions. Missing fields in old v1 backups receive defaults. Import validates ranges, identifiers, flags, bounded text, choices and dates; feedback requires a complete explanation or explicit gap. Removed evidence IDs are retained as dangling references for recovery. Merge conflicts are handled per record with current data retained by default. All records appear in the Markdown summary and JSON backup.
 
 Two new browser suites cover the activities and the service-worker lifecycle, alongside the four existing suites. Offline tests use a disposable project subpath and actual network disconnection. They exercise a rejected mismatched release, waiting activation, saving failure, temporary-session export/restore and persistence through update/reload. Native OS installation UI is browser-specific and is not asserted by headless tests.
+
+## 22. Daily practice rhythm and earned rewards — 5 November 2026
+
+The gamification is a layer over the existing Data Fellowship activities. Today leads with Recall, Apply and Explain missions; due recall is prioritised, followed by the selected weekly quest and weaker or less recently practised topics. An unfinished tracked block resumes its activity. The broader study plan remains available below the board and opens automatically when a discussion/study session is unfinished. KSB learning, confidence, personal examples, recall and evidence retain their separate meaning.
+
+### Completed practice and scoring
+
+The first completed block of each type on a local date earns 20 XP; completing all three adds 40, for a daily cap of 100 XP. Further completed blocks remain in history and can contribute to spaced check-ins and milestones. Incorrect answers and Needed help recall outcomes can earn practice XP after feedback and review. Opening pages, planning, pinning badges, downloading cards and scheduling reminders create no practice events.
+
+Recall reviews already have an explicit outcome action, so recording one creates a dated completion. Each quiz set has a stable ID. Advancing after feedback creates one reviewed-question record; five distinct reviewed questions in that set support one Recall block. Removing a supporting review invalidates the block's scoring until that record is explicitly restored.
+
+For application and writing activities, the learner chooses Track this activity, works through it, then selects Finish practice block. Completion requires an interaction since tracking, the relevant source condition, a short reflection and an explicit self-review. Source conditions include a scenario outcome, submitted reasoning feedback, a reviewed evidence explanation/gap, a complete four-part briefing or six reviewed workshop checks. Labs require interaction and a learning reflection. Starting another tracked activity preserves its existing answer fields; replacing a nonempty unfinished block reflection requires confirmation. Completion does not copy answers or change KSB/evidence status.
+
+### Check-ins and consecutive days
+
+Three configurable windows partition the local day; defaults end at 12:00 and 17:00. Suggested reminder times are 08:30, 13:00 and 19:00. Each completed block records its actual timestamp, timezone offset, local date, window index and the boundaries used at completion. Imports verify that the date/time/window agree. Changing the schedule applies to future practice and preserves historical assignments.
+
+Daily trio means the three different block types. A three-check-in date means at least one completed block in each window, including additional practice after reaching the XP cap. Study streaks use consecutive local dates with completed blocks, with today still available to extend a run ending yesterday. Trio streaks and best runs are shown separately. Missed dates retain earlier earned milestones and best runs. Time calculations use local calendar arithmetic across DST, not fixed 24-hour-day subtraction.
+
+### Badges, levels and a growing study desk
+
+Eleven illustrated SVG badges cover first practice, daily trio, seven-/30-day streaks, five three-check-in dates, later-day quiz recovery, five explicit evidence rehearsals/gaps, both audiences for a briefing, all 37 KSBs explicitly practised, a weekly quest and the optional mixed rehearsal. Each badge shows its requirement, current progress and first qualifying local date. Details link to the actual qualifying day. Up to three earned badges can be pinned on Today; badge cards download as local SVG files. Correcting history recalculates eligibility. The 37-KSB badge uses explicit recall/workshop/retrieval targets, not all the KSB tags on one quiz question.
+
+Cosmetic levels advance every 300 XP, with a visible progress bar. Self-contained clickable SVG desk art unlocks through clear milestones: lamp for a daily trio, books for five explicit KSBs, plant for a seven-day streak, chart for all 37, trophy for a first badge and magnifier for a mistake challenge. The art links into existing study tools. Brief new-unlock animation respects the user's celebration preference and reduced motion. Reloading or importing old achievements does not repeat an unlock animation.
+
+### Weekly quests, discussion and replay
+
+Three authored three-step packs appear at `#quests`: Data quality detective, Forecast explorer and Discussion rehearsal. Completion derives from qualifying distinct practice records in the same Monday–Sunday week; the chosen pack supplies mission suggestions, and earlier completed weeks retain their patches. The optional weekly rehearsal reuses the mixed Knowledge/Skill/Behaviour discussion tools, preserves unfinished sessions and records all three reviewed attempts. Its completion badge adds no separate XP.
+
+`#habits` shows current/best study and trio streaks, XP, a chosen week's exact daily receipts, check-in counts and dated history. The XP chart has an equivalent table, including zero-activity dates. The weekly replay uses recorded blocks only and supports play/pause, previous/next and seeking. It pauses on navigation, source changes and hidden tabs; reduced motion uses manual navigation. The same records produce a Markdown recap and a downloadable SVG progress card. Removing a practice record recalculates rewards without removing KSB answers/evidence. Undo is available. Removal IDs prevent an older merged backup from silently restoring deleted practice.
+
+### Reminders and persistence
+
+`#habit-settings` validates window order and a reminder inside each window. It downloads three recurring calendar events with alarms for the next 90 days, using floating local times so the receiving calendar handles its timezone/DST. The learner imports the .ics file; the static page itself does not schedule closed-browser alerts or write to an external calendar. Calendar files contain no study notes.
+
+`gamification.js` contains the pure reward definitions, local-date helpers, source-derived calculations and badge artwork. `index.html` integrates activity completion and UI. The new relative script runs from disk and is included in the verified offline release. Older open tabs can retrieve their matching versioned helper from retained project caches.
+
+The unchanged v1 state receives an additive `game` section: settings, dated events, removed record IDs and one unfinished tracked block. Quiz-set identity and optional mixed-rehearsal fields are additive. Totals and earned badges are derived, never authoritative imported counters. Events retain bounded reflections, known activity targets, validated facts and stable IDs. Duplicate IDs are rejected within an import and deduplicated during merge; conflicting records retain current values unless explicitly replaced. Settings and unfinished blocks also have conflict handling, while removal IDs merge as a union. New records appear in normal JSON backups and the Markdown study summary. Existing pre-feature study records remain intact; visit-based rewards start from newly recorded completions.
+
+Verification adds pure scoring/date checks and a seventh browser suite for the real mission workflows, rewards, calendar, history correction, imports and replay. The offline suite also verifies a newly earned practice record through disconnection, verified update and reload. Desktop and phone layouts are reviewed alongside the existing six browser suites.

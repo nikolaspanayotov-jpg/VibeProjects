@@ -5,7 +5,7 @@ Run after changing any cached public asset. The shipped website needs no build.
 from pathlib import Path
 import argparse,hashlib,json
 parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);args=parser.parse_args();root=args.root
-assets=['index.html','curriculum.js?v=20261105-rehearsal','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets=['index.html','curriculum.js?v=20261105-rehearsal','gamification.js?v=20261105-habit','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','manifest.webmanifest','icon-192.png','icon-512.png']
 entries=[dict(path=name,sha256=hashlib.sha256((root/name.split('?')[0]).read_bytes()).hexdigest()) for name in assets]
 version='2026-11-05-'+hashlib.sha256(json.dumps(entries).encode()).hexdigest()[:12]
 script='''/* Generated public-file manifest. Rebuild with tests/build_offline.py. */
@@ -49,7 +49,7 @@ self.addEventListener('fetch',event=>{
   return cached||fetch(request);
  })());return;}
  // An older open tab may request its own versioned curriculum. Keep versions paired.
- if(url.pathname===new URL('curriculum.js',scope).pathname){event.respondWith((async()=>{
+ if(['curriculum.js','gamification.js'].some(file=>url.pathname===new URL(file,scope).pathname)){event.respondWith((async()=>{
   for(const name of await caches.keys())if(name.startsWith(PREFIX)){const cached=await (await caches.open(name)).match(request);if(cached)return cached;}
   return fetch(request);
  })());}

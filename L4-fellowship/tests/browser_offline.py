@@ -33,6 +33,7 @@ with sync_playwright() as p:
  go('workshop-k8');page.locator('#workshop-draft').fill('Synthetic offline draft, original.');saved()
  go('briefing');page.locator('#briefing-finding').fill('Synthetic briefing saved before disconnecting.');saved()
  ctx.set_offline(True)
+ go('ksb-k8');page.locator('#lesson-recall').select_option('help');page.locator('[data-action="record-lesson-review"]').click();assert saved()['game']['events'];offline_game=copy.deepcopy(saved()['game'])
  for route in ['today','ksb-k13','uncertainty','quiz','changes','briefing','retrieval','organisation','connections','offline']:
   go(route);page.reload();expect(page.locator('h1')).to_be_visible();assert 'could not load' not in page.locator('main').inner_text()
  source=page.evaluate('async()=>{let r=await fetch("./solutions.md");return {status:r.status,text:await r.text()}}');assert source['status']==200 and 'Knowledge' in source['text']
@@ -60,7 +61,7 @@ with sync_playwright() as p:
  page.evaluate('()=>{Storage.prototype.setItem=window.savedSetItem}');page.locator('#backup-file').set_input_files(str(out/'temporary-backup.json'));expect(page.locator('#restore-dialog')).to_be_visible();page.locator('[data-action="apply-restore"]').click();expect(page.locator('#restore-dialog')).not_to_be_visible()
  page.locator('[data-action="apply-offline"]').click();page.wait_for_function('document.querySelector(\'meta[name="test-release"]\')?.content==="second"',timeout=30000)
  go('workshop-k8');expect(page.locator('#workshop-draft')).to_have_value('Synthetic temporary draft must survive the update.')
- ctx.set_offline(True);page.reload();expect(page.locator('#workshop-draft')).to_have_value('Synthetic temporary draft must survive the update.');assert page.locator('meta[name="test-release"]').get_attribute('content')=='second'
+ ctx.set_offline(True);page.reload();expect(page.locator('#workshop-draft')).to_have_value('Synthetic temporary draft must survive the update.');assert page.locator('meta[name="test-release"]').get_attribute('content')=='second';assert saved()['game']['events']==offline_game['events']
  checks.append('A verified update waits for application, blocks reload when saving fails, permits export/restore of temporary work and preserves it through activation and offline reload')
  go('offline');page.set_viewport_size({'width':390,'height':900});page.screenshot(path=str(out/'offline-mobile.png'),full_page=True);assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  assert not errors,errors
