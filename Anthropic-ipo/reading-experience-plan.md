@@ -20,7 +20,7 @@ Use `Filing`, `Third-party report`, `Analysis`, and `Calculated` labels selectiv
 - Keyboard activation, modal focus containment, Escape, explicit close, focus/scroll restoration, and source-list handoff work. Preview actions remain reachable at 320px.
 - Recheck the existing responsive, fallback, print, navigation, financial reconciliation, console, and runtime-request checks. Inspect actual captures and correct findings before publication.
 
-All five changes are implemented and verified. Actual browser evidence, inspected captures, print corrections, publication records, and limitations are in [tests/VERIFICATION.md](tests/VERIFICATION.md). Keep both GitHub `Anthropic-ipo/` and the existing private Sites export current after future changes.
+All five changes are implemented and verified. Actual browser evidence, inspected captures, print corrections, publication records, and limitations are in [tests/VERIFICATION.md](tests/VERIFICATION.md). Keep the canonical GitHub `Anthropic-ipo/` publication current after future changes.
 
 ## Second approved set: explain the figures and guide the reading
 
@@ -32,7 +32,7 @@ Preserve the first set of improvements while adding these five:
 4. First-use term links open plain-English definitions with an Anthropic-specific explanation. Reuse the existing glossary as the definition source, preserve ordinary anchor fallbacks, and provide keyboard focus containment, Close/Escape, focus restoration, and an explicit glossary handoff.
 5. Estimated main-guide and chapter reading times exclude the sources and closed supporting content. A subtle desktop position indicator and mobile chapter strip follow the current section. Position is not proof of reading. Opened details may add time; no persistent tracking is required.
 
-Verify calculations, date/status distinctions, both slider directions, reset and keyboard operation, term dialogs/fallbacks, word-count exclusions, chapter position, responsive offsets, printing, and existing interactions. Inspect mobile and desktop screenshots before synchronizing GitHub and Sites.
+Verify calculations, date/status distinctions, both slider directions, reset and keyboard operation, term dialogs/fallbacks, word-count exclusions, chapter position, responsive offsets, printing, and existing interactions. Inspect mobile and desktop screenshots before publishing through GitHub Pages.
 
 This set is implemented. The full browser run recorded 46 passing checks, with direct-file loading unverified because the environment blocks it. Mobile/desktop captures were inspected, the illustration result was moved above its controls for immediate feedback, mobile anchor offsets were corrected for the chapter strip, and print groups were checked. Current publication and verification details are in `tests/VERIFICATION.md`.
 
@@ -47,3 +47,7 @@ Implement the returning-reader change summary, Q2–Q3 compute/revenue trend, th
 ## Approved 5 November retail-access integration
 
 Add a compact Before pricing section with the six platform groups named in the 2 November amendment, explicit unresolved pricing/allocation/eligibility/deadline terms, ordinary links to and from the SpaceX entry-price example, and conditional market effects labeled as analysis. The change summary and sources distinguish 4 November reporting, 2 November disclosure and the 5 November check. Evidence and acceptance criteria are in `retail-access-update-2026-11-05.md`. Preserve the prior commercial research dates and all historical financial/SpaceX views.
+
+## Approved 5 November reading-tools extension
+
+The local article search, hypothetical valuation/sensitivity calculator, scenario evidence tracker, partner relationship map and separate two-page investment brief are implemented. Scope, financial formulas, evidence dates, design and acceptance criteria are in `reading-tools-update-2026-11-05.md`. This approval extends the earlier bounded scope that did not include a valuation calculator or search. Original financial models and historical sources remain intact. Actual checks and publication receipts are recorded in `tests/VERIFICATION.md`.

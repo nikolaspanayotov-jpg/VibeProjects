@@ -1,0 +1,58 @@
+[
+  {
+    "check": "Initial valuation is explicitly hypothetical and uses reported nine-month revenue without annualising",
+    "result": "passed"
+  },
+  {
+    "check": "Search finds current article text, paginates and gives keyboard focus to newly shown results",
+    "result": "passed"
+  },
+  {
+    "check": "Search opens collapsed financial definitions, clears the mobile header and supports reloading its passage URL",
+    "result": "passed"
+  },
+  {
+    "check": "Search handles punctuation, empty and absent queries, treats input as text and clears without navigation",
+    "result": "passed"
+  },
+  {
+    "check": "Mobile keyboard traversal keeps price, shares, revenue choice and reset below the sticky valuation result",
+    "result": "passed"
+  },
+  {
+    "check": "Valuation and all nine sensitivity cases reconcile independently; changing revenue basis updates the period",
+    "result": "passed"
+  },
+  {
+    "check": "Invalid inputs hide stale outputs, basis changes ignore disabled fields, tiny positives stay non-zero and reset restores the example",
+    "result": "passed"
+  },
+  {
+    "check": "All partner relationships expand natively and their evidence previews restore focus",
+    "result": "passed"
+  },
+  {
+    "check": "Each scenario exposes both directions of evidence and the next disclosure to assess",
+    "result": "passed"
+  },
+  {
+    "check": "Search, valuation including large values, expanded partners and scenarios reflow at 320, 390, 768 and 1440px",
+    "result": "passed"
+  },
+  {
+    "check": "Separate brief has a working print action, mobile/desktop reflow and a generated print PDF",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript path retains the worked valuation, partner/scenario disclosures and printable brief",
+    "result": "passed"
+  },
+  {
+    "check": "No page or console errors and no runtime third-party requests",
+    "result": "passed"
+  },
+  {
+    "check": "Brief prints as exactly two A4 pages with and without JavaScript, preserving dates, conditions and material evidence",
+    "result": "passed"
+  }
+]

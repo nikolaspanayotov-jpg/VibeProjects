@@ -1,7 +1,7 @@
 ---
 title: "Anthropic IPO page: implementation plan"
 prepared_on: "2026-10-30"
-status: "Implemented, verified, and published privately on 2026-10-30"
+status: "Implemented and maintained on GitHub Pages; latest additions verified 2026-11-05"
 design: "design-and-content-plan.md"
 review: "design-review.md"
 ---
@@ -14,13 +14,12 @@ Build from the revised [design and content plan](design-and-content-plan.md) and
 
 The implementation is complete in [index.html](index.html). Browser evidence, corrected findings, limitations, and publication details are recorded in [tests/VERIFICATION.md](tests/VERIFICATION.md). The original implementation sequence below is retained as the maintenance specification.
 
-Private viewing link: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
 
 The approved follow-up improvements are specified in [reading-experience-plan.md](reading-experience-plan.md): a 60-second opening brief, per-$100 financial explanations, three reading priorities, paired SpaceX implications, and source previews. This supplements the original implementation sequence below.
 
 The second approved set adds three H1 financial perspectives, an indexed dilution illustration with native controls, a dated milestone roadmap, first-use definitions, and chapter reading estimates/position indicators. These remain within the standalone architecture and preserve the original dated research. The numerical illustration uses hypothetical indices rather than Anthropic valuation inputs.
 
-The approved November amendment refresh is documented in [amendment-2026-11-02-summary.md](amendment-2026-11-02-summary.md). Q3 is now the default ledger, the current financial perspectives use nine-month figures, and the GAAP-to-adjusted bridge and company-reported commitment timing are visible. Original research and matched H1 comparisons remain historical. Publishing status and current verification are recorded separately; do not infer that the private export is current from the existence of the canonical HTML.
+The approved November amendment refresh is documented in [amendment-2026-11-02-summary.md](amendment-2026-11-02-summary.md). Q3 is now the default ledger, the current financial perspectives use nine-month figures, and the GAAP-to-adjusted bridge and company-reported commitment timing are visible. Original research and matched H1 comparisons remain historical. Publishing status and current verification are recorded separately in the validation record.
 
 Completed preparation:
 
@@ -154,7 +153,7 @@ Record viewport/browser details, commands or scenarios, inspected captures, find
 
 Create project `AGENTS.md` with purpose, local serving instructions, architecture, stable anchor/data IDs, visual tokens, source-refresh rules, and important financial distinctions. Document the intentional directory case. Explain why SpaceX data remains a historical case study and why no runtime imports reach other project folders.
 
-The completed page was first published privately through Sites, with an exact export of the canonical HTML. The source archive, pushed hosting commit, and successful deployment are recorded in the verification document. The page and supporting text documents are maintained in the user's requested `Anthropic-ipo/` folder on the VibeProjects `main` branch. Before subsequent publication, inspect the latest repository instructions and diff, reconfirm the dated source status, and verify the configured path.
+The page and supporting documents are maintained in the user's requested `Anthropic-ipo/` folder on the VibeProjects `main` branch and served through GitHub Pages. Before publication, inspect the latest repository instructions and diff, retain explicit source dates, and verify the configured path. Public project notes omit private hosting metadata.
 
 No additional stack selection or mandatory design sign-off is needed to start implementation. If final offer terms remain unavailable, the static guide can still accurately show the dated preliminary status. A numerical valuation model would be a separate extension after reliable capitalization and explicit modeling assumptions are available.
 
@@ -169,7 +168,7 @@ No additional stack selection or mandatory design sign-off is needed to start im
 - [x] Native interactions and no-JavaScript/font fallbacks checked; accessibility limits recorded.
 - [x] Mobile, desktop, print, keyboard, and console checks recorded.
 - [x] Self-contained `index.html`, updated project instructions, preserved research documents.
-- [x] Filing-status review and explicitly dated research snapshot before private publication.
+- [x] Filing-status review and explicitly dated research snapshot before publication.
 
 Repository references: [root instructions][repo-rules], [Frontend Design skill][skill].
 
@@ -183,3 +182,7 @@ Implement the approved access module, unresolved-term qualifications, bidirectio
 
 [repo-rules]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/AGENTS.md
 [skill]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/.agents/skills/frontend-design/SKILL.md
+
+## Approved 5 November reading-tools extension
+
+The local article search, hypothetical valuation/sensitivity calculator, scenario evidence tracker, partner relationship map and separate two-page investment brief are implemented. Scope, financial formulas, evidence dates, design and acceptance criteria are in `reading-tools-update-2026-11-05.md`. This approval extends the earlier bounded scope that did not include a valuation calculator or search. Original financial models and historical sources remain intact. Actual checks and publication receipts are recorded in `tests/VERIFICATION.md`.

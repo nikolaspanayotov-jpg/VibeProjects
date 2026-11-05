@@ -1,283 +1,36 @@
-# Retail-access implementation verification — 5 November 2026
+# Reading-tools implementation verification — 5 November 2026
 
-All five approved integration points are implemented. Evidence and scope are in [retail-access-update-2026-11-05.md](../retail-access-update-2026-11-05.md). The latest reviewed filing remains the 2 November amendment; the retail report is dated 4 November and the register/passage check is 5 November. This is not a new pricing announcement.
+All five approved additions are complete: local article search, a hypothetical valuation calculator and nine-cell sensitivity table, three scenario evidence trackers, five expandable partner relationships, and a separate two-page printable brief. Scope and source notes: [reading-tools-update-2026-11-05.md](../reading-tools-update-2026-11-05.md).
 
-## Current result
-
-The Before pricing section now distinguishes prospective broker distribution from final terms and individual access. Six platform groups remain visible; full names from the prospectus use an optional native table. Eligibility, application availability, deadlines and allocation outcomes require platform confirmation. Final price and retail share count/percentage remain unresolved. No broker account minimum or allocation percentage was invented.
-
-Ordinary links connect the access section and the historical SpaceX entry-price comparison in both directions. The two entry routes distinguish a requested IPO allocation from a later market execution. Possible demand/volatility effects are labeled as analysis and do not establish price direction. The change summary and 28 local source previews distinguish filing, reporting and check dates.
-
-## Checks actually run
+## Actual validation
 
 ```sh
-ANTHROPIC_TEST_URL=http://127.0.0.1:8805/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8806/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8806/ python tests/reading_tools.py
+node --check /tmp/anthropic-tools-inline.js
 ```
 
-**66 browser checks passed; one direct-file check remains unverified because administrator policy blocks file URLs.** The [current results](browser-results.json) cover the six platform groups/full names, allocation and eligibility qualifications, two-way native links, source types/dates, all 28 previews and the existing reading/financial controls. Expanded broker-table reflow passed at 320, 390, 768 and 1440 CSS pixels, including the 390px no-JavaScript path. The source link fallbacks and native disclosure remain usable without JavaScript. No page/console errors or runtime third-party requests were observed.
+**80 checks passed:** 66 existing browser checks and 14 new reading-tool checks. One existing direct-file check remains unverified because the browser's administrator policy blocks file URLs; no bypass was attempted. See [browser-results.json](browser-results.json) and [reading-tools-results.json](reading-tools-results.json).
 
-Inline JavaScript passed `node --check`. The `ledger-data`, `entry-return-data` and `commitment-data` JSON values were compared with the previous page and are unchanged. Original research and historical SpaceX dates remain intact.
+The new checks cover search pagination, punctuation, empty/unknown queries, literal markup input, opening collapsed evidence, focus and reloadable passage links; independent valuation and nine-cell arithmetic; both revenue bases; blank/zero/negative/large inputs; tiny-positive rounding; reset; mobile keyboard clearance; all partner source-preview paths; scenario evidence disclosures; 320/390/768/1440px reflow; the separate print action; no-JavaScript content and both brief print paths. No page/console errors or runtime third-party requests were observed. The final new-tool run includes the last mobile workbench layout adjustment. The broader 66-check regression preceded that confined layout adjustment; affected new behavior and both full-guide PDFs were then checked again.
 
-Actual captures inspected: `retail-mobile-top.png`, `retail-mobile-brokers.png`, `retail-mobile-analysis.png` and `retail-desktop-full.png` in `tests/screenshots/`. The review moved long prospectus names into a native disclosure while keeping the six platforms and material conditions visible. Print expands the full table and avoids repeating the platform tiles. A heading near a page break was kept with its entry-route descriptions. After these print-only changes, both PDFs and affected text/pagination checks were repeated; no broad extra test run was claimed.
+The `ledger-data`, `entry-return-data`, `commitment-data` and `source-preview-data` JSON datasets match the pre-change page exactly. Original research and the SpaceX historical cutoff remain intact. Primary partner roles were re-read in the amended prospectus. This implementation did not perform a new general news sweep or refresh the old market-price snapshot.
 
-Final print output contains **33 A4 pages with JavaScript and 32 without it**. Text extraction retains all platform names, conditional access, the two routes, market-effect qualifications and original source URLs. Retail status/table and route pages were visually inspected. Generated PDFs and screenshots remain local and ignored.
+## Visual and print review
 
-Validated HTML SHA-256: `5788e82231391da6f0764a2b776059c06be20d56541ad77ba5e4e2927e1a086e`.
+Actual mobile and desktop captures inspected in `tests/screenshots/`: `tools-mobile-search.png`, `tools-mobile-valuation.png`, `tools-mobile-sensitivity.png`, `tools-mobile-evidence.png`, `tools-desktop-valuation.png` and `tools-desktop-partners.png`. Review changes made expanded partner cards span the available row, shortened redundant decimal formatting in the sensitivity grid, used neutral scenario-signal colours and kept the mobile valuation result visible while editing. Its sticky scope ends with the input workbench so it does not cover the sensitivity table. Keyboard traversal keeps the controls clear of it.
 
-## Publication boundary
+Both pages of `investment-brief.pdf` were rasterised and inspected. It and `investment-brief-nojs.pdf` are **exactly two A4 pages** at 100% scale with browser headers/footers off. Text extraction verifies dates, retail qualifications, spending/concentration figures, the cash-flow distinction and the historical SpaceX entry examples. The brief remains readable on screen and printable without JavaScript. The full guide prints to **37 pages with JavaScript and 36 without**; partner and calculator print layouts were inspected, and final PDF text retains the new evidence/assumptions. Generated PDFs and screenshots remain local, ignored and reproducible.
 
-Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/main/Anthropic-ipo
+Verification limits: Chromium only; no screen-reader or other-engine session. Print page counts assume the documented A4 settings and embedded fonts. No new exhaustive legal/broker eligibility review or causal market study.
 
-Existing public page: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
+Validated files:
 
-The change is live through the normal main-branch publication. Implementation commit: `cb41d4de26afdebd3b4d57f57ff8ba1e3be498a4`; HTML blob: `564600d7d47126ec81dd0a3f56ca41fdc9f15585`. Pages workflow [42022880903](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/42022880903) completed successfully. At **11:56:45 UTC on 5 November**, the ordinary public URL returned HTTP 200 and 359,270 bytes with SHA-256 `5788e82231391da6f0764a2b776059c06be20d56541ad77ba5e4e2927e1a086e`, exactly matching the validated HTML. No query string or authentication was used. Changes are confined to this project. The owned local preview server was stopped after verification.
+- `index.html`: 395,366 bytes; SHA-256 `d0000c5406888677fb32a928525a2d6ff56f851aa038fe282213ea35d32aefde`.
+- `investment-brief.html`: 93,276 bytes; SHA-256 `f5583083c76663e3fe7f5ce43944ca5e514310e2c19ab154c03f8f85993fcb8c`.
 
-The private Sites mirror retains its earlier publication. The previously recorded automatic approval-review rejection of its live credential transfer remains unresolved; no substitute credential-transfer route or private deployment was attempted for this update, and no audience was changed.
+## Publication
 
-Primary retail facts and the report were read through the web connector. The direct executor SEC download returned a proxy 403 and was not retried through a substitute proxy/host; no raw archive was claimed. The register and selected passage support the dated facts used here. Coverage remains Chromium-only, with no screen-reader session or exhaustive independent legal/platform-eligibility audit. This work does not refresh SpaceX market data.
+Ready for publication to the existing `nikolaspanayotov-jpg/VibeProjects` main branch, limited to `Anthropic-ipo/`. The publication receipt will be recorded after the deployment and served bytes are verified.
 
----
-
-# Reading and commercial-evidence verification — 5 November 2026
-
-The five approved improvements are implemented in the standalone page. Research remains explicitly checked through **4 November 2026**; this implementation and verification completed after midnight on 5 November. Scope, primary sources and formulas are in [content-and-reading-update-2026-11-04.md](../content-and-reading-update-2026-11-04.md). The original research files and historical SpaceX cutoff are preserved.
-
-## Current result
-
-- Returning-reader changes distinguish the latest financial picture, newly incorporated context and unresolved offer terms. Native onward links clear the mobile header.
-- The fixed Q2/Q3 chart derives 48.1%/58.2% compute-to-revenue ratios, a 10.1 percentage-point increase and 46.7%/77.5% quarterly growth from the integer financial dataset. It retains accounting and short-term compute qualifications.
-- Government, enterprise and science scorecards distinguish evidence, analytical opportunity and an unanswered commercial question. Company claims, preprint limitations, discount/no-minimum terms and the scheduled product-event status remain visible. The roadmap includes the 10 November enterprise event.
-- The ownership diagram separates economic participation, voting/board control and tradable supply. Class F's lack of economic rights and the treatment of existing Class N-to-A conversion are explicit.
-- Three SpaceX entry prices use the same $143.89 close on 29 October: $135.00, $150.00 and $211.39 produce +6.6%, −4.1% and −31.9% price returns. The third price is a selected closing high, not an intraday high. Integer-cent data, the shared 0–120 index scale, exclusions and hindsight limitations are preserved.
-- All 26 citations have dated local previews, with current/historical filings, company announcements/research, the SEC register and event schedule identified separately. No new original quotation or runtime external request was added.
-
-## Checks actually completed
-
-```sh
-ANTHROPIC_TEST_URL=http://127.0.0.1:8795/ python tests/browser_smoke.py
-```
-
-**58 checks passed; one direct-file check remains unverified because browser administrator policy blocks file URLs.** The [current results](browser-results.json) include the new arithmetic, source/date/claim types, native links, static fallback content, A4 label geometry and all earlier ledger, reading, dialog, slider, keyboard, responsive and console checks. Responsive widths: 320, 390, 768 and 1440 CSS pixels. Inline JavaScript also passed `node --check`.
-
-Phone and desktop screenshots for `what-changed`, `compute-trend`, `commercial-evidence`, `ownership-map` and `entry-comparison` were inspected. Individual phone government/enterprise/science captures and normal viewport captures avoid the sticky-header artifacts that can appear in tall element screenshots. Existing overview, financial and reading captures were refreshed by the suite. Evidence paths are in `tests/screenshots/nov4-*.png`; generated captures remain local and ignored.
-
-The visual review corrected mobile growth-label alignment, made scorecard provenance consistently use two lines and grouped commercial evidence together in print. A clipped signed return in the initial PDF led to a wider print column and a regression check. Both corrected entry-return pages were visually inspected, with all three signed percentages fully visible; the commercial-scorecard print page was also inspected.
-
-Final PDFs: **31 A4 pages with JavaScript; 30 without JavaScript**. Their pagination differs, but extracted text retains the new figures, legal/commercial qualifications, ownership distinction, historical dates and original source URLs. The verified HTML SHA-256 is:
-
-```text
-786610954584fcff5698fba596a481abfad1e61ed5a4017e08727b4f06fda6ac
-```
-
-## Publication boundary
-
-Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/main/Anthropic-ipo
-
-Existing GitHub Pages route: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
-
-The validated change is live through the repository's normal main flow. Implementation commit: `9d7fa85fc30139e3603aefba0fb84d8d8b2536f9`; HTML blob: `6eb0ffc644fd67450137e6be77038c7892994841`. The Pages workflow [41938890353](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/41938890353) completed successfully. At **00:08:03 UTC on 5 November**, the ordinary public URL returned HTTP 200 and 349,220 bytes with SHA-256 `786610954584fcff5698fba596a481abfad1e61ed5a4017e08727b4f06fda6ac`, exactly matching the validated HTML. This was a read of the normal URL with no query string or authentication. No unrelated project or hosting audience was changed. The owned local preview server was stopped after verification.
-
-The private Sites mirror remains at its earlier October publication. This turn's native connection check still returned HTTP-header bearer credentials, not the supported protected `work_proxy` mode. No token was printed, persisted or sent through terminal input. The earlier automatic approval-review rejection of that transfer remains binding; no push/save/deploy was attempted through a substitute token path. The November source archive/commit identifiers in the historical record below belong to the earlier prepared export, not this new revision.
-
-Limits remain Chromium-only coverage, no assistive-technology screen-reader session, administrator-blocked direct-file loading and a bounded increased-text check. The new official URLs were fetched successfully; this is not an exhaustive legal review or independent validation of company research. No new SpaceX market-data refresh or event study was performed.
-
----
-
-# Implementation verification — 3 November 2026
-
-The standalone [page](../index.html) now incorporates Anthropic's 2 November amendment, checked 3 November, with evidence in [amendment-2026-11-02-summary.md](../amendment-2026-11-02-summary.md). The original October research remains intact. The matched H1 SpaceX comparison and price observations through 29 October are explicitly historical. There is no live quote feed.
-
-## November amendment implementation
-
-All five approved updates are implemented: dated amendment status/history; default Q3 ledger with historical H1/Q2; the complete Q3 GAAP-to-adjusted bridge; issuer-reported commitment timing and scope; and updated nine-month cash panels, definitions and citations.
-
-The default ledger reconciles revenue 16,956 minus expenses 17,523 to operating loss 567, all USD millions. The same data supports −3.3% margin and about $103 expenses per $100 revenue. The fixed 0–18bn scale is preserved across all three periods. The adjusted bridge reconciles −567 + 1,070 stock compensation + 1,960 non-cash charitable contributions = 2,463. Qualifications distinguish the company's adjusted measure from GAAP, cash flow and shareholder economic costs.
-
-Nine-month panels show −$1.26bn operating loss, −$104.04bn rounded net loss and +$6.57bn operating cash inflow, including the fair-value qualification. Cash plus short-term securities is $131.845bn at 30 September, with restricted cash separate. The commitment graphic distinguishes the $895.4bn aggregate, overlapping $447.5bn expected-incurrence and $69.8bn twelve-month-payment views, $213.8bn subject to pre-commencement conditions/termination rights, and the narrower $319.993bn maturity schedule. Historical partner examples are not added to the aggregate.
-
-### November checks
-
-```sh
-ANTHROPIC_TEST_URL=http://127.0.0.1:8785/ python tests/browser_smoke.py
-```
-
-**51 checks passed; direct-file loading remains unverified because browser administrator policy blocks file URLs.** The current [machine-readable results](browser-results.json) supersede the historical runs below. Checks cover all three financial periods and both reconciliations; Q3 restored values/geometry; nine-month and historical period boundaries; source/history dates; all 22 current/historical citation previews; cohort definitions including Ultra; aggregate/subset scope and bar geometry; source links; and all previous reading, glossary, slider, mobile navigation, responsive, fallback, console and print behavior.
-
-Actual screenshots inspected include the new phone overview, Q3 ledger, reconciliation and commitment graphic (`nov-mobile-*.png`), plus `desktop-top.png`, `r2-desktop-operating-reconciliation.png`, `r2-desktop-commitment-overview.png` and `r2-desktop-financial-views.png`. Print pages containing the complete reconciliation/exact table and the commitment graphic were also inspected. Following a print-only grouping correction, only affected PDFs/text checks were repeated; all new figures, source URLs, qualifications and historical comparison labels were retained with and without JavaScript.
-
-Both final PDFs contain 24 A4 pages. The corrected growth and maturity tables keep their headings with their data. The validated HTML SHA-256 is `da9f13df2b5c19263d1fe9ac890bec4ee104ad81956fb1959e49d3186fb6f29e`.
-
-No current offer price, share quantities, date, run-rate revenue or share-price forecast was invented. The only new original excerpt is the short cover qualification; other preview text is labeled as a research note. Original research files and unrelated repository files are preserved.
-
-### November publication boundary
-
-The updated public page is live at https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/ through the repository's normal `main` deployment flow. Implementation commit: `e134aee938a0810b208be51f3dde89ef8d4d2629`. At 23:35:37 UTC on 3 November, the deployed URL returned HTTP 200 and 325,368 bytes with SHA-256 `da9f13df2b5c19263d1fe9ac890bec4ee104ad81956fb1959e49d3186fb6f29e`, exactly matching the validated canonical HTML. GitHub's `main` file blob was independently checked as `a534388bc87e5488e5f668ae2142d57fe1221342`. A cache-busting revision query was used for this verification; there were no authentication or audience changes.
-
-The private Sites mirror has **not** been refreshed. Automatic approval review rejected transfer of a live repository bearer token through terminal input because of secret-exposure risk. No token was delivered and the input-waiting helper was interrupted. A read-only ordinary-Git probe confirmed no protected credential was available. Native Sites save/deploy requires a pushed matching source commit, so it was not called with a stale commit or mismatched archive. The updated private export is prepared locally, awaiting a supported protected credential connection; the earlier owner-only audience is unchanged.
-
-Prepared private-export commit: `27d0cf6f9d7976386c94a17000f39e2b81b0107a`, based on the earlier `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`. Matching archive: `/workspace/sites/anthropic-ipo-briefing-november-prepared.tar.gz`. This is a local preparation record, not proof of a push or deployment. The export matches the canonical hash above. The public GitHub Pages version was independently verified as recorded above.
-
-Verification limits remain Chromium-only coverage, no screen-reader session, blocked direct-file access and a bounded increased-text check. The source refresh covered the selected amendment, filing register and material page inputs; it is not an exhaustive legal or real-time market audit.
-
-## October revision: financial explanations and reading guidance (historical)
-
-The second set of five improvements is implemented, preserving the original dated research and the first improvements. The scope is in [reading-experience-plan.md](../reading-experience-plan.md).
-
-- **Three financial perspectives:** H1 2026 panels show −$693m operating loss, −$80.75bn rounded net loss and +$3.93bn rounded operating cash inflow. The note explains the $72.388bn of non-cash fair-value losses and investing needs. These are distinct measures, not an arithmetic waterfall. They retain their H1 label when the separate ledger switches to Q2.
-- **Dilution illustration:** starting indices of 100 become company value 120, economic shares 125 and value per share 96 (−4%). Native sliders explore company-value changes from −50% to +100% and share-count changes from 0% to +100%. One formula drives the outputs, bars and announcement. The result sits above the controls. The complete default illustration survives without JavaScript; it never supplies an Anthropic valuation or target price.
-- **Milestone roadmap:** expected December 2026 delivery, filed January/March 2027 contract windows and subsequent 90-day notice rights are distinguished from unresolved pricing, earnings and holder-specific release events. Each has a source and monitoring question. The roadmap remains tied to the October snapshot.
-- **First-use glossary:** nine term links open definitions from the existing glossary plus an Anthropic-specific explanation. Native dialogs provide keyboard containment, Escape/Close, focus/scroll restoration and a glossary handoff. Plain links still reach the native glossary without JavaScript. The 20 source previews remain separate.
-- **Reading guidance:** five main chapters are estimated at 200 words/minute. Default chapter estimates of 2, 2, 2, 3 and 3 minutes total about 12 minutes. Sources and closed disclosure bodies are excluded; opened supporting detail adds time. Desktop and mobile indicators describe position through the guide, not proof of reading. Nothing is persisted.
-
-### Latest checks
-
-```sh
-ANTHROPIC_TEST_URL=http://127.0.0.1:8775/ python tests/browser_smoke.py
-```
-
-The run completed with **46 checks passed and one direct-file check unverified because administrator policy blocks file URLs**. The current [results](browser-results.json) supersede the historical runs below.
-
-Tests exercise all three H1 measures and their qualifications; the indexed formula; zero/gain/loss boundaries, native keys, reset and live output; roadmap statuses; all nine definitions; modal keyboard/focus behavior and glossary handoff; source/closed-detail word-count exclusions; opening detail; mobile chapter position and 0–100 bounds. Existing ledger, source-preview, citation, responsive, fallback, console and print checks still pass.
-
-Actual local captures inspected: `r2-mobile-financial-views.png`, `r2-mobile-dilution-example.png`, `r2-mobile-dilution-indices.png`, `r2-mobile-roadmap.png`, `r2-mobile-definition.png`, `r2-desktop-financial-views.png`, `r2-desktop-dilution-example.png` and `r2-desktop-roadmap.png`. A separate check confirmed definition actions remain reachable at 320px.
-
-Visual review led to moving the illustration result above its controls. The chapter strip required corrected mobile anchor offsets; navigation now clears the actual sticky-header height. The full suite passed after these corrections. Only affected print checks were repeated after keeping roadmap and scenario groups together.
-
-Both regenerated PDFs contain **23 A4 pages**. Text extraction checked the new financial measures, qualifications, illustration, roadmap, glossary and original source URLs with and without JavaScript. Printed financial panels, the illustration and roadmap were visually inspected. Reading aids, controls and dialogs do not print. An additional export verified an adjusted +60.0% illustration result; the main reading estimate is restored after printing.
-
-Limits remain: Chromium only, no screen-reader session, direct-file loading blocked by policy, a 720px/doubled-body-text check rather than every browser's zoom behavior, and no exhaustive new external-source/link audit. The research dates have not been advanced.
-
-### Latest publication
-
-The private deployment returned **`succeeded`** at 15:11:07 UTC on 30 October 2026, at the unchanged URL: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
-
-- Canonical/export SHA-256: `39c93673a84d81298791bbe706b289115d59d7991333b42b33881b21fc8ae3fb`.
-- Pushed hosting commit: `3512aa6785d1db496b060ca8f2ecc04c2fc92ca3`.
-- Saved version: `appgprj_6ae463759fc48191915e2a0679c838bb~appgver_a57f426fe37c8191badaed66b643c733`.
-- Deployment: `appgdep_6ae4b37d4f0881919b250b3181ce2df6`.
-- Site identity and owner-only audience were preserved. Packaging used the exact pushed export. No credential was persisted. The canonical source and supporting records are maintained in GitHub under `VibeProjects/Anthropic-ipo/` on `main`; generated screenshots and PDFs remain local and ignored.
-
-## First approved reading revision (historical)
-
-All five improvements approved by the user are implemented. See [reading-experience-plan.md](../reading-experience-plan.md) for the accepted scope.
-
-- Three numbered opening questions pair filed facts with visible qualifications, citations, and onward links.
-- The ledger leads with the signed GAAP result. Operating margin and rounded operating expenses per $100 revenue are derived from the same integer data as the bars: **H1 −$693m, −4.3%, about $104; Q2 +$974m, +8.4%, about $92**. Formulas and both periods remain available in the exact-data table without JavaScript. Operating expenses are explicitly distinguished from cash spending.
-- Demand quality, compute economics, and valuation/dilution lead the driver section, with the editorial priorities labeled as analysis. All six original paired themes remain available; products, partners, and trust are grouped in a native supporting disclosure.
-- Three dated SpaceX observations are paired with Anthropic investment questions. The seven-event chronology remains available in a disclosure. Limits of inference and differences between the businesses are visible.
-- All **20 source entries** have local previews with provenance, dates, source-index research notes, original links, and verified excerpts where available. Seven short excerpt variants across five source entries were checked verbatim against the retained original filing text after whitespace normalization. Customer, financial, and compute citations choose the relevant MD&A excerpt. Other text is labeled as a research note. Market-data dates describe observations/cutoffs rather than invented publication dates. The filed Customer B concentration and Bloomberg identification have separate labels.
-
-### Checks for the first reading revision
-
-That revision recorded **38 checks passed and one direct-file check unverified because administrator policy blocks file URLs**. The linked JSON now contains the latest revision's results above.
-
-The browser tests cover the opening questions; three primary and three supporting themes; paired lessons and chronology; H1/Q2 results, margin, per-$100 values and fixed scale; all 20 previews; contextual excerpts; dates/provenance; original links; keyboard activation; forward/backward Tab containment; Escape and explicit Close; focus and article-scroll restoration; source-list handoff; and 320px preview scrolling to its actions. Existing 320/390/768/1440px reflow, mobile navigation, table, reduced-motion, increased-text, no-JavaScript, font-fallback, console, runtime-request, and print checks also passed.
-
-Actual screenshots inspected in the local `screenshots/` directory: `mobile-briefing.png`, `mobile-economics.png`, `mobile-source-preview.png`, `desktop-briefing.png`, `desktop-drivers.png`, `desktop-spacex.png`, `desktop-source-preview.png`, `mobile-spacex-implication.png`, and `mobile-supporting-drivers.png`. The composition preserves the existing type, palette, financial-bar scale and native disclosure conventions.
-
-The initial keyboard check exposed native Tab navigation reaching browser chrome at the edge of the preview. Explicit first/last-control wrapping corrected this; the full browser suite then passed. Print inspection exposed a split introduction and stranded exact-table header. Print CSS now starts the economics section on a new page, keeps its introduction together, and keeps the exact ledger table together. Only the affected print checks were repeated after that print-only correction.
-
-The regenerated local PDFs contain **21 A4 pages with JavaScript** and **20 without JavaScript**. Text extraction verified the opening brief, derived values, supporting themes, all seven dated events, customer attribution, commitments and original SEC URLs in both. The economics introduction, result and full ledger were confirmed on page 2; that printed page was visually inspected after correction. The source-preview modal is excluded from print; the complete source index remains.
-
-Remaining limits from the initial record still apply: Chromium only, no screen-reader session, no exhaustive external-link/source refresh, and direct-file loading blocked by environment policy. The 720px/doubled-body-text check does not establish every browser's 200% zoom behavior. Research dates and historical-price qualifications have not been advanced.
-
-Canonical page SHA-256 for this revision:
-
-```text
-db0822c0c86692fc5e6268c259c58bf948bfe23fe6b69a93b61b81991dd08ed8
-```
-
-The revised private publication returned **`succeeded`** at 10:36:21 UTC on 30 October 2026, at the unchanged URL: https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
-
-- Pushed hosting commit: `476654aeccdc511209d026cf245c624e2ae078b2`.
-- Saved version: `appgprj_6ae463759fc48191915e2a0679c838bb~appgver_ae169ba619488191857f214ef66fb997`.
-- Deployment: `appgdep_6ae4731962d08191a14002f99d1e6364`.
-- Canonical HTML and the pushed hosting export have the identical SHA-256 above. Site identity and owner-only audience were retained. The source archive was built from the pushed export; no credential was persisted.
-- The same canonical source and supporting text records are maintained in GitHub under `VibeProjects/Anthropic-ipo/` on `main`. Generated PDFs/screenshots remain local and ignored.
-
-## Initial implementation record (historical)
-
-The entries below describe the first publication. Current results, PDFs, and captures have been refreshed for the revision above; original commit/deployment identifiers are retained as history.
-
-## Result
-
-**Private page:** https://anthropic-ipo-briefing-20261030.jazzychord256.chatgpt.site
-
-The Sites deployment returned `succeeded`. Its generated desktop screenshot was downloaded and visually inspected; the expected title, filing-status panel, typography, and preliminary terms rendered correctly. The capture is retained locally as `screenshots/published-preview.jpeg`.
-
-Canonical repository folder: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/main/Anthropic-ipo
-
-The HTML, research, reviewed plans, maintenance notes, test script, results, and this verification record are versioned in GitHub. Generated screenshot and PDF artifacts remain in the execution workspace and are ignored in Git; their paths below are local evidence references.
-
-## Browser checks actually run
-
-The page was served with `python -m http.server 8765 --bind 127.0.0.1` from the project folder. Tests ran with the available Python Playwright installation and `/usr/bin/chromium` (Chromium 154):
-
-```sh
-python tests/browser_smoke.py
-```
-
-The initial run recorded **26 checks passed; one direct-file check was unverified because of browser administrator policy.** The linked JSON now contains the current revision's results.
-
-- HTTP 200, visible preliminary offer terms, and default H1 content.
-- Every internal citation and navigation target exists.
-- Integer financial reconciliation: H1 expenses $16,979m and operating result −$693m; Q2 expenses $10,581m and operating result +$974m.
-- H1/Q2 switching updates the period, figures, sign, live announcement, and bar geometry on the same 0–18bn scale.
-- Native radio arrow-key operation and focus retention.
-- Mobile Contents closes after navigation; the target clears the sticky header. Desktop active navigation tracks the reading position.
-- No page-wide horizontal overflow at 320, 390, 768, and 1440 CSS pixels, including expanded exact-data tables. Wide tables scroll within their labeled region.
-- Expense segments have visible height at mobile, tablet, and desktop widths.
-- Reduced-motion mode, JavaScript disabled, and embedded-font fallback preserve readable content. Without JavaScript, the non-working period switch is hidden and both periods remain in the exact-data table.
-- Reflow with a 720px viewport and doubled body text. This is the specific increased-text check performed; it is not a claim of testing every browser's 200% zoom behavior.
-- No page errors, console errors, or third-party runtime requests during the test.
-- JavaScript-enabled and JavaScript-disabled print PDFs generated successfully.
-
-## Visual review and corrections
-
-Actual captures inspected included `screenshots/mobile-top.png`, `screenshots/mobile-economics.png`, `screenshots/desktop-top.png`, `screenshots/desktop-economics.png`, and `screenshots/desktop-spacex.png`. Full-page captures and additional fallback states are also retained locally in `screenshots/`.
-
-The review led to these corrections:
-
-- Adjusted headline wrapping to avoid an isolated final word.
-- Corrected anchor offsets and current-section tracking.
-- Removed a conflicting percentage-height rule that collapsed the desktop expense bar. Added a meaningful visibility regression check.
-- Outlined light chart segments and strengthened their legend boundaries.
-- Increased small supporting text to at least 14px.
-- Kept the financial ledger together in print after inspecting a split card.
-
-The complete browser suite passed after the bar correction. The final print-only pagination change was checked by regenerating both PDFs and inspecting the affected printed ledger.
-
-## Print
-
-The initial PDFs each contained **18 A4 pages**; current artifacts have been regenerated as described above. Print CSS expands supporting details, removes sticky controls, and exposes source URLs. Text extraction confirmed supporting figures and original SEC URLs survived in both initial versions. Printed pages were visually inspected, including the complete financial ledger after the pagination correction. The embedded font licenses are present in the HTML source and intentionally do not print as page content.
-
-## Content and source boundaries
-
-The page was checked against the research and reviewed design, including financial arithmetic, matched H1 periods, price types, contract ceilings/cancellation terms, and the distinction between filed Customer B concentration and Bloomberg's reported identification. The original Anthropic S-1 cover was reopened before publication and still specified no final offer price or trading date. The page retains an explicitly dated snapshot rather than asserting live offering status.
-
-All internal citation targets were tested. This was not an exhaustive reachability audit of every external link, a fresh independent audit of every filing claim, or a causal attribution of every SpaceX price change. Market explanations remain qualified analysis.
-
-## Remaining limitations
-
-- Direct `file://` navigation returned `ERR_BLOCKED_BY_ADMINISTRATOR` in this environment. It is recorded as unverified; the policy was not bypassed. Static HTTP serving works, and the page has no external runtime dependencies.
-- No assistive-technology screen-reader session was available. Native semantics, keyboard radio operation, focus retention, and the live-region update were checked, but this is not a full accessibility certification.
-- Browser evidence uses Chromium; Safari and Firefox were not run.
-- The research snapshot must be refreshed before representing the page as current after 30 October 2026.
-
-## Exact publication record
-
-The canonical HTML and the Sites `dist/index.html` export have the same SHA-256:
-
-```text
-a6a5a2b9631bb8d1c9107fd3fcbec90be38bc44bda2214f547a7d6c14bdd2f93
-```
-
-- Hosting workspace: `/workspace/sites/anthropic-ipo-briefing`
-- Pushed hosting source commit: `0b1ca666311a5256157550156f3f3197bf119198`
-- Project: `appgprj_6ae463759fc48191915e2a0679c838bb`
-- Saved version: `appgprj_6ae463759fc48191915e2a0679c838bb~appgver_b270d4188fb8819199e0a6999f23992e`
-- Deployment: `appgdep_6ae467ccdc8881919d9a8acaacfc4a96`
-- Deployment status: `succeeded`, 30 October 2026 at 09:48:50 UTC.
-- Sites audience: private. The GitHub repository is public and its source publication is separate from Sites access controls.
-
-The source archive was built from the pushed state with `.openai/hosting.json` and `dist/index.html`. No hosting credential was written into project files or Git configuration. The repository's Frontend Design skill guided implementation; Sites provided the private publication.
+Public project notes omit private hosting URLs, internal identifiers and export paths. Earlier validation history remains available in the repository's commit history. Automatic approval review rejected an upload containing historical private hosting metadata; the public record was narrowed to the current validation and GitHub publication evidence before retrying. No private credential transfer or deployment was attempted.
