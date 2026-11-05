@@ -35,7 +35,7 @@ Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/mai
 
 Existing GitHub Pages route: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
 
-The validated change is published through the repository's normal main flow; its exact served HTML is checked after the push and recorded below. No unrelated project or hosting audience is changed.
+The validated change is live through the repository's normal main flow. Implementation commit: `9d7fa85fc30139e3603aefba0fb84d8d8b2536f9`; HTML blob: `6eb0ffc644fd67450137e6be77038c7892994841`. The Pages workflow [41938890353](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/41938890353) completed successfully. At **00:08:03 UTC on 5 November**, the ordinary public URL returned HTTP 200 and 349,220 bytes with SHA-256 `786610954584fcff5698fba596a481abfad1e61ed5a4017e08727b4f06fda6ac`, exactly matching the validated HTML. This was a read of the normal URL with no query string or authentication. No unrelated project or hosting audience was changed. The owned local preview server was stopped after verification.
 
 The private Sites mirror remains at its earlier October publication. This turn's native connection check still returned HTTP-header bearer credentials, not the supported protected `work_proxy` mode. No token was printed, persisted or sent through terminal input. The earlier automatic approval-review rejection of that transfer remains binding; no push/save/deploy was attempted through a substitute token path. The November source archive/commit identifiers in the historical record below belong to the earlier prepared export, not this new revision.
 
