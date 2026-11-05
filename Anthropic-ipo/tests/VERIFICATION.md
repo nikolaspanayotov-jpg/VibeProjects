@@ -1,3 +1,48 @@
+# Reading and commercial-evidence verification — 5 November 2026
+
+The five approved improvements are implemented in the standalone page. Research remains explicitly checked through **4 November 2026**; this implementation and verification completed after midnight on 5 November. Scope, primary sources and formulas are in [content-and-reading-update-2026-11-04.md](../content-and-reading-update-2026-11-04.md). The original research files and historical SpaceX cutoff are preserved.
+
+## Current result
+
+- Returning-reader changes distinguish the latest financial picture, newly incorporated context and unresolved offer terms. Native onward links clear the mobile header.
+- The fixed Q2/Q3 chart derives 48.1%/58.2% compute-to-revenue ratios, a 10.1 percentage-point increase and 46.7%/77.5% quarterly growth from the integer financial dataset. It retains accounting and short-term compute qualifications.
+- Government, enterprise and science scorecards distinguish evidence, analytical opportunity and an unanswered commercial question. Company claims, preprint limitations, discount/no-minimum terms and the scheduled product-event status remain visible. The roadmap includes the 10 November enterprise event.
+- The ownership diagram separates economic participation, voting/board control and tradable supply. Class F's lack of economic rights and the treatment of existing Class N-to-A conversion are explicit.
+- Three SpaceX entry prices use the same $143.89 close on 29 October: $135.00, $150.00 and $211.39 produce +6.6%, −4.1% and −31.9% price returns. The third price is a selected closing high, not an intraday high. Integer-cent data, the shared 0–120 index scale, exclusions and hindsight limitations are preserved.
+- All 26 citations have dated local previews, with current/historical filings, company announcements/research, the SEC register and event schedule identified separately. No new original quotation or runtime external request was added.
+
+## Checks actually completed
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8795/ python tests/browser_smoke.py
+```
+
+**58 checks passed; one direct-file check remains unverified because browser administrator policy blocks file URLs.** The [current results](browser-results.json) include the new arithmetic, source/date/claim types, native links, static fallback content, A4 label geometry and all earlier ledger, reading, dialog, slider, keyboard, responsive and console checks. Responsive widths: 320, 390, 768 and 1440 CSS pixels. Inline JavaScript also passed `node --check`.
+
+Phone and desktop screenshots for `what-changed`, `compute-trend`, `commercial-evidence`, `ownership-map` and `entry-comparison` were inspected. Individual phone government/enterprise/science captures and normal viewport captures avoid the sticky-header artifacts that can appear in tall element screenshots. Existing overview, financial and reading captures were refreshed by the suite. Evidence paths are in `tests/screenshots/nov4-*.png`; generated captures remain local and ignored.
+
+The visual review corrected mobile growth-label alignment, made scorecard provenance consistently use two lines and grouped commercial evidence together in print. A clipped signed return in the initial PDF led to a wider print column and a regression check. Both corrected entry-return pages were visually inspected, with all three signed percentages fully visible; the commercial-scorecard print page was also inspected.
+
+Final PDFs: **31 A4 pages with JavaScript; 30 without JavaScript**. Their pagination differs, but extracted text retains the new figures, legal/commercial qualifications, ownership distinction, historical dates and original source URLs. The verified HTML SHA-256 is:
+
+```text
+786610954584fcff5698fba596a481abfad1e61ed5a4017e08727b4f06fda6ac
+```
+
+## Publication boundary
+
+Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/main/Anthropic-ipo
+
+Existing GitHub Pages route: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
+
+The validated change is published through the repository's normal main flow; its exact served HTML is checked after the push and recorded below. No unrelated project or hosting audience is changed.
+
+The private Sites mirror remains at its earlier October publication. This turn's native connection check still returned HTTP-header bearer credentials, not the supported protected `work_proxy` mode. No token was printed, persisted or sent through terminal input. The earlier automatic approval-review rejection of that transfer remains binding; no push/save/deploy was attempted through a substitute token path. The November source archive/commit identifiers in the historical record below belong to the earlier prepared export, not this new revision.
+
+Limits remain Chromium-only coverage, no assistive-technology screen-reader session, administrator-blocked direct-file loading and a bounded increased-text check. The new official URLs were fetched successfully; this is not an exhaustive legal review or independent validation of company research. No new SpaceX market-data refresh or event study was performed.
+
+---
+
 # Implementation verification — 3 November 2026
 
 The standalone [page](../index.html) now incorporates Anthropic's 2 November amendment, checked 3 November, with evidence in [amendment-2026-11-02-summary.md](../amendment-2026-11-02-summary.md). The original October research remains intact. The matched H1 SpaceX comparison and price observations through 29 October are explicitly historical. There is no live quote feed.

@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="An independent guide to Anthropic's IPO: growth, compute costs, dilution, headwinds and tailwinds, with lessons from SpaceX's first months on the market. Updated for the 2 November 2026 amendment; checked 3 November.">
+<meta name="description" content="An independent guide to Anthropic's IPO: growth, compute costs, dilution, headwinds and tailwinds, with lessons from SpaceX's first months on the market. Updated for the 2 November 2026 amendment; checked 4 November.">
 <meta name="theme-color" content="#17324D">
 <meta property="og:title" content="Anthropic's IPO: growth, compute and the price you pay">
-<meta property="og:description" content="Understand the business behind Claude, the demands of frontier AI, and what SpaceX's IPO can teach investors. Anthropic filing update checked 3 November 2026; historical SpaceX case study.">
+<meta property="og:description" content="Understand the business behind Claude, the demands of frontier AI, and what SpaceX's IPO can teach investors. Anthropic filing update checked 4 November 2026; historical SpaceX case study.">
 <meta property="og:type" content="website">
 <title>Anthropic's IPO — growth, compute and the price you pay</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%232348A5'/%3E%3Cpath d='M10 27V21M20 27V12M30 27V17' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
@@ -248,6 +248,73 @@ progress.guide-progress::-moz-progress-bar{background:var(--accent)}
 @media print{.filing-history{display:none}.amendment-note{font-size:10pt}.reconciliation{padding:16px;break-inside:avoid}.reconciliation h3,.commitment-overview h3{font-size:15pt}.recon-steps{grid-template-columns:repeat(4,1fr);gap:18px}.recon-steps span{font-size:9pt}.recon-steps strong{font-size:15pt}.recon-note,.cash-position,.commitment-conditions,.obligation-caption{font-size:10pt}.commitment-overview{padding:17px;break-inside:avoid}.obligation-heading{font-size:10pt}.obligation-heading strong{font-size:16pt}.obligation-axis{font-size:9pt}.obligation-track{height:16px;print-color-adjust:exact}.historical-label{font-size:9pt}.maturity-table{min-width:0;break-inside:avoid}.growth-history{break-inside:avoid}}
 
 @media print{html{scroll-padding-top:0}body{font-size:11pt;line-height:1.45;color:#17324d}.wrap{max-width:none;padding:0}.masthead{position:static;border-bottom:1px solid #aaa}.masthead-inner{min-height:50px}.header-links,.mobile-contents,.hero-actions,.contents-rail,.period-control,.skip,.footer-inner>a{display:none!important}.hero{padding-top:22px}.hero-grid{grid-template-columns:1.3fr 1fr;gap:24px}h1{font-size:30pt}h2{font-size:21pt}h3{font-size:15pt}.hero-lead{font-size:12pt}.hero-meta,.small,.status-list dt,.source-kind{font-size:9pt}.status-panel{margin:0;padding:16px}.status-list{display:block}.status-list dd{font-size:10pt}.takeaways{display:block;padding:15px 0;margin-top:20px}.takeaways li{font-size:10pt;margin-bottom:8px}.article-layout{display:block;padding-top:28px}.article-body{max-width:none}.section{padding-bottom:28px;break-before:auto}.section-divider{padding-top:24px!important}.section-heading p{font-size:12pt}.ledger{padding:18px;break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}.ledger-result{flex-direction:row}.ledger-chart{break-inside:avoid}.cost-key{grid-template-columns:repeat(2,1fr)}.chart-row-heading{font-size:11pt}.chart-amount{font-size:15pt}.result-amount{font-size:23pt}.result-explainer,.ledger-note,.detail-body p,.driver-pair p,.watch,.ownership>p,.relationship p{font-size:10pt}.driver-pair{grid-template-columns:1fr 1fr}.mobile-polarity{display:block;font-size:9pt}.risk-heading{display:none}.driver-row{padding:16px 0;break-inside:avoid}.driver-row h3{font-size:15pt}.details>summary,.event summary{font-size:11pt;break-after:avoid}.details::details-content,.event::details-content{content-visibility:visible!important;display:block!important;height:auto!important}details> *:not(summary){display:block!important}details{break-inside:auto}.detail-body{padding-bottom:14px}.table-wrap{overflow:visible}.ledger-table,.commitment-table,.comparison-table{min-width:0}table{font-size:9pt}caption,thead th{font-size:9pt}tbody td,tbody th{padding:8px 6px}.growth-history{grid-template-columns:1fr 1fr}.contract-terms{grid-template-columns:1fr 1fr}.contract-example{break-inside:avoid}.lesson-list{display:block}.lesson-list li{font-size:10pt;margin-bottom:10px}.event summary{grid-template-columns:80px 100px minmax(0,1fr);gap:14px;padding:14px 0}.event time,.event-price,.event-title{grid-column:auto;grid-row:auto}.event summary::after{display:none}.event-title{font-size:11pt}.event-price{font-size:16pt}.event .detail-body{padding:0 0 14px 94px}.relationship,.comparison{break-inside:avoid}.relationship-diagram{grid-template-columns:1fr 1fr 1fr}.watchlist{grid-template-columns:1fr 1fr}.watchlist li,.scenario p{font-size:10pt}.scenario-grid{grid-template-columns:repeat(3,1fr)}.sources-list{grid-template-columns:1fr}.sources-list li{break-inside:avoid;padding:10px 0}.sources-list a{font-size:10pt;min-height:0;display:inline}.sources-list a::after{content:' (' attr(href) ')';display:block;font-weight:400;font-size:8pt;overflow-wrap:anywhere;color:#17324d}.source-kind,.sources-list p,.method,.case-note{font-size:9pt}.sources-inline{display:block}.source-link{min-height:0;font-size:9pt;margin-right:10px}.footer-inner{display:block;font-size:9pt}a{color:#2348a5}.section-heading,h2,h3{break-after:avoid}@page{size:A4;margin:16mm}}
+
+/* November reading update: changes, trends, commercial evidence and ownership. */
+.update-summary{margin-top:32px;padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.update-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px}
+.update-heading h2{font-size:24px;letter-spacing:-.025em}
+.update-heading p{font-size:14px;color:var(--muted)}
+.update-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.update-grid h3{font-size:17px;line-height:1.3;margin-bottom:8px}
+.update-grid p{font-size:16px;line-height:1.5}
+.update-grid a:not(.source-link){display:inline-flex;min-height:40px;align-items:center;font-size:15px;font-weight:600;margin-top:7px}
+.compute-trend,.entry-comparison{margin:27px 0;padding:25px;border:1px solid var(--line);border-radius:10px}
+.compute-trend h3,.entry-comparison h3,.commercial-evidence>h3,.ownership-map>h4{font-size:25px;max-width:32ch}
+.compute-trend .module-meta,.entry-comparison .module-meta{margin-top:10px}
+.trend-chart{margin-top:24px}
+.trend-row+.trend-row{margin-top:22px}
+.trend-heading{display:flex;justify-content:space-between;align-items:baseline;gap:15px;font-size:16px;margin-bottom:8px}
+.trend-heading h4{font-size:17px}
+.trend-heading strong{font-size:25px;line-height:1.2;font-variant-numeric:tabular-nums}
+.trend-track{height:20px;border-inline:1px solid var(--line);background:var(--wash)}
+.trend-bar{height:100%;background:var(--accent);border-radius:0 3px 3px 0}
+.trend-row:first-child .trend-bar{background:var(--muted)}
+.trend-axis{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-top:8px}
+.trend-summary{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0 0;padding-top:19px;border-top:1px solid var(--line)}
+.trend-summary>div{display:flex;flex-direction:column}
+.trend-summary dt{font-size:15px;color:var(--muted);line-height:1.35}
+.trend-summary dd{margin:auto 0 0;padding-top:7px;font:600 25px/1.2 Archivo,Arial,sans-serif;font-variant-numeric:tabular-nums}
+.module-note{font-size:16px;line-height:1.55;margin-top:18px;max-width:var(--reading)}
+.commercial-evidence{margin-top:30px;padding-top:29px;border-top:1px solid var(--line)}
+.commercial-intro{font-size:17px;line-height:1.55;margin-top:13px;max-width:var(--reading)}
+.adoption-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:23px}
+.adoption-card{min-width:0;padding:20px 18px;background:var(--wash);border-top:3px solid var(--accent);border-radius:0 0 7px 7px}
+.adoption-card h4{font-size:21px;margin-top:8px}
+.adoption-card .eyebrow{font-size:14px}
+.adoption-card dl{margin:19px 0 0}
+.adoption-card dt{font-size:14px;font-weight:600;margin-top:16px;color:var(--muted)}
+.adoption-card dt:first-child{margin-top:0}
+.adoption-card dd{margin:4px 0 0;font-size:16px;line-height:1.5}
+.adoption-card .source-link{font-size:14px;margin-top:12px}
+.adoption-watch{font-size:16px;line-height:1.55;margin-top:19px;padding-left:17px;border-left:3px solid var(--accent)}
+.ownership-map{margin-top:25px}
+.ownership-map>h4{font-size:23px}
+.ownership-lanes{list-style:none;padding:0;margin:20px 0 0}
+.ownership-lanes li{display:grid;grid-template-columns:145px minmax(0,1fr) 22px minmax(0,1.15fr);align-items:center;gap:16px;padding:19px 0;border-top:1px solid var(--line)}
+.ownership-lanes h5{font:600 17px/1.3 Archivo,Arial,sans-serif;margin:0}
+.ownership-node{padding:13px 14px;background:var(--wash);border-radius:6px;font-size:16px;line-height:1.45;min-width:0}
+.ownership-node strong{display:block;font-size:16px;margin-bottom:4px}
+.ownership-arrow{font-size:23px;color:var(--muted);text-align:center}
+.ownership-caveat{font-size:16px;line-height:1.55;margin-top:18px}
+.entry-endpoint{font-size:16px;line-height:1.5;margin-top:17px;padding:12px 15px;background:var(--wash);border-radius:6px}
+.entry-rows{list-style:none;padding:0;margin:24px 0 0}
+.entry-row{display:grid;grid-template-columns:170px minmax(0,1fr) 70px;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.entry-row:first-child{padding-top:0}
+.entry-heading h4{font-size:17px}
+.entry-heading p{font-size:14px;line-height:1.4;color:var(--muted);margin-top:5px}
+.entry-track{position:relative;height:20px;background:var(--wash);border-right:1px solid var(--line)}
+.entry-track::after{content:'';position:absolute;top:-5px;bottom:-5px;left:83.3333333333%;border-left:2px dashed var(--muted)}
+.entry-bar{height:100%;background:var(--headwind);border-radius:0 3px 3px 0}
+.entry-row[data-entry="offer"] .entry-bar{background:var(--tailwind)}
+.entry-index{font-size:14px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.entry-return{font:600 25px/1.2 Archivo,Arial,sans-serif;text-align:right;font-variant-numeric:tabular-nums}
+.entry-legend{font-size:14px;color:var(--muted);margin-top:12px}
+.product-milestone{border-left-color:var(--accent)}
+.product-milestone .milestone-status{color:var(--accent)}
+@media(max-width:950px){.adoption-grid{grid-template-columns:1fr}.adoption-card{padding:20px}.adoption-card dl{display:grid;grid-template-columns:105px minmax(0,1fr);gap:12px 18px}.adoption-card dt,.adoption-card dd{margin:0}.ownership-lanes li{grid-template-columns:120px minmax(0,1fr) 18px minmax(0,1fr);gap:12px}.entry-row{grid-template-columns:140px minmax(0,1fr) 65px;gap:14px}}
+@media(max-width:700px){.update-summary{margin-top:28px;padding:23px 0}.update-heading{display:block;margin-bottom:18px}.update-heading p{margin-top:7px}.update-grid{grid-template-columns:1fr;gap:20px}.update-grid>div+div{padding-top:18px;border-top:1px solid var(--line)}.compute-trend,.entry-comparison{padding:22px 18px}.compute-trend h3,.entry-comparison h3,.commercial-evidence>h3{font-size:24px}.trend-heading strong{font-size:25px}.trend-summary{gap:14px}.trend-summary dt{min-height:2.7em}.adoption-card dl{display:block}.adoption-card dt{margin-top:16px}.adoption-card dd{margin-top:4px}.adoption-card h4{font-size:23px}.ownership-lanes li{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:11px;padding:19px 0}.ownership-lanes h5{grid-column:1/-1;margin-bottom:2px}.ownership-node{font-size:15px;padding:12px 10px}.ownership-node strong{font-size:15px}.entry-row{grid-template-columns:minmax(0,1fr) 80px;gap:14px 12px}.entry-heading{grid-column:1;grid-row:1}.entry-return{grid-column:2;grid-row:1}.entry-visual{grid-column:1/-1;grid-row:2}.entry-heading h4{font-size:18px}.entry-heading p{font-size:15px}.entry-index{font-size:15px}}
+@media print{.commercial-evidence{break-inside:avoid}.update-summary{padding:14px 0;break-inside:avoid}.update-heading h2{font-size:16pt}.update-heading p{font-size:9pt}.update-grid{grid-template-columns:repeat(3,1fr);gap:18px}.update-grid h3{font-size:11pt}.update-grid p,.update-grid a:not(.source-link){font-size:10pt}.compute-trend,.entry-comparison{padding:17px;break-inside:avoid}.compute-trend h3,.entry-comparison h3,.commercial-evidence>h3{font-size:16pt}.trend-heading,.module-note,.adoption-watch,.ownership-caveat,.entry-endpoint{font-size:10pt}.trend-heading strong,.trend-summary dd,.entry-return{font-size:18pt}.trend-summary dt,.trend-axis,.entry-index,.entry-legend{font-size:9pt}.trend-track,.entry-track{print-color-adjust:exact}.adoption-grid{grid-template-columns:repeat(3,1fr);gap:14px}.adoption-card{padding:14px 12px;break-inside:avoid;print-color-adjust:exact}.adoption-card h4{font-size:14pt}.adoption-card .eyebrow,.adoption-card dt{font-size:9pt}.adoption-card dl{display:block}.adoption-card dt{margin-top:12px}.adoption-card dd{font-size:10pt;margin-top:4px}.commercial-intro{font-size:10pt}.ownership-map{break-inside:avoid}.ownership-map>h4{font-size:15pt}.ownership-lanes li{grid-template-columns:100px minmax(0,1fr) 18px minmax(0,1.15fr);gap:12px}.ownership-lanes h5{grid-column:auto;font-size:11pt}.ownership-node,.ownership-node strong{font-size:10pt}.entry-row{grid-template-columns:125px minmax(0,1fr) 100px;gap:14px;break-inside:avoid}.entry-return{white-space:nowrap;justify-self:end}.entry-heading{grid-column:auto;grid-row:auto}.entry-visual{grid-column:auto;grid-row:auto}.entry-return{grid-column:auto;grid-row:auto}.entry-heading h4{font-size:11pt}.entry-heading p{font-size:9pt}}
+
 </style>
 <script type="text/plain" id="font-licenses">
 Font: archivo
@@ -461,7 +528,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
  <section class="hero wrap" id="overview" aria-labelledby="page-title">
   <div class="hero-grid">
    <div>
-    <p class="hero-meta">Independent analysis <span aria-hidden="true">/</span> Updated 3 November 2026</p>
+    <p class="hero-meta">Independent analysis <span aria-hidden="true">/</span> Updated 4 November 2026</p>
     <h1 id="page-title"><span style="display:block">Anthropic's IPO:</span>growth, compute and the price you pay</h1>
     <p class="hero-lead">The business behind Claude is growing fast. Shareholder returns will depend on the price paid, the cost of staying at the frontier, and how much value reaches each share.</p>
     <div class="hero-actions"><a class="button" href="#briefing">Read the 60-second briefing</a><a class="text-action" href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm">Read the filing</a></div>
@@ -469,10 +536,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
    <aside class="status-panel" aria-labelledby="status-title">
     <div class="status-heading"><h2 id="status-title">Where the IPO stands</h2><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h6"/></svg></div>
     <p class="status-type">Amendment No. 1 · preliminary</p>
-    <dl class="status-list"><div><dt>Latest amendment</dt><dd><time datetime="2026-11-02">2 November 2026</time></dd></div><div><dt>Information checked</dt><dd><time datetime="2026-11-03">3 November 2026</time></dd></div><div><dt>Offer price</dt><dd>Not specified in this filing</dd></div><div><dt>Trading date</dt><dd>Not specified in this filing</dd></div><div><dt>Proposed Nasdaq symbol</dt><dd>ANT</dd></div></dl>
+    <dl class="status-list"><div><dt>Latest amendment</dt><dd><time datetime="2026-11-02">2 November 2026</time></dd></div><div><dt>Information checked</dt><dd><time datetime="2026-11-04">4 November 2026</time></dd></div><div><dt>Offer price</dt><dd>Not specified in this filing</dd></div><div><dt>Trading date</dt><dd>Not specified in this filing</dd></div><div><dt>Proposed Nasdaq symbol</dt><dd>ANT</dd></div></dl>
     <a class="source-link" href="#source-a-cover">Latest filing and status notes</a>
     <details class="filing-history" id="filing-history"><summary>Filing history</summary><ol><li><time datetime="2026-11-02">2 November 2026</time><br><a class="source-link" href="#source-a-cover">Amendment No. 1 · latest reviewed filing</a></li><li><time datetime="2026-10-26">26 October 2026</time><br><a class="source-link" href="#source-a-original">Original S-1 · historical source</a></li></ol></details>
    </aside>
+  </div>
+  <div class="update-summary" id="what-changed" aria-labelledby="changes-title">
+   <div class="update-heading"><h2 id="changes-title">What changed?</h2><p>Guide review · <time datetime="2026-11-04">4 November 2026</time></p></div>
+   <div class="update-grid">
+    <div><h3>The latest financial picture</h3><p>The 2 November amendment adds Q3 results: rapid revenue growth, a return to GAAP operating loss, and a larger disclosed capacity bill.</p><a href="#compute-trend">See the cost trend →</a></div>
+    <div><h3>New commercial context</h3><p>Added to this guide: the 4 November biology research, the 27 October government agreement, and the enterprise event scheduled for 10 November.</p><a href="#commercial-evidence">Weigh the adoption evidence →</a></div>
+    <div><h3>Still unresolved</h3><p>No newer filing appeared in the SEC register when checked on 4 November. Offer price, final share quantities and the trading date remain unspecified.</p><a class="source-link" href="#source-a-register">SEC register and check date</a></div>
+   </div>
   </div>
   <div class="briefing" id="briefing" aria-labelledby="briefing-title">
    <div class="briefing-heading"><h2 id="briefing-title">The IPO in 60 seconds</h2><p>Three questions to carry through the evidence.</p></div>
@@ -504,6 +579,18 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <p class="sr-only" id="period-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
     <p class="ledger-note reading">A profitable quarter does not establish sustained profitability. Management expects margins to fluctuate as more compute comes online, with more expensive short-term capacity adding near-term pressure.</p>
     <div class="sources-inline"><a class="source-link" href="#source-a-mda">Source: financial results and outlook</a></div>
+    <figure class="compute-trend" id="compute-trend" aria-labelledby="compute-trend-title">
+     <h3 id="compute-trend-title">Compute is taking more of each revenue dollar</h3>
+     <p class="module-meta">Q2–Q3 2026 · compute and infrastructure expense ÷ revenue · calculated</p>
+     <div class="trend-chart">
+      <div class="trend-row" data-trend-period="q2"><div class="trend-heading"><h4>Q2 2026</h4><strong id="compute-ratio-q2">48.1%</strong></div><div class="trend-track" aria-hidden="true"><div class="trend-bar" id="compute-ratio-bar-q2" style="width:48.10038944180008%"></div></div></div>
+      <div class="trend-row" data-trend-period="q3"><div class="trend-heading"><h4>Q3 2026</h4><strong id="compute-ratio-q3">58.2%</strong></div><div class="trend-track" aria-hidden="true"><div class="trend-bar" id="compute-ratio-bar-q3" style="width:58.16820004718094%"></div></div></div>
+      <div class="trend-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100% of revenue</span></div>
+     </div>
+     <dl class="trend-summary"><div><dt>Revenue growth · quarter over quarter</dt><dd id="trend-revenue-growth">+46.7%</dd></div><div><dt>Compute expense growth · quarter over quarter</dt><dd id="trend-compute-growth">+77.5%</dd></div></dl>
+     <figcaption class="module-note">Compute's share of revenue increased <strong id="compute-ratio-change">10.1 percentage points</strong>. This compares one expense category with revenue; it is not a cash-spending ratio or the margin after all operating costs. Q3 also included $5.0bn of short-term compute expense.</figcaption>
+     <a class="source-link" href="#source-a-mda" data-preview-context="compute">Filing: quarterly compute costs</a>
+    </figure>
     <div class="reconciliation" id="operating-reconciliation" aria-labelledby="reconciliation-title"><h3 id="reconciliation-title">Why adjusted profit differs</h3><p class="module-meta">Q3 2026 · US$ millions · company-defined non-GAAP reconciliation</p><ol class="recon-steps"><li><span>GAAP operating loss</span><strong class="result-negative">−$567m</strong></li><li><span>Stock compensation excluded</span><strong>+$1,070m</strong></li><li><span>Non-cash charitable contributions excluded</span><strong>+$1,960m</strong></li><li><span>Adjusted operating income</span><strong class="result-positive">+$2,463m</strong></li></ol><p class="recon-note">−567 + 1,070 + 1,960 = 2,463. Adjusted operating income is not cash flow. Excluded compensation and charitable charges can still have economic or dilution consequences for shareholders.</p><a class="source-link" href="#source-a-mda" data-preview-context="financial">Filing: quarterly non-GAAP reconciliation</a></div>
     <details class="details" id="exact-figures"><summary>View the exact figures for all three periods</summary><div class="detail-body"><div class="table-wrap" tabindex="0" role="region" aria-label="Operating figures, scroll table if needed"><table class="ledger-table"><caption>Anthropic · amounts in US$ billions unless stated · unaudited. H1 is January–June; Q2 is included in H1. Q3 is July–September.</caption><thead><tr><th scope="col">Measure</th><th scope="col" class="numeric">H1 2026</th><th scope="col" class="numeric">Q2 2026</th><th scope="col" class="numeric">Q3 2026</th></tr></thead><tbody><tr><th scope="row">Revenue</th><td class="numeric">16.286</td><td class="numeric">11.555</td><td class="numeric">16.956</td></tr><tr><th scope="row">Compute and infrastructure</th><td class="numeric">8.945</td><td class="numeric">5.558</td><td class="numeric">9.863</td></tr><tr><th scope="row">Personnel</th><td class="numeric">3.152</td><td class="numeric">1.857</td><td class="numeric">1.711</td></tr><tr><th scope="row">Sales, marketing and partnerships</th><td class="numeric">3.168</td><td class="numeric">2.135</td><td class="numeric">2.361</td></tr><tr><th scope="row">Other operating and administrative</th><td class="numeric">1.714</td><td class="numeric">1.031</td><td class="numeric">3.588</td></tr><tr class="total"><th scope="row">Total operating expenses</th><td class="numeric">16.979</td><td class="numeric">10.581</td><td class="numeric">17.523</td></tr><tr class="total"><th scope="row">GAAP operating income / (loss)</th><td class="numeric">(0.693)</td><td class="numeric">0.974</td><td class="numeric">(0.567)</td></tr><tr><th scope="row">Company-adjusted operating income</th><td class="numeric">1.618</td><td class="numeric">2.235</td><td class="numeric">2.463</td></tr><tr><th scope="row">Operating margin (%) · calculated</th><td class="numeric">-4.3%</td><td class="numeric">8.4%</td><td class="numeric">-3.3%</td></tr><tr><th scope="row">Operating expenses per $100 revenue · rounded</th><td class="numeric">104</td><td class="numeric">92</td><td class="numeric">103</td></tr></tbody></table></div><p class="small" style="margin-top:12px">All three views use a fixed 0–18bn scale. Operating margin = operating result ÷ revenue. Expenses per $100 = total operating expenses ÷ revenue × 100, rounded. Adjusted results exclude the specified compensation and charitable charges. H1 remains a historical half-year view.</p><a class="source-link" href="#source-a-mda">Amended quarterly results and reconciliations</a><a class="source-link" href="#source-a-h1">Original H1 figures</a></div></details>
     <div class="growth-history"><div><h3>The annual revenue base</h3><table><caption>Reported full-year revenue · US$ billions</caption><thead><tr><th scope="col">Year</th><th scope="col" class="numeric">Revenue</th></tr></thead><tbody><tr><th scope="row">2024</th><td class="numeric">0.386</td></tr><tr><th scope="row">2025</th><td class="numeric">4.585</td></tr></tbody></table></div><div><h3>The nine-month acceleration</h3><table><caption>Comparable nine-month periods · US$ billions</caption><thead><tr><th scope="col">Period</th><th scope="col" class="numeric">Revenue</th></tr></thead><tbody><tr><th scope="row">9M 2025</th><td class="numeric">2.545</td></tr><tr><th scope="row">9M 2026</th><td class="numeric">33.242</td></tr></tbody></table></div></div>
@@ -528,6 +615,15 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <article class="driver-row priority-driver" id="driver-demand"><div class="driver-heading"><span class="priority-index" aria-hidden="true">01</span><h3>Demand quality</h3></div><p class="driver-conclusion">Rapid adoption needs to become durable usage.</p><div class="driver-pair"><div><span class="mobile-polarity tailwind-label">Tailwind</span><p>More than 11,900 customers generated at least $100,000 of trailing-year revenue by September 2026, versus more than 950 a year earlier. Deeper deployment can turn Claude into part of everyday work.</p></div><div><span class="mobile-polarity headwind-label">Headwind</span><p>About 79% of nine-month 2026 revenue was consumption-based. Customer activity can fall quickly. The top five customers generated approximately 25% of revenue in the first nine months of 2026.</p></div></div><p class="watch"><strong>Watch:</strong> durable customer expansion, <a class="term-link" href="#glossary" data-term="net-revenue-retention">net revenue retention</a> with consistent definitions, spending concentration and usage that persists beyond early adoption.</p><div class="sources-inline"><a class="source-link" href="#source-a-mda">Customer adoption</a><a class="source-link" href="#source-a-risks">Concentration risks</a></div><details class="details"><summary>Revenue quality and the 900% retention figure</summary><div class="detail-body"><p>Anthropic estimates that 5%–7% of revenue in the first nine months of 2026 came from customers later identified as violating usage policies or commercial terms. Stronger enforcement can reduce future revenue.</p><p>Approximately 900% net revenue retention at September 2026 measures revenue expansion in a qualified customer cohort, comparing a three-month period with the equivalent period a year earlier. It excludes Claude Pro, Max and Ultra subscribers. It is neither customer retention nor a reliable long-term growth assumption. The spending tiers overlap and use actual trailing-year revenue, not signed annual contract value.</p><a class="source-link" href="#source-a-definitions">Metric definitions</a></div></details></article>
     <article class="driver-row priority-driver" id="driver-compute"><div class="driver-heading"><span class="priority-index" aria-hidden="true">02</span><h3>Compute economics</h3></div><p class="driver-conclusion">Efficiency must keep pace with the capacity bill.</p><div class="driver-pair"><div><span class="mobile-polarity tailwind-label">Tailwind</span><p>Training and inference improvements can produce more useful output per dollar. Anthropic supports Trainium, TPUs, NVIDIA GPUs and AMD GPUs, increasing hardware flexibility.</p></div><div><span class="mobile-polarity headwind-label">Headwind</span><p>Capacity is ordered ahead of demand. Power, chips or delivery delays can restrict growth; excess capacity can leave costs running ahead of revenue.</p></div></div><p class="watch"><strong>Watch:</strong> utilization, cost per useful task, capacity delivery and the premium paid for temporary supply.</p><a class="source-link" href="#source-a-mda">Compute strategy and cost outlook</a></article>
     <article class="driver-row priority-driver" id="driver-valuation"><div class="driver-heading"><span class="priority-index" aria-hidden="true">03</span><h3>Valuation and dilution</h3></div><p class="driver-conclusion">Company growth must also create value for each share.</p><div class="driver-pair"><div><span class="mobile-polarity tailwind-label">Tailwind</span><p>Capital access and strategic financing can support new research and secure capacity when infrastructure is scarce.</p></div><div><span class="mobile-polarity headwind-label">Headwind</span><p>Conditional funding, equity compensation and public-benefit initiatives can dilute shares. Public investors have limited influence over company decisions.</p></div></div><p class="watch"><strong>Watch:</strong> the terms of future funding and cash generated per economic share.</p><a class="source-link" href="#source-a-governance">Governance and control</a></article>
+    <div class="commercial-evidence" id="commercial-evidence" aria-labelledby="commercial-title">
+     <h3 id="commercial-title">From use to paid demand</h3><p class="commercial-intro">Three kinds of evidence, with different implications for value. Opportunities and unanswered questions below are this guide's analysis; company announcements are identified separately from filed results.</p>
+     <div class="adoption-grid">
+      <article class="adoption-card" id="adoption-government"><p class="eyebrow">Company announcement<br><time datetime="2026-10-27">27 October 2026</time></p><h4>Government</h4><dl><dt>Evidence</dt><dd>Anthropic reports approximately 500 government organizations using Claude and a 40% discount under its expanded GSA agreement.</dd><dt>Opportunity</dt><dd>Wider access could embed Claude in public-sector workflows.</dd><dt>Unresolved</dt><dd>No minimum spending commitment. Adoption does not establish revenue growth or profitability, and separate legal restrictions still require review.</dd></dl><a class="source-link" href="#source-a-gsa">Announcement: adoption and terms</a></article>
+      <article class="adoption-card" id="adoption-enterprise"><p class="eyebrow">Filing<br>September 2026 customer base</p><h4>Enterprise</h4><dl><dt>Evidence</dt><dd>More than 11,900 customers generated at least $100,000 each in trailing-year revenue. This measures paid activity.</dd><dt>Opportunity</dt><dd>Broader deployment could expand usage beyond coding into business functions.</dd><dt>Unresolved</dt><dd>How durable is that spending? Consumption can contract; an adoption milestone is not a guaranteed renewal.</dd></dl><a class="source-link" href="#source-a-mda" data-preview-context="customers">Filing: customer-spend definition</a></article>
+      <article class="adoption-card" id="adoption-science"><p class="eyebrow">Company research<br><time datetime="2026-11-04">4 November 2026</time></p><h4>Science</h4><dl><dt>Evidence</dt><dd>Anthropic describes Claude assisting its biology team in identifying and mapping a vault-like protein structure.</dd><dt>Opportunity</dt><dd>Scientific workflows could broaden the range of useful applications.</dd><dt>Unresolved</dt><dd>This preprint-stage work does not establish incremental revenue, independent commercial adoption or sustainable margins.</dd></dl><a class="source-link" href="#source-a-science">Research: methods and limitations</a></article>
+     </div>
+     <p class="adoption-watch"><strong>Next evidence to watch:</strong> Anthropic's <time datetime="2026-11-10">10 November</time> enterprise event is scheduled to show workplace uses and customer discussions. Look for paid deployments and repeatable customer value. A product demonstration alone does not establish either.</p><a class="source-link" href="#source-a-event">Official enterprise-event schedule</a>
+    </div>
     <details class="details supporting-drivers" id="supporting-drivers"><summary>Explore three supporting drivers: products, partners and trust</summary><div class="detail-body"><div class="risk-heading" aria-hidden="true"><span class="tailwind-label">Tailwinds</span><span class="headwind-label">Headwinds</span></div>
     <article class="driver-row"><h3>Model quality and useful products</h3><div class="driver-pair"><div><span class="mobile-polarity tailwind-label">Tailwind</span><p>Claude's models, platform, coding agent and knowledge-work applications offer several ways into a customer's workflow. Research and customer feedback can reinforce one another.</p></div><div><span class="mobile-polarity headwind-label">Headwind</span><p>OpenAI, Google and open-weight competitors can narrow the advantage or pressure prices. Leadership requires continued research spending and retention of scarce talent.</p></div></div><p class="watch"><strong>Watch:</strong> better model performance translating into paid, recurring work—not benchmark gains alone.</p><a class="source-link" href="#source-a-business">Products and competition</a></article>
     <article class="driver-row"><h3>Distribution and partners</h3><div class="driver-pair"><div><span class="mobile-polarity tailwind-label">Tailwind</span><p>AWS, Google Cloud, Azure and integration partners help Claude reach businesses inside existing purchasing and security arrangements.</p></div><div><span class="mobile-polarity headwind-label">Headwind</span><p>Marketplace channels generated 44% of nine-month 2026 revenue. Some partners also supply capacity, provide capital and compete with Anthropic, creating complex incentives and fees.</p></div></div><p class="watch"><strong>Watch:</strong> channel economics, independent funding and customer access if a major partnership changes.</p><a class="source-link" href="#source-a-risks">Channel and partner risks</a></article>
@@ -542,7 +638,13 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <p class="reading">The move toward Anthropic Direct—leasing chips and hosting them in dedicated facilities—may improve long-term economics. It also brings larger upfront requirements and equipment, power and construction risks.</p>
     <div class="contract-example"><div class="contract-example-top"><h3>A worked example: SpaceXAI</h3><span class="contract-ceiling"><a class="term-link" href="#glossary" data-term="contract-ceiling">Contract ceiling</a></span></div><p class="contract-amount">Up to $120.5bn</p><p>Across agreements with terms extending into 2029. This is not revenue already earned by SpaceX or a fully non-cancelable backlog.</p><dl class="contract-terms"><div><dt>Capacity ramp</dt><dd>Approximately $3.1bn per month when fully delivered, expected in December 2026.</dd></div><div><dt>Cancellation rights</dt><dd>After initial periods ending in January and March 2027, either party can cancel the respective agreements on 90 days' notice.</dd></div></dl><a class="source-link" href="#source-a-mda">Source: infrastructure agreements</a></div>
     <details class="details"><summary>Review the original counterparty examples</summary><div class="detail-body"><p><strong>These figures are not an additive total.</strong> These historical examples from the 26 October filing mix dates, estimates, minimums, ceilings and lease payments; some overlap. Use the new company-reported aggregate above for the headline scope.</p><div class="table-wrap" tabindex="0" role="region" aria-label="Compute commitments, scroll table"><table class="commitment-table"><caption>Original 26 October examples · US$ billions · historical terms and scopes</caption><thead><tr><th scope="col">Arrangement</th><th scope="col">Disclosed amount</th><th scope="col">Timing and qualification</th></tr></thead><tbody><tr><th scope="row">Note 13 purchase commitments</th><td>~265.6</td><td>30 June 2026 snapshot of fixed/minimum commitments, over 1–20 years; not all later deals or leases.</td></tr><tr><th scope="row">Microsoft</th><td>At least 44.9</td><td>November 2026–May 2033; usage-independent minimum with limited exceptions.</td></tr><tr><th scope="row">Google</th><td>At least ~114.5</td><td>April 2026–July 2033; minimum spend and true-up terms.</td></tr><tr><th scope="row">Additional TPU capacity</th><td>Estimated 125–150</td><td>Deliveries in 2028–2031; capacity/deployment/pricing conditions; excluded from the commitments table.</td></tr><tr><th scope="row">Amazon</th><td>At least 110</td><td>May 2026–April 2036; usage-independent minimum with limited exceptions.</td></tr><tr><th scope="row">SpaceXAI</th><td>Up to 120.5</td><td>Into 2029; ramp and cancellation terms described above.</td></tr><tr><th scope="row">AMD initial capacity</th><td>Expected &gt;20</td><td>If fully procured; initial 2027 capacity, deployment conditions; no fixed dollar commitment.</td></tr><tr><th scope="row">Nscale / Lambda</th><td>Up to ~44.6 / ~41.3</td><td>Into 2033 / 2034 respectively; different delivery, financing and cancellation conditions.</td></tr><tr><th scope="row">Broadcom equipment leases</th><td>~161.2</td><td>Excludes interest; five-year master leases, distinct from cloud service purchases.</td></tr></tbody></table></div><p style="margin-top:16px">A cash balance divided by historical burn is not a sufficient runway calculation. Include delivery dates, minimum payments, collateral, utilization and financing conditions.</p><a class="source-link" href="#source-a-original">Original filing: arrangement examples</a><a class="source-link" href="#source-a-mda" data-preview-context="commitments">Latest aggregate and scope</a></div></details>
-    <div class="ownership"><h3>What reaches each share?</h3><p class="reading">Control, economic ownership and available-for-sale shares are separate. Company growth can be offset by a larger share count or a lower valuation multiple.</p><div class="ownership-parts">
+    <div class="ownership"><h3>What reaches each share?</h3><p class="reading">Control, economic ownership and available-for-sale shares are separate. Company growth can be offset by a larger share count or a lower valuation multiple.</p><div class="ownership-map" id="ownership-map" aria-labelledby="ownership-map-title"><h4 id="ownership-map-title">Three different questions about a share</h4>
+     <ol class="ownership-lanes">
+      <li><h5>Economic participation</h5><div class="ownership-node"><strong>Class A + Class N</strong>Equivalent economic rights; generally different voting rights.</div><span class="ownership-arrow" aria-hidden="true">→</span><div class="ownership-node"><strong>Who shares in the value?</strong>Include relevant awards and financing conversions when assessing dilution.</div></li>
+      <li><h5>Voting and board control</h5><div class="ownership-node"><strong>Class T + Class F</strong>LTBT board-election rights and Founder LLC voting power.</div><span class="ownership-arrow" aria-hidden="true">→</span><div class="ownership-node"><strong>Who can direct decisions?</strong>The LTBT elects a board majority. Founder LLC holds 50.1% of voting power on matters submitted to shareholders generally.</div></li>
+      <li><h5>Tradable supply</h5><div class="ownership-node"><strong>Eligible Class A shares</strong>Availability depends on holder-specific release and conversion terms.</div><span class="ownership-arrow" aria-hidden="true">→</span><div class="ownership-node"><strong>Who can sell, and when?</strong>Eligibility increases potential supply; it neither proves selling nor fixes the price direction.</div></li>
+     </ol><p class="ownership-caveat">Class F has no economic rights. Converting existing Class N into Class A does not create economic ownership a second time; new issuance can expand the economic share count. The final share quantities remain unresolved.</p><div class="sources-inline"><a class="source-link" href="#source-a-governance">Filing: rights and control</a><a class="source-link" href="#source-a-shares">Filing: eligible shares</a></div></div>
+    <div class="ownership-parts">
      <details class="details"><summary>Who controls the company?</summary><div class="detail-body"><p>Public Class A shares have one vote each. Class N shares have equivalent economic rights but generally no votes. The Long-Term Benefit Trust uses Class T to elect a majority of authorized directors; Founder LLC's Class F has 50.1% of voting power on matters submitted to shareholders generally, including election of the other directors.</p><p>The public-benefit structure can support long-term research and trust, while allowing decisions that do not maximize financial returns. These mechanisms limit public shareholder influence and takeover pressure. The LTBT does not run daily operations.</p><a class="source-link" href="#source-a-governance">Governance structure</a></div></details>
      <details class="details"><summary>What can create economic dilution?</summary><div class="detail-body"><p>Compensation awards, convertible financing and public-benefit distributions can increase external economic shares. The initial 846.8m-share contribution to the wholly owned benefit fund represented 5% of the specified June fully diluted base; fund-held shares are not outstanding for accounting purposes. External transfers or sales require separate dilution treatment.</p><p>The board's discretionary framework permits up to an additional 2% of the defined base at successive 50% share-price milestones. Each requires the closing price to exceed the threshold on 90 of 120 trading days and the preceding ten-day average to exceed it. A one-day jump does not automatically trigger an issuance.</p><p>June illustrations included a $2.9bn cumulative RSU charge if the IPO had occurred then, plus $23.7bn of remaining RSU compensation over approximately 2.1 years. Final IPO charges were not specified. Financing terms also matter: Broadcom notes, if drawn, can carry paid-in-kind interest and discounted conversion prices that worsen under specified revenue conditions.</p><a class="source-link" href="#source-a-business">Public-benefit framework</a><a class="source-link" href="#source-a-risks">Compensation and financing risks</a></div></details>
      <details class="details"><summary>When can more shares become tradable?</summary><div class="detail-body"><p>Some employees and other holders may transfer up to 10% of their defined holdings from the first trading day and another 35% after FY2026 results. Other holders have phased releases starting 27, 48, 62 and 76 days after the prospectus. Founders and certain large holders have longer restrictions with interim releases.</p><p>These percentages are holder-specific, not percentages of the entire company. Final dates and quantities require final terms. An unlock permits a sale; it does not prove a sale occurred. Converting existing Class N into Class A changes voting/tradable shares without creating new economic ownership a second time.</p><a class="source-link" href="#source-a-shares">Future sales and lock-up terms</a></div></details>
@@ -566,6 +668,17 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
    <section class="section section-divider" id="spacex" aria-labelledby="spacex-title">
     <div class="section-heading"><h2 id="spacex-title">What SpaceX's first months can teach us</h2><p>A strong business can still be a difficult investment at the wrong price. SpaceX's early trading exposed the tension between growth, capital spending and share supply.</p><p class="chapter-time" data-reading-time="spacex"></p></div>
     <p class="lesson-intro">The listed SpaceX includes launch, Starlink, xAI/Grok, X and, since August, Cursor. Its AI exposure makes this a more relevant comparison than the company names suggest.</p>
+    <figure class="entry-comparison" id="entry-comparison" aria-labelledby="entry-comparison-title">
+     <h3 id="entry-comparison-title">One stock. Three entry prices.</h3><p class="module-meta">SpaceX historical price returns · each entry starts at an index of 100</p>
+     <p class="entry-endpoint"><strong>Same endpoint for every entry:</strong> $143.89 at the <time datetime="2026-10-29">29 October 2026</time> close. This is the case-study cutoff, not a live quote.</p>
+     <ol class="entry-rows">
+      <li class="entry-row" data-entry="offer"><div class="entry-heading"><h4>IPO allocation</h4><p><time datetime="2026-06-11">11 June 2026</time> · $135.00</p></div><div class="entry-visual"><div class="entry-track" aria-hidden="true"><div class="entry-bar" style="width:88.82098765432099%"></div></div><p class="entry-index">Starting index 100 → <span data-entry-index="offer">106.6</span></p></div><strong class="entry-return result-positive" data-entry-return="offer">+6.6%</strong></li>
+      <li class="entry-row" data-entry="open"><div class="entry-heading"><h4>First exchange trade</h4><p><time datetime="2026-06-12">12 June 2026</time> · $150.00</p></div><div class="entry-visual"><div class="entry-track" aria-hidden="true"><div class="entry-bar" style="width:79.9388888888889%"></div></div><p class="entry-index">Starting index 100 → <span data-entry-index="open">95.9</span></p></div><strong class="entry-return result-negative" data-entry-return="open">−4.1%</strong></li>
+      <li class="entry-row" data-entry="earlyClose"><div class="entry-heading"><h4>Selected early high close</h4><p><time datetime="2026-06-16">16 June 2026</time> · $211.39</p></div><div class="entry-visual"><div class="entry-track" aria-hidden="true"><div class="entry-bar" style="width:56.72374915243547%"></div></div><p class="entry-index">Starting index 100 → <span data-entry-index="earlyClose">68.1</span></p></div><strong class="entry-return result-negative" data-entry-return="earlyClose">−31.9%</strong></li>
+     </ol><p class="entry-legend">All bars use the same 0–120 index scale. The dashed line marks the starting index of 100.</p>
+     <figcaption class="module-note">Calculated price return = endpoint price ÷ entry price − 1. Fees, taxes and distributions are excluded. The 16 June observation is a closing price, not that day's higher intraday peak. IPO allocations were not available to every investor. These selected historical entries are hindsight examples, not a trading strategy or Anthropic forecast.</figcaption>
+     <div class="sources-inline"><a class="source-link" href="#source-s-ipo">Offer price</a><a class="source-link" href="#source-nasdaq">First trade</a><a class="source-link" href="#source-june-prices">Early close</a><a class="source-link" href="#source-prices">Endpoint close</a></div>
+    </figure>
     <div class="lesson-pairs">
      <article class="lesson-pair"><div class="lesson-heading"><span aria-hidden="true">01</span><h3>The price you actually pay</h3></div><div class="lesson-columns"><div><p class="eyebrow">SpaceX evidence</p><p class="lesson-fact">$135 offer → $150 first trade</p><p class="lesson-date">11–12 June 2026 · US dollars per share</p><p>Opening-market buyers paid an 11.1% premium to the IPO allocation price, calculated from these observations.</p><div class="sources-inline"><a class="source-link" href="#source-s-ipo">Filing: $135 offer</a><a class="source-link" href="#source-nasdaq">Exchange report: $150 opening</a></div></div><div class="anthropic-lesson"><p class="eyebrow">The Anthropic question <span class="evidence-badge analysis">Analysis</span></p><p><strong>What valuation does your actual purchase price imply?</strong> Use the economic share count, including relevant awards and conversions. Strong IPO demand can raise the price whose future returns you must justify.</p></div></div></article>
      <article class="lesson-pair"><div class="lesson-heading"><span aria-hidden="true">02</span><h3>Growth and its funding bill</h3></div><div class="lesson-columns"><div><p class="eyebrow">SpaceX evidence</p><p class="lesson-fact">Revenue +92%; capex $18.37bn</p><p class="lesson-date">Q2 2026 · revenue growth year over year</p><p>The 5 August close was $108.27. Contemporary reporting emphasized AI spending and funding worries alongside the results.</p><div class="sources-inline"><a class="source-link" href="#source-s-q2">Filing: results and spending</a><a class="source-link" href="#source-august-reuters">Report: earnings reaction</a></div></div><div class="anthropic-lesson"><p class="eyebrow">The Anthropic question <span class="evidence-badge analysis">Analysis</span></p><p><strong>How much cash will growth require?</strong> Track leases, equipment, committed capacity and utilization together. A revenue beat can coexist with a larger financing requirement; the two companies account for infrastructure differently.</p></div></div></article>
@@ -590,7 +703,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
    </section>
    <section class="section section-divider" id="watchlist" aria-labelledby="watchlist-title">
     <div class="section-heading"><h2 id="watchlist-title">What to know before pricing the shares</h2><p>A great business can be an expensive investment. The missing offer terms are central to judging what an investor is being asked to pay.</p><p class="chapter-time" data-reading-time="watchlist"></p></div>
-    <div class="roadmap" id="roadmap" aria-labelledby="roadmap-title"><h3 id="roadmap-title">What happens next?</h3><p class="roadmap-intro">A roadmap from the 2 November amendment, checked on 3 November 2026. Capacity expectations and contract windows are shown separately from IPO events whose timing remains unresolved.</p>
+    <div class="roadmap" id="roadmap" aria-labelledby="roadmap-title"><h3 id="roadmap-title">What happens next?</h3><p class="roadmap-intro">A roadmap from the 2 November amendment, checked on 4 November 2026. Capacity expectations and contract windows are shown separately from IPO events whose timing remains unresolved.</p>
+     <div class="roadmap-group"><h4>Product evidence to watch</h4><ol class="milestones"><li class="milestone product-milestone"><div><p class="milestone-date"><time datetime="2026-11-10">10 November 2026</time></p><p class="milestone-status">Scheduled product event</p></div><div><h5>Enterprise workflows on show</h5><p>Anthropic schedules workplace demonstrations and customer discussions at The Briefing. This is a product event; IPO pricing remains unconfirmed.</p><p class="milestone-watch"><strong>Watch:</strong> evidence of paid deployment and customer value, followed by whether it appears in reported results.</p><a class="source-link" href="#source-a-event">Official event: schedule and scope</a></div></li></ol></div>
+
      <div class="roadmap-group"><h4>Dated capacity milestones</h4><ol class="milestones">
       <li class="milestone expected"><div><time class="milestone-date" datetime="2026-12">December 2026</time><span class="milestone-status">Expected</span></div><div><h5>SpaceXAI capacity reaches full delivery</h5><p>Management expects full delivery by December, when the aggregate monthly fee would be approximately $3.1bn.</p><p class="milestone-watch"><strong>Watch:</strong> delivered capacity, utilization and whether revenue keeps pace with the bill.</p><a class="source-link" href="#source-a-mda" data-preview-context="compute">Filing: delivery expectation and fees</a></div></li>
       <li class="milestone contract"><div><span class="milestone-date"><time datetime="2027-01">January</time> / <time datetime="2027-03">March 2027</time></span><span class="milestone-status">Filed contract windows</span></div><div><h5>Initial non-cancelable periods end</h5><p>The respective SpaceXAI agreements then allow either party to cancel on 90 days' advance written notice. These months do not automatically end the contracts.</p><p class="milestone-watch"><strong>Watch:</strong> whether flexibility is used, revised terms, and the resulting capacity and cash commitments.</p><a class="source-link" href="#source-a-mda" data-preview-context="compute">Filing: cancellation terms</a></div></li>
@@ -609,10 +724,10 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
    <section class="section section-divider" id="sources" aria-labelledby="sources-title">
     <div class="section-heading"><h2 id="sources-title">Follow the evidence</h2><p>Filing disclosures establish the numbers and terms. Management outlook, reported claims and this guide's interpretation are identified separately.</p></div>
     <div class="evidence-guide" aria-label="Evidence labels"><span class="evidence-badge">Filing</span><span class="evidence-badge">Third-party report</span><span class="evidence-badge analysis">Analysis</span><span class="evidence-badge">Calculated</span></div><p class="small muted" style="margin:12px 0 18px">A filing label identifies a disclosure, including management outlook where stated. Calculations use the displayed inputs; analysis is this guide's interpretation. Citation previews include original excerpts where available and label other text as research notes.</p>
-    <p class="method">Anthropic disclosures were refreshed from the 2 November amendment and checked against the SEC filing register on 3 November 2026. Interim figures are unaudited. Original H1 research and the matched H1 SpaceX comparison remain historical; SpaceX prices end at the 29 October regular-session close. This page is a dated guide, not a live filing or quote feed.</p>
+    <p class="method">Anthropic disclosures were refreshed from the 2 November amendment and checked against the SEC filing register on 4 November 2026. Interim figures are unaudited. Company announcements and research were reviewed separately through 4 November. Original H1 research and the matched H1 SpaceX comparison remain historical; SpaceX prices end at the 29 October regular-session close. This page is a dated guide, not a live filing or quote feed.</p>
     <details class="details definitions" id="glossary"><summary>Plain-English definitions</summary><div class="detail-body"><dl class="definitions-list"><div><dt id="definition-economic-shares">Economic share count</dt><dd>Shares that participate in company value, accounting for relevant share classes, awards and conversions. It can differ from the listed share count and the public float.</dd></div><div><dt id="definition-operating-profit">Operating profit</dt><dd>Revenue after operating expenses, before financing, investment and tax effects. GAAP and adjusted figures can differ.</dd></div><div><dt id="definition-adjusted-ebitda">Adjusted EBITDA</dt><dd>A company-defined measure that excludes interest, taxes, depreciation, amortization and other adjustments. It is not free cash flow.</dd></div><div><dt id="definition-float">Float</dt><dd>Shares available for public trading. It is smaller than total economic shares when holdings are restricted.</dd></div><div><dt id="definition-lock-up">Lock-up</dt><dd>A restriction on transfers for specified holders. Expiry permits selling; it does not require it.</dd></div><div><dt id="definition-dilution">Dilution</dt><dd>A reduction in an existing holder's economic participation when additional economic shares are issued.</dd></div><div><dt id="definition-run-rate-revenue">Run-rate revenue</dt><dd>Anthropic annualizes 28-day consumption fees by multiplying by 13 and monthly subscriptions by 12. It is not a revenue forecast or contracted recurring revenue.</dd></div><div><dt id="definition-net-revenue-retention">Net revenue retention</dt><dd>Expansion, contraction and churn in a qualified existing-customer revenue cohort. Anthropic excludes Pro, Max and Ultra subscribers.</dd></div><div><dt id="definition-contract-ceiling">Contract ceiling</dt><dd>A maximum stated amount under specified terms, not necessarily an unconditional obligation or revenue already earned.</dd></div></dl><p>Source for Anthropic's metric definitions: <a href="#source-a-definitions">Select Defined Terms</a>. Other explanations describe the usage in this guide.</p></div></details>
     <ol class="sources-list">
-     <li id="source-a-cover"><span class="source-kind">Anthropic · amended primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm">Amendment No. 1 and current offering status</a><p>2 November 2026 S-1/A, checked 3 November. Price/range, final share quantities and trading date remain unspecified. Proposed listing: ANT.</p></li>
+     <li id="source-a-cover"><span class="source-kind">Anthropic · amended primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm">Amendment No. 1 and current offering status</a><p>2 November 2026 S-1/A, checked 4 November. Price/range, final share quantities and trading date remain unspecified. Proposed listing: ANT.</p></li>
      <li id="source-a-mda"><span class="source-kind">Anthropic · amended primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm#i199fd6a8a0664d5da497db9a78cf0452_79">Amended results, compute and contractual obligations</a><p>Q3 results and reconciliation; nine-month operating results, liquidity and contractual obligations. The aggregate includes multiple scopes; timing and conditionality notes are material.</p></li>
      <li id="source-a-financials"><span class="source-kind">Anthropic · amended primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm#i199fd6a8a0664d5da497db9a78cf0452_241">September balance sheet and nine-month statements</a><p>Balance sheet at 30 September 2026 and unaudited nine-month statements. Notes cover fair values, expense functions, financing, commitments and subsequent events.</p></li>
      <li id="source-a-business"><span class="source-kind">Anthropic · amended primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm#i199fd6a8a0664d5da497db9a78cf0452_124">Amended business, benefit framework and legal proceedings</a><p>2 November amendment. Product strategy, competition, safety, regulation, litigation and the public-benefit framework.</p></li>
@@ -632,6 +747,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
      <li id="source-unlock-ap"><span class="source-kind">Associated Press · contemporary reporting</span><a href="https://apnews.com/article/c75721ec2e43e5304a2184a9e6abae5e">Shares rose on the first major unlock day</a><p>6 August 2026. $114.92 close, up about 6.1%, after the preceding day's sharp fall.</p></li>
      <li id="source-october-reuters"><span class="source-kind">Reuters · contemporary reporting</span><a href="https://www.investing.com/news/stock-market-news/nasdaq-futures-drop-over-1-as-ai-worries-resurface-oil-climbs-4965180">The 22 October technology sell-off</a><p>22 October 2026. Nasdaq Composite fell 2.6% as AI-related concerns intensified, overlapping SpaceX's earnings-linked share release.</p></li>
      <li id="source-bloomberg"><span class="source-kind">Bloomberg · reported customer identification</span><a href="https://news.bloomberglaw.com/capital-markets/spacexs-largest-3-billion-a-month-customer-b-is-anthropic">Report identifying Customer B as Anthropic</a><p>29 October 2026. Based on a person familiar with the matter. The customer's name is reported sourcing; the 34.5% concentration is separately filed by SpaceX.</p></li>
+     <li id="source-a-register"><span class="source-kind">SEC · filing register</span><a href="https://data.sec.gov/submissions/CIK0002130357.json">Anthropic's SEC submissions register</a><p>Checked 4 November 2026. The latest listed public IPO filing is the 2 November S-1/A, accession 0001628280-26-068676. This check date is separate from the filing date.</p></li>
+     <li id="source-a-gsa"><span class="source-kind">Anthropic · company announcement</span><a href="https://www.anthropic.com/news/expanding-partnership-gsa">Expanded GSA agreement and government adoption</a><p>27 October 2026. Company-reported government adoption, 40% discount and no minimum spending commitment. The announcement does not establish government revenue or profitability, or resolve separate legal proceedings.</p></li>
+     <li id="source-a-science"><span class="source-kind">Anthropic · company research</span><a href="https://www.anthropic.com/research/investigating-vault-particles-with-claude">Claude-assisted research on vault-like protein structures</a><p>4 November 2026. A company-authored, preprint-stage biology study. Evidence of a research application; no incremental commercial revenue or sustainable margin is established by this study.</p></li>
+     <li id="source-a-event"><span class="source-kind">Anthropic · official event schedule</span><a href="https://www.anthropic.com/events/the-briefing-work-at-the-frontier-ls">The Briefing: enterprise-workflow livestream</a><p>Schedule checked 4 November 2026 for a 10 November event, 9:30–11:00 am PST. Workplace demonstrations and customer discussions are planned. This is not an earnings date or an IPO pricing announcement; the schedule may change.</p></li>
+
      <li id="source-a-original"><span class="source-kind">Anthropic · historical primary filing</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">Original 26 October Form S-1</a><p>Original filing used for the 30 October research and historical partner examples. Superseded by the 2 November amendment for current disclosures.</p></li>
      <li id="source-a-h1"><span class="source-kind">Anthropic · historical financial source</span><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm#ica694c859b8e458dbf6a73f56dde9d42_2979">Original H1 2026 financial results</a><p>Historical half-year figures and June balances used in the retained H1 ledger and matched SpaceX comparison. Quarter results in the amendment provide the newer Q3 view.</p></li>
     </ol>
@@ -640,7 +760,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   </div>
  </div>
 </main>
-<footer class="site-footer"><div class="wrap footer-inner"><p class="footer-note">Anthropic research updated 3 November 2026. SpaceX case study through 29 October. Not affiliated with Anthropic or SpaceX. A guide to the evidence, not a recommendation to buy or sell.</p><a href="#overview">Back to top</a></div></footer>
+<footer class="site-footer"><div class="wrap footer-inner"><p class="footer-note">Anthropic research updated 4 November 2026. SpaceX case study through 29 October. Not affiliated with Anthropic or SpaceX. A guide to the evidence, not a recommendation to buy or sell.</p><a href="#overview">Back to top</a></div></footer>
 
 <dialog class="source-preview" id="source-preview" aria-labelledby="source-preview-title" aria-describedby="source-preview-context">
  <div class="source-preview-content">
@@ -659,6 +779,34 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
  <div class="source-preview-content"><div class="preview-header"><span class="evidence-badge">Plain-English definition</span><button type="button" class="preview-close" id="term-preview-close" autofocus>Close<span class="sr-only"> definition</span></button></div>
  <h2 id="term-preview-title">Definition</h2><p class="term-definition" id="term-preview-definition"></p><div class="term-relevance"><h3>Why it matters for Anthropic</h3><p id="term-preview-relevance"></p></div><div class="preview-actions"><a id="term-preview-glossary" href="#glossary">Find in glossary</a></div></div>
 </dialog>
+<script type="application/json" id="entry-return-data">
+{
+ "unit": "USD cents per share",
+ "cutoff": "2026-10-29",
+ "endpointPrice": 14389,
+ "axisMaximum": 120,
+ "entries": {
+  "offer": {
+   "label": "IPO allocation",
+   "date": "2026-06-11",
+   "price": 13500,
+   "sourceId": "source-s-ipo"
+  },
+  "open": {
+   "label": "First exchange trade",
+   "date": "2026-06-12",
+   "price": 15000,
+   "sourceId": "source-nasdaq"
+  },
+  "earlyClose": {
+   "label": "Selected early high close",
+   "date": "2026-06-16",
+   "price": 21139,
+   "sourceId": "source-june-prices"
+  }
+ }
+}
+</script>
 <script type="application/json" id="commitment-data">
 {
  "unit": "USD millions",
@@ -675,7 +823,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 <script type="application/json" id="ledger-data">
 {
  "version": 2,
- "preparedOn": "2026-11-03",
+ "preparedOn": "2026-11-04",
  "unit": "USD millions",
  "axisMaximum": 18000,
  "periods": {
@@ -947,6 +1095,34 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   "date": "2026-10-26",
   "displayDate": "26 October 2026",
   "dateLabel": "Original filing"
+ },
+ "source-a-register": {
+  "kind": "Filing register",
+  "publisher": "SEC",
+  "date": "2026-11-04",
+  "displayDate": "4 November 2026",
+  "dateLabel": "Register checked"
+ },
+ "source-a-gsa": {
+  "kind": "Company announcement",
+  "publisher": "Anthropic",
+  "date": "2026-10-27",
+  "displayDate": "27 October 2026",
+  "dateLabel": "Announcement date"
+ },
+ "source-a-science": {
+  "kind": "Company research",
+  "publisher": "Anthropic",
+  "date": "2026-11-04",
+  "displayDate": "4 November 2026",
+  "dateLabel": "Research published"
+ },
+ "source-a-event": {
+  "kind": "Event schedule",
+  "publisher": "Anthropic",
+  "date": "2026-11-10",
+  "displayDate": "10 November 2026 · schedule checked 4 November",
+  "dateLabel": "Scheduled event"
  }
 }
 </script>
@@ -971,6 +1147,20 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
  const BILLIONS=new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
  const EXACT=new Intl.NumberFormat('en-US',{maximumFractionDigits:3});
  function asBillions(amount){return '$'+BILLIONS.format(amount/1000)+'bn';}
+
+ function renderComputeTrend(){
+  const q2=DATA.periods.q2;
+  const q3=DATA.periods.q3;
+  const ratios=[q2.costs.compute/q2.revenue*100,q3.costs.compute/q3.revenue*100];
+  ['q2','q3'].forEach((key,index)=>{
+   document.getElementById('compute-ratio-'+key).textContent=ratios[index].toFixed(1)+'%';
+   document.getElementById('compute-ratio-bar-'+key).style.width=ratios[index]+'%';
+  });
+  document.getElementById('compute-ratio-change').textContent=(ratios[1]-ratios[0]).toFixed(1)+' percentage points';
+  document.getElementById('trend-revenue-growth').textContent='+'+((q3.revenue/q2.revenue-1)*100).toFixed(1)+'%';
+  document.getElementById('trend-compute-growth').textContent='+'+((q3.costs.compute/q2.costs.compute-1)*100).toFixed(1)+'%';
+ }
+
  function renderLedger(key,announce){
   const p=DATA.periods[key];
   if(!p)return;
@@ -1005,11 +1195,23 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   DATA=JSON.parse(dataEl.textContent);
   const valid=Object.values(DATA.periods).every(p=>Object.values(p.costs).every(Number.isInteger)&&Number.isInteger(p.revenue)&&p.revenue-Object.values(p.costs).reduce((a,b)=>a+b,0)===p.reportedOperatingResult&&p.reportedOperatingResult+p.stockCompensation+p.charitableContributions===p.adjustedOperatingResult);
   if(valid){
+   renderComputeTrend();
    radiosEl.forEach(radioEl=>radioEl.addEventListener('change',()=>{if(radioEl.checked)renderLedger(radioEl.value,true);}));
    renderLedger(radiosEl.find(radioEl=>radioEl.checked)?.value||DATA.defaultPeriod,false);
    document.documentElement.classList.add('js-ready');
   }
  }catch(error){console.warn('Interactive ledger unavailable; the complete figures remain in the page.');}
+
+
+ const entryData=JSON.parse(document.getElementById('entry-return-data').textContent);
+ Object.entries(entryData.entries).forEach(([key,entry])=>{
+  const index=entryData.endpointPrice/entry.price*100;
+  const change=index-100;
+  const rowEl=document.querySelector('[data-entry="'+key+'"]');
+  rowEl.querySelector('[data-entry-index]').textContent=index.toFixed(1);
+  rowEl.querySelector('[data-entry-return]').textContent=(change>=0?'+':'−')+Math.abs(change).toFixed(1)+'%';
+  rowEl.querySelector('.entry-bar').style.width=index/entryData.axisMaximum*100+'%';
+ });
 
  const sourceDialogEl=document.getElementById('source-preview');
  const previewMetadata=JSON.parse(document.getElementById('source-preview-data').textContent);

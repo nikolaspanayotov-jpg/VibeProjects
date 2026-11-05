@@ -28,6 +28,26 @@
     "result": "passed"
   },
   {
+    "check": "Returning-reader changes distinguish filing, added context and unresolved terms; onward links work",
+    "result": "passed"
+  },
+  {
+    "check": "Compute ratios, percentage-point change, growth and bar scale reconcile to the financial dataset",
+    "result": "passed"
+  },
+  {
+    "check": "Commercial scorecards distinguish filed paid activity, company claims, opportunities and limits",
+    "result": "passed"
+  },
+  {
+    "check": "Ownership diagram separates economic, voting and trading rights without double-counting conversions",
+    "result": "passed"
+  },
+  {
+    "check": "Three SpaceX entry returns use one endpoint, integer-cent inputs and a common index scale",
+    "result": "passed"
+  },
+  {
     "check": "Complete Q3 GAAP-to-adjusted bridge with economic qualification",
     "result": "passed"
   },
@@ -80,7 +100,7 @@
     "result": "passed"
   },
   {
-    "check": "All 22 current/historical source previews retain provenance, dates and original links",
+    "check": "All 26 current/historical source previews retain provenance, claim types, dates and original links",
     "result": "passed"
   },
   {
@@ -172,6 +192,10 @@
     "result": "passed"
   },
   {
+    "check": "All five additions retain complete static evidence and calculations without JavaScript",
+    "result": "passed"
+  },
+  {
     "check": "No-JavaScript dilution illustration, term anchor and native glossary",
     "result": "passed"
   },
@@ -194,6 +218,10 @@
   {
     "check": "Direct file:// loading",
     "result": "not verified: browser administrator policy blocks file URLs"
+  },
+  {
+    "check": "A4 print layout contains all three complete signed SpaceX return labels",
+    "result": "passed"
   },
   {
     "check": "Print PDF generated for visual/text inspection",

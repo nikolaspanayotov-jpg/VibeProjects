@@ -173,5 +173,9 @@ No additional stack selection or mandatory design sign-off is needed to start im
 
 Repository references: [root instructions][repo-rules], [Frontend Design skill][skill].
 
+## 4 November approved extension
+
+The returning-reader change summary, compute/revenue trend, commercial-evidence scorecards, ownership diagram and dated SpaceX entry-return comparison are implemented. The original research and earlier reading tools are preserved. `content-and-reading-update-2026-11-04.md` records evidence, formulas and acceptance criteria; `tests/VERIFICATION.md` records actual responsive, interaction, source, fallback and print checks plus publication status.
+
 [repo-rules]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/AGENTS.md
 [skill]: https://github.com/nikolaspanayotov-jpg/VibeProjects/blob/87e1fd38fccc5bae14020d99a7676fe6d4e13f21/.agents/skills/frontend-design/SKILL.md

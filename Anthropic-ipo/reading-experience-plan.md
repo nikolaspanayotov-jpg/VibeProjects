@@ -39,3 +39,7 @@ This set is implemented. The full browser run recorded 46 passing checks, with d
 ## Approved November filing refresh
 
 Use the 2 November S-1/A, checked 3 November, to update status/history, default Q3 financials, the complete GAAP-to-adjusted bridge, overlapping company-reported commitment timing, nine-month cash panels, definitions and source previews. Preserve all earlier reading tools and historical comparisons. The evidence/model is in `amendment-2026-11-02-summary.md`; actual checks and any publishing limitation belong in `tests/VERIFICATION.md`.
+
+## Approved 4 November reading and commercial-evidence update
+
+Implement the returning-reader change summary, Q2–Q3 compute/revenue trend, three commercial-evidence scorecards, ownership/control/tradability diagram and SpaceX entry-price comparison against one historical endpoint. Integrate the 4 November company research, 27 October government announcement and scheduled 10 November product event with explicit source types, limitations and dates. Scope, formulas, design and acceptance criteria are in `content-and-reading-update-2026-11-04.md`. Preserve earlier tools and the historical SpaceX cutoff. Record actual validation and publication in `tests/VERIFICATION.md`.

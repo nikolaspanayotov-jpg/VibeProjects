@@ -81,13 +81,78 @@ with sync_playwright() as p:
     record("Nine-month financial measures, September liquidity and non-cash/investing qualifications")
 
     expect(page.locator(".status-list")).to_contain_text("2 November 2026")
-    expect(page.locator(".status-list")).to_contain_text("3 November 2026")
+    expect(page.locator(".status-list")).to_contain_text("4 November 2026")
     page.locator("#filing-history > summary").click()
     expect(page.locator("#filing-history li")).to_have_count(2)
     expect(page.locator("#filing-history")).to_contain_text("26 October 2026")
     page.locator("#filing-history > summary").click()
     expect(page.locator('.comparison .historical-label')).to_contain_text("January–June 2026 for both")
     record("Latest amendment/check dates, original filing history and historical matched comparison")
+
+    expect(page.locator("#what-changed")).to_contain_text("4 November 2026")
+    expect(page.locator("#what-changed .update-grid > div")).to_have_count(3)
+    expect(page.locator("#what-changed")).to_contain_text("27 October government agreement")
+    expect(page.locator("#what-changed")).to_contain_text("Still unresolved")
+    for link in page.locator('#what-changed a:not(.source-link)').all():
+        link.click()
+        assert page.evaluate("location.hash") == link.get_attribute("href")
+        target = page.locator(link.get_attribute("href"))
+        assert target.bounding_box()["y"] >= page.locator(".masthead").bounding_box()["height"]
+    record("Returning-reader changes distinguish filing, added context and unresolved terms; onward links work")
+
+    ledger = json.loads(page.locator("#ledger-data").text_content())
+    ratios = []
+    for key in ["q2", "q3"]:
+        period = ledger["periods"][key]
+        ratio = period["costs"]["compute"] / period["revenue"] * 100
+        ratios.append(ratio)
+        expect(page.locator(f"#compute-ratio-{key}")).to_have_text(f"{ratio:.1f}%")
+        width = page.locator(f"#compute-ratio-bar-{key}").evaluate("e=>parseFloat(e.style.width)")
+        assert abs(width - ratio) < .001
+    expect(page.locator("#compute-ratio-change")).to_have_text(f"{ratios[1]-ratios[0]:.1f} percentage points")
+    expect(page.locator("#trend-revenue-growth")).to_have_text("+46.7%")
+    expect(page.locator("#trend-compute-growth")).to_have_text("+77.5%")
+    expect(page.locator("#compute-trend")).to_contain_text("not a cash-spending ratio")
+    expect(page.locator("#compute-trend")).to_contain_text("$5.0bn")
+    record("Compute ratios, percentage-point change, growth and bar scale reconcile to the financial dataset")
+
+    expect(page.locator(".adoption-card")).to_have_count(3)
+    expect(page.locator(".adoption-card dt")).to_have_count(9)
+    expect(page.locator("#adoption-government")).to_contain_text("500")
+    expect(page.locator("#adoption-government")).to_contain_text("40% discount")
+    expect(page.locator("#adoption-government")).to_contain_text("No minimum spending commitment")
+    expect(page.locator("#adoption-enterprise")).to_contain_text("trailing-year revenue")
+    expect(page.locator("#adoption-science")).to_contain_text("preprint-stage")
+    expect(page.locator("#adoption-science")).to_contain_text("does not establish incremental revenue")
+    expect(page.locator(".adoption-watch")).to_contain_text("10 November")
+    record("Commercial scorecards distinguish filed paid activity, company claims, opportunities and limits")
+
+    expect(page.locator("#ownership-map .ownership-lanes > li")).to_have_count(3)
+    assert page.locator("#ownership-map h5").all_text_contents() == [
+        "Economic participation", "Voting and board control", "Tradable supply"
+    ]
+    expect(page.locator("#ownership-map")).to_contain_text("50.1%")
+    expect(page.locator("#ownership-map")).to_contain_text("Class F has no economic rights")
+    expect(page.locator("#ownership-map")).to_contain_text("does not create economic ownership a second time")
+    expect(page.locator("#ownership-map")).to_contain_text("neither proves selling nor fixes the price direction")
+    record("Ownership diagram separates economic, voting and trading rights without double-counting conversions")
+
+    entry_data = json.loads(page.locator("#entry-return-data").text_content())
+    assert entry_data["cutoff"] == "2026-10-29" and entry_data["endpointPrice"] == 14389
+    assert [e["price"] for e in entry_data["entries"].values()] == [13500, 15000, 21139]
+    assert entry_data["axisMaximum"] == 120
+    for key, entry in entry_data["entries"].items():
+        index = entry_data["endpointPrice"] / entry["price"] * 100
+        change = index - 100
+        sign = "+" if change >= 0 else "−"
+        row = page.locator(f'[data-entry="{key}"]')
+        expect(row.locator("[data-entry-index]")).to_have_text(f"{index:.1f}")
+        expect(row.locator("[data-entry-return]")).to_have_text(f"{sign}{abs(change):.1f}%")
+        assert abs(row.locator(".entry-bar").evaluate("e=>parseFloat(e.style.width)") - index/120*100) < .001
+    expect(page.locator("#entry-comparison")).to_contain_text("not a live quote")
+    expect(page.locator("#entry-comparison")).to_contain_text("closing price, not that day's higher intraday peak")
+    expect(page.locator("#entry-comparison")).to_contain_text("Fees, taxes and distributions are excluded")
+    record("Three SpaceX entry returns use one endpoint, integer-cent inputs and a common index scale")
 
     expect(page.locator("#operating-reconciliation .recon-steps li")).to_have_count(4)
     assert page.locator("#operating-reconciliation .recon-steps strong").all_text_contents() == ["−$567m", "+$1,070m", "+$1,960m", "+$2,463m"]
@@ -136,12 +201,13 @@ with sync_playwright() as p:
     assert company_slider.input_value() == "20" and shares_slider.input_value() == "25"
     record("Illustrative dilution: formula, zero/gain/loss boundaries, native keys, reset and announcement")
 
-    expect(page.locator("#roadmap .milestone")).to_have_count(5)
+    expect(page.locator("#roadmap .milestone")).to_have_count(6)
     expect(page.locator("#roadmap .expected")).to_contain_text("Expected")
     expect(page.locator("#roadmap .contract")).to_contain_text("90 days' advance written notice")
     expect(page.locator("#roadmap .contract")).to_contain_text("do not automatically end")
     expect(page.locator("#roadmap .unknown")).to_have_count(3)
-    assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-12", "2027-01", "2027-03"]
+    assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-11-10", "2026-12", "2027-01", "2027-03"]
+    expect(page.locator("#roadmap .product-milestone")).to_contain_text("IPO pricing remains unconfirmed")
     record("Roadmap separates expected dates, contract windows and unresolved milestones")
 
     expect(page.locator("a[data-term]")).to_have_count(9)
@@ -266,8 +332,12 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 22
-    record("All 22 current/historical source previews retain provenance, dates and original links")
+    assert len(metadata) == 26
+    assert metadata["source-a-gsa"]["kind"] == "Company announcement"
+    assert metadata["source-a-science"]["kind"] == "Company research"
+    assert metadata["source-a-event"]["date"] == "2026-11-10"
+    assert metadata["source-a-register"]["date"] == "2026-11-04"
+    record("All 26 current/historical source previews retain provenance, claim types, dates and original links")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 
@@ -310,6 +380,7 @@ with sync_playwright() as p:
     expect(page.locator("#financial-views .measure-value").first).to_have_text("−$1.26bn")
     expect(page.locator("#per100-amount")).to_have_text("$92")
     expect(page.locator("#per100-period")).to_have_text("Q2 2026")
+    expect(page.locator("#compute-ratio-q3")).to_have_text("58.2%")
     expect(page.locator("#margin-amount")).to_have_text("+8.4%")
     assert abs(float(page.locator("#revenue-bar").evaluate("e => parseFloat(e.style.width)")) - 11555 / 18000 * 100) < .001
     expect(page.locator("#period-announcement")).to_contain_text("974 million")
@@ -362,6 +433,13 @@ with sync_playwright() as p:
     for section_id in ["financial-views", "dilution-example", "roadmap", "operating-reconciliation", "commitment-overview"]:
         go_section(page, section_id)
         page.screenshot(path=str(OUTPUT / f"r2-mobile-{section_id}.png"))
+    for module_id in ["what-changed", "compute-trend", "commercial-evidence", "ownership-map", "entry-comparison"]:
+        go_section(page, module_id)
+        page.locator(":focus").evaluate_all("es=>es.forEach(e=>e.blur())")
+        page.screenshot(path=str(OUTPUT / f"nov4-mobile-{module_id}.png"))
+    for module_id in ["adoption-government", "adoption-enterprise", "adoption-science"]:
+        go_section(page, module_id)
+        page.screenshot(path=str(OUTPUT / f"nov4-mobile-{module_id}.png"))
     page.locator('a[data-term="economic-shares"]').click()
     page.screenshot(path=str(OUTPUT / "r2-mobile-definition.png"))
     page.locator("#term-preview-close").click()
@@ -389,6 +467,8 @@ with sync_playwright() as p:
     for section_id in ["financial-views", "dilution-example", "roadmap", "operating-reconciliation", "commitment-overview"]:
         go_section(page, section_id)
         page.screenshot(path=str(OUTPUT / f"r2-desktop-{section_id}.png"))
+    for module_id in ["what-changed", "compute-trend", "commercial-evidence", "ownership-map", "entry-comparison"]:
+        page.locator(f"#{module_id}").screenshot(path=str(OUTPUT / f"nov4-desktop-{module_id}.png"))
     go_section(page, "drivers")
     page.screenshot(path=str(OUTPUT / "desktop-drivers.png"))
     page.locator('#drivers a[href="#source-a-mda"]').first.click()
@@ -421,6 +501,15 @@ with sync_playwright() as p:
     expect(nojs.locator("#exact-figures")).to_contain_text("16.956")
     expect(nojs.locator("#operating-reconciliation")).to_contain_text("$2,463m")
     expect(nojs.locator("#commitment-overview")).to_contain_text("$895.4bn")
+    expect(nojs.locator("#compute-ratio-q2")).to_have_text("48.1%")
+    expect(nojs.locator("#compute-ratio-q3")).to_have_text("58.2%")
+    expect(nojs.locator('[data-entry-return="offer"]')).to_have_text("+6.6%")
+    expect(nojs.locator('[data-entry-return="open"]')).to_have_text("−4.1%")
+    expect(nojs.locator('[data-entry-return="earlyClose"]')).to_have_text("−31.9%")
+    expect(nojs.locator("#adoption-government")).to_contain_text("No minimum spending commitment")
+    expect(nojs.locator("#ownership-map .ownership-lanes > li")).to_have_count(3)
+    expect(nojs.locator("#what-changed")).to_be_visible()
+    record("All five additions retain complete static evidence and calculations without JavaScript")
     expect(nojs.locator(".dilution-controls")).not_to_be_visible()
     expect(nojs.locator("#dilution-result")).to_have_text("−4.0%")
     expect(nojs.locator("#dilution-formula")).to_contain_text("120 ÷ 125")
@@ -462,8 +551,17 @@ with sync_playwright() as p:
 
     page.set_viewport_size({"width": 1440, "height": 1000})
     page.goto(URL, wait_until="networkidle")
+    page.set_viewport_size({"width": 794, "height": 1123})
+    page.emulate_media(media="print")
+    print_figure = page.locator("#entry-comparison").bounding_box()
+    for label in page.locator(".entry-return").all():
+        rect = label.bounding_box()
+        assert rect["x"] >= print_figure["x"]
+        assert rect["x"] + rect["width"] <= print_figure["x"] + print_figure["width"]
+    record("A4 print layout contains all three complete signed SpaceX return labels")
     page.pdf(path=str(PROJECT / "tests" / "print-preview.pdf"), print_background=True, prefer_css_page_size=True)
     record("Print PDF generated for visual/text inspection")
+    nojs.set_viewport_size({"width": 794, "height": 1123})
     nojs.pdf(path=str(PROJECT / "tests" / "print-nojs.pdf"), print_background=True, prefer_css_page_size=True)
     record("No-JavaScript print PDF generated")
 
