@@ -167,8 +167,14 @@ for kind in ('repairs','methods','notebook','connections'):
             assert len(entry['choices'])>=2 and len({c['id'] for c in entry['choices']})==len(entry['choices'])
             assert entry['answer'] in [c['id'] for c in entry['choices']]
             assert all(c['label'] and c['feedback'] for c in entry['choices'])
+            if 'chart' in entry:
+                chart=entry['chart'];assert chart['title'] and chart['unit']
+                assert len(chart['labels'])==len(chart['values']) and 1<=len(chart['labels'])<=8
+                assert all(isinstance(v,(int,float)) and 0<=v<=1000000 for v in chart['values'])
+            if 'format' in entry:assert entry['format'] in ('calculation','scenario')
+            if 'followup' in entry:assert entry['followup']
 assert {k for x in REASONING['connections'] for k in x['ksbs']}==set(mapping)
-assert len(REASONING['repairs'])==4 and len(REASONING['methods'])==6
+assert len(REASONING['repairs'])==4 and len(REASONING['methods'])==14
 assert {x['id'] for x in REASONING['workshops']}=={'K','S','B'}
 check_ids=[x['id'] for x in REASONING['checklist']]
 assert len(set(check_ids))==len(check_ids)==6

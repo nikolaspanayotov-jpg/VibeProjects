@@ -5,7 +5,7 @@ Run after changing any cached public asset. The shipped website needs no build.
 from pathlib import Path
 import argparse,hashlib,json
 parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);args=parser.parse_args();root=args.root
-assets=['index.html','curriculum.js?v=20261105-visuals','gamification.js?v=20261105-habit','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets=['index.html','curriculum.js?v=20261105-guided','gamification.js?v=20261105-quests','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
 entries=[dict(path=name,sha256=hashlib.sha256((root/name.split('?')[0]).read_bytes()).hexdigest()) for name in assets]
 version='2026-11-05-'+hashlib.sha256(json.dumps(entries).encode()).hexdigest()[:12]
 script='''/* Generated public-file manifest. Rebuild with tests/build_offline.py. */

@@ -122,6 +122,7 @@ with sync_playwright() as p:
    page.locator('#quiz-reason').fill('Unfinished QA reasoning.')
    page.locator('[data-action="pause-quiz"]').click();page.reload()
    expect(page.locator('.tool-cards a[href="#quiz"]')).to_contain_text('Resume your saved quiz')
+   page.locator('.practice-catalogue > summary').click()
    page.locator('.tool-cards a[href="#quiz"]').click()
    expect(page.locator('#quiz-reason')).to_have_value('Unfinished QA reasoning.')
  assert ids==['Q01','Q02','Q03','Q04','Q05']

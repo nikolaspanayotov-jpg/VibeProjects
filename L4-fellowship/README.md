@@ -113,3 +113,11 @@ node tests/gamification_core.cjs
 The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. Direct file opening works with `index.html`, `curriculum.js` and `gamification.js` present.
 
 For the offline lifecycle check, start another localhost server rooted at a disposable `/tmp/l4-pwa-fixture` directory on port 8001, then run `python3 tests/browser_offline.py`. The test creates its `L4-fellowship/` fixture there, modifies only that copy to simulate releases and tests actual offline reloads. Native OS install dialogs are not covered by headless tests.
+
+### Guided practice and assessment planning
+
+On a phone, Practice, Quests and Rewards are available at the top of Today. Practice offers Recall, Apply and Explain recommendations; expand Browse all activities to reach the full tool collection. Select Picture → concept → scenario in discussion practice, or use Practise with the picture in any KSB lesson. Your unfinished visual responses use the same local save and JSON backup as other discussion sessions.
+
+Readiness starts with ten expandable KSB records. Search by code, title or visual cue, filter gaps, page through results or show all 37. Plan and sources includes a weekly EPA roadmap based on your saved assessment date, study days, priorities and preparation gaps. Set these preferences below the roadmap. Planning itself does not mark anything complete.
+
+The application collection now includes 14 decisions, calculation and chart challenges; quests include six themed packs. After a tracked activity, Review and finish this block appears beside the feedback and opens the existing reflection review. Today then offers your next quest step.

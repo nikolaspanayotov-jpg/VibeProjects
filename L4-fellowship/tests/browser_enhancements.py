@@ -53,6 +53,8 @@ with sync_playwright() as p:
  checks.append('Explicit personal-example self-check persists, clears on response edits and does not imply evidence')
 
  page.evaluate("location.hash='readiness'")
+ expect(page.locator('.readiness-row')).to_have_count(10)
+ page.locator('[data-action="ready-all"]').click()
  expect(page.locator('.readiness-row')).to_have_count(37)
  page.locator('#readiness-category').select_option('S')
  expect(page.locator('.readiness-row')).to_have_count(15)
@@ -75,12 +77,15 @@ with sync_playwright() as p:
  assert actions.locator('[data-gap-kind]').evaluate_all('(els)=>els.map(e=>e.dataset.gapKind)')==['probe','example','evidence']
  assert ready.evaluate('window.__xss') is None
  ready.screenshot(path=str(out/'readiness-desktop.png'),full_page=True)
+ ready.locator('[data-action="ready-all"]').click()
+ ready.locator('[data-readiness-ksb="S12"] summary').click()
  ready.locator('[data-readiness-ksb="S12"] [data-action="gap-action"]').click()
  expect(ready.locator('h1')).to_have_text('Stakeholder Communication & Collaboration')
  expect(ready.locator('#my-response')).to_be_focused()
  ready.locator('[data-example-confirmed="S12"]').check();ready.locator('[data-action="save-response"]').click()
  ready.evaluate("location.hash='readiness'")
  expect(ready.locator('[data-readiness-ksb="S12"]')).to_contain_text('Example self-checked')
+ ready.locator('[data-readiness-ksb="K10"] summary').click()
  ready.locator('[data-readiness-ksb="K10"] [data-action="gap-action"]').click()
  expect(ready.locator('#practice-mode')).to_have_value('probe')
  expect(ready.locator('#practice-topic')).to_have_value('K10')
@@ -96,6 +101,7 @@ with sync_playwright() as p:
  ready.locator('[data-action="rate-practice"][data-result="independent"]').click()
  ready.evaluate("location.hash='readiness'")
  expect(ready.locator('[data-readiness-ksb="K1"]')).to_be_visible()
+ ready.locator('[data-readiness-ksb="K1"] summary').click()
  ready.locator('[data-readiness-ksb="K1"] [data-action="gap-action"]').click()
  expect(ready.locator('input[name="ev-ksbs"][value="K1"]')).to_be_checked()
  assert ready.evaluate('(key)=>JSON.parse(localStorage.getItem(key)).evidence.length',KEY)==0

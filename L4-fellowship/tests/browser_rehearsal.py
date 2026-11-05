@@ -82,7 +82,7 @@ with sync_playwright() as p:
   page.set_viewport_size({'width':width,'height':900})
   for route in ['uncertainty','calibration','changes','briefing','retrieval','offline']:
    go(route);assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(width,route)
- page.set_viewport_size({'width':390,'height':900});go('uncertainty');page.locator('#uncertainty-results').screenshot(path=str(out/'uncertainty-mobile.png'));page.locator('#practice-activity').select_option('briefing');expect(page.locator('#briefing-form')).to_be_visible();page.locator('[data-action="text-size"]').click();assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
+ page.set_viewport_size({'width':390,'height':900});go('uncertainty');page.locator('#uncertainty-results').screenshot(path=str(out/'uncertainty-mobile.png'));page.locator('.practice-browse > summary').click();page.locator('#practice-activity').select_option('briefing');expect(page.locator('#briefing-form')).to_be_visible();page.locator('[data-action="text-size"]').click();assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  page.set_viewport_size({'width':1440,'height':1000});go('uncertainty');page.screenshot(path=str(out/'uncertainty-desktop.png'),full_page=True)
  go('briefing');page.screenshot(path=str(out/'briefing-desktop.png'),full_page=True)
  file=ctx.new_page();file.on('pageerror',lambda e:errors.append(str(e)));file.goto((Path(__file__).resolve().parents[1]/'index.html').as_uri()+'#offline');expect(file.locator('#offline-status')).to_contain_text('Direct file opening works');file.goto((Path(__file__).resolve().parents[1]/'index.html').as_uri()+'#uncertainty');expect(file.locator('[data-stat="se"]')).to_be_visible();file.close()

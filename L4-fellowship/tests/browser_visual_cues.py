@@ -28,7 +28,7 @@ with sync_playwright() as p:
  checks.append('All 37 distinct authored SVGs/names/captions appear in the map, index and matching lesson; browsing every cue preserves answers, rewards and evidence')
  go('library');expect(page.locator('.ksb-row')).to_have_count(37);expect(page.locator('.ksb-row .ksb-with-visual')).to_have_count(37)
  page.locator('#library-search').fill('roadblock');expect(page.locator('.ksb-row')).to_have_count(1);expect(page.locator('.ksb-row .ksb-tag')).to_have_text('B2');page.locator('[data-action="clear-filters"]').click()
- go('readiness');expect(page.locator('.readiness-topic [data-ksb-visual]')).to_have_count(37)
+ go('readiness');page.locator('[data-action="ready-all"]').click();expect(page.locator('.readiness-topic [data-ksb-visual]')).to_have_count(37)
  go('connections-quality');assert page.locator('.connection-node [data-ksb-visual]').evaluate_all('(els)=>els.map(e=>e.dataset.ksbVisual)')==['K8','S6','B5']
  go('practice');page.locator('#practice-topic').select_option('K1');page.locator('[data-action="start-practice"]').click();expect(page.locator('.session-strip [data-ksb-visual]')).to_have_attribute('data-ksb-visual','K1');expect(page.locator('.ksb-memory')).to_contain_text('Law scales');assert saved()['game']['events']==[]
  go('labs-statistics');assert page.locator('.activity-ksbs [data-ksb-visual]').count()>0

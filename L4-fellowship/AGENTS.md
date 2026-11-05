@@ -98,3 +98,13 @@ The runtime helper `ksbVisual` uses trusted compiled shapes only, with escaped t
 `#visual-map` is part of the library and supports a complete printable memory sheet. Library search matches cue names/captions. Keep the index's 37 cells and status markers, mobile readability, lesson navigation, native text-only selects and existing keyboard flows. The versioned curriculum and canonical JSON are in the offline manifest; rebuild `sw.js` after changes.
 
 Run `tests/browser_visual_cues.py` alongside the existing seven suites and the scoring/date checks. Verify all 37 unique cues and captions, identity across index/library/lessons/practice/readiness/connections, no progress or reward changes while browsing, search, keyboard links, phone/tablet layouts, print/PDF, direct-file support and offline reload. Inspect the actual artwork at large and small sizes.
+
+## Guided study and varied application
+
+Practice presents Recall/Apply/Explain first; all 13 original routes remain reachable through the labelled full chooser. The compact Today shortcuts appear on phones above the mission cards. Preserve existing unfinished sessions when starting a recommendation. `visual` is an additional allowed persisted discussion question type, using the existing v1 session/backup/merge paths and independent self-reported recall. Keep all 37 scenario-to-KSB associations and optional accessible text hints. Never score a picture visit as evidence or automatically correct free text.
+
+Readiness uses search, ten-row paging and expandable independent recall/example/evidence records. Show all 37 remains available. Existing full-matrix checks explicitly select it. New `reasoning-activities.json` methods bring the collection to 14; validate authored charts, exact values, assumptions and follow-ups. Six stable quest packs use the existing event kinds and weekly calculation. Preserve the original question, method and quest IDs.
+
+The EPA roadmap derives scheduled tasks from saved days/date/priorities and actual preparation gaps. It is a suggestion, bounded to the earlier of the assessment date and 12 weeks. Past/no-day states must remain actionable. It must not mark tasks complete by rendering or predict a Pass. The nearby activity finish controls use the same source prerequisites and reflection dialog as the original controls.
+
+Run `tests/browser_guided_study.py` alongside all nine previous browser suites. Check mobile shortcuts above the first-screen boundary, nearby finish controls, searched/paged readiness, picture session resume/import, actual calculation/chart/scenario answers, quest selection, deadline/day/priority scheduling, responsive views, direct file opening and offline continuity. Rebuild `sw.js` last after cached changes.

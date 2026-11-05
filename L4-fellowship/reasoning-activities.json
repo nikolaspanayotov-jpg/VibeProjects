@@ -342,6 +342,316 @@
         "Compare MAE or RMSE in original units and report uncertainty; model choice must follow diagnostics."
       ],
       "alternative": "An ordinary naive baseline or time-trend model may be sufficient when seasonality is weak. Sixty observations do not guarantee a complex model will perform better."
+    },
+    {
+      "id": "completion-rate",
+      "title": "Calculate a completion rate",
+      "ksbs": [
+        "K13",
+        "S10",
+        "S14"
+      ],
+      "brief": "A synthetic service completed 18 of 24 eligible requests on time. All 24 belong to the same reporting period. Calculate the on-time percentage.",
+      "choices": [
+        {
+          "id": "75",
+          "label": "75%",
+          "feedback": "18 / 24 × 100 = 75%. State the denominator and reporting period."
+        },
+        {
+          "id": "25",
+          "label": "25%",
+          "feedback": "This is the late share: 6 / 24. It is not the on-time share."
+        },
+        {
+          "id": "133",
+          "label": "133%",
+          "feedback": "24 / 18 reverses the numerator and denominator."
+        }
+      ],
+      "answer": "75",
+      "assumptions": [
+        "Confirm eligibility and the definition of on time.",
+        "Check missing completion dates and whether open cases belong in this denominator."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "What changes if six unresolved cases were excluded from the 24?",
+      "format": "calculation"
+    },
+    {
+      "id": "outlier-summary",
+      "title": "Choose a summary after an unusual value",
+      "ksbs": [
+        "K8",
+        "K13",
+        "S10"
+      ],
+      "brief": "Synthetic waiting times in days are 2, 3, 3, 4 and 38. Calculate the mean and median, then choose a defensible description.",
+      "choices": [
+        {
+          "id": "median",
+          "label": "Mean 10, median 3; investigate 38 and report the skew.",
+          "feedback": "The sum is 50 across five cases. The middle ordered value is 3. Neither justifies deleting the 38-day case."
+        },
+        {
+          "id": "remove",
+          "label": "Delete 38 automatically and report mean 3.",
+          "feedback": "An unusual value might be real. Investigate its source and meaning before excluding it."
+        },
+        {
+          "id": "equal",
+          "label": "Mean and median are both 10.",
+          "feedback": "Only the mean uses the sum divided by n. The median is the third ordered value."
+        }
+      ],
+      "answer": "median",
+      "assumptions": [
+        "Verify units, dates and whether the long wait is genuine.",
+        "Report sample size and spread; five cases may not represent normal service performance."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "How would you explain the mean and median to a manager deciding on a service target?",
+      "format": "calculation"
+    },
+    {
+      "id": "weighted-time",
+      "title": "Combine groups with different sizes",
+      "ksbs": [
+        "K13",
+        "S10",
+        "B4"
+      ],
+      "brief": "Service A handled 20 requests with mean wait 4 days; B handled 80 requests with mean wait 8 days. Calculate the combined mean for all 100 requests.",
+      "choices": [
+        {
+          "id": "weighted",
+          "label": "7.2 days",
+          "feedback": "(20 × 4 + 80 × 8) / 100 = 720 / 100 = 7.2 days."
+        },
+        {
+          "id": "simple",
+          "label": "6 days",
+          "feedback": "A simple mean of 4 and 8 gives equal weight to groups with unequal numbers of requests."
+        },
+        {
+          "id": "sum",
+          "label": "12 days",
+          "feedback": "Adding the group means does not produce an overall mean."
+        }
+      ],
+      "answer": "weighted",
+      "assumptions": [
+        "Groups must be disjoint, use the same measure and cover the intended period.",
+        "Check that the counts and means use the same eligible records."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "When would a simple mean of the two group means be appropriate?",
+      "format": "calculation"
+    },
+    {
+      "id": "chart-change",
+      "title": "Read a chart without claiming a cause",
+      "ksbs": [
+        "K14",
+        "S14",
+        "S12"
+      ],
+      "brief": "The chart shows synthetic monthly request volumes before and after a service change. Choose a statement supported by these three observations.",
+      "choices": [
+        {
+          "id": "describe",
+          "label": "Requests rose from 100 to 150, a 50% increase; the chart alone cannot explain why.",
+          "feedback": "(150 − 100) / 100 = 50%. A time association alone does not establish the cause."
+        },
+        {
+          "id": "cause",
+          "label": "The service change definitely caused a 50% rise.",
+          "feedback": "The chart does not rule out seasonality, coverage changes or other causes."
+        },
+        {
+          "id": "percent",
+          "label": "Requests rose by 50 percentage points.",
+          "feedback": "These are counts, not percentages. The absolute increase is 50 requests."
+        }
+      ],
+      "answer": "describe",
+      "assumptions": [
+        "Check period length, coverage and whether counting rules changed.",
+        "Inspect longer history and potential alternative explanations."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "What additional information would you seek before recommending more staff?",
+      "format": "scenario",
+      "chart": {
+        "title": "Monthly requests · synthetic data",
+        "labels": [
+          "January",
+          "February",
+          "March"
+        ],
+        "values": [
+          100,
+          120,
+          150
+        ],
+        "unit": "requests"
+      }
+    },
+    {
+      "id": "forecast-rmse",
+      "title": "Calculate held-out forecast error",
+      "ksbs": [
+        "K13",
+        "S10",
+        "S13"
+      ],
+      "brief": "Held-out actual values are 100, 120, 100. Forecasts made without those months are 110, 110, 120. Calculate RMSE across these three months.",
+      "choices": [
+        {
+          "id": "rmse",
+          "label": "About 14.14 requests",
+          "feedback": "Errors are 10, −10 and 20. Mean squared error = (100+100+400)/3 = 200; sqrt(200) ≈ 14.14."
+        },
+        {
+          "id": "mean",
+          "label": "About 6.67 requests",
+          "feedback": "Signed errors average to 6.67 and cancel each other. RMSE squares errors before averaging and taking a root."
+        },
+        {
+          "id": "mae",
+          "label": "About 13.33 requests",
+          "feedback": "This is mean absolute error: (10+10+20)/3. It is a useful but different metric."
+        }
+      ],
+      "answer": "rmse",
+      "assumptions": [
+        "Only use forecasts produced without the holdout values.",
+        "Compare a suitable naive baseline on the identical holdout and consider the cost of errors."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "Why should unknown future projections never enter this error calculation?",
+      "format": "calculation"
+    },
+    {
+      "id": "accessible-chart",
+      "title": "Improve a chart for its audience",
+      "ksbs": [
+        "K7",
+        "S5",
+        "S14"
+      ],
+      "brief": "A dashboard distinguishes success and failure only through red and green bars. Users include people with colour-vision differences and screen-reader users.",
+      "choices": [
+        {
+          "id": "labels",
+          "label": "Add explicit status labels, distinguishable patterns and an accessible data table.",
+          "feedback": "These provide information beyond colour. Also check contrast, keyboard access and reading order with users."
+        },
+        {
+          "id": "brighter",
+          "label": "Use brighter red and green only.",
+          "feedback": "Brightness does not solve reliance on colour or provide text equivalents."
+        },
+        {
+          "id": "image",
+          "label": "Export the dashboard as a screenshot only.",
+          "feedback": "A screenshot removes interactive and semantic information unless equivalent content is provided."
+        }
+      ],
+      "answer": "labels",
+      "assumptions": [
+        "Keep labels consistent with the service definitions.",
+        "Test the result with representative users and assistive technology."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "How would the design change for a busy decision-maker viewing it on a phone?",
+      "format": "scenario"
+    },
+    {
+      "id": "quality-chart",
+      "title": "Distinguish missingness from performance",
+      "ksbs": [
+        "K8",
+        "S6",
+        "S14",
+        "B5"
+      ],
+      "brief": "The chart shows missing completion-date percentages by source system. Choose the next investigation.",
+      "choices": [
+        {
+          "id": "trace",
+          "label": "Investigate collection and transformation in System C before comparing completion performance.",
+          "feedback": "C has 25% missing dates. Trace the source and pipeline; missing dates do not by themselves mean late completion."
+        },
+        {
+          "id": "late",
+          "label": "Conclude that 25% of C cases are late.",
+          "feedback": "A missing date does not establish the outcome. This confuses missingness with performance."
+        },
+        {
+          "id": "zero",
+          "label": "Replace all missing dates with zero.",
+          "feedback": "An invented value can distort durations and comparisons."
+        }
+      ],
+      "answer": "trace",
+      "assumptions": [
+        "Check denominators, date period and source-specific recording rules.",
+        "Escalate material uncertainty and retain an auditable treatment decision."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "How would you test whether the issue is caused by the source or the ETL process?",
+      "format": "scenario",
+      "chart": {
+        "title": "Missing completion dates · synthetic data",
+        "labels": [
+          "System A",
+          "System B",
+          "System C"
+        ],
+        "values": [
+          2,
+          5,
+          25
+        ],
+        "unit": "%"
+      }
+    },
+    {
+      "id": "privacy-release",
+      "title": "Choose a safer public release",
+      "ksbs": [
+        "K1",
+        "K15",
+        "S1",
+        "S3"
+      ],
+      "brief": "A team proposes publishing case-level data after replacing names with random IDs. Postcodes, exact dates and rare conditions remain.",
+      "choices": [
+        {
+          "id": "assess",
+          "label": "Treat the IDs as pseudonymisation and assess re-identification and disclosure risk before release.",
+          "feedback": "Removing names alone does not establish anonymity. Combinations of indirect identifiers may identify people."
+        },
+        {
+          "id": "anonymous",
+          "label": "Publish immediately because random IDs guarantee anonymity.",
+          "feedback": "Pseudonymisation does not guarantee anonymity; consider all fields and external information."
+        },
+        {
+          "id": "consent",
+          "label": "Assume consent is the only possible legal basis for every processing task.",
+          "feedback": "The appropriate basis depends on the purpose and context. Verify legal and organisational requirements."
+        }
+      ],
+      "answer": "assess",
+      "assumptions": [
+        "Confirm purpose, lawful basis, organisational approval and disclosure controls.",
+        "Assess aggregation, suppression and other proportionate protections; check utility and residual risk."
+      ],
+      "alternative": "Explain the decision, your checks and the limits; adapt the approach when the assumptions change.",
+      "followup": "What would you change if the output were an approved internal aggregate report?",
+      "format": "scenario"
     }
   ],
   "checklist": [
