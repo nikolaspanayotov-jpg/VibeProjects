@@ -12,6 +12,7 @@ Then open `http://127.0.0.1:8000/`. The same relative paths work under the GitHu
 
 ## What is included
 
+- A distinct illustrated memory cue and mnemonic sentence for every KSB, repeated consistently through lessons and practice. Browse or print all 37 from the visual memory map at `#visual-map`.
 - All 37 complete answer guides, each with a concise 60-second explanation, a worked example, a common mistake and a probing question. Expand the full definitions/calculations when needed; use the mobile Learn / Worked example / My answer / Practise navigation to jump between tasks.
 - A six-stage fictional service-capacity project with eight annotated artefacts, reproducible SQL, an interactive join comparison, numerical/qualitative dashboard views and a downloadable portfolio. Its artefacts map to every KSB and never count as personal evidence automatically.
 - A readiness matrix separating recall, explicitly self-checked personal examples and evidence. Its next three actions open the relevant explanation, probing practice, personal response or evidence form.
@@ -68,6 +69,8 @@ An update waits for you to apply it or close older tabs. The app saves before re
 
 ## Files and content maintenance
 
+`ksb-visuals.json` contains the 37 public cue names, captions and SVG illustrations. The compiler validates their shape markup and embeds them into the existing curriculum records with `visualSha256`. There is no extra runtime image dependency. Visual cues are mnemonic aids, separate from earned reward badges and personal progress. Library search also matches their names and captions.
+
 `solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. `gamification.js` provides the independent date/scoring functions, badge definitions and SVG artwork; it is a required relative script, with no package or runtime service. No runtime Markdown parser, external fonts, chart library or analytics service is used.
 
 `solutions.md` also contains the human-readable misconception answer key. `learning-activities.json` is the authored lab/scenario source; the compiler validates its decision graphs and embeds it with the questions into the same local curriculum file. Learning tools are available at `#labs`, `#scenarios` and `#quiz`, with focused links such as `#labs-forecast`.
@@ -103,6 +106,7 @@ python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /t
 python3 tests/browser_reasoning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-reasoning-qa
 python3 tests/browser_rehearsal.py --url http://127.0.0.1:8000/ --output /tmp/l4-rehearsal-qa
 python3 tests/browser_gamification.py --url http://127.0.0.1:8000/ --output /tmp/l4-gamification-qa
+python3 tests/browser_visual_cues.py --url http://127.0.0.1:8000/ --output /tmp/l4-visual-cues-qa
 node tests/gamification_core.cjs
 ```
 

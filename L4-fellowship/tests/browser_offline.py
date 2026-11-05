@@ -34,8 +34,9 @@ with sync_playwright() as p:
  go('briefing');page.locator('#briefing-finding').fill('Synthetic briefing saved before disconnecting.');saved()
  ctx.set_offline(True)
  go('ksb-k8');page.locator('#lesson-recall').select_option('help');page.locator('[data-action="record-lesson-review"]').click();assert saved()['game']['events'];offline_game=copy.deepcopy(saved()['game'])
- for route in ['today','ksb-k13','uncertainty','quiz','changes','briefing','retrieval','organisation','connections','offline']:
+ for route in ['today','ksb-k13','uncertainty','quiz','changes','briefing','retrieval','organisation','connections','visual-map','offline']:
   go(route);page.reload();expect(page.locator('h1')).to_be_visible();assert 'could not load' not in page.locator('main').inner_text()
+ go('visual-map');expect(page.locator('[data-visual-card]')).to_have_count(37)
  source=page.evaluate('async()=>{let r=await fetch("./solutions.md");return {status:r.status,text:await r.text()}}');assert source['status']==200 and 'Knowledge' in source['text']
  go('workshop-k8');expect(page.locator('#workshop-draft')).to_have_value('Synthetic offline draft, original.');page.locator('#workshop-draft').fill('Synthetic offline draft, edited without a connection.');page.reload();expect(page.locator('#workshop-draft')).to_have_value('Synthetic offline draft, edited without a connection.')
  go('offline');expect(page.locator('main')).to_contain_text('Connection: Offline');page.screenshot(path=str(out/'offline-desktop.png'),full_page=True)

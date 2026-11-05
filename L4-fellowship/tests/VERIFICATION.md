@@ -151,3 +151,28 @@ Removal/undo recalculated XP and badges. Merging an older backup preserved remov
 Weekly replay used actual records. Normal-motion playback advanced and paused when the document became hidden; reduced motion retained manual controls. Markdown recaps and SVG weekly cards reconciled with the recorded week. All new routes reflowed at 320, 390, 768 and 1280 pixels, enlarged text fit, and direct file opening loaded the required helper without page errors. Desktop reward/mission views and mobile missions/quest paths were visually inspected. The initial regression run exposed a hidden Resume practice button in the collapsed broader study plan; unfinished sessions now open that section and both existing resume checks passed.
 
 The offline suite additionally earned a new practice record while disconnected and verified that the same game events survived temporary-memory recovery, verified service-worker activation and offline reload. It retained its checks for project scope, public-only caches and rejection of mismatched releases. These checks are not a complete accessibility audit and do not cover native OS installation dialogs or calendar alert delivery.
+
+## 5 November 2026 — distinct visual memory cues for every KSB
+
+All eight browser suites passed, alongside the scoring/date checks and JavaScript syntax checks. The new compiler validation passed for exactly 37 known IDs, unique names and SVG bodies, bounded captions and an SVG shape/attribute allowlist. All six content-source hashes, 37 guided records, 30 quiz IDs and 13 offline asset hashes were verified.
+
+The existing core, guided, learning-tools, reasoning, rehearsal and gamification suites passed against the icon-enabled application, with outputs under `/tmp/l4-visual-core`, `guided`, `learning`, `reasoning`, `rehearsal` and `game`. The added suite and final offline check used:
+
+```bash
+PYTHONPATH=/tmp/l4-authoring python3 tests/compile_curriculum.py
+python3 tests/build_offline.py
+node --check /tmp/visual-app.js
+node --check curriculum.js
+node --check sw.js
+node tests/gamification_core.cjs
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_visual_cues.py --output /tmp/l4-visual-release-cues
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_offline.py --output /tmp/l4-visual-release-offline
+```
+
+`/tmp/visual-app.js` was extracted from the shipped inline script. The visual suite inspected every cue in the map and index, then opened all 37 lessons and checked that each used exactly the same artwork and caption as its map card. Names and geometry were distinct. Browsing all pictures left personal KSB state, evidence and reward records unchanged. SVGs were decorative/non-focusable, with visible ID/title/caption text and keyboard-accessible links.
+
+Library search located B2 through its “roadblock” cue. Readiness contained all 37 matching topic illustrations; the quality connection used K8/S6/B5; discussion practice showed the correct K1 picture and mnemonic; related-topic chips used the same art. Native text selects and existing KSB-ID text remained usable. The 37-picture memory map worked by opening the file directly, printed with all images present and generated a substantial A4 PDF through the browser print engine.
+
+The new route, index, library, lesson headings, practice, readiness, connections and quests were checked at 320, 390, 768 and 1280 pixels, including enlarged text. No page errors were recorded. The complete desktop gallery was visually inspected for all 37 associations, along with desktop K1 and mobile S13/gallery layouts. Pictures retained readable sizes in the map and scaled down consistently for repeated cues. The K4 caption explicitly notes that data types can overlap and sensitivity is a separate question.
+
+The offline suite reloaded `#visual-map` while disconnected and verified all 37 cards, in addition to its source-guide, scope, mismatch rejection, safe update and personal-progress preservation checks. The canonical visual JSON and the matching new curriculum version are covered by the atomic cache manifest. No new personal-data fields or reward rules were introduced. Test screenshots/PDFs remain under `/tmp`; these checks are not a complete accessibility conformance audit.

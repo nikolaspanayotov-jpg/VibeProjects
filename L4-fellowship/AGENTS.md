@@ -47,7 +47,7 @@ Check 390px and 320px first, then tablet and desktop. Use semantic controls, vis
 
 ## Checks
 
-After code changes, run JavaScript syntax checks and all seven browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all five source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
+After code changes, run JavaScript syntax checks and all eight browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all six source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
 
 ## Further reasoning tools
 
@@ -88,3 +88,13 @@ Merge settings/active blocks and event conflicts explicitly; retain current valu
 Keep rewards cosmetic, local and inspectable. The 37-KSB badge requires explicit recall/workshop/retrieval targets. Replays only show actual records, pause on navigation/visibility/source changes and use manual controls under reduced motion. Celebrate only new completions, not reloads/imports. Calendar export is a local floating-time .ics download with three 90-day recurrences, not a promise of background web notifications.
 
 Run `node tests/gamification_core.cjs` and `tests/browser_gamification.py` alongside the previous six suites. Test XP caps, source prerequisites, time boundaries, DST, stable history/imports, removal/undo, actual task completions, awards, reminders, normal/reduced-motion replay, mobile and direct-file support. The offline suite must retain newly earned practice records through disconnected use and verified updates. Update the design/verification record and rebuild `sw.js` after cached-file changes.
+
+## KSB visual memory cues
+
+`ksb-visuals.json` maps exactly K1–K15, S1–S15 and B1–B7 to distinct SVG bodies, cue names and mnemonic captions. The compiler validates IDs/uniqueness and a shape/attribute allowlist, embeds `item.visual` and stores `visualSha256` as the sixth source hash. Keep the cue-to-KSB associations stable and preserve full KSB titles/IDs beside the images. These cues are available learning aids, not earned badges or assessment claims.
+
+The runtime helper `ksbVisual` uses trusted compiled shapes only, with escaped text captions. Inline SVG artwork is decorative (`aria-hidden`, not focusable); links retain meaningful topic text and the map/lessons show mnemonic sentences. Reuse the same body at every size rather than substituting platform emoji. Do not accept SVG, image URLs or cue changes from a personal backup. No new saved fields are required.
+
+`#visual-map` is part of the library and supports a complete printable memory sheet. Library search matches cue names/captions. Keep the index's 37 cells and status markers, mobile readability, lesson navigation, native text-only selects and existing keyboard flows. The versioned curriculum and canonical JSON are in the offline manifest; rebuild `sw.js` after changes.
+
+Run `tests/browser_visual_cues.py` alongside the existing seven suites and the scoring/date checks. Verify all 37 unique cues and captions, identity across index/library/lessons/practice/readiness/connections, no progress or reward changes while browsing, search, keyboard links, phone/tablet layouts, print/PDF, direct-file support and offline reload. Inspect the actual artwork at large and small sizes.

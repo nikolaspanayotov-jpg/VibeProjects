@@ -1,0 +1,187 @@
+{
+  "K1": {
+    "name": "Law scales",
+    "caption": "Picture weighing every use of personal data against the law.",
+    "svg": "<path d=\"M32 12v36m-14 4h28M14 22h36M18 22 9 38h18zm28 0-9 16h18z\"/><circle cx=\"32\" cy=\"13\" r=\"4\"/><path d=\"M9 38q9 9 18 0m10 0q9 9 18 0\"/>"
+  },
+  "K2": {
+    "name": "The organisation rulebook",
+    "caption": "Open the rulebook before handling organisational data.",
+    "svg": "<path d=\"M17 10h31v44H17c-8 0-8-10 0-10h31M17 10c-8 0-8 10 0 10h31M17 20v24M24 27l3 3 5-6m4 4h6m-18 8h18\"/><path d=\"M38 10v12l5-4 5 4V10\" class=\"cue-soft\"/>"
+  },
+  "K3": {
+    "name": "The lifecycle wheel",
+    "caption": "Follow the wheel from planning through preparation and analysis to communication, then refine.",
+    "svg": "<path d=\"M21 14a21 21 0 0 1 26 5m4 10a21 21 0 0 1-15 23m-11-1A21 21 0 0 1 11 28m3-9 7-5-1 9M43 13l4 6-8 1M42 51l-6 1 1-8\"/><circle cx=\"17\" cy=\"18\" r=\"5\"/><circle cx=\"46\" cy=\"20\" r=\"5\"/><circle cx=\"49\" cy=\"42\" r=\"5\"/><circle cx=\"29\" cy=\"52\" r=\"5\"/><circle cx=\"12\" cy=\"37\" r=\"5\"/>"
+  },
+  "K4": {
+    "name": "Four data drawers",
+    "caption": "Recognise open, public, administrative and research data; these types can overlap, and sensitivity is a separate question.",
+    "svg": "<rect x=\"10\" y=\"11\" width=\"20\" height=\"19\" rx=\"3\"/><rect x=\"34\" y=\"11\" width=\"20\" height=\"19\" rx=\"3\"/><rect x=\"10\" y=\"34\" width=\"20\" height=\"19\" rx=\"3\"/><rect x=\"34\" y=\"34\" width=\"20\" height=\"19\" rx=\"3\"/><path d=\"M17 20h6m18 0h6M17 43h6m18 0h6\"/>"
+  },
+  "K5": {
+    "name": "Grid and loose threads",
+    "caption": "Compare an ordered table with free-form content before choosing how to analyse it.",
+    "svg": "<rect x=\"7\" y=\"15\" width=\"23\" height=\"35\" rx=\"2\"/><path d=\"M7 26h23M7 38h23M18 15v35M35 10v44m5-35c17-15 22 9 6 8s-7 17 7 13M40 46l9 6 8-7M42 12l3-4\"/>"
+  },
+  "K6": {
+    "name": "The database blueprint",
+    "caption": "Design the tables, keys and relationships behind the stored data.",
+    "svg": "<ellipse cx=\"22\" cy=\"15\" rx=\"13\" ry=\"6\"/><path d=\"M9 15v30c0 8 26 8 26 0V15M9 28c0 8 26 8 26 0M9 40c0 8 26 8 26 0M35 28h9V15m0 13v17\"/><rect x=\"43\" y=\"9\" width=\"12\" height=\"12\" rx=\"2\"/><rect x=\"43\" y=\"39\" width=\"12\" height=\"12\" rx=\"2\"/>"
+  },
+  "K7": {
+    "name": "A user-centred compass",
+    "caption": "Let the user and their domain guide what useful and accessible analysis looks like.",
+    "svg": "<circle cx=\"32\" cy=\"31\" r=\"23\"/><path d=\"m40 19-4 17-12 7 4-17zM32 5v5m0 43v6M5 31h5m43 0h6\"/><circle cx=\"32\" cy=\"27\" r=\"3\"/><path d=\"M27 36q5-6 10 0\"/>"
+  },
+  "K8": {
+    "name": "Warning in the table",
+    "caption": "Scan the table for quality risks before trusting the result.",
+    "svg": "<rect x=\"8\" y=\"14\" width=\"34\" height=\"37\" rx=\"3\"/><path d=\"M8 25h34M8 37h19M20 14v37m21-27L27 48h28zM41 34v6m0 4v1\"/>"
+  },
+  "K9": {
+    "name": "The stakeholder target",
+    "caption": "Ask the stakeholder which decision the analysis needs to support.",
+    "svg": "<path d=\"M8 12h34v27H23L12 49V39H8z\"/><circle cx=\"39\" cy=\"39\" r=\"14\"/><circle cx=\"39\" cy=\"39\" r=\"7\"/><path d=\"m39 39 17-17m-1-4 1 4 5 1M15 20h18m-18 7h11\"/>"
+  },
+  "K10": {
+    "name": "Interlocking data pieces",
+    "caption": "Match keys and understand the join before combining sources.",
+    "svg": "<path d=\"M13 15h15v11c10-8 16 7 5 10h-5v13H13V35c-8 4-8-15 0-11zM51 15H36v11c-10-8-16 7-5 10h5v13h15V35c8 4 8-15 0-11z\"/>"
+  },
+  "K11": {
+    "name": "The analysis toolbox",
+    "caption": "Know the tools and methods your organisation makes available.",
+    "svg": "<path d=\"M11 27h42v26H11zM24 27v-8h16v8M8 34h48M27 31h10v9H27M19 23V9l5 6m19 8V8m-5 1 5 6 5-6\"/><path d=\"M16 46h10m16 0h6\"/>"
+  },
+  "K12": {
+    "name": "The data building",
+    "caption": "Map the architecture: where data lives, how it flows and who can access it.",
+    "svg": "<path d=\"M12 54V14h40v40M8 54h48M22 14V7h20v7M18 24h10v7H18zm18 0h10v7H36zM18 37h10v7H18zm18 0h10v7H36zM29 54V44h6v10\"/>"
+  },
+  "K13": {
+    "name": "The bell and its centre",
+    "caption": "Summarise variation, then reason carefully about samples and uncertainty.",
+    "svg": "<path d=\"M7 49h50M9 45c14 0 12-29 23-29s9 29 23 29M32 10v39M15 53h34\"/><path d=\"M22 43V28m20 15V28\" stroke-width=\"1.5\"/>"
+  },
+  "K14": {
+    "name": "The three-way signpost",
+    "caption": "Think what happened, what may happen and which action could follow.",
+    "svg": "<path d=\"M30 57V8m0 4H15l-7 7 7 7h15m0 4h19l8 7-8 7H30M30 8l-5 7m5-7 5 7\"/><circle cx=\"18\" cy=\"19\" r=\"2\"/><path d=\"M40 36h8m-5-3 5 3-5 3\"/>"
+  },
+  "K15": {
+    "name": "A heart in careful hands",
+    "caption": "Consider the people affected: fairness, bias, transparency and accountability.",
+    "svg": "<path d=\"M32 36 18 24c-12-13 8-23 14-10 6-13 26-3 14 10zM7 33l8 17 17 7 17-7 8-17M15 50V36c0-7 9-6 9 1v6l8 4 8-4v-6c0-7 9-8 9-1v14\"/>"
+  },
+  "S1": {
+    "name": "A key turning in a shield",
+    "caption": "Apply legal and organisational controls throughout the data work.",
+    "svg": "<path d=\"M26 8 9 14v17c0 12 17 22 17 22s17-10 17-22V14z\"/><circle cx=\"36\" cy=\"28\" r=\"7\"/><path d=\"m41 33 13 13m-4-4 4-4m-8 0 4-4M18 28l5 5 7-9\"/>"
+  },
+  "S2": {
+    "name": "Footsteps through the lifecycle",
+    "caption": "Walk every lifecycle stage in your project and explain what you did.",
+    "svg": "<path d=\"M10 12c38-8 48 10 17 22S9 55 52 51M48 46l4 5-4 5\"/><ellipse cx=\"20\" cy=\"16\" rx=\"3\" ry=\"6\" transform=\"rotate(35 20 16)\"/><ellipse cx=\"38\" cy=\"26\" rx=\"3\" ry=\"6\" transform=\"rotate(45 38 26)\"/><ellipse cx=\"22\" cy=\"43\" rx=\"3\" ry=\"6\" transform=\"rotate(-35 22 43)\"/>"
+  },
+  "S3": {
+    "name": "The classification stamp",
+    "caption": "Assign sensitivity and confidentiality, then apply the right handling.",
+    "svg": "<path d=\"M11 37h42v17H11zM16 37v-7h32v7M24 30V20c-8-15 24-15 16 0v10M18 45h28\"/><path d=\"m49 8 9 9-8 8-9-9z\"/><circle cx=\"49\" cy=\"14\" r=\"1.5\"/>"
+  },
+  "S4": {
+    "name": "The shape adaptor",
+    "caption": "Adapt your approach to different data structures and designs.",
+    "svg": "<rect x=\"7\" y=\"9\" width=\"12\" height=\"12\" rx=\"1\"/><circle cx=\"45\" cy=\"15\" r=\"7\"/><path d=\"M9 44h12l-6-11zM25 14h8m-4-4 4 4-4 4M45 27v9m-4-4 4 4 4-4M29 47h8m-4-4 4 4-4 4\"/><rect x=\"38\" y=\"39\" width=\"17\" height=\"16\" rx=\"3\"/><path d=\"M42 44h9m-9 5h9\"/>"
+  },
+  "S5": {
+    "name": "A dashboard under the cursor",
+    "caption": "Apply domain knowledge and accessible design to the output people use.",
+    "svg": "<rect x=\"8\" y=\"10\" width=\"47\" height=\"39\" rx=\"4\"/><path d=\"M8 20h47M15 27h16v15H15zm22 0h11m-11 7h8M39 38l4 19 5-8 9-3z\"/><circle cx=\"15\" cy=\"15\" r=\"1\"/><circle cx=\"21\" cy=\"15\" r=\"1\"/>"
+  },
+  "S6": {
+    "name": "A repair patch on the table",
+    "caption": "Identify, resolve or escalate quality problems and check the repaired result.",
+    "svg": "<rect x=\"7\" y=\"12\" width=\"42\" height=\"40\" rx=\"3\"/><path d=\"M7 23h42M20 12v40M7 37h15\"/><rect x=\"27\" y=\"25\" width=\"31\" height=\"15\" rx=\"5\" transform=\"rotate(-35 42 32)\"/><path d=\"m39 27 7 10m-13-5 1-1m17-8 1-1\"/>"
+  },
+  "S7": {
+    "name": "Requirements carried to the finish flag",
+    "caption": "Trace agreed requirements into the plan and the delivered result.",
+    "svg": "<path d=\"M9 12h25v39H9zM16 20l2 2 4-5m-6 14 2 2 4-5m-6 14 2 2 4-5M39 53V14m0 0h17l-5 7 5 7H39M26 34h18m-5-5 5 5-5 5\"/>"
+  },
+  "S8": {
+    "name": "Two streams through a preparation funnel",
+    "caption": "Join sources, clean them and validate the prepared table.",
+    "svg": "<path d=\"M8 10h15v10H8zm33 0h15v10H41zM16 20v7l13 7m20-14v7L36 34M12 31h40L37 43v10H27V43z\"/><path d=\"M25 58h14m-22-44h3m25 0h3\"/>"
+  },
+  "S9": {
+    "name": "A terminal plugged into a server",
+    "caption": "Use the tools that connect you to your organisation’s data infrastructure.",
+    "svg": "<rect x=\"6\" y=\"13\" width=\"32\" height=\"28\" rx=\"3\"/><path d=\"m13 22 5 5-5 5m10 0h7M13 47h19m-10-6v6M39 34h6V20\"/><rect x=\"44\" y=\"9\" width=\"13\" height=\"45\" rx=\"3\"/><path d=\"M44 23h13M44 38h13m-8-21h3m-3 14h3m-3 15h3\"/>"
+  },
+  "S10": {
+    "name": "The calculator and test result",
+    "caption": "Perform EDA and statistical tests, then interpret the result in context.",
+    "svg": "<rect x=\"8\" y=\"9\" width=\"28\" height=\"46\" rx=\"4\"/><path d=\"M14 16h16v10H14zm0 18h3m7 0h5m-15 8h3m7 0h5m-15 8h3m7 0h5M43 17v34h14M47 42V30m7 12V21\"/>"
+  },
+  "S11": {
+    "name": "A model inside a crystal ball",
+    "caption": "Build a predictive model, evaluate it and use it to inform action.",
+    "svg": "<circle cx=\"29\" cy=\"28\" r=\"19\"/><path d=\"M18 47h22l5 9H13zM16 36l8-9 9 2 9-12M43 34h13m-5-5 5 5-5 5\"/><circle cx=\"19\" cy=\"24\" r=\"1.5\"/><circle cx=\"28\" cy=\"35\" r=\"1.5\"/><circle cx=\"36\" cy=\"20\" r=\"1.5\"/>"
+  },
+  "S12": {
+    "name": "Two voices in conversation",
+    "caption": "Adapt your message to different stakeholders and listen to their feedback.",
+    "svg": "<path d=\"M7 11h34v25H24L13 46V36H7zM45 25h12v26H47l-9 7v-7H29V40M14 20h19m-19 8h12m19 6h5m-12 8h12\"/>"
+  },
+  "S13": {
+    "name": "A calendar with a forecast line",
+    "caption": "Anchor the forecast in time, evaluate later actuals and explain the horizon.",
+    "svg": "<rect x=\"8\" y=\"13\" width=\"48\" height=\"42\" rx=\"4\"/><path d=\"M8 24h48M20 8v11m24-11v11M14 45l10-8 9 3 8-10M42 30l5 2m3-5 4-3\"/><path d=\"M39 26v25\" stroke-width=\"1.5\"/>"
+  },
+  "S14": {
+    "name": "A brush beside the chart",
+    "caption": "Choose visual representations that reveal quantitative and qualitative findings.",
+    "svg": "<path d=\"M8 12v42h34M15 47V34h7v13m6 0V23h7v24M47 10l9 4-12 25-9-4zM35 35c-1 10-10 8-8 17 11 2 18-3 17-13\"/>"
+  },
+  "S15": {
+    "name": "The selected tool",
+    "caption": "Compare the available options and choose the tool that fits the requirement.",
+    "svg": "<path d=\"M9 14h12v8H9zM9 31h12v18H9zm30-21 1 8-10 11 9 9 11-10 8 1c-1 12-11 17-20 12L25 54l-7-7 15-14c-7-10-4-20 6-23z\"/><circle cx=\"45\" cy=\"16\" r=\"7\"/><path d=\"m41 16 3 3 5-6\"/>"
+  },
+  "B1": {
+    "name": "The locked workstation",
+    "caption": "Keep your working environment secure through everyday safe handling.",
+    "svg": "<path d=\"M13 12h38v28H13zM8 49l5-9h38l5 9zM8 49h48v5H8z\"/><rect x=\"25\" y=\"25\" width=\"15\" height=\"12\" rx=\"2\"/><path d=\"M28 25v-5c0-6 9-6 9 0v5m-5 5v3\"/>"
+  },
+  "B2": {
+    "name": "A detour around a roadblock",
+    "caption": "Adapt to a small unexpected obstacle while maintaining productive work.",
+    "svg": "<path d=\"M8 46h11c11 0 0-27 15-27h21m-6-6 6 6-6 6M31 37h21v13H31zM35 41l5 5m0-5-5 5m11-5 3 5\"/>"
+  },
+  "B3": {
+    "name": "One person connected to a team",
+    "caption": "Take responsibility for your own work while collaborating with others.",
+    "svg": "<circle cx=\"17\" cy=\"17\" r=\"6\"/><circle cx=\"47\" cy=\"17\" r=\"6\"/><circle cx=\"32\" cy=\"40\" r=\"6\"/><path d=\"M7 32c0-10 20-10 20 0M37 32c0-10 20-10 20 0M22 56c0-10 20-10 20 0M25 15h14M20 35l5 5m19-5-5 5\"/>"
+  },
+  "B4": {
+    "name": "A chess knight on logical steps",
+    "caption": "Build a reasoned sequence of analytical decisions and explain each move.",
+    "svg": "<path d=\"M7 55h50M10 48h12v-9h12v-9h12M28 29l-7-6 8-13 4 5 8-4 9 11-6 13-12 7H20l3-8zM33 20h1\"/><path d=\"M23 34l10-5\"/>"
+  },
+  "B5": {
+    "name": "A magnifying glass over roots",
+    "caption": "Look beneath the symptom, establish the root cause and prevent recurrence.",
+    "svg": "<path d=\"M25 9v21M13 19l12 5 10-8M7 31h35M25 31l-11 9-5 11m16-20 2 13-7 11m7-11 10 7\"/><circle cx=\"43\" cy=\"40\" r=\"12\"/><path d=\"m52 49 8 9m-24-17 6-5 7 8\"/>"
+  },
+  "B6": {
+    "name": "A bending tree with a new leaf",
+    "caption": "Recover from challenges and carry the lessons into your next attempt.",
+    "svg": "<path d=\"M9 54h39M27 54c-7-18 3-22 10-31M38 21c-21-1-29-9-26-12 19-2 27 6 26 12zM32 35c15-1 21-10 18-13-14-1-18 5-18 13zM45 10h13m-8 7h10M9 31h10m-13 7h9\"/>"
+  },
+  "B7": {
+    "name": "A boat changing course",
+    "caption": "Change your approach when the project’s scope, goals or responsibilities shift.",
+    "svg": "<path d=\"M10 43h40l-8 10H19zM29 42V9L12 35h17m5-25v25h18zM7 57q8-6 16 0t16 0 16 0M45 11c11 0 16 12 9 19m-5-2 5 2 5-3\"/>"
+  }
+}

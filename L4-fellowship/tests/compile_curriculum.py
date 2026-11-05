@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 import markdown
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = (ROOT / 'solutions.md').read_text()
@@ -19,6 +20,8 @@ REASONING_SOURCE = (ROOT / 'reasoning-activities.json').read_text()
 REASONING = json.loads(REASONING_SOURCE)
 REHEARSAL_SOURCE = (ROOT / 'rehearsal-activities.json').read_text()
 REHEARSAL = json.loads(REHEARSAL_SOURCE)
+VISUAL_SOURCE = (ROOT / 'ksb-visuals.json').read_text()
+VISUALS = json.loads(VISUAL_SOURCE)
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -93,7 +96,7 @@ for match in re.finditer(r'^### ([KSB]\d+) — ([^\n]+)\n(.*?)(?=^<a id="ksb-|^<
     evidence,remaining=remaining.split('**Coverage check.**',1)
     coverage,followup=remaining.split('**Follow-up.**',1)
     theme=next(i for i,(_,_,ids) in enumerate(THEMES) if ksb in ids.split())
-    records.append(dict(id=ksb,title=title,category=ksb[0],theme=theme,
+    records.append(dict(id=ksb,title=title,category=ksb[0],theme=theme,visual=VISUALS[ksb],
         guide=html(guide),template=html(template),
         quick=html(quick),example=html(example),mistake=html(mistake),probe=probe.strip(),
         evidence=html(evidence),coverage=coverage.strip(),targets=TARGETS[ksb],
@@ -186,17 +189,31 @@ for case in REHEARSAL['briefings']:
     assert all(a in {x['id'] for x in REHEARSAL['audiences']} for a in case['examples'])
     for example in case['examples'].values():
         assert set(example)=={'question','finding','uncertainty','action'} and all(example.values())
+assert set(VISUALS)==set(mapping), 'Every KSB needs exactly one visual cue'
+assert len({v['name'] for v in VISUALS.values()})==37
+assert len({v['svg'] for v in VISUALS.values()})==37
+allowed_tags={'svg','g','path','circle','ellipse','rect','line','polyline','polygon'}
+allowed_attrs={'d','cx','cy','r','rx','ry','x','y','x1','y1','x2','y2','width','height','points','class','fill','stroke-width','transform'}
+for ksb,visual in VISUALS.items():
+    assert set(visual)=={'name','caption','svg'} and 3<=len(visual['name'])<=80 and 15<=len(visual['caption'])<=220
+    assert '<!' not in visual['svg']
+    root=ET.fromstring('<svg>'+visual['svg']+'</svg>')
+    for node in root.iter():
+        assert node.tag in allowed_tags and set(node.attrib)<=allowed_attrs, (ksb,node.tag)
+        assert not (node.text or '').strip() and not (node.tail or '').strip()
+        if 'class' in node.attrib: assert node.attrib['class'] in ('cue-soft','cue-solid')
+        if 'fill' in node.attrib: assert node.attrib['fill'] in ('none','currentColor')
 project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
     stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
     sourceSha256=hashlib.sha256(PROJECT_SOURCE.encode()).hexdigest())
 data=dict(revision='2026-11-05',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
-          project=project,
+          project=project,visualSha256=hashlib.sha256(VISUAL_SOURCE.encode()).hexdigest(),
           rehearsal=REHEARSAL,rehearsalSha256=hashlib.sha256(REHEARSAL_SOURCE.encode()).hexdigest(),
           reasoning=REASONING,reasoningSha256=hashlib.sha256(REASONING_SOURCE.encode()).hexdigest(),
           activities=ACTIVITIES,activitySha256=hashlib.sha256(ACTIVITY_SOURCE.encode()).hexdigest(),
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
           sources=html(SOURCE.split('## Reference register',1)[1].split('<a id="quiz-answer-key">',1)[0]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled 37 lessons, worked project, all activities and five verified content sources.')
+print('Compiled 37 lessons, worked project, all activities and six verified content sources.')

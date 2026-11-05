@@ -712,3 +712,63 @@ Three authored three-step packs appear at `#quests`: Data quality detective, For
 The unchanged v1 state receives an additive `game` section: settings, dated events, removed record IDs and one unfinished tracked block. Quiz-set identity and optional mixed-rehearsal fields are additive. Totals and earned badges are derived, never authoritative imported counters. Events retain bounded reflections, known activity targets, validated facts and stable IDs. Duplicate IDs are rejected within an import and deduplicated during merge; conflicting records retain current values unless explicitly replaced. Settings and unfinished blocks also have conflict handling, while removal IDs merge as a union. New records appear in normal JSON backups and the Markdown study summary. Existing pre-feature study records remain intact; visit-based rewards start from newly recorded completions.
 
 Verification adds pure scoring/date checks and a seventh browser suite for the real mission workflows, rewards, calendar, history correction, imports and replay. The offline suite also verifies a newly earned practice record through disconnection, verified update and reload. Desktop and phone layouts are reviewed alongside the existing six browser suites.
+
+## 23. Visual memory cues for all 37 KSBs — 5 November 2026
+
+Each KSB now has a unique authored SVG illustration, a memorable cue name and a short sentence linking the picture to its meaning. The official KSB code/title remains visible. The same geometry is used in the Today index, library, lesson heading, discussion practice, readiness matrix, connection nodes, related-topic chips and single-topic daily missions. Topic illustrations are distinct from earned badges: they are learning cues, available immediately, and do not indicate completion.
+
+The shapes deliberately distinguish related knowledge, skills and behaviours. For example, K1 uses law scales, S1 a key turning in a shield, and B1 a locked workstation. K8 shows a warning in a table, S6 a repair patch and B5 roots under a magnifier. K3 is a lifecycle wheel; S2 is a route with footsteps. K11 has a toolbox; S15 highlights a selected tool. Captions reinforce these relationships without replacing the complete answer guides.
+
+| KSB | Visual cue |
+| --- | --- |
+| K1 | Law scales |
+| K2 | The organisation rulebook |
+| K3 | The lifecycle wheel |
+| K4 | Four data drawers |
+| K5 | Grid and loose threads |
+| K6 | The database blueprint |
+| K7 | A user-centred compass |
+| K8 | Warning in the table |
+| K9 | The stakeholder target |
+| K10 | Interlocking data pieces |
+| K11 | The analysis toolbox |
+| K12 | The data building |
+| K13 | The bell and its centre |
+| K14 | The three-way signpost |
+| K15 | A heart in careful hands |
+| S1 | A key turning in a shield |
+| S2 | Footsteps through the lifecycle |
+| S3 | The classification stamp |
+| S4 | The shape adaptor |
+| S5 | A dashboard under the cursor |
+| S6 | A repair patch on the table |
+| S7 | Requirements carried to the finish flag |
+| S8 | Two streams through a preparation funnel |
+| S9 | A terminal plugged into a server |
+| S10 | The calculator and test result |
+| S11 | A model inside a crystal ball |
+| S12 | Two voices in conversation |
+| S13 | A calendar with a forecast line |
+| S14 | A brush beside the chart |
+| S15 | The selected tool |
+| B1 | The locked workstation |
+| B2 | A detour around a roadblock |
+| B3 | One person connected to a team |
+| B4 | A chess knight on logical steps |
+| B5 | A magnifying glass over roots |
+| B6 | A bending tree with a new leaf |
+| B7 | A boat changing course |
+
+### Learning and visual presentation
+
+`#visual-map`, linked from the library and Today KSB index, displays all 37 illustrations and mnemonic sentences grouped into Knowledge, Skills and Behaviours. Each card opens the existing lesson URL. A Print memory sheet control uses a two-column print layout with vector illustrations and cards that avoid page breaks. The regular gallery uses three desktop columns, two at intermediate widths and one on phones. Library search includes the cue name and sentence, so a learner remembering “roadblock” can find B2.
+
+Small index pictures are 27 pixels with an adjacent KSB ID; the gallery uses 60–74 pixel pictures, and lesson headings use 48–64 pixels plus the visible mnemonic caption. Related chips use smaller repeated artwork. Consistent blue, green and amber accents help group K/S/B, while the unique shape, code, full title and caption carry the meaning. Decorative SVGs are hidden from assistive technology and keyboard focus; accessible links and visible text retain the topic identification. No platform-dependent emoji, external images, remote fonts or new animation are required.
+
+### Sources and preservation
+
+`ksb-visuals.json` is the canonical authored mapping. The optional compiler verifies exactly the 37 known IDs, unique names and SVG bodies, bounded captions, XML structure and an allowlist of SVG shape tags/attributes. Scripts, external resources, event attributes and arbitrary text inside the art are not allowed. It embeds the trusted visual object into each existing curriculum record and records `visualSha256` as the sixth content-source hash. Imported personal backups cannot replace this authored artwork.
+
+The runtime uses the existing relative `curriculum.js` file with a new cache version; no additional required script or runtime fetch is introduced. The new source JSON and embedded artwork are included in the verified offline release. Existing KSB identifiers, guide revisions, routes, saved answers, coverage, evidence, practice history and reward rules are unchanged. Visiting the visual map or inspecting a picture creates no XP or completion record.
+
+Verification adds a browser check for all 37 cue-to-topic associations across surfaces, search, keyboard access, responsive sizes, print/PDF output and direct file opening. The existing seven browser suites remain required; offline reloads also cover the complete visual map.
