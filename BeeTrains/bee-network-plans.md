@@ -137,3 +137,17 @@ Use these editorial explanations without implying new product rules:
 - **Stopping service:** a service that calls at stations along a route; consult the timetable for its actual calls. Do not infer that every service or station on a corridor receives the proposed enhancement.
 
 The page's evidence panels distinguish source publication dates, research dates and confirmed delivery. Where an official page's publication date is not known, say so. Payment coverage targets remain attributed to October secondary reporting. Correction links prepare a draft in the repository's enabled GitHub Issues; the reader must review and submit it, ideally with a dated supporting source.
+
+## Personal reader examples — 5 November 2026
+
+The added comparison and journey stories reuse the existing 31 October source snapshot. They are editorial reading tools and do not assert any new delivery, fare or live facilities confirmation.
+
+| Planning example | Existing facts to explain | Details still needing confirmation |
+| --- | --- | --- |
+| Rose Hill Marple–Manchester Piccadilly commute | Rose Hill Marple is in the planned March 2027 group; Piccadilly is in December 2026. | Exact trains, changes, payment participation, peak restrictions and through-ticket eligibility, including onward tram/bus travel. |
+| Rochdale–Manchester Victoria evening travel | Rochdale is in the group planned by December 2028, Victoria in March 2027. October secondary coverage proposes selected Rochdale evening/weekend enhancements from December 2027. | Whether a particular service benefits, its stopping pattern, frequency and last return train. A corridor proposal is not an itinerary or timetable. |
+| Flowery Field–Manchester Piccadilly with access needs | Flowery Field joins in the planned December 2026 group; step-free works are separately planned for 2027–2028. National Rail's 31 October category C snapshot reports no step-free platform access. | Current route and platform accessibility, boarding arrangements, assistance, alternatives and equipment status. Joining does not make the example a confirmed step-free journey. |
+
+Use [TfGM's dedicated station list](https://tfgm.com/future-bee-network-rail-stations) for joining groups, [Place North West's 23 October report](https://www.placenorthwest.co.uk/tfgm-lists-first-14-rail-stations-to-join-bee-network/) for selected service proposals, [National Rail's Flowery Field page](https://www.nationalrail.co.uk/stations/flowery-field/) for the dated access snapshot, and the existing attributed payment coverage and Piccadilly guidance. All indexed-source and live-verification limits remain in force.
+
+The personal checklist groups route/timetable and disruption checks with ticket eligibility, platform access, assistance and late-return considerations. Link to current official information instead of assigning fares, declaring lifts operational or presuming a new service has launched. Saved station IDs help readers return to this dated information; saving a record does not refresh its facts.

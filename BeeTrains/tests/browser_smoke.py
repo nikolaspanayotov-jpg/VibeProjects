@@ -48,6 +48,151 @@ class QuietHandler(SimpleHTTPRequestHandler):
         pass
 
 
+
+def check_personal_tools(browser, page, url, checks, errors):
+    page.goto(url)
+    page.emulate_media(reduced_motion="reduce")
+    expect(page.locator("#station-tools")).to_be_visible()
+    assert page.locator("#compare-first option").count() == 97
+    page.locator("#compare-first").select_option("glossop")
+    page.locator("#compare-second").select_option("stockport")
+    profiles = page.locator(".comparison-result")
+    assert profiles.count() == 2
+    expect(profiles.first).to_contain_text("December 2026")
+    expect(profiles.last).to_contain_text("By December 2028")
+    expect(page.locator("#comparison-count-note")).to_contain_text("published list names 42")
+    expect(page.locator("#comparison-message")).to_contain_text("does not confirm a direct service or through-ticket validity")
+    page.locator("#compare-first").select_option("flowery-field")
+    page.locator("#compare-second").select_option("salford-central")
+    expect(profiles.first).to_contain_text("category C")
+    expect(profiles.first).to_contain_text("2027–2028")
+    expect(profiles.last).to_contain_text("Current step-free access is not confirmed")
+    page.locator("#compare-second").select_option("flowery-field")
+    expect(page.locator("#comparison-message")).to_contain_text("different second station")
+    assert profiles.count() == 1
+    page.locator("#clear-comparison").click()
+    expect(page.locator("#compare-first")).to_be_focused()
+    assert profiles.count() == 0
+    checks.append("Comparison derives all 96 options and dated facts from station records, handles duplicates and clearing, and retains 2028/source qualifications")
+
+    assert page.locator(".journey-story").count() == 3
+    for index,pair in enumerate((("rose-hill-marple","manchester-piccadilly"),("rochdale","manchester-victoria"),("flowery-field","manchester-piccadilly"))):
+        story = page.locator(".journey-story").nth(index)
+        story.locator("summary").focus(); page.keyboard.press("Enter")
+        assert story.locator("details").evaluate("el => el.open")
+        story.locator("[data-compare-pair]").click()
+        expect(page.locator("#compare-first")).to_have_value(pair[0])
+        expect(page.locator("#compare-second")).to_have_value(pair[1])
+        expect(page.locator("#comparison-title")).to_be_focused()
+    expect(page.locator(".journey-story").nth(1)).to_contain_text("does not confirm a later last train")
+    expect(page.locator(".journey-story").nth(2)).to_contain_text("does not confirm a step-free journey")
+    for width in (320,390,768,1440):
+        page.set_viewport_size({"width":width,"height":1000})
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"),width
+        if width in (390,1440):
+            page.locator("#your-stations").screenshot(style=".masthead,.skip-link,.station-context{visibility:hidden!important}",path=str(ARTIFACTS / f"station-tools-{width}.png"))
+            page.locator("#journey-stories").screenshot(style=".masthead,.skip-link,.station-context{visibility:hidden!important}",path=str(ARTIFACTS / f"journey-stories-{width}.png"))
+    checks.append("Three qualified journey stories expand by keyboard and open the matching comparison; station tools and stories reflow at four widths")
+
+    page.goto(url+"?station=glossop")
+    page.locator("#compare-station").click()
+    expect(page.locator("#compare-first")).to_have_value("glossop")
+    page.locator("#comparison-results [data-select-station='glossop']").click()
+    expect(page.locator("#station-detail-title")).to_be_focused()
+    page.locator("#save-station").click()
+    expect(page.locator("#save-station")).to_have_attribute("aria-pressed","true")
+    page.reload()
+    expect(page.locator("#saved-stations-list")).to_contain_text("Glossop")
+    expect(page.locator("#saved-stations-list")).to_contain_text("Planned: December 2026")
+    page.locator("#saved-stations-list [data-select-station='glossop']").click()
+    expect(page.locator("#station-detail-title")).to_have_text("Glossop")
+    page.locator(".remove-saved").click()
+    expect(page.locator("#saved-empty")).to_be_visible()
+    expect(page.locator("#saved-title")).to_be_focused()
+    for station in ("glossop","flowery-field","stockport","rose-hill-marple","salford-central","rochdale"):
+        page.goto(url+f"?station={station}")
+        page.locator("#save-station").click()
+    assert page.locator("#saved-stations-list li").count() == 6
+    page.goto(url+"?station=stalybridge")
+    page.locator("#save-station").click()
+    expect(page.locator("#save-status")).to_contain_text("shortlist has six stations")
+    assert page.locator("#saved-stations-list li").count() == 6
+    state = page.evaluate("JSON.parse(localStorage.getItem('beetrains.reader.v1'))")
+    assert set(state) == {"version","stationIds"} and state["version"] == 1
+    page.locator("#clear-saved").click()
+    page.reload()
+    expect(page.locator("#saved-empty")).to_be_visible()
+    checks.append("My stations persists only a versioned shortlist of IDs, restores links and dates, limits saves to six, removes individual/all entries and preserves useful focus")
+
+    for kind,script,expected in (
+        ("blocked-read","Storage.prototype.getItem = () => { throw new DOMException('Blocked','SecurityError'); }","visit only"),
+        ("blocked-write","Storage.prototype.setItem = () => { throw new DOMException('Full','QuotaExceededError'); }","visit only"),
+        ("malformed","localStorage.setItem('beetrains.reader.v1','{broken')","visit only"),
+        ("unknown-version","localStorage.setItem('beetrains.reader.v1',JSON.stringify({version:999,stationIds:['stockport']}))","visit only"),
+    ):
+        special = browser.new_context(viewport={"width":390,"height":844})
+        special.add_init_script(script)
+        probe = special.new_page(); probe.on("pageerror",lambda error: errors.append(str(error)))
+        probe.goto(url+"?station=glossop")
+        probe.locator("#save-station").click()
+        expect(probe.locator("#saved-stations-list")).to_contain_text("Glossop")
+        expect(probe.locator("#saved-storage-note")).to_contain_text(expected)
+        if kind == "unknown-version":
+            assert probe.evaluate("JSON.parse(localStorage.getItem('beetrains.reader.v1')).version") == 999
+        special.close()
+    special = browser.new_context()
+    special.add_init_script("localStorage.setItem('beetrains.reader.v1',JSON.stringify({version:1,stationIds:['glossop','glossop','obsolete','<img onerror=alert(1)>','stockport']}))")
+    probe = special.new_page(); probe.goto(url)
+    assert probe.locator("#saved-stations-list li").count() == 2
+    assert probe.locator("#saved-stations-list img").count() == 0
+    special.close()
+    checks.append("Blocked reads/writes, malformed data and unsupported storage versions fall back to this visit; invalid and duplicate saved IDs are filtered safely")
+
+    page.goto(url)
+    expect(page.locator("#checklist-count")).to_contain_text("0 of 5")
+    for need in ("access","assistance","late"):
+        choice = page.locator(f'[data-check-need="{need}"]')
+        choice.focus(); page.keyboard.press("Space")
+        expect(choice).to_be_checked()
+    assert page.locator("[data-check-group]:visible").count() == 10
+    page.locator("#check-journey").check(); page.locator("#check-available").check()
+    expect(page.locator("#checklist-count")).to_contain_text("2 of 10")
+    page.locator('[data-check-need="tickets"]').uncheck()
+    expect(page.locator("#checklist-count")).to_contain_text("1 of 7")
+    expect(page.locator("#check-available")).to_be_hidden()
+    page.locator("#reset-checklist").click()
+    expect(page.locator("#checklist-count")).to_contain_text("0 of 7")
+    expect(page.locator('[data-check-need="access"]')).to_be_checked()
+    expect(page.locator("#travel-checklist")).to_contain_text("do not confirm a service, ticket or accessible route")
+    for width in (320,390,768,1440):
+        page.set_viewport_size({"width":width,"height":1000})
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"),width
+        if width in (390,1440): page.locator("#travel-checklist").screenshot(style=".masthead,.skip-link,.station-context{visibility:hidden!important}",path=str(ARTIFACTS / f"travel-checklist-{width}.png"))
+    checks.append("The personal checklist filters four topics, counts only selected checks, supports keyboard ticks and resets without implying operational confirmation")
+
+    page.evaluate("scrollTo({top:0,behavior:'instant'})")
+    page.wait_for_function("parseFloat(document.querySelector('.masthead').style.getPropertyValue('--reading-progress')) < .01")
+    page.locator("#checklist-title").evaluate("el => el.scrollIntoView({block:'start',behavior:'instant'})")
+    expect(page.locator('.desktop-nav a[href="#travel-checklist"]')).to_have_attribute("aria-current","location")
+    expect(page.locator('.mobile-nav nav a[href="#travel-checklist"]')).to_have_attribute("aria-current","location")
+    assert page.locator('.desktop-nav [aria-current="location"]').count() == 1
+    assert page.locator('.mobile-nav nav [aria-current="location"]').count() == 1
+    page.locator("#reset-checklist").focus()
+    page.evaluate("scrollTo({top:document.documentElement.scrollHeight,behavior:'instant'})")
+    expect(page.locator('.desktop-nav a[href="#sources"]')).to_have_attribute("aria-current","location")
+    expect(page.locator("#reset-checklist")).to_be_focused()
+    page.wait_for_function("parseFloat(document.querySelector('.masthead').style.getPropertyValue('--reading-progress')) === 1")
+    page.set_viewport_size({"width":390,"height":844})
+    page.locator(".mobile-nav > summary").click()
+    menu = page.locator(".mobile-nav nav").bounding_box()
+    assert menu["y"] + menu["height"] <= 844
+    page.locator('.mobile-nav a[href="#your-stations"]').click()
+    assert not page.locator(".mobile-nav").evaluate("el => el.open")
+    expect(page.locator('.mobile-nav a[href="#your-stations"]')).to_have_attribute("aria-current","location")
+    page.screenshot(path=str(ARTIFACTS / "reading-navigation-mobile.png"))
+    checks.append("Contents and desktop navigation follow scroll with one active link, progress reaches both endpoints, mobile Contents stays in view and scroll does not steal focus")
+
+
 def main():
     audit = StaticAudit()
     audit.feed((PROJECT / "index.html").read_text())
@@ -296,7 +441,7 @@ def main():
             expect(page.locator('#piccadilly-transfer a[href$="Manchester-Piccadilly-Station-Map.pdf"]')).to_have_count(1)
             expect(page.locator('#piccadilly-transfer a[href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/"]')).to_have_count(1)
             expect(page.locator("#piccadilly-transfer .source-note")).to_contain_text("not live lift availability")
-            assert page.locator("#updates .update-list li").count() == 4
+            assert page.locator("#updates .update-list li").count() == 5
             expect(page.locator(".updates-intro")).to_contain_text("does not confirm")
             assert page.locator('#updates time[datetime="2026-11-01"]').count() == 2
             page.set_viewport_size({"width":390,"height":844})
@@ -412,6 +557,8 @@ def main():
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             checks.append("Reduced motion disables scrolling animation; print exposes all phases; enlarged text reflows")
 
+            check_personal_tools(browser,page,url,checks,errors)
+
             offline = browser.new_context(offline=True,viewport={"width":390,"height":844})
             offline_page = offline.new_page()
             # A browser-local document verifies runtime independence from servers and external assets.
@@ -419,7 +566,10 @@ def main():
             expect(offline_page.locator("#finder")).to_be_visible()
             offline_page.locator("#station-search").fill("Glossop")
             expect(offline_page.locator("#search-results")).to_contain_text("Glossop")
-            checks.append("Browser-local content and station search work with network offline")
+            offline_page.locator("#compare-first").select_option("glossop")
+            offline_page.locator("#compare-second").select_option("stockport")
+            assert offline_page.locator(".comparison-result").count() == 2
+            checks.append("Browser-local content, station search and comparison work with network offline")
 
             no_js = browser.new_context(java_script_enabled=False,viewport={"width":390,"height":844})
             fallback = no_js.new_page()
@@ -437,6 +587,13 @@ def main():
             fallback.locator("#meaning-rail-contactless > summary").focus(); fallback.keyboard.press("Enter")
             expect(fallback.locator("#meaning-rail-contactless p")).to_be_visible()
             assert "title=" in fallback.locator('[data-correction-section="Tickets and payments"]').get_attribute("href")
+            expect(fallback.locator("#station-tools")).to_be_hidden()
+            assert fallback.locator(".journey-story").count() == 3
+            fallback.locator(".journey-story summary").first.focus(); fallback.keyboard.press("Enter")
+            expect(fallback.locator(".journey-story details").first).to_be_visible()
+            assert fallback.locator("[data-check-group]:visible").count() == 10
+            fallback.locator("#check-journey").focus(); fallback.keyboard.press("Space")
+            expect(fallback.locator("#check-journey")).to_be_checked()
             expect(fallback.locator("#finder")).to_be_hidden()
             assert fallback.evaluate("document.documentElement.scrollWidth <= innerWidth")
             fallback.screenshot(path=str(ARTIFACTS / "no-javascript.png"),full_page=True)

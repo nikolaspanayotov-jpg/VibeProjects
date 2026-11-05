@@ -271,3 +271,15 @@ The next refinement adds five ways to compare, revisit and use the guide while p
 5. Offer correction links for sections and the selected station. Open a prefilled GitHub issue draft containing the relevant context and prompts for a correction and source. Explain sign-in and submission on GitHub; no issue is created by the guide itself.
 
 These additions retain the existing palette, typography, quiet rules and build-free architecture. Definitions and source panels use native disclosures and remain usable without JavaScript; full-guide printing includes expanded content. The source snapshot and planned delivery labels do not advance merely because reading tools have changed.
+
+## Personal reader tools — 5 November 2026
+
+The next additions retain the established rail-atlas typography, paper background, yellow selection rules and restrained controls:
+
+1. **Station comparison:** two labelled native selects, populated from the existing station list, lead into parallel station profiles with joining dates, payments, service scope, access and original facilities links. Duplicate choices have a clear prompt. The count discrepancy and unresolved fares stay visible. The comparison is an information view, not a route or ticket validator.
+2. **My stations:** a compact saved shortlist comes before comparison in both document and visual order. Readers can save from a station result, open a saved station, remove one or clear all. Store up to six IDs locally under one versioned key. Show a visit-only fallback when saving is unavailable; keep the dated nature of the facts visible.
+3. **Journey stories:** three quiet columns introduce commuting, evening travel and access planning. Native disclosures reveal practical checks and source context. On mobile they stack in the same reading order. Optional comparison actions connect the examples to the real station records.
+4. **Personal checklist:** four topic choices tailor ten source-linked checks; two basic travel checks remain visible. Use native checkboxes and a modest count/progress indicator. Ticks express the reader's own actions and must not imply a confirmed itinerary or readiness guarantee. Keep this state within the tab, provide a reset, and show all checks without JavaScript.
+5. **Reading navigation:** underline the active desktop section, mark it with `aria-current`, add current-section context to mobile Contents and draw a three-pixel progress line inside the header. The longer mobile Contents menu scrolls within the viewport. Scroll updates never move focus or create another sticky bar.
+
+Use all 96 original station records, preserve complete static reading fallbacks and print output, and test the saved-state failure cases alongside normal keyboard/mobile interactions. No framework, backend, account or new remote asset is needed.

@@ -73,6 +73,19 @@ These retrievals verify the cited documents' availability at that check, not liv
 
 National Rail's saved 31 October Glossop page confirms the Derbyshire address used in the example. A fresh direct retrieval on 2 November returned HTTP 403, so this addition does not claim a newly verified live destination or change the original research date. No new rollout, fare or completion announcement is inferred from these reading tools.
 
+## Personal reader tools checked 5 November 2026
+
+- Comparison selectors contain all 96 station records plus an empty choice. Glossop/Stockport, Flowery Field/Salford Central, duplicate choices, clearing and opening a compared station passed. Dates, payment scope, service proposals and access use the explorer's shared fact functions. The 2028 count discrepancy and unresolved through-ticket/direct-service qualifications remain visible.
+- My stations restores a saved shortlist after reload, opens the correct explorer record, removes individual/all entries and limits the list to six. Only a version and station IDs are persisted. Blocked storage reads/writes, malformed JSON and unsupported schema versions show a visit-only fallback. Invalid, duplicate and obsolete IDs are filtered. Removal retains useful keyboard focus.
+- Three native journey-story disclosures work with the keyboard and their actions populate the matching station comparison. The commuting, evening and access examples retain source context, unknown ticket validity, unconfirmed last trains and the distinction between category C access and planned works.
+- Four checklist topic controls filter ten source-linked checks. Two general checks remain visible; counts include only visible items. Keyboard ticks and reset work, including preserving topic choices. The checklist does not persist or describe a journey as confirmed.
+- Desktop and mobile navigation each expose one current section through `aria-current="location"`. The decorative reading line reaches zero at the top and one at the bottom. Scroll updates preserve focus. Mobile Contents remains within the viewport, closes after navigation and retains the current section label.
+- Four-width checks cover 320, 390, 768 and 1440px. Comparison, stories, checklist and navigation screenshots were reviewed. Component captures hide fixed navigation chrome only during capture to avoid overlapping tall-element screenshots; separate viewport captures verify the real header and current-section label.
+- Existing station selection, source panels, text-only December 2027 scope, payment qualifications, reduced motion and full-guide printing remain covered. Four representative station briefs remain single-page A4 PDFs. Offline comparison and station search work; without JavaScript all three stories, ten native checklist items, source links and original station groups remain readable.
+- Shared station links now restore after initial page/font loading, so the browser's initial fragment jump cannot override result focus and scrolling. The full Chromium suite passes without page JavaScript errors.
+
+The five additions reuse the existing research snapshot. No new live source retrieval or operational confirmation is claimed: station and rollout facts remain dated 31 October 2026, and Piccadilly guidance remains dated 1 November. The 5 November update records changes to this guide.
+
 ## Repeating the browser checks
 
 From the repository root:

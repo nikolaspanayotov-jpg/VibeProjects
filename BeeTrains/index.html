@@ -43,9 +43,9 @@
     .desktop-nav { display:flex; align-items:center; gap:32px; font-size:16px; font-weight:600; }
     .desktop-nav a { text-decoration:none; padding-block:12px; }
     .desktop-nav a:last-child { border-left:1px solid var(--rule); padding-left:32px; }
-    .mobile-nav { display:none; position:relative; }
+    .mobile-nav { display:none; position:relative; min-width:0; }
     .mobile-nav summary { padding:12px 0 12px 12px; font-size:16px; }
-    .mobile-nav nav { position:absolute; right:0; top:50px; min-width:220px; padding:16px 24px; background:var(--surface); border:1px solid var(--ink); border-radius:6px; box-shadow:0 6px 0 var(--rule); }
+    .mobile-nav nav { max-height:calc(100dvh - 100px); overflow-y:auto; overscroll-behavior:contain; position:absolute; right:0; top:50px; min-width:220px; padding:16px 24px; background:var(--surface); border:1px solid var(--ink); border-radius:6px; box-shadow:0 6px 0 var(--rule); }
     .mobile-nav a { display:block; padding:12px 0; }
     .station-context { position:fixed; z-index:9; top:var(--header-height); inset-inline:0; background:var(--paper); border-bottom:1px solid var(--ink); }
     .station-context summary { display:flex; flex-wrap:wrap; align-items:center; gap:6px 16px; min-height:48px; padding-block:10px; font-size:15px; }
@@ -89,6 +89,76 @@
     .correction-note { margin-top:24px; font-size:14px; color:var(--muted); }
     .background-details { border-top:1px solid var(--rule); align-self:start; }
     .background-details summary { font-size:18px; }
+    .reading-progress { position:absolute; bottom:0; inset-inline:0; height:3px; background:var(--rule); pointer-events:none; }
+    .reading-progress span { display:block; height:100%; background:var(--ink); transform:scaleX(var(--reading-progress,0)); transform-origin:left; }
+    .desktop-nav a[aria-current="location"] { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:8px; }
+    .mobile-nav a[aria-current="location"] { font-weight:700; text-decoration-thickness:2px; border-left:3px solid var(--bee); padding-left:10px; }
+    .nav-position { display:block; font-size:12px; color:var(--muted); font-weight:400; line-height:1.2; max-width:min(145px,calc(100vw - 220px)); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .reader-section { padding-block:52px 60px; border-top:1px solid var(--ink); }
+    .reader-section h2 { margin-bottom:16px; }
+    .reader-intro { max-width:74ch; color:var(--muted); }
+    .reader-shortcuts { display:flex; flex-wrap:wrap; gap:8px 24px; margin-top:14px; font-size:15px; }
+    .reader-shortcuts a { min-height:44px; padding-block:10px; }
+    .station-tools-grid { margin-top:28px; }
+    .comparison-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:20px; }
+    .comparison-head h3,.saved-stations h3 { font-size:25px; }
+    .comparison-fields,.comparison-results { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+    .comparison-fields label { display:block; font-size:15px; font-weight:600; }
+    .comparison-fields select { width:100%; min-width:0; min-height:48px; padding:10px 30px 10px 10px; margin-top:8px; border:1px solid var(--ink); border-radius:5px; background:var(--surface); color:var(--ink); font:inherit; font-size:16px; }
+    .comparison-message { margin-block:18px; font-size:15px; color:var(--muted); }
+    .comparison-result { min-width:0; border-top:3px solid var(--bee); padding-top:18px; }
+    .comparison-result h4 { font-size:23px; margin:0 0 6px; }
+    .comparison-result dl { margin:18px 0 0; }
+    .comparison-result dl div { padding-block:12px; border-top:1px solid var(--rule); }
+    .comparison-result dt { font-size:14px; font-weight:600; }
+    .comparison-result dd { margin:5px 0 0; font-size:15px; color:var(--muted); }
+    .comparison-result a { display:block; padding-block:10px; font-size:15px; }
+    .comparison-result button { display:block; min-height:44px; border:0; background:none; padding:10px 0; font-size:15px; text-align:left; text-decoration:underline; }
+    .comparison-empty { padding:20px 0; font-size:15px; color:var(--muted); border-top:1px solid var(--rule); }
+    .comparison-qualification { margin-top:20px; font-size:15px; color:var(--muted); }
+    .saved-stations { padding-bottom:24px; margin-bottom:28px; border-bottom:1px solid var(--rule); }
+    .saved-stations > p { max-width:80ch; font-size:15px; color:var(--muted); margin-top:12px; }
+    .saved-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 28px; list-style:none; padding:0; margin:20px 0 8px; }
+    .saved-list li { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; border-top:1px solid var(--rule); padding-block:10px; }
+    .saved-list button { border:0; background:none; min-height:44px; padding:8px 0; font-size:16px; text-align:left; }
+    .saved-name { font-weight:600; text-decoration:underline; text-underline-offset:4px; }
+    .saved-list .saved-date { display:block; font-size:14px; color:var(--muted); font-weight:400; text-decoration:none; margin-top:4px; }
+    .saved-list .remove-saved { font-size:14px; color:var(--muted); }
+    .text-button { min-height:44px; padding:8px 0; border:0; background:none; font-size:15px; text-decoration:underline; }
+    .text-button:disabled { color:var(--muted); text-decoration:none; cursor:default; }
+    .reader-status { font-size:15px; color:var(--muted); margin-top:10px; }
+    .stories-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; margin-top:30px; }
+    .journey-story { border-top:3px solid var(--bee); padding-top:20px; min-width:0; }
+    .story-kind { display:block; font-size:14px; color:var(--muted); margin-bottom:12px; }
+    .journey-story h3 { font-size:25px; }
+    .journey-story > p { font-size:16px; color:var(--muted); margin-top:14px; }
+    .journey-story details { margin-top:12px; border-top:1px solid var(--rule); }
+    .journey-story summary { font-size:16px; }
+    .journey-story ol { padding-left:22px; margin:4px 0 18px; }
+    .journey-story li { font-size:16px; color:var(--muted); padding-block:6px; }
+    .journey-story details p { font-size:14px; color:var(--muted); }
+    .story-compare { min-height:44px; padding:10px 0; border:0; background:none; font-size:15px; text-align:left; text-decoration:underline; }
+    .checklist-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2fr); gap:48px; margin-top:28px; }
+    .checklist-choices { margin:0; padding:0; border:0; }
+    .checklist-choices legend { font-size:18px; font-weight:600; margin-bottom:14px; }
+    .checklist-choices label { display:flex; gap:12px; align-items:center; min-height:48px; font-size:16px; cursor:pointer; }
+    input[type="checkbox"] { width:20px; height:20px; flex-shrink:0; accent-color:var(--ink); }
+    .checklist-progress { margin-top:22px; }
+    .checklist-progress progress { display:block; width:100%; height:8px; accent-color:var(--ink); margin:12px 0; }
+    .checklist-items { list-style:none; margin:0; padding:0; }
+    .checklist-items li { padding-block:14px; border-top:1px solid var(--rule); }
+    .checklist-items label { display:flex; align-items:flex-start; gap:14px; min-height:44px; cursor:pointer; font-size:18px; font-weight:600; }
+    .checklist-items input { margin-top:4px; }
+    .checklist-items p { margin:4px 0 0 34px; color:var(--muted); font-size:15px; }
+    @media (max-width:1023px) { .stories-grid { gap:24px; } }
+    @media (max-width:759px) {
+      .reader-section { padding-block:42px; }
+      .reader-section h2 { font-size:36px; }
+      .station-tools-grid,.stories-grid,.checklist-layout { grid-template-columns:1fr; gap:32px; }
+      .saved-list { grid-template-columns:1fr; }
+      .comparison-fields,.comparison-results { grid-template-columns:1fr; gap:20px; }
+      .comparison-result + .comparison-result { margin-top:8px; }
+    }
     .section-links { display:flex; flex-wrap:wrap; gap:10px 24px; margin-top:20px; font-size:15px; }
     .roadmap-section { padding-block:52px 64px; border-top:1px solid var(--ink); }
     .roadmap-section h2 { margin-bottom:14px; }
@@ -393,6 +463,9 @@
     @media (max-width:359px) { .hero h1 { font-size:51px; } .wrap { padding-inline:16px; } .map-label { font-size:25px; } .map-note { font-size:19px; } .atlas-top { flex-wrap:wrap; gap:4px; } .station-list-view ul { columns:1; } .scheme { grid-template-columns:1fr; gap:3px; } .result-date { white-space:normal; text-align:right; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; animation:none!important; } }
     @media print {
+      .reading-progress,.reader-shortcuts,.comparison-fields,.comparison-head button,.saved-stations,.story-compare,#checklist-controls,#save-status { display:none!important; }
+      .station-tools-grid,.stories-grid,.checklist-layout { display:block; }
+      .journey-story,.comparison-result { break-inside:avoid; margin-top:20px; }
       body { background:white; font-size:11pt; } .wrap { max-width:none; padding:0; }
       .masthead { position:static; border:0; } .header-inner { min-height:40px; }
       .desktop-nav,.mobile-nav,.finder,.view-controls,.phase-controls,.skip-link,.detail-actions,.copy-status,.share-fallback,.explore-note,.station-context,.section-links { display:none!important; }
@@ -453,9 +526,10 @@
   <header class="masthead">
     <div class="wrap header-inner">
       <a class="wordmark" href="#" aria-label="BeeTrains, back to top"><svg class="brand-symbol" viewBox="0 0 32 32" aria-hidden="true"><path d="M0 16h9m14 0h9" stroke="currentColor" stroke-width="4"/><circle cx="16" cy="16" r="9" fill="var(--bee)" stroke="currentColor" stroke-width="4"/></svg>BeeTrains</a>
-      <nav class="desktop-nav" aria-label="Main navigation"><a href="#explore">Explore stations</a><a href="#roadmap">Roadmap</a><a href="#changes">What changes</a><a href="#updates">Updates</a><a href="#sources">Sources</a></nav>
-      <details class="mobile-nav"><summary>Contents</summary><nav aria-label="Mobile navigation"><a href="#explore">Explore stations</a><a href="#roadmap">Compare milestones</a><a href="#changes">What changes</a><a href="#tickets">Tickets, explained</a><a href="#piccadilly-transfer">Accessible transfer</a><a href="#updates">Recent updates</a><a href="#sources">Sources</a></nav></details>
+      <nav class="desktop-nav" aria-label="Main navigation"><a href="#explore">Stations</a><a href="#your-stations">My stations</a><a href="#roadmap">Plans</a><a href="#journey-stories">Journeys</a><a href="#travel-checklist">Checklist</a><a href="#updates">Updates</a><a href="#sources">Sources</a></nav>
+      <details class="mobile-nav"><summary>Contents<span class="nav-position" id="current-section" hidden aria-hidden="true">Explore stations</span></summary><nav aria-label="Mobile navigation"><a href="#explore">Explore stations</a><a href="#your-stations">My stations and comparison</a><a href="#roadmap">Compare milestones</a><a href="#changes">What changes</a><a href="#tickets">Tickets, explained</a><a href="#boundary-journeys">Cross-boundary journeys</a><a href="#accessibility">Station accessibility</a><a href="#piccadilly-transfer">Accessible transfer</a><a href="#services">Service plans</a><a href="#journey-stories">Journey stories</a><a href="#travel-checklist">My travel checklist</a><a href="#updates">Recent updates</a><a href="#sources">Sources</a></nav></details>
     </div>
+    <div class="reading-progress" id="reading-progress" aria-hidden="true" hidden><span></span></div>
   </header>
   <aside class="station-context" id="station-context" aria-label="Your selected station" hidden><div class="wrap"><details id="station-context-details"><summary><strong class="context-name" id="context-name"></strong><span class="context-date" id="context-date"></span></summary><div class="context-actions"><button type="button" id="context-return">Back to station details</button><button type="button" data-print-brief>Print / save station brief</button></div></details></div></aside>
   <main id="main" class="wrap">
@@ -628,10 +702,23 @@
         <figcaption><div class="atlas-caption"><span class="legend-line" id="highlight-key" aria-hidden="true"></span><span id="map-caption">Highlighted: December 2026 station group</span></div><div class="map-legend" id="map-legend"><span><i class="legend-muted" aria-hidden="true"></i>Other planned corridors</span><span><i class="legend-selected" aria-hidden="true"></i>Your selected station</span></div><div class="corridor-key"><h3 id="corridor-heading">Routes in this milestone</h3><ul id="corridor-list"><li>Manchester Piccadilly to Glossop and Hadfield</li></ul></div><p id="map-scope-note" class="small muted" style="margin-top:12px">Selected corridors, simplified. Branches and intermediate stops are omitted. Use <a href="https://tfgm.com/plan-a-journey">official journey planning</a> for travel.</p><p class="atlas-selection" id="atlas-selection" hidden></p><div class="map-omission" id="map-omission" hidden><p id="map-omission-message"></p><button type="button" id="show-omitted-station">Find this station in the full list</button></div></figcaption>
       </figure>
           <aside class="explore-note" id="explore-note"><h3>Your station, your next connection.</h3><p>Choose a station to see its planned joining date. Use the station list for every stop in a rollout group.</p><p>These are published plans, checked on 31 October 2026. Dates can change; joining the network does not mean every improvement arrives together.</p></aside>
-          <aside class="station-detail" id="station-detail" aria-labelledby="station-detail-title" hidden><span class="status">Selected station</span><h3 id="station-detail-title" tabindex="-1"></h3><p class="small muted" id="station-detail-location"></p><p class="small muted">Planned to join</p><p class="join-date" id="station-detail-date"></p><p id="station-detail-description" class="small muted"></p><h4>What changes here?</h4><dl class="station-changes"><div><dt>Tickets and payments</dt><dd id="station-ticketing"></dd></div><div><dt>Train services</dt><dd id="station-services"></dd></div><div><dt>Current step-free access</dt><dd id="station-access"></dd></div><div id="station-access-work-row" hidden><dt>Planned accessibility work</dt><dd id="station-access-work"></dd></div></dl><a class="station-facilities" id="station-facilities-link" href="https://www.nationalrail.co.uk/stations/">Station facilities and access</a><p class="small muted" id="station-access-review">Check the station page for temporary changes and help with boarding.</p><p class="small"><a href="https://tfgm.com/future-bee-network-rail-stations">Check TfGM’s latest joining dates</a></p><details class="evidence" id="station-date-evidence"><summary>Why this planned station date?</summary><div class="evidence-body"><p class="small" id="station-date-evidence-context"></p><div class="evidence-record"><strong>TfGM · primary source</strong><dl><div><dt>Date</dt><dd>Publication date not stated; indexed material reviewed 31 October 2026.</dd></div><div><dt>Supports</dt><dd>The named station groups and their planned joining dates.</dd></div><div><dt>Still uncertain</dt><dd>Delivery is not confirmed. The December 2028 heading says 43 while the published list names 42; older general FAQs use earlier groups.</dd></div></dl><a href="https://tfgm.com/future-bee-network-rail-stations">Read TfGM’s station list</a></div><p class="evidence-limit">TfGM material was reviewed through indexed copies; live access to these destinations and delivery of the plans are not confirmed here.</p></div></details><a class="correction-link" id="station-correction-link" href="https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new">Suggest a correction for this station</a><div class="detail-actions"><button type="button" class="button secondary" id="copy-station-link">Copy station link</button><button type="button" class="button secondary" id="print-station-brief" data-print-brief>Print / save PDF</button><button type="button" class="button secondary" id="download-station-brief">Download brief</button><span class="small muted">Checked 31 Oct 2026</span></div><p class="copy-status" id="copy-status" role="status"></p><p class="small muted" id="brief-status" role="status"></p><label id="share-label" class="small" for="share-fallback" hidden>Copy this station link</label><input id="share-fallback" class="share-fallback" readonly hidden></aside>
+          <aside class="station-detail" id="station-detail" aria-labelledby="station-detail-title" hidden><span class="status">Selected station</span><h3 id="station-detail-title" tabindex="-1"></h3><p class="small muted" id="station-detail-location"></p><p class="small muted">Planned to join</p><p class="join-date" id="station-detail-date"></p><p id="station-detail-description" class="small muted"></p><h4>What changes here?</h4><dl class="station-changes"><div><dt>Tickets and payments</dt><dd id="station-ticketing"></dd></div><div><dt>Train services</dt><dd id="station-services"></dd></div><div><dt>Current step-free access</dt><dd id="station-access"></dd></div><div id="station-access-work-row" hidden><dt>Planned accessibility work</dt><dd id="station-access-work"></dd></div></dl><a class="station-facilities" id="station-facilities-link" href="https://www.nationalrail.co.uk/stations/">Station facilities and access</a><p class="small muted" id="station-access-review">Check the station page for temporary changes and help with boarding.</p><p class="small"><a href="https://tfgm.com/future-bee-network-rail-stations">Check TfGM’s latest joining dates</a></p><details class="evidence" id="station-date-evidence"><summary>Why this planned station date?</summary><div class="evidence-body"><p class="small" id="station-date-evidence-context"></p><div class="evidence-record"><strong>TfGM · primary source</strong><dl><div><dt>Date</dt><dd>Publication date not stated; indexed material reviewed 31 October 2026.</dd></div><div><dt>Supports</dt><dd>The named station groups and their planned joining dates.</dd></div><div><dt>Still uncertain</dt><dd>Delivery is not confirmed. The December 2028 heading says 43 while the published list names 42; older general FAQs use earlier groups.</dd></div></dl><a href="https://tfgm.com/future-bee-network-rail-stations">Read TfGM’s station list</a></div><p class="evidence-limit">TfGM material was reviewed through indexed copies; live access to these destinations and delivery of the plans are not confirmed here.</p></div></details><a class="correction-link" id="station-correction-link" href="https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new">Suggest a correction for this station</a><div class="detail-actions"><button type="button" class="button secondary" id="save-station" aria-pressed="false">Save station</button><button type="button" class="button secondary" id="compare-station">Compare this station</button><button type="button" class="button secondary" id="copy-station-link">Copy station link</button><button type="button" class="button secondary" id="print-station-brief" data-print-brief>Print / save PDF</button><button type="button" class="button secondary" id="download-station-brief">Download brief</button><span class="small muted">Checked 31 Oct 2026</span></div><p class="reader-status" id="save-status" role="status"></p><p class="copy-status" id="copy-status" role="status"></p><p class="small muted" id="brief-status" role="status"></p><label id="share-label" class="small" for="share-fallback" hidden>Copy this station link</label><input id="share-fallback" class="share-fallback" readonly hidden></aside>
         </div>
       </div>
       <p class="sr-only" id="explorer-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    </section>
+    <section class="reader-section" id="your-stations" aria-labelledby="your-stations-title">
+      <h2 id="your-stations-title">Your stations, side by side.</h2><p class="reader-intro">Compare planned joining dates and dated access information, or keep up to six stations close to hand. A station’s joining date does not confirm ticket validity or a direct train between two stations.</p>
+      <div id="station-tools" hidden><div class="station-tools-grid"><aside class="saved-stations" aria-labelledby="saved-title"><h3 id="saved-title" tabindex="-1">My stations</h3><p>Save a station from its result below the rollout diagram. Saved names stay in this browser; no account is needed.</p><ul class="saved-list" id="saved-stations-list"></ul><p id="saved-empty">No stations saved yet. <a href="#station-search">Find your first station</a>.</p><button type="button" class="text-button" id="clear-saved" disabled>Remove all saved stations</button><p id="saved-storage-note">Only station IDs are saved. The facts remain the 31 October 2026 snapshot; check the official sources before travelling.</p><p class="reader-status" id="saved-status" role="status"></p></aside>
+        <div><div class="comparison-head"><h3 id="comparison-title" tabindex="-1">Compare two stations</h3><button class="text-button" id="clear-comparison" type="button">Clear comparison</button></div>
+          <div class="comparison-fields"><label for="compare-first">First station<select id="compare-first" aria-describedby="comparison-message"><option value="">Choose a station</option></select></label><label for="compare-second">Second station<select id="compare-second" aria-describedby="comparison-message"><option value="">Choose a station</option></select></label></div>
+          <p class="comparison-message" id="comparison-message" role="status">Choose two different stations to compare their published plans.</p><div class="comparison-results" id="comparison-results"></div>
+          <p class="source-note" id="comparison-count-note" hidden></p><p class="comparison-qualification">Joining dates: <a href="https://tfgm.com/future-bee-network-rail-stations">TfGM’s dedicated station list</a>, reviewed through indexed material on 31 October 2026. Access information is also dated; it does not report lift status or guarantee level boarding. Fares and eligible journeys remain unconfirmed.</p>
+        </div>
+        
+      </div></div>
+      <noscript><p class="source-note">Station comparison and saving need JavaScript. You can still <a href="#explore">read every station group and planned date</a> and follow each station’s official facilities link.</p></noscript>
+      <nav class="reader-shortcuts" aria-label="More reader tools"><a href="#journey-stories">Read a journey story</a><a href="#travel-checklist">Make a travel checklist</a></nav>
     </section>
     <section class="roadmap-section" id="roadmap" aria-labelledby="roadmap-title">
       <h2 id="roadmap-title">The plans, side by side.</h2><p class="roadmap-intro">Compare station integration, payment changes and service proposals. All dates below are planned milestones or targets, with eligibility and delivery details still to be confirmed.</p>
@@ -690,8 +777,15 @@
       <div class="section-copy"><h2 id="services-title">Connected journeys.<br>Shared responsibility.</h2><p>Selected Airport, Alderley Edge and Rochdale stopping services are planned to gain more evening and weekend trains from December 2027. Confirm individual journeys when timetables are published. <a href="#source-rail-update">Read the service plans</a>.</p><p>Rail integration brings several organisations together. Existing operators continue running trains while the network’s passenger experience develops. <a href="#source-faqs">TfGM explains the arrangements</a>.</p><p class="small">Joining the Bee Network is a programme of changes. It is not, by itself, a guarantee of punctuality or a new timetable at every station.</p></div>
       <div><details class="term-help" id="meaning-stopping-service"><summary>What does a stopping service mean?</summary><p>A train service that calls at stations along its route. The term does not tell you the exact stations served by a particular train; check its published timetable. The December 2027 proposal applies to selected services, not every train on the named corridors.</p></details><details class="evidence" id="service-evidence"><summary>Evidence for the service proposals</summary><div class="evidence-body"><div class="evidence-record"><strong>Place North West · secondary reporting</strong><dl><div><dt>Date</dt><dd>Published 23 October 2026; reviewed 31 October 2026.</dd></div><div><dt>Supports</dt><dd>Selected Manchester Airport, Alderley Edge and Rochdale stopping services proposed for evening and weekend enhancements from December 2027.</dd></div><div><dt>Still uncertain</dt><dd>Exact trains and stopping patterns need published timetables. This report has an inconsistent first-group date heading; station dates here follow TfGM’s dedicated list.</dd></div></dl><a href="https://www.placenorthwest.co.uk/tfgm-lists-first-14-rail-stations-to-join-bee-network/">Read the service update report</a></div></div></details><details class="background-details" id="rail-responsibilities"><summary>Who does what on the railway?</summary><dl class="role-list"><div><dt>TfGM</dt><dd>Coordinates integration with the wider Bee Network and works with partners on passenger improvements.</dd></div><div><dt>Train operators</dt><dd>Run train services and deliver the published timetables.</dd></div><div><dt>Network Rail</dt><dd>Manages rail infrastructure and works with partners on station and network projects.</dd></div><div><dt>Government and rail partners</dt><dd>Work with Greater Manchester on funding, agreements and delivery.</dd></div></dl></details><a class="correction-link" data-correction-section="Services and responsibilities" href="https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new?title=BeeTrains+correction%3A+Services+and+responsibilities&amp;body=Section%3A+Services+and+responsibilities%0AGuide%3A+BeeTrains%2Findex.html%0ARollout+research+snapshot%3A+31+October+2026%0A%0AWhat+needs+correcting%3F%0A%0ASuggested+correction%3A%0A%0ASupporting+source+URL+and+publication+date%3A%0A">Suggest a correction</a></div>
     </section>
+    <section class="reader-section" id="journey-stories" aria-labelledby="stories-title"><h2 id="stories-title">Three journeys, different questions.</h2><p class="reader-intro">A commute, an evening out and a journey with access needs show how the plans could matter. These are planning examples, not verified itineraries, fare quotes or a promise that a suitable train is running.</p><div class="stories-grid">
+      <article class="journey-story"><span class="story-kind">A daily commute</span><h3>Rose Hill Marple to Piccadilly</h3><p>Rose Hill Marple is planned to join in <span data-story-date="rose-hill-marple">March 2027</span>. Piccadilly is in the earlier <span data-story-date="manchester-piccadilly">December 2026</span> group. Different launch groups need careful ticket checks.</p><details><summary>Work through this commute</summary><ol><li>Check the operator’s timetable for the outward train, return train and any changes. Joining dates are not timetable promises.</li><li>Check which rail journeys can use contactless at the time you travel. A station launch does not confirm through-ticket validity.</li><li>If you continue by tram or bus, check the separate daily ticket or future cap rules for the full journey, including peak times and any Railcard.</li></ol><p>Dates: <a href="https://tfgm.com/future-bee-network-rail-stations">TfGM station list</a>. Payment targets: <a href="#payment-evidence">October secondary reporting</a>. Rollout research checked 31 October 2026.</p></details><button type="button" class="story-compare" data-compare-pair="rose-hill-marple manchester-piccadilly" hidden>Compare these stations</button></article>
+      <article class="journey-story"><span class="story-kind">An evening out</span><h3>Rochdale to Manchester Victoria</h3><p>The proposal for selected Rochdale stopping services is December 2027. That is separate from Rochdale’s station integration by December 2028 and Victoria’s planned March 2027 joining date.</p><details><summary>Plan the journey home</summary><ol><li>Start with the published timetable for your exact day, especially the last suitable return train and any engineering changes.</li><li>The October report describes evening and weekend improvements on selected services. It does not confirm a later last train, a frequency or a particular stopping pattern for this journey.</li><li>Check fares and onward tram or bus connections separately. A new timetable and an integrated cap have different targets.</li></ol><p>Services: <a href="https://www.placenorthwest.co.uk/tfgm-lists-first-14-rail-stations-to-join-bee-network/">Place North West, 23 October 2026</a> (secondary). Station dates: <a href="https://tfgm.com/future-bee-network-rail-stations">TfGM’s dedicated list</a>. No service route is inferred.</p></details><button type="button" class="story-compare" data-compare-pair="rochdale manchester-victoria" hidden>Compare these stations</button></article>
+      <article class="journey-story"><span class="story-kind">Planning with step-free access</span><h3>Flowery Field to Piccadilly</h3><p>Flowery Field is planned to join in December 2026, while its step-free works are planned for 2027–2028. Its National Rail category C snapshot reports no step-free platform access.</p><details><summary>Check whether this journey works for you</summary><ol><li>Check current facilities at both stations and the exact platforms. Network membership does not establish a usable step-free route.</li><li>Discuss assistance and alternatives with the operator or Passenger Assist if the origin cannot meet your needs. Do not assume staff can overcome a physical access barrier.</li><li>If changing to Metrolink, use the Piccadilly transfer guide and check current lift conditions and support for the tram leg separately.</li></ol><p>Access snapshot: <a href="https://www.nationalrail.co.uk/stations/flowery-field/">National Rail, checked 31 October 2026</a>. Planned works: <a href="#access-evidence">indexed TfGM material</a>. <a href="#piccadilly-transfer">Piccadilly transfer guide</a>; this story does not confirm a step-free journey.</p></details><button type="button" class="story-compare" data-compare-pair="flowery-field manchester-piccadilly" hidden>Compare these stations</button></article>
+    </div></section>
+    <section class="reader-section" id="travel-checklist" aria-labelledby="checklist-title"><h2 id="checklist-title">Make the journey your own.</h2><p class="reader-intro">Choose what matters, then work through the checks with official information. Ticks record your own checks; they do not confirm a service, ticket or accessible route. The checklist stays in this tab.</p><div class="checklist-layout"><div id="checklist-controls" hidden><fieldset class="checklist-choices"><legend>What matters for this journey?</legend><label><input type="checkbox" data-check-need="tickets" checked>Tickets and payments</label><label><input type="checkbox" data-check-need="access">Step-free access</label><label><input type="checkbox" data-check-need="assistance">Travel assistance</label><label><input type="checkbox" data-check-need="late">Evening or weekend travel</label></fieldset><div class="checklist-progress"><p class="small" id="checklist-count"></p><progress id="checklist-progress" value="0" max="5" aria-label="Selected checks marked"></progress><button type="button" class="text-button" id="reset-checklist">Reset ticks</button><p class="reader-status" id="checklist-status" role="status"></p></div></div><ul class="checklist-items" id="checklist-items"><li data-check-group="general"><label for="check-journey"><input type="checkbox" id="check-journey" data-travel-check><span>Check the route and timetable for my travel date</span></label><p>Check outward and return trains, changes and onward connections with <a href="https://tfgm.com/plan-a-journey">official journey planning</a>.</p></li><li data-check-group="general"><label for="check-alerts"><input type="checkbox" id="check-alerts" data-travel-check><span>Check current disruption before setting off</span></label><p>Review <a href="https://tfgm.com/travel-updates/travel-alerts">official travel alerts</a> close to departure. This page does not receive live updates.</p></li><li data-check-group="tickets"><label for="check-available"><input type="checkbox" id="check-available" data-travel-check><span>Confirm which payment options are actually available</span></label><p>Use <a href="https://tfgm.com/future-bee-network-rail-stations">TfGM’s latest rail notices</a>. A planned date is not confirmation of launch.</p></li><li data-check-group="tickets"><label for="check-validity"><input type="checkbox" id="check-validity" data-travel-check><span>Check that my ticket covers every leg</span></label><p>Confirm origin, destination, operator, time restrictions, concessions and Railcards against the published conditions. <a href="#boundary-journeys">Cross-boundary validity remains unresolved here</a>.</p></li><li data-check-group="tickets"><label for="check-readers"><input type="checkbox" id="check-readers" data-travel-check><span>Check payment instructions at each change of mode</span></label><p>For a contactless journey, follow the published railway instructions and <a href="https://tfgm.com/ways-to-pay/contactless">TfGM’s tram instructions</a>. A rail payment does not itself establish a combined cap.</p></li><li data-check-group="access"><label for="check-platforms"><input type="checkbox" id="check-platforms" data-travel-check><span>Check platform access at both stations</span></label><p>Use the <a href="https://www.nationalrail.co.uk/stations/">National Rail station directory</a> and check the actual platforms, slopes, steps and boarding arrangements.</p></li><li data-check-group="access"><label for="check-lifts"><input type="checkbox" id="check-lifts" data-travel-check><span>Check the transfer route and equipment conditions</span></label><p>Use the <a href="#piccadilly-transfer">Piccadilly transfer guidance</a> where relevant and check current lift or escalator alerts. Nominal access categories are not live equipment reports.</p></li><li data-check-group="assistance"><label for="check-support"><input type="checkbox" id="check-support" data-travel-check><span>Arrange and confirm the assistance I need</span></label><p>Contact <a href="https://www.nationalrail.co.uk/help-and-assistance/passenger-assist/">Passenger Assist</a> or the operator. Check support for a tram or bus connection separately with <a href="https://tfgm.com/accessibility/guides">TfGM</a>.</p></li><li data-check-group="late"><label for="check-last-train"><input type="checkbox" id="check-last-train" data-travel-check><span>Check the last suitable return service</span></label><p>Use the published timetable for the exact day, including weekends and engineering changes. <a href="https://tfgm.com/plan-a-journey">Check the return journey</a>.</p></li><li data-check-group="late"><label for="check-service-scope"><input type="checkbox" id="check-service-scope" data-travel-check><span>Confirm that an announced improvement affects my train</span></label><p>The December 2027 proposal covers selected services. <a href="#service-evidence">Check its scope</a> and the final timetable; do not assume a later last train.</p></li></ul></div><p class="source-note">TfGM destinations were identified through indexed material and were not all live-verified. Follow current official information; this checklist does not resolve the guide’s source or fare uncertainties.</p></section>
     <section class="faq-section" aria-labelledby="faq-title"><div><h2 id="faq-title">A few useful answers.</h2><p class="muted" style="margin-top:18px;max-width:350px">The detail matters when you’re planning a real journey.</p></div><div class="faq-list"><details><summary>Will my train operator change?</summary><p>Joining the Bee Network does not itself mean the Bee Network becomes the train operator. Existing train operating companies continue running services while TfGM works with government and the rail industry on integration. <a href="#source-faqs">TfGM’s explanation</a>.</p></details><details><summary>Does joining mean my station will be step-free?</summary><p>No. Station integration and accessibility projects have different delivery dates. Check the <a href="https://tfgm.com/ways-to-travel/train/stations">official station directory</a> for current facilities before travelling.</p></details><details><summary>Can I tap in for every train journey now?</summary><p>This guide describes planned changes. The first rail contactless launch in the current programme is December 2026, followed by further rollout. Check <a href="https://tfgm.com/future-bee-network-rail-stations">TfGM’s latest notices</a> for availability and ticketing rules.</p></details><details><summary>Why do older reports say 17 stations?</summary><p>Earlier announcements grouped 17 stations into the December 2026 launch. TfGM’s newer station list puts 14 in December 2026 and a further 15 in March 2027. This guide follows the newer list. <a href="#source-stations">See the current source</a>.</p></details><details><summary>Is this an official Bee Network website?</summary><p>BeeTrains is an independent guide to published plans. Use TfGM, National Rail and your train operator for travel information, ticket conditions and current service updates.</p></details></div></section>
     <section class="updates-section" id="updates" aria-labelledby="updates-title"><h2 id="updates-title">Recent updates.</h2><p class="updates-intro">A record of changes to the published plans and clarifications in this guide. A guide update does not confirm that a service, payment option or station improvement has launched.</p><ol class="update-list">
+      <li><div><time datetime="2026-11-05">5 November 2026</time><span class="update-kind">Guide reading tools</span></div><div><h3>Compare stations and plan your own checks</h3><p>Added a saved shortlist, station comparison, three journey stories and a personal checklist. Contents now follows your reading position. These tools use the existing dated research; they do not confirm any new service, fare or access improvement.</p></div></li>
       <li><div><time datetime="2026-11-02">2 November 2026</time><span class="update-kind">Guide reading tools</span></div><div><h3>Boundary questions and evidence are easier to find</h3><p>Added a quick start, plain-English definitions, local source explanations and correction drafts. The Glossop example separates geography from ticket validity. These are guide improvements; they do not confirm any change to the rollout or fares.</p></div></li>
       <li><div><time datetime="2026-11-01">1 November 2026</time><span class="update-kind">Guide clarification</span></div><div><h3>Payment coverage and integration have separate targets</h3><p>We now state the October reporting’s end-2028 rail-only contactless target alongside station integration through 2030. Eligible journeys and ticket conditions remain unconfirmed. <a href="#source-october">Read the attributed reporting</a>.</p></div></li>
       <li><div><time datetime="2026-11-01">1 November 2026</time><span class="update-kind">Source note added</span></div><div><h3>The 2028 count needs clarification</h3><p>TfGM’s heading says 43 stations, while the published list names 42. We reproduce the named entries and flag the discrepancy beside the list. This is a source issue, not an announced extra station. <a href="#source-stations">See the dedicated station list</a>.</p></div></li>
@@ -756,6 +850,191 @@
       let contextFrame = 0;
       let printTitle = null;
       let printDisclosures = [];
+
+      function stationTicketing(station) { return station.phase === '2026' || station.phase === '2027'
+          ? `Rail contactless is planned with this ${PHASES[station.phase].date} launch group. Combined train-and-tram caps are a separate later plan.`
+          : station.phase === '2028'
+            ? 'Contactless rollout and integrated daily and weekly caps are targeted by the end of 2028. Check the final ticketing rules for this station.'
+            : 'Rail-only contactless has a wider target of the end of 2028; this station’s full integration is listed for 2030. Actual participation and fares need confirmation.'; }
+      function stationServices(station) { return ['manchester-airport','rochdale'].includes(station.id)
+          ? 'Selected stopping services on this corridor are planned to gain evening and weekend trains from December 2027. Individual timetables still need confirmation.'
+          : 'No station-specific timetable enhancement is confirmed in this guide. Check the operator’s published timetable for your journey.'; }
+      function stationAccess(station) { return ACCESS[station.access] || 'Current step-free access is not confirmed in this guide. Check the official station page before travelling.'; }
+      function stationAccessWork(station) { return ['flowery-field','newton-for-hyde','levenshulme'].includes(station.id) ? 'Step-free access work is planned for 2027–2028. Completion is not confirmed here; see the station improvement sources below.' : ''; }
+
+
+      const READER_STORAGE_KEY = 'beetrains.reader.v1';
+      const MAX_SAVED = 6;
+      let savedStationIds = [];
+      let storageAvailable = true;
+      let readerFrame = 0;
+      const compareSelects = [document.getElementById('compare-first'),document.getElementById('compare-second')];
+      function appendText(parent,tag,value,className = '') {
+        const el = document.createElement(tag); el.textContent = value;
+        if (className) el.className = className;
+        parent.append(el); return el;
+      }
+      function loadSavedStations() {
+        try {
+          const raw = window.localStorage.getItem(READER_STORAGE_KEY);
+          if (!raw) return;
+          const value = JSON.parse(raw);
+          if (value.version !== 1 || !Array.isArray(value.stationIds)) throw new Error('Unknown saved format');
+          savedStationIds = [...new Set(value.stationIds.filter(id => typeof id === 'string' && stationsById.has(id)))].slice(0,MAX_SAVED);
+        } catch (_) {
+          storageAvailable = false;
+          document.getElementById('saved-storage-note').textContent = 'Saved stations could not be restored in this browser. Your shortlist will last for this visit only. Facts remain dated 31 October 2026.';
+        }
+      }
+      function persistSavedStations() {
+        if (!storageAvailable) return;
+        try { window.localStorage.setItem(READER_STORAGE_KEY,JSON.stringify({version:1,stationIds:savedStationIds})); }
+        catch (_) {
+          storageAvailable = false;
+          document.getElementById('saved-storage-note').textContent = 'This browser could not save the shortlist. It will last for this visit only. Facts remain dated 31 October 2026.';
+        }
+      }
+      function updateSaveButton() {
+        const button = document.getElementById('save-station');
+        const saved = Boolean(selectedStation && savedStationIds.includes(selectedStation.id));
+        button.setAttribute('aria-pressed',String(saved));
+        button.textContent = selectedStation ? (saved ? `Remove ${selectedStation.name} from My stations` : `Save ${selectedStation.name}`) : 'Save station';
+      }
+      function renderSavedStations() {
+        const list = document.getElementById('saved-stations-list'); list.replaceChildren();
+        savedStationIds.forEach(id => {
+          const station = stationsById.get(id);
+          const item = document.createElement('li'); const open = document.createElement('button');
+          open.type = 'button'; open.dataset.selectStation = id;
+          appendText(open,'span',station.name,'saved-name');
+          appendText(open,'span',`Planned: ${PHASES[station.phase].date}`,'saved-date');
+          const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Remove'; remove.className = 'remove-saved';
+          remove.setAttribute('aria-label',`Remove ${station.name} from My stations`);
+          remove.addEventListener('click',() => {
+            const index = savedStationIds.indexOf(id);
+            savedStationIds = savedStationIds.filter(value => value !== id);
+            persistSavedStations(); renderSavedStations(); updateSaveButton();
+            document.getElementById('saved-status').textContent = `${station.name} removed.`;
+            const next = list.querySelectorAll('.remove-saved');
+            (next[Math.min(index,next.length-1)] || document.getElementById('saved-title')).focus();
+          });
+          item.append(open,remove); list.append(item);
+        });
+        document.getElementById('saved-empty').hidden = savedStationIds.length > 0;
+        document.getElementById('clear-saved').disabled = !savedStationIds.length;
+      }
+      function toggleSavedStation() {
+        if (!selectedStation) return;
+        const id = selectedStation.id;
+        if (savedStationIds.includes(id)) savedStationIds = savedStationIds.filter(value => value !== id);
+        else if (savedStationIds.length >= MAX_SAVED) {
+          document.getElementById('save-status').textContent = 'Your shortlist has six stations. Remove one in My stations before saving another.'; return;
+        } else savedStationIds.push(id);
+        persistSavedStations(); renderSavedStations(); updateSaveButton();
+        document.getElementById('save-status').textContent = `${selectedStation.name} ${savedStationIds.includes(id) ? 'added to' : 'removed from'} My stations.${storageAvailable ? '' : ' Saved for this visit only.'}`;
+      }
+      function renderComparison() {
+        const result = document.getElementById('comparison-results'); result.replaceChildren();
+        const records = compareSelects.map(select => stationsById.get(select.value));
+        const duplicate = records[0] && records[1] && records[0].id === records[1].id;
+        document.getElementById('comparison-message').textContent = duplicate ? 'Choose a different second station to make a comparison.'
+          : records.every(Boolean) ? `${records[0].name} and ${records[1].name}: ${records[0].phase === records[1].phase ? 'the same planned integration group' : 'different planned integration groups'}. This does not confirm a direct service or through-ticket validity.`
+          : 'Choose two different stations to compare their published plans.';
+        records.forEach((station,index) => {
+          if (!station || (duplicate && index === 1)) { appendText(result,'p',`Choose ${index ? 'a different second' : 'the first'} station above.`,'comparison-empty'); return; }
+          const article = document.createElement('article'); article.className = 'comparison-result';
+          appendText(article,'h4',station.name);
+          appendText(article,'p',`Station code ${station.code}${station.postcode ? ' · '+station.postcode : ''}`,'small muted');
+          const dl = document.createElement('dl'); article.append(dl);
+          const facts = [['Planned to join',PHASES[station.phase].date],['Tickets and payments',stationTicketing(station)],['Train services',stationServices(station)],['Platform access — snapshot '+formatDate(station.reviewed),stationAccess(station)]];
+          if (stationAccessWork(station)) facts.push(['Planned access work',stationAccessWork(station)]);
+          facts.forEach(([label,value]) => { const row = document.createElement('div'); appendText(row,'dt',label); appendText(row,'dd',value); dl.append(row); });
+          const link = appendText(article,'a','Official facilities and current access'); link.href = station.information;
+          const open = appendText(article,'button',`Open ${station.name} in the explorer`); open.type = 'button'; open.dataset.selectStation = station.id;
+          result.append(article);
+        });
+        const count = document.getElementById('comparison-count-note');
+        count.hidden = !records.some(station => station?.phase === '2028');
+        count.textContent = document.getElementById('station-count-note').textContent;
+      }
+      function compareStations(ids) {
+        compareSelects.forEach((select,index) => { select.value = stationsById.has(ids[index]) ? ids[index] : ''; });
+        renderComparison();
+        const heading = document.getElementById('comparison-title'); heading.focus({preventScroll:true}); heading.scrollIntoView({block:'start',behavior:'instant'});
+      }
+      function updateChecklist(notify = false) {
+        const needs = new Set([...document.querySelectorAll('[data-check-need]:checked')].map(input => input.dataset.checkNeed));
+        const visible = [];
+        document.querySelectorAll('[data-check-group]').forEach(item => {
+          item.hidden = item.dataset.checkGroup !== 'general' && !needs.has(item.dataset.checkGroup);
+          if (!item.hidden) visible.push(item.querySelector('[data-travel-check]'));
+        });
+        const marked = visible.filter(input => input.checked).length;
+        const text = `${marked} of ${visible.length} selected checks marked. Recheck current information before travelling.`;
+        document.getElementById('checklist-count').textContent = text;
+        const progress = document.getElementById('checklist-progress'); progress.max = visible.length; progress.value = marked;
+        if (notify) document.getElementById('checklist-status').textContent = text;
+      }
+      function updateReaderNavigation() {
+        readerFrame = 0;
+        if (window.matchMedia('print').matches) return;
+        const offset = headerEl.getBoundingClientRect().height + (contextEl.hidden ? 0 : contextEl.getBoundingClientRect().height) + 28;
+        const mobileLinks = [...document.querySelectorAll('.mobile-nav nav a')];
+        let active = mobileLinks[0];
+        mobileLinks.forEach(link => { if (document.querySelector(link.getAttribute('href')).getBoundingClientRect().top <= offset) active = link; });
+        const bottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 3;
+        if (bottom) active = mobileLinks[mobileLinks.length-1];
+        mobileLinks.forEach(link => { if (link === active) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); });
+        const desktopLinks = [...document.querySelectorAll('.desktop-nav a')];
+        let desktopActive = desktopLinks[0];
+        desktopLinks.forEach(link => { if (document.querySelector(link.getAttribute('href')).getBoundingClientRect().top <= offset) desktopActive = link; });
+        if (bottom) desktopActive = desktopLinks[desktopLinks.length-1];
+        desktopLinks.forEach(link => { if (link === desktopActive) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); });
+        document.getElementById('current-section').textContent = active.textContent;
+        document.querySelector('.mobile-nav > summary').setAttribute('aria-label',`Contents, current section: ${active.textContent}`);
+        const range = document.documentElement.scrollHeight - window.innerHeight;
+        headerEl.style.setProperty('--reading-progress',String(range > 0 ? Math.min(1,Math.max(0,window.scrollY/range)) : 0));
+      }
+      function scheduleReaderNavigation() {
+        if (!readerFrame) readerFrame = window.requestAnimationFrame(updateReaderNavigation);
+      }
+      function setupReaderTools() {
+        const sorted = [...stations].sort((a,b) => a.name.localeCompare(b.name));
+        compareSelects.forEach(select => {
+          sorted.forEach(station => { const option = appendText(select,'option',station.name); option.value = station.id; });
+          select.addEventListener('change',renderComparison);
+        });
+        loadSavedStations(); renderSavedStations(); renderComparison();
+        document.getElementById('save-station').addEventListener('click',toggleSavedStation);
+        document.getElementById('clear-saved').addEventListener('click',() => {
+          savedStationIds = []; persistSavedStations(); renderSavedStations(); updateSaveButton();
+          document.getElementById('saved-status').textContent = 'All saved stations removed.';
+          document.getElementById('saved-title').focus();
+        });
+        document.getElementById('compare-station').addEventListener('click',() => {
+          if (!selectedStation) return;
+          const ids = compareSelects.map(select => select.value);
+          if (!ids[0] || ids[0] === selectedStation.id) ids[0] = selectedStation.id; else ids[1] = selectedStation.id;
+          compareStations(ids);
+        });
+        document.getElementById('clear-comparison').addEventListener('click',() => { compareSelects.forEach(select => { select.value = ''; }); renderComparison(); compareSelects[0].focus(); });
+        document.querySelectorAll('[data-compare-pair]').forEach(button => { button.hidden = false; button.addEventListener('click',() => compareStations(button.dataset.comparePair.split(' '))); });
+        document.querySelectorAll('[data-story-date]').forEach(el => { el.textContent = PHASES[stationsById.get(el.dataset.storyDate).phase].date; });
+        document.querySelectorAll('[data-check-need],[data-travel-check]').forEach(input => input.addEventListener('change',() => updateChecklist(true)));
+        document.getElementById('reset-checklist').addEventListener('click',() => {
+          document.querySelectorAll('[data-travel-check]').forEach(input => { input.checked = false; }); updateChecklist();
+          document.getElementById('checklist-status').textContent = 'Checklist ticks cleared. Your chosen topics are unchanged.';
+        });
+        updateChecklist();
+        ['station-tools','checklist-controls','current-section','reading-progress'].forEach(id => { document.getElementById(id).hidden = false; });
+        window.addEventListener('scroll',scheduleReaderNavigation,{passive:true}); window.addEventListener('resize',scheduleReaderNavigation);
+        document.addEventListener('toggle',scheduleReaderNavigation,true);
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(scheduleReaderNavigation); observer.observe(document.getElementById('main')); observer.observe(headerEl); observer.observe(contextDetailsEl);
+        }
+        window.addEventListener('afterprint',scheduleReaderNavigation);
+        scheduleReaderNavigation();
+      }
 
       function stationCorrectionUrl(station) {
         const url = new URL('https://github.com/nikolaspanayotov-jpg/VibeProjects/issues/new');
@@ -937,6 +1216,8 @@
         window.clearTimeout(searchTimer);
         selectedStation = station; setPhase(station.phase,false); resetCopy();
         detailTitleEl.textContent = station.name;
+        document.getElementById('save-status').textContent = '';
+        updateSaveButton();
         document.getElementById('station-correction-link').href = stationCorrectionUrl(station);
         document.getElementById('station-correction-link').textContent = `Suggest a correction for ${station.name}`;
         document.getElementById('station-date-evidence-context').textContent = `${station.name}: ${PHASES[station.phase].date}, as listed in TfGM’s dedicated station group. This is a planned date.`;
@@ -944,18 +1225,11 @@
         document.getElementById('station-detail-date').textContent = PHASES[station.phase].date;
         document.getElementById('station-detail-description').textContent = PHASES[station.phase].description;
         document.getElementById('station-detail-location').textContent = `Station code ${station.code}.${station.postcode ? ` Postcode ${station.postcode}.` : ''}`;
-        document.getElementById('station-ticketing').textContent = station.phase === '2026' || station.phase === '2027'
-          ? `Rail contactless is planned with this ${PHASES[station.phase].date} launch group. Combined train-and-tram caps are a separate later plan.`
-          : station.phase === '2028'
-            ? 'Contactless rollout and integrated daily and weekly caps are targeted by the end of 2028. Check the final ticketing rules for this station.'
-            : 'Rail-only contactless has a wider target of the end of 2028; this station’s full integration is listed for 2030. Actual participation and fares need confirmation.';
-        document.getElementById('station-services').textContent = ['manchester-airport','rochdale'].includes(station.id)
-          ? 'Selected stopping services on this corridor are planned to gain evening and weekend trains from December 2027. Individual timetables still need confirmation.'
-          : 'No station-specific timetable enhancement is confirmed in this guide. Check the operator’s published timetable for your journey.';
-        document.getElementById('station-access').textContent = ACCESS[station.access] || 'Current step-free access is not confirmed in this guide. Check the official station page before travelling.';
-        const accessWork = ['flowery-field','newton-for-hyde','levenshulme'].includes(station.id);
-        document.getElementById('station-access-work-row').hidden = !accessWork;
-        document.getElementById('station-access-work').textContent = accessWork ? 'Step-free access work is planned for 2027–2028. Completion is not confirmed here; see the station improvement sources below.' : '';
+        document.getElementById('station-ticketing').textContent = stationTicketing(station);
+        document.getElementById('station-services').textContent = stationServices(station);
+        document.getElementById('station-access').textContent = stationAccess(station);
+        document.getElementById('station-access-work-row').hidden = !stationAccessWork(station);
+        document.getElementById('station-access-work').textContent = stationAccessWork(station);
         const facilitiesEl = document.getElementById('station-facilities-link'); facilitiesEl.href = station.information;
         facilitiesEl.textContent = `${station.name}: facilities and access`;
         document.getElementById('station-access-review').textContent = station.access
@@ -998,6 +1272,7 @@
       }
 
       if (!stations.length || stationsById.size !== stations.length || stations.some(station => !PHASES[station.phase])) return;
+      setupReaderTools();
       phaseButtons.forEach(button => button.addEventListener('click',() => setPhase(button.dataset.phase)));
       document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click',() => setView(button.dataset.view)));
       document.querySelectorAll('[data-jump-phase]').forEach(link => link.addEventListener('click',event => {
@@ -1062,7 +1337,15 @@
       scheduleContextUpdate();
       const linkedStation = new URL(window.location.href).searchParams.get('station');
       if (linkedStation) {
-        if (stationsById.has(linkedStation)) window.requestAnimationFrame(() => selectStation(linkedStation,true,false));
+        if (stationsById.has(linkedStation)) {
+          const restoreStation = () => {
+            Promise.resolve(document.fonts?.ready).then(() => window.requestAnimationFrame(() => {
+              if (!selectedStation) selectStation(linkedStation,true,false);
+            }));
+          };
+          if (document.readyState === 'complete') restoreStation();
+          else window.addEventListener('load',restoreStation,{once:true});
+        }
         else { const message = document.createElement('p'); message.className = 'small'; message.textContent = 'This station link is not recognised. Search for a station or browse the rollout.'; document.getElementById('explore-note').prepend(message); announce(message.textContent); }
       }
       window.addEventListener('popstate',() => { const id = new URL(window.location.href).searchParams.get('station'); if (id) selectStation(id,true,false); });
