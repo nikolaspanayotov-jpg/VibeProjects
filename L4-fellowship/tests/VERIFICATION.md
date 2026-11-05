@@ -59,3 +59,27 @@ The existing smoke and guided-study checks passed with the new tools. The focuse
 - New views reflow at 320, 390, 768 and 1280px, with enlarged reading text and direct file opening supported. Phone and desktop screenshots were inspected for lab results, question feedback and scenario choices. No JavaScript page errors were observed.
 
 Question answers are canonical in the `solutions.md` appendix. The compiler validates 30 stable question IDs, KSB coverage, scenario reachability, acyclic paths, the saved-route length limit and the third authored-source hash. The question counts are practice information, not an EPA Pass prediction or verified workplace competence.
+
+## 5 November 2026 — reasoning tools, notebook and connections
+
+All four browser suites passed against the updated local page in headless Chromium (Playwright 1.64.1). JavaScript syntax checks passed for the application and curriculum. The authoring compiler passed ID, choice, KSB reference, annotation and coverage checks; all four source hashes were verified alongside the 37 lessons and 30 misconception questions.
+
+Commands used in this environment:
+
+```bash
+PYTHONPATH=/tmp/l4-authoring python3 tests/compile_curriculum.py
+node --check /tmp/extend-app.js
+node --check curriculum.js
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_smoke.py --url http://127.0.0.1:8000/ --output /tmp/l4-core-regression
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_enhancements.py --url http://127.0.0.1:8000/ --output /tmp/l4-guided-regression-new
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-learning-regression-new
+PYTHONPATH=/tmp/l4-authoring PLAYWRIGHT_BROWSERS_PATH=/tmp/l4-browsers python3 tests/browser_reasoning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-reasoning-qa
+```
+
+`/tmp/extend-app.js` was extracted from the shipped inline script. The new suite exercises all four correction challenges and six method decisions, required justifications, feedback hiding/reveal and reload persistence. Its SQLite calculation independently confirms the join example's five rows / total 90 versus source total 60. It checks six-part K/S/B example annotations, per-KSB drafts, clearing self-checks on edit, cancellation/acceptance of personal-response replacement and preservation of evidence/recall/coverage.
+
+Notebook summaries, approved reference strings and manual verification dates persist and appear in the linked lessons and workshop. Malicious-looking note HTML and `javascript:` reference text stay inert. All nine connections collectively cover 37 KSBs, filter correctly and display actual matching evidence with its rationales. Combined responses save separately.
+
+Synthetic records round-trip in JSON and the Markdown summary. Conflicts keep current records unless imported records are chosen. Old v1 backups retain the new sections on merge. Unknown/prototype-like IDs, invented choices, incomplete revealed responses, duplicate self-checks and impossible dates are rejected without changing saved state. The original three suites also passed their existing recovery, cross-device restore, lifecycle, data reconciliation and legacy compatibility checks.
+
+All new views were checked at 320, 390, 768 and 1280 pixels, with enlarged text, keyboard radio selection and direct file opening. No page errors were recorded. Desktop connections and correction feedback, the mobile connection flow and the mobile answer workshop were visually inspected. Test screenshots, downloads and synthetic personal progress stay outside the repository. These browser checks are not a full accessibility conformance audit.

@@ -1,0 +1,658 @@
+{
+  "repairs": [
+    {
+      "id": "duplicate-join",
+      "title": "A join that inflates the total",
+      "ksbs": [
+        "K10",
+        "S8",
+        "B4",
+        "B5"
+      ],
+      "brief": "A synthetic request table contains A/10, A/20 and B/30. The lookup contains A/Alpha, A/Alpha-old and B/Beta. The analyst expects one output row per request.",
+      "artifact": "SELECT SUM(r.amount) AS total\nFROM requests r LEFT JOIN lookup l\n  ON r.service_id = l.service_id;\n-- Reported total: 90. Source total: 60.",
+      "choices": [
+        {
+          "id": "distinct",
+          "label": "Add SUM(DISTINCT r.amount).",
+          "feedback": "This happens to give 60 here, but would incorrectly remove legitimate equal amounts. It does not establish one lookup row per service."
+        },
+        {
+          "id": "resolve",
+          "label": "Resolve the conflicting lookup with its owner, then check the join grain.",
+          "feedback": "This addresses the cause. Obtain an authorised mapping and validate its unique service key before joining."
+        },
+        {
+          "id": "inner",
+          "label": "Change LEFT JOIN to INNER JOIN.",
+          "feedback": "Both A matches still join. Changing the join type does not repair duplicate lookup keys."
+        }
+      ],
+      "answer": "resolve",
+      "walkthrough": "A appears twice in the lookup, so both A requests appear twice: 10 + 10 + 20 + 20 + 30 = 90 across five rows. The source has three requests totalling 60. Profile keys, inspect conflicting labels and ask the data owner to resolve the mapping. After an authorised fix, validate three request rows, distinct request IDs, the total of 60 and any unmatched services. Do not discard conflicts by arbitrarily taking the first row.",
+      "checks": [
+        "Test the intended one-to-many relationship before every refresh.",
+        "Record the mapping decision and owner; alert when the lookup key is no longer unique."
+      ],
+      "next": "labs-joins"
+    },
+    {
+      "id": "chart-scale",
+      "title": "A chart that exaggerates a change",
+      "ksbs": [
+        "K7",
+        "S5",
+        "S14",
+        "B4"
+      ],
+      "brief": "A briefing compares 100 requests in April with 110 in May. The bar chart starts its value axis at 95. The presenter says: “May demand was three times April demand.”",
+      "artifact": "Bar lengths above the baseline of 95:\nApril (100): █\nMay   (110): ███\nClaim: demand tripled.",
+      "choices": [
+        {
+          "id": "zero",
+          "label": "Start the bar axis at zero and state the absolute and relative change.",
+          "feedback": "A zero baseline makes bar lengths proportional to the counts. The change is 10 requests, or 10% of April."
+        },
+        {
+          "id": "hide",
+          "label": "Hide the axis to simplify the chart.",
+          "feedback": "Removing the axis hides the misleading baseline; it does not correct the implied ratio."
+        },
+        {
+          "id": "colour",
+          "label": "Use a stronger colour for May.",
+          "feedback": "Colour cannot repair a distorted magnitude comparison and may emphasise the incorrect claim."
+        }
+      ],
+      "answer": "zero",
+      "walkthrough": "The visible lengths are 5 and 15 because 95 was subtracted; the actual counts are 100 and 110. May increased by 10 requests: (110 − 100) / 100 × 100 = 10%. Use a zero baseline for magnitude bars, direct labels, units and the period. A line chart may use a clearly labelled narrower scale to show small changes, but must not imply the bar-length ratio is the data ratio.",
+      "checks": [
+        "Read the takeaway aloud and reconcile it with the source numbers.",
+        "Check contrast, labels and whether the same conclusion is understandable without colour."
+      ],
+      "next": "ksb-s14"
+    },
+    {
+      "id": "p-value",
+      "title": "A p-value with the wrong meaning",
+      "ksbs": [
+        "K13",
+        "S10",
+        "B4"
+      ],
+      "brief": "An independent-samples comparison reports p = 0.03 at a preselected 5% significance level. The analyst writes the following conclusion without checking the design or effect size.",
+      "artifact": "“There is a 3% probability that the null hypothesis is true.\nThis proves our new process caused an important improvement.”",
+      "choices": [
+        {
+          "id": "probability",
+          "label": "Say there is a 97% probability that the process works.",
+          "feedback": "This repeats the same inversion. A p-value does not assign a probability to the hypothesis or to practical success."
+        },
+        {
+          "id": "threshold",
+          "label": "Report only “significant” because p is below 0.05.",
+          "feedback": "The threshold alone omits assumptions, magnitude and uncertainty, and cannot establish causation."
+        },
+        {
+          "id": "conditional",
+          "label": "Interpret p conditionally and report effect size, uncertainty and design limits.",
+          "feedback": "Under the null model and test assumptions, the chance of a result at least this extreme is 3%. The effect and design still need separate interpretation."
+        }
+      ],
+      "answer": "conditional",
+      "walkthrough": "If the null hypothesis and test assumptions hold, a p-value of 0.03 means a 3% probability of a test statistic at least as extreme as the observed statistic. At the preselected 5% threshold, reject the null for this test. It is not the probability the null is true. Check independence, sampling and the test assumptions; report the estimated difference and confidence interval. Practical importance depends on context. Causation depends on the study design and control of confounding.",
+      "checks": [
+        "Disclose multiple testing or exploratory choices where relevant.",
+        "Distinguish statistical evidence, practical effect and causal attribution."
+      ],
+      "next": "ksb-k13"
+    },
+    {
+      "id": "forecast-leakage",
+      "title": "A forecast that has seen the future",
+      "ksbs": [
+        "K14",
+        "S11",
+        "S13",
+        "B4"
+      ],
+      "brief": "An analyst wants to forecast future monthly demand. They scale all 36 months, randomly split the rows, fit a model and report a low test RMSE.",
+      "artifact": "scaler.fit(all_36_months)\nscaled = scaler.transform(all_36_months)\ntrain, test = random_split(scaled)\nmodel.fit(train)\nreport_rmse(model, test)",
+      "choices": [
+        {
+          "id": "complex",
+          "label": "Fit a more complex model to reduce RMSE further.",
+          "feedback": "A more complex model cannot repair an evaluation that exposes future information."
+        },
+        {
+          "id": "time",
+          "label": "Split in time order and fit all preprocessing using training data only.",
+          "feedback": "This reproduces the information available at a real forecast cutoff. The held-out future stays unseen during fitting and tuning."
+        },
+        {
+          "id": "seed",
+          "label": "Fix the random seed and keep the split.",
+          "feedback": "A fixed seed makes the flawed experiment reproducible; it does not remove future leakage."
+        }
+      ],
+      "answer": "time",
+      "walkthrough": "Choose a forecast origin and hold out later months. Fit scalers and other learned preprocessing only on earlier training data, then transform the later data using that fitted preprocessing. Tune with rolling-origin validation inside the training period and keep a final future holdout for evaluation. Compare against a naive or seasonal-naive baseline at the same horizons, report error in the original units and inspect error patterns. Future months without actuals cannot enter RMSE.",
+      "checks": [
+        "Check that each feature would be available at the forecast origin.",
+        "Record cutoff dates, horizon, baseline and any uncertainty limits."
+      ],
+      "next": "labs-forecast"
+    }
+  ],
+  "methods": [
+    {
+      "id": "paired-change",
+      "title": "Did the same teams improve?",
+      "ksbs": [
+        "K13",
+        "S10"
+      ],
+      "brief": "Twenty teams each have a mean completion time before and after training. The question is whether the mean within-team change differs from zero; the same teams appear twice.",
+      "choices": [
+        {
+          "id": "independent",
+          "label": "Independent-samples t-test",
+          "feedback": "This ignores the pairing and treats repeated observations as unrelated."
+        },
+        {
+          "id": "paired",
+          "label": "Paired t-test on the team-level differences",
+          "feedback": "A paired t-test addresses the mean within-team difference and preserves the matched design."
+        },
+        {
+          "id": "pearson",
+          "label": "Pearson correlation of before and after",
+          "feedback": "Association between before and after values does not test whether the mean change is zero."
+        }
+      ],
+      "answer": "paired",
+      "assumptions": [
+        "Use one valid before/after pair per team; investigate missing pairs.",
+        "Differences should be independent across teams and reasonably compatible with the test, especially with only 20 teams. Inspect outliers and the distribution of differences.",
+        "Report the mean change, confidence interval and measurement period; training alone cannot be credited causally without considering the design."
+      ],
+      "alternative": "A signed-rank or permutation approach may suit a different set of assumptions; explain its target and restrictions rather than treating it as interchangeable."
+    },
+    {
+      "id": "independent-groups",
+      "title": "Compare two independent services",
+      "ksbs": [
+        "K13",
+        "S10"
+      ],
+      "brief": "Two independent random samples contain one duration per request: 60 requests from service A and 75 from B. You want to estimate the difference in mean duration. There is no matching, and variances may differ.",
+      "choices": [
+        {
+          "id": "paired",
+          "label": "Paired t-test",
+          "feedback": "There is no defensible pairing between these request samples."
+        },
+        {
+          "id": "welch",
+          "label": "Welch independent-samples t-test",
+          "feedback": "Welch’s test compares two independent means while allowing unequal variances."
+        },
+        {
+          "id": "logistic",
+          "label": "Logistic regression of duration",
+          "feedback": "Ordinary logistic regression models a binary outcome, while duration here is continuous."
+        }
+      ],
+      "answer": "welch",
+      "assumptions": [
+        "Check independent observations; repeated requests from the same person may violate this.",
+        "Inspect skew, extreme observations and sample selection. Sample sizes alone do not excuse severe problems.",
+        "Report the mean difference and confidence interval; assess practical importance and confounding."
+      ],
+      "alternative": "A suitable robust, bootstrap or permutation method may help with difficult distributions, provided its assumptions and estimand fit the question."
+    },
+    {
+      "id": "association",
+      "title": "Are workload and delay related?",
+      "ksbs": [
+        "K13",
+        "S10"
+      ],
+      "brief": "Across 80 independently sampled offices, you have two continuous measures: average workload and average delay. The scatterplot looks roughly linear. The immediate question is the strength and direction of linear association.",
+      "choices": [
+        {
+          "id": "pearson",
+          "label": "Pearson correlation",
+          "feedback": "This summarises the strength and direction of a linear relationship. It does not establish a causal effect."
+        },
+        {
+          "id": "ttest",
+          "label": "A t-test comparing workload with delay",
+          "feedback": "These are different variables with different units, not two samples of the same outcome."
+        },
+        {
+          "id": "forecast",
+          "label": "ARIMA",
+          "feedback": "These office observations are not a time series for the stated question."
+        }
+      ],
+      "answer": "pearson",
+      "assumptions": [
+        "Inspect the scatterplot for influential outliers, nonlinearity and subgroup effects.",
+        "Check independence and the assumptions of any interval or significance test you report.",
+        "Interpret r with sample size and uncertainty; avoid a causal claim."
+      ],
+      "alternative": "Spearman correlation may suit a monotonic relationship or ranks. If prediction or adjustment is the goal, consider a regression model and a suitable validation design."
+    },
+    {
+      "id": "continuous-prediction",
+      "title": "Predict a numerical outcome",
+      "ksbs": [
+        "K14",
+        "S11"
+      ],
+      "brief": "At request intake you know request type and queue length. You want a baseline model predicting completion time in days for future requests.",
+      "choices": [
+        {
+          "id": "logistic",
+          "label": "Logistic regression",
+          "feedback": "This is intended for a binary outcome; days are continuous here."
+        },
+        {
+          "id": "linear",
+          "label": "Linear regression with suitable encoded inputs",
+          "feedback": "A linear model can provide an interpretable starting point for a numerical target, subject to residual checks and validation."
+        },
+        {
+          "id": "correlation",
+          "label": "One correlation coefficient",
+          "feedback": "A correlation summarises association; it is not a complete multi-input prediction model."
+        }
+      ],
+      "answer": "linear",
+      "assumptions": [
+        "Use only information available at intake; completion status or final handling notes would leak future information.",
+        "Check residuals, nonlinear patterns, extreme values and implausible negative predictions.",
+        "Evaluate on later held-out requests with MAE or RMSE and compare with a simple baseline."
+      ],
+      "alternative": "A transformation, generalised linear model or tree model may fit the outcome better. Compare on the same valid evaluation data and explain the trade-off in interpretability."
+    },
+    {
+      "id": "binary-prediction",
+      "title": "Predict a late request",
+      "ksbs": [
+        "K14",
+        "S11"
+      ],
+      "brief": "The target is whether a request will miss its deadline: yes or no. At intake, you have workload and request type. Late requests are uncommon.",
+      "choices": [
+        {
+          "id": "linear",
+          "label": "Ordinary linear regression on the yes/no label",
+          "feedback": "It can produce values outside 0–1 and does not directly model a binary probability."
+        },
+        {
+          "id": "accuracy",
+          "label": "Choose any model with high accuracy",
+          "feedback": "Predicting every request as on time may have high accuracy while missing every late case."
+        },
+        {
+          "id": "logistic",
+          "label": "Logistic regression with probability and threshold evaluation",
+          "feedback": "A logistic model estimates probabilities for a binary outcome; the action threshold needs business justification."
+        }
+      ],
+      "answer": "logistic",
+      "assumptions": [
+        "Use intake-time predictors and evaluate on suitable unseen data without leakage.",
+        "Check class imbalance, calibration, precision and recall at a justified threshold.",
+        "Assess subgroup performance and the impact of false alarms versus missed late requests."
+      ],
+      "alternative": "A decision tree is an alternative. Compare interpretability, probability quality, errors and operational costs using the same evaluation design."
+    },
+    {
+      "id": "monthly-demand",
+      "title": "Forecast seasonal demand",
+      "ksbs": [
+        "K14",
+        "S13"
+      ],
+      "brief": "You have 60 consecutive monthly demand totals and want the next three months. The plot suggests a trend and an annual pattern.",
+      "choices": [
+        {
+          "id": "seasonal",
+          "label": "Seasonal forecasting with a seasonal-naive baseline",
+          "feedback": "Consider an exponential-smoothing or seasonal ARIMA model, and test whether it improves on repeating the same month last year."
+        },
+        {
+          "id": "shuffle",
+          "label": "Randomly split months and fit a regression",
+          "feedback": "A random split does not reproduce a future forecast cutoff."
+        },
+        {
+          "id": "ttest",
+          "label": "A t-test of the first and last month",
+          "feedback": "Two individual values do not support this test or produce a useful three-month forecast."
+        }
+      ],
+      "answer": "seasonal",
+      "assumptions": [
+        "Check regular time intervals, missing months, structural changes and whether the annual pattern persists.",
+        "Use rolling-origin validation and match the three-month horizon; reserve a final future holdout.",
+        "Compare MAE or RMSE in original units and report uncertainty; model choice must follow diagnostics."
+      ],
+      "alternative": "An ordinary naive baseline or time-trend model may be sufficient when seasonality is weak. Sixty observations do not guarantee a complex model will perform better."
+    }
+  ],
+  "checklist": [
+    {
+      "id": "context",
+      "label": "Context and purpose",
+      "prompt": "What was the problem, who needed the result and what counted as success?"
+    },
+    {
+      "id": "contribution",
+      "label": "My contribution",
+      "prompt": "Which actions and decisions were personally mine?"
+    },
+    {
+      "id": "reasoning",
+      "label": "Reasoning and alternatives",
+      "prompt": "Why this approach, what else did I consider and what assumptions did I check?"
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence and checks",
+      "prompt": "Which approved reference or reproducible check supports what I say?"
+    },
+    {
+      "id": "outcome",
+      "label": "Outcome and impact",
+      "prompt": "What changed, how do I know and who benefited?"
+    },
+    {
+      "id": "limits",
+      "label": "Limits and learning",
+      "prompt": "What remains uncertain, and what would I improve next time?"
+    }
+  ],
+  "workshops": [
+    {
+      "id": "K",
+      "title": "Explain a principle through a decision",
+      "ksbs": [
+        "K8",
+        "S6"
+      ],
+      "weak": "Data quality is important. I cleaned our data and made sure it was accurate.",
+      "intro": "A fictional response about data quality. The improved version shows the type of detail to add; it is not a script or a claim about your work.",
+      "parts": [
+        {
+          "check": "context",
+          "text": "For a weekly service briefing, we needed a reliable count of unique requests by service."
+        },
+        {
+          "check": "contribution",
+          "text": "I profiled the request IDs, missing dates and service codes before creating the summary."
+        },
+        {
+          "check": "reasoning",
+          "text": "I treated completeness and accuracy as different questions: a populated date can still be wrong. I kept missing dates visible and checked suspicious dates against the authorised source rather than guessing."
+        },
+        {
+          "check": "evidence",
+          "text": "My fictional quality log QA-01 records the test rules, exception counts and owner decisions. I compared request totals before and after each correction."
+        },
+        {
+          "check": "outcome",
+          "text": "The briefing showed validated totals alongside unresolved exceptions so the service lead could see the limits of the comparison."
+        },
+        {
+          "check": "limits",
+          "text": "These checks did not establish that every source value was correct. I proposed an automated exception report for the next refresh."
+        }
+      ]
+    },
+    {
+      "id": "S",
+      "title": "Show what you did and how you checked it",
+      "ksbs": [
+        "S8",
+        "K10"
+      ],
+      "weak": "I used SQL to join two datasets. SQL is efficient and the dashboard worked.",
+      "intro": "A fictional response about combining sources. Notice how the answer makes the grain, choice and validation visible.",
+      "parts": [
+        {
+          "check": "context",
+          "text": "The service lead needed every request retained, including requests whose service code had no approved label."
+        },
+        {
+          "check": "contribution",
+          "text": "I wrote a left join from the request table to the service lookup, using the service code."
+        },
+        {
+          "check": "reasoning",
+          "text": "An inner join would have removed unmatched requests. I first checked that each lookup key mapped to one approved service label, because duplicate keys could multiply request rows."
+        },
+        {
+          "check": "evidence",
+          "text": "In fictional check JOIN-02, I reconciled the source and output row counts, distinct request IDs, unmatched codes and total request value. I referred conflicting labels to the owner before rerunning the join."
+        },
+        {
+          "check": "outcome",
+          "text": "The output retained all requests and exposed unmatched services as exceptions for the briefing, rather than silently dropping them."
+        },
+        {
+          "check": "limits",
+          "text": "I documented that a matching key does not prove the label is current, and added a lookup-version check to the refresh process."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Make your judgement and learning visible",
+      "ksbs": [
+        "B5",
+        "B6"
+      ],
+      "weak": "The figures were wrong, so we fixed them. I stayed positive and learned to be more careful.",
+      "intro": "A fictional response about investigating an issue. Separate the symptom, the investigation and the prevention.",
+      "parts": [
+        {
+          "check": "context",
+          "text": "After a routine refresh, a service total rose unexpectedly. The briefing was due that afternoon."
+        },
+        {
+          "check": "contribution",
+          "text": "I paused the affected comparison, told the lead what was uncertain and traced row counts through each transformation."
+        },
+        {
+          "check": "reasoning",
+          "text": "The source total was unchanged. Rows increased at the lookup join, so I inspected key frequencies and tested whether the added lookup entries explained the difference."
+        },
+        {
+          "check": "evidence",
+          "text": "Fictional incident RCA-03 records the before/after counts and the duplicate-key test. The data owner confirmed that two active labels had been supplied for one service code."
+        },
+        {
+          "check": "outcome",
+          "text": "After the owner corrected the mapping, I reran the checks and issued the corrected briefing. I added a uniqueness check that stops the refresh when the same fault appears."
+        },
+        {
+          "check": "limits",
+          "text": "I checked the next refresh and documented the owner handover. I learned to validate reference tables as well as the main extract, and to communicate uncertainty early."
+        }
+      ]
+    }
+  ],
+  "notebook": [
+    {
+      "id": "policies",
+      "title": "Policies and handling rules",
+      "ksbs": [
+        "K1",
+        "K2",
+        "K4",
+        "K15",
+        "S1",
+        "S3",
+        "B1"
+      ],
+      "prompt": "Name the approved policy, what it requires in your role, and one handling decision it changes. Include security, retention or AI guidance where relevant."
+    },
+    {
+      "id": "tools",
+      "title": "Tools and selection decisions",
+      "ksbs": [
+        "K11",
+        "S9",
+        "S15"
+      ],
+      "prompt": "Which tools are available, what are they approved for, and why would you choose one over another? Record access, licensing, reproducibility and skill constraints."
+    },
+    {
+      "id": "architecture",
+      "title": "Data architecture and access",
+      "ksbs": [
+        "K6",
+        "K10",
+        "K12",
+        "S4",
+        "S8",
+        "S9"
+      ],
+      "prompt": "Describe the approved flow from source to storage to analysis to output. Explain access controls, refresh frequency, ownership and your interaction with it."
+    },
+    {
+      "id": "stakeholders",
+      "title": "Stakeholders and domain language",
+      "ksbs": [
+        "K7",
+        "K9",
+        "S5",
+        "S7",
+        "S12",
+        "B3",
+        "B7"
+      ],
+      "prompt": "Use safe role names. Record each audience’s need, agreed metric definitions, communication preference and decision authority."
+    }
+  ],
+  "connections": [
+    {
+      "id": "quality",
+      "title": "From quality risk to root cause",
+      "ksbs": [
+        "K8",
+        "S6",
+        "B5"
+      ],
+      "why": "Knowing the quality dimensions helps you choose checks; resolving exceptions gives you evidence to investigate the underlying cause.",
+      "prompt": "Describe a quality issue: which dimension was affected, how did you resolve it, what established the root cause and how did you prevent recurrence?"
+    },
+    {
+      "id": "responsible",
+      "title": "Responsible data throughout the work",
+      "ksbs": [
+        "K1",
+        "K2",
+        "K4",
+        "K15",
+        "S1",
+        "S3",
+        "B1"
+      ],
+      "why": "Legal duties, organisational policy, data categories and ethics inform practical access and handling decisions, supported by everyday secure working.",
+      "prompt": "Trace one dataset from access to disposal. Explain its classification, the rules and ethical concerns, the controls you applied and how you worked securely."
+    },
+    {
+      "id": "structure",
+      "title": "From data structure to a reliable join",
+      "ksbs": [
+        "K5",
+        "K6",
+        "K10",
+        "K12",
+        "S4",
+        "S8",
+        "S9",
+        "B4"
+      ],
+      "why": "Understanding structure and architecture guides access, preparation and joins. Logical checks establish whether the resulting dataset still represents the intended records.",
+      "prompt": "Describe how your sources were structured and accessed. Explain your join keys, the intended row grain, architectural constraints and the checks that justified the result."
+    },
+    {
+      "id": "requirements",
+      "title": "From stakeholder need to useful output",
+      "ksbs": [
+        "K7",
+        "K9",
+        "S5",
+        "S7",
+        "B3"
+      ],
+      "why": "Requirements and domain knowledge shape the plan and accessible output. Collaboration tests whether the result answers the actual decision.",
+      "prompt": "How did you turn a stakeholder need into an agreed analytical requirement and an accessible output? Describe your contribution, feedback and a design trade-off."
+    },
+    {
+      "id": "tool-choice",
+      "title": "Choose and defend an analysis tool",
+      "ksbs": [
+        "K11",
+        "S15",
+        "B4"
+      ],
+      "why": "Awareness of available tools supports a reasoned selection against constraints and a clear explanation of the alternatives.",
+      "prompt": "Which tools did you compare, what requirements mattered, why did your choice fit and how did you verify the output?"
+    },
+    {
+      "id": "statistics",
+      "title": "From statistical principle to interpretation",
+      "ksbs": [
+        "K13",
+        "S10",
+        "B4"
+      ],
+      "why": "Statistical concepts guide test selection and assumptions. Logical interpretation connects the calculation to the business question without overclaiming.",
+      "prompt": "Explain one statistical comparison: its question, hypotheses, chosen method, assumptions, estimate, uncertainty and business meaning."
+    },
+    {
+      "id": "prediction",
+      "title": "From historical pattern to a cautious recommendation",
+      "ksbs": [
+        "K14",
+        "S11",
+        "S13",
+        "B6"
+      ],
+      "why": "Analytics types connect summaries, models and recommendations. Forecast evaluation and lessons from weak results improve the next iteration.",
+      "prompt": "How did you move from descriptive findings to prediction and a recommendation? Explain your validation window, baseline, uncertainty and what a poor result taught you."
+    },
+    {
+      "id": "communication",
+      "title": "Make the finding understandable",
+      "ksbs": [
+        "K7",
+        "S12",
+        "S14",
+        "B3"
+      ],
+      "why": "Domain context and accessible visuals support communication with different audiences. Collaboration provides evidence that the message was understood.",
+      "prompt": "Explain how you presented quantitative and qualitative findings to two different stakeholders. Why those visuals and channels, and what changed after feedback?"
+    },
+    {
+      "id": "delivery",
+      "title": "Deliver and adapt across the lifecycle",
+      "ksbs": [
+        "K3",
+        "S2",
+        "B2",
+        "B6",
+        "B7"
+      ],
+      "why": "Lifecycle stages give the work structure. Adaptability and reflection help you respond to both small operational problems and larger changes in scope.",
+      "prompt": "Walk through every lifecycle stage. Distinguish a minor unexpected problem from a larger change in scope, explain your response to each, and describe the lesson you carried forward."
+    }
+  ]
+}

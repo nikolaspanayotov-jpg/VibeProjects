@@ -584,3 +584,47 @@ Thirty True/False statements cover common misunderstandings across all KSB ident
 Question results remain separate from KSB recall and evidence. The activity records use an additive `learningTools` section within `l4-fellowship.v1`, with defaults for older backups, strict import validation and conflict-aware merging. Existing notes, worksheets, evidence and sessions remain compatible. Public-source revision is 4 November; unchanged KSB checklist revisions are retained so personal coverage is not reset merely because practice tools were added.
 
 The compiler embeds the authored lab/scenario JSON and the Markdown question bank alongside the existing curriculum. All three source hashes are checked. The three browser suites and focused numerical/SQL checks were run, and phone/desktop layouts were inspected; see the verification record for scope and limits.
+
+## 20. Reasoning, workplace context and connected explanations — 5 November 2026
+
+All five further improvements are implemented within the existing build-free study desk. They use the established paper/ink/blue palette, native controls, visible focus and plain-text personal fields. Four tools sit below Practice; the organisation notebook sits under Plan and sources and is also linked from relevant lessons. Eight Practice links wrap without a horizontal scrolling requirement. Compact activity indexes sit beside the task on wide screens and above it on small screens.
+
+### Find and fix a mistake
+
+`#repairs` and `#repairs-<id>` present four deliberately flawed synthetic analyses: duplicate-key inflation, a truncated bar chart, an inverted p-value interpretation and forecast leakage. The learner must diagnose the fault, explain the decision impact and select a correction before feedback appears. Every choice has specific feedback; the walkthrough explains the correction, limits and recurrence checks. Editing a response hides the old feedback until resubmission. Starting again confirms replacement of this activity only. The join walkthrough reconciles five joined rows totalling 90 with three source requests totalling 60; the chart correction gives 10 requests / 10%, not a threefold increase.
+
+### Choose an analysis method
+
+`#methods` and its six focused routes cover paired differences, independent means with unequal variances, linear association, numerical prediction, binary prediction and seasonal monthly forecasting. A selection, rationale and assumptions/checks are required. Feedback explains the option, required validation and alternative methods. Written reasoning is self-reviewed against the authored explanation; no generated marking or automatic competence claim is made. Drafts and feedback state survive reload independently for each question.
+
+### Answer improvement workshop
+
+`#workshop` and `#workshop-k8` (or any other KSB) retain a separate draft for each of the 37 KSBs. Three fictional examples illustrate knowledge, skill and behaviour responses: each compares a vague answer with six annotated parts—context, personal contribution, reasoning, evidence, outcome and limitations/learning. The learner can load their saved KSB response, edit it and perform six explicit self-checks. Editing clears those checks. Loading over a workshop draft and copying over a different saved KSB response require confirmation. Copying does not set recall, coverage or evidence; it clears the KSB personal-example confirmation for another review. The specific KSB guide remains linked because a category example is not a complete answer to every KSB in that category.
+
+### My organisation notebook
+
+`#organisation` and four focused sections—policies, tools, architecture and stakeholders—store a sanitised summary, approved reference ID/title, manually entered verification date and last editing date. All fields persist on the device. References render as inert text, never executable links or imported HTML. Appropriate KSB lessons and workshop views display the current notes from the same record, avoiding copied stale versions. The user can clear a section after confirmation. No documents are uploaded and no policy is automatically verified.
+
+### KSB connections map
+
+`#connections` and nine focused paths cover all 37 KSBs. A KSB filter narrows the selectable learning paths. Each path shows why its topics connect, then groups linked lesson nodes into Understand → Apply → Work professionally. The columns become a vertical flow on small screens. Nodes display actual self-recorded learning and evidence states in words. Each connection has a combined discussion prompt and its own saved explanation. Relevant evidence is drawn from the user's existing references and includes the rationales for the KSBs in that path. Empty states offer an evidence action. These are learning connections, not official assessment-route groupings.
+
+| Path | KSBs |
+| --- | --- |
+| Quality risk to root cause | K8, S6, B5 |
+| Responsible data | K1, K2, K4, K15, S1, S3, B1 |
+| Structure and reliable joins | K5, K6, K10, K12, S4, S8, S9, B4 |
+| Requirements and useful output | K7, K9, S5, S7, B3 |
+| Tool selection | K11, S15, B4 |
+| Statistical interpretation | K13, S10, B4 |
+| Prediction and recommendations | K14, S11, S13, B6 |
+| Communication and visuals | K7, S12, S14, B3 |
+| Delivery and adaptation | K3, S2, B2, B6, B7 |
+
+### Content and persistence
+
+`reasoning-activities.json` is the canonical authored source for these exercises, feedback, workshop annotations, notebook prompts and paths. The authoring compiler validates IDs, KSB references, choices, six-part annotations and all-37 connection coverage. It embeds the content in `curriculum.js` and records `reasoningSha256` as a fourth source hash. The 37 core answers and 30 misconception questions remain canonical in `solutions.md`.
+
+The additive top-level `studyTools` object in the unchanged `l4-fellowship.v1` state holds `repairs`, `methods`, `workshops`, `organisation` and `connections` dictionaries. Older v1 data receives empty dictionaries. Imports validate known identifiers, choices, booleans, text limits, real calendar dates, self-check IDs and complete responses before revealed feedback. Explanations and notes are escaped at every HTML boundary. Every record is included in JSON backup/restore and the Markdown summary; merge conflicts are resolved per record with the current record retained by default. Missing sections in an old backup do not erase new work during merge.
+
+The new browser check exercises the actual correction/method flows, draft persistence, intentional answer replacement, notebook integration, evidence connections, export/import conflicts, malformed imports, direct file opening, keyboard controls and responsive layouts. All existing browser checks remain required.

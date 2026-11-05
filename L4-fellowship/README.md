@@ -23,7 +23,14 @@ Then open `http://127.0.0.1:8000/`. The same relative paths work under the GitHu
 - Thirty misconception questions with explanations after submission, a previously-missed queue, review dates and resumable question sets. Question results stay separate from KSB recall and evidence.
 - S12 stakeholder worksheets, an S13 forecast/mining worksheet and an accessible synthetic forecast plot/table.
 - Six practical exercises and four downloadable synthetic CSV datasets with data dictionaries, worked approaches and self-checks.
+- Four “find and fix” challenges with diagnoses, decision impacts and explained corrections.
+- Six method-selection decisions covering t-tests, association, regression and forecasting, with assumptions and alternatives.
+- An answer workshop for all 37 KSBs: three annotated example structures, independent drafts and six self-review checks.
+- A private organisation notebook for policy references, tools, architecture and stakeholder context, displayed in related lessons.
+- Nine interactive KSB connections covering all 37 topics, with combined discussion prompts and your matching evidence rationales.
 - A weekly study plan, optional assessment settings, conditional AP03 route filters, JSON backup/restore, a Markdown study summary and print styles.
+
+New tools open at `#repairs`, `#methods`, `#workshop`, `#organisation` and `#connections`. Focused links include `#repairs-duplicate-join`, `#methods-paired-change`, `#workshop-k8`, `#organisation-policies` and `#connections-quality`.
 
 ## Personal progress
 
@@ -38,6 +45,8 @@ Use sanitised reflections and approved reference IDs. This public repository and
 `solutions.md` is the canonical public answer bank, including the short explanations, examples, mistakes and probes. `worked-project.md` is the fictional portfolio source; `design.md` records the page specification. `curriculum.js` contains the authored sources compiled into browser-ready records with source hashes and stable KSB anchors. `index.html` contains the application HTML, CSS and JavaScript. No runtime Markdown parser, external fonts, chart library or analytics service is used.
 
 `solutions.md` also contains the human-readable misconception answer key. `learning-activities.json` is the authored lab/scenario source; the compiler validates its decision graphs and embeds it with the questions into the same local curriculum file. Learning tools are available at `#labs`, `#scenarios` and `#quiz`, with focused links such as `#labs-forecast`.
+
+`reasoning-activities.json` is the canonical authored source for the five further tools. It is compiled into the same curriculum, validated for KSB/choice links and covered by `reasoningSha256`. The additive `studyTools` section holds each exercise, workshop draft, organisation note and connected explanation. Backups include these records; merge retains conflicting current work by default. The workshop only copies a draft into a KSB response when you choose that action, and confirms replacement of an existing different answer.
 
 Lab assumptions, scenario routes and quiz records use an additive `learningTools` section inside the existing version-1 backup. Older progress remains readable. Merge keeps existing conflicting tool records unless you choose otherwise; replacement still requires confirmation. Wrong quiz answers are suggested for the following day, correct answers for seven days, or fourteen after consecutive correct responses. These are study defaults, not assessment rules.
 
@@ -60,6 +69,7 @@ python3 -m playwright install chromium
 python3 tests/browser_smoke.py --url http://127.0.0.1:8000/ --output /tmp/l4-qa
 python3 tests/browser_enhancements.py --url http://127.0.0.1:8000/ --output /tmp/l4-enhancements-qa
 python3 tests/browser_learning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-learning-tools-qa
+python3 tests/browser_reasoning_tools.py --url http://127.0.0.1:8000/ --output /tmp/l4-reasoning-qa
 ```
 
 The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit, and offline reload of a hosted page is not promised. Direct file opening works with both application files present.

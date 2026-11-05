@@ -1,4 +1,4 @@
-"""Optional authoring utility: solutions.md + design.md -> checked-in curriculum.js.
+"""Optional authoring utility: Markdown and authored activity sources -> checked-in curriculum.js.
 
 The website itself needs no build. Run with Python-Markdown installed for this
 utility only: python3 -m pip install Markdown; python3 tests/compile_curriculum.py.
@@ -15,6 +15,8 @@ DESIGN = (ROOT / 'design.md').read_text()
 PROJECT_SOURCE = (ROOT / 'worked-project.md').read_text()
 ACTIVITY_SOURCE = (ROOT / 'learning-activities.json').read_text()
 ACTIVITIES = json.loads(ACTIVITY_SOURCE)
+REASONING_SOURCE = (ROOT / 'reasoning-activities.json').read_text()
+REASONING = json.loads(REASONING_SOURCE)
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -150,15 +152,34 @@ for scenario in ACTIVITIES['scenarios']:
     walk(scenario['start'],[])
     assert visited==set(nodes),'Unreachable scenario nodes'
     assert all(ksb in mapping for ksb in scenario['ksbs'])
+for kind in ('repairs','methods','notebook','connections'):
+    entries=REASONING[kind]
+    assert entries and len({x['id'] for x in entries})==len(entries)
+    for entry in entries:
+        assert re.fullmatch(r'[a-z][a-z0-9-]*',entry['id'])
+        assert entry['ksbs'] and all(k in mapping for k in entry['ksbs'])
+        if kind in ('repairs','methods'):
+            assert len(entry['choices'])>=2 and len({c['id'] for c in entry['choices']})==len(entry['choices'])
+            assert entry['answer'] in [c['id'] for c in entry['choices']]
+            assert all(c['label'] and c['feedback'] for c in entry['choices'])
+assert {k for x in REASONING['connections'] for k in x['ksbs']}==set(mapping)
+assert len(REASONING['repairs'])==4 and len(REASONING['methods'])==6
+assert {x['id'] for x in REASONING['workshops']}=={'K','S','B'}
+check_ids=[x['id'] for x in REASONING['checklist']]
+assert len(set(check_ids))==len(check_ids)==6
+for example in REASONING['workshops']:
+    assert all(k in mapping for k in example['ksbs'])
+    assert [x['check'] for x in example['parts']]==check_ids
 project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
     stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
     sourceSha256=hashlib.sha256(PROJECT_SOURCE.encode()).hexdigest())
-data=dict(revision='2026-11-04',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
+data=dict(revision='2026-11-05',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
           project=project,
+          reasoning=REASONING,reasoningSha256=hashlib.sha256(REASONING_SOURCE.encode()).hexdigest(),
           activities=ACTIVITIES,activitySha256=hashlib.sha256(ACTIVITY_SOURCE.encode()).hexdigest(),
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
           sources=html(SOURCE.split('## Reference register',1)[1].split('<a id="quiz-answer-key">',1)[0]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled guided lessons, worked project, three labs, three scenarios and 30 misconception questions.')
+print('Compiled 37 lessons, worked project, labs/scenarios/quiz and five reasoning/context tools.')

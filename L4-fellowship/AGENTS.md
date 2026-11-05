@@ -47,4 +47,16 @@ Check 390px and 320px first, then tablet and desktop. Use semantic controls, vis
 
 ## Checks
 
-After code changes, run JavaScript syntax checks and all three browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all three source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
+After code changes, run JavaScript syntax checks and all four browser checks against a localhost server. Inspect desktop/mobile screenshots and fix observed errors. After content edits, regenerate curriculum, verify 37 guided records, 30 question IDs, graph integrity, project mappings and all four source hashes, and preserve source caveats. Do not claim a full accessibility audit from smoke checks. Keep [tests/VERIFICATION.md](./tests/VERIFICATION.md) current with checks actually performed.
+
+## Further reasoning tools
+
+`reasoning-activities.json` contains four correction challenges, six method decisions, three six-part annotated answer structures, four notebook sections and nine KSB connections. The compiler embeds these as `C.reasoning`, validates their stable IDs/references and all-37 connection coverage, and stores `reasoningSha256`. `solutions.md` remains the core answer/quiz source.
+
+The routes are `#repairs`, `#methods`, `#workshop`, `#organisation`, `#connections` and their validated focused suffixes. The four practice tools stay under Practice; organisation context stays under Plan and sources and in relevant lessons. Never represent the connection paths as official assessment mappings.
+
+`studyTools` is an additive v1 section with `repairs`, `methods`, `workshops`, `organisation` and `connections` dictionaries. Its records belong in all backups, per-record conflict-safe merges and the Markdown summary. Keep its IDs stable. Unknown IDs, invalid choices/dates/checklists and revealed responses without explanation must be rejected before mutation. User text and reference IDs remain escaped/inert. Older backups must receive empty defaults without erasing new records on merge.
+
+Workshop drafts are distinct from KSB responses. Editing clears workshop self-checks. Copying into an existing different KSB response needs explicit in-app confirmation and clears `exampleConfirmed`; it must not set recall, coverage or evidence. Notebook notes are local personal data, never public curriculum. Their verification date is entered by the learner. Connection evidence comes from actual saved per-KSB mappings.
+
+Run `tests/browser_reasoning_tools.py` alongside the three existing suites. It checks explanation gating, all ten correction/method cases, notebook escaping, workshop replacement, connected evidence, state validation/merge, direct file opening, mobile layout and keyboard selection. Inspect desktop and mobile screenshots; record only completed checks.
