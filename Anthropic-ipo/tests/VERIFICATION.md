@@ -30,7 +30,7 @@ Canonical project: https://github.com/nikolaspanayotov-jpg/VibeProjects/tree/mai
 
 Existing public page: https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/
 
-The exact served page is verified after the normal main-branch publication and recorded below. Changes are confined to this project.
+The change is live through the normal main-branch publication. Implementation commit: `cb41d4de26afdebd3b4d57f57ff8ba1e3be498a4`; HTML blob: `564600d7d47126ec81dd0a3f56ca41fdc9f15585`. Pages workflow [42022880903](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/42022880903) completed successfully. At **11:56:45 UTC on 5 November**, the ordinary public URL returned HTTP 200 and 359,270 bytes with SHA-256 `5788e82231391da6f0764a2b776059c06be20d56541ad77ba5e4e2927e1a086e`, exactly matching the validated HTML. No query string or authentication was used. Changes are confined to this project. The owned local preview server was stopped after verification.
 
 The private Sites mirror retains its earlier publication. The previously recorded automatic approval-review rejection of its live credential transfer remains unresolved; no substitute credential-transfer route or private deployment was attempted for this update, and no audience was changed.
 
