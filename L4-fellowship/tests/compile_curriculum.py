@@ -22,6 +22,10 @@ REHEARSAL_SOURCE = (ROOT / 'rehearsal-activities.json').read_text()
 REHEARSAL = json.loads(REHEARSAL_SOURCE)
 VISUAL_SOURCE = (ROOT / 'ksb-visuals.json').read_text()
 VISUALS = json.loads(VISUAL_SOURCE)
+ASSESSMENT_SOURCE = (ROOT / 'assessment-criteria.json').read_text()
+ASSESSMENT = json.loads(ASSESSMENT_SOURCE)
+from validate_assessment import validate_assessment
+validate_assessment(ASSESSMENT)
 THEMES = [
     ('Responsible data use', 'Protect people and make responsible decisions.', 'K1 K2 K4 K15 S1 S3 B1'),
     ('Planning and delivery', 'Turn a stakeholder need into a useful result.', 'K3 K9 S2 S7 B3 B7'),
@@ -101,7 +105,7 @@ for match in re.finditer(r'^### ([KSB]\d+) — ([^\n]+)\n(.*?)(?=^<a id="ksb-|^<
         quick=html(quick),example=html(example),mistake=html(mistake),probe=probe.strip(),
         evidence=html(evidence),coverage=coverage.strip(),targets=TARGETS[ksb],
         followup=followup.strip(),question=questions[ksb],searchText=body,
-        sourceAnchor='ksb-'+ksb.lower(),revision='2026-11-03',
+        sourceAnchor='ksb-'+ksb.lower(),revision='2026-11-07',
         route=1 if ksb in 'K3 K4 K8 K9 K11 K12 S1 S2 S3 S4 S6 S7 S8 S12 S15 B3 B4'.split() else 2))
 
 assert len(records)==37 and set(TARGETS)=={x['id'] for x in records}
@@ -213,7 +217,8 @@ project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),
     stages=stages,mapping=mapping,markdown=PROJECT_SOURCE,
     sourceSha256=hashlib.sha256(PROJECT_SOURCE.encode()).hexdigest())
-data=dict(revision='2026-11-05',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
+data=dict(revision='2026-11-07',sourceSha256=hashlib.sha256(SOURCE.encode()).hexdigest(),
+          assessment=ASSESSMENT,assessmentSha256=hashlib.sha256(ASSESSMENT_SOURCE.encode()).hexdigest(),
           items=records,themes=[dict(name=n,description=d,ids=ids.split()) for n,d,ids in THEMES],
           project=project,visualSha256=hashlib.sha256(VISUAL_SOURCE.encode()).hexdigest(),
           rehearsal=REHEARSAL,rehearsalSha256=hashlib.sha256(REHEARSAL_SOURCE.encode()).hexdigest(),
@@ -222,4 +227,4 @@ data=dict(revision='2026-11-05',sourceSha256=hashlib.sha256(SOURCE.encode()).hex
           introduction=html(SOURCE.split('## How to use these answers',1)[1].split('## Knowledge',1)[0]),
           sources=html(SOURCE.split('## Reference register',1)[1].split('<a id="quiz-answer-key">',1)[0]))
 (ROOT/'curriculum.js').write_text('// Authored from solutions.md; no runtime Markdown dependency.\nwindow.L4_CURRICULUM = '+json.dumps(data,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')+';\n')
-print('Compiled 37 lessons, worked project, all activities and six verified content sources.')
+print('Compiled 37 lessons, worked project, all activities and seven verified content sources.')

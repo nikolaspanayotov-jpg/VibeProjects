@@ -1,12 +1,12 @@
 # KSB content update plan
 
-Status: proposed content and integration plan; implementation has not started.
+Status: implemented; final release verification is recorded in tests/VERIFICATION.md.
 
 ## Recommendation
 
 Extend the existing answer bank with a source-referenced assessment layer, targeted evidence prompts and distinction practice. Retain the current 37 lessons, visual cues, worked project and preparation tools. Most foundational explanations and the AM1/AM2 mapping already match the supplied reference; the substantial gaps are exact grouped criteria, explicit grading-versus-provider labels, provider evidence-pack mappings and a larger, traceable discussion-question bank.
 
-This document is the deliverable for the current request. A later implementation should follow the phases and acceptance checks below.
+The phases and acceptance checks below describe the implemented assessment layer. The new public source is assessment-criteria.json; shared views are provided by assessment.js and assessment.css.
 
 ## 1. Sources and baseline
 
@@ -246,6 +246,6 @@ Inspect 320/390px, tablet and desktop views, keyboard/focus behaviour, print and
 
 After cached content is final, regenerate `sw.js` with the new curated public source and paired versioned scripts. Check real offline reloads, rejection of mismatched releases, explicit updates and retained progress. Publish using the proven bounded-blob/checkpoint process, create one coherent tested release, update `main` with an expected-head lease and verify deployed hashes. Keep `.release-local/`, private attachments, personal notes and test recordings out of the public tree.
 
-### Scope of this planning commit
+### Original planning-commit scope
 
 Commit only this new Markdown plan. It does not change lesson text, the application, saved progress or the offline manifest. Document checks are appropriate for this commit; the runtime/compiler/browser acceptance work above applies when the plan is implemented.

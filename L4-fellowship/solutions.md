@@ -7,7 +7,7 @@ Companion documents: [study page design](./design.md) and [complete fictional wo
 
 ## How to use these answers
 
-This is a set of explanations, worked examples and answer-building prompts based on the two KSB guides supplied by the learner. It is preparation material, not an official mark scheme or a promise of a Pass. A strong answer connects a correct principle to something you personally did, explains why, and supports the result with evidence.
+This is a set of explanations, worked examples and answer-building prompts based on the learner’s original guides and the supplied spreadsheet-based KSB reference (converted 7 November 2026). It is preparation material, not an official mark scheme or a promise of a Pass. A strong answer connects a correct principle to something you personally did, explains why, and supports the result with evidence.
 
 Read an answer, close it, explain the idea in your own words, then check what you missed. Complete the **Make it yours** template using genuine experience. Square-bracket placeholders are deliberately unfinished; they are not facts about your employer or project. Every example involving service requests, tools, numbers or stakeholders below is fictional or illustrative unless explicitly identified as an external source.
 
@@ -27,6 +27,12 @@ The official [Skills England Data Analyst standard, ST0118 version 1.1](https://
 The supplied `[1]`–`[109]` reference markers have no bibliography. They are not reproduced as verified citations. The coverage checks below follow the supplied preparation guide; detailed tool lists, a two-stakeholder example target and forecast artefacts are preparation targets, not claims that every detail is verbatim AP03 wording. AP03's S12 descriptor concerns relevant stakeholders and adapted communication; its S13 descriptor covers a range of techniques, including mining and forecasting. Retain that broader scope alongside the learner's more specific checklist.
 
 Useful joint revision pairs are **K1/B1, K3/S2, K8/S6, K9/S7, K11/S15, K13/S10 and K14/S11**. Study together but keep individual explanations and evidence links visible.
+
+
+
+### Spreadsheet-based provider guidance
+
+The supplied **KSB-Codex-Content-Reference.md**, derived from **KSB list information 2.xlsx / Sheet1**, adds 30 grading groups across 37 KSBs. It supersedes the earlier provider transcription where wording differs; applicability to this learner and the original workbook remain unverified. Grading pass/distinction criteria, provider Meets/Exceeds expectations and derived learning are distinct. N/A lists no separate distinction criterion for that row; it does not determine an overall grade. Source-cell references, unresolved table boundaries and technical corrections are available in the assessment view. No personal progress or completed evidence was supplied.
 
 ## Knowledge
 
@@ -57,6 +63,12 @@ The seven principles are:
 
 The complete first principle includes fairness and transparency, not only lawfulness. The [ICO principles guide](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/) supports this list. Its search extract notes updates following the Data (Use and Access) Act 2025; verify the current detailed rules and commencement dates for a real decision. Consent is not the only possible lawful basis, and a government task is not automatically authorised simply because it serves the public.
 
+
+
+**Additional preparation — derived learning.** Keep the knowledge and behaviour contributions visible. Explain the applicable UK GDPR/Data Protection Act context in your own words, including all seven principles, then show the safe, professional and productive habits you used. The full first principle includes fairness and transparency. Consent is one possible lawful basis, not an automatic requirement for every government task. Provider extension prompts about improving practices or educating colleagues are separate from the source grading column, which lists no separate distinction criterion. Confirm current law and your applicable organisational rules before relying on a legal claim.
+
+**Provider source.** K1+B1 · AM2 · Sheet1!A110; Sheet1!A679. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “For `[project purpose]`, I checked `[lawful basis/authorisation with responsible role]`, limited access and fields to `[necessary scope]`, used `[approved storage/sharing]`, followed `[retention rule]` and recorded `[compliance evidence]`. This protected `[people and working environment]`.”
 
 **Evidence to reference.** An approved handling record, access rationale, minimisation decision and retention reference. Link B1 for everyday secure working.
@@ -79,6 +91,12 @@ The complete first principle includes fairness and transparency, not only lawful
 **Answer guide.** Organisational policies translate legal obligations and risk decisions into practical rules. Typical topics include information classification, access approval, acceptable use, passwords and authentication, approved storage, secure sharing, retention, incident reporting, quality standards and use of AI tools. A policy is a rule; a procedure explains how to carry it out; a standard sets a required level or format.
 
 Describe the policies your organisation actually uses, their owner/version and how you find updates. Explain daily actions: use an authorised account, store work in an approved location, check recipients, follow change approval and report concerns through the agreed route. AI guidance may restrict which tools and data can be used; do not upload workplace information to an unapproved service. Non-compliance can harm individuals, interrupt services, trigger internal action, damage trust and create regulatory or contractual consequences.
+
+
+
+**Additional preparation — derived learning.** Identify actual policy and standard names, their versions or review dates, the approved access route, and how they affected your work and contribution. Include an AI/data-handling policy if relevant. Explain compliance, consequences and escalation. The supplied marking table has an uncertain boundary around its compliance/recommendation bullets; retain that useful guidance while confirming its category with the provider. Do not treat basic compliance as optional because of the flattened table order.
+
+**Provider source.** K2 · AM2 · Sheet1!A112; Sheet1!A826. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “The relevant policies were `[actual titles/versions]`. I followed them by `[specific actions]`. They affected `[tool/access/output decision]`. If a requirement was unclear, I consulted `[responsible role]`; a breach would be handled through `[actual process]`.”
 
@@ -108,6 +126,12 @@ Describe the policies your organisation actually uses, their owner/version and h
 5. **Communication/Implementation:** explain findings, limitations and recommendations; support use, handover and review.
 
 These stages have a useful order but analysis is iterative. Validation may expose a preparation error; stakeholder feedback may require refining the question. In a fictional service-performance project, the analyst agrees a waiting-time definition, prepares service records, analyses delays, reconciles results against source totals and briefs the service manager on a justified action.
+
+
+
+**Additional preparation — derived learning.** For each lifecycle stage, identify an action you personally took, an output and a check. For example, planning can produce an agreed question and acceptance criteria; preparation produces a documented dataset; analysis produces an interpretable result; refining compares that result with alternatives or source totals; communication gives the decision owner an accessible conclusion and handover. Explain any iteration. The provider says a model is not compulsory in this AM1 project: substantial analysis, interpretation and evaluation still matter. Predictive examples requested for AM2 remain a separate preparation need.
+
+**Provider source.** K3+S2 · AM1 · Sheet1!A7; Sheet1!A914. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “At Planning I `[action/output]`; at Preparation I `[action/output]`; at Analysis I `[action/output]`; at Refining/Comparing I `[action/output]`; at Communication/Implementation I `[action/output]`. I revisited `[stage]` because `[reason]`.”
 
@@ -141,6 +165,12 @@ An administrative dataset may later produce an open aggregate release. Research 
 
 For a fictional waiting-time project, operational request records are administrative data because they originate from service delivery. Published population figures might add contextual denominators if their geography, date, licence and definitions are suitable. A research survey could help explain experience, but might be excluded if it does not answer the question or lacks suitable coverage.
 
+
+
+**Additional preparation — derived learning.** Create a source inventory with origin, purpose, access conditions, reuse licence and reason for inclusion. Define open, public, administrative and research data even when you did not use all four. Explain why an unused type was unnecessary, unsuitable or unavailable. These categories may overlap: an administrative source can produce an open aggregate release. Assess sensitivity and organisational handling classification separately.
+
+**Provider source.** K4 · AM1 · Sheet1!A9; Sheet1!A979. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “My source `[source alias]` is `[type(s)]` because `[origin/access/purpose]`. I included `[other source]` for `[reason]` and excluded `[type/source]` because `[relevance/licence/quality/access reason]`.”
 
 **Evidence to reference.** A source inventory, provenance notes, licence/access checks and a selection rationale.
@@ -163,6 +193,12 @@ For a fictional waiting-time project, operational request records are administra
 **Answer guide.** Structured data follows an explicit schema, usually fields, types and relationships, so records can be queried consistently. A table of request ID, received date, service ID and status is structured. Unstructured data lacks that fixed analytical tabular schema: free-text comments, images, audio and video need interpretation or extraction before many analyses.
 
 Semi-structured data, such as JSON with named fields and nested arrays, has organisation without necessarily fitting a single flat table. A structured table can contain an unstructured text column. Saving free text in a spreadsheet does not make its meaning structured. Structured data supports direct filtering and aggregation; text may require coding themes, language processing or manual review, each with quality and bias considerations.
+
+
+
+**Additional preparation — derived learning.** Use examples of both structured and unstructured data and explain the characteristics of the data you actually analysed. A table can contain a free-text field, and JSON may be semi-structured. Discuss how organisation, extraction and quality risks affect preparation. The provider extension asks about workplace challenges with unstructured data; distinguish that extension from the broader source grading criterion. Qualitative categories and quantitative measurements are different from the question of whether a dataset has a schema.
+
+**Provider source.** K5 · AM2 · Sheet1!A114; Sheet1!A1049. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “My dataset contains `[actual fields/formats]`, follows `[schema]` and is `[structured/unstructured/mixed]` because `[reason]`. The `[text/nested field]` needed `[extraction/coding/reshaping]` before I could analyse it.”
 
@@ -197,6 +233,12 @@ Semi-structured data, such as JSON with named fields and nested arrays, has orga
 
 Implementation includes deciding record grain, data types, primary/foreign keys, constraints, indexes and access roles. Maintenance includes monitoring ETL jobs, validating loads, handling schema changes, reviewing access, patching, backing up and testing recovery. Normalisation is a design practice, not the whole maintenance process. Users may interact through SQL clients, application interfaces, APIs, approved drivers/connectors and BI tools; an API is not the only database connection method.
 
+
+
+**Additional preparation — derived learning.** An ERD shows entities, keys and relationships; a data-flow sketch shows movement through systems. Use whichever clarifies your actual environment. Explain implementation, normalisation, ETL and maintenance responsibilities, and how you access data through queries or interfaces. You can understand a maintenance process without claiming to be its administrator. Relational systems can store text, JSON or binary content; unstructured information does not automatically require NoSQL.
+
+**Provider source.** K6 · AM2 · Sheet1!A116; Sheet1!A1195. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “Our approved architecture uses `[actual components]`. I interacted through `[tool/connection]`. `[responsible team]` maintains `[pipeline/schema/access/backup responsibilities]`. My analysis depended on `[key/refresh/design choice]`.”
 
 **Evidence to reference.** An approved schema diagram, lineage explanation or query annotated with grain and relationships.
@@ -219,6 +261,12 @@ Implementation includes deciding record grain, data types, primary/foreign keys,
 **Answer guide.** UX is how well a person can understand and use an output to complete a task. Domain context is the sector's processes, vocabulary, constraints and decision rules. Together they determine which questions, metrics, definitions and interactions are useful.
 
 Simplicity removes unnecessary choices; clarity makes titles, units, filters and definitions understandable; accessibility enables use across abilities and technologies. An analyst should consider colour contrast, non-colour cues, keyboard interaction, readable text and chart alternatives. Domain knowledge prevents plausible but misleading measures: calendar days and working days are different, open cases cannot be treated as completed, and a service target may change how a delay is interpreted.
+
+
+
+**Additional preparation — derived learning.** User experience includes internal users such as a manager reading a dashboard or another team receiving a cleaned dataset. Explain a principle, the design choice it motivated, the domain rule you applied and the consequence for the user. Domain context can change definitions, acceptable values, aggregation periods and the interpretation of an apparent anomaly. Link this explanation to practical S5 examples without assuming that knowing a principle proves application.
+
+**Provider source.** K7 · AM2 · Sheet1!A118; Sheet1!A1316. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “Users needed to decide `[decision]`. I used `[layout/interaction/labels]` to support that task. The domain rule `[actual rule]` changed `[metric or visual choice]`. I checked usefulness with `[feedback/evaluation]`.”
 
@@ -254,6 +302,12 @@ NULL can mean unknown, not applicable or not yet recorded; zero is a value, not 
 
 Profile the data, agree quality rules, measure the issue, assess its impact, investigate the cause, choose a justified treatment and validate the result. Escalate issues beyond your authority or where a material decision remains unsafe. Record unresolved risk. Do not improve a metric by silently deleting inconvenient records.
 
+
+
+**Additional preparation — derived learning.** Record the check or issue, its potential decision impact, your action, the escalation owner, a recheck and residual risk. If another team already cleaned the data, explain the profiling and validation you actually performed. If no major issue was found, state the results and describe the escalation process as a contingency rather than claim it occurred. For the source distinction criterion, evaluate the analysis outcome and a feasible alternative tool or method, including its consequences for stakeholders.
+
+**Provider source.** K8+S6 · AM1 · Sheet1!A11; Sheet1!A1430. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I found `[issue]` affecting `[dimension]` through `[check]`. It risked `[decision impact]`. I `[mitigated/resolved/escalated]` because `[reason]` and verified `[result]`. `[limitation]` remained.”
 
 **Evidence to reference.** A quality log with counts, treatment rationale and validation. Link S6 and B5.
@@ -278,6 +332,12 @@ Profile the data, agree quality rules, measure the issue, assess its impact, inv
 A stakeholder map identifies affected people and decision-makers. A Power-Interest Matrix helps plan engagement: high-power/high-interest stakeholders need close involvement; high-power/lower-interest groups need appropriate assurance; lower-power/high-interest users need consultation and information. Revisit this assessment and include affected groups who may otherwise lack influence.
 
 Translate needs into measurable acceptance criteria, definitions, data scope, delivery dates and priorities. Record out-of-scope work and a route for changes. For example, “show service performance” becomes a defined weekly view with agreed waiting-time units, filters, refresh timing and a clearly stated decision owner.
+
+
+
+**Additional preparation — derived learning.** Trace each customer requirement to a scope decision, analytical method, deliverable and acceptance check. Compare feasible plans against the actual decision, available time, data access, accessibility, cost and maintenance. An optimum plan is the strongest fit for those constraints, not the most complicated technique. Explain what you rejected, why, and how stakeholder feedback changed the plan or output.
+
+**Provider source.** K9+S7 · AM1 · Sheet1!A13; Sheet1!A1529. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I captured requirements using `[methods]`, involved `[roles]`, confirmed `[definitions and acceptance criteria]` and used them to set `[scope/method/output]`. I handled a change through `[agreement process]`.”
 
@@ -313,6 +373,12 @@ Joins combine related rows; unions append rows and are not join types. See [Post
 
 Check key types, formatting, uniqueness, cardinality, time periods, units, licences and unmatched records. A left join can multiply rows when the right key repeats. Combining a request table with a verified service lookup can standardise names and avoid repeated manual edits, but the benefit must be demonstrated through checks and an actual outcome.
 
+
+
+**Additional preparation — derived learning.** Evaluate the gain from combining sources alongside cardinality, unmatched records, exclusions, security, licence and quality risks. For example, a join that improves labels but multiplies requests is not ready for reporting until its relationship is understood. Compare a realistic alternative and explain remaining risk. JOIN combines matched rows; UNION appends compatible result rows, while UNION ALL retains duplicates. The source distinction criterion asks for a reasoned balance of benefits and risks.
+
+**Provider source.** K10 · AM2 · Sheet1!A120; Sheet1!A1592. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I combined `[sources]` at `[grain]` using `[keys and operation]` because `[reason]`. I checked `[cardinality/unmatched counts/totals]`. This improved `[accuracy/efficiency/customer benefit]`, supported by `[measurement or observed evidence]`.”
 
 **Evidence to reference.** A join diagram, reproducible steps and before/after reconciliation. Link S8.
@@ -335,6 +401,12 @@ Check key types, formatting, uniqueness, cardinality, time periods, units, licen
 **Answer guide.** Describe tools your organisation actually makes available, then compare them against the analytical requirement. Typical options include Excel for small tabular exploration, Power Query for repeatable preparation, SQL for database querying, Power BI/Tableau for governed visual reporting and Python for reproducible custom analysis. Availability, permitted use and capability vary by employer.
 
 Compare scale, source connectivity, statistical capability, accessibility, reproducibility, security, cost, team skills and maintenance. Licensed software may offer support and familiar sharing; code may offer flexibility and versionable workflows but still needs testing, support and suitable deployment. Neither is universally superior.
+
+
+
+**Additional preparation — derived learning.** Compare tools that were realistically available in your organisation. Include data connectivity, reproducibility, analytical capability, security, licensing, team skills, accessibility and future maintenance. After delivery, evaluate what the outcome shows about your choice. A useful alternative recommendation explains the benefit, cost, risks and affected stakeholders rather than simply naming another product.
+
+**Provider source.** K11+S15 · AM1 · Sheet1!A15; Sheet1!A1715. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “Our available tools were `[actual options]`. I selected `[tool]` for `[specific task]` because it met `[criteria]`. I rejected `[alternative]` because `[trade-off]`. The outcome was `[verified result]`, with `[remaining limitation]`.”
 
@@ -360,6 +432,12 @@ Compare scale, source connectivity, statistical capability, accessibility, repro
 A fictional flow is `service system → controlled staging → quality transformations → analytical warehouse → BI model → authorised users`. Each stage has an owner, permissions, refresh arrangements and lineage. Central storage policies affect where extracts can be saved, which interfaces are approved and how retention, backups and audit records work. Tool choice depends on supported connectors, identities, network routes and platform constraints.
 
 Big Data concerns scale, speed and variety that may require distributed storage or processing. Do not claim your organisation uses a lake or Big Data platform if it does not. A modest relational solution may be entirely appropriate.
+
+
+
+**Additional preparation — derived learning.** Sketch the genuine flow from source systems through storage and transformation to reports or other consumers. Identify ownership, authorised access, refresh and retention rules, and how those constrained your analysis. Use safe aliases for systems and references. Explain central storage choices and Big Data only where relevant; a modest relational solution can be appropriate.
+
+**Provider source.** K12 · AM1 · Sheet1!A17; Sheet1!A1774. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “Data moves from `[source]` through `[actual components]` to `[consumer]`. `[roles]` govern `[access/storage/refresh]`. This constrained my choice of `[tool/location/connection]` and affected `[analysis decision]`.”
 
@@ -399,6 +477,12 @@ For synthetic completion times `[2, 3, 3, 4, 8]` days, the mean is **4**, median
 
 A small p-value is not the probability that H0 is true, and a large p-value does not prove equality. Report effect size, confidence intervals, assumptions and practical relevance. The [NIST t-test reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm) provides formulas; S10 below gives a separately constructed numerical example.
 
+
+
+**Additional preparation — derived learning.** Explain why each descriptive measure and inferential method fits the business question, data and assumptions. The provider S10 guidance includes EDA, appropriate charts, explicit hypotheses and an applied inferential test; a t-test is one possible method rather than the only permitted choice. Discuss effect size, uncertainty and practical significance alongside p-values. Explain alpha in relation to decision risk: a Type I error rejects a true null; a Type II error fails to reject a false null. This group has provider extension guidance but no separate source distinction criterion.
+
+**Provider source.** K13+S10 · AM2 · Sheet1!A122; Sheet1!A1911. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I used `[summaries]` to understand `[distribution]`. To investigate `[question]`, I set `[hypotheses and alpha]`, selected `[method]`, checked `[assumptions]` and interpreted `[effect/interval/p-value]` as `[appropriately limited conclusion]`.”
 
 **Evidence to reference.** Reproducible calculations, distribution plots and a statistical interpretation.
@@ -423,6 +507,12 @@ A small p-value is not the probability that H0 is true, and a large p-value does
 In a fictional service project, descriptive analysis summarises completed requests and waiting-time distributions. A predictive model forecasts future demand. Prescriptive analysis compares feasible staffing or scheduling responses against capacity, cost, service needs and uncertainty. A forecast alone is not a recommendation, and an unsupported recommendation is not a demonstrated analytical benefit.
 
 Linear regression estimates a numerical outcome; logistic regression estimates a probability for a defined class. Neither automatically proves a causal effect. Predictions need suitable validation and monitoring, while recommendations need human judgement and policy context.
+
+
+
+**Additional preparation — derived learning.** Show a complete chain: describe an observed pattern, make and validate a prediction, then recommend a feasible action under objectives and constraints. Explain all three forms of analytics using genuine practice. For a linear model, interpret coefficients in the response units and discuss the intercept in context. Logistic regression models an event probability through log-odds; observed binary labels are distinct from estimated probabilities. Choose metrics for the outcome: RMSE/MAE for numerical errors and suitable classification metrics for categories. Compare unseen-data performance with a baseline, investigate leakage or over/underfitting, and critically evaluate predictive risks, benefits and error consequences. A prediction does not establish a causal effect.
+
+**Provider source.** K14+S11 · AM2 · Sheet1!A124; Sheet1!A2050. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I described `[observed pattern]`, predicted `[target/horizon with validation]` and recommended `[action]` because `[objective, constraints and evidence]`. The uncertainty was `[limitation]` and the decision owner was `[role]`.”
 
@@ -451,6 +541,12 @@ A fictional online-feedback analysis may underrepresent people who cannot use di
 
 The current government [Data and AI Ethics Framework](https://www.gov.uk/government/publications/data-ethics-framework/data-and-ai-ethics-framework), updated 18 December 2025, extends the older Data Ethics Framework. Its principles include transparency, accountability, fairness, privacy, environmental sustainability, societal impact and safety. Use the applicable version in your organisation and revisit ethical questions as a project changes. Failures can cause harm, unfair decisions, service problems and loss of trust.
 
+
+
+**Additional preparation — derived learning.** Map an appropriate ethics framework to a real decision: whose data is represented, who might be excluded, what bias or disclosure risk exists, who is accountable, what should be explained and which mitigation was prioritised. An anonymous form does not guarantee an unbiased sample or prevent identification from detailed answers. Password protection alone does not establish adequate access control. Ethical consequences can include the unequal costs of false positive and false negative decisions. Keep consent/lawful-basis and ethical suitability distinct.
+
+**Provider source.** K15 · AM2 · Sheet1!A126; Sheet1!A2199. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “The data came from `[source]`, collected through `[method]` for `[purpose]`. I identified `[ethical risk]`, considered `[affected groups]`, applied `[mitigation]` and documented `[accountability/transparency]`. `[residual risk]` remained.”
 
 **Evidence to reference.** An approved ethical assessment or decision log and a concrete limitation communicated to users.
@@ -475,6 +571,12 @@ The current government [Data and AI Ethics Framework](https://www.gov.uk/governm
 **Answer guide.** Explain the systems you actually operated and the controls you personally applied throughout the work. Privacy by Design means addressing privacy while deciding requirements and designing the workflow, rather than adding protection only before publication.
 
 Describe authorised access, minimum necessary fields, approved environments, controlled transfers, protected working copies, output disclosure checks and retention/deletion. Review risks when the scope changes. Pseudonymised data can still be personal data; anonymisation requires attention to re-identification, not merely removal of a name. Explain when you involved the data owner, security or data protection team and any privacy impact assessment required by the actual process.
+
+
+
+**Additional preparation — derived learning.** Connect Privacy by Design to actual lifecycle decisions: purpose, minimum necessary data, authorised access, approved transfers, protected working copies, disclosure checks and retention. Explain the applicable policies and legislation, the controls you used and how you verified them. Refer specialist decisions to the responsible role; do not imply that every analysis requires the same impact assessment or that pseudonymisation removes personal-data obligations.
+
+**Provider source.** S1 · AM1 · Sheet1!A19; Sheet1!A2599. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I operated `[system]` using `[approved role]`. During planning I `[privacy decision]`; during preparation/analysis I `[controls]`; before sharing I `[check]`; at closure I `[retention/deletion]`. I verified compliance through `[record/approval]`.”
 
@@ -505,6 +607,12 @@ Describe authorised access, minimum necessary fields, approved environments, con
 | Refining/Comparing | Reconciliation, alternative checks, feedback and changes |
 | Communication/Implementation | Audience-appropriate delivery, recommendations and handover/review |
 
+
+
+**Additional preparation — derived learning.** For each lifecycle stage, identify an action you personally took, an output and a check. For example, planning can produce an agreed question and acceptance criteria; preparation produces a documented dataset; analysis produces an interpretable result; refining compares that result with alternatives or source totals; communication gives the decision owner an accessible conclusion and handover. Explain any iteration. The provider says a model is not compulsory in this AM1 project: substantial analysis, interpretation and evaluation still matter. Predictive examples requested for AM2 remain a separate preparation need.
+
+**Provider source.** K3+S2 · AM1 · Sheet1!A7; Sheet1!A914. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “The agreed objective was `[objective]`. My output at each stage was `[five linked outputs]`. A check at `[stage]` led me to change `[action]`, improving `[verified result]`. I handed over `[deliverable and limitations]`.”
 
 **Evidence to reference.** One project timeline linking the brief, reproducible preparation, analysis, validation and final communication.
@@ -527,6 +635,12 @@ Describe authorised access, minimum necessary fields, approved environments, con
 **Answer guide.** Assess sensitivity, identifiability, purpose, access and potential harm, then apply your organisation's real classification and handling scheme. Low/medium/high can be useful risk descriptions if the organisation uses them; they are not universal government security labels.
 
 Describe the classification decision and the practical treatment: restrict fields and users, redact sensitive content, pseudonymise identifiers with the lookup separately controlled, or publish an appropriately checked aggregate. Explain why a change in treatment was appropriate for the particular use and who could authorise it. Turning text into counts does not automatically anonymise it; small groups, rare events and linked datasets can permit identification.
+
+
+
+**Additional preparation — derived learning.** Document the source and purpose, structure, sensitivity, actual organisational classification, handling controls and any approved change. If the classification did not change, explain when a change might be appropriate and what approval/checks it would need. A category count does not automatically become anonymous; replacing identifiers with codes can leave personal data. High/medium/low are examples in the supplied guide, not universal government security labels.
+
+**Provider source.** S3 · AM1 · Sheet1!A21; Sheet1!A2662. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I assessed `[dataset]` as `[actual classification/risk]` because `[reason]`. The handling rule was `[requirement]`. For `[approved purpose]`, I applied `[redaction/pseudonymisation/aggregation]`, checked `[remaining disclosure risk]` and retained `[controls/approval]`.”
 
@@ -553,6 +667,12 @@ RDBMS strengths include relationships, constraints, transactions and established
 
 **Illustrative application.** A request table has one row per request, a service lookup one row per service, and feedback multiple comments per request. Joining all comments directly would change the request grain; aggregate or model feedback separately before combining measures.
 
+
+
+**Additional preparation — derived learning.** For every dataset record its row count, columns, grain, types, schema and relationships. Explain how those characteristics changed your analysis: for example, a nested contact array may need aggregation to request grain before joining. Different filenames alone do not establish different database designs. For the source distinction criterion, demonstrate how the structural adaptation solved a problem or improved accuracy or efficiency. An ERD can help explain relationships, but do not claim design work you did not perform.
+
+**Provider source.** S4 · AM1 · Sheet1!A23; Sheet1!A2747. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “Source A had `[rows × columns, grain]`; source B had `[shape/grain]`. Their structures differed in `[way]`, so I `[query/reshape/aggregate choice]`. I checked `[count/key/meaning validation]`.”
 
 **Evidence to reference.** Data dictionaries, safe schema examples, row-count records and annotated transformations.
@@ -578,6 +698,12 @@ For a web output, WCAG 2.2 AA is an appropriate accessibility target where appli
 
 Apply domain rules to calculations as well as presentation. In a fictional service output, separate open cases from completed-case duration, use the agreed working-day definition and identify the service target. Test a draft with intended users and document an actual change from feedback.
 
+
+
+**Additional preparation — derived learning.** Record the audience, domain rule, layout/colour choice, accessibility check, feedback and resulting improvement. Explain why the output served the stakeholder rather than only describe its appearance. Reference sanitised visuals or approved feedback where available. Provider extension guidance asks about impact and further usability improvements; these are not automatically an EPA distinction row.
+
+**Provider source.** S5 · AM2 · Sheet1!A128; Sheet1!A2824. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “Users needed `[decision]`. I chose `[layout, palette and hierarchy]` because `[need]`, applied `[domain rule]` and checked `[accessibility/usability]`. Feedback from `[role]` led to `[change]`, with `[observed result]`.”
 
 **Evidence to reference.** Safe before/after views, an explanation of design choices and actual user evaluation.
@@ -600,6 +726,12 @@ Apply domain rules to calculations as well as presentation. In a fictional servi
 **Answer guide.** Demonstrate a complete issue-handling loop: detect, measure, assess impact, investigate, mitigate or escalate, resolve where authorised, and validate. Preserve the original source and log transformations.
 
 **Illustrative application.** NULL completion dates may represent genuinely open cases. The analyst separates these from completed-case duration rather than replacing them with zero. An apparent demand spike after a join triggers checks of lookup uniqueness and row counts. Conflicting lookup entries require source-owner clarification, not arbitrary deletion. An unresolved issue is reported with the affected outputs, interim mitigation, owner and next action.
+
+
+
+**Additional preparation — derived learning.** Record the check or issue, its potential decision impact, your action, the escalation owner, a recheck and residual risk. If another team already cleaned the data, explain the profiling and validation you actually performed. If no major issue was found, state the results and describe the escalation process as a contingency rather than claim it occurred. For the source distinction criterion, evaluate the analysis outcome and a feasible alternative tool or method, including its consequences for stakeholders.
+
+**Provider source.** K8+S6 · AM1 · Sheet1!A11; Sheet1!A1430. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “My `[check]` found `[issue and scale]`. The risk was `[impact]`. I `[action]` within my remit and escalated `[part]` to `[role]`. Validation showed `[actual outcome]`; I communicated `[residual limitation]`.”
 
@@ -627,6 +759,12 @@ Apply domain rules to calculations as well as presentation. In a fictional servi
 | Compare completed-case waits by service | Agree completion definition, period and units; prepare comparable records | View with agreed filters; reconcile counts and duration calculation |
 | Identify services needing attention | Agree target and decision rule; assess small counts and uncertainty | Clearly labelled exceptions with caveats; stakeholder review |
 | Refresh for a regular meeting | Set data cutoff, refresh dependencies and owner | Refresh timing and handover instructions; check a refresh cycle |
+
+
+
+**Additional preparation — derived learning.** Trace each customer requirement to a scope decision, analytical method, deliverable and acceptance check. Compare feasible plans against the actual decision, available time, data access, accessibility, cost and maintenance. An optimum plan is the strongest fit for those constraints, not the most complicated technique. Explain what you rejected, why, and how stakeholder feedback changed the plan or output.
+
+**Provider source.** K9+S7 · AM1 · Sheet1!A13; Sheet1!A1529. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “Requirement `[R-id]` led to `[scope/method]`, was delivered through `[output]` and checked using `[acceptance evidence]`. A change to `[requirement]` was agreed with `[role]` and affected `[time/scope]`.”
 
@@ -680,6 +818,12 @@ GROUP BY r.service_id;
 
 Check NULL request keys separately. Do not assume the final row count equals the original unless the right-side key is unique and the intended relationship supports that result. Other risks include mismatched data types, leading zeros, time periods, inconsistent units, privacy restrictions and changing definitions. Reconcile distinct request counts and relevant totals; keep an unmatched-record log.
 
+
+
+**Additional preparation — derived learning.** The provider checklist asks for a repeatable join of at least two sources using SQL, Power Query, Python or a comparable BI method, rather than a basic lookup or a UNION-only example. State the grain, keys, join type and preparation. Reconcile source/result counts, unmatched rows, duplicate keys and totals, and explain access or licence risks. Sources can include separate tables from one database when they represent different origins or information.
+
+**Provider source.** S8 · AM1 · Sheet1!A25; Sheet1!A2925. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I prepared `[sources]`, standardised `[fields]`, joined using `[keys, type, expected relationship]` and checked `[counts, duplicates, unmatched rows, totals]`. I mitigated `[risk]` with `[action]`.”
 
 **Evidence to reference.** Actual queries or transformation steps, key profiling and reconciliation results.
@@ -702,6 +846,12 @@ Check NULL request keys separately. Do not assume the final row count equals the
 **Answer guide.** Explain which tool you used to interact with which architectural component and why the connection satisfied the organisation's constraints. Examples include SSMS for an authorised SQL Server query, a supported Power BI connector for a governed dataset, Tableau for an approved data source or approved Azure services for storage/processing. Azure is a platform; name the relevant service if appropriate and safe.
 
 Explain authentication, least-privilege access, refresh or query constraints, approved gateways/interfaces and where transformations ran. Do not claim you administered infrastructure if you only queried it. Distinguish responsibilities of an analyst, data engineer and administrator.
+
+
+
+**Additional preparation — derived learning.** Connect the tool or interface to actual data architecture and authorised access. Explain why the connector, query environment or BI workflow fits the infrastructure and constraints. The provider extension asks for strengths and weaknesses of at least two relevant tools or techniques. Compare realistic organisational options without inventing access or experience.
+
+**Provider source.** S9 · AM2 · Sheet1!A130; Sheet1!A3032. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “The relevant component was `[actual architecture component]`. I used `[tool/interface]` because it supported `[infrastructure need]`. My permissions were `[role-level description]`. I applied `[connection/query/storage constraint]` and checked `[result]`.”
 
@@ -746,6 +896,12 @@ print(result.statistic, result.pvalue)
 
 The [NIST reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm) explains the underlying test. The numbers above were calculated for this guide; they are not copied results or workplace evidence. Correlation and regression require their own assumptions and interpretations; not every predictive library reports inferential p-values.
 
+
+
+**Additional preparation — derived learning.** Explain why each descriptive measure and inferential method fits the business question, data and assumptions. The provider S10 guidance includes EDA, appropriate charts, explicit hypotheses and an applied inferential test; a t-test is one possible method rather than the only permitted choice. Discuss effect size, uncertainty and practical significance alongside p-values. Explain alpha in relation to decision risk: a Type I error rejects a true null; a Type II error fails to reject a false null. This group has provider extension guidance but no separate source distinction criterion.
+
+**Provider source.** K13+S10 · AM2 · Sheet1!A122; Sheet1!A1911. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “EDA showed `[findings]`. I set `[hypotheses/alpha]`, selected `[test]` because `[design]`, checked `[assumptions]` and obtained `[effect, interval, p-value]`. For `[business question]`, this supports `[limited conclusion]`.”
 
 **Evidence to reference.** EDA, reproducible calculations, assumptions, effect size/interval and contextual interpretation.
@@ -770,6 +926,12 @@ The [NIST reference](https://www.itl.nist.gov/div898/handbook/eda/section3/eda35
 Prevent leakage from future information or from the same entity appearing in both training and test data inappropriately. Fit preprocessing on training data, evaluate on unseen observations and examine meaningful subgroup performance. Report assumptions and limitations as well as the headline score.
 
 **Illustrative application.** The S13 example describes monthly request counts, evaluates a time-trend regression against a naive forecast and produces projections. For a fictional capacity of 150 requests per month, projections of 152–158 would prompt comparison of feasible staffing or scheduling options. That capacity is an assumption for discussion, not a fact about a service. A recommendation should consider cost, operational constraints, forecast uncertainty and the responsible decision-maker; it cannot claim an improvement before evaluating implementation.
+
+
+
+**Additional preparation — derived learning.** Show a complete chain: describe an observed pattern, make and validate a prediction, then recommend a feasible action under objectives and constraints. Explain all three forms of analytics using genuine practice. For a linear model, interpret coefficients in the response units and discuss the intercept in context. Logistic regression models an event probability through log-odds; observed binary labels are distinct from estimated probabilities. Choose metrics for the outcome: RMSE/MAE for numerical errors and suitable classification metrics for categories. Compare unseen-data performance with a baseline, investigate leakage or over/underfitting, and critically evaluate predictive risks, benefits and error consequences. A prediction does not establish a causal effect.
+
+**Provider source.** K14+S11 · AM2 · Sheet1!A124; Sheet1!A2050. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I described `[historical finding]`, built `[predictive method and target]`, compared `[baseline and validation]` and recommended `[action]` under `[constraints]`. The prediction could support `[decision]` but did not establish `[unsupported causal claim]`.”
 
@@ -798,6 +960,12 @@ Prevent leakage from future information or from the same entity appearing in bot
 | Data engineer | Technical walkthrough of grain, keys, transformations and failed validation checks | Investigated source behaviour and agreed a defensible correction |
 
 These are suggested roles, not claims about your project. Suitable evidence could use meetings, documented reviews, presentations or approved written channels. Adapt to the situation: an urgent quality concern may need a direct escalation and a written follow-up, while a planned review can use a fuller demonstration.
+
+
+
+**Additional preparation — derived learning.** Explain how you presented the outcomes to at least two stakeholders, as requested in the provider guidance. Compare their needs, the channels and vocabulary you used, and the feedback or decisions that followed. Record constructive conflict handling and how needs were prioritised where relevant. A Power-Interest Matrix or RACI can support the reasoning; the evidence is your actual communication and collaboration.
+
+**Provider source.** S12 · AM1 · Sheet1!A27; Sheet1!A3105. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “With `[stakeholder 1]`, I used `[style/channel]` because `[need]`, leading to `[result]`. With `[stakeholder 2]`, I changed `[detail/language/channel]` because `[need]`, leading to `[result]`. Their input changed `[deliverable]`.”
 
@@ -866,6 +1034,12 @@ print([intercept + slope * t for t in (13, 14, 15)])
 
 **Range of techniques.** Also prepare a genuine mining/modelling example to address the standard's broader range: for instance, clustering service profiles after appropriate scaling, or a validated decision tree predicting a defined outcome. Explain features, method, validation, interpretation and usefulness. A clustering exercise does not replace the supplied guide's forecast visual, and a forecast does not automatically demonstrate the full range.
 
+
+
+**Additional preparation — derived learning.** Explain the target, frequency, history/training window, held-out period, horizon, model and assumptions. Show the forecast, compare errors with a baseline and make a business-relevant recommendation. The provider recommends a forecasting example plus another predictive/mining technique; its extension asks for two forecasts and an error comparison. These are distinct guidance levels, and this group lists no separate distinction criterion. No visible trend alone does not prove stationarity: consider stability of the mean, variance and dependence structure. ADF is an optional unit-root diagnostic with assumptions and limitations. Assess seasonality over relevant cycles, avoid automatic outlier deletion and explain uncertainty rather than claim guaranteed future accuracy.
+
+**Provider source.** S13 · AM2 · Sheet1!A132; Sheet1!A3180. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I forecast `[target/frequency]` from `[history window]` over `[horizon]` using `[model]` because `[reason]`. Trend/seasonality checks showed `[findings]`. On `[time-based evaluation]`, `[metric]` was `[result]` versus `[baseline]`. The visual showed `[projection and uncertainty]`. My separate mining/modelling example was `[technique, validation and use]`.”
 
 **Evidence to reference.** Your real forecast plot and table, source/preparation notes, model settings/code, time split, metric calculation, limitations and a mining/modelling example where needed.
@@ -891,6 +1065,12 @@ Collate the sources, define measures, code text consistently if needed and prese
 
 **Illustrative application.** Show completed-case duration by service alongside coded feedback themes. State whether a comment can have several themes, how coding was checked and what privacy/disclosure rules affect quotations or small groups. Use safe thematic summaries rather than identifiable quotes. Explain both the numeric pattern and the supporting or conflicting qualitative insight.
 
+
+
+**Additional preparation — derived learning.** Compare two appropriate representations of the same stakeholder question and data. Explain the construction, what each reveals or hides, and accessibility. Categorical labels are qualitative even if encoded as numbers; counts or durations are numerical measures. A grouped bar chart may aid category comparison while aligned line charts emphasise change over time. Justify the choice for the audience and acknowledge limitations; two screenshots without reasoning do not demonstrate the source distinction criterion.
+
+**Provider source.** S14 · AM2 · Sheet1!A134; Sheet1!A3313. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I collated `[numeric source]` and `[qualitative source]`, interpreted them using `[methods]`, chose `[visuals]` because `[rationale]` and found `[actual insight]`. I included `[accessible explanation/limitations]`.”
 
 **Evidence to reference.** Annotated visuals, safe theme definitions, chart rationale and a clearly bounded interpretation.
@@ -913,6 +1093,12 @@ Collate the sources, define measures, code text consistently if needed and prese
 **Answer guide.** Show the decision process and then show that you applied the selected tool. Set criteria from the actual requirement and organisational environment, compare realistic available options, explain trade-offs and evaluate the result. “It was familiar” is relevant to delivery time but insufficient on its own.
 
 For a fictional recurring service report, SQL could handle governed extraction and joins; Power Query could provide maintainable transformation; Power BI could support an approved interactive report; Python could support methods unavailable in the BI tool. A justified combination may be best, subject to approved use, ownership, accessibility and support.
+
+
+
+**Additional preparation — derived learning.** Compare tools that were realistically available in your organisation. Include data connectivity, reproducibility, analytical capability, security, licensing, team skills, accessibility and future maintenance. After delivery, evaluate what the outcome shows about your choice. A useful alternative recommendation explains the benefit, cost, risks and affected stakeholders rather than simply naming another product.
+
+**Provider source.** K11+S15 · AM1 · Sheet1!A15; Sheet1!A1715. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I compared `[available tools]` against `[data scale, capability, security, reproducibility, cost, accessibility and support]`. I selected and used `[tool/workflow]` because `[reason]`. The result met `[acceptance criteria]`, while `[trade-off]` remained.”
 
@@ -941,6 +1127,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 
 **Illustrative scenario.** Before a report review, an analyst shares a sanitised output through the approved channel, checks recipient access and removes an unnecessary identifying field. When a permission is unclear, they seek clarification instead of broadening access themselves. This connects legislation in K1 to everyday behaviour.
 
+
+
+**Additional preparation — derived learning.** Keep the knowledge and behaviour contributions visible. Explain the applicable UK GDPR/Data Protection Act context in your own words, including all seven principles, then show the safe, professional and productive habits you used. The full first principle includes fairness and transparency. Consent is one possible lawful basis, not an automatic requirement for every government task. Provider extension prompts about improving practices or educating colleagues are separate from the source grading column, which lists no separate distinction criterion. Confirm current law and your applicable organisational rules before relying on a legal claim.
+
+**Provider source.** K1+B1 · AM2 · Sheet1!A110; Sheet1!A679. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “In `[situation]`, I needed to `[task]`. I applied `[specific secure practices]`, checked `[control]` and handled `[concern]` through `[route]`. The result was `[verified outcome]`; I learned `[improvement]`.”
 
 **Evidence to reference.** A safe handling example, approved review note or reflection on a specific security decision.
@@ -963,6 +1155,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 **Answer guide.** Describe a minor unexpected change, your initiative, the options considered and the adjustment you made within your responsibility. Explain how you protected quality and kept progress visible. Seek help when the problem exceeds your remit; resourcefulness does not mean bypassing controls.
 
 **Illustrative scenario.** An export arrives without a field used by a report filter. An analyst confirms whether an approved alternative exists, checks its meaning, adjusts the preparation if valid and tells the stakeholder about the change. If the field is essential, they escalate rather than inventing values.
+
+
+
+**Additional preparation — derived learning.** Describe a minor unexpected operational change, your adjustment, initiative and checks that protected quality or productivity. A different extract or unavailable tool can provide a concrete example. Compare this with B7 contextual shifts while recognising that real situations may overlap. Proactive preparation for major changes is provider extension guidance; no separate distinction criterion is listed for this row.
+
+**Provider source.** B2 · AM2 · Sheet1!A136; Sheet1!A159. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “The unexpected change was `[minor issue]`. I was responsible for `[task]`. I considered `[options]`, chose `[adaptation]` because `[reason]`, checked `[quality]` and achieved `[actual result]`. Next time I would `[lesson]`.”
 
@@ -987,6 +1185,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 
 **Illustrative scenario.** An analyst independently profiles data and prepares a concise issue summary, then works with a source owner to resolve a definition problem and with a user to review the output. Clear preparation makes the discussion efficient, but any benefit claimed in a real answer needs supporting observation or feedback.
 
+
+
+**Additional preparation — derived learning.** Distinguish your independent responsibilities from team contributions. Explain when you sought guidance or moved into collaboration, why that was appropriate, and how your work affected other people or the shared workflow. Use an actual outcome or safe feedback reference to support the impact. Independence does not require working without appropriate support.
+
+**Provider source.** B3 · AM1 · Sheet1!A29; Sheet1!A257. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “I independently owned `[tasks/decisions]`. I collaborated with `[roles]` on `[dependencies]`, contributing `[specific work]`. Their input changed `[decision]`. My work affected others by `[observed positive impact]`; I learned `[lesson]`.”
 
 **Evidence to reference.** A contribution log, actual feedback or a handover/review artefact.
@@ -1009,6 +1213,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 **Answer guide.** Show how you independently structured an uncertain problem, formed explanations, chose tests and revised your judgement from evidence. State assumptions and why each step followed from the previous finding. Distinguish a supported conclusion from a plausible guess.
 
 **Illustrative scenario.** A report total rises unexpectedly. An analyst checks whether the change exists in the source, tests extraction counts, inspects join cardinality and compares the result before and after a transformation. The order narrows the problem efficiently instead of changing several steps at once.
+
+
+
+**Additional preparation — derived learning.** Make the reasoning visible: the business question, candidate explanations, checks, alternatives, chosen approach and evidence supporting the conclusion. Explain which decisions you made independently. For the source distinction criterion, evaluate the outcome and a feasible alternative tool or method, including benefits and trade-offs for stakeholders.
+
+**Provider source.** B4 · AM1 · Sheet1!A31; Sheet1!A336. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “I defined the problem as `[question]`, considered `[hypotheses]`, tested `[checks in order]` and interpreted `[findings]`. I chose `[solution]` because `[evidence]`, validated `[outcome]` and recorded `[limitation/lesson]`.”
 
@@ -1033,6 +1243,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 
 **Illustrative scenario.** A count is inflated after a join. Testing identifies duplicate lookup keys. Investigation then finds a missing uniqueness check in the lookup-loading process. Correcting the lookup treats the current issue; adding an approved validation gate with a clear owner addresses recurrence. Monitor later loads before claiming the problem cannot return.
 
+
+
+**Additional preparation — derived learning.** Start with a problem whose cause was unknown. Explain the investigation, evidence supporting the root cause, solution and a prevention or monitoring control. Describe how you validated the change and gained appropriate support. A preventive control can reduce recurrence risk; avoid promising that a problem can never return. Preserve your specific contribution and a safe evidence reference.
+
+**Provider source.** B5 · AM2 · Sheet1!A138; Sheet1!A404. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “The problem `[symptom]` initially had an unknown cause. I investigated by `[tests]`, ruled out `[alternatives]` and established `[root cause with evidence]`. The solution was `[authorised change]`; prevention was `[control/owner]`, checked through `[follow-up]`.”
 
 **Evidence to reference.** Investigation notes, causal evidence, implemented change and follow-up validation.
@@ -1055,6 +1271,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 **Answer guide.** Give a specific challenge and explain a constructive response: reassess, seek appropriate support, break work into manageable steps, use feedback and maintain quality. Resilience is demonstrated by what you changed and learned, not by claiming you never struggled.
 
 **Illustrative scenario.** An initial predictive model performs worse than a baseline. An analyst investigates leakage and features, accepts the result, discusses limitations, tries a justified alternative and documents what the comparison taught them. An unsuccessful model can still produce useful learning if its limitations are reported honestly.
+
+
+
+**Additional preparation — derived learning.** A challenge may concern analysis or wider workplace activity, and a useful reflection need not describe an optimal outcome. Explain resilient actions, appropriate support, what you learned and how that changed later practice. Distinguish an honest setback and response from a fictional success story. Future prevention is a provider extension, not a separate source distinction row.
+
+**Provider source.** B6 · AM2 · Sheet1!A140; Sheet1!A501. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
 
 **Make it yours.** “The challenge was `[specific setback]`. I responded through `[actions/support]`, adapted `[approach]` and achieved `[honest outcome]`. I learned `[specific lesson]`, which I later applied in `[actual subsequent work/change]`.”
 
@@ -1079,6 +1301,12 @@ Use **STAR-L: Situation, Task, Action, Result, Learning** to structure genuine e
 
 **Illustrative scenario.** A project shifts from an annual performance review to an urgent operational briefing. An analyst agrees the minimum defensible scope, revises outputs and dates, records excluded analysis and checks the new output with stakeholders. The shift is broader than the small operational issue used for B2.
 
+
+
+**Additional preparation — derived learning.** Compare the original scope, priorities or responsibilities with the changed context. Explain the revised plan, new approach or tool, stakeholder feedback and the outcome. Organisational or role changes can be relevant as well as project changes. Keep reflections specific about what you personally adapted and what remains uncertain.
+
+**Provider source.** B7 · AM2 · Sheet1!A142; Sheet1!A574. Exact criteria, provider guidance and source-review notes are kept separate in the page’s Assessment and evidence panel.
+
 **Make it yours.** “The context changed from `[old scope/direction]` to `[new scope/direction]` because `[reason]`. I reassessed `[requirements/dependencies/risks]`, agreed `[revised plan]`, responded to `[stakeholder feedback]` and delivered `[actual result with limitations]`.”
 
 **Evidence to reference.** The agreed scope change, revised plan and safe feedback/review record.
@@ -1102,6 +1330,9 @@ Do not invent numerical benefits, approval, feedback, experience with a tool or 
 
 <a id="sources"></a>
 ## Reference register
+
+The spreadsheet-based provider reference (conversion 7 November 2026) is curated in [assessment-criteria.json](./assessment-criteria.json). Exact overview criteria retain worksheet cells; examples, provider marking guidance and editorial corrections are labelled separately. Its reported workbook checksum has not been verified against the original workbook. The current-law and assessment-version caveats below remain applicable.
+
 
 Sources were consulted on **2 November 2026**. Links support the specific principles noted; they do not verify the learner's employer policies, experience or applicable assessment configuration.
 

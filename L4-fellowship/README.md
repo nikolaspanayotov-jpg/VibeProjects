@@ -143,3 +143,20 @@ The SQL engine is the pinned **sql.js 1.13.0 asm.js distribution**, downloaded f
 Run `python3 tests/browser_preparation.py` and `node tests/preparation_core.cjs` with the existing checks. The browser test uses a synthetic microphone and disposable browser profiles, not real personal recordings.
 
 The smaller vendor files avoid large publishing requests. To reproduce them during authoring, run `python3 tests/pack_sql.py /path/to/original/sql-asm.js`; it rejects a source with a different checksum. The shipped site needs no build, decompressor or runtime network dependency. `.release-local/` is a local recovery/checkpoint directory and must never be published.
+
+### Source criteria and evidence planning
+
+**Assessment and evidence** buttons in Practice, the Preparation Studio, Plan, the library, Readiness and My evidence open the new shared views:
+
+- **Criteria and self-review:** 30 grouped grading rows covering all 37 KSBs. Exact supplied pass/distinction quotations, provider marking guidance, derived explanations and source-review notes have distinct labels. Eight rows list a distinction criterion; N/A is not an overall grade. The source mapping remains separate from your confirmed assessment configuration.
+- **Source questions and evaluation:** 254 provider sample/reflection prompts, six derived evaluation exercises and six authored misconception questions. Shared method/group/distinction/source-review filters also apply in the library and Readiness. Answers save independently with a prompt snapshot and revision. Open-ended rubrics are self-review; objective quiz feedback does not mark workplace evidence complete.
+- **Source-question mock:** choose AM1 or AM2 and rehearse up to three matching source prompts. Rubrics stay hidden until the whole set finishes. This has its own resumable draft/history, separate from the earlier mock and discussion sessions. Completed conversations support self-checks, next steps, export and explicit removal.
+- **Provider evidence packs:** four attributed on-programme templates with required versus optional KSBs, workflow guidance and links to existing evidence. Starting a template creates only a draft. Review role/date/reference/feedback are manually recorded and do not constitute employer sign-off or an assessor result. Relative module deadlines require confirmation.
+
+Each lesson's **Assessment and evidence** disclosure shows its group, source cells, provider checklists, derived guidance and three independent preparation checks. Changed-source notices retain old notes and request an explicit recheck. The original numeric coverage targets and all saved KSB responses/recall/evidence remain independent.
+
+`assessment-criteria.json` is the curated public source. The optional authoring compiler validates its 30/37 mapping, eight distinction rows, source cells and provider packs, then embeds it as `L4_CURRICULUM.assessment` with a seventh source checksum. `assessment.js` and `assessment.css` render the views; the page needs no runtime build or Markdown parser. The private supplied attachment is not published in full. Unclear provider columns, source imprecisions and unverified legal/applicability claims retain explicit review status.
+
+The additive `assessmentReview` section uses the existing v1 storage key, guarded writes, strict backup validation, per-record conflict choices and Markdown export. Older backups default it without erasing new records on merge. Deleted source mocks have tombstones. Recording blobs continue to require separate audio export.
+
+Authoring checks: `python3 tests/validate_assessment.py`, `node tests/assessment_core.cjs` and `python3 tests/browser_assessment.py` alongside the previous eleven browser suites. After updating cached content, regenerate `sw.js` last.
