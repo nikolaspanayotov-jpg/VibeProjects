@@ -5,9 +5,10 @@ Run after changing any cached public asset. The shipped website needs no build.
 from pathlib import Path
 import argparse,hashlib,json
 parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);args=parser.parse_args();root=args.root
-assets=['index.html','curriculum.js?v=20261105-guided','gamification.js?v=20261105-quests','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets=['index.html','preparation.css?v=20261105-prep','preparation-data.js?v=20261105-prep','preparation.js?v=20261105-prep','sql-LICENSE.txt','curriculum.js?v=20261105-guided','gamification.js?v=20261105-quests','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets += [f'vendor/sql-asm-{i:02d}.js?v=1.13.0' for i in range(1,23)] + ['vendor/sql-manifest.json']
 entries=[dict(path=name,sha256=hashlib.sha256((root/name.split('?')[0]).read_bytes()).hexdigest()) for name in assets]
-version='2026-11-05-'+hashlib.sha256(json.dumps(entries).encode()).hexdigest()[:12]
+version='2026-11-07-'+hashlib.sha256(json.dumps(entries).encode()).hexdigest()[:12]
 script='''/* Generated public-file manifest. Rebuild with tests/build_offline.py. */
 'use strict';
 const VERSION=__VERSION__;
@@ -49,7 +50,7 @@ self.addEventListener('fetch',event=>{
   return cached||fetch(request);
  })());return;}
  // An older open tab may request its own versioned curriculum. Keep versions paired.
- if(['curriculum.js','gamification.js'].some(file=>url.pathname===new URL(file,scope).pathname)){event.respondWith((async()=>{
+ if(['curriculum.js','gamification.js','preparation.js','preparation-data.js','preparation.css',...Array.from({length:22},(_,i)=>'vendor/sql-asm-'+String(i+1).padStart(2,'0')+'.js')].some(file=>url.pathname===new URL(file,scope).pathname)){event.respondWith((async()=>{
   for(const name of await caches.keys())if(name.startsWith(PREFIX)){const cached=await (await caches.open(name)).match(request);if(cached)return cached;}
   return fetch(request);
  })());}

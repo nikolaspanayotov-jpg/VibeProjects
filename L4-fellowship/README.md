@@ -110,7 +110,7 @@ python3 tests/browser_visual_cues.py --url http://127.0.0.1:8000/ --output /tmp/
 node tests/gamification_core.cjs
 ```
 
-The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. Direct file opening works with `index.html`, `curriculum.js` and `gamification.js` present.
+The output folder contains screenshots and a JSON result report; it is not committed. Browser testing is not a complete WCAG conformance audit. For direct file opening, keep all the public files together in this project folder.
 
 For the offline lifecycle check, start another localhost server rooted at a disposable `/tmp/l4-pwa-fixture` directory on port 8001, then run `python3 tests/browser_offline.py`. The test creates its `L4-fellowship/` fixture there, modifies only that copy to simulate releases and tests actual offline reloads. Native OS install dialogs are not covered by headless tests.
 
@@ -121,3 +121,25 @@ On a phone, Practice, Quests and Rewards are available at the top of Today. Prac
 Readiness starts with ten expandable KSB records. Search by code, title or visual cue, filter gaps, page through results or show all 37. Plan and sources includes a weekly EPA roadmap based on your saved assessment date, study days, priorities and preparation gaps. Set these preferences below the roadmap. Planning itself does not mark anything complete.
 
 The application collection now includes 14 decisions, calculation and chart challenges; quests include six themed packs. After a tracked activity, Review and finish this block appears beside the feedback and opens the existing reflection review. Today then offers your next quest step.
+
+### Preparation studio
+
+Open **Practice → Open preparation tools**. The new studio contains:
+
+- **Mock EPA:** three or six mixed K/S/B questions, an advisory elapsed clock, saved answers and a final self-review. Guidance stays hidden until the set ends. A mock has its own draft and does not overwrite discussion practice. Completed reviews can be downloaded as Markdown.
+- **Mistake notebook:** record what you thought, why it was wrong or incomplete, and what you will remember. Quiz feedback can seed an entry with your own reasoning. Revisit through a KSB scenario or decision probe; explicitly choose tomorrow or seven days after writing a new explanation.
+- **SQL challenges:** six real SQLite exercises covering filtering, missing values, grouping, left/inner joins and HAVING. The fictional database resets on each run. Queries execute in a disposable Web Worker with a read-only database, a 32 MiB SQLite heap cap, a 100-row result limit and an eight-second timeout. Results are compared with authored expected output; matching a fixture does not prove a query is universally correct. Drafts and hints save locally; imported queries run only after pressing Run query.
+- **Visual comparisons:** six paired concepts, each with two application questions, an explanation field and contextual feedback.
+- **Spoken answers:** optional microphone recording for one or two minutes. Press Start to request permission, Stop to save, then play back and self-review. Leaving the tool or hiding the tab stops capture. Audio is stored in this browser's IndexedDB. If persistent storage fails, export the temporary clip before closing. JSON and Markdown backups include review text and metadata **but not the audio files**; use each clip's Export audio file button. Imported reviews on another device show that the original audio is absent. Explicit deletion removes the reference and attempts to delete the local blob. Clearing site data removes locally stored audio.
+- **Course materials:** approved http/https links or pasted plain-text notes, tagged with one or more KSBs. Tagged resources appear in those lessons. Nothing fetches, imports or uploads external content automatically.
+- **Terminology:** sixteen concise definitions with visual examples and common mistakes. Dotted terms in lesson prose open a keyboard-accessible dialog and return focus when closed.
+
+These practice records use the additive `preparation` section of `l4-fellowship.v1`. Older backups default it safely, merges retain current conflicts unless explicitly replaced, and removal IDs prevent old merged backups from resurrecting deleted entries. Unfinished notebook and resource drafts are included. Recall, evidence, personal examples and quest rewards stay independent of these exercises.
+
+Keep the complete project folder when downloading for direct file opening. New required assets are `preparation.js`, `preparation-data.js`, `preparation.css` and the complete `vendor/` folder; the offline worker verifies and caches them alongside the existing curriculum. Microphone support depends on the browser and secure context; HTTPS and localhost are supported environments. SQL, notes and other essential study tools also work from local files in Chromium.
+
+The SQL engine is the pinned **sql.js 1.13.0 asm.js distribution**, downloaded from `https://cdn.jsdelivr.net/npm/sql.js@1.13.0/dist/sql-asm.js`. It is packaged in 22 small scripts under `vendor/`; these reconstruct the unmodified engine byte-for-byte inside the SQL worker. `vendor/sql-manifest.json` records the version and original checksum. Its MIT license and dependency notices are in [sql-LICENSE.txt](./sql-LICENSE.txt). There is no runtime CDN dependency. Authored fixtures and explanations live in `preparation-data.js`; this file is public learning content, never a place for personal notes.
+
+Run `python3 tests/browser_preparation.py` and `node tests/preparation_core.cjs` with the existing checks. The browser test uses a synthetic microphone and disposable browser profiles, not real personal recordings.
+
+The smaller vendor files avoid large publishing requests. To reproduce them during authoring, run `python3 tests/pack_sql.py /path/to/original/sql-asm.js`; it rejects a source with a different checksum. The shipped site needs no build, decompressor or runtime network dependency. `.release-local/` is a local recovery/checkpoint directory and must never be published.
