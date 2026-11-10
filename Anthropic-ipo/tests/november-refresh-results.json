@@ -1,0 +1,26 @@
+[
+  {
+    "check": "Primary/secondary shares and gross range reconcile; conditional placement, fees, tax use and funding overlap remain explicit",
+    "result": "passed"
+  },
+  {
+    "check": "Both $74 presets reconcile to independently summed economic columns and nine-month revenue; non-economic shares are excluded",
+    "result": "passed"
+  },
+  {
+    "check": "IPO accounting charge, cash withholding and differently scoped contingent infrastructure exposures remain distinct",
+    "result": "passed"
+  },
+  {
+    "check": "Run-rate, retail cap, sale eligibility, placement restrictions, RSU event and scheduled livestream keep their material qualifications",
+    "result": "passed"
+  },
+  {
+    "check": "New proposal tables, expanded valuation bases and release schedule reflow at 320, 390, 768 and 1440px",
+    "result": "passed"
+  },
+  {
+    "check": "New substantive disclosures remain accessible without JavaScript; enhanced page has no script errors",
+    "result": "passed"
+  }
+]

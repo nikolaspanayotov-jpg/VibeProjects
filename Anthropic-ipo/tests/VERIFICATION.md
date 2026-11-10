@@ -1,3 +1,30 @@
+# 10 November IPO-source refresh verification
+
+The guide and printable brief incorporate the latest amendment and material official/reported developments since 2 November. Scope, source locations, limitations and old/new values are recorded in [ipo-update-2026-11-10.md](../ipo-update-2026-11-10.md).
+
+## Checks run
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8810/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8810/ python tests/reading_tools.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8810/ python tests/november_refresh.py
+node --check /tmp/nov10-inline.js
+```
+
+**86 checks passed**: 66 regression checks, 14 reading-tool checks and 6 targeted offering/source-refresh checks. One direct-file regression remains unverified because administrator policy blocks file URLs. Tests verify 36 source previews, the updated commitment dataset/bar scale, both midpoint share-count calculations, original financial reconciliations, both revenue bases, search, keyboard/source focus, expected retail allocation versus individual access, eligible versus freely tradable shares, no-JavaScript content and 320/390/768/1440px reflow. No page/console errors or runtime third-party requests were observed. Ledger and historical SpaceX JSON were compared with the prior page and are unchanged.
+
+The final brief source-citation edit was followed by targeted PDF generation and text/page-count verification; no full regression rerun was claimed for that copy-only edit. Both brief print paths are exactly **two A4 pages**. Full-guide print outputs are **41 pages with JavaScript and 40 without**. Extracted text retains current terms, scope/conditions and original source links.
+
+Actual screenshots inspected: `nov10-mobile-offering-terms.png`, `nov10-desktop-offering-terms.png` and `nov10-mobile-share-supply.png`. Both brief PDF pages were rasterised and inspected, as were the full-guide roadshow and compensation/contingency print pages. Files are local ignored QA artifacts. Chromium only; no screen-reader/other-engine session. A4 counts assume embedded fonts, 100% scale and browser headers/footers off.
+
+The updated SEC HTML was downloaded successfully and compared with 2 November. Some web-reader requests to the new filing/roadshow returned internal errors; the actual SEC HTML supplied primary evidence, while the official newsroom supplied the roadshow announcement listing. The model/science/inference pages, event schedule and syndicated Reuters report were read through the web connector. No inaccessible full article is claimed as read. The event was still scheduled at the pre-livestream review.
+
+## Publication
+
+Validated, awaiting commit and GitHub Pages verification. Changes are confined to `Anthropic-ipo/`. Public notes contain no private hosting metadata or credentials.
+
+---
+
 # Reading-tools implementation verification — 5 November 2026
 
 All five approved additions are complete: local article search, a hypothetical valuation calculator and nine-cell sensitivity table, three scenario evidence trackers, five expandable partner relationships, and a separate two-page printable brief. Scope and source notes: [reading-tools-update-2026-11-05.md](../reading-tools-update-2026-11-05.md).

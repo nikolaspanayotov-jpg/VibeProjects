@@ -52,9 +52,9 @@ with sync_playwright() as p:
     expect(page.locator("#result-amount")).to_have_text("−$567m")
     expect(page.get_by_role("radio", name="Third quarter 2026")).to_be_checked()
     expect(page.locator("#ledger-title")).to_have_text("Third quarter 2026")
-    expect(page.get_by_text("Not specified in this filing", exact=True)).to_have_count(2)
+    expect(page.locator(".status-list")).to_contain_text("Not yet specified in the filing")
     expect(page.locator("#briefing h3")).to_have_count(3)
-    expect(page.locator("#briefing")).to_contain_text("Terms incomplete")
+    expect(page.locator("#briefing")).to_contain_text("$70–$78 proposed")
     expect(page.locator("#per100-amount")).to_have_text("$103")
     expect(page.locator("#margin-amount")).to_have_text("−3.3%")
     expect(page.locator("#briefing")).to_contain_text("Q3 2026 GAAP operating loss")
@@ -80,19 +80,19 @@ with sync_playwright() as p:
     expect(views).to_contain_text("excludes investing activities and financing proceeds")
     record("Nine-month financial measures, September liquidity and non-cash/investing qualifications")
 
-    expect(page.locator(".status-list")).to_contain_text("2 November 2026")
-    expect(page.locator(".status-list")).to_contain_text("5 November 2026")
+    expect(page.locator(".status-list")).to_contain_text("$70–$78")
+    expect(page.locator(".status-list")).to_contain_text("10 November 2026")
     page.locator("#filing-history > summary").click()
-    expect(page.locator("#filing-history li")).to_have_count(2)
+    expect(page.locator("#filing-history li")).to_have_count(3)
     expect(page.locator("#filing-history")).to_contain_text("26 October 2026")
     page.locator("#filing-history > summary").click()
     expect(page.locator('.comparison .historical-label')).to_contain_text("January–June 2026 for both")
     record("Latest amendment/check dates, original filing history and historical matched comparison")
 
-    expect(page.locator("#what-changed")).to_contain_text("5 November 2026")
+    expect(page.locator("#what-changed")).to_contain_text("10 November 2026")
     expect(page.locator("#what-changed .update-grid > div")).to_have_count(3)
-    expect(page.locator("#what-changed")).to_contain_text("4 November coverage highlights the 2 November filing")
-    expect(page.locator("#what-changed")).to_contain_text("Still unresolved")
+    expect(page.locator("#what-changed")).to_contain_text("new amendment proposes $70–$78")
+    expect(page.locator("#what-changed")).to_contain_text("Supply and sentiment matter")
     for link in page.locator('#what-changed a:not(.source-link)').all():
         link.click()
         assert page.evaluate("location.hash") == link.get_attribute("href")
@@ -104,9 +104,9 @@ with sync_playwright() as p:
     expect(retail).to_contain_text("An allocation in the offering would use the final IPO price")
     expect(retail).to_contain_text("does not guarantee")
     expect(retail).to_contain_text("request deadlines and allocation rules require current platform confirmation")
-    expect(retail).to_contain_text("retail share count or percentage remain unspecified")
+    expect(retail).to_contain_text("up to 20% of the offering")
     assert retail.locator(".retail-dates time").evaluate_all("es=>es.map(e=>e.dateTime)") == [
-        "2026-11-02", "2026-11-04", "2026-11-05"
+        "2026-11-10", "2026-11-04", "2026-11-10"
     ]
     assert retail.locator(".retail-table tbody th").all_text_contents() == [
         "Schwab", "Fidelity", "Robinhood", "Trade-PMR", "SoFi", "E*TRADE"
@@ -194,13 +194,13 @@ with sync_playwright() as p:
     record("Complete Q3 GAAP-to-adjusted bridge with economic qualification")
 
     commitments = json.loads(page.locator("#commitment-data").text_content())
-    assert commitments["aggregate"] == 895400
-    assert commitments["beforeEnd2030"] == 447500
-    assert commitments["nextTwelveMonths"] == 69800
-    assert commitments["preCommencementConditional"] == 213800
+    assert commitments["aggregate"] == 900900
+    assert commitments["beforeEnd2030"] == 451600
+    assert commitments["nextTwelveMonths"] == 70700
+    assert commitments["preCommencementConditional"] == 186200
     assert commitments["narrowMaturityTable"] == 319993
     expect(page.locator("#commitment-overview")).to_contain_text("timing views overlap")
-    expect(page.locator("#commitment-overview")).to_contain_text("$213.8bn")
+    expect(page.locator("#commitment-overview")).to_contain_text("$186.2bn")
     for key in ["aggregate", "beforeEnd2030", "nextTwelveMonths"]:
         width = page.locator(f'[data-commitment="{key}"]').evaluate("e=>parseFloat(e.style.width)")
         assert abs(width - commitments[key] / commitments["axisMaximum"] * 100) < .001
@@ -241,7 +241,7 @@ with sync_playwright() as p:
     expect(page.locator("#roadmap .contract")).to_contain_text("do not automatically end")
     expect(page.locator("#roadmap .unknown")).to_have_count(3)
     assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-11-10", "2026-12", "2027-01", "2027-03"]
-    expect(page.locator("#roadmap .product-milestone")).to_contain_text("IPO pricing remains unconfirmed")
+    expect(page.locator("#roadmap .product-milestone")).to_contain_text("Final IPO pricing remains unconfirmed")
     record("Roadmap separates expected dates, contract windows and unresolved milestones")
 
     expect(page.locator("a[data-term]")).to_have_count(9)
@@ -326,7 +326,7 @@ with sync_playwright() as p:
     page.keyboard.press("Enter")
     expect(dialog).to_be_visible()
     expect(page.locator("#source-preview-kind")).to_have_text("Filing")
-    expect(page.locator("#source-preview-date")).to_have_text("2 November 2026")
+    expect(page.locator("#source-preview-date")).to_have_text("10 November 2026")
     expect(page.locator("#source-preview-excerpt")).not_to_be_visible()
     expect(page.locator("#source-preview-context")).to_contain_text("Q3")
     expect(page.locator("#source-preview-original")).to_have_attribute("href", re.compile(r"https://www.sec.gov/Archives/"))
@@ -346,7 +346,7 @@ with sync_playwright() as p:
     expect(page.locator("#source-preview-context")).to_contain_text("trailing-year")
     page.locator("#source-preview-close").click()
     page.locator('#commitment-overview a[href="#source-a-mda"]').click()
-    expect(page.locator("#source-preview-context")).to_contain_text("$895.4bn")
+    expect(page.locator("#source-preview-context")).to_contain_text("$900.9bn")
     page.locator("#source-preview-close").click()
     record("Contextual research notes follow the amended customer, financial and commitment citations")
 
@@ -366,14 +366,14 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 28
+    assert len(metadata) == 36
     assert metadata["source-a-gsa"]["kind"] == "Company announcement"
     assert metadata["source-a-science"]["kind"] == "Company research"
     assert metadata["source-a-event"]["date"] == "2026-11-10"
-    assert metadata["source-a-register"]["date"] == "2026-11-05"
-    assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-02"
+    assert metadata["source-a-register"]["date"] == "2026-11-10"
+    assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-10"
     assert metadata["source-retail-barrons"]["kind"] == "Third-party report" and metadata["source-retail-barrons"]["date"] == "2026-11-04"
-    record("All 28 source previews preserve provenance and distinguish retail filing, report and register-check dates")
+    record("All 36 source previews preserve provenance and distinguish retail filing, report and register-check dates")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 
@@ -547,7 +547,7 @@ with sync_playwright() as p:
     expect(nojs.locator("#per100-amount")).to_have_text("$103")
     expect(nojs.locator("#exact-figures")).to_contain_text("16.956")
     expect(nojs.locator("#operating-reconciliation")).to_contain_text("$2,463m")
-    expect(nojs.locator("#commitment-overview")).to_contain_text("$895.4bn")
+    expect(nojs.locator("#commitment-overview")).to_contain_text("$900.9bn")
     expect(nojs.locator("#compute-ratio-q2")).to_have_text("48.1%")
     expect(nojs.locator("#compute-ratio-q3")).to_have_text("58.2%")
     expect(nojs.locator('[data-entry-return="offer"]')).to_have_text("+6.6%")

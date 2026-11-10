@@ -112,7 +112,7 @@
     "result": "passed"
   },
   {
-    "check": "All 28 source previews preserve provenance and distinguish retail filing, report and register-check dates",
+    "check": "All 36 source previews preserve provenance and distinguish retail filing, report and register-check dates",
     "result": "passed"
   },
   {

@@ -16,7 +16,7 @@
     "result": "passed"
   },
   {
-    "check": "Mobile keyboard traversal keeps price, shares, revenue choice and reset below the sticky valuation result",
+    "check": "Mobile keyboard traversal keeps price, shares, revenue choice, presets and reset below the sticky valuation result",
     "result": "passed"
   },
   {

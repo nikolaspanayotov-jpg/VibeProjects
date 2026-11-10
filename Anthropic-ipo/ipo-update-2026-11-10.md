@@ -1,0 +1,43 @@
+# Anthropic IPO update — source review 2–10 November 2026
+
+This updates the guide and its two-page brief from the 5 November snapshot. Original October research and the 2 November amendment summary are retained as dated history. The latest public filing is Amendment No. 2, filed 10 November, accession **0001628280-26-072484**. The SEC submissions register and the actual amendment were reviewed. The downloaded amendment was compared with the 2 November text to identify material changes; Q3 ledger and historical SpaceX input data are unchanged.
+
+## Material changes incorporated
+
+| Topic | Previous snapshot | Current disclosure / treatment |
+| --- | --- | --- |
+| Offering | Price and quantities blank | Proposed **$70–$78**, **825m** public shares: 801,351,354 company shares and 23,648,646 selling-holder shares. Final price and trading date still unspecified. |
+| Company option | Not quantified in guide | Up to 123,750,000 additional company shares. Do not describe these as existing-holder sale proceeds. |
+| Strategic placement | Conditional partner funding discussed | **$26bn** Class N placement at IPO price, conditional on the IPO and other conditions; the IPO is not conditional on the placement. Google/NVIDIA $10bn each; AMD $2.5bn; Broadcom/Micron/Microsoft $1bn each; TSMC Partners $0.5bn. |
+| Proceeds | Awaiting final proposal | Estimated **$84.6bn company net proceeds**, IPO plus placement at $74, no option; $93.7bn with full option. Company receives no secondary proceeds. Expected $3.8bn RSU cash tax use. |
+| Funding overlap | Google $20bn facility / AMD up to $5bn discussed | Google’s $10bn placement uses its existing option and reduces the remaining NPA capacity to $10bn. AMD’s $2.5bn placement reduces its remaining equity commitment to $2.5bn upon closing. Never count these purchases again as additional undrawn support. |
+| Share-count bases | Purely hypothetical dilution/calculator | Offering-summary A+N total 13,086,672,591; expanded page-25 worksheet economic columns total 18,012,993,379. At $74 these imply about $968.4bn and $1.333tn on different bases. Exclude T/F economic rights; identify fund-held shares and award/note assumptions. Neither is a final diluted count or public float. Calculator presets load each basis without changing the illustrative default. |
+| October demand | Run-rate amount blank | Approximately **$81bn** at 31 October, up $10bn from September (about 14.1%, calculated). Annualised recent activity, distinct from nine-month GAAP revenue of $33.242bn and not a forecast. |
+| Aggregate commitments | $895.4bn | **$900.9bn**; $451.6bn expected before end-2030 (previously $447.5bn). Expected twelve-month payments **$70.7bn** (previously $69.8bn). Specified pre-commencement conditional/termination-right amount $186.2bn (previously $213.8bn). Views overlap. |
+| Other compute estimates | Scope caveats | A further estimated $150bn–$175bn under arrangements without fixed dollar commitments is excluded from that aggregate; amounts/timing uncertain. Narrower September maturity table remains $319.993bn. |
+| Retail | Platforms named; no percentage | Expected **up to 20% overall retail allocations**, US and other countries, based on actual demand. Six platform groups unchanged. It is not a guaranteed allocation or a platform-only quota. |
+| Tradable supply | Holder-specific mechanisms | Up to **316m existing shares** may be eligible on day one, apart from the 825m IPO shares. Selected day-27/48/62/76 and results-linked cohorts shown; full conditions linked. Eligibility is not actual selling. |
+| Placement resale | Need final terms | No underwriter lock-up, but unregistered restricted securities; resale needs registration or an exemption. Do not equate absence of lock-up with automatic day-one liquidity. |
+| IPO-quarter accounting | Historical June examples | Approximately **$14.2bn expected cumulative RSU compensation**, distinct from cash withholding. A 9 November service-vesting modification affects approximately 67m RSUs and has material incremental expense still being determined. The 19 November vesting date is not an IPO-date confirmation. |
+| Contingent exposures | General infrastructure risk | Up to $4.2bn developer cost reimbursements under triggers, $500m maximum power-payment guarantee, and $2.8bn consolidated infrastructure-entity liabilities at September. Differing scopes, maxima and guarantees are not added mechanically to the commitment chart. |
+| Litigation/regulation | Earlier court context | District-court judgment remains favourable but under appeal; separate adverse D.C. Circuit decision/rehearing retained. Sector investigations cited in the filing concern another AI company, not newly claimed Anthropic proceedings. |
+
+## Sources and coverage
+
+- [10 November SEC amendment](https://www.sec.gov/Archives/edgar/data/2130357/000162828026072484/anthropicpbc-sx1ax2.htm): cover, The Offering pp. 20–26, Use of Proceeds p. 128, MD&A contractual obligations pp. 178–180 and compensation pp. 182–183, Business run-rate p. 203, share releases pp. 319–322, retail distribution pp. 338–339, placement pp. 348–349, and financial Notes 3, 13 and 17. Raw HTML was successfully read and compared with [2 November](https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm). Raw downloads remain local, not committed.
+- [SEC submissions register](https://data.sec.gov/submissions/CIK0002130357.json): confirms 10 November is the latest public amendment at review. No final prospectus, price announcement or effective trading date was inferred.
+- [Official Anthropic newsroom](https://www.anthropic.com/news): lists the 10 November roadshow launch. The standalone release could not be opened by the available readers; quantitative terms are verified against the actual SEC filing. The page’s roadshow citation honestly points to the official newsroom.
+- [Fable 5.2 / Mythos 5.2 announcement](https://www.anthropic.com/claude-fable-and-mythos-5-2), 9 November: performance/speed claims and pricing/access conditions. The guide links potential useful-task economics to adoption and margin questions; company claims are not treated as realised returns.
+- [Scientific use study](https://www.anthropic.com/research/how-researchers-use-claude), 5 November: approximately 207,000 consumer-plan research sessions. Observational usage and hypothetical research-acceleration scenarios are not enterprise revenue measures.
+- [Provable inference](https://www.anthropic.com/research/provable-inference), 2 November: intermediate FlashProve research, with limitations. A potential trust application is analysis, not a demonstrated commercial or safety outcome.
+- [4 November biology research](https://www.anthropic.com/research/investigating-vault-particles-with-claude) and the earlier broker-access coverage remain available with original dates, contextualised by the new filing.
+- [Reuters investor-sentiment report, republished by MarketScreener](https://ca.marketscreener.com/news/ai-backlash-could-threaten-anthropic-ipo-timing-potential-investors-say-ce785fdddd8bf226), 5 November: attributed valuation pushback amid the AI sell-off. Today’s official range/roadshow supersede earlier marketing-delay uncertainty. Other November 3–10 reporting was searched to cross-check valuation, draft-offering and timing narratives; unconfirmed targets and withdrawn draft numbers were not substituted for filed terms.
+- [Enterprise livestream schedule](https://www.anthropic.com/events/the-briefing-work-at-the-frontier-ls), reviewed 10 November before its scheduled **17:30–19:00 UTC** slot. No presentation outcomes or new enterprise sales were inferred from the schedule.
+
+This is a review of accessible official sources and material reporting, not a guarantee that every article or paywalled document was read. Source publication, event and review dates remain distinct. SpaceX remains the historical case study through 29 October; no new quotes or causal market study were added.
+
+## Implementation and validation
+
+The original visual system, search, glossary, source previews, reading aids and historical comparisons remain available. The source index now has 36 entries. Both HTML pages are self-contained; no runtime news feed or data fetch was added. The source status, dated updates, valuation explanation/presets, retail access, selected supply schedule, commitment chart, scenarios, partner discussion and two-page brief were synchronised.
+
+Actual commands/results, inspected captures, PDF counts, deployment state and verification limits are recorded in `tests/VERIFICATION.md`.
