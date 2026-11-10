@@ -21,7 +21,14 @@ The updated SEC HTML was downloaded successfully and compared with 2 November. S
 
 ## Publication
 
-Validated, awaiting commit and GitHub Pages verification. Changes are confined to `Anthropic-ipo/`. Public notes contain no private hosting metadata or credentials.
+Published on `main` in implementation commit [`fc9d95ef91db6c5d4fa5178dcef065fb3e6ebfbb`](https://github.com/nikolaspanayotov-jpg/VibeProjects/commit/fc9d95ef91db6c5d4fa5178dcef065fb3e6ebfbb), with changes confined to `Anthropic-ipo/`. [GitHub Pages run 42838806038](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/42838806038) completed successfully for that commit at 14:58 UTC on 10 November.
+
+At **14:58:35 UTC on 10 November**, both ordinary public URLs returned HTTP 200 and exact SHA-256 matches to the validated HTML:
+
+- [Full guide](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/): 418,379 bytes; `6b4d19b6e207bc6b391dd4a7dc87aa8d28e92f56f57e3c2035f0401e6630de36`.
+- [Two-page brief](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/investment-brief.html): 93,865 bytes; `b6ce9ea5f2ad1b4361769b0a686487a92470eef7ff0d61c8b3f8a269d8436f82`.
+
+The owned local preview server was stopped. This documentation receipt leaves the served HTML unchanged. Public notes contain no private hosting metadata or credentials.
 
 ---
 
