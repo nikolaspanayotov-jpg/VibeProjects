@@ -211,7 +211,7 @@ for ksb,visual in VISUALS.items():
     for node in root.iter():
         assert node.tag in allowed_tags and set(node.attrib)<=allowed_attrs, (ksb,node.tag)
         assert not (node.text or '').strip() and not (node.tail or '').strip()
-        if 'class' in node.attrib: assert node.attrib['class'] in ('cue-soft','cue-solid')
+        if 'class' in node.attrib: assert node.attrib['class'] in ('cue-soft','cue-solid','cue-accent')
         if 'fill' in node.attrib: assert node.attrib['fill'] in ('none','currentColor')
 project=dict(title='A fictional service-capacity briefing',
     overview=html(PROJECT_SOURCE.split('\n',1)[1].split('## Planning',1)[0]),

@@ -14,6 +14,7 @@ def validate_assessment(data):
   assert g['assessmentMethod'] in ['AM1','AM2'] and g['gradingPass'].strip()
   assert cell(g['overviewCell']) and cell(g['detailCell'])
   assert '+'.join(g['members'])==g['groupId']
+  b=g['studyBrief'];assert b['kind']=='derived-coaching' and all(isinstance(b[k],str) and 8<=len(b[k])<=400 for k in ['title','explain','show','discuss']) and b['sourceCells']==[g['overviewCell'],g['detailCell']]
   for kind in ['providerMeets','providerExceeds','providerUnresolved','evidenceGuidance','derivedLearning']:
    for r in g[kind]:assert r['text'].strip() and r['sourceCells'] and all(map(cell,r['sourceCells'])) and r['kind']
   for r in g['resources']:assert r['url']=='' and all(map(cell,r['sourceCells']))

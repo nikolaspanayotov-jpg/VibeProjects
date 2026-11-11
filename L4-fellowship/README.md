@@ -160,3 +160,9 @@ Each lesson's **Assessment and evidence** disclosure shows its group, source cel
 The additive `assessmentReview` section uses the existing v1 storage key, guarded writes, strict backup validation, per-record conflict choices and Markdown export. Older backups default it without erasing new records on merge. Deleted source mocks have tombstones. Recording blobs continue to require separate audio export.
 
 Authoring checks: `python3 tests/validate_assessment.py`, `node tests/assessment_core.cjs` and `python3 tests/browser_assessment.py` alongside the previous eleven browser suites. After updating cached content, regenerate `sw.js` last.
+
+### Reading and finding the expanded assessment content
+
+Open any KSB lesson and choose **Definitions & detail** in its study controls, or open the prominent **Definitions and detailed answer** card directly below the 60-second explanation. The original detailed guide is also included when printing the topic. All 37 memory icons now use a clearer two-tone style while keeping their established names, associations and category colours.
+
+Assessment groups include **Explain / Show / Discuss** coaching prompts and readable topic titles. These are study aids, distinct from the exact source criteria. In **Source questions and evaluation**, search by topic, KSB or phrase and use Previous/Next to work through the matching collection; each draft remains attached to its original question. Shared method/group filters also apply. The source-question mock uses those shared filters, independently of collection search. Expand **Source notes and interpretation** for the complete provenance and limitations.

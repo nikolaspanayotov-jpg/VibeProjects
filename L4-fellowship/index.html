@@ -109,9 +109,29 @@
 @media print{.mobile-quick-links,.practice-primary,.practice-browse,.finish-here,.readiness-paging{display:none!important}.readiness-row{break-inside:avoid}.roadmap-day{break-inside:avoid}}
 
 .reasoning-mobile-select{display:none}.reasoning-case-links{display:contents}@media(max-width:699px){.reasoning-picker{display:block}.reasoning-mobile-select{display:block}.reasoning-case-links{display:none}}
+
+/* Reading hierarchy and the revised, stable visual-memory family. */
+.ksb-visual{--cue-fill:#94b9f0;--cue-tone:#174ea6;color:var(--cue-tone)}
+.ksb-visual[data-category="S"]{--cue-fill:#82c6b0;--cue-tone:#176b52}
+.ksb-visual[data-category="B"]{--cue-fill:#e6b46c;--cue-tone:#875018}
+.ksb-visual .cue-background{stroke:currentColor;stroke-width:1;stroke-opacity:.12}
+.ksb-visual .cue-soft{fill:currentColor;fill-opacity:.16}
+.ksb-visual .cue-accent{fill:var(--cue-fill);fill-opacity:1}
+.visual-memory-card{border-radius:14px;box-shadow:0 2px 0 #172a3a05}
+.visual-memory-card .ksb-visual-card{width:82px;height:82px}
+.lesson-jumps .lesson-detail-jump{background:var(--accent);border-color:var(--accent);color:#fff}.lesson-jumps .lesson-detail-jump:hover{background:#103b83;color:#fff}
+.reading-panel .lesson-deep-dive{margin:26px 0;border:2px solid var(--accent);border-radius:12px;background:#f5f8fe;overflow:hidden}
+.lesson-deep-dive>summary{display:flex;align-items:flex-start;gap:18px;padding:23px;list-style:none;cursor:pointer}
+.lesson-deep-dive>summary::-webkit-details-marker{display:none}
+.lesson-deep-dive>summary:hover{background:#eaf1fc}
+.deep-book{display:grid;place-items:center;width:54px;height:54px;flex-shrink:0;border-radius:12px;background:var(--accent);color:white}
+.deep-book svg{width:34px;height:34px}.deep-heading{display:grid;gap:8px;min-width:0}.deep-eyebrow{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700}.deep-heading strong{font:700 23px/1.25 "Trebuchet MS",sans-serif;letter-spacing:-.5px}.deep-description{font-size:15px;line-height:1.55;font-weight:400;color:var(--muted)}.deep-open,.deep-close{font-size:15px;font-weight:700;color:var(--accent);text-decoration:underline;text-underline-offset:4px;margin-top:3px}.deep-close{display:none}.lesson-deep-dive[open] .deep-close{display:inline}.lesson-deep-dive[open] .deep-open{display:none}.deep-content{padding:0 23px 23px;background:#fff;border-top:1px solid var(--line)}.deep-content .answer-notice{margin-top:20px}
+@media(max-width:699px){.lesson-jumps .lesson-detail-jump{grid-column:1/-1;grid-row:1;font-size:15px;min-height:44px}.lesson-jumps{row-gap:6px}#lesson-learn,#lesson-example,#lesson-personal-answer,#lesson-full-guide{scroll-margin-top:140px}.lesson-deep-dive>summary{padding:19px 16px;gap:12px}.deep-book{width:40px;height:40px;border-radius:9px}.deep-book svg{width:27px;height:27px}.deep-heading strong{font-size:21px}.deep-content{padding:0 16px 20px}.visual-memory-card .ksb-visual-card{width:72px;height:72px}}
+@media print{.lesson-deep-dive{border:1px solid #aaa!important;overflow:visible!important;background:white!important}.lesson-deep-dive .deep-open,.lesson-deep-dive .deep-close,.deep-content>button{display:none!important}.deep-content{display:block!important}.lesson-deep-dive>summary{display:flex!important}.deep-book{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
 </style>
 <link rel="stylesheet" href="./preparation.css?v=20261105-prep">
-<link rel="stylesheet" href="./assessment.css?v=20261107-assessment">
+<link rel="stylesheet" href="./assessment.css?v=20261111-review">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -138,7 +158,7 @@
 <noscript><div class="noscript">This study desk uses JavaScript for navigation and local progress. You can still read <a href="./solutions.md">all 37 answer guides</a>.</div></noscript>
 <dialog id="game-finish-dialog" aria-labelledby="game-finish-title"><div id="game-finish-content"></div></dialog>
 <dialog id="game-detail-dialog" aria-labelledby="game-detail-title"><div id="game-detail-content"></div></dialog>
-<script src="./curriculum.js?v=20261107-assessment"></script>
+<script src="./curriculum.js?v=20261111-review"></script>
 <script src="./gamification.js?v=20261105-quests"></script>
 <script src="./preparation-data.js?v=20261105-prep"></script>
 <script src="./vendor/sql-asm-01.js?v=1.13.0"></script>
@@ -164,7 +184,7 @@
 <script src="./vendor/sql-asm-21.js?v=1.13.0"></script>
 <script src="./vendor/sql-asm-22.js?v=1.13.0"></script>
 <script src="./preparation.js?v=20261107-assessment"></script>
-<script src="./assessment.js?v=20261107-assessment"></script>
+<script src="./assessment.js?v=20261111-review"></script>
 <script>(() => {
 'use strict';
 const C = window.L4_CURRICULUM;
@@ -252,7 +272,7 @@ function nextTopic() {
   const priority=state.settings.priority.find(id=>state.ksbs[id].learning!=='explain'); if(priority)return {id:priority,reason:'A topic you prioritised'};
   const id=C.themes.flatMap(t=>t.ids).find(id=>state.ksbs[id].learning!=='explain')||IDS[0]; return {id,reason:IDS.every(id=>state.ksbs[id].learning==='explain')?'Revisit a topic and test your recall':'Continue the first incomplete study theme'};
 }
-function ksbVisual(id,size='small') { if(!Object.hasOwn(BY_ID,id))return '';const v=BY_ID[id].visual;return `<svg class="ksb-visual ksb-visual-${size}" data-ksb-visual="${id}" data-category="${id[0]}" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect class="cue-background" x="1" y="1" width="62" height="62" rx="11"/><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${v.svg}</g></svg>`; }
+function ksbVisual(id,size='small') { if(!Object.hasOwn(BY_ID,id))return '';const v=BY_ID[id].visual;return `<svg class="ksb-visual ksb-visual-${size}" data-ksb-visual="${id}" data-category="${id[0]}" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect class="cue-background" x="1" y="1" width="62" height="62" rx="15"/><g fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">${v.svg}</g></svg>`; }
 function ksbTag(id) {return `<span class="ksb-tag ksb-with-visual">${ksbVisual(id,'tag')}<span>${id}</span></span>`;}
 function ksbMemory(id) {const v=BY_ID[id].visual;return `<div class="ksb-memory"><strong>Visual cue: ${esc(v.name)}</strong><span>${esc(v.caption)}</span></div>`;}
 function renderVisualMap() {return `${heading('Remember the picture. Recall the idea.','One consistent visual cue for each of the 37 Knowledge, Skills and Behaviours.',`<a class="button secondary small" href="#library">KSB library</a><button class="button secondary small" data-action="print">Print memory sheet</button>`)}<p class="small muted">Use the image and sentence as a memory hook, then open the topic for its complete explanation and your own example.</p>${[['K','Knowledge'],['S','Skills'],['B','Behaviours']].map(([prefix,label])=>`<section class="content-section"><h2>${label}</h2><div class="visual-map-grid">${ITEMS.filter(k=>k.category===prefix).map(k=>`<a class="visual-memory-card" href="#ksb-${k.id.toLowerCase()}" data-visual-card="${k.id}">${ksbVisual(k.id,'card')}<div><span class="visual-code">${k.id}</span><h3>${esc(k.visual.name)}</h3><p class="visual-topic">${esc(k.title)}</p><p>${esc(k.visual.caption)}</p></div></a>`).join('')}</div></section>`).join('')}`;}
@@ -296,12 +316,13 @@ function targetsHtml(id,scope='lesson') { const k=BY_ID[id],s=state.ksbs[id];ret
 function renderLesson(id) {
  const k=BY_ID[id],s=state.ksbs[id],projectLink=C.project.mapping[id][0];
  return `<a class="back-link" href="#library">‹ Back to the KSB library</a><div class="lesson-header"><div class="lesson-title">${ksbTag(id)}<div><h1>${esc(k.title)}</h1><div class="lesson-meta">${{K:'Knowledge',S:'Skill',B:'Behaviour'}[k.category]} · ${esc(C.themes[k.theme].name)}${state.settings.ap03?' · AP03 '+(k.route===1?'project route':'discussion route'):''}</div>${ksbMemory(id)}</div></div></div>
- <nav class="lesson-jumps" aria-label="Study steps for ${id}"><button data-action="lesson-jump" data-step="learn">Learn</button><button data-action="lesson-jump" data-step="example">Worked example</button><button data-action="lesson-jump" data-step="answer">My answer</button><button data-action="lesson-jump" data-step="practice">Practise</button></nav>
+ <nav class="lesson-jumps" aria-label="Study steps for ${id}"><button data-action="lesson-jump" data-step="learn">Learn</button><button class="lesson-detail-jump" data-action="lesson-jump" data-step="full" aria-controls="lesson-full-guide">Definitions &amp; detail</button><button data-action="lesson-jump" data-step="example">Worked example</button><button data-action="lesson-jump" data-step="answer">My answer</button><button data-action="lesson-jump" data-step="practice">Practise</button></nav>
  <div class="lesson-toolbar"><span class="muted small">${LEARNING[s.learning]} · ${EVIDENCE[evidenceStatus(id)]}</span><div class="button-row" style="margin:0"><button class="button small" data-action="practise-topic" data-id="${id}">Practise ${id}</button><button class="button secondary small" data-action="print">Print this topic</button><a class="inline-link" href="./solutions.md#${k.sourceAnchor}">Read source answer</a></div></div>
  <div class="lesson-columns"><article class="reading-panel"><section id="lesson-learn" class="short-lesson"><div class="section-heading"><h2>Explain it in 60 seconds</h2><span class="inline-badge">${id}</span></div><p class="small muted">Rehearse this idea in your own words, then connect it to genuine work.</p><div class="prose quick-answer">${k.quick}</div></section>
+ <details id="lesson-full-guide" class="lesson-deep-dive"><summary><span class="deep-book" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M16 8C12 5 7 5 3 6v19c4-1 9-1 13 2 4-3 9-3 13-2V6c-4-1-9-1-13 2Zm0 0v19M7 11l5 1m-5 4 5 1m8-5 5-1m-5 6 5-1"/></svg></span><span class="deep-heading"><span class="deep-eyebrow">Go deeper · ${id}</span><strong>Definitions and detailed answer</strong><span class="deep-description">Build on the 60-second explanation: key terms, reasoning, examples and limitations.</span><span class="deep-open">Open the full answer <span aria-hidden="true">→</span></span><span class="deep-close">Close the full answer <span aria-hidden="true">↑</span></span></span></summary><div class="deep-content"><div class="answer-notice">Read the complete explanation, then use your own words and genuine experience. Examples are illustrative.</div><div class="prose full-answer">${k.guide}</div></div></details>
  ${AS.lessonPanel(id)}${conceptDiagram(id)}<div class="button-row"><button class="button secondary small" data-action="visual-practice" data-id="${id}">Practise with the picture</button></div><div class="common-mistake"><h3>Common mistake</h3><div class="prose">${k.mistake}</div></div>
  <details id="lesson-example"><summary>A worked example</summary><div class="prose">${k.example}</div><p class="small muted">This example is fictional; it is not your personal experience.</p><button class="button secondary small" data-action="project-annotation" data-id="${id}" data-stage="${projectLink.stage}">See ${projectLink.artifact} in the complete project</button></details>
- <details id="lesson-full-guide"><summary>Definitions and detailed answer</summary><div class="answer-notice">The complete guide includes definitions, calculations and limitations. Examples are illustrative.</div><div class="prose full-answer">${k.guide}</div></details>
+ 
  <details><summary>What to cover</summary><p class="small">${esc(k.coverage)}</p></details>
  <details><summary>Evidence to reference</summary><div class="prose">${k.evidence}</div><button class="button secondary small" data-action="add-evidence-topic" data-id="${id}">Link your evidence</button>${renderTopicEvidence(id)}</details>
  <details><summary>Probe your understanding</summary><p>${esc(k.question)}</p><p><strong>Follow-up:</strong> ${esc(k.followup)}</p><p><strong>Probe a decision:</strong> ${esc(k.probe)}</p><div class="button-row"><button class="button secondary small" data-action="practise-probe" data-id="${id}">Practise this probe</button><button class="button secondary small" data-action="quiz-topic" data-id="${id}">Check related misconceptions</button></div></details>

@@ -48,7 +48,18 @@
             "Sheet1!A972"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "The analysis lifecycle",
+        "explain": "Name the lifecycle stages and explain why analysis can iterate.",
+        "show": "Trace your actions, outputs and checks through every stage of one project.",
+        "discuss": "Explain a refinement and its effect; a model is not compulsory for the source AM1 project.",
+        "sourceCells": [
+          "Sheet1!A7",
+          "Sheet1!A914"
+        ]
+      }
     },
     {
       "groupId": "K4",
@@ -102,7 +113,18 @@
             "Sheet1!A1043"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Data types and their use",
+        "explain": "Define open, public, administrative and research data; categories can overlap.",
+        "show": "Identify your sources, access conditions and reasons for using or excluding each type.",
+        "discuss": "Separate the data type from its sensitivity and handling classification.",
+        "sourceCells": [
+          "Sheet1!A9",
+          "Sheet1!A979"
+        ]
+      }
     },
     {
       "groupId": "K8+S6",
@@ -172,7 +194,18 @@
             "Sheet1!A1522"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Data quality and resolution",
+        "explain": "Explain quality dimensions and the effect of unreliable data on the decision.",
+        "show": "Reference actual checks and any mitigation, escalation and revalidation you performed.",
+        "discuss": "Evaluate the outcome and an alternative for stakeholders; if checks found no issue, describe that honestly.",
+        "sourceCells": [
+          "Sheet1!A11",
+          "Sheet1!A1430"
+        ]
+      }
     },
     {
       "groupId": "K9+S7",
@@ -211,7 +244,18 @@
             "Sheet1!A1585"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Requirements into delivery",
+        "explain": "Explain stakeholder mapping and how you elicited the decision need.",
+        "show": "Trace an agreed requirement into scope, analysis and an acceptance check.",
+        "discuss": "Compare feasible plans and justify the best fit to the customer’s constraints.",
+        "sourceCells": [
+          "Sheet1!A13",
+          "Sheet1!A1529"
+        ]
+      }
     },
     {
       "groupId": "K11+S15",
@@ -250,7 +294,18 @@
             "Sheet1!A1769"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Choosing analysis tools",
+        "explain": "Describe the tools and methods available in your organisation.",
+        "show": "Connect your selected tool to the requirement, infrastructure and practical constraints.",
+        "discuss": "Evaluate an alternative and the effect on quality, time and maintainability.",
+        "sourceCells": [
+          "Sheet1!A15",
+          "Sheet1!A1715"
+        ]
+      }
     },
     {
       "groupId": "K12",
@@ -303,7 +358,18 @@
             "Sheet1!A1906"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Organisational data architecture",
+        "explain": "Explain the roles of databases, warehouses, lakes and data flows.",
+        "show": "Describe your actual architecture and how authorised users access the data.",
+        "discuss": "Connect storage and access policies to security, tool choices and scale.",
+        "sourceCells": [
+          "Sheet1!A17",
+          "Sheet1!A1774"
+        ]
+      }
     },
     {
       "groupId": "S1",
@@ -357,7 +423,18 @@
             "Sheet1!A2657"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Compliant data-system use",
+        "explain": "Explain privacy by design and the controls relevant to your work.",
+        "show": "Describe minimisation, permissions and safe handling you actually applied.",
+        "discuss": "Explain how you checked compliance and handled any issue through the approved route.",
+        "sourceCells": [
+          "Sheet1!A19",
+          "Sheet1!A2599"
+        ]
+      }
     },
     {
       "groupId": "S3",
@@ -418,7 +495,18 @@
             "Sheet1!A2742"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Classification in practice",
+        "explain": "Explain your organisation’s classification and confidentiality rules.",
+        "show": "Justify the classification and handling controls for a real dataset.",
+        "discuss": "Explain any approved redaction, pseudonymisation or aggregation and remaining identification risks.",
+        "sourceCells": [
+          "Sheet1!A21",
+          "Sheet1!A2662"
+        ]
+      }
     },
     {
       "groupId": "S4",
@@ -479,7 +567,18 @@
             "Sheet1!A2819"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Adapting to data structures",
+        "explain": "Explain the source structures, grain and relevant RDBMS trade-offs.",
+        "show": "Show how your preparation and analysis accommodated structural differences.",
+        "discuss": "Evaluate the effect of your adaptation on accuracy and efficiency, including a check of row counts.",
+        "sourceCells": [
+          "Sheet1!A23",
+          "Sheet1!A2747"
+        ]
+      }
     },
     {
       "groupId": "S8",
@@ -596,7 +695,18 @@
             "Sheet1!A3027"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Combining and preparing sources",
+        "explain": "Explain matching keys, cardinality and the difference between a join and an append.",
+        "show": "Describe a robust join and the cleaning and validation you performed.",
+        "discuss": "Discuss duplicate keys, unmatched rows, different definitions and access risks.",
+        "sourceCells": [
+          "Sheet1!A25",
+          "Sheet1!A2925"
+        ]
+      }
     },
     {
       "groupId": "S12",
@@ -650,7 +760,18 @@
             "Sheet1!A3175"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Communicating with stakeholders",
+        "explain": "Identify at least two stakeholders and their different information needs.",
+        "show": "Describe how you adapted language, channel and visual detail for each audience.",
+        "discuss": "Explain the feedback, collaboration and effect on the decision or output.",
+        "sourceCells": [
+          "Sheet1!A27",
+          "Sheet1!A3105"
+        ]
+      }
     },
     {
       "groupId": "B3",
@@ -696,7 +817,18 @@
             "Sheet1!A323"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Independent and collaborative work",
+        "explain": "Explain which responsibilities you owned and where collaboration was useful.",
+        "show": "Give a specific example of initiative and a coordinated handover or joint decision.",
+        "discuss": "Describe your contribution and its effect on colleagues or stakeholders.",
+        "sourceCells": [
+          "Sheet1!A29",
+          "Sheet1!A257"
+        ]
+      }
     },
     {
       "groupId": "B4",
@@ -734,7 +866,18 @@
             "Sheet1!A388"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Logical analytical reasoning",
+        "explain": "Explain the problem and the reasoning behind your analytical sequence.",
+        "show": "Trace an independently chosen method through exploration, checks and conclusion.",
+        "discuss": "Evaluate the outcome and a plausible alternative using stakeholder needs.",
+        "sourceCells": [
+          "Sheet1!A31",
+          "Sheet1!A336"
+        ]
+      }
     },
     {
       "groupId": "K1+B1",
@@ -921,7 +1064,18 @@
             "Sheet1!A821"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Legislation and secure work",
+        "explain": "Explain UK GDPR, the Data Protection Act 2018 and the seven principles.",
+        "show": "Describe how applicable rules shaped your access, use, storage and everyday security.",
+        "discuss": "Use your organisation’s current guidance; distinguish a legal basis from consent and explain incident escalation.",
+        "sourceCells": [
+          "Sheet1!A110",
+          "Sheet1!A679"
+        ]
+      }
     },
     {
       "groupId": "K2",
@@ -1027,7 +1181,18 @@
             "Sheet1!A908"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Organisational data rules",
+        "explain": "Identify the actual data, information-security and AI policies relevant to your role.",
+        "show": "Explain an everyday action or project decision shaped by those policies.",
+        "discuss": "Describe non-compliance implications and who can resolve uncertainty; do not invent an internal rule.",
+        "sourceCells": [
+          "Sheet1!A112",
+          "Sheet1!A826"
+        ]
+      }
     },
     {
       "groupId": "K5",
@@ -1153,7 +1318,18 @@
             "Sheet1!A1191"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Structured and unstructured data",
+        "explain": "Explain schema-based records and free-form content, with examples.",
+        "show": "Describe your dataset’s fields and structure and justify its classification.",
+        "discuss": "Discuss semi-structured formats and the preparation needed for your chosen analysis.",
+        "sourceCells": [
+          "Sheet1!A114",
+          "Sheet1!A1049"
+        ]
+      }
     },
     {
       "groupId": "K6",
@@ -1331,7 +1507,18 @@
             "Sheet1!A1309"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Database design and maintenance",
+        "explain": "Define database, warehouse, lake, RDBMS, NoSQL, normalisation and ETL.",
+        "show": "Describe the relevant schema, keys, relationships, pipelines and user access.",
+        "discuss": "Explain maintenance and tool/API interaction without claiming administration you did not perform.",
+        "sourceCells": [
+          "Sheet1!A116",
+          "Sheet1!A1195"
+        ]
+      }
     },
     {
       "groupId": "K7",
@@ -1497,7 +1684,18 @@
             "Sheet1!A1424"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "UX and domain principles",
+        "explain": "Explain simplicity, clarity, accessibility and domain context.",
+        "show": "Connect an audience need or domain rule to an analytics design decision.",
+        "discuss": "Discuss how feedback or accessibility checks would establish whether the design works.",
+        "sourceCells": [
+          "Sheet1!A118",
+          "Sheet1!A1316"
+        ]
+      }
     },
     {
       "groupId": "K10",
@@ -1627,7 +1825,18 @@
             "Sheet1!A1710"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Keys, joins and integration",
+        "explain": "Define primary, foreign and composite keys, join types and UNION.",
+        "show": "Describe a genuine combination of sources and a measurable or observable benefit.",
+        "discuss": "Evaluate integration benefits against quality, confidentiality and stakeholder risks.",
+        "sourceCells": [
+          "Sheet1!A120",
+          "Sheet1!A1592"
+        ]
+      }
     },
     {
       "groupId": "K13+S10",
@@ -1879,7 +2088,18 @@
             "Sheet1!A2045"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Statistics in context",
+        "explain": "Explain descriptive measures, hypotheses, significance levels and p-values.",
+        "show": "Reference actual EDA and a suitable inferential test, including assumptions and interpretation.",
+        "discuss": "Discuss practical importance, uncertainty and the consequences of Type I and Type II errors.",
+        "sourceCells": [
+          "Sheet1!A122",
+          "Sheet1!A1911"
+        ]
+      }
     },
     {
       "groupId": "K14+S11",
@@ -2097,7 +2317,18 @@
             "Sheet1!A2194"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Descriptive, predictive and prescriptive analysis",
+        "explain": "Distinguish a historical description, a prediction and an action recommendation.",
+        "show": "Describe genuine applications and evaluate a model against held-out data and a baseline.",
+        "discuss": "Critically discuss predictive limitations, business risks and why the recommendation follows; prediction alone is not causation.",
+        "sourceCells": [
+          "Sheet1!A124",
+          "Sheet1!A2050"
+        ]
+      }
     },
     {
       "groupId": "K15",
@@ -2231,7 +2462,18 @@
             "Sheet1!A2329"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Ethical data use",
+        "explain": "Explain fairness, bias, transparency, accountability and appropriate collection/use.",
+        "show": "Describe your data’s origin, purpose, collection method and ethical controls.",
+        "discuss": "Consider affected people, consent or another applicable basis, and consequences of unethical use.",
+        "sourceCells": [
+          "Sheet1!A126",
+          "Sheet1!A2199"
+        ]
+      }
     },
     {
       "groupId": "S5",
@@ -2356,7 +2598,18 @@
             "Sheet1!A2920"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "UX in the delivered output",
+        "explain": "Explain the audience and domain requirements behind your visual choices.",
+        "show": "Describe layout, hierarchy, colour, accessibility and feedback in your actual output.",
+        "discuss": "Explain how those decisions helped users interpret the findings or act on them.",
+        "sourceCells": [
+          "Sheet1!A128",
+          "Sheet1!A2824"
+        ]
+      }
     },
     {
       "groupId": "S9",
@@ -2434,7 +2687,18 @@
             "Sheet1!A3100"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Tools that access data architecture",
+        "explain": "Explain how your chosen tool connects to the available infrastructure.",
+        "show": "Describe the authorised query, connection or workflow you used.",
+        "discuss": "Justify compatibility, access controls and the practical benefit of the tool choice.",
+        "sourceCells": [
+          "Sheet1!A130",
+          "Sheet1!A3032"
+        ]
+      }
     },
     {
       "groupId": "S13",
@@ -2612,7 +2876,18 @@
             "Sheet1!A3308"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Forecasting and data mining",
+        "explain": "Explain the target, time window, trend, seasonality and model assumptions.",
+        "show": "Reference a forecast visual, time-based holdout, baseline and error metric; discuss the separate mining/modelling example where applicable.",
+        "discuss": "Discuss uncertainty, stationarity where relevant, future projections and limits; an ADF test is an optional method, not a universal requirement.",
+        "sourceCells": [
+          "Sheet1!A132",
+          "Sheet1!A3180"
+        ]
+      }
     },
     {
       "groupId": "S14",
@@ -2753,7 +3028,18 @@
             "Sheet1!A3409"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Representing different kinds of data",
+        "explain": "Explain the qualitative categories and quantitative measures in your output.",
+        "show": "Reference visuals and explain what insight each representation reveals.",
+        "discuss": "Compare appropriate representations of the same information and justify the choice for the stakeholder.",
+        "sourceCells": [
+          "Sheet1!A134",
+          "Sheet1!A3313"
+        ]
+      }
     },
     {
       "groupId": "B2",
@@ -2857,7 +3143,18 @@
             "Sheet1!A241"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Adapting to an unexpected obstacle",
+        "explain": "Describe a specific small unexpected operational change.",
+        "show": "Explain how you adjusted activities and checked quality while maintaining useful progress.",
+        "discuss": "Reflect on the result and distinguish this obstacle from a wider change in scope or responsibilities.",
+        "sourceCells": [
+          "Sheet1!A136",
+          "Sheet1!A159"
+        ]
+      }
     },
     {
       "groupId": "B5",
@@ -2993,7 +3290,18 @@
             "Sheet1!A494"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Finding and preventing a root cause",
+        "explain": "Describe the problem whose cause was initially unknown.",
+        "show": "Trace your investigation from competing explanations to evidence of the root cause.",
+        "discuss": "Explain the fix, recurrence controls and how you checked them; avoid guaranteeing a problem can never recur.",
+        "sourceCells": [
+          "Sheet1!A138",
+          "Sheet1!A404"
+        ]
+      }
     },
     {
       "groupId": "B6",
@@ -3104,7 +3412,18 @@
             "Sheet1!A569"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Resilience and lessons learned",
+        "explain": "Describe a specific challenge and the difficulty it created.",
+        "show": "Explain your response, support sought and what you achieved or could not achieve.",
+        "discuss": "Identify a concrete lesson and how you changed later practice, even if the first outcome was imperfect.",
+        "sourceCells": [
+          "Sheet1!A140",
+          "Sheet1!A501"
+        ]
+      }
     },
     {
       "groupId": "B7",
@@ -3212,7 +3531,18 @@
             "Sheet1!A656"
           ]
         }
-      ]
+      ],
+      "studyBrief": {
+        "kind": "derived-coaching",
+        "title": "Responding to a wider change",
+        "explain": "Describe how scope, organisational direction or your responsibilities changed.",
+        "show": "Explain the revised priorities, plan and stakeholder communication.",
+        "discuss": "Discuss feedback, trade-offs and the effect of your changed approach.",
+        "sourceCells": [
+          "Sheet1!A142",
+          "Sheet1!A574"
+        ]
+      }
     }
   ],
   "questions": [
