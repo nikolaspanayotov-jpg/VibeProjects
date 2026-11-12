@@ -67,5 +67,28 @@ with sync_playwright() as p:
  with page.expect_download() as dl:page.locator('#storage-warning [data-action=backup]').click()
  dl.value.save_as(str(out/'temporary-tests.json'));temp=json.loads((out/'temporary-tests.json').read_text());assert 'D' in temp['multipleChoice']['drafts']['T02']['answers']['T02-Q04'];assert not errors,errors
  checks.append('320/390/768/1440px layouts,44px options,print/PDF,direct-file tests and real export after failed storage passed without page errors')
+ # Test-level feedback must describe the actual total, not a single correct answer.
+ feedback=b.new_context(service_workers='block',viewport={'width':390,'height':844},reduced_motion='reduce');fp=feedback.new_page();fp.on('pageerror',lambda e:errors.append(str(e)));fp.goto(args.url+'#tests');test=data['tests'][0]
+ for total in [1,5,10,0]:
+  fp.locator('[data-mc=start][data-id=T01]').click()
+  for i,q in enumerate(test['questions']):
+   if i:fp.locator('[data-mc=next]').click()
+   chosen=[o['id'] for o in q['options'] if o['correct']] if i<total else ['A']
+   for option in chosen:fp.locator('[data-mc-option="'+option+'"]').check()
+  fp.locator('[data-mc=submit]').click();expect(fp.locator('.mc-result-score>div>strong')).to_have_text(f'{total} / 10')
+  if total:
+   expect(fp.locator('#celebration')).to_be_visible();expect(fp.locator('#celebration-detail')).to_have_text('All 10 answers are fully correct. Great work!' if total==10 else f'{total}/10 answers fully correct. Review the remaining {10-total}.')
+   assert fp.locator('#celebration').bounding_box()['width']<=390
+   if total==1:fp.screenshot(path=str(out/'accurate-celebration-phone.png'))
+   if total==5:expect(fp.locator('#celebration')).to_be_hidden(timeout=6000)
+  else:expect(fp.locator('#celebration')).to_be_hidden()
+  fp.reload();expect(fp.locator('#celebration')).to_be_hidden();fp.locator('[data-mc-card=T01] [data-mc=review]').click();expect(fp.locator('#celebration')).to_be_hidden();fp.locator('[data-mc=catalog]').click()
+ # The existing opt-out also applies to the score-specific message.
+ fp.goto(args.url+'#habit-settings');fp.locator('#game-celebrations').uncheck();fp.locator('#game-settings-form button[type=submit]').click();fp.goto(args.url+'#tests');fp.locator('[data-mc=start][data-id=T01]').click()
+ for i,q in enumerate(test['questions']):
+  if i:fp.locator('[data-mc=next]').click()
+  for option in [o['id'] for o in q['options'] if o['correct']]:fp.locator('[data-mc-option="'+option+'"]').check()
+ fp.locator('[data-mc=submit]').click();expect(fp.locator('.mc-result-score>div>strong')).to_have_text('10 / 10');expect(fp.locator('#celebration')).to_be_hidden();feedback.close();assert not errors,errors
+ checks.append('1/10,5/10and10/10submissions show accurate score-specific celebrations;0/10does not celebrate;390px reduced-motion display,fading,opt-out,reload and history-review suppression passed')
  b.close()
 (out/'results.json').write_text(json.dumps({'status':'passed','checks':checks,'page_errors':errors},indent=2));print(json.dumps({'status':'passed','checks':checks},indent=2))

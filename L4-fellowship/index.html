@@ -191,7 +191,7 @@
 <script src="./test-packs/additional-2.js?v=20261112-tests-50"></script>
 <script src="./test-packs/additional-3.js?v=20261112-tests-50"></script>
 <script src="./test-packs/additional-4.js?v=20261112-tests-50"></script>
-<script src="./multiple-choice.js?v=20261112-tests-50"></script>
+<script src="./multiple-choice.js?v=20261112-test-feedback"></script>
 <script>(() => {
 'use strict';
 const C = window.L4_CURRICULUM;
@@ -261,8 +261,8 @@ function celebrate(kind,detail) {
  celebrationFrame=requestAnimationFrame(()=>el.classList.add('is-visible'));
  celebrationTimer=setTimeout(()=>{el.classList.remove('is-visible');celebrationHideTimer=setTimeout(hideCelebration,matchMedia('(prefers-reduced-motion: reduce)').matches?0:650);},3200);
 }
-function celebrateAnswer(matched) {
- if(matched)celebrate('answer','Your answer is correct. Keep it going!');
+function celebrateAnswer(matched,detail='Your answer is correct. Keep it going!') {
+ if(matched)celebrate('answer',detail);
  else if(celebrationKind==='answer')hideCelebration();
 }
 
