@@ -191,12 +191,16 @@
 <script src="./test-packs/additional-2.js?v=20261112-tests-50"></script>
 <script src="./test-packs/additional-3.js?v=20261112-tests-50"></script>
 <script src="./test-packs/additional-4.js?v=20261112-tests-50"></script>
-<script src="./multiple-choice.js?v=20261112-test-feedback"></script>
+<script src="./test-packs/revised-1.js?v=20261112-scenarios"></script>
+<script src="./test-packs/revised-2.js?v=20261112-scenarios"></script>
+<script src="./test-packs/revised-3.js?v=20261112-scenarios"></script>
+<script src="./test-packs/revised-4.js?v=20261112-scenarios"></script>
+<script src="./multiple-choice.js?v=20261112-scenarios"></script>
 <script>(() => {
 'use strict';
 const C = window.L4_CURRICULUM;
 const mainEl = document.getElementById('main');
-if (!C || C.items.length !== 37 || !C.activities || !C.reasoning || !C.rehearsal || !window.L4_GAME || !window.L4_PREP || !window.L4_PREP_DATA || !window.L4_ASSESSMENT || !window.L4_TESTS || !window.L4_TEST_DATA || window.L4_TEST_DATA.tests.length!==50 || !C.assessment || C.items.some(k=>!k.visual)) { mainEl.innerHTML = '<h1>The answer bank could not load.</h1><p>Keep the curriculum, gamification and preparation files beside index.html, then reload. You can also read <a href="./solutions.md">the answer guide</a>.</p>'; return; }
+if (!C || C.items.length !== 37 || !C.activities || !C.reasoning || !C.rehearsal || !window.L4_GAME || !window.L4_PREP || !window.L4_PREP_DATA || !window.L4_ASSESSMENT || !window.L4_TESTS || !window.L4_TEST_DATA || window.L4_TEST_DATA.tests.length!==50 || window.L4_TEST_DATA.revision!=='2026-11-12-tests-2' || window.L4_TEST_DATA.editions?.['2026-11-12-tests-1']?.length!==50 || Object.keys(window.L4_TEST_DATA.revisedPackSha256||{}).length!==4 || !C.assessment || C.items.some(k=>!k.visual)) { mainEl.innerHTML = '<h1>The answer bank could not load.</h1><p>Keep all page files, including the test-packs and vendor folders, beside index.html, then reload. You can also read <a href="./solutions.md">the answer guide</a>.</p>'; return; }
 const ITEMS = C.items, IDS = ITEMS.map(k => k.id), BY_ID = Object.fromEntries(ITEMS.map(k => [k.id, k]));
 const ACTIVITIES=C.activities,QUESTION_BY_ID=Object.fromEntries(ACTIVITIES.quiz.map(q=>[q.id,q])),SCENARIO_BY_ID=Object.fromEntries(ACTIVITIES.scenarios.map(s=>[s.id,s]));
 const REASONING=C.reasoning,REHEARSAL=C.rehearsal;

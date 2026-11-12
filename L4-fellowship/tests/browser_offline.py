@@ -56,6 +56,11 @@ with sync_playwright() as p:
   page.locator('[data-mc=jump][data-index="'+str(i)+'"]').click()
   for option in q['options']:page.locator('[data-mc-option="'+option['id']+'"]').set_checked(option['correct'])
  page.locator('[data-mc=submit]').click();expect(page.locator('.mc-result-score>div>strong')).to_have_text('10 / 10');page.locator('[data-mc=catalog]').click();page.locator('#mc-search').fill('T47');page.locator('[data-mc=start][data-id=T47]').click();page.locator('[data-mc-option=D]').check();offline_multiple=copy.deepcopy(saved()['multipleChoice'])
+ # Preserve the original edition alongside revised offline results/drafts.
+ legacy=json.loads((root/'tests/multiple_choice_edition_one_state.json').read_text());backup=copy.deepcopy(saved());backup['multipleChoice']['drafts'].update(legacy['drafts']);backup['multipleChoice']['attempts'].update(legacy['attempts'])
+ page.locator('#backup-file').set_input_files({'name':'synthetic-offline-editions.json','mimeType':'application/json','buffer':json.dumps(backup).encode()});page.locator('[data-action=apply-restore]').click();expect(page.locator('#restore-dialog')).not_to_be_visible();offline_multiple=copy.deepcopy(saved()['multipleChoice'])
+ page.locator('[data-mc=catalog]').click();page.locator('#mc-search').fill('T11');page.locator('[data-mc=start][data-id=T11]').click();expect(page.locator('main')).to_contain_text('Earlier edition:');assert page.locator('[data-mc-option]').evaluate_all('(es)=>es.map(e=>e.dataset.mcOption)')==list('ABCDEFGH')
+ page.locator('[data-mc=catalog]').click();page.locator('#mc-search').fill('T47');page.locator('[data-mc=start][data-id=T47]').click();offline_order=page.locator('[data-mc-option]').evaluate_all('(es)=>es.map(e=>e.dataset.mcOption)')
  go('methods-chart-change');expect(page.locator('.challenge-chart')).to_be_visible()
  go('readiness');expect(page.locator('.readiness-row')).to_have_count(10)
  go('quests');expect(page.locator('.game-quest')).to_have_count(6)
@@ -86,6 +91,9 @@ with sync_playwright() as p:
  page.locator('[data-action="apply-offline"]').click();page.wait_for_function('document.querySelector(\'meta[name="test-release"]\')?.content==="second"',timeout=30000)
  go('workshop-k8');expect(page.locator('#workshop-draft')).to_have_value('Synthetic temporary draft must survive the update.')
  ctx.set_offline(True);page.reload();expect(page.locator('#workshop-draft')).to_have_value('Synthetic temporary draft must survive the update.');assert page.locator('meta[name="test-release"]').get_attribute('content')=='second';assert saved()['game']['events']==offline_game['events'];assert saved()['preparation']==offline_preparation;assert saved()['assessmentReview']==offline_assessment;assert saved()['multipleChoice']==offline_multiple
+ go('tests');page.locator('#mc-search').fill('T47');page.locator('[data-mc=start][data-id=T47]').click();assert page.locator('[data-mc-option]').evaluate_all('(es)=>es.map(e=>e.dataset.mcOption)')==offline_order
+ page.locator('[data-mc=catalog]').click();page.locator('[data-mc=review][data-id=r-edition-one-result]').click();expect(page.locator('.mc-result-score')).to_contain_text('Earlier edition');expect(page.locator('.mc-result-score>div>strong')).to_have_text('10 / 10')
+ checks.append('Current shuffled order and original-edition drafts/results remain exact through disconnected reload and verified worker update')
  checks.append('A verified update waits for application, blocks reload when saving fails, permits export/restore of temporary work and preserves it through activation and offline reload')
  go('offline');page.set_viewport_size({'width':390,'height':900});page.screenshot(path=str(out/'offline-mobile.png'),full_page=True);assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
  assert not errors,errors

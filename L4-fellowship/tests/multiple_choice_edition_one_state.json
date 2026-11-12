@@ -1,0 +1,85 @@
+{
+  "drafts": {
+    "T11": {
+      "id": "r-edition-one-draft",
+      "revision": "2026-11-12-tests-1",
+      "index": 2,
+      "started": 1794484800000,
+      "answers": {
+        "T11-Q03": [
+          "A",
+          "D"
+        ]
+      }
+    }
+  },
+  "attempts": {
+    "r-edition-one-result": {
+      "id": "r-edition-one-result",
+      "testId": "T50",
+      "revision": "2026-11-12-tests-1",
+      "started": 1794484800000,
+      "finished": 1794484860000,
+      "offset": 0,
+      "date": "2026-11-12",
+      "answers": {
+        "T50-Q01": [
+          "B",
+          "C",
+          "D"
+        ],
+        "T50-Q02": [
+          "A",
+          "C",
+          "D",
+          "G"
+        ],
+        "T50-Q03": [
+          "D",
+          "F",
+          "H"
+        ],
+        "T50-Q04": [
+          "A",
+          "D",
+          "G",
+          "H"
+        ],
+        "T50-Q05": [
+          "C",
+          "E",
+          "H"
+        ],
+        "T50-Q06": [
+          "B",
+          "C",
+          "E",
+          "H"
+        ],
+        "T50-Q07": [
+          "B",
+          "D",
+          "G"
+        ],
+        "T50-Q08": [
+          "B",
+          "D",
+          "E",
+          "H"
+        ],
+        "T50-Q09": [
+          "D",
+          "G",
+          "H"
+        ],
+        "T50-Q10": [
+          "B",
+          "D",
+          "E",
+          "G"
+        ]
+      }
+    }
+  },
+  "removed": []
+}

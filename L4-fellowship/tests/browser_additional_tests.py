@@ -16,7 +16,9 @@ with sync_playwright() as p:
  def start(id):
   catalog();page.locator('#mc-band').select_option('all');page.locator('#mc-search').fill(id);expect(page.locator('[data-mc-card]')).to_have_count(1);page.locator('[data-mc=start][data-id="'+id+'"]').click()
  page.goto(args.url+'#tests');expect(page.locator('h1')).to_have_text('Tests');expect(page.locator('.mc-intro-number strong')).to_have_text('500');expect(page.locator('[data-mc-card]')).to_have_count(10);data=page.evaluate('L4_TEST_DATA');assert len(data['tests'])==50
- for i in range(1,5):assert data['packSha256']['additional-'+str(i)]==hashlib.sha256((root/f'test-packs/additional-{i}.json').read_bytes()).hexdigest()
+ for i in range(1,5):
+  assert data['packSha256']['additional-'+str(i)]==hashlib.sha256((root/f'test-packs/additional-{i}.json').read_bytes()).hexdigest()
+  assert data['revisedPackSha256']['revised-'+str(i)]==hashlib.sha256((root/f'test-packs/revised-{i}.json').read_bytes()).hexdigest()
  with page.expect_download():page.locator('[data-action=backup]').first.click()
  baseline=saved();legacy=json.loads((root/'tests/multiple_choice_legacy_state.json').read_text());old=copy.deepcopy(baseline);old['multipleChoice']=legacy;restore(old);assert saved()['multipleChoice']==legacy
  page.screenshot(path=str(out/'catalog-desktop.png'));page.locator('[data-mc=show-new]').click();seen=[]

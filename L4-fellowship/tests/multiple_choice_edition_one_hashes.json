@@ -1,0 +1,15 @@
+{
+  "revision": "2026-11-12-tests-1",
+  "files": {
+    "multiple-choice-tests.json": "7e2d226cbc4591f5a8cedc84b9e8491bb8c5ec112d95180d88cfa43ac7c3d066",
+    "multiple-choice-data.js": "7acac3b7253986465ffda1744ad1e6c62fca583abfda6219245e5d79ac684185",
+    "test-packs/additional-1.json": "54cb8af2d881659dae8431ba9200ec19173479c1df4d4742e33e548dbcd58706",
+    "test-packs/additional-1.js": "a4675e6aa69861623352c79b336bb7d74de6533ea55ed8a879dd44b3b274716d",
+    "test-packs/additional-2.json": "ac0b4de9476eac2d206f226c70a1e193e7dc1b907161e45e330a4aa7747e2798",
+    "test-packs/additional-2.js": "7643d47bfc66a012106b88a7caf4f04f11c28e267043f60c2ea9d1f8ac7bc243",
+    "test-packs/additional-3.json": "45e5cbd8eb414da7be0ff73dff3076b9fbf1b56ea0af506cc37042a49d10b841",
+    "test-packs/additional-3.js": "4c155638338ec629b1a3c6b0d6a09979af0309e2e9368bb4d76c6a8d757fb06a",
+    "test-packs/additional-4.json": "d255a0287bf5cd37f37cadc5b6941a33c821e93198399fb4d76b9b0daa04a4bd",
+    "test-packs/additional-4.js": "af7e482f1ce87d74dcb5309ca669061eeb97a033e256e59877f4fb0025ef6ece"
+  }
+}
