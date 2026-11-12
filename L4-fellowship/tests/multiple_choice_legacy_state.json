@@ -1,0 +1,85 @@
+{
+  "drafts": {
+    "T02": {
+      "id": "r-legacy-draft",
+      "revision": "2026-11-12-tests-1",
+      "index": 3,
+      "started": 1794484800000,
+      "answers": {
+        "T02-Q01": [
+          "A",
+          "B"
+        ]
+      }
+    }
+  },
+  "attempts": {
+    "r-legacy-result": {
+      "id": "r-legacy-result",
+      "testId": "T01",
+      "revision": "2026-11-12-tests-1",
+      "started": 1794484800000,
+      "finished": 1794484860000,
+      "offset": 0,
+      "date": "2026-11-12",
+      "answers": {
+        "T01-Q01": [
+          "B",
+          "C",
+          "E"
+        ],
+        "T01-Q02": [
+          "C",
+          "D",
+          "E"
+        ],
+        "T01-Q03": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "T01-Q04": [
+          "C",
+          "D",
+          "E",
+          "F"
+        ],
+        "T01-Q05": [
+          "A",
+          "D",
+          "E"
+        ],
+        "T01-Q06": [
+          "D",
+          "G",
+          "H"
+        ],
+        "T01-Q07": [
+          "A",
+          "B",
+          "C",
+          "F"
+        ],
+        "T01-Q08": [
+          "C",
+          "D",
+          "E"
+        ],
+        "T01-Q09": [
+          "A",
+          "G",
+          "H"
+        ],
+        "T01-Q10": [
+          "B",
+          "F",
+          "H"
+        ]
+      }
+    }
+  },
+  "removed": [
+    "r-legacy-removed"
+  ]
+}

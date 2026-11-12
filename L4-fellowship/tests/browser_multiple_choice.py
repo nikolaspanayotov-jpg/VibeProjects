@@ -15,12 +15,12 @@ with sync_playwright() as p:
   page.locator('[data-action=apply-restore]').click();expect(page.locator('#restore-dialog')).not_to_be_visible()
  page.goto(args.url);expect(page.locator('#nav a[href="#tests"]')).to_have_count(1)
  with page.expect_download():page.locator('[data-action=backup]').first.click()
- baseline=saved();data=page.evaluate('L4_TEST_DATA');assert len(data['tests'])==10 and sum(len(t['questions']) for t in data['tests'])==100
+ baseline=saved();data=page.evaluate('L4_TEST_DATA');assert len(data['tests'])==50 and sum(len(t['questions']) for t in data['tests'])==500
  assert data['dataSha256']==hashlib.sha256((root/'multiple-choice-tests.json').read_bytes()).hexdigest()
  for route in ['today','library','project','practice','readiness','evidence','plan','prep']:
   page.goto(args.url+'#'+route);expect(page.locator('h1')).to_be_visible();assert page.locator('a[href="#tests"]').count()==1;assert page.locator('#main a[href="#tests"]').count()==0
  page.locator('#nav a[href="#tests"]').click();expect(page.locator('[data-mc-card]')).to_have_count(10);page.screenshot(path=str(out/'catalog-desktop.png'))
- for ti,t in enumerate(data['tests']):
+ for ti,t in enumerate(data['tests'][:10]):
   catalog();page.locator('[data-mc=start][data-id="'+t['id']+'"]').click();expect(page.locator('[data-mc=submit]')).to_be_disabled()
   for qi,q in enumerate(t['questions']):
    expect(page.locator('#mc-question-prompt')).to_have_text(q['prompt']);expect(page.locator('[data-mc-option]')).to_have_count(8);expect(page.locator('.mc-complete-answer')).to_have_count(0);chosen=[o['id'] for o in q['options'] if o['correct']]
@@ -36,7 +36,7 @@ with sync_playwright() as p:
  checks.append('All10tests completed through100real checkbox questions;8options each,keys withheld before submission,exact-set results,missed/extra feedback and no changes to KSB/evidence/reward/discussion state')
  # Result export and a full-guide jump use the real submitted selections.
  with page.expect_download() as dl:page.locator('[data-mc=export]').click()
- dl.value.save_as(str(out/'review.md'));text=(out/'review.md').read_text();assert '10/10' in text and data['tests'][-1]['questions'][0]['prompt'] in text
+ dl.value.save_as(str(out/'review.md'));text=(out/'review.md').read_text();assert '10/10' in text and data['tests'][9]['questions'][0]['prompt'] in text
  page.locator('.mc-review-question[open] [data-mc=guide]').click();expect(page.locator('#lesson-full-guide')).to_have_attribute('open','');expect(page.locator('#lesson-full-guide>summary')).to_be_focused();page.locator('#nav a[href="#tests"]').click();expect(page.locator('.mc-result-score')).to_be_visible();page.reload();catalog();expect(page.locator('#celebration')).to_be_hidden()
  # Different unfinished tests keep independent selections and positions.
  page.locator('[data-mc=start][data-id=T01]').click();page.locator('[data-mc-option=A]').focus();page.keyboard.press('Space');expect(page.locator('[data-mc-option=A]')).to_be_checked();page.locator('[data-mc=next]').click();page.locator('[data-mc-option=B]').check();catalog();page.locator('[data-mc=start][data-id=T02]').click();page.locator('[data-mc-option=C]').check();catalog();page.reload();page.locator('[data-mc=start][data-id=T01]').click();expect(page.locator('h1')).to_have_text('Question 2 of 10');expect(page.locator('[data-mc-option=B]')).to_be_checked();page.locator('[data-mc=previous]').click();expect(page.locator('[data-mc-option=A]')).to_be_checked();assert set(saved()['multipleChoice']['drafts'])=={'T01','T02'}

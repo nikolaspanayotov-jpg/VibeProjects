@@ -11,7 +11,7 @@ root=Path(__file__).resolve().parents[1];fixture=args.fixture.resolve();assert f
 fixture.mkdir(parents=True,exist_ok=True)
 for file in root.iterdir():
  if file.is_file():shutil.copy2(file,fixture/file.name)
- if file.is_dir() and file.name=='vendor':shutil.copytree(file,fixture/file.name,dirs_exist_ok=True)
+ if file.is_dir() and file.name in ['vendor','test-packs']:shutil.copytree(file,fixture/file.name,dirs_exist_ok=True)
 (fixture.parent/'other-project.txt').write_text('A different synthetic project.')
 KEY='l4-fellowship.v1';checks=[];errors=[]
 def build():
@@ -48,6 +48,14 @@ with sync_playwright() as p:
   page.locator('[data-mc=jump][data-index="'+str(i)+'"]').click()
   for option in q['options']:page.locator('[data-mc-option="'+option['id']+'"]').set_checked(option['correct'])
  page.locator('[data-mc=submit]').click();expect(page.locator('.mc-result-score>div>strong')).to_have_text('10 / 10');page.locator('[data-mc=catalog]').click();page.locator('[data-mc=start][data-id=T02]').click();page.locator('[data-mc-option=C]').check();offline_multiple=copy.deepcopy(saved()['multipleChoice'])
+ go('tests')
+ if page.locator('[data-mc=catalog]').count():page.locator('[data-mc=catalog]').click()
+ page.locator('#mc-search').fill('T50');page.locator('[data-mc=start][data-id=T50]').click();page.locator('[data-mc-option=A]').check();page.locator('[data-mc=next]').click();page.locator('[data-mc-option=B]').check();saved();page.reload();page.locator('#mc-search').fill('T50');page.locator('[data-mc=start][data-id=T50]').click();expect(page.locator('h1')).to_have_text('Question 2 of 10');expect(page.locator('[data-mc-option=B]')).to_be_checked()
+ extra=page.evaluate('L4_TEST_DATA.tests[49]')
+ for i,q in enumerate(extra['questions']):
+  page.locator('[data-mc=jump][data-index="'+str(i)+'"]').click()
+  for option in q['options']:page.locator('[data-mc-option="'+option['id']+'"]').set_checked(option['correct'])
+ page.locator('[data-mc=submit]').click();expect(page.locator('.mc-result-score>div>strong')).to_have_text('10 / 10');page.locator('[data-mc=catalog]').click();page.locator('#mc-search').fill('T47');page.locator('[data-mc=start][data-id=T47]').click();page.locator('[data-mc-option=D]').check();offline_multiple=copy.deepcopy(saved()['multipleChoice'])
  go('methods-chart-change');expect(page.locator('.challenge-chart')).to_be_visible()
  go('readiness');expect(page.locator('.readiness-row')).to_have_count(10)
  go('quests');expect(page.locator('.game-quest')).to_have_count(6)

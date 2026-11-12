@@ -5,7 +5,8 @@ Run after changing any cached public asset. The shipped website needs no build.
 from pathlib import Path
 import argparse,hashlib,json
 parser=argparse.ArgumentParser();parser.add_argument('--root',type=Path,default=Path(__file__).resolve().parents[1]);args=parser.parse_args();root=args.root
-assets=['index.html','multiple-choice-tests.json','multiple-choice-data.js?v=20261112-tests','multiple-choice.js?v=20261112-tests','multiple-choice.css?v=20261112-tests','assessment.js?v=20261111-review','assessment.css?v=20261111-review','assessment-criteria.json','preparation.css?v=20261105-prep','preparation-data.js?v=20261105-prep','preparation.js?v=20261107-assessment','sql-LICENSE.txt','curriculum.js?v=20261111-review','gamification.js?v=20261105-quests','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets=['index.html','multiple-choice-tests.json','multiple-choice-data.js?v=20261112-tests','multiple-choice.js?v=20261112-tests-50','multiple-choice.css?v=20261112-tests-50','assessment.js?v=20261111-review','assessment.css?v=20261111-review','assessment-criteria.json','preparation.css?v=20261105-prep','preparation-data.js?v=20261105-prep','preparation.js?v=20261107-assessment','sql-LICENSE.txt','curriculum.js?v=20261111-review','gamification.js?v=20261105-quests','solutions.md','worked-project.md','design.md','learning-activities.json','reasoning-activities.json','rehearsal-activities.json','ksb-visuals.json','manifest.webmanifest','icon-192.png','icon-512.png']
+assets += [f'test-packs/additional-{i}.json' for i in range(1,5)] + [f'test-packs/additional-{i}.js?v=20261112-tests-50' for i in range(1,5)]
 assets += [f'vendor/sql-asm-{i:02d}.js?v=1.13.0' for i in range(1,23)] + ['vendor/sql-manifest.json']
 entries=[dict(path=name,sha256=hashlib.sha256((root/name.split('?')[0]).read_bytes()).hexdigest()) for name in assets]
 version='2026-11-12-'+hashlib.sha256(json.dumps(entries).encode()).hexdigest()[:12]
@@ -50,7 +51,7 @@ self.addEventListener('fetch',event=>{
   return cached||fetch(request);
  })());return;}
  // An older open tab may request its own versioned curriculum. Keep versions paired.
- if(['multiple-choice-data.js','multiple-choice.js','multiple-choice.css','curriculum.js','gamification.js','preparation.js','preparation-data.js','preparation.css','assessment.js','assessment.css',...Array.from({length:22},(_,i)=>'vendor/sql-asm-'+String(i+1).padStart(2,'0')+'.js')].some(file=>url.pathname===new URL(file,scope).pathname)){event.respondWith((async()=>{
+ if([...Array.from({length:4},(_,i)=>'test-packs/additional-'+(i+1)+'.js'),'multiple-choice-data.js','multiple-choice.js','multiple-choice.css','curriculum.js','gamification.js','preparation.js','preparation-data.js','preparation.css','assessment.js','assessment.css',...Array.from({length:22},(_,i)=>'vendor/sql-asm-'+String(i+1).padStart(2,'0')+'.js')].some(file=>url.pathname===new URL(file,scope).pathname)){event.respondWith((async()=>{
   for(const name of await caches.keys())if(name.startsWith(PREFIX)){const cached=await (await caches.open(name)).match(request);if(cached)return cached;}
   return fetch(request);
  })());}
