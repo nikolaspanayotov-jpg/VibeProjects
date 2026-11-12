@@ -132,13 +132,14 @@
 </style>
 <link rel="stylesheet" href="./preparation.css?v=20261105-prep">
 <link rel="stylesheet" href="./assessment.css?v=20261111-review">
+<link rel="stylesheet" href="./multiple-choice.css?v=20261112-tests">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="app-shell">
   <aside class="sidebar" aria-label="Study navigation">
     <a class="brand" href="#today" aria-label="Data Fellowship study desk, home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Data Fellowship<small>Level 4 study desk</small></span></a>
-    <div class="mobile-nav"><label for="mobile-section">Navigate to section</label><select id="mobile-section"><option value="today">Today</option><option value="library">KSB library</option><option value="project">Worked project</option><option value="evidence">My evidence</option><option value="practice">Practice</option><option value="readiness">Readiness</option><option value="plan">Plan and sources</option></select></div>
+    <div class="mobile-nav"><label for="mobile-section">Navigate to section</label><select id="mobile-section"><option value="today">Today</option><option value="library">KSB library</option><option value="project">Worked project</option><option value="evidence">My evidence</option><option value="practice">Practice</option><option value="tests">Tests</option><option value="readiness">Readiness</option><option value="plan">Plan and sources</option></select></div>
     <nav class="desktop-nav" id="nav" aria-label="Main sections"></nav>
     <div class="sidebar-note"><span class="small-icon" aria-hidden="true">◇</span><strong>Your own words.<br>Your own evidence.</strong><p>A place to learn, practise and connect the work you do.</p><a href="./solutions.md" download>Download answer guide</a></div>
     <div class="sidebar-footer"><span class="device-dot" aria-hidden="true"></span><span id="storage-status">Saved on this device</span><button class="text-button" data-action="backup">Back up progress</button></div>
@@ -185,15 +186,17 @@
 <script src="./vendor/sql-asm-22.js?v=1.13.0"></script>
 <script src="./preparation.js?v=20261107-assessment"></script>
 <script src="./assessment.js?v=20261111-review"></script>
+<script src="./multiple-choice-data.js?v=20261112-tests"></script>
+<script src="./multiple-choice.js?v=20261112-tests"></script>
 <script>(() => {
 'use strict';
 const C = window.L4_CURRICULUM;
 const mainEl = document.getElementById('main');
-if (!C || C.items.length !== 37 || !C.activities || !C.reasoning || !C.rehearsal || !window.L4_GAME || !window.L4_PREP || !window.L4_PREP_DATA || !window.L4_ASSESSMENT || !C.assessment || C.items.some(k=>!k.visual)) { mainEl.innerHTML = '<h1>The answer bank could not load.</h1><p>Keep the curriculum, gamification and preparation files beside index.html, then reload. You can also read <a href="./solutions.md">the answer guide</a>.</p>'; return; }
+if (!C || C.items.length !== 37 || !C.activities || !C.reasoning || !C.rehearsal || !window.L4_GAME || !window.L4_PREP || !window.L4_PREP_DATA || !window.L4_ASSESSMENT || !window.L4_TESTS || !window.L4_TEST_DATA || !C.assessment || C.items.some(k=>!k.visual)) { mainEl.innerHTML = '<h1>The answer bank could not load.</h1><p>Keep the curriculum, gamification and preparation files beside index.html, then reload. You can also read <a href="./solutions.md">the answer guide</a>.</p>'; return; }
 const ITEMS = C.items, IDS = ITEMS.map(k => k.id), BY_ID = Object.fromEntries(ITEMS.map(k => [k.id, k]));
 const ACTIVITIES=C.activities,QUESTION_BY_ID=Object.fromEntries(ACTIVITIES.quiz.map(q=>[q.id,q])),SCENARIO_BY_ID=Object.fromEntries(ACTIVITIES.scenarios.map(s=>[s.id,s]));
 const REASONING=C.reasoning,REHEARSAL=C.rehearsal;
-const G=window.L4_GAME, P=window.L4_PREP, AS=window.L4_ASSESSMENT;
+const G=window.L4_GAME, P=window.L4_PREP, AS=window.L4_ASSESSMENT, MC=window.L4_TESTS;
 const STORAGE_KEY = 'l4-fellowship.v1';
 const LEARNING = {new:'Not started',learning:'Learning',explain:'Can explain'};
 const RECALL = {none:'No attempt',help:'Needed help',partial:'Partial',independent:'Explained independently'};
@@ -201,13 +204,14 @@ const EVIDENCE = {none:'No evidence',draft:'Draft reflection',linked:'Reference 
 const COVERAGE = {unreviewed:'Not yet covered',detail:'Needs detail',covered:'Covered in my response'};
 const FORECAST_FIELDS = {target:'Target outcome',frequency:'Frequency',window:'History and training window',holdout:'Holdout / evaluation window',horizon:'Future forecast horizon',model:'Model and rationale',trend:'Trend assessment',seasonality:'Seasonality assessment',baseline:'Baseline method',metrics:'Error metric and result',projection:'Projections',uncertainty:'Uncertainty and limitations',visual:'Approved forecast visual reference',mining:'Separate mining / modelling example'};
 const ICONS = {today:'M3 10h18M5 4h14v16H5zM8 2v4m8-4v4M8 14h3m3 0h2m-8 3h3',library:'M4 4h6l2 2 2-2h6v16h-6l-2 2-2-2H4zM12 6v16',evidence:'M5 3h10l4 4v14H5zM14 3v5h5M8 12h8m-8 4h6',practice:'M6 4h12v12h-5l-5 4v-4H6zM9 8h6m-6 4h4',plan:'M4 4h16v16H4zM8 8h8m-8 4h5m-5 4h3'};
-const NAV = [['today','Today'],['library','KSB library'],['project','Worked project'],['practice','Practice'],['readiness','Readiness'],['evidence','My evidence'],['plan','Plan and sources']];
+const NAV = [['today','Today'],['library','KSB library'],['project','Worked project'],['practice','Practice'],['tests','Tests'],['readiness','Readiness'],['evidence','My evidence'],['plan','Plan and sources']];
 let storageWritable = true, storageMessage = '', recoveryRaw = null, saveTimer = null, toastTimer = null;
 let celebrationTimer=null,celebrationHideTimer=null,celebrationFrame=null,celebrationKind='';
 let state = loadState(), ui = {filters:{q:'',category:'',theme:'',learning:'',evidence:'',due:false,route:''},evidenceDraft:null,evidenceFilter:'',practiceMode:'quick',practiceId:'K1',duration:20,timer:false,mixed:['K1','S1','B1'],restore:null,undo:null};
 
 ui.gameWeek=G.weekOf(localDate());ui.gameDay='';ui.gameBadgeFilter='all';ui.gameReplayIndex=0;ui.gameReceipt=null;ui.gameCelebrate=false;ui.gameUndo=null;
 ui.readyCategory='';ui.readyGap='';ui.readySearch='';ui.readyPage=0;ui.readyLimit=10;ui.roadmapWeek=0;ui.lessonStep='';ui.projectStage='planning';ui.projectHighlight='';ui.projectChart='requests';ui.projectJoin='flawed';
+ICONS.tests='M7 4H5v17h14V4h-2M9 2h6v5H9zM8 11l1 1 2-2m2 1h3m-8 5 1 1 2-2m2 1h3';
 ICONS.readiness='M4 4h16v16H4zM7 9l2 2 3-4m2 2h3M7 16h10';ICONS.project='M4 5h6l2 2 2-2h6v15h-6l-2 2-2-2H4zM12 7v15';
 ui.changeId='paired';ui.briefingCase='capacity';ui.briefingAudience='lead';ui.retrievalKsb='K8';ui.calibrationFilter='';
 ui.reasoning={repairs:REASONING.repairs[0].id,methods:REASONING.methods[0].id};ui.workshopKsb='K8';ui.organisation='policies';ui.connectionId='quality';ui.connectionFilter='';
@@ -222,7 +226,7 @@ function prettyDate(value) { return value && validDate(value) ? dateObject(value
 function uid() { return 'r-'+(globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`); }
 function clone(value) { return JSON.parse(JSON.stringify(value)); }
 function emptyKsb() { return {exampleConfirmed:false,learning:'new',confidence:'',response:'',gap:'',recall:'none',lastReview:'',nextReview:'',consecutive:0,coverage:{},reviewedRevision:'',stakeholders:[{role:'',need:'',channel:'',adaptation:'',outcome:''},{role:'',need:'',channel:'',adaptation:'',outcome:''}],forecast:Object.fromEntries(Object.keys(FORECAST_FIELDS).map(k=>[k,'']))}; }
-function defaults() { return {version:1,assessmentReview:AS.blank(),preparation:P.blank(),game:blankGame(),rehearsal:blankRehearsal(),studyTools:blankStudyTools(),learningTools:blankLearningTools(),settings:{epaDate:'',standard:'',provider:'',assessmentOrg:'',ap03:false,days:[1,3,5],sessionLength:20,priority:[],textSize:'normal'},ksbs:Object.fromEntries(IDS.map(id=>[id,emptyKsb()])),evidence:[],evidenceDraft:null,attempts:[],session:null,studySession:null}; }
+function defaults() { return {version:1,multipleChoice:MC.blank(),assessmentReview:AS.blank(),preparation:P.blank(),game:blankGame(),rehearsal:blankRehearsal(),studyTools:blankStudyTools(),learningTools:blankLearningTools(),settings:{epaDate:'',standard:'',provider:'',assessmentOrg:'',ap03:false,days:[1,3,5],sessionLength:20,priority:[],textSize:'normal'},ksbs:Object.fromEntries(IDS.map(id=>[id,emptyKsb()])),evidence:[],evidenceDraft:null,attempts:[],session:null,studySession:null}; }
 function loadState() {
   try { const raw=localStorage.getItem(STORAGE_KEY); if (!raw) return defaults(); recoveryRaw=raw; const result=validateState(JSON.parse(raw)); recoveryRaw=null; return result; }
   catch(error) { storageWritable=false; storageMessage=recoveryRaw?'Saved data could not be read. It has been left untouched. This session uses temporary memory. Download the original before restoring a valid backup.':'Browser storage is unavailable. This session uses temporary memory; export a backup before closing.'; return defaults(); }
@@ -287,7 +291,7 @@ function render(focus=false) {
   document.getElementById('topbar-context').textContent=r.view==='lesson'&&BY_ID[r.id]?`${r.id} / ${C.themes[BY_ID[r.id].theme].name}`:NAV.find(n=>n[0]===active)?.[1]||'Study desk';
   document.documentElement.style.setProperty('--reading',state.settings.textSize==='large'?'20px':'18px');
   document.querySelector('[data-action="text-size"]').setAttribute('aria-label',state.settings.textSize==='large'?'Use standard reading text size':'Increase reading text size');
-  const views={...Object.fromEntries(AS.routes.map(v=>[v,()=>AS.render(v)])),...Object.fromEntries(P.routes.map(v=>[v,()=>P.render(v)])),today:renderToday,library:renderLibrary,evidence:renderEvidence,practice:renderPractice,plan:renderPlan,studio:renderStudio,readiness:renderReadiness,project:renderProject,labs:renderLabs,scenarios:renderScenarios,quiz:renderQuiz,repairs:()=>renderReasoning('repairs'),methods:()=>renderReasoning('methods'),workshop:renderWorkshop,organisation:renderOrganisation,connections:renderConnections,uncertainty:renderUncertainty,calibration:renderCalibration,changes:renderChanges,briefing:renderBriefing,retrieval:renderRetrieval,offline:renderOffline,habits:renderGameHabits,quests:renderGameQuests,rewards:renderGameRewards,'habit-settings':renderGameSettings,'visual-map':renderVisualMap};
+  const views={tests:()=>MC.render(),...Object.fromEntries(AS.routes.map(v=>[v,()=>AS.render(v)])),...Object.fromEntries(P.routes.map(v=>[v,()=>P.render(v)])),today:renderToday,library:renderLibrary,evidence:renderEvidence,practice:renderPractice,plan:renderPlan,studio:renderStudio,readiness:renderReadiness,project:renderProject,labs:renderLabs,scenarios:renderScenarios,quiz:renderQuiz,repairs:()=>renderReasoning('repairs'),methods:()=>renderReasoning('methods'),workshop:renderWorkshop,organisation:renderOrganisation,connections:renderConnections,uncertainty:renderUncertainty,calibration:renderCalibration,changes:renderChanges,briefing:renderBriefing,retrieval:renderRetrieval,offline:renderOffline,habits:renderGameHabits,quests:renderGameQuests,rewards:renderGameRewards,'habit-settings':renderGameSettings,'visual-map':renderVisualMap};
   if(r.view==='lesson'&&BY_ID[r.id]) mainEl.innerHTML=renderLesson(r.id);
   else mainEl.innerHTML=(views[r.view]||(()=>'<h1>That study page was not found.</h1><a href="#today">Return to your study desk</a>'))();
   document.title=`${r.view==='lesson'&&BY_ID[r.id]?r.id+' · '+BY_ID[r.id].title:NAV.find(n=>n[0]===active)?.[1]||'Study desk'} · Data Fellowship`;
@@ -393,7 +397,7 @@ function csvDownload(kind) { const rows=datasetRows(kind); download({requests:'s
 
 function download(name,text,type='text/plain') { const url=URL.createObjectURL(new Blob([text],{type:type+';charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000); }
 function backup() { state.rehearsal.lastBackupOn=localDate();save();download('l4-fellowship-backup-'+localDate()+'.json',JSON.stringify({...state,exportedOn:localDate()},null,2),'application/json');toast('Backup downloaded. Store personal reflections appropriately.'); }
-function exportSummary() { const lines=['# Data Fellowship — personal study summary',`Exported locally: ${localDate()}`,'','Self-recorded preparation; this is not an assessment grade.',''];for(const k of ITEMS){const s=state.ksbs[k.id];lines.push(`## ${k.id}: ${k.title}`,`Learning: ${LEARNING[s.learning]}; confidence: ${s.confidence||'unset'}; evidence: ${EVIDENCE[evidenceStatus(k.id)]}.`,`Last recall: ${s.lastReview||'none'}; next review: ${s.nextReview||'not set'}.`,'','### My response',s.response||'No personal response recorded.',`Personal example self-checked: ${s.exampleConfirmed?'yes':'no'}.`,'','### Gap / next action',s.gap||'None recorded.','','### Coverage self-review',...k.targets.map((target,i)=>`- ${target}: ${COVERAGE[s.coverage[i]||'unreviewed']}`),'');if(k.id==='S12')s.stakeholders.forEach((p,i)=>lines.push(`### Stakeholder ${i+1}`,...Object.entries(p).map(([key,v])=>`${key}: ${v||'Not recorded'}`),''));if(k.id==='S13')lines.push('### Forecast and mining worksheet',...Object.entries(FORECAST_FIELDS).map(([key,label])=>`${label}: ${s.forecast[key]||'Not recorded'}`),'');}lines.push('## Evidence references','');state.evidence.forEach(e=>lines.push(`### ${e.title}`,`Date: ${e.date}; project: ${e.project}; reference: ${e.reference||'none'}; state: ${EVIDENCE[e.status]}.`,e.reflection,e.learning,...e.links.map(l=>`- ${l.id}: ${l.rationale}`),''));lines.push(...learningToolsSummary(),...studyToolsSummary(),...rehearsalSummary(),...gameSummary(),...P.summary(state.preparation),...AS.summary(state.assessmentReview));download('l4-fellowship-study-summary-'+localDate()+'.md',lines.join('\n'),'text/markdown'); }
+function exportSummary() { const lines=['# Data Fellowship — personal study summary',`Exported locally: ${localDate()}`,'','Self-recorded preparation; this is not an assessment grade.',''];for(const k of ITEMS){const s=state.ksbs[k.id];lines.push(`## ${k.id}: ${k.title}`,`Learning: ${LEARNING[s.learning]}; confidence: ${s.confidence||'unset'}; evidence: ${EVIDENCE[evidenceStatus(k.id)]}.`,`Last recall: ${s.lastReview||'none'}; next review: ${s.nextReview||'not set'}.`,'','### My response',s.response||'No personal response recorded.',`Personal example self-checked: ${s.exampleConfirmed?'yes':'no'}.`,'','### Gap / next action',s.gap||'None recorded.','','### Coverage self-review',...k.targets.map((target,i)=>`- ${target}: ${COVERAGE[s.coverage[i]||'unreviewed']}`),'');if(k.id==='S12')s.stakeholders.forEach((p,i)=>lines.push(`### Stakeholder ${i+1}`,...Object.entries(p).map(([key,v])=>`${key}: ${v||'Not recorded'}`),''));if(k.id==='S13')lines.push('### Forecast and mining worksheet',...Object.entries(FORECAST_FIELDS).map(([key,label])=>`${label}: ${s.forecast[key]||'Not recorded'}`),'');}lines.push('## Evidence references','');state.evidence.forEach(e=>lines.push(`### ${e.title}`,`Date: ${e.date}; project: ${e.project}; reference: ${e.reference||'none'}; state: ${EVIDENCE[e.status]}.`,e.reflection,e.learning,...e.links.map(l=>`- ${l.id}: ${l.rationale}`),''));lines.push(...learningToolsSummary(),...studyToolsSummary(),...rehearsalSummary(),...gameSummary(),...P.summary(state.preparation),...AS.summary(state.assessmentReview),...MC.summary(state.multipleChoice));download('l4-fellowship-study-summary-'+localDate()+'.md',lines.join('\n'),'text/markdown'); }
 function validateLearningTools(raw) {
  const result=blankLearningTools();if(raw===undefined)return result;
  const fail=message=>{throw new Error('Learning tools: '+message);};
@@ -446,6 +450,7 @@ function validateState(raw) {
   output.game=validateGame(raw.game);
   output.preparation=P.validate(raw.preparation,IDS);
   output.assessmentReview=AS.validate(raw.assessmentReview);
+  output.multipleChoice=MC.validate(raw.multipleChoice);
   if(output.session){const source=raw.session;output.session.gameChallenge=source.gameChallenge===undefined?false:source.gameChallenge;if(typeof output.session.gameChallenge!=='boolean')fail('Invalid rehearsal flag.');output.session.gameAttemptIds=unique(list(source.gameAttemptIds??[],'Rehearsal attempts',3).map(v=>identity(v,'Rehearsal attempt ID')),'rehearsal attempts');if(output.session.gameChallenge&&(output.session.queue.length!==3||new Set(output.session.queue.map(q=>q.id[0])).size!==3))fail('A weekly rehearsal needs Knowledge, Skill and Behaviour questions.');}
   return output;
 }
@@ -468,6 +473,7 @@ function mergeBackup(incoming,choices={}) { const merged=clone(state),conflicts=
   for(const record of incoming.game.events){const current=merged.game.events.find(e=>e.id===record.id);if(!current)merged.game.events.push(clone(record));else if(!same(current,record)){const key='game-event-'+record.id;conflicts.push({key,label:'Practice record: '+record.date+' '+gameLabel(record)});if(choices[key]==='import')merged.game.events[merged.game.events.findIndex(e=>e.id===record.id)]=clone(record);}}
   merged.game.deleted=[...new Set([...state.game.deleted,...incoming.game.deleted])];merged.game.events=merged.game.events.filter(e=>!merged.game.deleted.includes(e.id));
   const preparationMerge=P.merge(state.preparation,incoming.preparation,choices);merged.preparation=preparationMerge.merged;conflicts.push(...preparationMerge.conflicts);
+  const testMerge=MC.merge(state.multipleChoice,incoming.multipleChoice,choices);merged.multipleChoice=testMerge.merged;conflicts.push(...testMerge.conflicts);
   const assessmentMerge=AS.merge(state.assessmentReview,incoming.assessmentReview,choices);merged.assessmentReview=assessmentMerge.merged;conflicts.push(...assessmentMerge.conflicts);
   return {merged,conflicts};
 }
@@ -1044,6 +1050,7 @@ window.addEventListener('storage',event=>{if(event.key===STORAGE_KEY&&event.newV
 window.addEventListener('focus',()=>{if(route().view==='today')render();updateTimer();});
 window.addEventListener('afterprint',()=>mainEl.querySelectorAll('details[data-print-open]').forEach(d=>{d.open=d.dataset.printOpen==='yes';delete d.dataset.printOpen;}));
 document.getElementById('restore-dialog').addEventListener('cancel',()=>ui.restore=null);
+MC.init({state:()=>state,byId:id=>BY_ID[id],esc,save,saveSoon,render,go,today:localDate,uid,download,toast,visual:ksbVisual,celebrate:celebrateAnswer,openGuide:id=>{ui.lessonStep='full';go('ksb-'+id.toLowerCase());}});
 P.init({state:()=>state,items:ITEMS,byId:id=>BY_ID[id],quiz:()=>ACTIVITIES.quiz,esc,uid,today:localDate,addDays,save,saveSoon,render,go,view:()=>route().view,writable:()=>storageWritable,toast,download,celebrate:matched=>celebrateAnswer(matched),scenario:visualScenario});
 AS.init({state:()=>state,view:()=>route().view,esc,save,saveSoon,render,go,today:localDate,uid,download,toast,visual:ksbVisual,contextKsb:view=>view==='workshop'?ui.workshopKsb:view==='retrieval'?ui.retrievalKsb:view==='speak'?P.spokenKsb():view==='practice'?(state.session?.queue[state.session.index]?.id||ui.practiceId):'',resetReadiness:()=>{ui.readyPage=0;},celebrate:celebrateAnswer,
  spoken:id=>{P.setSpokenKsb(id);go('speak');},
