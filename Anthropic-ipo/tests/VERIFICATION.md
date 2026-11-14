@@ -29,7 +29,14 @@ Verification used Chromium only, with no authenticated IBKR account, trade/appli
 
 ## Publication
 
-Pending publication and verification of the actual public HTML. No deployment success is claimed at this stage.
+Published to `main` in implementation commit [`6531cd342ad7ab86d4a10833360db44d9f107e8e`](https://github.com/nikolaspanayotov-jpg/VibeProjects/commit/6531cd342ad7ab86d4a10833360db44d9f107e8e), with exactly ten project-only changed files. [GitHub Pages run 43584764424](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/43584764424) completed successfully for that commit.
+
+At **2026-11-14 10:21:49 UTC**, both ordinary public URLs returned HTTP 200, with hashes matching the validated files and no query strings or authentication:
+
+- [Full guide](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/): 453,359 bytes; SHA-256 `2beaa441a030670a0dc6b87b76e7cbcdcd85897094317ae79f6e9be0392446d5`.
+- [Two-page brief](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/investment-brief.html): 94,602 bytes; SHA-256 `63c4c33b54264ac5c29f9194885d85b6c74cae5cf5fdac55a02a2ffae291e4db`.
+
+The owned local preview server was stopped after verification. This documentation receipt leaves the published HTML unchanged.
 
 ---
 
