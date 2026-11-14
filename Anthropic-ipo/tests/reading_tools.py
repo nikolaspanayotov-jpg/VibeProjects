@@ -213,7 +213,7 @@ for name in ['investment-brief.pdf','investment-brief-nojs.pdf']:
     pages = int(re.search(r'Pages:\s+(\d+)', info).group(1))
     assert pages == 2, (name, pages)
     text = subprocess.check_output(['pdftotext', str(pdf), '-'], text=True)
-    for required in ['Three tailwinds', 'Three headwinds', 'Retail access', '79%', '25%', '$70.7bn', 'not free cash flow', '135', '143.89', 'January/March 2027', '10 November 2026']:
+    for required in ['Three tailwinds', 'Three headwinds', 'Retail access', '79%', '25%', '$70.7bn', 'not free cash flow', '135', '143.89', 'January/March 2027', '14 November 2026']:
         assert required in text, (name, required)
 record('Brief prints as exactly two A4 pages with and without JavaScript, preserving dates, conditions and material evidence')
 (ROOT/'tests'/'reading-tools-results.json').write_text(json.dumps(results,indent=2)+'\n')

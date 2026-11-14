@@ -52,7 +52,7 @@ with sync_playwright() as p:
     expect(page.locator("#result-amount")).to_have_text("−$567m")
     expect(page.get_by_role("radio", name="Third quarter 2026")).to_be_checked()
     expect(page.locator("#ledger-title")).to_have_text("Third quarter 2026")
-    expect(page.locator(".status-list")).to_contain_text("Not yet specified in the filing")
+    expect(page.locator(".status-list")).to_contain_text("final price pending")
     expect(page.locator("#briefing h3")).to_have_count(3)
     expect(page.locator("#briefing")).to_contain_text("$70–$78 proposed")
     expect(page.locator("#per100-amount")).to_have_text("$103")
@@ -81,18 +81,18 @@ with sync_playwright() as p:
     record("Nine-month financial measures, September liquidity and non-cash/investing qualifications")
 
     expect(page.locator(".status-list")).to_contain_text("$70–$78")
-    expect(page.locator(".status-list")).to_contain_text("10 November 2026")
+    expect(page.locator(".status-list")).to_contain_text("14 November 2026")
     page.locator("#filing-history > summary").click()
-    expect(page.locator("#filing-history li")).to_have_count(3)
+    expect(page.locator("#filing-history li")).to_have_count(4)
     expect(page.locator("#filing-history")).to_contain_text("26 October 2026")
     page.locator("#filing-history > summary").click()
     expect(page.locator('.comparison .historical-label')).to_contain_text("January–June 2026 for both")
     record("Latest amendment/check dates, original filing history and historical matched comparison")
 
-    expect(page.locator("#what-changed")).to_contain_text("10 November 2026")
+    expect(page.locator("#what-changed")).to_contain_text("14 November 2026")
     expect(page.locator("#what-changed .update-grid > div")).to_have_count(3)
-    expect(page.locator("#what-changed")).to_contain_text("new amendment proposes $70–$78")
-    expect(page.locator("#what-changed")).to_contain_text("Supply and sentiment matter")
+    expect(page.locator("#what-changed")).to_contain_text("Expected dates are now published")
+    expect(page.locator("#what-changed")).to_contain_text("Demand is reported, outcomes are open")
     for link in page.locator('#what-changed a:not(.source-link)').all():
         link.click()
         assert page.evaluate("location.hash") == link.get_attribute("href")
@@ -106,7 +106,7 @@ with sync_playwright() as p:
     expect(retail).to_contain_text("request deadlines and allocation rules require current platform confirmation")
     expect(retail).to_contain_text("up to 20% of the offering")
     assert retail.locator(".retail-dates time").evaluate_all("es=>es.map(e=>e.dateTime)") == [
-        "2026-11-10", "2026-11-04", "2026-11-10"
+        "2026-11-10", "2026-11-04", "2026-11-14"
     ]
     assert retail.locator(".retail-table tbody th").all_text_contents() == [
         "Schwab", "Fidelity", "Robinhood", "Trade-PMR", "SoFi", "E*TRADE"
@@ -236,11 +236,11 @@ with sync_playwright() as p:
     record("Illustrative dilution: formula, zero/gain/loss boundaries, native keys, reset and announcement")
 
     expect(page.locator("#roadmap .milestone")).to_have_count(6)
-    expect(page.locator("#roadmap .expected")).to_contain_text("Expected")
+    expect(page.locator("#roadmap .expected")).to_have_count(2)
     expect(page.locator("#roadmap .contract")).to_contain_text("90 days' advance written notice")
     expect(page.locator("#roadmap .contract")).to_contain_text("do not automatically end")
-    expect(page.locator("#roadmap .unknown")).to_have_count(3)
-    assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-11-10", "2026-12", "2027-01", "2027-03"]
+    expect(page.locator("#roadmap .unknown")).to_have_count(2)
+    assert page.locator("#roadmap time").evaluate_all("es=>es.map(e=>e.dateTime)") == ["2026-11-10", "2026-12", "2027-01", "2027-03", "2026-11-18", "2026-11-19"]
     expect(page.locator("#roadmap .product-milestone")).to_contain_text("Final IPO pricing remains unconfirmed")
     record("Roadmap separates expected dates, contract windows and unresolved milestones")
 
@@ -366,14 +366,14 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 36
+    assert len(metadata) == 44
     assert metadata["source-a-gsa"]["kind"] == "Company announcement"
     assert metadata["source-a-science"]["kind"] == "Company research"
     assert metadata["source-a-event"]["date"] == "2026-11-10"
-    assert metadata["source-a-register"]["date"] == "2026-11-10"
+    assert metadata["source-a-register"]["date"] == "2026-11-14"
     assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-10"
     assert metadata["source-retail-barrons"]["kind"] == "Third-party report" and metadata["source-retail-barrons"]["date"] == "2026-11-04"
-    record("All 36 source previews preserve provenance and distinguish retail filing, report and register-check dates")
+    record("All 44 source previews preserve provenance and distinguish retail filing, report and register-check dates")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 

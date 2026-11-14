@@ -1,3 +1,35 @@
+# 14 November IPO participation and timetable verification
+
+The update follows [ipo-update-2026-11-14.md](../ipo-update-2026-11-14.md), which records the source review and plan. The page and brief now distinguish the unchanged 10 November preliminary terms from newer FWPs, expected company dates, regional conditions and attributed order-book reports.
+
+## Actual validation
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8814/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8814/ python tests/reading_tools.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8814/ python tests/november_refresh.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8814/ python tests/participation_update.py
+node --check /tmp/n14-inline.js
+```
+
+**92 checks passed**: 66 general regression, 14 reading-tool, 6 November-financial-refresh and 6 new participation/timeline checks. One direct-file check remains unverified because browser administrator policy blocks file URLs. The new checks cover expected EST dates versus completed/final terms; five FWPs and their issuer/SEC/review dates; regional scope, application cutoffs, $120 maximum versus the U.S. range; AEDT/EST timetable labels; source-preview keyboard restoration; order-book attribution and limits; company-defined efficiency measurement; 320/390/768/1440px reflow and no-JavaScript evidence. All 44 source previews were exercised. No page/console errors or runtime third-party requests were observed.
+
+The `ledger-data`, `entry-return-data` and `commitment-data` JSON match the prior page exactly. The calculator, economic share counts and historical SpaceX prices have not been replaced with reported forecasts or a book-coverage-derived return assumption.
+
+## Visual and print review
+
+Actual captures inspected: `nov14-mobile-overview.png`, `nov14-mobile-regional-access.png`, `nov14-desktop-order-book.png`; both rasterised pages of the two-page brief; and full-guide print pages containing the demand panel and regional disclosure. Layouts retain readable status/date labels, distinct reported-versus-analytical treatment and visible regional price/cutoff qualifications.
+
+Both `investment-brief.pdf` and `investment-brief-nojs.pdf` are **exactly two A4 pages**. The full guide prints to **46 pages with JavaScript and 45 without**. Extracted print text retains the timetable, price-ceiling distinction, regional time labels, reported book coverage and source dates. After the final copy-only amendment/FWP wording and timetable-citation correction in the brief, affected PDFs were regenerated and text/page-count checked. No full regression rerun is claimed after that copy-only correction.
+
+Generated screenshots/PDFs remain ignored local QA artifacts. Verification is Chromium-only, with no screen-reader/other-engine session, exhaustive legal eligibility audit or independent company-claim validation. The full roadshow video was not reviewed; relevant text exhibits, official FAQ and listed regional sections were read. A printed schedule, source publication or dated event listing is not proof of an allocation, new revenue or an effective/completed IPO.
+
+## Publication
+
+Validated and ready for the requested main commit, limited to `Anthropic-ipo/`. Publication/served-file evidence will be recorded after deployment. Public notes exclude private hosting metadata and credentials.
+
+---
+
 # 10 November IPO-source refresh verification
 
 The guide and printable brief incorporate the latest amendment and material official/reported developments since 2 November. Scope, source locations, limitations and old/new values are recorded in [ipo-update-2026-11-10.md](../ipo-update-2026-11-10.md).

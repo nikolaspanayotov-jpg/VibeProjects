@@ -1,0 +1,26 @@
+[
+  {
+    "check": "Official expected EST dates are conditional; five additional FWPs have filing dates distinct from the S-1/A and review date",
+    "result": "passed"
+  },
+  {
+    "check": "Regional scope, broker cutoffs, the legal price ceiling and AEDT/EST civil-date difference remain visible and qualified",
+    "result": "passed"
+  },
+  {
+    "check": "Regional source preview distinguishes issuer and SEC dates and restores keyboard focus",
+    "result": "passed"
+  },
+  {
+    "check": "Reported orders and issuer efficiency/customer claims retain attribution and do not become revenue, hardware or return forecasts",
+    "result": "passed"
+  },
+  {
+    "check": "Updated status, regional disclosure and demand evidence reflow at 320, 390, 768 and 1440px",
+    "result": "passed"
+  },
+  {
+    "check": "New evidence remains complete without JavaScript; enhanced page has no errors or third-party runtime requests",
+    "result": "passed"
+  }
+]

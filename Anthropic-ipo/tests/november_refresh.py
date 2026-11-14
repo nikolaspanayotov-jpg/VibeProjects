@@ -51,7 +51,7 @@ with sync_playwright() as p:
     expect(page.locator('#retail-access')).to_contain_text('including underwriter allocations')
     expect(page.locator('#share-supply')).to_contain_text('not automatically freely tradable on day one')
     expect(page.locator('#share-supply')).to_contain_text('316m')
-    expect(page.locator('#roadmap')).to_contain_text('no event outcomes are claimed')
+    expect(page.locator('#roadmap')).to_contain_text('does not verify new contracts or financial outcomes')
     expect(page.locator('#commitments')).to_contain_text('67m RSUs')
     expect(page.locator('#commitments')).to_contain_text('does not confirm the IPO date')
     page.locator('#new-financing-exposures summary').click()
