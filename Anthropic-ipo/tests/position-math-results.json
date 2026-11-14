@@ -1,0 +1,62 @@
+[
+  {
+    "check": "Default initial purchase, unknown costs, reserve and unrealised mark remain separate",
+    "result": "passed"
+  },
+  {
+    "check": "Full sale at $92 produces $360 gross profit; a $100 entry produces $160 loss",
+    "result": "passed"
+  },
+  {
+    "check": "One and two finite additions reconcile quantity, cash, average and larger downside",
+    "result": "passed"
+  },
+  {
+    "check": "Two staged sales allocate acquisition cost once and leave ten shares at risk",
+    "result": "passed"
+  },
+  {
+    "check": "Lot-specific sale FX reduces GBP profit without changing the USD price gain",
+    "result": "passed"
+  },
+  {
+    "check": "USD/GBP purchase, sale and unallocated holding costs are counted once",
+    "result": "passed"
+  },
+  {
+    "check": "Several small sales incur their own supplied minimum commissions",
+    "result": "passed"
+  },
+  {
+    "check": "Transaction costs can exceed the small reserve; caps flag the breach without hiding exposure",
+    "result": "passed"
+  },
+  {
+    "check": "A sterling cap uses each lot FX; sales never replenish the contribution reserve",
+    "result": "passed"
+  },
+  {
+    "check": "Partial and zero allocation have finite outputs; additions scale down and short sales are rejected",
+    "result": "passed"
+  },
+  {
+    "check": "Price gaps never activate additions; two additions require distinct evidence reviews",
+    "result": "passed"
+  },
+  {
+    "check": "Unknown supplied fees and invalid/empty/non-finite/fractional inputs fail without fabricated net results",
+    "result": "passed"
+  },
+  {
+    "check": "Fees exceeding sale proceeds create a cash shortfall and never a short position",
+    "result": "passed"
+  },
+  {
+    "check": "Forward arithmetic, dilution and all nine cross-combinations use equity rather than EV",
+    "result": "passed"
+  },
+  {
+    "check": "Forward zero shares/FX-like denominators, non-finite values and mismatched years are rejected",
+    "result": "passed"
+  }
+]

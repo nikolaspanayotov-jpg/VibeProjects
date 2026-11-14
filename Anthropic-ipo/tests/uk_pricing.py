@@ -100,7 +100,7 @@ with sync_playwright() as p:
     record('Invalid, empty, fractional and above-cap inputs hide results; tiny values stay nonzero and keyboard reset announces assumptions')
 
     metadata = json.loads(page.locator('#source-preview-data').text_content())
-    assert len(metadata)==48
+    assert len(metadata)==56
     for source_id,kind,label in [('source-a-international-brokers','Company page','Checked'),
                                   ('source-ibkr-uk-offer','Broker announcement','Published'),
                                   ('source-ibkr-fx','Broker fee schedule','Checked'),

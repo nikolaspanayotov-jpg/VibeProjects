@@ -1,3 +1,44 @@
+# Valuation and position-planning review — 14 November 2026
+
+Implements the uploaded research handoff; refreshed sources, access limits, model conventions and differences are recorded in [valuation-and-position-plan-2026-11-14.md](../valuation-and-position-plan-2026-11-14.md). New modules distinguish published fair values, reported bank forecasts, author forward sensitivities and a finite hypothetical position. The initial review handoff left main/public HTML unchanged; the user subsequently approved publishing this reviewed implementation.
+
+## Actual validation
+
+```sh
+node tests/position_math.mjs
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/position_planner.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/reading_tools.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/november_refresh.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/participation_update.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8824/ python tests/uk_pricing.py
+node --check /tmp/position-all-inline.js
+```
+
+**124 checks passed**: 15 independent arithmetic cases, 10 new browser decision-tool checks and 99 existing regression checks (66 general, 14 reading tools, 6 November refresh, 6 participation, 7 UK pricing). One existing direct-file check remains unverified because administrator browser policy blocks file URLs. Full numerical assertions include $1,480 consideration; $360 gross gain / $160 loss at different entries; $71.78/$68.45 averages after additions; the $853.50 downside; $1,017.50 staged receipts / $277.50 realised gain; £130.29 FX-sensitive gain; $91.60 forward value / $83.27 with 10% more shares; and the 9.8012× forecast-revenue ratio. Further cases cover currency-specific charges, per-sale fees, zero/partial allocation, finite reviews, overselling, full exit, unknown costs, fractional/empty/non-finite inputs and contribution/share-cap breaches.
+
+The final general and new-browser suites were rerun after the mobile GBP-column refinement and final horizon/entry-discipline copy. The other suites passed on the same implementation before these confined refinements; no unnecessary blanket rerun is claimed. Three executable script blocks pass syntax checking. Original `ledger-data`, `entry-return-data` and `commitment-data` JSON were compared with the prior main source and are unchanged. All 56 source previews and 15 first-use definitions passed keyboard/focus checks.
+
+New controls retain no-runtime-request/no-persistence behaviour. Unknown fees stay visibly not supplied; the default outputs are before costs, not net profit. Optional additions and sales start off, and changing a price never enables a purchase. An explicit transfer action is required to use a forward or custom reference in the position planner. No brokerage login, application, order or trade was performed.
+
+## Visual, print and link review
+
+Actual mobile/desktop captures inspected include `position-mobile-forward-results.png`, both mobile and desktop `position-…-position-results.png`, the initial independent-valuation and planner mobile captures, and the updated brief's second page. The final mobile results table keeps USD and GBP amounts visible together. Advanced controls use native disclosures; wider exact tables have a local scroll hint and keyboard-focusable regions. At 320, 390, 768 and 1440px, expanded content has no whole-page horizontal overflow. An additional direct-link session verified all four new main anchors clear the mobile header, plus enlarged-text reflow.
+
+Both brief PDFs remain exactly **two A4 pages**, with and without JavaScript. Full-guide outputs are **60 pages with JavaScript and 59 without**. Actual full-guide forward-matrix page 40 and planner page 44 were rasterised and inspected. Text extraction retains dates, author/source labels, model assumptions, exact cash flows and fee/tax qualifications. No-JavaScript examples retain the five entry rows, nine forward combinations and default position ledger.
+
+Verification limits: Chromium only; no screen-reader/other-engine session, authenticated broker preview, live price/FX feed or tax computation. Morningstar direct retrieval returned 403; indexed article text was available, not the full company report. The final note distinguishes the newly verified 11 November published $25/$188 cases from the older equity scenarios and our author illustrations.
+
+## Review handoff
+
+The initial implementation was provided as a project-only patch and standalone review bundle against main `21cbfafd4a30cc16b0615fe5dabc363dddcb1c1f`. The user reviewed it and explicitly approved publication to main. Before publication, both HTML files and all other reviewed files matched the review manifest exactly; only publication-status documentation was subsequently updated. No code or HTML changed after the recorded checks. Public-source metadata is retained; private hosting identifiers, credentials and personal portfolio data are excluded.
+
+## Publication
+
+Authorised publication is in progress. A verified commit, Pages workflow and public-file receipt will be recorded after completion.
+
+---
+
 # UK/European IPO price and IBKR funding verification — 14 November 2026
 
 The focused source review and implementation plan are in [uk-europe-pricing-2026-11-14.md](../uk-europe-pricing-2026-11-14.md). The new `uk-ipo-costs` section explains common issuer pricing, the amendable EEA/Swiss ceiling, UK GBP/CDI and USD routes, and a maximum-20-share IBKR currency-cost comparison. Four primary/company/broker source previews were added (48 total). General FX rates remain conditional; unknown account-specific IPO fees are not represented as zero or replaced with secondary-market commissions.

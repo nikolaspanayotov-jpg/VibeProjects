@@ -244,7 +244,7 @@ with sync_playwright() as p:
     expect(page.locator("#roadmap .product-milestone")).to_contain_text("Final IPO pricing remains unconfirmed")
     record("Roadmap separates expected dates, contract windows and unresolved milestones")
 
-    expect(page.locator("a[data-term]")).to_have_count(9)
+    expect(page.locator("a[data-term]")).to_have_count(15)
     for link in page.locator("a[data-term]").all():
         if not link.is_visible():
             for ancestor in link.locator("xpath=ancestor::details").all():
@@ -258,7 +258,7 @@ with sync_playwright() as p:
         page.keyboard.press("Escape")
         expect(page.locator("#term-preview")).not_to_be_visible()
         assert link.evaluate("e=>e===document.activeElement")
-    record("All nine first-use definitions and Anthropic explanations open and restore focus")
+    record("All fifteen first-use definitions and Anthropic explanations open and restore focus")
     term_link = page.locator('a[data-term="economic-shares"]')
     term_link.scroll_into_view_if_needed()
     scroll_before = page.evaluate("scrollY")
@@ -366,14 +366,14 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 48
+    assert len(metadata) == 56
     assert metadata["source-a-gsa"]["kind"] == "Company announcement"
     assert metadata["source-a-science"]["kind"] == "Company research"
     assert metadata["source-a-event"]["date"] == "2026-11-10"
     assert metadata["source-a-register"]["date"] == "2026-11-14"
     assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-10"
     assert metadata["source-retail-barrons"]["kind"] == "Third-party report" and metadata["source-retail-barrons"]["date"] == "2026-11-04"
-    record("All 48 source previews preserve provenance and distinguish retail filing, report and register-check dates")
+    record("All 56 source previews preserve provenance and distinguish retail filing, report and register-check dates")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 

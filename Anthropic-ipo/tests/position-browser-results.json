@@ -1,0 +1,42 @@
+[
+  {
+    "check": "Published opinions, access limits, attributed forecasts, broker-specific terms and author rules remain separate from filed results",
+    "result": "passed"
+  },
+  {
+    "check": "Entry table recalculates all five prices, labels a custom reference, hides invalid results and resets to the published opinion",
+    "result": "passed"
+  },
+  {
+    "check": "Forward model includes every cross-combination, isolates fixed-equity dilution and transfers a mark only after an explicit keyboard-accessible action",
+    "result": "passed"
+  },
+  {
+    "check": "No price fall enables a purchase; optional tranches change average/loss only when selected and require distinct reviews",
+    "result": "passed"
+  },
+  {
+    "check": "Staged-sale example preserves remaining exposure; overselling is rejected and a full exit with different FX reconciles sterling profit",
+    "result": "passed"
+  },
+  {
+    "check": "Unknown fees cannot produce a net result; explicit fees, GBP cap breach, zero/fractional allocations and keyboard reset have meaningful states",
+    "result": "passed"
+  },
+  {
+    "check": "Eight new sources and six definitions preserve dated provenance, access limits, dialog behaviour and keyboard focus",
+    "result": "passed"
+  },
+  {
+    "check": "New position evidence is searchable inside native disclosures and its focused passage link survives reload",
+    "result": "passed"
+  },
+  {
+    "check": "Expanded controls/results reflow at 320\u20131440px; printed figures retain the before-costs qualification with controls hidden",
+    "result": "passed"
+  },
+  {
+    "check": "Static examples remain complete without JavaScript; no errors, external runtime requests or persisted positions were observed",
+    "result": "passed"
+  }
+]
