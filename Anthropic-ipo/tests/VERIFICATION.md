@@ -35,7 +35,14 @@ The initial implementation was provided as a project-only patch and standalone r
 
 ## Publication
 
-Authorised publication is in progress. A verified commit, Pages workflow and public-file receipt will be recorded after completion.
+Published to `main` in implementation commit [`119ce59fea36391585a6790609503b9a8f6a8bc2`](https://github.com/nikolaspanayotov-jpg/VibeProjects/commit/119ce59fea36391585a6790609503b9a8f6a8bc2), with exactly 13 changed files, all within `Anthropic-ipo/`. [GitHub Pages run 43596859776](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/43596859776) completed successfully for that exact commit.
+
+At **2026-11-14 12:53:02 UTC**, both ordinary public URLs returned HTTP 200 and hashes matching the reviewed, tested HTML, without query strings or authentication:
+
+- [Full guide](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/): 530,127 bytes; SHA-256 `0a351b7b56b89b322413860a6593804b41f1604714faa3df4d2cebc794367908`.
+- [Two-page brief](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/investment-brief.html): 95,311 bytes; SHA-256 `d5e786a0f3079d22c6cabac7b5897caee829920cd923160e898e561cc48772b7`.
+
+This publication receipt updates documentation only. The deployed HTML is unchanged from the version that passed the recorded 124 checks. No new code tests were required for the subsequent publication-status edits.
 
 ---
 
