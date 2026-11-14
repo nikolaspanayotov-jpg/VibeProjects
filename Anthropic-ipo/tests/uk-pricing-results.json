@@ -1,0 +1,30 @@
+[
+  {
+    "check": "Common issuer pricing, amendable regional ceiling, CDI route and unknown IPO-specific charges remain distinct",
+    "result": "passed"
+  },
+  {
+    "check": "Direct and search passage links survive reload with header clearance; 20-share midpoint illustration rounds only after calculation",
+    "result": "passed"
+  },
+  {
+    "check": "Smaller allocations raise minimum cost per share; manual FX correctly switches to 0.002% above its minimum",
+    "result": "passed"
+  },
+  {
+    "check": "Invalid, empty, fractional and above-cap inputs hide results; tiny values stay nonzero and keyboard reset announces assumptions",
+    "result": "passed"
+  },
+  {
+    "check": "Four new source previews distinguish broker notices, checked tariffs and issuer evidence, with focus restoration",
+    "result": "passed"
+  },
+  {
+    "check": "Expanded UK content reflows at 320, 390, 768 and 1440px; printed results retain assumptions with controls hidden",
+    "result": "passed"
+  },
+  {
+    "check": "No-JavaScript funding figures match enhanced defaults; native details work without errors or third-party runtime requests",
+    "result": "passed"
+  }
+]

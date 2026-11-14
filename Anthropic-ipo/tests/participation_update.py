@@ -28,7 +28,7 @@ with sync_playwright() as p:
     expect(page.locator('.status-panel')).to_contain_text('subject to regulatory clearance')
     expect(page.locator('.status-list')).to_contain_text('final price pending')
     metadata = json.loads(page.locator('#source-preview-data').text_content())
-    assert len(metadata)==44
+    assert len(metadata)==48
     assert metadata['source-a-cover']['date']=='2026-11-10'
     assert metadata['source-a-register']['date']=='2026-11-14'
     for key in ['ipo','uk','eea','au-ca','jp']:

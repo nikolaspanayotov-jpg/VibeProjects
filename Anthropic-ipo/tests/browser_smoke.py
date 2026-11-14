@@ -366,14 +366,14 @@ with sync_playwright() as p:
         assert page.locator("#source-preview-original").get_attribute("href").startswith("https://")
         page.locator("#source-preview-close").click()
     page.locator("details[open]").evaluate_all("es=>es.forEach(e=>e.open=false)")
-    assert len(metadata) == 44
+    assert len(metadata) == 48
     assert metadata["source-a-gsa"]["kind"] == "Company announcement"
     assert metadata["source-a-science"]["kind"] == "Company research"
     assert metadata["source-a-event"]["date"] == "2026-11-10"
     assert metadata["source-a-register"]["date"] == "2026-11-14"
     assert metadata["source-a-retail"]["kind"] == "Filing" and metadata["source-a-retail"]["date"] == "2026-11-10"
     assert metadata["source-retail-barrons"]["kind"] == "Third-party report" and metadata["source-retail-barrons"]["date"] == "2026-11-04"
-    record("All 44 source previews preserve provenance and distinguish retail filing, report and register-check dates")
+    record("All 48 source previews preserve provenance and distinguish retail filing, report and register-check dates")
     expect(page.locator("#definition-net-revenue-retention").locator("xpath=following-sibling::dd[1]")).to_contain_text("Ultra")
     record("Retention definition includes Pro, Max and Ultra cohort exclusions")
 

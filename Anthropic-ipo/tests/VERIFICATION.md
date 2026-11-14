@@ -1,3 +1,38 @@
+# UK/European IPO price and IBKR funding verification — 14 November 2026
+
+The focused source review and implementation plan are in [uk-europe-pricing-2026-11-14.md](../uk-europe-pricing-2026-11-14.md). The new `uk-ipo-costs` section explains common issuer pricing, the amendable EEA/Swiss ceiling, UK GBP/CDI and USD routes, and a maximum-20-share IBKR currency-cost comparison. Four primary/company/broker source previews were added (48 total). General FX rates remain conditional; unknown account-specific IPO fees are not represented as zero or replaced with secondary-market commissions.
+
+## Actual validation
+
+```sh
+ANTHROPIC_TEST_URL=http://127.0.0.1:8820/ python tests/uk_pricing.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8820/ python tests/browser_smoke.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8820/ python tests/reading_tools.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8820/ python tests/november_refresh.py
+ANTHROPIC_TEST_URL=http://127.0.0.1:8820/ python tests/participation_update.py
+node --check /tmp/uk-inline.js
+```
+
+**99 checks passed**: 66 general regression, 14 reading tools, 6 November refresh, 6 participation and 7 focused UK pricing checks. One direct-file check remains unverified because browser administrator policy blocks file URLs. New checks cover equal issuer prices versus local costs, regional cap amendment, unchanged default/static calculations, reduced allocations, the manual FX minimum and percentage tiers, correct basis-point conversion, invalid/empty/fractional/above-cap inputs, tiny nonzero labels, keyboard reset/announcement, source provenance and focus restoration, direct/reloaded section and generated search-passage links, 320/390/768/1440px reflow, no-JavaScript parity and printed assumptions. No page/console errors or runtime third-party requests were observed. All 48 source previews passed the general regression check.
+
+An additional reload check exposed browser scroll restoration overriding a generated passage anchor inside the new closed disclosure. A non-cached `pageshow` handoff now reapplies that anchor; back/forward-cache pages retain their saved reading position. The focused UK, general browser and reading-tool suites were rerun after the fix.
+
+The `ledger-data`, `entry-return-data` and `commitment-data` JSON were compared with the prior implementation and are unchanged. The assumed $74 midpoint and invented 1.25 USD/GBP rate do not become a live quote or final offer terms.
+
+## Visual and print review
+
+Actual captures inspected: `uk-mobile-uk-ipo-costs.png`, `uk-mobile-uk-cost-calculator.png`, `uk-desktop-uk-cost-results.png`; the updated brief's second A4 page; and the full-guide printed funding comparison (page 36). The new result columns preserve their fee exclusions and conditional automatic-FX wording.
+
+Both brief PDFs are exactly **two A4 pages**, with and without JavaScript. The full guide prints to **50 pages with JavaScript and 49 without**. Extracted print text preserves the common-price explanation, amendment qualification, 20-share assumptions and currency-only funding figures. Generated images/PDFs remain ignored local QA artifacts.
+
+Verification used Chromium only, with no authenticated IBKR account, trade/application submission, screen-reader session or other browser engine. The broker's advertised UK offer URL redirected to its homepage; the page does not claim the user's eligibility, account cutoff, exact IPO application fee or FX workflow were verified. Public notes omit private hosting metadata and credentials.
+
+## Publication
+
+Pending publication and verification of the actual public HTML. No deployment success is claimed at this stage.
+
+---
+
 # 14 November IPO participation and timetable verification
 
 The update follows [ipo-update-2026-11-14.md](../ipo-update-2026-11-14.md), which records the source review and plan. The page and brief now distinguish the unchanged 10 November preliminary terms from newer FWPs, expected company dates, regional conditions and attributed order-book reports.
