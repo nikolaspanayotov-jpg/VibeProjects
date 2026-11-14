@@ -26,7 +26,14 @@ Generated screenshots/PDFs remain ignored local QA artifacts. Verification is Ch
 
 ## Publication
 
-Validated and ready for the requested main commit, limited to `Anthropic-ipo/`. Publication/served-file evidence will be recorded after deployment. Public notes exclude private hosting metadata and credentials.
+Published to `main` in implementation commit [`5126255b957975ebbc62935b19fcbfccd5e807b5`](https://github.com/nikolaspanayotov-jpg/VibeProjects/commit/5126255b957975ebbc62935b19fcbfccd5e807b5), limited to `Anthropic-ipo/`. [GitHub Pages run 43579516118](https://github.com/nikolaspanayotov-jpg/VibeProjects/actions/runs/43579516118) completed successfully for that exact commit.
+
+At **09:14:44 UTC on 14 November**, both ordinary public URLs returned HTTP 200 and hashes matching the validated HTML, with no query strings or authentication:
+
+- [Full guide](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/): 431,852 bytes; SHA-256 `76dcf03cf32a3931d293636fcae16f5f69b931569884cb197060e53334a97443`.
+- [Two-page brief](https://nikolaspanayotov-jpg.github.io/VibeProjects/Anthropic-ipo/investment-brief.html): 94,534 bytes; SHA-256 `89e94e22d3fd5829fb2ef3c3221bda8f33739386c79e33acb3ebb1fcd6185371`.
+
+The owned preview server was stopped after verification. This documentation receipt does not change the published HTML. Public notes exclude private hosting metadata and credentials.
 
 ---
 
